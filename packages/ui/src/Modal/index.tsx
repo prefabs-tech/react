@@ -7,8 +7,9 @@ interface ModalProperties {
   className?: string;
   footer?: React.ReactNode;
   header?: string | JSX.Element;
-  visible: boolean;
   onHide: () => void;
+  size?: "medium" | "large";
+  visible: boolean;
 }
 
 const Modal: React.FC<ModalProperties> = ({
@@ -16,14 +17,19 @@ const Modal: React.FC<ModalProperties> = ({
   className = "",
   footer,
   header,
-  visible = false,
   onHide,
+  size = "medium",
+  visible = false,
 }) => {
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
+
+  const modalClassName = ["dz-modal", className, size].join(" ");
 
   return (
     <div role="dialog" className="dz-modal-overlay">
-      <div className={`dz-modal ${className}`.trim()}>
+      <div className={modalClassName}>
         <div className="dz-modal-header">
           {typeof header === "string" ? (
             <span role="heading">{header}</span>
