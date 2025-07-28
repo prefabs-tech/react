@@ -1,4 +1,5 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Message } from "@prefabs.tech/react-ui";
 import { FC, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -34,6 +35,9 @@ export const LoginWrapper: FC<IProperties> = ({
   const { setUser } = useUser();
   const config = useConfig();
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<
+    null | "invalidCredentials" | "other"
+  >(null);
 
   const links: Array<LinkType> = [
     {
@@ -70,19 +74,36 @@ export const LoginWrapper: FC<IProperties> = ({
           }
         })
         .catch(async (error) => {
-          const errorMessage = `errors.${error.message}`;
-
           onLoginFailed && (await onLoginFailed(error));
 
-          toast.error(t(errorMessage, { ns: "errors" }));
+          if (error.message === "401") {
+            setLoginError("invalidCredentials");
+          } else {
+            setLoginError("other");
+          }
         });
 
       setLoginLoading(false);
     }
   };
 
+  const message =
+    loginError === "invalidCredentials"
+      ? t("errors.401", { ns: "errors" })
+      : t("errors.otherErrors", { ns: "errors" });
+
   return (
     <>
+      {loginError && (
+        <Message
+          enableClose={true}
+          message={message}
+          onClose={() => {
+            setLoginError(null);
+          }}
+          severity="danger"
+        />
+      )}
       <LoginForm
         handleSubmit={handleLoginSubmit}
         loading={handleSubmit ? loading : loginLoading}

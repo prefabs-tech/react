@@ -24,7 +24,7 @@ test("validation error message is displayed when input field is empty", async ()
 
   await waitFor(() => {
     expect(
-      screen.getByText("changePassword.messages.validation.oldPassword"),
+      screen.getByText("changePassword.messages.validation.currentPassword"),
     ).toBeDefined();
   });
   await waitFor(() => {
@@ -45,8 +45,8 @@ test("validation error message is displayed for unmatched confirm password", asy
   const handleSubmit = vi.fn();
   const { user } = setup(<ChangePasswordForm handleSubmit={handleSubmit} />);
 
-  const oldPassword = screen.getByLabelText(
-    "changePassword.form.oldPassword.label",
+  const currentPassword = screen.getByLabelText(
+    "changePassword.form.currentPassword.label",
   );
   const newPassword = screen.getByLabelText(
     "changePassword.form.newPassword.label",
@@ -57,7 +57,7 @@ test("validation error message is displayed for unmatched confirm password", asy
   const submitButton = screen.getByText("changePassword.form.actions.submit");
 
   await act(async () => {
-    await user.type(oldPassword, "Test@123");
+    await user.type(currentPassword, "Test@123");
     await user.type(newPassword, "Test@12345");
     await user.type(confirmPassword, "Test@12");
   });
@@ -81,8 +81,8 @@ test("form is successfully submitted", async () => {
   const handleSubmit = vi.fn();
   const { user } = setup(<ChangePasswordForm handleSubmit={handleSubmit} />);
 
-  const oldPassword = screen.getByLabelText(
-    "changePassword.form.oldPassword.label",
+  const currentPassword = screen.getByLabelText(
+    "changePassword.form.currentPassword.label",
   );
   const newPassword = screen.getByLabelText(
     "changePassword.form.newPassword.label",
@@ -93,7 +93,7 @@ test("form is successfully submitted", async () => {
   const submitButton = screen.getByText("changePassword.form.actions.submit");
 
   await act(async () => {
-    await user.type(oldPassword, "Test@123");
+    await user.type(currentPassword, "Test@123");
     await user.type(newPassword, "Test@12345");
     await user.type(confirmPassword, "Test@12345");
 

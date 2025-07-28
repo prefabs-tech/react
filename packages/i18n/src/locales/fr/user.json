@@ -7,20 +7,20 @@
       "confirmPassword": {
         "label": "Confirm password (fr)"
       },
+      "currentPassword": {
+        "label": "Current password (fr)"
+      },
       "newPassword": {
         "label": "New password (fr)"
-      },
-      "oldPassword": {
-        "label": "Old password (fr)"
       }
     },
     "messages": {
       "success": "You have successfully changed your password. (fr)",
       "validation": {
         "confirmPassword": "Confirm password is required. (fr)",
+        "currentPassword": "Current password is required. (fr)",
         "mustMatch": "Passwords must match. (fr)",
-        "newPassword": "New password is required. (fr)",
-        "oldPassword": "Old password is required. (fr)"
+        "newPassword": "New password is required. (fr)"
       }
     },
     "title": "Change password (fr)"
@@ -34,7 +34,7 @@
     "messages": {
       "alreadyVerified": "Email is already verified. Please try refreshing the page. (fr)",
       "error": "Something went wrong. Please try again. (fr)",
-      "invalidToken": "The token is invalid. (fr)",
+      "invalidToken": "This email verification link is no more valid. Either it has been already used or has expired. (fr)",
       "resendEmailInfo": "Not received yet? (fr)",
       "success": "Email verified successfully. (fr)",
       "unverified": "We've sent an email to <strong>{{ email }}</strong> with a link for verification. Please check your inbox. (fr)",

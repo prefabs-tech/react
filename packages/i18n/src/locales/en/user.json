@@ -10,17 +10,17 @@
       "newPassword": {
         "label": "New password"
       },
-      "oldPassword": {
-        "label": "Old password"
+      "currentPassword": {
+        "label": "Current password"
       }
     },
     "messages": {
       "success": "You have successfully changed your password.",
       "validation": {
         "confirmPassword": "Confirm password.",
+        "currentPassword": "Current password is required.",
         "mustMatch": "Passwords must match.",
-        "newPassword": "New password is required.",
-        "oldPassword": "Old password is required."
+        "newPassword": "New password is required."
       }
     },
     "title": "Change password"
@@ -44,7 +44,7 @@
     "toastMessages": {
       "alreadyVerified": "Email is already verified.",
       "error": "Something went wrong. Please try again.",
-      "invalidToken": "The token is invalid.",
+      "invalidToken": "This email verification link is no more valid. Either it has been already used or has expired.",
       "resendError": "Something went wrong. Please try again.",
       "resendSuccess": "Email resent successfully.",
       "success": "Email verified successfully.",

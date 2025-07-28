@@ -1,4 +1,5 @@
-.demo-button .container {
+.demo-button .container,
+.demo-modal .container {
   display: flex;
   align-items: center;
   gap: 1rem;

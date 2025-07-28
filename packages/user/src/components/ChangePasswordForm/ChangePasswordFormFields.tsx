@@ -24,7 +24,7 @@ const ChangePasswordFormFields = ({ loading }: Properties) => {
     <>
       <Password
         autoComplete="current-password"
-        label={t("changePassword.form.oldPassword.label")}
+        label={t("changePassword.form.currentPassword.label")}
         name="oldPassword"
         register={register}
         getFieldState={getFieldState}

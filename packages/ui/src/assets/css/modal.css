@@ -17,20 +17,18 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   color: var(--color);
   max-height: 80%;
-  max-width: 350px;
   min-width: 300px;
   overflow-y: auto;
   padding: 1rem;
-  width: 100%;
+  width: calc(100% - 2rem);
   z-index: 1000;
 }
 
 .dz-modal .dz-modal-header {
-  margin-bottom: 0.5rem;
-  padding: 0.7rem;
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 0.7rem;
 }
 
 .dz-modal .dz-modal-header span[role="heading"] {
@@ -56,7 +54,12 @@
 }
 
 @media screen and (min-width: 576px) {
-  .dz-modal {
-    max-width: 430px;
+  .dz-modal.medium {
+    max-width: 32rem;
+    min-width: 32rem;
+  }
+
+  .dz-modal.large {
+    max-width: 60rem;
   }
 }

@@ -1,3 +1,12 @@
+# [0.61.0](https://github.com/prefabs-tech/react/compare/v0.60.0...v0.61.0) (2025-07-25)
+
+
+### Features
+
+* **user:** display email on email verification remainder page ([#1533](https://github.com/prefabs-tech/react/issues/1533)) ([1b17c61](https://github.com/prefabs-tech/react/commit/1b17c61a68653c2cdc1e60badc206fba102dcbbd))
+
+
+
 # [0.60.0](https://github.com/dzangolab/react/compare/v0.59.0...v0.60.0) (2025-07-18)
 
 

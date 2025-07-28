@@ -8,7 +8,7 @@ module.exports = {
   },
   monorepo: {
     mainVersionFile: "package.json",
-    packagesToBump: ["packages/*", "tools/*"],
+    packagesToBump: ["packages/*"],
     packagesToPublish: ["packages/*"],
   },
   publishCommand: ({ isYarn, tag, defaultCommand, dir }) => {
