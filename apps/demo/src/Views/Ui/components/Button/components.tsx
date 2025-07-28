@@ -10,7 +10,7 @@ const Basic = ({
 
   if (isString) {
     return `<div className="container">
-     <Button label="Click me" onClick={() => setClicked(true)} />
+    <Button label="Click me" onClick={() => setClicked(true)} />
 </div>`;
   }
 
