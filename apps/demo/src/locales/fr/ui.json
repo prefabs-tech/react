@@ -250,6 +250,7 @@
     "title": "Modal (fr)",
     "header": "Header (fr)",
     "showButton": "Open modal (fr)",
+    "subTitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic. (fr)",
     "usage": {
       "basic": "Basic (fr)",
       "footer": "With footer (fr)",

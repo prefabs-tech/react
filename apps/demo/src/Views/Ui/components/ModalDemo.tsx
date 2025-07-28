@@ -77,6 +77,7 @@ export const ModalDemo = () => {
   return (
     <Page
       title={t("modal.title")}
+      subtitle={t("modal.subTitle")}
       toolbar={
         <Button
           label={t("buttons.back")}
