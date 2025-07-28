@@ -56,7 +56,7 @@
 
 @media screen and (min-width: 576px) {
   .dz-modal.medium {
-    max-width: 35rem;
+    max-width: 27rem;
     min-width: 25rem;
   }
 

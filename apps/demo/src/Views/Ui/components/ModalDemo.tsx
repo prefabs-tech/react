@@ -76,6 +76,7 @@ export const ModalDemo = () => {
 
   return (
     <Page
+      className="demo-modal"
       title={t("modal.title")}
       subtitle={t("modal.subTitle")}
       toolbar={
@@ -93,10 +94,12 @@ export const ModalDemo = () => {
       </Section>
 
       <Section title={t("modal.usage.basic")}>
-        <Button
-          label="Open modal"
-          onClick={() => setIsModalOpen(true)}
-        ></Button>
+        <div className="container">
+          <Button
+            label="Open modal"
+            onClick={() => setIsModalOpen(true)}
+          ></Button>
+        </div>
         <Modal
           header="Header"
           onHide={() => setIsModalOpen(false)}
@@ -118,10 +121,12 @@ export const ModalDemo = () => {
         />
       </Section>
       <Section title={t("modal.usage.headerAndFooter")}>
-        <Button
-          label="Open modal"
-          onClick={() => setHeaderFooterModal(true)}
-        ></Button>
+        <div className="container">
+          <Button
+            label="Open modal"
+            onClick={() => setHeaderFooterModal(true)}
+          ></Button>
+        </div>
         <Modal
           header={<Header />}
           onHide={() => setHeaderFooterModal(false)}
@@ -158,15 +163,20 @@ const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
       </Section>
 
       <Section title={t("modal.usage.size")}>
-        <Button
-          label="Medium"
-          onClick={() => setIsMediumModalOpen(true)}
-        ></Button>
-        <Button
-          label="Large"
-          onClick={() => setIsLargeModalOpen(true)}
-        ></Button>
-        <Button label="Auto" onClick={() => setIsAutoModalOpen(true)}></Button>
+        <div className="container">
+          <Button
+            label="Auto"
+            onClick={() => setIsAutoModalOpen(true)}
+          ></Button>
+          <Button
+            label="Medium"
+            onClick={() => setIsMediumModalOpen(true)}
+          ></Button>
+          <Button
+            label="Large"
+            onClick={() => setIsLargeModalOpen(true)}
+          ></Button>
+        </div>
         <Modal
           header="Header"
           onHide={() => setIsMediumModalOpen(false)}
@@ -192,9 +202,19 @@ const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <CodeBlock
-          exampleCode='const [isMediumModalOpen, setIsMediumModalOpen] = useState<boolean>(false);
+          exampleCode='const [isAutoModalOpen, setIsAutoModalOpen] = useState<boolean>(false);
+const [isMediumModalOpen, setIsMediumModalOpen] = useState<boolean>(false);
 const [isLargeModalOpen, setIsLargeModalOpen] = useState<boolean>(false);
-const [isAutoModalOpen, setIsAutoModalOpen] = useState<boolean>(false);
+
+<Button label="Auto" onClick={() => setIsAutoModalOpen(true)}></Button>
+<Modal
+  header="Header"
+  onHide={() => setIsAutoModalOpen(false)}
+  size="auto"
+  visible={isAutoModalOpen}
+>
+  <p style={{ lineHeight: 1.6 }}>{content}</p>
+</Modal>
 
 <Button label="Medium" onClick={() => setIsMediumModalOpen(true)}></Button>
 <Modal
@@ -212,16 +232,6 @@ const [isAutoModalOpen, setIsAutoModalOpen] = useState<boolean>(false);
   onHide={() => setIsLargeModalOpen(false)}
   size="large"
   visible={isLargeModalOpen}
->
-  <p style={{ lineHeight: 1.6 }}>{content}</p>
-</Modal>
-
-<Button label="Auto" onClick={() => setIsAutoModalOpen(true)}></Button>
-<Modal
-  header="Header"
-  onHide={() => setIsAutoModalOpen(false)}
-  size="auto"
-  visible={isAutoModalOpen}
 >
   <p style={{ lineHeight: 1.6 }}>{content}</p>
 </Modal>'
