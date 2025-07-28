@@ -251,10 +251,11 @@
     "header": "Header (fr)",
     "showButton": "Open modal (fr)",
     "usage": {
+      "basic": "Basic (fr)",
+      "footer": "With footer (fr)",
       "headerAsFC": "Header as functional component (fr)",
       "size":"Size (fr)",
-      "withHeader": "With header (fr)",
-      "withoutHeader": "Without header (fr)"
+      "withHeader": "With header (fr)"
     }
   },
   "tooltip": {

@@ -251,10 +251,11 @@
     "header": "Header",
     "showButton": "Open modal",
     "usage": {
+      "basic": "Basic",
+      "footer": "With footer",
       "headerAsFC": "Header as functional component",
       "size": "Size",
-      "withHeader": "With header",
-      "withoutHeader": "Without header"
+      "withHeader": "With header"
     }
   },
   "tooltip": {
