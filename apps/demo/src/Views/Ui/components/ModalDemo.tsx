@@ -62,14 +62,14 @@ export const ModalDemo = () => {
       prop: "size",
       type: `"auto" | "medium" | "large"`,
       default: `"medium"`,
-      description: t("modal.propertiesDescription.onHide"),
+      description: t("modal.propertiesDescription.size"),
     },
     {
       id: 7,
       prop: "visible",
       type: "Boolean",
       default: "false",
-      description: t("modal.propertiesDescription.onHide"),
+      description: t("modal.propertiesDescription.visible"),
     },
   ];
 
