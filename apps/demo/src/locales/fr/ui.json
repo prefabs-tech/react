@@ -263,9 +263,8 @@
     "usage": {
       "basic": "Basic (fr)",
       "footer": "With footer (fr)",
-      "headerAsFC": "Header as functional component (fr)",
-      "size":"Size (fr)",
-      "withHeader": "With header (fr)"
+      "headerAndFooter": "Header and footer (fr)",
+      "size":"Size (fr)"
     }
   },
   "tooltip": {

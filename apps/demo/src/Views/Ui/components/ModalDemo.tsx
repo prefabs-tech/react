@@ -6,18 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { CodeBlock, Section } from "../../../components/Demo";
 
 const Header = () => {
-  return <h2>Header as functional component</h2>;
+  return <h2>Header functional component</h2>;
 };
 
 export const ModalDemo = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isOpen2, setIsOpen2] = useState<boolean>(false);
-  const [isOpen3, setIsOpen3] = useState<boolean>(false);
-  const [isOpen4, setIsOpen4] = useState<boolean>(false);
-  const [enableMedium, setEnableMedium] = useState<boolean>(false);
-  const [enableLarge, setEnableLarge] = useState<boolean>(false);
-  const [enableAuto, setEnableAuto] = useState<boolean>(false);
-
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
 
@@ -73,6 +65,12 @@ export const ModalDemo = () => {
     },
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
+  const [isMediumModalOpen, setIsMediumModalOpen] = useState<boolean>(false);
+  const [isLargeModalOpen, setIsLargeModalOpen] = useState<boolean>(false);
+  const [isAutoModalOpen, setIsAutoModalOpen] = useState<boolean>(false);
+
   const content =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
@@ -95,154 +93,137 @@ export const ModalDemo = () => {
       </Section>
 
       <Section title={t("modal.usage.basic")}>
-        <Button label="Open modal" onClick={() => setIsOpen(true)}></Button>
-        <Modal onHide={() => setIsOpen(false)} visible={isOpen}>
-          <p style={{ lineHeight: 1.6 }}>{content}</p>
-        </Modal>
-        <CodeBlock
-          exampleCode='const [isOpen, setIsOpen] = useState<boolean>(false);
-
-<Button
-  label="Open modal"
-  onClick={() => setIsOpen(true)}
-  ></Button>
-<Modal onHide={() => setIsOpen(false)} visible={isOpen}>
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
-</Modal>'
-        />
-      </Section>
-      <Section title={t("modal.usage.withHeader")}>
-        <Button label="Open modal" onClick={() => setIsOpen2(true)}></Button>
+        <Button
+          label="Open modal"
+          onClick={() => setIsModalOpen(true)}
+        ></Button>
         <Modal
-          header="Header content"
-          onHide={() => setIsOpen2(false)}
-          visible={isOpen2}
+          header="Header"
+          onHide={() => setIsModalOpen(false)}
+          visible={isModalOpen}
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <CodeBlock
-          exampleCode='const [isOpen, setIsOpen] = useState<boolean>(false);
+          exampleCode='const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-<Button
-  label="Open modal"
-  onClick={() => setIsOpen(true)}
-  ></Button>
-<Modal
-  header="Header content"
-  onHide={() => setIsOpen(false)}
-  visible={isOpen}
->
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
-</Modal>'
+<Button label="Open modal" onClick={() => setIsModalOpen(true)}></Button>
+  <Modal
+    header="Header"
+    onHide={() => setIsModalOpen(false)}
+    visible={isModalOpen}
+  >
+    <p style={{ lineHeight: 1.6 }}>{content}</p>
+  </Modal>'
         />
       </Section>
-
-      <Section title={t("modal.usage.headerAsFC")}>
-        <Button label="Open modal" onClick={() => setIsOpen3(true)}></Button>
+      <Section title={t("modal.usage.headerAndFooter")}>
+        <Button
+          label="Open modal"
+          onClick={() => setHeaderFooterModal(true)}
+        ></Button>
         <Modal
           header={<Header />}
-          onHide={() => setIsOpen3(false)}
-          visible={isOpen3}
+          onHide={() => setHeaderFooterModal(false)}
+          visible={headerFooterModal}
+          footer={
+            <div>
+              <Button label="Click me" />
+            </div>
+          }
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <CodeBlock
           exampleCode='const Header = () => {
-  return <h2>Header as functional component</h2>;
+  return <h2>Header functional component</h2>;
 };
 
-const [isOpen, setIsOpen] = useState<boolean>(false);
+const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
 
-<Button
-  label="Open modal"
-  onClick={() => setIsOpen(true)}
-  ></Button>
+<Button label="Open modal" onClick={() => setHeaderFooterModal(true)}></Button>
 <Modal
   header={<Header />}
-  onHide={() => setIsOpen(false)}
-  visible={isOpen}
+  onHide={() => setHeaderFooterModal(false)}
+  visible={headerFooterModal}
+  footer={
+    <div>
+      <Button label="Click me" />
+    </div>
+  }
 >
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
-</Modal>'
-        />
-      </Section>
-
-      <Section title={t("modal.usage.footer")}>
-        <Button label="Open modal" onClick={() => setIsOpen4(true)}></Button>
-        <Modal
-          footer={<div>Footer content</div>}
-          onHide={() => setIsOpen4(false)}
-          visible={isOpen4}
-        >
-          <p style={{ lineHeight: 1.6 }}>{content}</p>
-        </Modal>
-        <CodeBlock
-          exampleCode='const [isOpen, setIsOpen] = useState<boolean>(false);
-
-<Button
-  label="Open modal"
-  onClick={() => setIsOpen(true)}
-  ></Button>
-<Modal
-  footer={<div>Footer content</div>}
-  onHide={() => setIsOpen(false)}
-  visible={isOpen}
->
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
+  <p style={{ lineHeight: 1.6 }}>{content}</p>
 </Modal>'
         />
       </Section>
 
       <Section title={t("modal.usage.size")}>
-        <Button label="Medium" onClick={() => setEnableMedium(true)}></Button>
-        <Button label="Large" onClick={() => setEnableLarge(true)}></Button>
-        <Button label="Auto" onClick={() => setEnableAuto(true)}></Button>
+        <Button
+          label="Medium"
+          onClick={() => setIsMediumModalOpen(true)}
+        ></Button>
+        <Button
+          label="Large"
+          onClick={() => setIsLargeModalOpen(true)}
+        ></Button>
+        <Button label="Auto" onClick={() => setIsAutoModalOpen(true)}></Button>
         <Modal
-          onHide={() => setEnableMedium(false)}
+          header="Header"
+          onHide={() => setIsMediumModalOpen(false)}
           size="medium"
-          visible={enableMedium}
+          visible={isMediumModalOpen}
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <Modal
-          onHide={() => setEnableLarge(false)}
+          header="Header"
+          onHide={() => setIsLargeModalOpen(false)}
           size="large"
-          visible={enableLarge}
+          visible={isLargeModalOpen}
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <Modal
-          onHide={() => setEnableAuto(false)}
+          header="Header"
+          onHide={() => setIsAutoModalOpen(false)}
           size="auto"
-          visible={enableAuto}
+          visible={isAutoModalOpen}
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <CodeBlock
-          exampleCode='const [enableMedium, setEnableMedium] = useState<boolean>(false);
-const [enableLarge, setEnableLarge] = useState<boolean>(false);
-const [enableAuto, setEnableAuto] = useState<boolean>(false);
+          exampleCode='const [isMediumModalOpen, setIsMediumModalOpen] = useState<boolean>(false);
+const [isLargeModalOpen, setIsLargeModalOpen] = useState<boolean>(false);
+const [isAutoModalOpen, setIsAutoModalOpen] = useState<boolean>(false);
 
+<Button label="Medium" onClick={() => setIsMediumModalOpen(true)}></Button>
 <Modal
-  onHide={() => setEnableMedium(false)}
+  header="Header"
+  onHide={() => setIsMediumModalOpen(false)}
   size="medium"
-  visible={enableMedium}
+  visible={isMediumModalOpen}
 >
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
+  <p style={{ lineHeight: 1.6 }}>{content}</p>
 </Modal>
+
+<Button label="Large" onClick={() => setIsLargeModalOpen(true)}></Button>
 <Modal
-  onHide={() => setEnableLarge(false)}
+  header="Header"
+  onHide={() => setIsLargeModalOpen(false)}
   size="large"
-  visible={enableLarge}
+  visible={isLargeModalOpen}
 >
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
+  <p style={{ lineHeight: 1.6 }}>{content}</p>
 </Modal>
+
+<Button label="Auto" onClick={() => setIsAutoModalOpen(true)}></Button>
 <Modal
-  onHide={() => setEnableAuto(false)}
+  header="Header"
+  onHide={() => setIsAutoModalOpen(false)}
   size="auto"
-  visible={enableAuto}
+  visible={isAutoModalOpen}
 >
-  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
+  <p style={{ lineHeight: 1.6 }}>{content}</p>
 </Modal>'
         />
       </Section>

@@ -263,9 +263,8 @@
     "usage": {
       "basic": "Basic",
       "footer": "With footer",
-      "headerAsFC": "Header as functional component",
-      "size": "Size",
-      "withHeader": "With header"
+      "headerAndFooter": "Header and footer",
+      "size": "Size"
     }
   },
   "tooltip": {
