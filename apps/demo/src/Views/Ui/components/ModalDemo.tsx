@@ -94,7 +94,7 @@ export const ModalDemo = () => {
 
       <Section title={t("modal.usage.basic")}>
         <Button label="Open modal" onClick={() => setIsOpen(true)}></Button>
-        <Modal onHide={() => setIsOpen(false)} visible={isOpen}>
+        <Modal onHide={() => setIsOpen(false)} visible={isOpen} size="auto">
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <CodeBlock

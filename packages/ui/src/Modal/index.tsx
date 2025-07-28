@@ -8,7 +8,7 @@ interface ModalProperties {
   footer?: React.ReactNode;
   header?: string | JSX.Element;
   onHide: () => void;
-  size?: "medium" | "large";
+  size?: "auto" | "medium" | "large";
   visible: boolean;
 }
 
