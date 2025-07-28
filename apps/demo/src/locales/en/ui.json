@@ -259,10 +259,9 @@
       "visible": "Controls the visibility of the modal."
     },
     "showButton": "Open modal",
-    "subTitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic.",
+    "subtitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic.",
     "usage": {
       "basic": "Basic",
-      "footer": "With footer",
       "headerAndFooter": "Header and footer",
       "size": "Size"
     }

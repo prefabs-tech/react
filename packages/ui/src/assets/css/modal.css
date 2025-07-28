@@ -17,11 +17,10 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   color: var(--color);
   max-height: 80%;
-  max-width: calc(100% - 2rem);
   min-width: 300px;
   overflow-y: auto;
   padding: 1rem;
-  width: auto;
+  width: calc(100% - 2rem);
   z-index: 1000;
 }
 
@@ -57,10 +56,10 @@
 @media screen and (min-width: 576px) {
   .dz-modal.medium {
     max-width: 27rem;
-    min-width: 25rem;
+    min-width: 27rem;
   }
 
   .dz-modal.large {
-    max-width: 56.25rem;
+    max-width: 57rem;
   }
 }
