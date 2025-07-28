@@ -262,8 +262,7 @@
     "subtitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic. (fr)",
     "usage": {
       "basic": "Basic (fr)",
-      "headerAndFooter": "Header and footer (fr)",
-      "size":"Size (fr)"
+      "headerAndFooter": "Header and footer (fr)"
     }
   },
   "tooltip": {

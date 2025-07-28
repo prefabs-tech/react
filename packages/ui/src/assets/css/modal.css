@@ -25,7 +25,7 @@
 }
 
 .dz-modal .dz-modal-header {
-  align-items: start;
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
   padding: 0.7rem;

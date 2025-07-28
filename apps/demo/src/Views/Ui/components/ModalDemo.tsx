@@ -65,7 +65,6 @@ export const ModalDemo = () => {
     },
   ];
 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
   const [isMediumModalOpen, setIsMediumModalOpen] = useState<boolean>(false);
   const [isLargeModalOpen, setIsLargeModalOpen] = useState<boolean>(false);
@@ -96,85 +95,16 @@ export const ModalDemo = () => {
       <Section title={t("modal.usage.basic")}>
         <div className="container">
           <Button
-            label="Open modal"
-            onClick={() => setIsModalOpen(true)}
-          ></Button>
-        </div>
-        <Modal
-          header="Header"
-          onHide={() => setIsModalOpen(false)}
-          visible={isModalOpen}
-        >
-          <p style={{ lineHeight: 1.6 }}>{content}</p>
-        </Modal>
-        <CodeBlock
-          exampleCode='const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-<Button label="Open modal" onClick={() => setIsModalOpen(true)}></Button>
-  <Modal
-    header="Header"
-    onHide={() => setIsModalOpen(false)}
-    visible={isModalOpen}
-  >
-    <p style={{ lineHeight: 1.6 }}>{content}</p>
-  </Modal>'
-        />
-      </Section>
-      <Section title={t("modal.usage.headerAndFooter")}>
-        <div className="container">
-          <Button
-            label="Open modal"
-            onClick={() => setHeaderFooterModal(true)}
-          ></Button>
-        </div>
-        <Modal
-          header={<Header />}
-          onHide={() => setHeaderFooterModal(false)}
-          visible={headerFooterModal}
-          footer={
-            <div>
-              <Button label="Click me" />
-            </div>
-          }
-        >
-          <p style={{ lineHeight: 1.6 }}>{content}</p>
-        </Modal>
-        <CodeBlock
-          exampleCode='const Header = () => {
-  return <h2>Header functional component</h2>;
-};
-
-const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
-
-<Button label="Open modal" onClick={() => setHeaderFooterModal(true)}></Button>
-<Modal
-  header={<Header />}
-  onHide={() => setHeaderFooterModal(false)}
-  visible={headerFooterModal}
-  footer={
-    <div>
-      <Button label="Click me" />
-    </div>
-  }
->
-  <p style={{ lineHeight: 1.6 }}>{content}</p>
-</Modal>'
-        />
-      </Section>
-
-      <Section title={t("modal.usage.size")}>
-        <div className="container">
-          <Button
-            label="Auto"
-            onClick={() => setIsAutoModalOpen(true)}
-          ></Button>
-          <Button
             label="Medium"
             onClick={() => setIsMediumModalOpen(true)}
           ></Button>
           <Button
             label="Large"
             onClick={() => setIsLargeModalOpen(true)}
+          ></Button>
+          <Button
+            label="Auto"
+            onClick={() => setIsAutoModalOpen(true)}
           ></Button>
         </div>
         <Modal
@@ -237,6 +167,49 @@ const [isLargeModalOpen, setIsLargeModalOpen] = useState<boolean>(false);
 </Modal>'
         />
       </Section>
+
+      <Section title={t("modal.usage.headerAndFooter")}>
+        <div className="container">
+          <Button
+            label="Open modal"
+            onClick={() => setHeaderFooterModal(true)}
+          ></Button>
+        </div>
+        <Modal
+          header={<Header />}
+          onHide={() => setHeaderFooterModal(false)}
+          visible={headerFooterModal}
+          footer={
+            <div>
+              <Button label="Click me" />
+            </div>
+          }
+        >
+          <p style={{ lineHeight: 1.6 }}>{content}</p>
+        </Modal>
+        <CodeBlock
+          exampleCode='const Header = () => {
+  return <h2>Header functional component</h2>;
+};
+
+const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
+
+<Button label="Open modal" onClick={() => setHeaderFooterModal(true)}></Button>
+<Modal
+  header={<Header />}
+  onHide={() => setHeaderFooterModal(false)}
+  visible={headerFooterModal}
+  footer={
+    <div>
+      <Button label="Click me" />
+    </div>
+  }
+>
+  <p style={{ lineHeight: 1.6 }}>{content}</p>
+</Modal>'
+        />
+      </Section>
+
       <Section
         title={t("headers.propertiesValue", {
           value: "ModalProperties",
