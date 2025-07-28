@@ -161,6 +161,11 @@ export const InvitationFormFields: React.FC<IProperties> = ({
       <FormActions
         actions={[
           {
+            id: "submit",
+            label: t("form.actions.submit"),
+            disabled: !!Object.values(errors).length,
+          },
+          {
             id: "cancel",
             onClick: (event) => {
               event.preventDefault();
@@ -168,15 +173,9 @@ export const InvitationFormFields: React.FC<IProperties> = ({
             },
             label: t("form.actions.cancel"),
           },
-          {
-            id: "submit",
-            label: t("form.actions.submit"),
-            disabled: !!Object.values(errors).length,
-          },
         ]}
         alignment="right"
         loading={loading}
-        reverse={true}
       />
     </>
   );
