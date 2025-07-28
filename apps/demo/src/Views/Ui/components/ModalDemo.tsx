@@ -1,21 +1,72 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, Modal, Page } from "@prefabs.tech/react-ui";
+import { Button, Modal, Page, TDataTable } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
 
 const Header = () => {
-  const [t] = useTranslation("ui");
-
-  return <h2>{t("modal.usage.headerAsFC")}</h2>;
+  return <h2>Header as functional component</h2>;
 };
+
+const data = [
+  {
+    id: 1,
+    prop: "className",
+    type: "string",
+    default: "-",
+    description: "Additional CSS classes to apply to the modal.",
+  },
+  {
+    id: 2,
+    prop: "children",
+    type: "ReactNode",
+    default: "-",
+    description: "The content of the modal.",
+  },
+  {
+    id: 3,
+    prop: "footer",
+    type: "ReactNode",
+    default: "-",
+    description: "Footer section of the modal. Placed below the content.",
+  },
+  {
+    id: 4,
+    prop: "header",
+    type: "ReactNode",
+    default: "-",
+    description: "Footer section of the modal.",
+  },
+  {
+    id: 5,
+    prop: "onHide",
+    type: "() => void",
+    default: "-",
+    description: "Emitted when the modal is requested to close.",
+  },
+  {
+    id: 6,
+    prop: "size",
+    type: "medium | large",
+    default: "medium",
+    description: "Defines the width of the modal.",
+  },
+  {
+    id: 7,
+    prop: "visible",
+    type: "Boolean",
+    default: "false",
+    description: "Controls the visibility of the modal.",
+  },
+];
 
 export const ModalDemo = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
   const [isOpen3, setIsOpen3] = useState<boolean>(false);
   const [isOpen4, setIsOpen4] = useState<boolean>(false);
+  const [isOpen5, setIsOpen5] = useState<boolean>(false);
 
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
@@ -40,7 +91,7 @@ export const ModalDemo = () => {
         <CodeBlock exampleCode='import { Modal } from "@prefabs.tech/react-ui"' />
       </Section>
 
-      <Section title={t("modal.usage.withoutHeader")}>
+      <Section title={t("modal.usage.basic")}>
         <Button label="Open modal" onClick={() => setIsOpen(true)}></Button>
         <Modal onHide={() => setIsOpen(false)} visible={isOpen}>
           <p style={{ lineHeight: 1.6 }}>{content}</p>
@@ -60,7 +111,7 @@ export const ModalDemo = () => {
       <Section title={t("modal.usage.withHeader")}>
         <Button label="Open modal" onClick={() => setIsOpen2(true)}></Button>
         <Modal
-          header={t("modal.header")}
+          header="Header content"
           onHide={() => setIsOpen2(false)}
           visible={isOpen2}
         >
@@ -74,7 +125,7 @@ export const ModalDemo = () => {
   onClick={() => setIsOpen(true)}
   ></Button>
 <Modal
-  header={t("modal.header")}
+  header="Header content"
   onHide={() => setIsOpen(false)}
   visible={isOpen}
 >
@@ -82,6 +133,7 @@ export const ModalDemo = () => {
 </Modal>'
         />
       </Section>
+
       <Section title={t("modal.usage.headerAsFC")}>
         <Button label="Open modal" onClick={() => setIsOpen3(true)}></Button>
         <Modal
@@ -92,7 +144,11 @@ export const ModalDemo = () => {
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
         <CodeBlock
-          exampleCode='const [isOpen, setIsOpen] = useState<boolean>(false);
+          exampleCode='const Header = () => {
+  return <h2>Header as functional component</h2>;
+};
+
+const [isOpen, setIsOpen] = useState<boolean>(false);
 
 <Button
   label="Open modal"
@@ -107,6 +163,33 @@ export const ModalDemo = () => {
 </Modal>'
         />
       </Section>
+
+      <Section title={t("modal.usage.footer")}>
+        <Button label="Open modal" onClick={() => setIsOpen5(true)}></Button>
+        <Modal
+          onHide={() => setIsOpen5(false)}
+          visible={isOpen5}
+          footer="footer content"
+        >
+          <p style={{ lineHeight: 1.6 }}>{content}</p>
+        </Modal>
+        <CodeBlock
+          exampleCode='const [isOpen, setIsOpen] = useState<boolean>(false);
+
+<Button
+  label="Open modal"
+  onClick={() => setIsOpen(true)}
+  ></Button>
+<Modal
+  footer="footer content"
+  onHide={() => setIsOpen(false)}
+  visible={isOpen}
+>
+  <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
+</Modal>'
+        />
+      </Section>
+
       <Section title={t("modal.usage.size")}>
         <Button label="Open modal" onClick={() => setIsOpen4(true)}></Button>
         <Modal
@@ -132,6 +215,34 @@ export const ModalDemo = () => {
 >
   <p style={{ lineHeight: 1.6 }}>Lorem ipsum ...</p>
 </Modal>'
+        />
+      </Section>
+      <Section
+        title={t("headers.propertiesValue", {
+          value: "ModalProperties",
+        })}
+      >
+        <TDataTable
+          columns={[
+            {
+              accessorKey: "prop",
+              header: "Properties",
+            },
+            {
+              accessorKey: "type",
+              header: "Type",
+            },
+            {
+              accessorKey: "default",
+              header: "Default",
+            },
+            {
+              accessorKey: "description",
+              header: "Description",
+            },
+          ]}
+          data={data}
+          paginated={false}
         />
       </Section>
     </Page>
