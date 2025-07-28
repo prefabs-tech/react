@@ -9,58 +9,6 @@ const Header = () => {
   return <h2>Header as functional component</h2>;
 };
 
-const data = [
-  {
-    id: 1,
-    prop: "className",
-    type: "string",
-    default: "-",
-    description: "Additional CSS classes to apply to the modal.",
-  },
-  {
-    id: 2,
-    prop: "children",
-    type: "ReactNode",
-    default: "-",
-    description: "The content of the modal.",
-  },
-  {
-    id: 3,
-    prop: "footer",
-    type: "ReactNode",
-    default: "-",
-    description: "Footer section of the modal. Placed below the content.",
-  },
-  {
-    id: 4,
-    prop: "header",
-    type: "ReactNode",
-    default: "-",
-    description: "Footer section of the modal.",
-  },
-  {
-    id: 5,
-    prop: "onHide",
-    type: "() => void",
-    default: "-",
-    description: "Emitted when the modal is requested to close.",
-  },
-  {
-    id: 6,
-    prop: "size",
-    type: "medium | large",
-    default: "medium",
-    description: "Defines the width of the modal.",
-  },
-  {
-    id: 7,
-    prop: "visible",
-    type: "Boolean",
-    default: "false",
-    description: "Controls the visibility of the modal.",
-  },
-];
-
 export const ModalDemo = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpen2, setIsOpen2] = useState<boolean>(false);
@@ -70,6 +18,58 @@ export const ModalDemo = () => {
 
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
+
+  const data = [
+    {
+      id: 1,
+      prop: "className",
+      type: "string",
+      default: "-",
+      description: t("modal.propertiesDescription.className"),
+    },
+    {
+      id: 2,
+      prop: "children",
+      type: "ReactNode",
+      default: "-",
+      description: t("modal.propertiesDescription.children"),
+    },
+    {
+      id: 3,
+      prop: "footer",
+      type: "ReactNode",
+      default: "-",
+      description: t("modal.propertiesDescription.footer"),
+    },
+    {
+      id: 4,
+      prop: "header",
+      type: "ReactNode",
+      default: "-",
+      description: t("modal.propertiesDescription.header"),
+    },
+    {
+      id: 5,
+      prop: "onHide",
+      type: "() => void",
+      default: "-",
+      description: t("modal.propertiesDescription.onHide"),
+    },
+    {
+      id: 6,
+      prop: "size",
+      type: "medium | large",
+      default: "medium",
+      description: t("modal.propertiesDescription.onHide"),
+    },
+    {
+      id: 7,
+      prop: "visible",
+      type: "Boolean",
+      default: "false",
+      description: t("modal.propertiesDescription.onHide"),
+    },
+  ];
 
   const content =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
@@ -168,9 +168,9 @@ const [isOpen, setIsOpen] = useState<boolean>(false);
       <Section title={t("modal.usage.footer")}>
         <Button label="Open modal" onClick={() => setIsOpen5(true)}></Button>
         <Modal
+          footer={<div>Footer content</div>}
           onHide={() => setIsOpen5(false)}
           visible={isOpen5}
-          footer="footer content"
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>
@@ -182,7 +182,7 @@ const [isOpen, setIsOpen] = useState<boolean>(false);
   onClick={() => setIsOpen(true)}
   ></Button>
 <Modal
-  footer="footer content"
+  footer={<div>Footer content</div>}
   onHide={() => setIsOpen(false)}
   visible={isOpen}
 >
@@ -227,19 +227,19 @@ const [isOpen, setIsOpen] = useState<boolean>(false);
           columns={[
             {
               accessorKey: "prop",
-              header: "Properties",
+              header: t("propertiesTable.header.properties"),
             },
             {
               accessorKey: "type",
-              header: "Type",
+              header: t("propertiesTable.header.type"),
             },
             {
               accessorKey: "default",
-              header: "Default",
+              header: t("propertiesTable.header.default"),
             },
             {
               accessorKey: "description",
-              header: "Description",
+              header: t("propertiesTable.header.description"),
             },
           ]}
           data={data}

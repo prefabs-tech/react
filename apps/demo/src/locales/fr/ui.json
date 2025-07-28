@@ -249,6 +249,15 @@
   "modal": {
     "title": "Modal (fr)",
     "header": "Header (fr)",
+    "propertiesDescription": {
+      "className": "Additional CSS classes to apply to the modal. (fr)",
+      "children": "The content of the modal. (fr)",
+      "footer": "Footer section of the modal. (fr)",
+      "header": "Header section of the modal. (fr)",
+      "onHide": "Emitted when the modal is requested to close. (fr)",
+      "size": "Defines the width of the modal. (fr)",
+      "visible": "Controls the visibility of the modal. (fr)"
+    },
     "showButton": "Open modal (fr)",
     "subTitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic. (fr)",
     "usage": {
