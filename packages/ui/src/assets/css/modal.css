@@ -25,10 +25,10 @@
 }
 
 .dz-modal .dz-modal-header {
-  padding: 0.7rem;
+  align-items: start;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 0.7rem;
 }
 
 .dz-modal .dz-modal-header span[role="heading"] {
