@@ -55,11 +55,11 @@
 
 @media screen and (min-width: 576px) {
   .dz-modal.medium {
-    max-width: 27rem;
-    min-width: 27rem;
+    max-width: 32rem;
+    min-width: 32rem;
   }
 
   .dz-modal.large {
-    max-width: 57rem;
+    max-width: 60rem;
   }
 }
