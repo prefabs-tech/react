@@ -5,14 +5,3 @@
 .field.expires-at .p-calendar {
   width: 100%;
 }
-
-.invitation-modal {
-  max-width: 350px;
-  width: 100%;
-}
-
-@media screen and (min-width: 576px) {
-  .invitation-modal {
-    max-width: 430px;
-  }
-}

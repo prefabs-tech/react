@@ -134,7 +134,7 @@
         "email": "Email is required. (fr)",
         "error": "An error occurred while updating the email. (fr)",
         "invalid": "Invalid email. (fr)",
-        "success": "Email updated successfully. (fr)",
+        "success": "A verification link has been sent to your email. (fr)",
         "verify": "Verify email to complete the email update. (fr)"
       },
       "newEmail": "New Email (fr)",
