@@ -23,20 +23,19 @@ export const UpdateEmailFormFields = ({
       <FormActions
         actions={[
           {
+            id: "submit",
+            label: t("profile.button.update"),
+            disabled: !isDirty,
+          },
+          {
             id: "cancel",
             label: t("profile.button.cancel"),
             type: "button",
             onClick: () => setModalVisible(false),
           },
-          {
-            id: "submit",
-            label: t("profile.button.update"),
-            disabled: !isDirty,
-          },
         ]}
         alignment="right"
         loading={loading}
-        reverse={true}
       />
     </>
   );
