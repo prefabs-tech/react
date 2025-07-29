@@ -39,7 +39,7 @@
 .dz-modal .dz-modal-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   padding: 0.7rem;
 }
 
