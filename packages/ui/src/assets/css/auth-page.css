@@ -12,7 +12,7 @@
 .dz-auth-page > .dz-auth-page-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   max-width: 430px;
   width: 100%;
 }
