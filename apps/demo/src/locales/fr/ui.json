@@ -162,6 +162,15 @@
     "title": "Youtube facade (fr)"
   },
   "exportButton": {
+    "propertiesDescription": {
+      "filename": "The filename to use for the exported XLSX file. (fr)",
+      "getData": "Function that returns the data to be exported in a 2D array format. (fr)",
+      "label": "Text displayed on the export button. (fr)",
+      "onExportEnd": "Callback function invoked when export ends. (fr)",
+      "onExportStart": "Callback function invoked when export starts. (fr)",
+      "sheetName": "The name of the worksheet within the XLSX file. (fr)",
+      "sheetOptions": "Additional worksheet options. (fr)"
+    },
     "title": "Export button (fr)"
   },
   "fileCard": {
