@@ -234,67 +234,40 @@ export const UsersTable = ({
     },
   ];
 
-  const defaultActionsMenu: DataActionsMenuProperties<UserType> = {
-    actions: [
-      {
-        label: t("table.actions.enable"),
-        icon: "pi pi-check",
-        disabled: (user) => !user.disabled,
-        onClick: (user) => handleEnableUser(user),
-        requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("confirmation.enable.message"),
-          header: t("confirmation.header"),
-        },
-      },
-      {
-        label: t("table.actions.disable"),
-        className: "danger",
-        icon: "pi pi-times",
-        disabled: (user) => user.disabled,
-        onClick: (user) => handleDisableUser(user),
-        requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("confirmation.disable.message"),
-          header: t("confirmation.header"),
-        },
-      },
-    ],
-  };
-
   const getDefaultActionsMenu = (
     user: UserType,
   ): DataActionsMenuProperties<UserType> => {
-    const actions = [
-      {
-        label: t("table.actions.enable"),
-        icon: "pi pi-check",
-        disabled: (user: UserType) => !user.disabled,
-        onClick: (user: UserType) => handleEnableUser(user),
-        requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("confirmation.enable.message"),
-          header: t("confirmation.header"),
-        },
-      },
-    ];
+    const defaultActions: DataActionsMenuProperties<UserType>["actions"] = [];
 
     if (currentUser?.id !== user.id) {
-      actions.push({
-        label: t("table.actions.disable"),
-        // className: "danger",
-        icon: "pi pi-times",
-        disabled: (user) => user.disabled as boolean,
-        onClick: (user) => handleDisableUser(user),
-        requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("confirmation.disable.message"),
-          header: t("confirmation.header"),
+      defaultActions.push(
+        {
+          label: t("table.actions.enable"),
+          icon: "pi pi-check",
+          disabled: (user: UserType) => !user.disabled,
+          onClick: (user: UserType) => handleEnableUser(user),
+          requireConfirmationModal: true,
+          confirmationOptions: {
+            message: t("confirmation.enable.message"),
+            header: t("confirmation.header"),
+          },
         },
-      });
+        {
+          label: t("table.actions.disable"),
+          className: "danger",
+          icon: "pi pi-times",
+          disabled: (user: UserType) => user.disabled as boolean,
+          onClick: (user: UserType) => handleDisableUser(user),
+          requireConfirmationModal: true,
+          confirmationOptions: {
+            message: t("confirmation.disable.message"),
+            header: t("confirmation.header"),
+          },
+        },
+      );
     }
 
-    return { actions };
+    return { actions: defaultActions };
   };
 
   const renderToolbar = () => {
@@ -336,7 +309,7 @@ export const UsersTable = ({
           ? typeof dataActionsMenu === "function"
             ? (data) => dataActionsMenu(data, getDefaultActionsMenu(data))
             : dataActionsMenu
-          : defaultActionsMenu
+          : (data) => getDefaultActionsMenu(data)
       }
       {...tableProperties}
     ></DataTable>
