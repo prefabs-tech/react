@@ -23,6 +23,8 @@ import type {
   UserType,
 } from "@/types";
 
+import { useUser } from "@/hooks";
+
 type VisibleColumn =
   | "name"
   | "email"
@@ -92,6 +94,8 @@ export const UsersTable = ({
   ...tableProperties
 }: UsersTableProperties) => {
   const { t } = useTranslation("users");
+
+  const { user: currentUser } = useUser();
 
   const { handleDisableUser, handleEnableUser } = useUserActions({
     onUserDisabled,
@@ -258,6 +262,41 @@ export const UsersTable = ({
     ],
   };
 
+  const getDefaultActionsMenu = (
+    user: UserType,
+  ): DataActionsMenuProperties<UserType> => {
+    const actions = [
+      {
+        label: t("table.actions.enable"),
+        icon: "pi pi-check",
+        disabled: (user: UserType) => !user.disabled,
+        onClick: (user: UserType) => handleEnableUser(user),
+        requireConfirmationModal: true,
+        confirmationOptions: {
+          message: t("confirmation.enable.message"),
+          header: t("confirmation.header"),
+        },
+      },
+    ];
+
+    if (currentUser?.id !== user.id) {
+      actions.push({
+        label: t("table.actions.disable"),
+        // className: "danger",
+        icon: "pi pi-times",
+        disabled: (user) => user.disabled as boolean,
+        onClick: (user) => handleDisableUser(user),
+        requireConfirmationModal: true,
+        confirmationOptions: {
+          message: t("confirmation.disable.message"),
+          header: t("confirmation.header"),
+        },
+      });
+    }
+
+    return { actions };
+  };
+
   const renderToolbar = () => {
     if (showInviteAction) {
       return (
@@ -295,7 +334,7 @@ export const UsersTable = ({
       dataActionsMenu={
         dataActionsMenu
           ? typeof dataActionsMenu === "function"
-            ? (data) => dataActionsMenu(data, defaultActionsMenu)
+            ? (data) => dataActionsMenu(data, getDefaultActionsMenu(data))
             : dataActionsMenu
           : defaultActionsMenu
       }
