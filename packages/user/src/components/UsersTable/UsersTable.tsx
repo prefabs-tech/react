@@ -242,6 +242,7 @@ export const UsersTable = ({
     if (currentUser?.id !== user.id) {
       defaultActions.push(
         {
+          key: "enableUser",
           label: t("table.actions.enable"),
           icon: "pi pi-check",
           disabled: (user: UserType) => !user.disabled,
@@ -253,6 +254,7 @@ export const UsersTable = ({
           },
         },
         {
+          key: "disableUser",
           label: t("table.actions.disable"),
           className: "danger",
           icon: "pi pi-times",
