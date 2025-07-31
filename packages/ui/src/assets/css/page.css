@@ -30,11 +30,7 @@
 }
 
 .dz-page > .dz-page-header > .dz-page-toolbar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  display: none;
 }
 
 .dz-page-toolbar[data-breadcrumb="true"] > :first-child {
