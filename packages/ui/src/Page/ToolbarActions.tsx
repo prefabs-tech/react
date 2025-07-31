@@ -44,6 +44,7 @@ export const ToolbarActions = ({ actions }: ToolbarActionsMenuProperties) => {
         variant="textOnly"
         iconLeft={buttonIcon}
         data-pr-tooltip={label}
+        label={!buttonIcon ? label : undefined}
         onClick={onClick}
         rounded
         {...rest}
