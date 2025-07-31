@@ -1,17 +1,17 @@
 {
-  "name": "@dzangolab/react-form",
-  "version": "0.58.0",
+  "name": "@prefabs.tech/react-form",
+  "version": "0.61.0",
   "description": "React Form Component Library",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/DzangolabReactForm.es.js",
-      "require": "./dist/DzangolabReactForm.umd.js"
+      "import": "./dist/PrefabsTechReactForm.es.js",
+      "require": "./dist/PrefabsTechReactForm.umd.js"
     },
-    "./dist/DzangolabReactForm.css": "./dist/react-form.css"
+    "./dist/PrefabsTechReactForm.css": "./dist/react-form.css"
   },
-  "main": "dist//DzangolabReactForm.umd.js",
-  "module": "dist//DzangolabReactForm.es.js",
+  "main": "./dist/PrefabsTechReactForm.umd.js",
+  "module": "./dist/PrefabsTechReactForm.es.js",
   "types": "./dist/src/index.d.ts",
   "files": ["dist"],
   "scripts": {
@@ -36,9 +36,9 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
-    "@12deg/tsconfig": "0.1.11",
-    "@dzangolab/react-ui": "0.58.0",
+    "@prefabs.tech/eslint-config": "0.2.0",
+    "@prefabs.tech/tsconfig": "0.2.0",
+    "@prefabs.tech/react-ui": "0.61.0",
     "@testing-library/react": "16.3.0",
     "@types/jsdom": "21.1.7",
     "@types/node": "22.13.4",
@@ -63,18 +63,17 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "typescript": "5.7.3",
-    "vite": "6.1.5",
+    "vite": "6.1.6",
     "vitest": "3.0.8"
   },
   "peerDependencies": {
-    "@dzangolab/react-ui": "0.58.0",
+    "@prefabs.tech/react-ui": "0.61.0",
     "primereact": "9.6.1",
     "react": ">=18.2",
     "react-dom": ">=18.2",
     "zod": ">=3.21.4"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=9"
+    "node": ">=18"
   }
 }

@@ -17,6 +17,7 @@ export type ProtectedRouteOverwrites = {
 
 export type PublicRouteOverwrites = {
   acceptInvitation?: RouteOverwrite;
+  authCallbackFacebook?: RouteOverwrite;
   authCallbackGoogle?: RouteOverwrite;
   forgotPassword?: RouteOverwrite;
   login?: RouteOverwrite;

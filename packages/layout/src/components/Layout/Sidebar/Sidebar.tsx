@@ -1,4 +1,4 @@
-import { NavigationMenu } from "@dzangolab/react-ui";
+import { NavigationMenu } from "@prefabs.tech/react-ui";
 
 import { SidebarFooter } from "./Footer";
 import { SidebarHeader } from "./Header";
@@ -8,7 +8,7 @@ import type {
   NavGroupDisplayMode,
   NavMenuItemType,
   NavMenuType,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 type SidebarProperties = {
   children?: React.ReactNode;
@@ -56,7 +56,7 @@ export const Sidebar = ({
   };
 
   return (
-    <div className={`dz-sidebar ${!collapsible ? "fixed" : ""}`.trim()}>
+    <div className={`dz-sidebar ${collapsible ? "collapsible" : ""}`.trim()}>
       {children || renderContent()}
     </div>
   );

@@ -1,5 +1,5 @@
-import { Provider } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { Provider } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
 

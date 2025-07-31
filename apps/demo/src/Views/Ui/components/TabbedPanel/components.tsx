@@ -1,4 +1,4 @@
-import { SubPane, TabbedPanel } from "@dzangolab/react-ui";
+import { SubPane, TabbedPanel } from "@prefabs.tech/react-ui";
 
 const Basic = ({
   isString = false,

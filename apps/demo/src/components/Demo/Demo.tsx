@@ -1,4 +1,4 @@
-import { NavigationMenu } from "@dzangolab/react-ui";
+import { NavigationMenu } from "@prefabs.tech/react-ui";
 import { ReactNode, useMemo, useRef } from "react";
 import { NavLink } from "react-router-dom";
 

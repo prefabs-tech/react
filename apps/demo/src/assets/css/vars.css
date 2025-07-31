@@ -1,38 +1,3 @@
 :root {
-  --color: #2c2c2c;
-
-  --dz-layout-header-bg: transparent;
-  --dz-layout-header-border: 1px solid #dbdbdb;
-  --dz-layout-header-color: var(--color);
-  --dz-layout-header-gap: 1.5rem;
-  --dz-layout-header-logo-max-width: 150px;
-  --dz-layout-header-max-width: 1920px;
-  --dz-layout-header-padding-h: var(--dz-layout-main-padding-h, 1rem);
-  --dz-layout-header-padding-v: 1rem;
-
-  --dz-layout-logo-max-height: 40px;
-
-  --dz-nav-item-padding-h: 1.5rem;
-  --dz-nav-item-padding-v: 0.625rem;
-  --dz-nav-menu-padding-h: 0;
-  --dz-nav-menu-padding-v: 1rem;
-  --dz-nav-menu-separator-color: #dbdbdb;
-  --dz-nav-item-active-bg: rgba(45, 45, 45, 0.125);
-  --dz-nav-item-hover-bg: rgba(45, 45, 45, 0.125);
-  --dz-nav-item-color: var(--dz-layout-header-color);
-  --dz-nav-item-border-radius: 0.312rem;
-  /* --dz-layout-nav-item-hover-color: var(--dz-layout-header-color);
-  --dz-layout-nav-item-active-color: var(--dz-layout-header-color);
-  --dz-layout-nav-menu-label-color: var(--dz-layout-header-color); */
-
-  --dz-layout-main-bg: #ffffff;
-  --dz-layout-main-padding-h: 1rem;
-  --dz-layout-main-padding-v: 1.5rem;
-}
-
-@media screen and (min-width: 576px) {
-  :root {
-    --dz-layout-main-padding-h: 2rem;
-    --dz-layout-main-padding-v: 2.5rem;
-  }
+  --dz-nav-item-border-radius: 0.25rem;
 }

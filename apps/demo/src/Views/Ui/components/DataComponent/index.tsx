@@ -1,11 +1,11 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   Button,
   Data,
   GridContainer,
   Page,
   TDataTable,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../../components/Demo";
@@ -84,7 +84,7 @@ export const DataDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "Data" })}</p>
-        <CodeBlock exampleCode="import { Data } from '@dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { Data } from '@prefabs.tech/react-ui';" />
       </Section>
 
       <Section title={t("data.usage.basic")}>

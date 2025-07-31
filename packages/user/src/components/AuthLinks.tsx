@@ -1,4 +1,4 @@
-import { InlineLink } from "@dzangolab/react-ui";
+import { InlineLink } from "@prefabs.tech/react-ui";
 
 import { LinkType } from "@/types/types";
 

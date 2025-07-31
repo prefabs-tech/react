@@ -9,6 +9,8 @@
   color: var(--tooltip-color);
   padding: 0.25rem;
   position: absolute;
+  max-width: 20rem;
+  z-index: 1100;
 }
 
 .tooltip-container.top::after {

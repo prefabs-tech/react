@@ -4,7 +4,7 @@ import type {
   NavMenuType,
   NavMenuItemType,
   UserMenuModeType,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 export interface HeaderLayoutProperties {
   className?: string;

@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { AuthPage } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { AuthPage, Message } from "@prefabs.tech/react-ui";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -12,7 +12,9 @@ import { UserContextType, useConfig, userContext } from "..";
 export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
   const [verifyEmailLoading, setVerifyEmailLoading] = useState<boolean>(true);
   const [status, setStatus] = useState<string | undefined>("");
+  const [error, setError] = useState(false);
   const [isEmailUpdated, setIsEmailUpdated] = useState(false);
+
   const { t } = useTranslation("user");
   const { user, setUser } = useContext(userContext) as UserContextType;
   const config = useConfig();
@@ -21,30 +23,20 @@ export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
     if (user) {
       verifyEmail()
         .then(async (response) => {
-          if (response) {
-            setStatus(response.status);
-            switch (response.status) {
-              case EMAIL_VERIFICATION.OK: {
-                const userInfo = await getMe(config.apiBaseUrl);
-                if (user.email !== userInfo.data.email) {
-                  toast.success(
-                    t("emailVerification.toastMessages.updateSuccess"),
-                  );
-                  setIsEmailUpdated(true);
-                } else {
-                  toast.success(t("emailVerification.toastMessages.success"));
-                  setIsEmailUpdated(false);
-                }
-                setUser(userInfo.data);
-                break;
-              }
-              case EMAIL_VERIFICATION.EMAIL_VERIFICATION_INVALID_TOKEN_ERROR:
-                toast.error(t("emailVerification.toastMessages.invalidToken"));
-                break;
-              default:
-                toast.error(`${t("emailVerification.toastMessages.error")}`);
-                break;
+          setStatus(response?.status);
+
+          if (response && response.status === EMAIL_VERIFICATION.OK) {
+            const userInfo = await getMe(config.apiBaseUrl);
+
+            if (user.email !== userInfo.data.email) {
+              toast.success(t("emailVerification.toastMessages.updateSuccess"));
+              setIsEmailUpdated(true);
+            } else {
+              toast.success(t("emailVerification.toastMessages.success"));
+              setIsEmailUpdated(false);
             }
+
+            setUser(userInfo.data);
           }
         })
         .catch(() => {
@@ -74,12 +66,24 @@ export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
         message = t("emailVerification.messages.invalidToken");
         break;
       default:
+        setError(true);
         message = t("emailVerification.messages.error");
     }
 
     return (
       <>
-        <p>{message}</p>
+        {error ? (
+          <Message
+            enableClose={true}
+            message={message}
+            onClose={() => {
+              setError(false);
+            }}
+            severity="danger"
+          />
+        ) : (
+          <p>{message}</p>
+        )}
       </>
     );
   };

@@ -1,13 +1,10 @@
 import React from "react";
 
-import { Select, ISelectProperties } from "../Select";
+import { Select, ISelectProperties, Option } from "../Select";
 
-export type CurrencyOption<T> = {
+export type CurrencyOption<T> = Option<T> & {
   code?: string;
-  disabled?: boolean;
-  label: string;
   symbol?: string;
-  value: T;
 };
 
 export type CurrencyPickerProperties<T> = Omit<

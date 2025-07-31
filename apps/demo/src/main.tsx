@@ -1,7 +1,7 @@
-import { ConfigProvider } from "@dzangolab/react-config";
-import i18n from "@dzangolab/react-i18n";
-import { configureTooltip } from "@dzangolab/react-ui";
-import { UserWrapper } from "@dzangolab/react-user";
+import { ConfigProvider } from "@prefabs.tech/react-config";
+import i18n from "@prefabs.tech/react-i18n";
+import { configureTooltip } from "@prefabs.tech/react-ui";
+import { UserWrapper } from "@prefabs.tech/react-user";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
@@ -16,10 +16,10 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primeicons/primeicons.css";
 
-import "@dzangolab/react-form/dist/DzangolabReactForm.css";
-import "@dzangolab/react-layout/dist/DzangolabReactLayout.css";
-import "@dzangolab/react-ui/dist/DzangolabReactUI.css";
-import "@dzangolab/react-user/dist/DzangolabReactUser.css";
+import "@prefabs.tech/react-form/dist/PrefabsTechReactForm.css";
+import "@prefabs.tech/react-layout/dist/PrefabsTechReactLayout.css";
+import "@prefabs.tech/react-ui/dist/PrefabsTechReactUI.css";
+import "@prefabs.tech/react-user/dist/PrefabsTechReactUser.css";
 
 import "./assets/css/index.css";
 

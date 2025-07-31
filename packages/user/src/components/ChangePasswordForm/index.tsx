@@ -1,5 +1,5 @@
-import { Provider, FormSubmitOptions } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { Provider, FormSubmitOptions } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
 
@@ -23,7 +23,7 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
     .object({
       oldPassword: zod
         .string()
-        .nonempty(t("changePassword.messages.validation.oldPassword")),
+        .nonempty(t("changePassword.messages.validation.currentPassword")),
       ...PasswordConfirmationSchema({
         passwordValidationMessage: t(
           "changePassword.messages.validation.mustContain",

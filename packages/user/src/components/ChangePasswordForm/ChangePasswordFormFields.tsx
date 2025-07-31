@@ -1,5 +1,9 @@
-import { FormActions, Password, useFormContext } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import {
+  FormActions,
+  Password,
+  useFormContext,
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
 interface Properties {
@@ -20,7 +24,7 @@ const ChangePasswordFormFields = ({ loading }: Properties) => {
     <>
       <Password
         autoComplete="current-password"
-        label={t("changePassword.form.oldPassword.label")}
+        label={t("changePassword.form.currentPassword.label")}
         name="oldPassword"
         register={register}
         getFieldState={getFieldState}

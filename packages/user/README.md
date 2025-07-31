@@ -1,13 +1,13 @@
-# @dzangolab/react-user
+# @prefabs.tech/react-user
 
 A React library that provides an easy integration of authentication and user management functionality with SuperTokens.
 
 ## Requirements
 
-- @dzangolab/react-form
-- @dzangolab/react-i18n
-- @dzangolab/react-layout
-- @dzangolab/react-ui
+- @prefabs.tech/react-form
+- @prefabs.tech/react-i18n
+- @prefabs.tech/react-layout
+- @prefabs.tech/react-ui
 - axios
 - primeicons
 - react-toastify
@@ -17,13 +17,13 @@ A React library that provides an easy integration of authentication and user man
 Install with npm:
 
 ```bash
-npm install @dzangolab/react-user
+npm install @prefabs.tech/react-user
 ```
 
 Install with pnpm:
 
 ```bash
-pnpm install @dzangolab/react-user
+pnpm install @prefabs.tech/react-user
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ pnpm install @dzangolab/react-user
 
 ```typescript
 // src/main.tsx
-import { UserWrapper } from "@dzangolab/react-user";
+import { UserWrapper } from "@prefabs.tech/react-user";
 
 import config, { userConfig } from "./config";
 
@@ -54,7 +54,7 @@ import {
   getUserPublicRoutes,
   ProtectedRoutesHandler,
   PublicRoutesHandler,
-} from "@dzangolab/react-user";
+} from "@prefabs.tech/react-user";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export const AppRouter = () => {
@@ -93,7 +93,7 @@ export const App = () => {
   return (
     <>
       <AppRouter />
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-center" />
     </>
   );
 };

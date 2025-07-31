@@ -1,4 +1,4 @@
-import { DropdownMenu, DropdownMenuProperties } from "@dzangolab/react-ui";
+import { DropdownMenu, DropdownMenuProperties } from "@prefabs.tech/react-ui";
 import { useTranslation } from "react-i18next";
 
 export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu">;

@@ -1,9 +1,9 @@
 :root {
   --stepper-active-color: var(--dz-primary-color);
   --stepper-completed-border-color: var(--dz-primary-color);
-  --stepper-line-border-color: #e5e7eb;
+  --stepper-line-border-color: var(--border-color, #e5e7eb);
   --stepper-number-color: #ffffff;
-  --stepper-number-border-color: #f3f4f6;
+  --stepper-number-border-color: var(--border-color, #e5e7eb);
   --stepper-label-color: #6b7280;
   --stepper-label-active-color: #000000;
 }
@@ -33,7 +33,7 @@
 }
 
 .stepper > .step > .step-number.active {
-  background-color: var(--stepper-active-color);;
+  background-color: var(--stepper-active-color);
   border: none;
   color: var(--stepper-number-color);
 }
@@ -77,7 +77,7 @@
 
 .stepper > .step > .step-label.active {
   color: var(--stepper-label-active-color);
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .stepper > .step::before {

@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Data } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Data } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 
 import { useConfig, useUser } from "@/hooks";

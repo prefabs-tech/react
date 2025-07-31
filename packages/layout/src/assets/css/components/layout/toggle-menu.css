@@ -1,0 +1,26 @@
+.dz-layout .dz-toggle-menu {
+  --_background-color: var(--dz-secondary-color);
+
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2.875rem;
+  line-height: 1;
+  padding: 0.75rem;
+  text-align: center;
+  width: 2.875rem;
+  transition: background-color var(--transition-duration) ease;
+}
+
+.dz-layout .dz-toggle-menu:hover {
+  background-color: color-mix(in srgb, var(--_background-color) 10%, white);
+}
+.dz-layout .dz-toggle-menu:focus {
+  background-color: color-mix(in srgb, var(--_background-color) 10%, white);
+}
+.dz-layout .dz-toggle-menu:active {
+  background-color: color-mix(in srgb, var(--_background-color) 20%, white);
+}
+
+.dz-layout .dz-toggle-menu > i {
+  font-size: 1.25rem;
+}

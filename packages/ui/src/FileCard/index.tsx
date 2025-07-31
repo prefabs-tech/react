@@ -12,18 +12,15 @@ export type FileMessages = {
   archiveConfirmationMessage?: string;
   downloadAction?: string;
   editDescriptionAction?: string;
-  renameAction?: string;
   deleteAction?: string;
   deleteConfirmationHeader?: string;
   deleteConfirmationMessage?: string;
-  originalFileNameHeader?: string;
-  descriptionHeader?: string;
   downloadCountHeader?: string;
   lastDownloadedAtHeader?: string;
+  renameAction?: string;
+  shareAction?: string;
   uploadedByHeader?: string;
   uploadedAtHeader?: string;
-  actionsHeader?: string;
-  shareAction?: string;
   viewAction?: string;
 };
 

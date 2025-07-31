@@ -1,8 +1,10 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page } from "@dzangolab/react-ui";
+import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
+import { Page } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import { useUser } from "@/hooks";
 
 import { EMAIL_VERIFICATION } from "../constants";
 import { resendVerificationEmail } from "../supertokens/resend-email-verification";
@@ -15,6 +17,8 @@ export const EmailVerificationReminder = ({
   const [isAlreadyVerified, setIsAlreadyVerified] = useState<boolean>(false);
 
   const { t } = useTranslation("user");
+
+  const { user } = useUser();
 
   const handleResend = () => {
     resendVerificationEmail()
@@ -42,7 +46,18 @@ export const EmailVerificationReminder = ({
         <p>{t("emailVerification.messages.alreadyVerified")}</p>
       ) : (
         <>
-          <p>{t("emailVerification.messages.unverified")}</p>
+          <p>
+            {
+              <Trans
+                i18nKey={"emailVerification.messages.unverified"}
+                values={{ email: user?.email }}
+                components={{
+                  strong: <strong />,
+                }}
+                t={t}
+              />
+            }
+          </p>
           <p className="resend-email">
             {t("emailVerification.messages.resendEmailInfo")}{" "}
             <Link to="#" onClick={handleResend}>

@@ -1,7 +1,7 @@
 import { disableUser, enableUser } from "./api/user";
 import {
   AllUsersTable,
-  AuthGoogleCallback,
+  AuthSocialLoginCallback,
   InvitationForm,
   InvitationModal,
   InvitationsTable,
@@ -28,7 +28,7 @@ export {
 
   // components
   AllUsersTable,
-  AuthGoogleCallback,
+  AuthSocialLoginCallback,
   InvitationForm,
   InvitationModal,
   InvitationsTable,

@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Checkbox, Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Checkbox, Page } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../../components/Demo";

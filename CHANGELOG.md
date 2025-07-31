@@ -1,8 +1,60 @@
+# [0.61.0](https://github.com/prefabs-tech/react/compare/v0.60.0...v0.61.0) (2025-07-25)
+
+
+### Features
+
+* **user:** display email on email verification remainder page ([#1533](https://github.com/prefabs-tech/react/issues/1533)) ([1b17c61](https://github.com/prefabs-tech/react/commit/1b17c61a68653c2cdc1e60badc206fba102dcbbd))
+
+
+
+# [0.60.0](https://github.com/dzangolab/react/compare/v0.59.0...v0.60.0) (2025-07-18)
+
+
+### Bug Fixes
+
+* **demo:** put changelog link in right position ([#1529](https://github.com/dzangolab/react/issues/1529)) ([e641206](https://github.com/dzangolab/react/commit/e64120625562cfb4cfd98e4876777fed931243c3))
+* **ui:** fix the width of Select component and tooltip ([#1521](https://github.com/dzangolab/react/issues/1521)) ([db0fefe](https://github.com/dzangolab/react/commit/db0fefe153a859c2ce741aca3ce41915435b54f1))
+
+
+### Features
+
+* **demo:** update documentation for select component ([#1518](https://github.com/dzangolab/react/issues/1518)) ([3d8433a](https://github.com/dzangolab/react/commit/3d8433a26bc3cd0b8fb1baaad19fedb8c073af17))
+* **files:** enable filter and sorting in uploaded by column ([#1514](https://github.com/dzangolab/react/issues/1514)) ([574b80c](https://github.com/dzangolab/react/commit/574b80cc13cc6cdc1d9e738268caa9da14b544a8))
+* **layout:** revamp ui ([#1527](https://github.com/dzangolab/react/issues/1527)) ([f917f57](https://github.com/dzangolab/react/commit/f917f57f077c60daa0d058c3a37efa42aa1acd94))
+* **ui:**  sync message component with vue ([#1522](https://github.com/dzangolab/react/issues/1522)) ([02447b2](https://github.com/dzangolab/react/commit/02447b2b1308735e00df3c5fd79b80e043cde7cd))
+* **ui:** add support to show tooltip for select input ([#1516](https://github.com/dzangolab/react/issues/1516)) ([f4fcac1](https://github.com/dzangolab/react/commit/f4fcac12da7acc6ed7f41f4ad8410b2360cc7242))
+* **ui:** enable filtering in all column of files table ([#1513](https://github.com/dzangolab/react/issues/1513)) ([a6c737e](https://github.com/dzangolab/react/commit/a6c737ea071afbd48760bed4b14c533a62532485))
+* **ui:** enable sorting in all column of files table ([#1511](https://github.com/dzangolab/react/issues/1511)) ([179092c](https://github.com/dzangolab/react/commit/179092ca11bfe6d036a190a12f5138636db2a8da))
+* **UI:** support group options in select ([#1517](https://github.com/dzangolab/react/issues/1517)) ([4ddd0e9](https://github.com/dzangolab/react/commit/4ddd0e9abd575df52d8e1f7a93e33f0667359528))
+
+
+
+# [0.59.0](https://github.com/dzangolab/react/compare/v0.58.0...v0.59.0) (2025-06-26)
+
+
+### Bug Fixes
+
+* fix logo not rendering issue in demo app ([#1498](https://github.com/dzangolab/react/issues/1498)) ([d587474](https://github.com/dzangolab/react/commit/d5874743f4eaeaa9ad20dd0207c869ffd888b0cb))
+* fix table select menu width ([#1499](https://github.com/dzangolab/react/issues/1499)) ([f3ebf4c](https://github.com/dzangolab/react/commit/f3ebf4c040674de4b1a8dbed1128068189f678d7))
+* **react-form:** fix buttons position in file upload modal ([#1500](https://github.com/dzangolab/react/issues/1500)) ([872476d](https://github.com/dzangolab/react/commit/872476d51cb321f2e31714f9269f0b4e4b0e325a))
+* **user:** persist filters in case of enabled persistState ([#1505](https://github.com/dzangolab/react/issues/1505)) ([f5e1789](https://github.com/dzangolab/react/commit/f5e1789d59540a5be9116cfc894c80903bb4034a))
+
+
+### Features
+
+* add facebook login support ([#1492](https://github.com/dzangolab/react/issues/1492)) ([ac6e2b5](https://github.com/dzangolab/react/commit/ac6e2b57e4eeabacf19762bef3a31d09364988dd))
+* **react-demo:** update demo examples ([#1504](https://github.com/dzangolab/react/issues/1504)) ([6366f08](https://github.com/dzangolab/react/commit/6366f083ddd6ed4fc0f60675b4133c6fd95dcb5c))
+* **react-ui:** add select all in select component ([#1502](https://github.com/dzangolab/react/issues/1502)) ([6bcd175](https://github.com/dzangolab/react/commit/6bcd1750ec2318e0899e04a075320ceb2f86999b))
+* **react-user:** display apps name instead of app id in invitations table ([#1503](https://github.com/dzangolab/react/issues/1503)) ([ba39bef](https://github.com/dzangolab/react/commit/ba39befa851c0304a83766deefa81f6ef669577d))
+
+
+
 # [0.58.0](https://github.com/dzangolab/react/compare/v0.57.0...v0.58.0) (2025-06-18)
 
 
 ### Breaking Changes
 
+* **form:** removed `Input` component. Please use `TextInput` instead
 * **user:** removed `features.termsAndConditions.label` config. Instead added `features.termsAndConditions.url` and `features.termsAndConditions.external` optional configs. If you need to overwrite TermsAndConditions component, pass it via the `termsAndConditions` prop in Signup page.
 * **user:** updated UsersTable status column's `accessorKey` from `status` to `disabled` 
 * **ui:** removed some css vars for the button and form widgets. If you were using some of the vars to overwrite the style, please check the `packages/ui/src/assets/css/vars.css` file to see if the var is still present and confirm if its being used.

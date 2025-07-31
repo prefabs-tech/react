@@ -1,9 +1,9 @@
 @import "./footer.css";
 @import "./header.css";
-@import "./common/index.css";
 @import "./header-menu.css";
 @import "./layout.css";
 @import "./logo.css";
 @import "./sidebar.css";
+@import "./sticky-collapsible-footer.css";
+@import "./toggle-menu.css";
 @import "./vars.css";
-@import "./sticky-collapsible-footer.css"

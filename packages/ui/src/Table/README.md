@@ -5,19 +5,19 @@
 ### npm
 
 ```
-npm install @dzangolab/react-ui
+npm install @prefabs.tech/react-ui
 ```
 
 ### yarn
 
 ```
-yarn add @dzangolab/react-ui
+yarn add @prefabs.tech/react-ui
 ```
 
 ### pnpm
 
 ```
-pnpm add @dzangolab/react-ui
+pnpm add @prefabs.tech/react-ui
 ```
 
 ## Usage
@@ -25,12 +25,12 @@ pnpm add @dzangolab/react-ui
 ```
 import React from "react";
 
-import "@dzangolab/react-ui/dist/TableTheme.css";
+import "@prefabs.tech/react-ui/dist/TableTheme.css";
 
-import { Table, TRequestJSON } from "@dzangolab/react-ui";
+import { Table, TRequestJSON } from "@prefabs.tech/react-ui";
 import { getData } from "./services";
 
-import type { TableColumnDefinition } from "@dzangolab/react-ui";
+import type { TableColumnDefinition } from "@prefabs.tech/react-ui";
 
 type DataType = {
   id: number;

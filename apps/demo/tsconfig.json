@@ -1,5 +1,5 @@
 {
-  "extends": "@12deg/tsconfig/react-app",
+  "extends": "@prefabs.tech/tsconfig/react-app",
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

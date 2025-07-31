@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { StickyCollapsibleFooter } from "@dzangolab/react-layout";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { StickyCollapsibleFooter } from "@prefabs.tech/react-layout";
 import {
   Button,
   Card,
@@ -7,7 +7,7 @@ import {
   Input,
   Page,
   TDataTable,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -51,7 +51,7 @@ export const StickyCollapsibleFooterDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "Sticky collapsible footer" })}</p>
-        <CodeBlock exampleCode="import { StickyCollapsibleFooter } from '@dzangolab/react-layout';" />
+        <CodeBlock exampleCode="import { StickyCollapsibleFooter } from '@prefabs.tech/react-layout';" />
       </Section>
 
       <Section

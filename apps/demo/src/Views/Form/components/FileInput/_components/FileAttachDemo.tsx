@@ -1,9 +1,9 @@
-import { FileAttachBasic } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Tooltip } from "@dzangolab/react-ui";
+import { FileAttachBasic } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Tooltip } from "@prefabs.tech/react-ui";
 import { useRef, useState } from "react";
 
-import type { FileExtended } from "@dzangolab/react-form";
+import type { FileExtended } from "@prefabs.tech/react-form";
 
 export const FileAttachDemo = () => {
   const { t } = useTranslation("files");

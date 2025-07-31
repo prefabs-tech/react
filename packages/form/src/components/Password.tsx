@@ -1,4 +1,4 @@
-import { IInputProperties } from "@dzangolab/react-ui";
+import { IInputProperties } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 
 import { CustomInputProperties } from "../types";

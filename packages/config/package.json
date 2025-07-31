@@ -1,17 +1,17 @@
 {
-  "name": "@dzangolab/react-config",
-  "version": "0.58.0",
+  "name": "@prefabs.tech/react-config",
+  "version": "0.61.0",
   "description": "React config",
   "license": "MIT",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/DzangolabReactConfig.es.js",
-      "require": "./dist/DzangolabReactConfig.umd.js"
+      "import": "./dist/PrefabsTechReactConfig.es.js",
+      "require": "./dist/PrefabsTechReactConfig.umd.js"
     }
   },
-  "main": "dist//DzangolabReactConfig.umd.js",
-  "module": "dist//DzangolabReactConfig.es.js",
+  "main": "./dist/PrefabsTechReactConfig.umd.js",
+  "module": "./dist/PrefabsTechReactConfig.es.js",
   "types": "./dist/src/index.d.ts",
   "files": [
     "dist"
@@ -28,8 +28,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
-    "@12deg/tsconfig": "0.1.11",
+    "@prefabs.tech/eslint-config": "0.2.0",
+    "@prefabs.tech/tsconfig": "0.2.0",
     "@types/jsdom": "21.1.7",
     "@types/node": "22.13.4",
     "@types/react": "18.3.20",
@@ -48,14 +48,13 @@
     "prettier": "3.5.3",
     "react": "18.3.1",
     "typescript": "5.7.3",
-    "vite": "6.1.5",
+    "vite": "6.1.6",
     "vitest": "3.0.8"
   },
   "peerDependencies": {
     "react": ">=18.2"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=9"
+    "node": ">=18"
   }
 }

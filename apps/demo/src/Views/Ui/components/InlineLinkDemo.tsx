@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page, InlineLink, TDataTable, Button } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Page, InlineLink, TDataTable, Button } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
@@ -63,7 +63,7 @@ export const InlineLinkDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "Inline link" })}</p>
-        <CodeBlock exampleCode="import { InlineLink } from 'dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { InlineLink } from '@prefabs.tech/react-ui';" />
       </Section>
       <Section>
         <div className="links">

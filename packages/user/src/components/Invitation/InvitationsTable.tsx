@@ -1,5 +1,5 @@
-import { AdditionalFormFields } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { AdditionalFormFields } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
   TDataTableProperties,
@@ -9,7 +9,7 @@ import {
   Tag,
   formatDateTime,
   FilterOption,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import { toast } from "react-toastify";
 
 import {
@@ -165,6 +165,8 @@ export const InvitationsTable = ({
     return !!(date && new Date(date) < new Date());
   };
 
+  const appNameMap = new Map(apps?.map((app) => [app.id, app.name]));
+
   const defaultColumns: Array<TableColumnDefinition<Invitation>> = [
     {
       accessorKey: "email",
@@ -176,9 +178,11 @@ export const InvitationsTable = ({
     },
     {
       accessorKey: "appId",
-      align: "center",
+      align: "left",
       cell: ({ row: { original } }) => {
-        return <span>{original.appId || "-"} </span>;
+        return (
+          <span>{appNameMap.get(original.appId) || original.appId || "-"}</span>
+        );
       },
       enableColumnFilter: true,
       enableSorting: true,
@@ -322,7 +326,7 @@ export const InvitationsTable = ({
       data={invitations}
       emptyTableMessage={t("table.emptyMessage")}
       fetchData={fetchInvitations}
-      renderToolbarItems={renderToolbar}
+      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
       totalRecords={totalRecords}
       visibleColumns={visibleColumns}
       paginationOptions={{

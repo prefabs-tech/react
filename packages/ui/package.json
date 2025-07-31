@@ -1,17 +1,17 @@
 {
-  "name": "@dzangolab/react-ui",
-  "version": "0.58.0",
+  "name": "@prefabs.tech/react-ui",
+  "version": "0.61.0",
   "description": "React UI Component Library",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/DzangolabReactUI.es.js",
-      "require": "./dist/DzangolabReactUI.umd.js"
+      "import": "./dist/PrefabsTechReactUI.es.js",
+      "require": "./dist/PrefabsTechReactUI.umd.js"
     },
-    "./dist/DzangolabReactUI.css": "./dist/react-ui.css"
+    "./dist/PrefabsTechReactUI.css": "./dist/react-ui.css"
   },
-  "main": "dist//DzangolabReactUI.umd.js",
-  "module": "dist//DzangolabReactUI.es.js",
+  "main": "./dist/PrefabsTechReactUI.umd.js",
+  "module": "./dist/PrefabsTechReactUI.es.js",
   "types": "./dist/src/index.d.ts",
   "files": [
     "dist"
@@ -37,8 +37,8 @@
     "react-popper": "^2.3.0"
   },
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
-    "@12deg/tsconfig": "0.1.11",
+    "@prefabs.tech/eslint-config": "0.2.0",
+    "@prefabs.tech/tsconfig": "0.2.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.3.0",
     "@types/file-saver": "2.0.7",
@@ -65,7 +65,7 @@
     "react-dom": "18.3.1",
     "react-router-dom": "6.28.0",
     "typescript": "5.7.3",
-    "vite": "6.1.5",
+    "vite": "6.1.6",
     "vitest": "3.0.8"
   },
   "peerDependencies": {
@@ -75,7 +75,6 @@
     "react-router-dom": ">=6.9"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=9"
+    "node": ">=18"
   }
 }

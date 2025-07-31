@@ -1,6 +1,10 @@
-import { Provider, emailSchema, passwordSchema } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Page } from "@dzangolab/react-ui";
+import {
+  Provider,
+  emailSchema,
+  passwordSchema,
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Page } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as zod from "zod";

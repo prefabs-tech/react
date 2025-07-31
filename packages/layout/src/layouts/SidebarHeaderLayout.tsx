@@ -4,7 +4,7 @@ import type {
   NavGroupDisplayMode,
   NavMenuItemType,
   NavMenuType,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 export interface SidebarHeaderLayoutProperties {
   children: React.ReactNode;
@@ -16,10 +16,6 @@ export interface SidebarHeaderLayoutProperties {
   headerAddon?: React.ReactNode;
   navigationMenu?: NavMenuType;
   noLocaleSwitcher?: boolean;
-  noLogo?: boolean;
-  noSidebarHeader?: boolean;
-  noSidebarFooter?: boolean;
-  noToggle?: boolean;
   title?: string | React.ReactNode;
   userMenu?: NavMenuItemType;
   userMenuMode?: NavGroupDisplayMode;
@@ -30,17 +26,13 @@ export interface SidebarHeaderLayoutProperties {
 export const SidebarHeaderLayout = ({
   children,
   className,
-  collapsible,
+  collapsible = true,
   customHeader,
   customSidebar,
   displayNavIcons = true,
   headerAddon,
   navigationMenu,
   noLocaleSwitcher = false,
-  noLogo = true,
-  noSidebarHeader,
-  noSidebarFooter = false,
-  noToggle,
   title,
   userMenu,
   userMenuMode,
@@ -50,6 +42,7 @@ export const SidebarHeaderLayout = ({
   return (
     <Layout
       className={`dz-sidebar-header-layout ${className || ""}`.trimEnd()}
+      collapsible={collapsible}
       userMenuLocation={userMenuLocation}
     >
       {customHeader || (
@@ -57,9 +50,7 @@ export const SidebarHeaderLayout = ({
           displayNavIcons={displayNavIcons}
           headerAddon={headerAddon}
           menu={userMenu}
-          noLogo={noLogo}
           noLocaleSwitcher={noLocaleSwitcher}
-          noToggle={noToggle}
           title={title}
         />
       )}
@@ -68,8 +59,6 @@ export const SidebarHeaderLayout = ({
           collapsible={collapsible}
           displayNavIcons={displayNavIcons}
           navigationMenu={navigationMenu}
-          noHeader={noSidebarHeader}
-          noFooter={noSidebarFooter}
           noLocaleSwitcher={noLocaleSwitcher}
           userMenu={userMenu}
           userMenuMode={userMenuMode}

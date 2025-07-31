@@ -1,5 +1,9 @@
-import { Provider, emailSchema, passwordSchema } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import {
+  Provider,
+  emailSchema,
+  passwordSchema,
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import * as zod from "zod";
 
 import { LoginFormFields } from "./LoginFormFields";

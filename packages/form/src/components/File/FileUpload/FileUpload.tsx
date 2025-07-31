@@ -8,14 +8,14 @@ import type { FileExtended, IFileUploadProperties } from "../types";
 import type { FC } from "react";
 
 export const FileUpload: FC<IFileUploadProperties> = ({
-  addDescriptionLabel,
   actionsAlignment = "right",
+  addDescriptionLabel,
   cancelButtonOptions,
-  value,
   descriptionPlaceholder,
   dropzoneMessage,
   dropzoneOptions,
   enableDescription = false,
+  errorMessages,
   label,
   mode = "append",
   multiple,
@@ -23,8 +23,9 @@ export const FileUpload: FC<IFileUploadProperties> = ({
   onCancel,
   onFileSelect,
   onUpload,
+  reverseActionsOrder = false,
   uploadButtonOptions,
-  errorMessages,
+  value,
 }) => {
   const [selectedFiles, setSelectedFiles] = useState<FileExtended[]>(
     value || [],
@@ -64,6 +65,14 @@ export const FileUpload: FC<IFileUploadProperties> = ({
       <FormActions
         actions={[
           {
+            id: "upload",
+            type: "button",
+            disabled: !selectedFiles.length,
+            label: "Upload",
+            onClick: () => onUpload(selectedFiles),
+            ...uploadButtonOptions,
+          },
+          {
             id: "cancel",
             label: "Cancel",
             onClick: () => {
@@ -72,16 +81,9 @@ export const FileUpload: FC<IFileUploadProperties> = ({
             },
             ...cancelButtonOptions,
           },
-          {
-            id: "upload",
-            type: "button",
-            disabled: !selectedFiles.length,
-            label: "Upload",
-            onClick: () => onUpload(selectedFiles),
-            ...uploadButtonOptions,
-          },
         ]}
         alignment={actionsAlignment}
+        reverse={reverseActionsOrder}
       />
     </div>
   );

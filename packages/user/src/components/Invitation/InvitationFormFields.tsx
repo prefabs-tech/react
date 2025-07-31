@@ -7,8 +7,8 @@ import {
   useWatch,
   RenderAdditionalFormFields,
   FormActions,
-} from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React, { useEffect, useMemo, useState } from "react";
 
 import {
@@ -161,6 +161,11 @@ export const InvitationFormFields: React.FC<IProperties> = ({
       <FormActions
         actions={[
           {
+            id: "submit",
+            label: t("form.actions.submit"),
+            disabled: !!Object.values(errors).length,
+          },
+          {
             id: "cancel",
             onClick: (event) => {
               event.preventDefault();
@@ -168,14 +173,9 @@ export const InvitationFormFields: React.FC<IProperties> = ({
             },
             label: t("form.actions.cancel"),
           },
-          {
-            id: "submit",
-            label: t("form.actions.submit"),
-            disabled: !!Object.values(errors).length,
-          },
         ]}
+        alignment="right"
         loading={loading}
-        alignment="fill"
       />
     </>
   );

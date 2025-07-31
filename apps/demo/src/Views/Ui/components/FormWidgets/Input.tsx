@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Input, Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Input, Page } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../../components/Demo";
@@ -20,10 +20,10 @@ export const InputDemo = () => {
         />
       }
     >
-      <Section>
+      <Section title={t("input.usage.basic")}>
         <Input placeholder="Input placeholder" label="Input label" />
       </Section>
-      <Section>
+      <Section title={t("input.usage.invalidInput")}>
         <Input
           hasError={true}
           errorMessage="Invalid input"

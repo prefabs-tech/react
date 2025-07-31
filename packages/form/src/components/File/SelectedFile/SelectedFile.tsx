@@ -1,4 +1,4 @@
-import { Button, Input } from "@dzangolab/react-ui";
+import { Button, Input } from "@prefabs.tech/react-ui";
 import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 
 import { FileExtended } from "../types";

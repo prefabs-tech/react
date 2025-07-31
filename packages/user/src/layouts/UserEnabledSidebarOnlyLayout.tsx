@@ -1,11 +1,11 @@
-import { SidebarOnlyLayout } from "@dzangolab/react-layout";
+import { SidebarOnlyLayout } from "@prefabs.tech/react-layout";
 
 import { useUser } from "@/hooks";
 
 import { useUserNavigationMenu } from "..";
 
-import type { SidebarOnlyLayoutProperties } from "@dzangolab/react-layout";
-import type { NavMenuItemType } from "@dzangolab/react-ui";
+import type { SidebarOnlyLayoutProperties } from "@prefabs.tech/react-layout";
+import type { NavMenuItemType } from "@prefabs.tech/react-ui";
 
 interface Properties extends Omit<SidebarOnlyLayoutProperties, "userMenu"> {
   authNavigationMenu?: NavMenuItemType;

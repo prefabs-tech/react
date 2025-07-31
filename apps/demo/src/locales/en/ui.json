@@ -5,6 +5,14 @@
   "common": {
     "usage": "To use the {{component}} component, simply import it into your React file:"
   },
+  "propertiesTable": {
+    "header": {
+      "default": "Default",
+      "description": "Description",
+      "properties": "Properties",
+      "type": "Type"
+    }
+  },
   "headers": {
     "buttons": "Buttons",
     "data": "Data",
@@ -19,7 +27,8 @@
     "panel": "Panel",
     "properties": "Properties",
     "propertiesValue": "Properties: {{value}}",
-    "usage": "Usage"
+    "usage": "Usage",
+    "types": "Types"
   },
   "button": {
     "title": "Button",
@@ -56,8 +65,8 @@
     "body": "Card body",
     "footer": "Card footer",
     "usage": {
-      "default": "Default",
-      "outlined": "Outlined"
+      "basic": "Basic",
+      "outlined": "Outlined card"
     }
   },
   "confirmationModal": {
@@ -70,12 +79,11 @@
     "label": "Currency",
     "multiSelectPlaceholder": "Select currencies",
     "placeholder": "Select a currency",
-    "searchPlaceholder": "Search...",
     "title": "CurrencyPicker",
     "usage": {
       "basic": "Basic",
-      "multiple": "Multiple currency select",
-      "singleSearch": "Single currency select with search"
+      "extensiveOptions": "Currency picker with extensive options",
+      "multiple": "Multiple currency select"
     }
   },
   "data": {
@@ -215,17 +223,46 @@
     }
   },
   "message": {
-    "title": "Message"
+    "subtitle": "The Message component displays contextual messages with optional icons and a closable action. It supports custom slots, making it flexible for various use cases.",
+    "propertiesDescription": {
+      "enableClose": "Displays a close icon if true, allowing the message to be dismissed.",
+      "icon": "Icon to display alongside the message.",
+      "message": "The message text to display in the component.",
+      "onClose": "Function to be called when the message is closed.",
+      "severity": "Defines the styling severity of the message. Defaults to 'info'.",
+      "showIcon": "Show default icon based on severity or custom icon if provided."
+    },
+    "title": "Message",
+    "usage": {
+      "arrayMessage": "Array of message",
+      "basic": "Basic",
+      "customMessage": "Custom message",
+      "enableClose": "Enable close",
+      "hideIcon": "Hide default icon",
+      "icons": {
+        "customIcon": "Custom icon",
+        "icon": "Icon"
+      },
+      "severity": "Severity"
+    }
   },
   "modal": {
     "title": "Modal",
     "header": "Header",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "propertiesDescription": {
+      "className": "Additional CSS classes to apply to the modal.",
+      "children": "The content of the modal.",
+      "footer": "Footer section of the modal.",
+      "header": "Header section of the modal.",
+      "onHide": "Emitted when the modal is requested to close.",
+      "size": "Defines the width of the modal.",
+      "visible": "Controls the visibility of the modal."
+    },
     "showButton": "Open modal",
+    "subtitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic.",
     "usage": {
-      "headerAsFC": "Header as functional component",
-      "withHeader": "With header",
-      "withoutHeader": "Without header"
+      "basic": "Basic",
+      "headerAndFooter": "Header and footer"
     }
   },
   "tooltip": {
@@ -243,7 +280,11 @@
     "title": "Checkbox"
   },
   "input": {
-    "title": "Input"
+    "title": "Input",
+    "usage": {
+      "basic": "Basic",
+      "invalidInput": "Invalid input"
+    }
   },
   "sortableList": {
     "title": "Sortable list"
@@ -331,21 +372,22 @@
   },
   "select": {
     "autoSortOptionsInfo": "By default, options are sorted alphabetically. To render options in original order as provided, you can use <code>autoSortOptions={false}</code>",
-    "label": "Language",
-    "multiSelectPlaceholder": "Select languages",
-    "placeholder": "Select a language",
-    "searchPlaceholder": "Search...",
+    "label": "Country",
+    "multiSelectPlaceholder": "Select countries",
+    "placeholder": "Select a country",
     "title": "Select",
     "usage": {
       "basic": "Basic",
       "disabled": "Disabled",
+      "group": "With grouping",
+      "groupMultiSelect": "Multiselect with grouping",
+      "groupMultiSelectDisabled": "Multiselect with group select disabled",
       "invalid": "Invalid",
+      "key": "With label and value keys",
       "multiple": "Multiple select",
-      "multipleSearch": "Multiple select with search",
       "renderOption": "Select with custom option",
       "renderValue": "Select with custom selected value",
-      "search": "Select with search",
-      "singleSearch": "Single select with search"
+      "withTooltip": "With tooltip"
     }
   },
   "switchInput": {

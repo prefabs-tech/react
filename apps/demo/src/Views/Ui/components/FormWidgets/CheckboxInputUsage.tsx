@@ -1,4 +1,4 @@
-import { CheckboxInput } from "@dzangolab/react-ui";
+import { CheckboxInput } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 
 const SingleCheckboxDemo = ({

@@ -54,7 +54,7 @@ describe("Inline link component", () => {
     render(
       <InlineLink
         label="Dashboard"
-        to="https://www.dzangolab.com/"
+        to="https://www.prefabs-tech.com/"
         external
         target="_blank"
       />,

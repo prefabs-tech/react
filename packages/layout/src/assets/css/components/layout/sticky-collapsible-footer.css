@@ -1,6 +1,6 @@
-.sticky-collapsible .content{
+.sticky-collapsible .content {
   background-color: #fff;
-  border-top: 1px solid #dbdbdb;
+  border-top: 1px solid var(--border-color, #e5e7eb);
   width: 100%;
 }
 
@@ -15,7 +15,7 @@
     width: 100%;
     z-index: 1;
   }
-  
+
   .sticky-collapsible.fixed {
     position: fixed;
   }

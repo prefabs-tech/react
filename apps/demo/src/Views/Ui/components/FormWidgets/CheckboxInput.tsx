@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Page, TDataTable } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Page, TDataTable } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -132,7 +132,7 @@ export const CheckboxInputDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "CheckboxInput" })}</p>
-        <CodeBlock exampleCode="import { CheckboxInput } from '@dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { CheckboxInput } from '@prefabs.tech/react-ui';" />
       </Section>
 
       <Section title={t("checkboxInput.usage.basic")}>

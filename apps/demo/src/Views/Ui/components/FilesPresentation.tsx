@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, FilesPresentation, Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, FilesPresentation, Page } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../components/Demo";
@@ -40,36 +40,42 @@ export const FilesPresentationDemo = () => {
             {
               id: 0,
               originalFileName: "file1.png",
-              uploadedBy: { givenName: "Manish", lastName: "Aryal" },
-              uploadedAt: Date.now(),
+              uploadedBy: { givenName: "Manish", surname: "Aryal" },
+              uploadedAt: new Date("2025-04-14").getTime(),
               downloadCount: 5,
-              description: "file1 description",
+              description: "Important file for proposal",
               size: 1000,
               lastDownloadedAt: Date.now(),
             },
             {
               id: 1,
               originalFileName: "document.pdf",
-              uploadedBy: { givenName: "Gaurav", lastName: "Sapkota" },
-              uploadedAt: Date.now(),
-              downloadCount: 5,
-              lastDownloadedAt: Date.now(),
+              uploadedBy: { givenName: "Gaurav", surname: "Sapkota" },
+              uploadedAt: new Date("2025-03-02").getTime(),
+              downloadCount: 4,
+              description: "Initial project proposal for client review",
+              size: 500,
+              lastDownloadedAt: new Date("2025-03-26").getTime(),
             },
             {
               id: 2,
               originalFileName: "photo.jpeg",
-              uploadedBy: { givenName: "Deepak", lastName: "Aryal" },
-              uploadedAt: Date.now(),
-              downloadCount: 5,
-              lastDownloadedAt: Date.now(),
+              uploadedBy: { givenName: "Deepak", surname: "Aryal" },
+              uploadedAt: new Date("2025-02-20").getTime(),
+              downloadCount: 6,
+              description: "Proposal for project",
+              size: 1500,
+              lastDownloadedAt: new Date("2025-03-12").getTime(),
             },
             {
               id: 3,
               originalFileName: "manish.png",
-              uploadedBy: { givenName: "Lamdiki", lastName: "Sherpa" },
-              uploadedAt: Date.now(),
-              downloadCount: 5,
-              lastDownloadedAt: Date.now(),
+              uploadedBy: { givenName: "Lamdiki", surname: "Sherpa" },
+              uploadedAt: new Date("2025-02-17").getTime(),
+              downloadCount: 3,
+              description: "File containing client list",
+              size: 2000,
+              lastDownloadedAt: new Date("2025-03-08").getTime(),
             },
           ]}
         />

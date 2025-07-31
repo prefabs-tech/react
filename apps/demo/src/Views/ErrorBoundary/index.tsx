@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Page } from "@prefabs.tech/react-ui";
 import { useRouteError } from "react-router-dom";
 import "./ErrorBoundary.css";
 

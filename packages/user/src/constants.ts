@@ -3,6 +3,7 @@ export const SUPERTOKENS_API_BASE_PATH_DEFAULT = "/auth";
 export enum DEFAULT_PATHS {
   // unauthenticated routes
   ACCEPT_INVITATION = "/signup/token/:token",
+  AUTH_CALLBACK_FACEBOOK = "/auth/callback/facebook",
   AUTH_CALLBACK_GOOGLE = "/auth/callback/google",
   FORGOT_PASSWORD = "/forgot-password",
   LOGIN = "/login",

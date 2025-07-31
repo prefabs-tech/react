@@ -18,7 +18,7 @@ interface IDateInput {
   register?: UseFormRegister<any>;
 }
 
-// TODO use Input component from @dzangolab/react-ui
+// TODO use Input component from @prefabs.tech/react-ui
 export const DateInput: React.FC<IDateInput> = ({
   className = "",
   disabled,

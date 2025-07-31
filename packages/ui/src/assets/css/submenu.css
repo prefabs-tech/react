@@ -43,10 +43,10 @@
 
 .dz-submenu > li > a.active,
 .dz-submenu > li > a.active > span[role="icon"] > i {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .dz-submenu > li:hover > a > span[role="label"],
 .dz-submenu > li:hover > a > span[role="icon"] > i {
-  font-weight: bold;
+  font-weight: 500;
 }

@@ -7,20 +7,20 @@
       "confirmPassword": {
         "label": "Confirm password (fr)"
       },
+      "currentPassword": {
+        "label": "Current password (fr)"
+      },
       "newPassword": {
         "label": "New password (fr)"
-      },
-      "oldPassword": {
-        "label": "Old password (fr)"
       }
     },
     "messages": {
       "success": "You have successfully changed your password. (fr)",
       "validation": {
         "confirmPassword": "Confirm password is required. (fr)",
+        "currentPassword": "Current password is required. (fr)",
         "mustMatch": "Passwords must match. (fr)",
-        "newPassword": "New password is required. (fr)",
-        "oldPassword": "Old password is required. (fr)"
+        "newPassword": "New password is required. (fr)"
       }
     },
     "title": "Change password (fr)"
@@ -34,10 +34,10 @@
     "messages": {
       "alreadyVerified": "Email is already verified. Please try refreshing the page. (fr)",
       "error": "Something went wrong. Please try again. (fr)",
-      "invalidToken": "The token is invalid. (fr)",
+      "invalidToken": "This email verification link is no more valid. Either it has been already used or has expired. (fr)",
       "resendEmailInfo": "Not received yet? (fr)",
       "success": "Email verified successfully. (fr)",
-      "unverified": "We've sent you an email with a link to verify your email address. Please check your inbox. (fr)",
+      "unverified": "We've sent an email to <strong>{{ email }}</strong> with a link for verification. Please check your inbox. (fr)",
       "unauthenticated": "User session expired. Please signin to continue. (fr)"
     },
     "title": "Please verify your email address. (fr)",
@@ -134,7 +134,7 @@
         "email": "Email is required. (fr)",
         "error": "An error occurred while updating the email. (fr)",
         "invalid": "Invalid email. (fr)",
-        "success": "Email updated successfully. (fr)",
+        "success": "A verification link has been sent to your email. (fr)",
         "verify": "Verify email to complete the email update. (fr)"
       },
       "newEmail": "New Email (fr)",
@@ -224,11 +224,7 @@
         "helperText": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase. (fr)",
         "label": "Votre mot de passe"
       },
-      "termsAndConditions": {
-        "infix": "Terms and conditions (fr)",
-        "prefix": "I agree to the (fr)",
-        "suffix": "as set out by the user agreement. (fr)"
-      }
+      "termsAndConditions": "I agree to the <Link>Terms and conditions</Link> as set out by the user agreement. (fr)"
     },
     "links": {
       "forgotPassword": "Mot de passe oublié",

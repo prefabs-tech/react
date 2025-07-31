@@ -1,7 +1,7 @@
 import {
   RadioInput as BasicRadioInput,
   IRadioInputProperties,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 

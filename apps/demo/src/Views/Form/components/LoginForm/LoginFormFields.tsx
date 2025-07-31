@@ -1,5 +1,5 @@
-import { Email, Password, useFormContext } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { Email, Password, useFormContext } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 export const LoginFormFields = () => {
   const [t] = useTranslation("form");

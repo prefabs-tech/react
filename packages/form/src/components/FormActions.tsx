@@ -1,4 +1,4 @@
-import { Button, IButtonProperties } from "@dzangolab/react-ui";
+import { Button, IButtonProperties } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 
 interface FormActionsProperties {

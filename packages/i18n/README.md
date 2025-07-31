@@ -1,15 +1,15 @@
-# Dzangolab React I18n
+# Prefabs React I18n
 
 Adds internationalization to a react app.
 
 ## Requirements
 
-* `@dzangolab/react-config: 0.1.0`
+* `@prefabs.tech/react-config: 0.1.0`
 
 ## Installation
 
 ```bash
-pnpm install @dzangolab/react-config @dzangolab/react-i18n
+pnpm install @prefabs.tech/react-config @prefabs.tech/react-i18n
 ```
 
 ## Usage
@@ -19,8 +19,8 @@ pnpm install @dzangolab/react-config @dzangolab/react-i18n
 In `src/main.tsx`:
 
 ```ts
-import i18n from "@dzangolab/react-i18n";
-import i18n from "@dzangolab/react-i18n";
+import i18n from "@prefabs.tech/react-i18n";
+import i18n from "@prefabs.tech/react-i18n";
 import React from "react";
 import ReactDOM from "react-dom/client";
 

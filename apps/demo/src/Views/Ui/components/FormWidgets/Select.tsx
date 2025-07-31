@@ -1,15 +1,16 @@
-import { Trans, useTranslation } from "@dzangolab/react-i18n";
-import { Select, Page, Button } from "@dzangolab/react-ui";
-import { TDataTable } from "@dzangolab/react-ui";
+import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
+import { Select, Page, Button, Tag } from "@prefabs.tech/react-ui";
+import { TDataTable } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../../components/Demo";
 
-type Option = {
-  value: number | string;
-  label: string;
+type Option<T = string | number> = {
+  value?: T;
+  label?: string;
   disabled?: boolean;
+  [key: string]: unknown;
 };
 
 const data = [
@@ -45,10 +46,11 @@ const data = [
   },
   {
     id: 5,
-    prop: "enableSearch",
+    prop: "disableGroupSelect",
     type: "boolean",
-    default: "false",
-    description: "If true, search is enabled.",
+    default: "-",
+    description:
+      "Remove checkbox on group label for selecting all group options.",
   },
   {
     id: 6,
@@ -59,20 +61,28 @@ const data = [
   },
   {
     id: 7,
+    prop: "enableTooltip",
+    type: "boolean",
+    default: "false",
+    description:
+      "When enableTooltip is true, select component renders the <Tooltip> component for the selected value.",
+  },
+  {
+    id: 8,
     prop: "hasError",
     type: "boolean",
     default: "-",
     description: "If true, error in component.",
   },
   {
-    id: 8,
+    id: 9,
     prop: "helperText",
     type: "string",
     default: "-",
     description: "Displays an error message below the component.",
   },
   {
-    id: 9,
+    id: 10,
     prop: "hideIfSingleOption",
     type: "boolean",
     default: "false",
@@ -80,77 +90,95 @@ const data = [
       "If there is only one option, and multiple is false, the Select component will not render the dropdown at all when set to true.",
   },
   {
-    id: 10,
+    id: 11,
     prop: "label",
     type: "string",
     default: "-",
     description: "Label of the component.",
   },
   {
-    id: 11,
+    id: 12,
+    prop: "labelKey",
+    type: "string",
+    default: "-",
+    description: "The key in option object to use as the display label.",
+  },
+  {
+    id: 13,
     prop: "multiple",
     type: "boolean",
     default: "false",
     description: "If true, multiple selection is enabled.",
   },
   {
-    id: 12,
+    id: 14,
     prop: "name",
     type: "string",
     default: "-",
     description: "Name of the component.",
   },
   {
-    id: 13,
+    id: 15,
     prop: "options",
-    type: "Option[]",
+    type: "Option[] | GroupedOption[]",
     default: "-",
     description: "Options to pass in the select component.",
   },
   {
-    id: 14,
+    id: 16,
     prop: "placeholder",
     type: "string",
     default: "-",
     description: "Placeholder in the component.",
   },
   {
-    id: 15,
-    prop: "searchPlaceholder",
-    type: "string",
-    default: "-",
-    description: "Placeholder in search field of the component.",
-  },
-  {
-    id: 16,
+    id: 17,
     prop: "showRemoveSelection",
     type: "boolean",
     default: "true",
     description: "If true, icon to remove selected options is visible.",
   },
   {
-    id: 17,
+    id: 18,
+    prop: "tooltipOptions",
+    type: "TooltipOptions",
+    default: "-",
+    description:
+      "Options to customize the tooltip’s behavior(example: position, offset).",
+  },
+  {
+    id: 19,
     prop: "value",
     type: "Value",
     default: "-",
     description: "Selected values of the component.",
   },
   {
-    id: 18,
+    id: 20,
+    prop: "valueKey",
+    type: "string",
+    default: "-",
+    description: "The key in option object to use as value.",
+  },
+  {
+    id: 21,
     prop: "renderOption",
-    type: "(option: Option[]) => React.ReactNode",
+    type: "(option: Option<T> | GroupedOption<T>) => React.ReactNode",
     default: "-",
     description: "Function to be called to render custom select options.",
   },
   {
-    id: 19,
+    id: 22,
     prop: "renderValue",
-    type: "(value?: Value, options?: Option[]) => React.ReactNode",
+    type: `(
+      value?: T | T[],
+      options?: Option<T>[] | GroupedOption<T>[]
+    ) => React.ReactNode`,
     default: "-",
     description: "Function to be called to render custom select value.",
   },
   {
-    id: 20,
+    id: 23,
     prop: "onChange",
     type: " (newValue: T | T[]) => void",
     default: "-",
@@ -163,34 +191,47 @@ export const SelectDemo = () => {
   const navigate = useNavigate();
 
   const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
-  const [searchableMultiselectValue, setSearchableMultiselectValue] = useState<
-    string[]
-  >([]);
-  const [searchableSingleSelectValue, setSearchableSingleSelectValue] =
-    useState<string>("");
+
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+  const [singleSelectGroupValue, setSingleSelectGroupValue] =
+    useState<string>("");
+  const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>(
+    [],
+  );
+  const [
+    multiSelectGroupSelectDisableValue,
+    setMultiSelectGroupSelectDisableValue,
+  ] = useState<string[]>([]);
   const [selectedValue, setSelectedValue] = useState<string>("");
   const [renderedValue, setRenderedValue] = useState<string[]>([]);
   const [renderedOption, setRenderedOption] = useState<string[]>([]);
+  const [value, setValue] = useState("");
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
 
   const renderSelectedValue = (
     value?: string | string[],
-    options?: Option[],
+    options?: Option<string>[],
   ) => {
+    if (!value || !Array.isArray(value) || !options) {
+      return null;
+    }
+
     return (
-      <span>
-        {Array.isArray(value) &&
-          value
-            ?.map(
-              (value_) =>
-                options?.find((option) => option.value === value_)?.label,
-            )
-            .join(", ")}
+      <span className="selected-labels">
+        {value.map((v) => {
+          const label = options.find((option) => option.value === v)?.label;
+
+          if (!label) {
+            return null;
+          }
+
+          return <Tag key={v} label={label} />;
+        })}
       </span>
     );
   };
 
-  const renderOption = (option: Option) => {
+  const renderOption = (option: Option<string>) => {
     return (
       <div>
         <i className="pi pi-user"></i>
@@ -213,7 +254,7 @@ export const SelectDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "Select" })}</p>
-        <CodeBlock exampleCode='import { Select } from "@dzangolab/react-ui"' />
+        <CodeBlock exampleCode='import { Select } from "@prefabs.tech/react-ui"' />
       </Section>
 
       <Section title={t("select.usage.basic")}>
@@ -221,11 +262,11 @@ export const SelectDemo = () => {
           label={t("select.label")}
           name="select"
           options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
           ]}
           value={singleSelectValue}
           onChange={(value: string) => setSingleSelectValue(value)}
@@ -239,11 +280,11 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   label={t("select.label")}
   name="select"
   options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" }
   ]}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
@@ -261,8 +302,8 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
         <Select
           label={t("select.label")}
           name="select"
-          options={[{ value: "np", label: "Nepali" }]}
-          value="np"
+          options={[{ value: "NP", label: "Nepal" }]}
+          value="NP"
           onChange={() => {}}
           disabled={true}
         />
@@ -271,49 +312,10 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
 <Select
   label={t("select.label")}
   name="select"
-  options={[{ value: "np", label: "Nepali" }]}
-  value="np"
+  options={[{ value: "NP", label: "Nepal" }]}
+  value="NP"
   onChange={() => {}}
   disabled={true}
-/>'
-        />
-      </Section>
-      <Section title={t("select.usage.singleSearch")}>
-        <Select
-          label={t("select.label")}
-          name="select"
-          enableSearch
-          options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
-          ]}
-          value={searchableSingleSelectValue}
-          onChange={(value: string) => setSearchableSingleSelectValue(value)}
-          placeholder={t("select.placeholder")}
-          searchPlaceholder={t("select.searchPlaceholder")}
-        />
-        <CodeBlock
-          exampleCode='
-const [searchableSingleSelectValue, setSearchableSingleSelectValue] = useState<string>("");
-
-<Select
-  label={t("select.label")}
-  name="select"
-  enableSearch
-  options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
-  ]}
-  value={searchableSingleSelectValue}
-  onChange={(value: string) => setSearchableSingleSelectValue(value)}
-  placeholder={t("select.placeholder")}
-  searchPlaceholder={t("select.searchPlaceholder")}
 />'
         />
       </Section>
@@ -322,11 +324,11 @@ const [searchableSingleSelectValue, setSearchableSingleSelectValue] = useState<s
           label={t("select.label")}
           name="select"
           options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
           ]}
           multiple={true}
           value={multiselectValue}
@@ -341,11 +343,11 @@ const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
   label={t("select.label")}
   name="select"
   options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" }
   ]}
   multiple={true}
   value={multiselectValue}
@@ -355,59 +357,16 @@ const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
         />
       </Section>
 
-      <Section title={t("select.usage.multipleSearch")}>
-        <Select
-          enableSearch
-          label={t("select.label")}
-          name="select"
-          options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
-          ]}
-          multiple={true}
-          hasError={true}
-          value={searchableMultiselectValue}
-          onChange={(value: string[]) => setSearchableMultiselectValue(value)}
-          placeholder={t("select.multiSelectPlaceholder")}
-          searchPlaceholder={t("select.searchPlaceholder")}
-        />
-        <CodeBlock
-          exampleCode='
-const [searchableMultiselectValue, setSearchableMultiselectValue] = useState<string[]>([]);
-
-<Select
-  enableSearch
-  label={t("select.label")}
-  name="select"
-  options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
-  ]}
-  multiple={true}
-  value={searchableMultiselectValue}
-  onChange={(value: string[]) => setSearchableMultiselectValue(value)}
-  placeholder={t("select.multiSelectPlaceholder")}
-  searchPlaceholder={t("select.searchPlaceholder")}
-/>        '
-        />
-      </Section>
-
       <Section title={t("select.usage.renderValue")}>
         <Select
           label={t("select.label")}
           name="select"
           options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
           ]}
           value={renderedValue}
           onChange={(value: string[]) => setRenderedValue(value)}
@@ -440,11 +399,11 @@ const renderSelectedValue = (
   label={t("select.label")}
   name="select"
   options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" }
   ]}
   value={renderedValue}
   onChange={(value: string[]) => setRenderedValue(value)}
@@ -459,11 +418,11 @@ const renderSelectedValue = (
           label={t("select.label")}
           name="select"
           options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
           ]}
           value={renderedOption}
           onChange={(value: string[]) => setRenderedOption(value)}
@@ -488,11 +447,11 @@ const renderOption = (option: Option) => {
   label={t("select.label")}
   name="select"
   options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" }
   ]}
   value={renderedOption}
   onChange={(value: string[]) => setRenderedOption(value)}
@@ -503,21 +462,111 @@ const renderOption = (option: Option) => {
         />
       </Section>
 
+      <Section title={t("select.usage.key")}>
+        <Select
+          label={t("select.label")}
+          name="select"
+          options={[
+            { country: "France", code: "fr" },
+            { country: "Germany", code: "de" },
+            { disabled: true, country: "Belgium", code: "be" },
+            { country: "Nepal", code: "np" },
+            { country: "India", code: "hi" },
+          ]}
+          value={value}
+          onChange={(value: string) => setValue(value)}
+          placeholder={t("select.placeholder")}
+          valueKey="code"
+          labelKey="country"
+        />
+        <CodeBlock
+          exampleCode='
+const [value, setValue] = useState<string>("");
+
+<Select
+  label={t("select.label")}
+  name="select"
+  options={[
+    { country: "France", code: "fr" },
+    { country: "Germany", code: "de" },
+    { disabled: true, country: "Belgium", code: "be" },
+    { country: "Nepal", code: "np" },
+    { country: "India", code: "hi" },
+  ]}
+  value={value}
+  onChange={(value: string) => setValue(value)}
+  placeholder={t("select.placeholder")}
+  valueKey="code"
+  labelKey="country"
+/>'
+        />
+      </Section>
+
+      <Section title={t("select.usage.withTooltip")}>
+        <Select
+          label={t("select.label")}
+          name="select"
+          options={[
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
+          ]}
+          value={selectedCountries}
+          onChange={(value: string[]) => setSelectedCountries(value)}
+          className="country-selector"
+          placeholder={t("select.placeholder")}
+          multiple
+          enableTooltip
+          tooltipOptions={{
+            position: "top",
+            offset: 15,
+          }}
+        />
+        <CodeBlock
+          exampleCode='
+const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+
+<Select
+  label={t("select.label")}
+  name="select"
+  options={[
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" },
+  ]}
+  value={selectedCountries}
+  onChange={(value: string[]) => setSelectedCountries(value)}
+  className="country-selector"
+  placeholder={t("select.placeholder")}
+  multiple
+  enableTooltip
+  tooltipOptions={{
+    position: "top",
+    offset: 15,
+  }}
+/>'
+        />
+      </Section>
+
       <Section title={t("select.usage.invalid")}>
         <Select
           label={t("select.label")}
           name="select"
           options={[
-            { label: "French", value: "fr" },
-            { label: "German", value: "de" },
-            { disabled: true, label: "Dutch", value: "be" },
-            { label: "Nepali", value: "np" },
-            { label: "Hindi", value: "hi" },
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
           ]}
           value={selectedValue}
           onChange={(value: string) => setSelectedValue(value)}
-          hasError={true}
-          errorMessage="Required field"
+          hasError={!selectedValue}
+          errorMessage={!selectedValue ? "Required field" : ""}
           placeholder={t("select.placeholder")}
         />
         <CodeBlock
@@ -528,17 +577,198 @@ const [selectedValue, setSelectedValue] = useState<string>("");
   label={t("select.label")}
   name="select"
   options={[
-    { label: "French", value: "fr"},
-    { label: "German", value: "de"},
-    { disabled: true, label: "Dutch", value: "be", },
-    { label: "Nepali", value: "np",  },
-    { label: "Hindi", value: "hi" },
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" }
   ]}
   value={selectedValue}
   onChange={(value: string) => setSelectedValue(value)}
-  hasError={true}
-  errorMessage="Required field"
+  hasError={!selectedValue}
+  errorMessage={!selectedValue ? "Required field" : ""}
   placeholder={t("select.placeholder")}
+/>'
+        />
+      </Section>
+      <Section title={t("select.usage.group")}>
+        <Select
+          label={t("select.label")}
+          name="select"
+          options={[
+            {
+              label: "Europe",
+              options: [
+                { label: "Germany", value: "DE" },
+                { label: "France", value: "FR" },
+                { disabled: true, label: "Belgium", value: "BE" },
+              ],
+            },
+            {
+              label: "Asia",
+              options: [
+                { label: "Nepal", value: "NP" },
+                { label: "India", value: "IN" },
+              ],
+            },
+          ]}
+          value={singleSelectGroupValue}
+          onChange={(value: string) => setSingleSelectGroupValue(value)}
+          placeholder={t("select.placeholder")}
+        />
+        <CodeBlock
+          exampleCode='
+const [singleSelectGroupValue, setSingleSelectGroupValue] = useState<string>("");
+
+<Select
+  label={t("select.label")}
+  name="select"
+  options={[
+    {
+      label: "Europe",
+      options: [
+        { label: "Germany", value: "DE" },
+        { label: "France", value: "FR" },
+        { disabled: true, label: "Belgium", value: "BE" },
+      ],
+    },
+    {
+      label: "Asia",
+      options: [
+        { label: "Nepal", value: "NP" },
+        { label: "India", value: "IN" },
+      ],
+    },
+  ]}
+  value={singleSelectGroupValue}
+  onChange={(value: string) => setSingleSelectGroupValue(value)}
+  placeholder={t("select.placeholder")}
+/>'
+        />
+        <p>
+          <Trans
+            i18nKey={"ui:select.autoSortOptionsInfo"}
+            components={{ code: <code /> }}
+          ></Trans>
+        </p>
+      </Section>
+      <Section title={t("select.usage.groupMultiSelect")}>
+        <Select
+          label={t("select.label")}
+          name="select"
+          options={[
+            {
+              label: "Europe",
+              options: [
+                { label: "Germany", value: "DE" },
+                { label: "France", value: "FR" },
+                { disabled: true, label: "Belgium", value: "BE" },
+              ],
+            },
+            {
+              label: "Asia",
+              options: [
+                { label: "Nepal", value: "NP" },
+                { label: "India", value: "IN" },
+              ],
+            },
+          ]}
+          multiple={true}
+          value={multiSelectGroupValue}
+          onChange={(value: string[]) => setMultiSelectGroupValue(value)}
+          placeholder={t("select.multiSelectPlaceholder")}
+        />
+        <CodeBlock
+          exampleCode='
+const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>([]);
+
+<Select
+  label={t("select.label")}
+  name="select"
+  options={
+    [
+      {
+        label: "Europe",
+        options: [
+          { label: "Germany", value: "DE" },
+          { label: "France", value: "FR" },
+          { disabled: true, label: "Belgium", value: "BE" },
+        ],
+      },
+      {
+        label: "Asia",
+        options: [
+          { label: "Nepal", value: "NP" },
+          { label: "India", value: "IN" },
+        ],
+      },
+    ]}
+  multiple={true}
+  value={multiSelectGroupValue}
+  onChange={(value: string[]) => setMultiSelectGroupValue(value)}
+  placeholder={t("select.multiSelectPlaceholder")}
+/>'
+        />
+      </Section>
+      <Section title={t("select.usage.groupMultiSelectDisabled")}>
+        <Select
+          label={t("select.label")}
+          name="select"
+          disableGroupSelect={true}
+          options={[
+            {
+              label: "Europe",
+              options: [
+                { label: "Germany", value: "DE" },
+                { label: "France", value: "FR" },
+                { disabled: true, label: "Belgium", value: "BE" },
+              ],
+            },
+            {
+              label: "Asia",
+              options: [
+                { label: "Nepal", value: "NP" },
+                { label: "India", value: "IN" },
+              ],
+            },
+          ]}
+          multiple={true}
+          value={multiSelectGroupSelectDisableValue}
+          onChange={(value: string[]) =>
+            setMultiSelectGroupSelectDisableValue(value)
+          }
+          placeholder={t("select.multiSelectPlaceholder")}
+        />
+        <CodeBlock
+          exampleCode='
+const [multiSelectGroupSelectDisableValue, setMultiSelectGroupSelectDisableValue] = useState<string[]>([]);
+
+<Select
+  label={t("select.label")}
+  name="select"
+  disableGroupSelect={true}
+  options={
+    [
+      {
+        label: "Europe",
+        options: [
+          { label: "Germany", value: "DE" },
+          { label: "France", value: "FR" },
+          { disabled: true, label: "Belgium", value: "BE" },
+        ],
+      },
+      {
+        label: "Asia",
+        options: [
+          { label: "Nepal", value: "NP" },
+          { label: "India", value: "IN" },
+        ],
+      },
+    ]}
+  multiple={true}
+  value={multiSelectGroupSelectDisableValue}
+  onChange={(value: string[]) => setMultiSelectGroupSelectDisableValue(value)}
+  placeholder={t("select.multiSelectPlaceholder")}
 />'
         />
       </Section>
@@ -571,17 +801,29 @@ const [selectedValue, setSelectedValue] = useState<string>("");
         />
       </Section>
 
-      <Section title="Type">
+      <Section title={t("headers.types")}>
         <CodeBlock
-          exampleCode="
+          exampleCode='
 type Option<T extends string | number> = {
   disabled?: boolean;
   label: string;
   value: T;
 };
 
+type GroupedOption<T = string | number> = {
+  label: string;
+  options: Option<T>[];
+};
+
 type Value = string | number | (string | number)[]
-"
+
+type TooltipOptions = {
+  delay?: number;
+  mouseTrack?: boolean;
+  offset?: number;
+  position?: "top" | "bottom" | "right" | "left";
+}
+'
         />
       </Section>
     </Page>

@@ -1,17 +1,17 @@
 {
-  "name": "@dzangolab/react-layout",
-  "version": "0.58.0",
+  "name": "@prefabs.tech/react-layout",
+  "version": "0.61.0",
   "description": "React Layout Component Library",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/DzangolabReactLayout.es.js",
-      "require": "./dist/DzangolabReactLayout.umd.js"
+      "import": "./dist/PrefabsTechReactLayout.es.js",
+      "require": "./dist/PrefabsTechReactLayout.umd.js"
     },
-    "./dist/DzangolabReactLayout.css": "./dist/react-layout.css"
+    "./dist/PrefabsTechReactLayout.css": "./dist/react-layout.css"
   },
-  "main": "dist//DzangolabReactLayout.umd.js",
-  "module": "dist//DzangolabReactLayout.es.js",
+  "main": "./dist/PrefabsTechReactLayout.umd.js",
+  "module": "./dist/PrefabsTechReactLayout.es.js",
   "types": "./dist/src/index.d.ts",
   "files": ["dist"],
   "scripts": {
@@ -28,11 +28,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@12deg/eslint-config": "0.1.11",
-    "@12deg/tsconfig": "0.1.11",
-    "@dzangolab/react-config": "0.58.0",
-    "@dzangolab/react-i18n": "0.58.0",
-    "@dzangolab/react-ui": "0.58.0",
+    "@prefabs.tech/eslint-config": "0.2.0",
+    "@prefabs.tech/tsconfig": "0.2.0",
+    "@prefabs.tech/react-config": "0.61.0",
+    "@prefabs.tech/react-i18n": "0.61.0",
+    "@prefabs.tech/react-ui": "0.61.0",
     "@testing-library/react": "16.3.0",
     "@types/jsdom": "21.1.7",
     "@types/node": "22.13.4",
@@ -57,20 +57,19 @@
     "react-dom": "18.3.1",
     "react-router-dom": "6.28.0",
     "typescript": "5.7.3",
-    "vite": "6.1.5",
+    "vite": "6.1.6",
     "vitest": "3.0.8"
   },
   "peerDependencies": {
-    "@dzangolab/react-config": "0.58.0",
-    "@dzangolab/react-i18n": "0.58.0",
-    "@dzangolab/react-ui": "0.58.0",
+    "@prefabs.tech/react-config": "0.61.0",
+    "@prefabs.tech/react-i18n": "0.61.0",
+    "@prefabs.tech/react-ui": "0.61.0",
     "primeicons": ">=6.0.1",
     "react": ">=18.2",
     "react-dom": ">=18.2",
     "react-router-dom": ">=6.9"
   },
   "engines": {
-    "node": ">=18",
-    "pnpm": ">=9"
+    "node": ">=18"
   }
 }

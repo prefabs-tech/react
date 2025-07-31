@@ -93,6 +93,7 @@ export const DataActionsMenu = ({
           data-pr-tooltip={label}
           {...rest}
           onClick={(event) => onClick && onClick()}
+          size="small"
           rounded
         />
       );

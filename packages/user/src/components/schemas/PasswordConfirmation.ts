@@ -1,4 +1,4 @@
-import { passwordSchema } from "@dzangolab/react-form";
+import { passwordSchema } from "@prefabs.tech/react-form";
 import * as zod from "zod";
 
 interface PasswordConfirmationSchema {

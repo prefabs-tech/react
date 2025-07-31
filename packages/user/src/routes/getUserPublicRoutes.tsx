@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 
-import { AuthGoogleCallback } from "@/components";
+import { AuthSocialLoginCallback } from "@/components";
 import { DEFAULT_PATHS } from "@/constants";
 import { useConfig } from "@/hooks";
 import { PublicRoutesProperties } from "@/types/routes";
@@ -18,6 +18,7 @@ export const getUserPublicRoutes = (options?: PublicRoutesProperties) => {
 
   const {
     acceptInvitation,
+    authCallbackFacebook,
     authCallbackGoogle,
     forgotPassword,
     login,
@@ -32,6 +33,8 @@ export const getUserPublicRoutes = (options?: PublicRoutesProperties) => {
   const signupEnabled = config.features?.signup !== false;
   const signupFirstUserEnabled =
     !signupEnabled && config.features?.signupFirstUser !== false;
+  const authCallbackFacebookEnabled =
+    config.socialLoginProviders?.includes("facebook");
   const authCallbackGoogleEnabled =
     config.socialLoginProviders?.includes("google");
 
@@ -61,8 +64,15 @@ export const getUserPublicRoutes = (options?: PublicRoutesProperties) => {
     },
     {
       path:
+        customPaths?.authCallbackFacebook ||
+        DEFAULT_PATHS.AUTH_CALLBACK_FACEBOOK,
+      element: authCallbackFacebook?.element || <AuthSocialLoginCallback />,
+      disabled: !authCallbackFacebookEnabled,
+    },
+    {
+      path:
         customPaths?.authCallbackGoogle || DEFAULT_PATHS.AUTH_CALLBACK_GOOGLE,
-      element: authCallbackGoogle?.element || <AuthGoogleCallback />,
+      element: authCallbackGoogle?.element || <AuthSocialLoginCallback />,
       disabled: !authCallbackGoogleEnabled,
     },
     {

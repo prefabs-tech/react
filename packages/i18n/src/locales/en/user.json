@@ -10,17 +10,17 @@
       "newPassword": {
         "label": "New password"
       },
-      "oldPassword": {
-        "label": "Old password"
+      "currentPassword": {
+        "label": "Current password"
       }
     },
     "messages": {
       "success": "You have successfully changed your password.",
       "validation": {
         "confirmPassword": "Confirm password.",
+        "currentPassword": "Current password is required.",
         "mustMatch": "Passwords must match.",
-        "newPassword": "New password is required.",
-        "oldPassword": "Old password is required."
+        "newPassword": "New password is required."
       }
     },
     "title": "Change password"
@@ -37,14 +37,14 @@
       "invalidToken": "The token is invalid.",
       "resendEmailInfo": "Not received yet?",
       "success": "Email verified successfully.",
-      "unverified": "We've sent you an email with a link to verify your email address. Please check your inbox.",
+      "unverified": "We've sent an email to <strong>{{ email }}</strong> with a link for verification. Please check your inbox.",
       "unauthenticated": "User session expired. Please signin to continue."
     },
     "title": "Please verify your email address.",
     "toastMessages": {
       "alreadyVerified": "Email is already verified.",
       "error": "Something went wrong. Please try again.",
-      "invalidToken": "The token is invalid.",
+      "invalidToken": "This email verification link is no more valid. Either it has been already used or has expired.",
       "resendError": "Something went wrong. Please try again.",
       "resendSuccess": "Email resent successfully.",
       "success": "Email verified successfully.",
@@ -134,7 +134,7 @@
         "email": "Email is required.",
         "error": "An error occurred while updating the email.",
         "invalid": "Invalid email.",
-        "success": "Email updated successfully.",
+        "success": "A verification link has been sent to your email.",
         "verify": "Verify email to complete the email update."
       },
       "newEmail": "New Email",
@@ -224,11 +224,7 @@
         "helperText": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase.",
         "label": "Your password"
       },
-      "termsAndConditions": {
-        "infix": "Terms and conditions",
-        "prefix": "I agree to the",
-        "suffix": "as set out by the user agreement."
-      }
+      "termsAndConditions": "I agree to the <Link>Terms and conditions</Link> as set out by the user agreement."
     },
     "links": {
       "forgotPassword": "Forgot password",

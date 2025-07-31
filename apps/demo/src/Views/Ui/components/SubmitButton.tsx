@@ -1,6 +1,6 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Page, SubmitButton } from "@dzangolab/react-ui";
-import { TDataTable } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Page, SubmitButton } from "@prefabs.tech/react-ui";
+import { TDataTable } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
@@ -45,7 +45,7 @@ export const SubmitButtonDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "SubmitButton" })}</p>
-        <CodeBlock exampleCode="import { SubmitButton } from '@dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { SubmitButton } from '@prefabs.tech/react-ui';" />
       </Section>
       <Section title={t("submitButton.usage.basic")}>
         <SubmitButton label="Submit" />

@@ -1,7 +1,7 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page, TabView, TDataTable } from "@dzangolab/react-ui";
-import { Button } from "@dzangolab/react-ui";
-import { ConfirmationModal } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Page, TabView, TDataTable } from "@prefabs.tech/react-ui";
+import { Button } from "@prefabs.tech/react-ui";
+import { ConfirmationModal } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -72,14 +72,14 @@ const data = [
   {
     id: 9,
     prop: "tabs",
-    type: "array",
+    type: "Tabs",
     default: "-",
     description: "Array of tab object.",
   },
   {
     id: 10,
     prop: "visibleTabs",
-    type: "array",
+    type: "VisibleTabs",
     default: "-",
     description: "Array of visible tabs.",
   },
@@ -173,7 +173,7 @@ export const TabViewDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "TabView" })}</p>
-        <CodeBlock exampleCode="import { TabView } from 'dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { TabView } from '@prefabs.tech/react-ui';" />
       </Section>
 
       <Section title={t("tabview.usage.basic")}>
@@ -809,7 +809,7 @@ enableHashRouting={true}
       <Section title="Type">
         <CodeBlock
           exampleCode="
-tabs = {
+Tabs = {
   children: React.ReactNode;
   closable?: boolean;
   icon?: string;
@@ -817,7 +817,7 @@ tabs = {
   label: string;
 }[];
 
-visibleTabs: string[]
+VisibleTabs: string[]
 "
         />
       </Section>

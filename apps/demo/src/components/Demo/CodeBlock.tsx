@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button } from "@prefabs.tech/react-ui";
 import React, { useEffect, useRef, useState } from "react";
 
 const COPY_STATES = {

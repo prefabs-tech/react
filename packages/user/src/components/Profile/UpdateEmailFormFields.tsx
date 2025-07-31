@@ -1,5 +1,5 @@
-import { Email, useFormContext, FormActions } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { Email, useFormContext, FormActions } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 interface Properties {
   loading?: boolean;
@@ -23,19 +23,19 @@ export const UpdateEmailFormFields = ({
       <FormActions
         actions={[
           {
+            id: "submit",
+            label: t("profile.button.update"),
+            disabled: !isDirty,
+          },
+          {
             id: "cancel",
             label: t("profile.button.cancel"),
             type: "button",
             onClick: () => setModalVisible(false),
           },
-          {
-            id: "submit",
-            label: t("profile.button.update"),
-            disabled: !isDirty,
-          },
         ]}
+        alignment="right"
         loading={loading}
-        alignment="fill"
       />
     </>
   );

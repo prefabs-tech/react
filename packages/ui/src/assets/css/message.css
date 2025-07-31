@@ -1,7 +1,54 @@
-.message{
-    padding: 1rem;
-    background-color: var(--blue-100);
-    border-radius: 0.5rem;
-    border: 1px solid var(--blue-800);
-    color: solid var(--blue-800);
+.message {
+  background-color: color-mix(in srgb, var(--_background-color) 10%, #fff);
+  border-radius: 0.5rem;
+  border: 1px solid var(--_border-color);
+  color: var(--_color);
+  display: flex;
+  gap: 1rem;
+  padding: .5rem 1rem;
+}
+
+.message .message-content {
+  flex: 1;
+}
+
+.message-content ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style-type: disc;
+  margin: 0 1rem;
+  padding: 0;
+}
+
+.message .close-message {
+  cursor: pointer;
+}
+
+.message .close-message .pi {
+  font-size: .85rem;
+}
+
+.message.danger {
+  --_background-color: var(--dz-danger-color);
+  --_border-color: var(--dz-danger-color);
+  --_color: var(--dz-danger-color);
+}
+
+.message.info {
+  --_background-color: var(--dz-primary-color);
+  --_border-color: var(--dz-primary-color);
+  --_color: var(--dz-primary-color);
+}
+
+.message.success {
+  --_background-color: var(--dz-success-color);
+  --_border-color: var(--dz-success-color);
+  --_color: var(--dz-success-color);
+}
+
+.message.warning {
+  --_background-color: var(--dz-warning-color);
+  --_border-color: var(--dz-warning-color);
+  --_color: var(--dz-warning-color);
 }

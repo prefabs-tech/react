@@ -1,4 +1,4 @@
-import { SwitchInput } from "@dzangolab/react-ui";
+import { SwitchInput } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 
 const Basic = ({

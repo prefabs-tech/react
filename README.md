@@ -1,15 +1,15 @@
-# @dzangolab/react
-A set of React libraries to be used in our monorepo apps.
+# @prefabs.tech/react
+A set of React libraries to be used in monorepo apps.
 
 ## Demo app
 Please find our [demo app](https://app-5mgwtd.ws0.12deg.io/) for examples.
 
 ## Packages
-  - @dzangolab/react-config (https://www.npmjs.com/package/@dzangolab/react-config)
-  - @dzangolab/react-i18n (https://www.npmjs.com/package/@dzangolab/react-i18n)
-  - @dzangolab/react-user (https://www.npmjs.com/package/@dzangolab/react-user)
-  - @dzangolab/react-ui (https://www.npmjs.com/package/@dzangolab/react-ui)
-  - @dzangolab/react-layout (https://www.npmjs.com/package/@dzangolab/react-layout)
+  - @prefabs.tech/react-config (https://www.npmjs.com/package/@prefabs.tech/react-config)
+  - @prefabs.tech/react-i18n (https://www.npmjs.com/package/@prefabs.tech/react-i18n)
+  - @prefabs.tech/react-user (https://www.npmjs.com/package/@prefabs.tech/react-user)
+  - @prefabs.tech/react-ui (https://www.npmjs.com/package/@prefabs.tech/react-ui)
+  - @prefabs.tech/react-layout (https://www.npmjs.com/package/@prefabs.tech/react-layout)
 
 # Installation & Usage
 ## Install dependencies

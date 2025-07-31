@@ -11,9 +11,9 @@ import {
   TextInput,
   Typeahead,
   useFormContext,
-} from "@dzangolab/react-form";
-import { Textarea } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+} from "@prefabs.tech/react-form";
+import { Textarea } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useEffect, useState } from "react";
 
 import { FormInputModes } from "./FormInputModes";

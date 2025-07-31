@@ -40,7 +40,7 @@
 
 .file-card .name {
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .file-card .file-size {
@@ -76,7 +76,7 @@
 .file-card .download-count > span:first-child,
 .file-card .last-downloaded-at > span:first-child {
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 0.3rem;
 }
 

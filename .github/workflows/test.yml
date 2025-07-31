@@ -1,4 +1,4 @@
-name: "@dzangolab/react Test"
+name: "@prefabs.tech/react Test"
 
 on: push
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20]
+        node-version: [18, 20, 22]
     steps:
       - uses: actions/checkout@v4
         name: Use node ${{ matrix.node-version }}

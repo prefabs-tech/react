@@ -12,7 +12,7 @@
   align-items: center;
   background: none;
   border: none;
-  border:  var(--tab-border, 1px solid transparent);
+  border: var(--tab-border, 1px solid transparent);
   cursor: pointer;
   display: flex;
   outline: 0;
@@ -23,7 +23,7 @@
 
 .tabbed-panel > div > button:focus-visible {
   outline-offset: -1px;
-  outline: var(--tab-focus-outline, 1px solid #1c4786);
+  outline: 1px solid var(--dz-primary-color);
 }
 
 .tabbed-panel > div > button span {

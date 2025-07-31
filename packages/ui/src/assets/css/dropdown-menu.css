@@ -6,11 +6,13 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 0.65rem;
+  padding: 0.75rem;
+  text-wrap: nowrap;
   transition: all var(--transition-duration) ease 0s;
 }
 
 .dropdown-menu .dropdown-menu-trigger > span {
+  line-height: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -41,7 +43,6 @@ ul.dropdown-menu-list {
   min-width: 160px;
   overflow: hidden;
   padding-inline-start: 0;
-  width: max-content;
 }
 
 ul.dropdown-menu-list li {

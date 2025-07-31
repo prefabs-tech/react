@@ -25,11 +25,6 @@
   margin-bottom: 0.3rem;
 }
 
-.demo .demo-aside ul > li > a {
-  color: var(--color);
-  text-decoration: none;
-}
-
 .demo-section {
   margin-bottom: 3rem;
 }
@@ -96,7 +91,7 @@
 
 @media screen and (min-width: 576px) {
   .demo > .demo-aside {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid var(--border-color, #e5e7eb);
     height: 100%;
     overflow-y: auto;
     padding: 1rem 2rem;

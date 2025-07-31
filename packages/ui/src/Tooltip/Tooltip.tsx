@@ -19,7 +19,7 @@ type Position = {
   left?: number;
 };
 
-type TooltipProperties = {
+export type TooltipProperties = {
   children: React.ReactNode;
   className?: string;
   delay?: number;

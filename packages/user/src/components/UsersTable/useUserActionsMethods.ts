@@ -1,4 +1,4 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { toast } from "react-toastify";
 
 import { disableUser, enableUser } from "../../api/user";

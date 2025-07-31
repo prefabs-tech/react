@@ -7,7 +7,7 @@ import { initReactI18next, useTranslation, Trans } from "react-i18next";
 import LocaleSwitcher from "./components/LocaleSwitcher";
 
 /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-import type { AppConfig } from "@dzangolab/react-config";
+import type { AppConfig } from "@prefabs.tech/react-config";
 import type { InitOptions } from "i18next";
 
 const plugin = (options: InitOptions) => {
@@ -35,7 +35,7 @@ const plugin = (options: InitOptions) => {
     });
 };
 
-declare module "@dzangolab/react-config" {
+declare module "@prefabs.tech/react-config" {
   export interface AppConfig {
     i18n: InitOptions;
   }

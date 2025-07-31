@@ -1,4 +1,4 @@
-import { LocaleSwitcher } from "@dzangolab/react-i18n";
+import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 
 import { Copyright, Version } from "../common";
 

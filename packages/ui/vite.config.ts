@@ -14,8 +14,8 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: resolve(dirname(fileURLToPath(import.meta.url)), "src/index.ts"),
-        fileName: (format) => `DzangolabReactUI.${format}.js`,
-        name: "@dzangolab/react-ui",
+        fileName: (format) => `PrefabsTechReactUI.${format}.js`,
+        name: "PrefabsTechReactUI",
       },
       rollupOptions: {
         external: [

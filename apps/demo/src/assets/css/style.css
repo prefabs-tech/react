@@ -1,8 +1,3 @@
-:root {
-  --layout-max-width: 100%;
-  --logo-width: 150px;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -21,18 +16,15 @@ code {
 }
 
 @media screen and (min-width: 576px) {
+  .dz-layout > header > .dz-header-container {
+    flex-wrap: wrap;
+  }
+
+  .dz-layout > header > .dz-header-container > .dz-header-menu {
+    flex: unset;
+  }
+
   .dz-layout > main {
     padding: 0;
-  }
-}
-
-@media screen and (min-width: 60rem) {
-  :root {
-    --layout-padding-h: 3rem;
-  }
-
-  .layout.basic > :is(footer, header, main) {
-    padding-left: var(--layout-padding-h);
-    padding-right: var(--layout-padding-h);
   }
 }

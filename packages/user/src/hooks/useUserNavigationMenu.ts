@@ -1,4 +1,4 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { toast } from "react-toastify";
 
 import { DEFAULT_PATHS } from "@/constants";
@@ -11,7 +11,7 @@ import type {
   NavGroupType,
   NavItemType,
   NavMenuItemType,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 interface Properties {
   authNavigationMenu?: NavMenuItemType;

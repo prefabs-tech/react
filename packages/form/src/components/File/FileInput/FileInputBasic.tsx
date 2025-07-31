@@ -1,5 +1,5 @@
 // components/FormComponents/FileInputBasic.tsx
-import { Button } from "@dzangolab/react-ui";
+import { Button } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 

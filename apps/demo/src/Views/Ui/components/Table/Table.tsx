@@ -1,13 +1,13 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable,
   Page,
   Button,
   TableColumnDefinition,
   DebouncedInput,
-} from "@dzangolab/react-ui";
-import { FilterFunction, DatePicker } from "@dzangolab/react-ui";
-import { Tag } from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
+import { FilterFunction, DatePicker } from "@prefabs.tech/react-ui";
+import { Tag } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -21,7 +21,7 @@ import {
 } from "./data";
 import { CodeBlock, Section } from "../../../../components/Demo";
 
-declare module "@dzangolab/react-ui" {
+declare module "@prefabs.tech/react-ui" {
   interface FilterFunctions {
     inDateRangeFilter: FilterFunction<unknown>;
     customEqualStringFilter: FilterFunction<unknown>;

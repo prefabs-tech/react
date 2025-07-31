@@ -1,5 +1,5 @@
 {
-  "extends": "@12deg/tsconfig/react",
+  "extends": "@prefabs.tech/tsconfig/react",
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./dist",

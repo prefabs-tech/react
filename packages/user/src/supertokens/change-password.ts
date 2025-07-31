@@ -1,14 +1,10 @@
-import { toast } from "react-toastify";
-
 import client from "@/api/axios";
 
 export const changePassword = async (
   oldPassword: string,
   newPassword: string,
   apiBaseUrl: string,
-): Promise<boolean | undefined> => {
-  let success = false;
-
+) => {
   try {
     const response = await client(apiBaseUrl).post(
       "/change_password",
@@ -18,18 +14,17 @@ export const changePassword = async (
       },
     );
 
-    if (response.data.status === "OK") {
-      success = true;
-    } else {
-      toast.error(response.data.message);
-    }
+    return response.data;
   } catch (err) {
     let errorMessage = "Oops! Something went wrong.";
+
     if (err instanceof Error) {
       errorMessage = err.message;
     }
-    toast.error(errorMessage);
-  }
 
-  return success;
+    return {
+      status: "ERROR",
+      message: errorMessage,
+    };
+  }
 };

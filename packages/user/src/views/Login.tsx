@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Divider, AuthPage } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Divider, AuthPage } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { LoginWrapper, SocialLogins } from "../components/Login";

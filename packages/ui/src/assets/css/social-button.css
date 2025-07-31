@@ -1,0 +1,26 @@
+.facebook.dark {
+  background-color: #1877F2 !important;
+  border: none;
+  color: #ffffff !important;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.facebook.sso-button > img {
+  background-color: #1877F2;
+  height: 30px;
+  min-width: 30px;
+  width: 30px;
+}
+
+.google.dark {
+  background-color: #FFFFFF !important;
+  border: 1px solid #747775;
+  color: #1F1F1F !important;
+  width: 100%;
+}
+
+.google.sso-button > img {
+  margin-left: -10px;
+  margin-right: 12px;
+}

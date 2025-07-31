@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Tooltip, Page, Button } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Tooltip, Page, Button } from "@prefabs.tech/react-ui";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 

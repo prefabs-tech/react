@@ -28,7 +28,7 @@ export const TableRangeFilter = <TData,>({
       (filterInput) => filterInput !== undefined,
     );
 
-    column.setFilterValue(isFilterActive ? currentFilter : []);
+    column.setFilterValue(isFilterActive ? currentFilter : undefined);
   };
 
   const filterValue = column.getFilterValue() as (number | undefined)[];

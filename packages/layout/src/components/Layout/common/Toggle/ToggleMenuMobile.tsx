@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@dzangolab/react-ui";
+import { useMediaQuery } from "@prefabs.tech/react-ui";
 
 import { useLayoutContext } from "../../../../context/LayoutProvider";
 
@@ -21,13 +21,7 @@ export const ToggleMenuMobile = () => {
 
   const renderIcon = () => {
     if (isLargeScreen) {
-      return (
-        <i
-          className={
-            menuDesktopOpen ? "pi pi-chevron-left" : "pi pi-chevron-right"
-          }
-        ></i>
-      );
+      return <i className={menuDesktopOpen ? "pi pi-bars" : "pi pi-bars"}></i>;
     }
 
     return <i className={menuMobileOpen ? "pi pi-times" : "pi pi-bars"}></i>;

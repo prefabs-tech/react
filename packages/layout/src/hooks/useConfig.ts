@@ -1,4 +1,4 @@
-import { configContext } from "@dzangolab/react-config";
+import { configContext } from "@prefabs.tech/react-config";
 import { useContext } from "react";
 
 const useConfig = () => {

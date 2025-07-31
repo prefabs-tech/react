@@ -1,6 +1,6 @@
-import { AdditionalFormFields } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page } from "@dzangolab/react-ui";
+import { AdditionalFormFields } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Page } from "@prefabs.tech/react-ui";
 import React from "react";
 
 import { AccountInfo, ProfileForm } from "@/components/Profile";

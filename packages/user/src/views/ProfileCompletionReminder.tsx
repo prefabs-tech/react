@@ -1,5 +1,11 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Card, CardBody, CardFooter, Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Page,
+} from "@prefabs.tech/react-ui";
 
 export const ProfileCompletionReminder = ({
   centered = true,

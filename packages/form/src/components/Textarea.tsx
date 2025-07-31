@@ -1,7 +1,7 @@
 import {
   ITextareaProperties,
   Textarea as BasicTextarea,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import {
   Controller,
   UseFormGetFieldState,

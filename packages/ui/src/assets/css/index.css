@@ -1,5 +1,4 @@
 @import "./reset.css";
-@import "./vars.css";
 
 @import "./accordion.css";
 @import "./auth-page.css";
@@ -14,7 +13,7 @@
 @import "./files-list.css";
 @import "./files-table.css";
 @import "./form-widgets/index.css";
-@import "./google-button.css";
+@import "./social-button.css";
 @import "./grid-container.css";
 @import "./inline-link.css";
 @import "./loading-icon.css";
@@ -35,6 +34,8 @@
 @import "./tag.css";
 @import "./tanstack-table.css";
 @import "./tooltip.css";
+
+@import "./vars.css";
 
 /* Theme CSS */
 @import "./accordion-theme.css";

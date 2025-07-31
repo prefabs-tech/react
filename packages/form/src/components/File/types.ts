@@ -1,4 +1,4 @@
-import { IButtonProperties } from "@dzangolab/react-ui";
+import { IButtonProperties } from "@prefabs.tech/react-ui";
 
 import type { DropzoneOptions } from "react-dropzone";
 
@@ -35,6 +35,7 @@ export interface IFileUploadProperties
   onCancel?: () => void;
   onFileSelect?: (files: FileExtended[]) => FileExtended[];
   onUpload: (files: FileExtended[]) => void;
+  reverseActionsOrder?: boolean;
   uploadButtonOptions?: IButtonProperties;
 }
 

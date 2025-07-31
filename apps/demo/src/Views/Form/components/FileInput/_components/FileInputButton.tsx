@@ -1,5 +1,5 @@
-import { FileInput } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { FileInput } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
 export const FileInputButton: React.FC = () => {

@@ -19,7 +19,7 @@
     var(--dz-layout-nav-item-padding-h);
 }
 
-@media screen and (min-width: 60rem) {
+@media screen and (min-width: 576px) {
   .dz-layout[aria-expanded="true"] .dz-header-container .header-addon {
     order: 1;
     display: block;

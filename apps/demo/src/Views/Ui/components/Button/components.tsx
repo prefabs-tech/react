@@ -1,4 +1,4 @@
-import { Button } from "@dzangolab/react-ui";
+import { Button } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 
 const Basic = ({

@@ -13,7 +13,7 @@ import LoadingPage from "./LoadingPage";
 import Message from "./Message";
 import Modal from "./Modal";
 import Page, { PageProperties } from "./Page";
-import { GoogleButton } from "./SSOButtons";
+import { FacebookButton, GoogleButton } from "./SSOButtons";
 import { Stepper } from "./Stepper";
 import { TabbedPanel } from "./TabbedPanel";
 import TabView from "./TabView";
@@ -41,6 +41,7 @@ export {
   Accordion,
   Divider,
   DropdownMenu,
+  FacebookButton,
   GoogleButton,
   GridContainer,
   InlineLink,

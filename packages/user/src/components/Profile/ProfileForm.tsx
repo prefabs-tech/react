@@ -1,5 +1,5 @@
-import { Provider, AdditionalFormFields } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { Provider, AdditionalFormFields } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { z } from "zod";

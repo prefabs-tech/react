@@ -1,7 +1,7 @@
-import { GoogleButton } from "@dzangolab/react-ui";
+import { GoogleButton } from "@prefabs.tech/react-ui";
 import React from "react";
 
-import { googleLogin } from "@/supertokens";
+import { socialLogin } from "@/supertokens";
 
 interface Properties {
   label: string;
@@ -10,7 +10,7 @@ interface Properties {
 
 export const GoogleLogin = ({ label, redirectUrl }: Properties) => {
   const onGoogleSignin = async () => {
-    await googleLogin(redirectUrl);
+    await socialLogin("google", redirectUrl);
   };
 
   return (

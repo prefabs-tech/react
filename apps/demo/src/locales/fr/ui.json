@@ -5,6 +5,14 @@
   "common": {
     "usage": "To use the {{component}} component, simply import it into your React file (fr):"
   },
+  "propertiesTable": {
+    "header": {
+      "default": "Default (fr)",
+      "description": "Description (fr)",
+      "properties": "Properties (fr)",
+      "type": "Type (fr)"
+    }
+  },
   "headers": {
     "buttons": "Buttons (fr)",
     "data": "Data (fr)",
@@ -19,7 +27,8 @@
     "panel": "Panel",
     "properties": "Properties (fr)",
     "propertiesValue": "Properties: {{value}}",
-    "usage": "Usage (fr)"
+    "usage": "Usage (fr)",
+    "types": "Types (fr)"
   },
   "button": {
     "title": "Button (fr)",
@@ -56,8 +65,8 @@
     "body": "Card body (fr)",
     "footer": "Card footer (fr)",
     "usage": {
-      "default": "Default (fr)",
-      "outlined": "Outlined (fr)"
+      "basic": "Basic (fr)",
+      "outlined": "Outlined card (fr)"
     }
   },
   "confirmationModal": {
@@ -70,12 +79,11 @@
     "label": "Currency (fr)",
     "multiSelectPlaceholder": "Select currencies (fr)",
     "placeholder": "Select a currency (fr)",
-    "searchPlaceholder": "Search... (fr)",
     "title": "CurrencyPicker (fr)",
     "usage": {
       "basic": "Basic (fr)",
-      "multiple": "Multiple currency select (fr)",
-      "singleSearch": "Single currency select with search (fr)"
+      "extensiveOptions": "Currency picker with extensive options (fr)",
+      "multiple": "Multiple currency select (fr)"
     }
   },
   "data": {
@@ -215,17 +223,46 @@
     }
   },
   "message": {
-    "title": "Message (fr)"
+    "subtitle": "The Message component displays contextual messages with optional icons and a closable action. It supports custom slots, making it flexible for various use cases. (fr)",
+    "propertiesDescription": {
+      "enableClose": "Displays a close icon if true, allowing the message to be dismissed. (fr)",
+      "icon": "Icon to display alongside the message. (fr)",
+      "message": "The message text to display in the component. (fr)",
+      "onClose": "Function to be called when the message is closed. (fr)",
+      "severity": "Defines the styling severity of the message. Defaults to 'info'. (fr)",
+      "showIcon": "Show default icon based on severity or custom icon if provided. (fr)"
+    },
+    "title": "Message (fr)",
+    "usage": {
+      "arrayMessage": "Array of message (fr)",
+      "basic": "Basic (fr)",
+      "customMessage": "Custom message (fr)",
+      "enableClose": "Enable close (fr)",
+      "hideIcon": "Hide default icon (fr)",
+      "icons": {
+        "customIcon": "Custom icon (fr)",
+        "icon": "Icon (fr)"
+      },
+      "severity": "Severity (fr)"
+    }
   },
   "modal": {
     "title": "Modal (fr)",
     "header": "Header (fr)",
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. (fr)",
+    "propertiesDescription": {
+      "className": "Additional CSS classes to apply to the modal. (fr)",
+      "children": "The content of the modal. (fr)",
+      "footer": "Footer section of the modal. (fr)",
+      "header": "Header section of the modal. (fr)",
+      "onHide": "Emitted when the modal is requested to close. (fr)",
+      "size": "Defines the width of the modal. (fr)",
+      "visible": "Controls the visibility of the modal. (fr)"
+    },
     "showButton": "Open modal (fr)",
+    "subtitle": "A modal dialog component for displaying content in an overlay with support for custom headers, footers, and dismissal logic. (fr)",
     "usage": {
-      "headerAsFC": "Header as functional component (fr)",
-      "withHeader": "With header (fr)",
-      "withoutHeader": "Without header (fr)"
+      "basic": "Basic (fr)",
+      "headerAndFooter": "Header and footer (fr)"
     }
   },
   "tooltip": {
@@ -243,7 +280,11 @@
     "title": "Checkbox (fr)"
   },
   "input": {
-    "title": "Input (fr)"
+    "title": "Input (fr)",
+    "usage": {
+      "basic": "Basic (fr)",
+      "invalidInput": "Invalid input (fr)"
+    }
   },
   "sortableList": {
     "title": "Sortable list (fr)"
@@ -331,21 +372,22 @@
   },
   "select": {
     "autoSortOptionsInfo": "By default, options are sorted alphabetically. To render options in original order as provided, you can use <code>autoSortOptions={false}</code> (fr)",
-    "label": "Language (fr)",
-    "multiSelectPlaceholder": "Select languages (fr)",
-    "placeholder": "Select a language (fr)",
-    "searchPlaceholder": "Search... (fr)",
+    "label": "Country (fr)",
+    "multiSelectPlaceholder": "Select countries (fr)",
+    "placeholder": "Select a country (fr)",
     "title": "Select (fr)",
     "usage": {
+      "basic": "Basic",
       "disabled": "Disabled (fr)",
+      "group": "With grouping (fr)",
+      "groupMultiSelect": "Multiselect with grouping (fr)",
+      "groupMultiSelectDisabled": "Multiselect with group select disabled (fr)",
       "invalid": "Invalid (fr)",
+      "key": "With label and value keys (fr)",
       "multiple": "Multiple select (fr)",
-      "multipleSearch": "Multiple select with search (fr)",
       "renderOption": "Select with custom option (fr)",
       "renderValue": "Select with custom selected value (fr)",
-      "search": "Select with search (fr)",
-      "single": "Single select (fr)",
-      "singleSearch": "Single select with search (fr)"
+      "withTooltip": "With tooltip (fr)"
     }
   },
   "switchInput": {

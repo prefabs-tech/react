@@ -47,6 +47,8 @@ export const PopupMenu: FC<PopupMenuProperties> = ({
     placement: position,
   });
 
+  const referenceElementWidth = referenceElement?.getBoundingClientRect().width;
+
   return createPortal(
     <div
       className={`popup-menu ${className}`.trim()}
@@ -54,9 +56,8 @@ export const PopupMenu: FC<PopupMenuProperties> = ({
       style={{
         ...styles.popper,
         ...styles,
-        width: matchReferenceWidth
-          ? referenceElement?.getBoundingClientRect().width
-          : "auto",
+        width: matchReferenceWidth ? referenceElementWidth : "auto",
+        maxWidth: referenceElementWidth ? referenceElementWidth * 1.5 : "auto",
       }}
       onClick={toggle}
       {...attributes.popper}

@@ -1,5 +1,5 @@
-import { AppConfig, configContext } from "@dzangolab/react-config";
-import i18n from "@dzangolab/react-i18n";
+import { AppConfig, configContext } from "@prefabs.tech/react-config";
+import i18n from "@prefabs.tech/react-i18n";
 import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
 
@@ -8,7 +8,7 @@ import { Version } from "../Layout";
 const appConfig: AppConfig = {
   apiBaseUrl: "/",
   appPort: "20072",
-  appTitle: "Dzango Skeletons",
+  appTitle: "Prefabs.tech Skeletons",
   appVersion: "0.0.1",
   features: {
     showVersion: true,
@@ -26,8 +26,8 @@ const appConfig: AppConfig = {
   },
   websiteDomain: "//",
   copyright: {
-    holder: "Dzango",
-    url: "www.dzango.com",
+    holder: "Prefabs.tech",
+    url: "www.prefabs-tech.com",
   },
 };
 

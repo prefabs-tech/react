@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page, GridContainer } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Page, GridContainer } from "@prefabs.tech/react-ui";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,28 +13,28 @@ const Home: React.FC = () => {
     {
       name: "ui",
       route: "/ui",
-      description: "@dzangolab/react-ui components and utilities",
+      description: "@prefabs.tech/react-ui components and utilities",
     },
     {
       name: "user",
       route: "/user",
-      description: "@dzangolab/react-user components and utilities",
+      description: "@prefabs.tech/react-user components and utilities",
     },
     {
       name: "form",
       route: "/form",
-      description: "@dzangolab/react-form components and utilities",
+      description: "@prefabs.tech/react-form components and utilities",
     },
 
     {
       name: "layout",
       route: "/layout",
-      description: "@dzangolab/react-layout components and utilities",
+      description: "@prefabs.tech/react-layout components and utilities",
     },
     {
       name: "i18n",
       route: "/i18n",
-      description: "@dzangolab/react-i18n components and utilities",
+      description: "@prefabs.tech/react-i18n components and utilities",
     },
   ];
 

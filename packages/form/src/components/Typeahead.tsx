@@ -1,4 +1,4 @@
-import { Typeahead as BasicTypeahead } from "@dzangolab/react-ui";
+import { Typeahead as BasicTypeahead } from "@prefabs.tech/react-ui";
 import React, { InputHTMLAttributes } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 

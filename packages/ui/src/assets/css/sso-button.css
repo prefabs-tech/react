@@ -1,7 +1,6 @@
 .sso-button {
-  background-color: #ffffff;
   background-image: none;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid #dadce0;
   box-sizing: border-box;
   color: #3c4043;
@@ -55,8 +54,6 @@
   align-items: center;
   background-color: #ffffff;
   height: 36px;
-  margin-left: -10px;
-  margin-right: 12px;
   min-width: 36px;
   width: 36px;
 }

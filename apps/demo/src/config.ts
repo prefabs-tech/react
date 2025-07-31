@@ -1,9 +1,9 @@
-import { parse } from "@dzangolab/react-config";
+import { parse } from "@prefabs.tech/react-config";
 
 import en from "./locales/en";
 import fr from "./locales/fr";
 
-import type { AppConfig, AppFeatures } from "@dzangolab/react-config";
+import type { AppConfig, AppFeatures } from "@prefabs.tech/react-config";
 
 const config: AppConfig = {
   apiBaseUrl: import.meta.env.VITE_API_BASE_URL as string,
@@ -35,7 +35,7 @@ const config: AppConfig = {
     },
   },
   layout: {
-    logo: "/react/logo.png",
+    logo: "/logo.png",
     mainMenu: [
       {
         name: "header.menu.ui",
@@ -73,7 +73,7 @@ export const userConfig = {
   apiBaseUrl: config.websiteDomain,
   appDomain: config.websiteDomain,
   supertokens: {
-    appName: "Demo - Dzangolab React",
+    appName: "Demo - Prefabs Tech React",
     apiDomain: config.websiteDomain,
   },
   supportedRoles: [],

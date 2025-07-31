@@ -1,28 +1,17 @@
 .dz-nav-item {
-  --_nav-item-color: var(--dz-nav-item-color, #ffffff);
-  --_nav-item-hover-color: var(--dz-nav-item-hover-color, #ffffff);
-  --_nav-item-active-color: var(--dz-nav-item-active-color, #ffffff);
-  --_nav-item-disabled-color: var(
-    --dz-nav-item-disabled-color,
-    rgb(220 220 220)
-  );
-  --_nav-item-border-radius: var(
-    --dz-nav-item-border-radius,
-    0
-  );
-  --_nav-item-hover-bg: var(
-    --dz-nav-item-hover-bg,
-    rgba(45, 45, 45, 0.125)
-  );
-  --_nav-item-active-bg: var(
-    --dz-nav-item-active-bg,
-    rgba(45, 45, 45, 0.125)
-  );
+  --_nav-item-color: var(--dz-nav-item-color, #2c2c2c);
+  --_nav-item-hover-color: var(--dz-nav-item-hover-color, #2c2c2c);
+  --_nav-item-active-color: var(--dz-nav-item-active-color, #2c2c2c);
+  --_nav-item-disabled-color: var(--dz-nav-item-disabled-color, #6d7b92);
+  --_nav-item-border-radius: var(--dz-nav-item-border-radius, 0);
+  --_nav-item-hover-bg: var(--dz-nav-item-hover-bg, #f0f2f7ad);
+  --_nav-item-active-bg: var(--dz-nav-item-active-bg, #eff6ff);
 
   --_nav-item-padding-h: var(--dz-nav-item-padding-h, 1rem);
-  --_nav-item-padding-v: var(--dz-nav-item-padding-v, 0.625rem);
+  --_nav-item-padding-v: var(--dz-nav-item-padding-v, 0.5rem);
+  --_nav-item-transition-duration: var(--transition-duration, 150ms);
 
-  align-items: center;
+  align-items: baseline;
   border-radius: var(--_nav-item-border-radius);
   cursor: pointer;
   color: var(--_nav-item-color);
@@ -30,8 +19,10 @@
   gap: 0.75rem;
   padding: var(--_nav-item-padding-v) var(--_nav-item-padding-h);
   text-decoration: none;
-  transition: background 200ms linear, font-weight 200ms linear,
-    color 200ms linear;
+  transition:
+    background var(--_nav-item-transition-duration) linear,
+    font-weight var(--_nav-item-transition-duration) linear,
+    color var(--_nav-item-transition-duration) linear;
   width: 100%;
 }
 
@@ -44,7 +35,6 @@
 .dz-nav-item[aria-current="page"] {
   background: var(--_nav-item-active-bg);
   color: var(--_nav-item-active-color);
-  font-weight: 500;
   text-decoration: none;
 }
 

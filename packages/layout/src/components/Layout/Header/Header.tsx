@@ -1,4 +1,4 @@
-import { NavigationMenu } from "@dzangolab/react-ui";
+import { NavigationMenu } from "@prefabs.tech/react-ui";
 import React from "react";
 
 import { HeaderMenu } from "./HeaderMenu";
@@ -9,7 +9,7 @@ import type {
   NavMenuItemType,
   NavMenuType,
   UserMenuModeType,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 interface HeaderProperties {
   children?: React.ReactNode;
@@ -39,6 +39,7 @@ export const Header = ({
   const renderContent = () => {
     return (
       <>
+        {!noToggle && <ToggleMenuMobile />}
         {!noLogo && <Logo />}
         {title && <HeaderTitle title={title} />}
         {headerAddon && headerAddon}
@@ -56,7 +57,6 @@ export const Header = ({
             userMenuMode={userMenuMode}
           />
         )}
-        {!noToggle && <ToggleMenuMobile />}
       </>
     );
   };

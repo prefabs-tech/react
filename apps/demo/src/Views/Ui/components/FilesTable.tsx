@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, FilesTable, Page } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, FilesTable, Page } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../components/Demo";
@@ -28,18 +28,20 @@ export const FilesTableDemo = () => {
             {
               id: 0,
               originalFileName: "my file",
-              description: "File 1 description",
-              uploadedBy: { givenName: "Manish", lastName: "Aryal" },
-              uploadedAt: Date.now(),
-              lastDownloadedAt: Date.now(),
+              description: "Initial project proposal for client review",
+              uploadedBy: { givenName: "Manish", surname: "Aryal" },
+              uploadedAt: new Date("2025-01-14").getTime(),
+              lastDownloadedAt: new Date("2025-01-26").getTime(),
+              downloadCount: 10,
             },
             {
               id: 1,
-              originalFileName: "my filev2",
-              description: "File description",
-              uploadedBy: { givenName: "Nabin", lastName: "Dhital" },
-              uploadedAt: Date.now(),
+              originalFileName: "logo",
+              description: "Final logo design for branding",
+              uploadedBy: { givenName: "Nabin", surname: "Dhital" },
+              uploadedAt: new Date("2025-02-17").getTime(),
               lastDownloadedAt: Date.now(),
+              downloadCount: 12,
             },
           ]}
           visibleColumns={[
@@ -47,6 +49,8 @@ export const FilesTableDemo = () => {
             "description",
             "uploadedBy",
             "uploadedAt",
+            "lastDownloadedAt",
+            "downloadCount",
             "actions",
           ]}
           columns={[

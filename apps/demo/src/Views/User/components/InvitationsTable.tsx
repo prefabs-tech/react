@@ -1,6 +1,6 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, Page } from "@dzangolab/react-ui";
-import { InvitationsTable } from "@dzangolab/react-user";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, Page } from "@prefabs.tech/react-ui";
+import { InvitationsTable } from "@prefabs.tech/react-user";
 import { useNavigate } from "react-router-dom";
 
 import { invitations } from "./data";
@@ -104,6 +104,8 @@ export const InvitationsTableDemo = () => {
             { value: "pending", label: "Pending" },
             { value: "revoked", label: "Revoked" },
           ]}
+          id="invitation-table"
+          persistState
         />
       </Section>
     </Page>

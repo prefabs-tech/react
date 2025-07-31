@@ -1,4 +1,4 @@
-import { CheckboxInput } from "@dzangolab/react-form";
+import { CheckboxInput } from "@prefabs.tech/react-form";
 import React from "react";
 
 interface IProperties {

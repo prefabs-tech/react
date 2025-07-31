@@ -3,9 +3,9 @@ import {
   FileDropzone,
   useFormContext,
   Email,
-} from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button } from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button } from "@prefabs.tech/react-ui";
 import React from "react";
 
 export const FormWithFileInput: React.FC = () => {

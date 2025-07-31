@@ -1,7 +1,7 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Page } from "@dzangolab/react-ui";
-import { Button } from "@dzangolab/react-ui";
-import { InvitationModal } from "@dzangolab/react-user";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Page } from "@prefabs.tech/react-ui";
+import { Button } from "@prefabs.tech/react-ui";
+import { InvitationModal } from "@prefabs.tech/react-user";
 import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../components/Demo";

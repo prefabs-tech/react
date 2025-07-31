@@ -1,5 +1,5 @@
-import { AdditionalFormFields } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { AdditionalFormFields } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
   TDataTableProperties,
@@ -10,7 +10,7 @@ import {
   formatDate,
   type DataActionsMenuProperties,
   type FilterOption,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 import { useUserActions } from "./useUserActionsMethods";
 import { InvitationModal } from "../Invitation";
@@ -22,6 +22,8 @@ import type {
   InvitationExpiryDateField,
   UserType,
 } from "@/types";
+
+import { useUser } from "@/hooks";
 
 type VisibleColumn =
   | "name"
@@ -92,6 +94,8 @@ export const UsersTable = ({
   ...tableProperties
 }: UsersTableProperties) => {
   const { t } = useTranslation("users");
+
+  const { user: currentUser } = useUser();
 
   const { handleDisableUser, handleEnableUser } = useUserActions({
     onUserDisabled,
@@ -233,9 +237,11 @@ export const UsersTable = ({
   const defaultActionsMenu: DataActionsMenuProperties<UserType> = {
     actions: [
       {
+        key: "enableUser",
         label: t("table.actions.enable"),
         icon: "pi pi-check",
         disabled: (user) => !user.disabled,
+        display: (user) => user.disabled && currentUser?.id !== user.id,
         onClick: (user) => handleEnableUser(user),
         requireConfirmationModal: true,
         confirmationOptions: {
@@ -244,10 +250,12 @@ export const UsersTable = ({
         },
       },
       {
+        key: "disableUser",
         label: t("table.actions.disable"),
         className: "danger",
         icon: "pi pi-times",
         disabled: (user) => user.disabled,
+        display: (user) => !user.disabled && currentUser?.id !== user.id,
         onClick: (user) => handleDisableUser(user),
         requireConfirmationModal: true,
         confirmationOptions: {
@@ -256,6 +264,11 @@ export const UsersTable = ({
         },
       },
     ],
+  };
+
+  const filteredActionMenu = {
+    actions:
+      defaultActionsMenu.actions?.filter((action) => action.display) || [],
   };
 
   const renderToolbar = () => {
@@ -295,9 +308,9 @@ export const UsersTable = ({
       dataActionsMenu={
         dataActionsMenu
           ? typeof dataActionsMenu === "function"
-            ? (data) => dataActionsMenu(data, defaultActionsMenu)
+            ? (data) => dataActionsMenu(data, filteredActionMenu)
             : dataActionsMenu
-          : defaultActionsMenu
+          : filteredActionMenu
       }
       {...tableProperties}
     ></DataTable>

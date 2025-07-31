@@ -16,7 +16,7 @@
 }
 
 .textarea-field:focus-within {
-  outline: 2px solid var(--dz-primary-color);
+  outline: 1px solid var(--dz-primary-color);
 }
 
 .textarea-field[aria-invalid="true"] {

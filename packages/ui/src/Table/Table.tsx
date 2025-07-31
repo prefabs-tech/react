@@ -231,11 +231,13 @@ const DataTable = <TData extends RowData>({
             return true;
           }
 
-          const rowValue = row.getValue<string | Date>(columnId);
+          const rowValue = row.getValue<string | Date | number>(columnId);
           if (!rowValue) return false;
 
           const rowData = (
-            rowValue instanceof Date ? rowValue.toISOString() : rowValue
+            typeof rowValue === "string"
+              ? rowValue
+              : new Date(rowValue).toISOString()
           ).split("T")[0];
 
           const [startDate, endDate] = filterValue.map(

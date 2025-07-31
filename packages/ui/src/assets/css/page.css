@@ -1,5 +1,7 @@
 .dz-page {
-  --_page-gap: var(--dz-page-gap);
+  --_page-gap: var(--dz-page-gap, 1.5rem);
+  --_page-max-width: var(--dz-page-centered-max-width, 954px);
+
   display: flex;
   gap: var(--_page-gap);
   flex-direction: column;
@@ -7,7 +9,7 @@
 
 .dz-page[data-centered="true"] {
   justify-items: center;
-  max-width: var(--dz-page-max-width);
+  max-width: var(--_page-max-width);
   margin: auto;
 }
 
@@ -17,12 +19,7 @@
 }
 
 .dz-page > .dz-page-content > div[role="alert"].error > span {
-  color: var(--error-text-color, red);
-  font-size: var(--error-font-size, 1rem);
-}
-
-.dz-page > .dz-page-content {
-  margin-top: 1rem;
+  color: var(--dz-danger-color, red);
 }
 
 .dz-page > .dz-page-header > .dz-page-title-wrapper {
@@ -33,6 +30,14 @@
 }
 
 .dz-page > .dz-page-header > .dz-page-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dz-page-toolbar[data-breadcrumb="true"] > :first-child {
   display: none;
 }
 

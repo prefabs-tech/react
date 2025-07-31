@@ -34,14 +34,14 @@ jobs:
         run: pnpm install
 
       - name: Build packages
-        run: pnpm build --filter=@dzangolab/demo
+        run: pnpm build --filter=@prefabs.tech/demo
         env:
-          VITE_API_BASE_URL: "https://api.monorepo.dzangolab.org"
+          VITE_API_BASE_URL: "https://api.monorepo.prefabs.tech"
           VITE_APP_TITLE: 'React Demo'
           VITE_APP_VERSION: ${{ steps.package-version.outputs.current-version}}
           VITE_APP_BUILD: 'develop'
-          VITE_APP_COPYRIGHT_HOLDER: 'Dzango'
-          VITE_APP_COPYRIGHT_HOLDER_URL: 'https://dzango.com'
+          VITE_APP_COPYRIGHT_HOLDER: 'Prefabs Tech'
+          VITE_APP_COPYRIGHT_HOLDER_URL: 'https://prefabs.tech'
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4

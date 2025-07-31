@@ -1,4 +1,4 @@
-import { IInputProperties, Input } from "@dzangolab/react-ui";
+import { IInputProperties, Input } from "@prefabs.tech/react-ui";
 import React from "react";
 import {
   UseFormGetFieldState,

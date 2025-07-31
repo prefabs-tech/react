@@ -4,7 +4,7 @@ RUN apk add --update --no-cache git
 
 WORKDIR /var/workspace
 
-RUN npm install -g pnpm@9 \
+RUN npm install -g pnpm@10 \
   && pnpm config set store-dir .pnpm-store
 
 COPY package.json package.json
@@ -19,8 +19,8 @@ RUN pnpm install --frozen-lockfile
 FROM base as build
 ARG api_base_url=''
 ARG app_build=''
-ARG app_title='Dzangolab React Demo'
-ARG app_version='0.51.1'
+ARG app_title='Prefabs.Tech React Demo'
+ARG app_version='0.60.0'
 ARG feature_show_version=1
 ARG locale_storage_namespace='demo-react__'
 
@@ -37,7 +37,7 @@ COPY apps/ apps/
 # COPY libs/core libs/core
 
 RUN pnpm install -r --frozen-lockfile --ignore-scripts \
-  && pnpm --filter "@dzangolab/demo-..." build
+  && pnpm --filter "@prefabs.tech/demo-..." build
 
 FROM nginx:1.27-alpine as production
 

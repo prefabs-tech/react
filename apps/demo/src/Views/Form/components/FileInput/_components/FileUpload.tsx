@@ -1,5 +1,5 @@
-import { FileUpload } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { FileUpload } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 export const FileUploadDemo = () => {
   const { t } = useTranslation("files");

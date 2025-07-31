@@ -5,12 +5,12 @@
   --_layout-header-padding-v: var(--dz-layout-header-padding-v, 1rem);
 
   --_layout-header-bg: var(--dz-layout-header-bg, transparent);
-  --_layout-header-border: var(--dz-layout-header-border, 1px solid #dbdbdb);
-  --_layout-header-max-width: var(--dz-layout-header-max-width, 1920px);
-  --_layout-header-logo-max-width: var(
-    --dz-layout-header-logo-max-width,
-    150px
+  --_layout-header-border: var(
+    --dz-layout-header-border,
+    1px solid var(--border-color, #e5e7eb)
   );
+  --_layout-header-max-width: var(--dz-layout-header-max-width, 1920px);
+  --_layout-header-logo-max-width: var(--dz-layout-header-logo-max-width, 8rem);
   --_layout-header-gap: var(--dz-layout-header-gap, 1.5rem);
 
   background: var(--_layout-header-bg);
@@ -95,6 +95,11 @@
 
   .dz-layout > header > .dz-header-container > .dz-toggle-menu {
     display: none;
+  }
+
+  .dz-layout > header > .dz-header-container > .dz-header-menu {
+    flex: 2;
+    justify-content: flex-end;
   }
 
   .dz-layout[aria-expanded="false"]

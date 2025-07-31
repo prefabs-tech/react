@@ -5,19 +5,19 @@
 ### npm
 
 ```
-npm install @dzangolab/react-ui
+npm install @prefabs.tech/react-ui
 ```
 
 ### yarn
 
 ```
-yarn add @dzangolab/react-ui
+yarn add @prefabs.tech/react-ui
 ```
 
 ### pnpm
 
 ```
-pnpm add @dzangolab/react-ui
+pnpm add @prefabs.tech/react-ui
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ pnpm add @dzangolab/react-ui
 ```
 import React from "react";
 
-import { Accordion, SubPane } from "@dzangolab/react-ui";
+import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
 
 const Page: React.FC<Properties> = ({ children }) => {

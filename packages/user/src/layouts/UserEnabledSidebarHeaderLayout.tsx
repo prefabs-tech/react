@@ -1,13 +1,13 @@
 import {
   SidebarHeaderLayout,
   SidebarHeaderLayoutProperties,
-} from "@dzangolab/react-layout";
+} from "@prefabs.tech/react-layout";
 
 import { useUser } from "@/hooks";
 
 import { useUserNavigationMenu } from "..";
 
-import type { NavMenuItemType } from "@dzangolab/react-ui";
+import type { NavMenuItemType } from "@prefabs.tech/react-ui";
 
 interface Properties extends SidebarHeaderLayoutProperties {
   authNavigationMenu?: NavMenuItemType;

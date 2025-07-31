@@ -1,6 +1,7 @@
 @import "./invitation.css";
+@import "./invitations-table.css";
+@import "./login.css";
 @import "./profile.css";
 @import "./signup.css";
-@import "./invitations-table.css";
-@import "./verify-email.css";
 @import "./users-table.css";
+@import "./verify-email.css";

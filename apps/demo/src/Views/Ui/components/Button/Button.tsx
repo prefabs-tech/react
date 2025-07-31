@@ -1,5 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
-import { TDataTable, Page, Button } from "@dzangolab/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { TDataTable, Page, Button } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { Basic, Icons, Link, Severity, Size, Variant } from "./components";
@@ -119,7 +119,7 @@ export const ButtonDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "Button" })}</p>
-        <CodeBlock exampleCode="import { Button } from '@dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { Button } from '@prefabs.tech/react-ui';" />
       </Section>
 
       <Section

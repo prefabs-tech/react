@@ -34,7 +34,7 @@ input[type="date"][aria-invalid="false"] {
 }
 
 input[type="date"]:focus-within {
-  outline: 2px solid var(--dz-primary-color);
+  outline: 1px solid var(--dz-primary-color);
 }
 
 input[type="date"]:disabled {

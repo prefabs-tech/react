@@ -1,12 +1,12 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 import { useConfig } from "@/hooks";
 
-import { GoogleLogin } from "../GoogleLogin";
+import { FacebookLogin, GoogleLogin } from "../SocialLogin";
 
 export const SUPPORTED_SOCIAL_LOGIN_PROVIDERS = [
   "google" as const,
-  // "facebook" as const,
+  "facebook" as const,
 ];
 
 export type SocialLoginType = (typeof SUPPORTED_SOCIAL_LOGIN_PROVIDERS)[number];
@@ -30,7 +30,18 @@ export const SocialLogins = () => {
     );
   };
 
+  const renderFacebookLogin = () => {
+    return (
+      <FacebookLogin
+        key={"facebook"}
+        label={t("login.social.facebook")}
+        redirectUrl={`${config.appDomain}/auth/callback/facebook`}
+      />
+    );
+  };
+
   const providerMap = {
+    facebook: renderFacebookLogin,
     google: renderGoogleLogin,
   };
 

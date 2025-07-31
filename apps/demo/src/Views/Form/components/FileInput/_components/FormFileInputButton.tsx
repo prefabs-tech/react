@@ -1,6 +1,6 @@
-import { FormFileInput, Provider } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button } from "@dzangolab/react-ui";
+import { FormFileInput, Provider } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button } from "@prefabs.tech/react-ui";
 import React from "react";
 
 import { UploadBy } from "./FormWithFileInput";

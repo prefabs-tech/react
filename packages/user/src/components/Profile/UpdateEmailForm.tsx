@@ -1,5 +1,6 @@
-import { Provider, emailSchema } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { Provider, emailSchema } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Message } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { z } from "zod";
@@ -21,6 +22,21 @@ type UpdateEmailFormData = {
   email: string;
 };
 
+type ErrorType =
+  | "alreadyExist"
+  | "disabled"
+  | "duplicate"
+  | "invalid"
+  | "other";
+
+const errorMessagesMap: Record<ErrorType, string> = {
+  alreadyExist: "profile.accountInfo.messages.alreadyExist",
+  duplicate: "profile.accountInfo.messages.duplicate",
+  invalid: "profile.accountInfo.messages.invalid",
+  disabled: "profile.accountInfo.messages.disabled",
+  other: "profile.accountInfo.messages.error",
+};
+
 export const UpdateEmailForm = ({
   user,
   setModalVisible,
@@ -28,6 +44,7 @@ export const UpdateEmailForm = ({
 }: Properties) => {
   const { t, i18n } = useTranslation("user");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<ErrorType | null>(null);
   const config = useConfig();
 
   const emailValidationSchema = z.object({
@@ -42,6 +59,7 @@ export const UpdateEmailForm = ({
 
     try {
       const response = await changeEmail(data.email, config.apiBaseUrl);
+
       switch (response?.status) {
         case "OK": {
           const userInfo = await getMe(config.apiBaseUrl);
@@ -58,23 +76,23 @@ export const UpdateEmailForm = ({
           break;
         }
         case "EMAIL_ALREADY_EXISTS_ERROR": {
-          toast.error(t("profile.accountInfo.messages.alreadyExist"));
+          setError("alreadyExist");
           break;
         }
         case "EMAIL_SAME_AS_CURRENT_ERROR": {
-          toast.error(t("profile.accountInfo.messages.duplicate"));
+          setError("duplicate");
           break;
         }
         case "EMAIL_INVALID_ERROR": {
-          toast.error(t("profile.accountInfo.messages.invalid"));
+          setError("invalid");
           break;
         }
         case "EMAIL_FEATURE_DISABLED_ERROR": {
-          toast.error(t("profile.accountInfo.messages.disabled"));
+          setError("disabled");
           break;
         }
         default: {
-          toast.error(t("profile.accountInfo.messages.error"));
+          setError("other");
           break;
         }
       }
@@ -82,27 +100,41 @@ export const UpdateEmailForm = ({
       setLoading(false);
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      toast.error(t("profile.accountInfo.messages.error"));
+      setError("other");
 
       setLoading(false);
     }
   };
+
+  const errorMessage = error ? t(errorMessagesMap[error]) : "";
 
   const formValues = {
     email: user?.email || "",
   };
 
   return (
-    <Provider
-      validationSchema={emailValidationSchema}
-      onSubmit={handleSubmit}
-      values={formValues}
-      validationTriggerKey={i18n.language}
-    >
-      <UpdateEmailFormFields
-        loading={loading}
-        setModalVisible={setModalVisible}
-      />
-    </Provider>
+    <>
+      {error && (
+        <Message
+          enableClose={true}
+          message={errorMessage}
+          onClose={() => {
+            setError(null);
+          }}
+          severity="danger"
+        />
+      )}
+      <Provider
+        validationSchema={emailValidationSchema}
+        onSubmit={handleSubmit}
+        values={formValues}
+        validationTriggerKey={i18n.language}
+      >
+        <UpdateEmailFormFields
+          loading={loading}
+          setModalVisible={setModalVisible}
+        />
+      </Provider>
+    </>
   );
 };

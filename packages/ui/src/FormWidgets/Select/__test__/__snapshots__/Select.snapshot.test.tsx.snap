@@ -13,17 +13,17 @@ exports[`Select Component > should render correctly when auto-select single opti
         tabindex="0"
       >
         <span
-          class="selected-option"
+          class="selected-options"
         >
           Nepali
         </span>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
         <span
-          class="menu-trigger"
+          class="action-items"
         >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
           <i
             class="pi pi-chevron-down"
           />
@@ -47,12 +47,12 @@ exports[`Select Component > should render correctly when disabled 1`] = `
         tabindex="0"
       >
         <span
-          class="selected-option"
+          class="selected-options"
         >
           English
         </span>
         <span
-          class="menu-trigger"
+          class="action-items"
         >
           <i
             class="pi pi-chevron-down"
@@ -77,17 +77,17 @@ exports[`Select Component > should render correctly when hide if single option i
         tabindex="0"
       >
         <span
-          class="selected-option"
+          class="selected-options"
         >
           Nepali
         </span>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
         <span
-          class="menu-trigger"
+          class="action-items"
         >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
           <i
             class="pi pi-chevron-down"
           />
@@ -110,13 +110,21 @@ exports[`Select Component > should render correctly with a placeholder 1`] = `
         class="label-container"
         tabindex="0"
       >
-        <span
-          class="placeholder"
+        <div
+          class="field debounced-input"
         >
-          Select a language
-        </span>
+          <input
+            class="input-field "
+            id=""
+            name=""
+            placeholder="Select a language"
+            tabindex="-1"
+            type="text"
+            value=""
+          />
+        </div>
         <span
-          class="menu-trigger"
+          class="action-items"
         >
           <i
             class="pi pi-chevron-down"
@@ -142,17 +150,17 @@ exports[`Select Component > should render correctly with an error message 1`] = 
         tabindex="0"
       >
         <span
-          class="selected-option"
+          class="selected-options"
         >
           English
         </span>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
         <span
-          class="menu-trigger"
+          class="action-items"
         >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
           <i
             class="pi pi-chevron-down"
           />
@@ -181,17 +189,17 @@ exports[`Select Component > should render correctly with helper text 1`] = `
         tabindex="0"
       >
         <span
-          class="selected-option"
+          class="selected-options"
         >
           Nepali
         </span>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
         <span
-          class="menu-trigger"
+          class="action-items"
         >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
           <i
             class="pi pi-chevron-down"
           />
@@ -219,52 +227,18 @@ exports[`Select Component > should render correctly with multiple selection 1`] 
         class="label-container"
         tabindex="0"
       >
-        <div
+        <span
           class="selected-options"
         >
           Nepali, English
-        </div>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
+        </span>
         <span
-          class="menu-trigger"
+          class="action-items"
         >
           <i
-            class="pi pi-chevron-down"
+            class="pi pi-times"
+            tabindex="0"
           />
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Select Component > should render correctly with search enabled 1`] = `
-<div>
-  <div
-    class="field"
-  >
-    <div
-      class="select"
-    >
-      <div
-        class="label-container"
-        tabindex="0"
-      >
-        <span
-          class="selected-option"
-        >
-          Nepali
-        </span>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
-        <span
-          class="menu-trigger"
-        >
           <i
             class="pi pi-chevron-down"
           />
@@ -288,17 +262,17 @@ exports[`Select Component > should render correctly with single selection 1`] = 
         tabindex="0"
       >
         <span
-          class="selected-option"
+          class="selected-options"
         >
           English
         </span>
-        <i
-          class="pi pi-times"
-          tabindex="0"
-        />
         <span
-          class="menu-trigger"
+          class="action-items"
         >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
           <i
             class="pi pi-chevron-down"
           />

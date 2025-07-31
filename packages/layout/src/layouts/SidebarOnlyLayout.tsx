@@ -4,7 +4,7 @@ import type {
   NavGroupDisplayMode,
   NavMenuType,
   NavMenuItemType,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 
 export interface SidebarOnlyLayoutProperties {
   className?: string;

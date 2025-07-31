@@ -28,11 +28,11 @@ import {
   SidebarOnlyLayoutProperties,
 } from "./layouts";
 
-import type { DzangolabReactLayoutConfig } from "./types";
+import type { PrefabsTechReactLayoutConfig } from "./types";
 
-declare module "@dzangolab/react-config" {
+declare module "@prefabs.tech/react-config" {
   export interface AppConfig {
-    layout?: DzangolabReactLayoutConfig;
+    layout?: PrefabsTechReactLayoutConfig;
   }
 }
 
@@ -64,7 +64,7 @@ export {
   useLayoutContext,
 };
 
-export type { DzangolabReactLayoutConfig } from "./types";
+export type { PrefabsTechReactLayoutConfig } from "./types";
 
 export type {
   HeaderLayoutProperties,

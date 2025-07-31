@@ -1,5 +1,5 @@
-import { FormActions, Email, useFormContext } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { FormActions, Email, useFormContext } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
 interface Properties {

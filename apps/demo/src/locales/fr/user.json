@@ -1,5 +1,5 @@
 {
-  "authGoogleCallback": {
+  "authSocialLoginCallback": {
     "email": {
       "error": "No email provided by social login. Please use another form of login (fr)",
       "success": "Logged in successfully. (fr)"

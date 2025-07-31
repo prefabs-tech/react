@@ -1,5 +1,5 @@
 module.exports = {
-  appName: "@dzangolab/react",
+  appName: "@prefabs.tech/react",
   buildCommand: ({ isYarn, version }) => {
     return "pnpm build";
   },
@@ -8,7 +8,7 @@ module.exports = {
   },
   monorepo: {
     mainVersionFile: "package.json",
-    packagesToBump: ["packages/*", "tools/*"],
+    packagesToBump: ["packages/*"],
     packagesToPublish: ["packages/*"],
   },
   publishCommand: ({ isYarn, tag, defaultCommand, dir }) => {

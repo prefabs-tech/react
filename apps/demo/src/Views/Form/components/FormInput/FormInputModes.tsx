@@ -1,5 +1,5 @@
-import { SwitchInput } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+import { SwitchInput } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 type Properties = {
   filled: boolean;

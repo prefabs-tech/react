@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.dz-sidebar-only-layout > header > .dz-header-container > .dz-toggle-menu {
+  margin-right: -0.75rem;
+}
+
 .dz-sidebar-only-layout > .dz-sidebar {
   grid-area: header;
 }
@@ -30,6 +34,13 @@
 
   .dz-sidebar-only-layout > .dz-sidebar {
     grid-area: sidebar;
+  }
+
+  .dz-sidebar-only-layout > .dz-sidebar {
+    --_layout-sidebar-collapsed-width: var(
+      --dz-layout-sidebar-collapsed-width,
+      1.5rem
+    );
   }
 
   .dz-sidebar-only-layout > main {

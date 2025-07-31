@@ -1,13 +1,15 @@
-@import "./demo.css";
-@import "./editable-title.css";
-@import "./home.css";
-@import "./style.css";
 @import "./vars.css";
-@import "./table-border.css";
+@import "./style.css";
 @import "./code-block.css";
-@import "./header-addon.css";
-@import "./table.css";
-@import "./sticky-collapsible-footer.css";
-@import "./inline-link.css";
-@import "./tab-view.css";
+@import "./demo.css";
+
 @import "./data.css";
+@import "./editable-title.css";
+@import "./header-addon.css";
+@import "./home.css";
+@import "./inline-link.css";
+@import "./select.css";
+@import "./sticky-collapsible-footer.css";
+@import "./tab-view.css";
+@import "./table-border.css";
+@import "./table.css";

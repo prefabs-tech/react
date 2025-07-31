@@ -1,6 +1,9 @@
 .dz-layout > footer {
   --_layout-footer-bg-color: #ffffff;
-  --_layout-footer-border: var(--dz-layout-footer-border, 1px solid #dbdbdb);
+  --_layout-footer-border: var(
+    --dz-layout-footer-border,
+    1px solid var(--border-color, #e5e7eb)
+  );
   --_layout-footer-font-size: var(--dz-layout-footer-font-size, 1rem);
   --_layout-footer-gap: 0.5em;
   --_layout-footer-padding-h: var(--dz-layout-header-padding-h, 1rem);

@@ -1,5 +1,5 @@
 .dz-layout .dz-logo {
-  --_layout-logo-max-width: var(--dz-layout-logo-max-width, 150px);
+  --_layout-logo-max-width: var(--dz-layout-logo-max-width, 8rem);
 }
 
 .dz-layout .dz-logo img {

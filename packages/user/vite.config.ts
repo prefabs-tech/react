@@ -14,8 +14,8 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: resolve(dirname(fileURLToPath(import.meta.url)), "src/index.ts"),
-        fileName: (format) => `DzangolabReactUser.${format}.js`,
-        name: "@dzangolab/react-user",
+        fileName: (format) => `PrefabsTechReactUser.${format}.js`,
+        name: "PrefabsTechReactUser",
       },
       rollupOptions: {
         external: [
@@ -25,10 +25,10 @@ export default defineConfig(({ mode }) => {
         output: {
           exports: "named",
           globals: {
-            "@dzangolab/react-form": "DzangolabReactForm",
-            "@dzangolab/react-i18n": "DzangolabReactI18n",
-            "@dzangolab/react-layout": "DzangolabReactLayout",
-            "@dzangolab/react-ui": "DzangolabReactUi",
+            "@prefabs.tech/react-form": "PrefabsTechReactForm",
+            "@prefabs.tech/react-i18n": "PrefabsTechReactI18n",
+            "@prefabs.tech/react-layout": "PrefabsTechReactLayout",
+            "@prefabs.tech/react-ui": "PrefabsTechReactUi",
             "react-dom": "ReactDom",
             "react-router-dom": "ReactRouterDom",
             "react-toastify": "ReactToastify",

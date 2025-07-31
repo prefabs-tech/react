@@ -3,8 +3,8 @@ import {
   FormActions,
   TextInput,
   useFormContext,
-} from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
+} from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 
 interface Properties {
   submitting?: boolean;

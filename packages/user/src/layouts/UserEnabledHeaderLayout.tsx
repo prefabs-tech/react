@@ -1,8 +1,11 @@
-import { HeaderLayout, HeaderLayoutProperties } from "@dzangolab/react-layout";
+import {
+  HeaderLayout,
+  HeaderLayoutProperties,
+} from "@prefabs.tech/react-layout";
 
 import { useUser, useUserNavigationMenu } from "..";
 
-import type { NavMenuItemType } from "@dzangolab/react-ui";
+import type { NavMenuItemType } from "@prefabs.tech/react-ui";
 
 interface IProperties
   extends Omit<HeaderLayoutProperties, "userMenuMode" | "menu"> {

@@ -1,6 +1,6 @@
-import { AdditionalFormFields } from "@dzangolab/react-form";
-import { useTranslation } from "@dzangolab/react-i18n";
-import { Button, IButtonProperties, Modal } from "@dzangolab/react-ui";
+import { AdditionalFormFields } from "@prefabs.tech/react-form";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Button, IButtonProperties, Modal } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 
 import { InvitationForm } from "./InvitationForm";

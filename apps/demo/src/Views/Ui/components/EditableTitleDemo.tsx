@@ -1,4 +1,4 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   Button,
   Card,
@@ -6,7 +6,7 @@ import {
   EditableTitle,
   Page,
   TDataTable,
-} from "@dzangolab/react-ui";
+} from "@prefabs.tech/react-ui";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -105,7 +105,7 @@ export const EditableTitleDemo = () => {
     >
       <Section title={t("headers.usage")}>
         <p>{t("common.usage", { component: "EditableTitle" })}</p>
-        <CodeBlock exampleCode="import { EditableTitle } from '@dzangolab/react-ui';" />
+        <CodeBlock exampleCode="import { EditableTitle } from '@prefabs.tech/react-ui';" />
       </Section>
 
       <Section title={t("headers.properties")}>

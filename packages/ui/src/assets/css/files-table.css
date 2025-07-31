@@ -4,16 +4,22 @@
   width: 15rem;
 }
 
-.table-files .column-downloadCount {
-  max-width: 10rem;
-  min-width: 10rem;
-  width: 10rem;
-}
-
-.table-files .column-lastDownloadedAt {
+.table-files .column-size {
   max-width: 12rem;
   min-width: 12rem;
   width: 12rem;
+}
+
+.table-files .column-downloadCount {
+  max-width: 12rem;
+  min-width: 12rem;
+  width: 12rem;
+}
+
+.table-files .column-lastDownloadedAt {
+  max-width: 13rem;
+  min-width: 13rem;
+  width: 13rem;
 }
 
 .table-files .column-uploadedAt {

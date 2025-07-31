@@ -1,4 +1,5 @@
-import { useTranslation } from "@dzangolab/react-i18n";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Message } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -33,6 +34,10 @@ export const SignupWrapper: React.FC<IProperties> = ({
 }) => {
   const { t } = useTranslation("user");
   const [signupLoading, setSignupLoading] = useState<boolean>(false);
+  const [signupError, setSignupError] = useState<
+    null | "emailAlreadyExists" | "other"
+  >(null);
+
   const { setUser } = useUser();
   const config = useConfig();
 
@@ -84,15 +89,15 @@ export const SignupWrapper: React.FC<IProperties> = ({
           }
         })
         .catch(async (error) => {
-          const errorMessage = t("errors.otherErrors", { ns: "errors" });
-
           onSignupFailed && (await onSignupFailed(error));
 
-          if (error.status === "FIELD_ERROR") {
-            throw error as Error;
+          if (error.message.includes("email already exists")) {
+            setSignupError("emailAlreadyExists");
+
+            return;
           }
 
-          toast.error(error.message || errorMessage);
+          setSignupError("other");
         })
         .finally(() => {
           setSignupLoading(false);
@@ -100,8 +105,23 @@ export const SignupWrapper: React.FC<IProperties> = ({
     }
   };
 
+  const message =
+    signupError === "emailAlreadyExists"
+      ? t("errors.emailAlreadyExists", { ns: "errors" })
+      : t("errors.otherErrors", { ns: "errors" });
+
   return (
     <>
+      {signupError && (
+        <Message
+          enableClose={true}
+          message={message}
+          onClose={() => {
+            setSignupError(null);
+          }}
+          severity="danger"
+        />
+      )}
       <SignupForm
         handleSubmit={handleSignupSubmit}
         loading={handleSubmit ? loading : signupLoading}

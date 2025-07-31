@@ -1,5 +1,9 @@
-import { Select as BasicSelect, ISelectProperties } from "@dzangolab/react-ui";
-import React, { useEffect } from "react";
+import {
+  Select as BasicSelect,
+  ISelectProperties,
+  Option,
+} from "@prefabs.tech/react-ui";
+import React, { useEffect, useMemo } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface ValidationMessages {
@@ -42,17 +46,23 @@ export const Select = <T extends string | number>({
     if (showValidState && !invalid) return false;
   };
 
+  const flatOptions = useMemo(() => {
+    return options.flatMap((opt) =>
+      "options" in opt ? opt.options : [opt],
+    ) as Option<T>[];
+  }, [options]);
+
   //TODO [MA 2024-05-31]: remove this redundant useEffect for auto selecting single option
   useEffect(() => {
     if (
       autoSelectSingleOption &&
       !multiple &&
-      options.length === 1 &&
-      !options[0].disabled
+      flatOptions.length === 1 &&
+      !flatOptions[0].disabled
     ) {
-      setValue(name, options[0].value);
+      setValue(name, flatOptions[0].value);
     }
-  }, [options]);
+  }, [flatOptions]);
 
   return (
     <Controller

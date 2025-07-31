@@ -36,20 +36,6 @@ describe("Select Component", () => {
     expect(container).toMatchSnapshot();
   });
 
-  test("should render correctly with search enabled", () => {
-    const { container } = render(
-      <Select
-        name="search-select"
-        options={options}
-        value="np"
-        enableSearch
-        onChange={() => {}}
-      />,
-    );
-
-    expect(container).toMatchSnapshot();
-  });
-
   test("should render correctly with a placeholder", () => {
     const { container } = render(
       <Select
