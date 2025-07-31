@@ -15,7 +15,7 @@
 
 .dz-page > .dz-page-header {
   display: flex;
-  flex-direction: space-between;
+  justify-content: space-between;
 }
 
 .dz-page > .dz-page-content > div[role="alert"].error > span {
