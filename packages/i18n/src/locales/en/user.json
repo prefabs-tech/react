@@ -190,7 +190,7 @@
         "submit": "Reset password"
       },
       "confirmPassword": {
-        "label": "Confirm password is required."
+        "label": "Confirm password"
       },
       "newPassword": {
         "label": "New password"

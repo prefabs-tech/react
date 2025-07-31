@@ -190,7 +190,7 @@
         "submit": "Reset password (fr)"
       },
       "confirmPassword": {
-        "label": "Confirm password is required. (fr)"
+        "label": "Confirm password (fr)"
       },
       "newPassword": {
         "label": "New password (fr)"
