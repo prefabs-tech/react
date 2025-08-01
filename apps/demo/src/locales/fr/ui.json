@@ -384,7 +384,7 @@
       "errorMessage": "Displays an error message below the component. (fr)",
       "enableTooltip": "When enableTooltip is true, select component renders the <Tooltip> component for the selected value. (fr)",
       "hasError": "If true, error in component. (fr)",
-      "helperText": "Displays an error message below the component. (fr)",
+      "helperText": "Displays a helper text below the component. (fr)",
       "hideIfSingleOption": "If there is only one option, and multiple is false, the Select component will not render the dropdown at all when set to true. (fr)",
       "label": "Label of the component. (fr)",
       "labelKey": "The key in option object to use as the display label. (fr)",
