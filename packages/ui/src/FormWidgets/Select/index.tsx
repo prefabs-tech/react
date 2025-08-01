@@ -45,6 +45,7 @@ export type ISelectProperties<T> = {
   name: string;
   options: Option<T>[] | GroupedOption<T>[];
   placeholder?: string;
+  selectAllLabel?: string;
   showRemoveSelection?: boolean;
   tooltipOptions?: TooltipOptions;
   valueKey?: string;
@@ -86,6 +87,7 @@ export const Select = <T extends string | number>({
   name,
   options,
   placeholder,
+  selectAllLabel = "Select all",
   showRemoveSelection = true,
   tooltipOptions,
   value,
@@ -571,7 +573,7 @@ export const Select = <T extends string | number>({
                 checked={isAllSelected}
                 disabled={activeOptions.length === 0}
               />
-              <span>Select all</span>
+              <span>{selectAllLabel}</span>
             </li>
           )}
 
