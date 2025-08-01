@@ -13,182 +13,183 @@ type Option<T = string | number> = {
   [key: string]: unknown;
 };
 
-const data = [
-  {
-    id: 1,
-    prop: "autoSortOptions",
-    type: "boolean",
-    default: "true",
-    description:
-      "By default, options are sorted alphabetically by label. If set to false, the order of options is preserved.",
-  },
-  {
-    id: 2,
-    prop: "autoSelectSingleOption",
-    type: "boolean",
-    default: "false",
-    description:
-      "If true, in case of single option it automatically gets selected.",
-  },
-  {
-    id: 3,
-    prop: "className",
-    type: "string",
-    default: "-",
-    description: "Additional CSS classes for styling.",
-  },
-  {
-    id: 4,
-    prop: "disabled",
-    type: "boolean",
-    default: "-",
-    description: "Disables the select component.",
-  },
-  {
-    id: 5,
-    prop: "disableGroupSelect",
-    type: "boolean",
-    default: "-",
-    description:
-      "Remove checkbox on group label for selecting all group options.",
-  },
-  {
-    id: 6,
-    prop: "errorMessage",
-    type: "string",
-    default: "-",
-    description: "Displays an error message below the component.",
-  },
-  {
-    id: 7,
-    prop: "enableTooltip",
-    type: "boolean",
-    default: "false",
-    description:
-      "When enableTooltip is true, select component renders the <Tooltip> component for the selected value.",
-  },
-  {
-    id: 8,
-    prop: "hasError",
-    type: "boolean",
-    default: "-",
-    description: "If true, error in component.",
-  },
-  {
-    id: 9,
-    prop: "helperText",
-    type: "string",
-    default: "-",
-    description: "Displays an error message below the component.",
-  },
-  {
-    id: 10,
-    prop: "hideIfSingleOption",
-    type: "boolean",
-    default: "false",
-    description:
-      "If there is only one option, and multiple is false, the Select component will not render the dropdown at all when set to true.",
-  },
-  {
-    id: 11,
-    prop: "label",
-    type: "string",
-    default: "-",
-    description: "Label of the component.",
-  },
-  {
-    id: 12,
-    prop: "labelKey",
-    type: "string",
-    default: "-",
-    description: "The key in option object to use as the display label.",
-  },
-  {
-    id: 13,
-    prop: "multiple",
-    type: "boolean",
-    default: "false",
-    description: "If true, multiple selection is enabled.",
-  },
-  {
-    id: 14,
-    prop: "name",
-    type: "string",
-    default: "-",
-    description: "Name of the component.",
-  },
-  {
-    id: 15,
-    prop: "options",
-    type: "Option[] | GroupedOption[]",
-    default: "-",
-    description: "Options to pass in the select component.",
-  },
-  {
-    id: 16,
-    prop: "placeholder",
-    type: "string",
-    default: "-",
-    description: "Placeholder in the component.",
-  },
-  {
-    id: 17,
-    prop: "showRemoveSelection",
-    type: "boolean",
-    default: "true",
-    description: "If true, icon to remove selected options is visible.",
-  },
-  {
-    id: 18,
-    prop: "tooltipOptions",
-    type: "TooltipOptions",
-    default: "-",
-    description:
-      "Options to customize the tooltip’s behavior(example: position, offset).",
-  },
-  {
-    id: 19,
-    prop: "value",
-    type: "Value",
-    default: "-",
-    description: "Selected values of the component.",
-  },
-  {
-    id: 20,
-    prop: "valueKey",
-    type: "string",
-    default: "-",
-    description: "The key in option object to use as value.",
-  },
-  {
-    id: 21,
-    prop: "renderOption",
-    type: "(option: Option<T> | GroupedOption<T>) => React.ReactNode",
-    default: "-",
-    description: "Function to be called to render custom select options.",
-  },
-  {
-    id: 22,
-    prop: "renderValue",
-    type: `(
-      value?: T | T[],
-      options?: Option<T>[] | GroupedOption<T>[]
-    ) => React.ReactNode`,
-    default: "-",
-    description: "Function to be called to render custom select value.",
-  },
-  {
-    id: 23,
-    prop: "onChange",
-    type: " (newValue: T | T[]) => void",
-    default: "-",
-    description: "Function to be called when value changes.",
-  },
-];
-
 export const SelectDemo = () => {
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
+
+  const data = [
+    {
+      id: 1,
+      prop: "autoSortOptions",
+      type: "boolean",
+      default: "true",
+      description: t("select.propertiesDescription.autoSortOptions"),
+    },
+    {
+      id: 2,
+      prop: "autoSelectSingleOption",
+      type: "boolean",
+      default: "false",
+      description: t("select.propertiesDescription.autoSelectSingleOption"),
+    },
+    {
+      id: 3,
+      prop: "className",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.className"),
+    },
+    {
+      id: 4,
+      prop: "disabled",
+      type: "boolean",
+      default: "-",
+      description: t("select.propertiesDescription.disabled"),
+    },
+    {
+      id: 5,
+      prop: "disableGroupSelect",
+      type: "boolean",
+      default: "-",
+      description: t("select.propertiesDescription.disableGroupSelect"),
+    },
+    {
+      id: 6,
+      prop: "errorMessage",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.errorMessage"),
+    },
+    {
+      id: 7,
+      prop: "enableTooltip",
+      type: "boolean",
+      default: "false",
+      description: t("select.propertiesDescription.enableTooltip"),
+    },
+    {
+      id: 8,
+      prop: "hasError",
+      type: "boolean",
+      default: "-",
+      description: t("select.propertiesDescription.hasError"),
+    },
+    {
+      id: 9,
+      prop: "helperText",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.helperText"),
+    },
+    {
+      id: 10,
+      prop: "hideIfSingleOption",
+      type: "boolean",
+      default: "false",
+      description: t("select.propertiesDescription.hideIfSingleOption"),
+    },
+    {
+      id: 11,
+      prop: "label",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.label"),
+    },
+    {
+      id: 12,
+      prop: "labelKey",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.labelKey"),
+    },
+    {
+      id: 13,
+      prop: "multiple",
+      type: "boolean",
+      default: "false",
+      description: t("select.propertiesDescription.multiple"),
+    },
+    {
+      id: 14,
+      prop: "name",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.name"),
+    },
+    {
+      id: 15,
+      prop: "options",
+      type: "Option[] | GroupedOption[]",
+      default: "-",
+      description: t("select.propertiesDescription.options"),
+    },
+    {
+      id: 16,
+      prop: "placeholder",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.placeholder"),
+    },
+    {
+      id: 17,
+      prop: "selectAllLabel",
+      type: "string",
+      default: "Select all",
+      description: t("select.propertiesDescription.selectAllLabel"),
+    },
+    {
+      id: 18,
+      prop: "showRemoveSelection",
+      type: "boolean",
+      default: "true",
+      description: t("select.propertiesDescription.showRemoveSelection"),
+    },
+    {
+      id: 19,
+      prop: "tooltipOptions",
+      type: "TooltipOptions",
+      default: "-",
+      description: t("select.propertiesDescription.tooltipOptions"),
+    },
+    {
+      id: 20,
+      prop: "value",
+      type: "Value",
+      default: "-",
+      description: t("select.propertiesDescription.value"),
+    },
+    {
+      id: 21,
+      prop: "valueKey",
+      type: "string",
+      default: "-",
+      description: t("select.propertiesDescription.valueKey"),
+    },
+    {
+      id: 22,
+      prop: "renderOption",
+      type: "(option: Option<T> | GroupedOption<T>) => React.ReactNode",
+      default: "-",
+      description: t("select.propertiesDescription.renderOption"),
+    },
+    {
+      id: 23,
+      prop: "renderValue",
+      type: `(
+        value?: T | T[],
+        options?: Option<T>[] | GroupedOption<T>[]
+      ) => React.ReactNode`,
+      default: "-",
+      description: t("select.propertiesDescription.renderValue"),
+    },
+    {
+      id: 24,
+      prop: "onChange",
+      type: " (newValue: T | T[]) => void",
+      default: "-",
+      description: t("select.propertiesDescription.onChange"),
+    },
+  ];
 
   const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
 
