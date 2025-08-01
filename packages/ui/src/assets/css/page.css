@@ -37,8 +37,16 @@
   display: none;
 }
 
+.dz-page > .dz-page-header > .dz-page-title-wrapper > h1 {
+  line-height: 2rem;
+}
+
 .dz-page > .dz-page-header > .dz-page-title-wrapper > h1 > span {
   margin-left: 0.5rem;
+}
+
+.dz-page > .dz-page-header > .dz-page-title-wrapper > h1 > span > .dz-tag {
+  height: 1.8125rem;
 }
 
 @media (min-width: 576px) {
