@@ -97,7 +97,7 @@
         "placeholder": ""
       },
       "password": {
-        "label": "votre mot de passe"
+        "label": "Votre mot de passe"
       }
     },
     "instructions": "Enter your credentials to continue. (fr)",
