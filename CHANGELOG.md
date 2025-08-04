@@ -1,3 +1,22 @@
+# [0.62.0](https://github.com/prefabs-tech/react/compare/v0.61.0...v0.62.0) (2025-08-04)
+
+
+### Bug Fixes
+
+* **i18n:** update incorrect translation in login page for fr locale ([#1549](https://github.com/prefabs-tech/react/issues/1549)) ([c1a997c](https://github.com/prefabs-tech/react/commit/c1a997cffe28608ccf62e1201fe3e498c7b08060))
+* **user:** remove empty space when toolbar is not provided in invitations table ([#1546](https://github.com/prefabs-tech/react/issues/1546)) ([f1a179f](https://github.com/prefabs-tech/react/commit/f1a179feb718ad737cc767fb349e3d42adb9c554))
+
+
+### Features
+
+* **ui:** add size prop to modal component ([#1543](https://github.com/prefabs-tech/react/issues/1543)) ([9223c6b](https://github.com/prefabs-tech/react/commit/9223c6b2debd10aeddd91316aa8e68b37e21a9c5))
+* **ui:** allow to customize select-all label in Select component ([#1550](https://github.com/prefabs-tech/react/issues/1550)) ([f713911](https://github.com/prefabs-tech/react/commit/f713911f4ea9007bc4c587eabbf7eb3d538b1e63))
+* **ui:** update the gap between the message component and form ([#1544](https://github.com/prefabs-tech/react/issues/1544)) ([03ac327](https://github.com/prefabs-tech/react/commit/03ac327d0341ccd85f5e62e1c4c888d6e2d97732))
+* **user:** hide disable and enable user actions for currently logged in user ([#1545](https://github.com/prefabs-tech/react/issues/1545)) ([5d1f1f9](https://github.com/prefabs-tech/react/commit/5d1f1f94f47c9d735f2680b6eb3465756ea7b0ac))
+* **user:** show error message in reset password form ([#1547](https://github.com/prefabs-tech/react/issues/1547)) ([be2c3b9](https://github.com/prefabs-tech/react/commit/be2c3b9f33d63630785fdf0da36d7088a1a7da5a))
+
+
+
 # [0.61.0](https://github.com/prefabs-tech/react/compare/v0.60.0...v0.61.0) (2025-07-25)
 
 
