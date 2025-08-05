@@ -21,6 +21,15 @@ export const PageDemo = () => {
       <Page
         title={t("page.title.toolbar")}
         toolbar={<Button label={t("page.toolbar.edit")} />}
+        toolbarActionMenu={{
+          actions: [
+            {
+              iconLeft: <i className="pi pi-chevron-left"></i>,
+              variant: "textOnly",
+              label: t("page.breadcrumb.back"),
+            },
+          ],
+        }}
         children={PageContent}
       />
 
@@ -51,6 +60,15 @@ export const PageDemo = () => {
         title={t("page.title.breadcrumb")}
         children={PageContent}
         breadcrumb={breadcrumb}
+        toolbarActionMenu={{
+          actions: [
+            {
+              iconLeft: <i className="pi pi-chevron-left"></i>,
+              variant: "textOnly",
+              label: t("page.breadcrumb.back"),
+            },
+          ],
+        }}
       />
 
       <hr />
@@ -69,6 +87,22 @@ export const PageDemo = () => {
         subtitle={<Tag label={t("page.subTitle.tag")} />}
         children={PageContent}
         breadcrumb={breadcrumb}
+        toolbarActionMenu={{
+          actions: [
+            {
+              iconLeft: <i className="pi pi-chevron-left"></i>,
+              variant: "textOnly",
+              label: t("page.breadcrumb.back"),
+            },
+            {
+              label: t("page.toolbar.button.label"),
+              severity: "secondary",
+            },
+            {
+              label: t("page.toolbar.edit"),
+            },
+          ],
+        }}
       />
     </>
   );
