@@ -105,6 +105,12 @@
   "data": {
     "title": "Data",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value.",
+    "propertiesDescription": {
+      "caption": "The caption displayed alongside the value.",
+      "className": "Additional CSS classes to apply to the outer container.",
+      "mode": "Defines which styling to apply to the component.",
+      "value": "The value to display."
+    },
     "usage": {
       "basic": "Basic",
       "mode": "Stat mode",

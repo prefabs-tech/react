@@ -10,38 +10,10 @@ import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../../components/Demo";
 
-const data = [
-  {
-    id: 1,
-    prop: "caption",
-    type: "ReactNode",
-    default: "-",
-    description: "The caption displayed alongside the value.",
-  },
-  {
-    id: 2,
-    prop: "className",
-    type: "string",
-    default: "-",
-    description: "Additional CSS classes to apply to the outer container.",
-  },
-  {
-    id: 3,
-    prop: "mode",
-    type: '"attr" | "stat"',
-    default: "attr",
-    description: "Defines which styling to apply to the component.",
-  },
-  {
-    id: 4,
-    prop: "value",
-    type: "ReactNode",
-    default: "-",
-    description: "The value to display.",
-  },
-];
-
 export const DataDemo = () => {
+  const { t } = useTranslation("ui");
+  const navigate = useNavigate();
+
   const testData = [
     {
       caption: "Name",
@@ -65,8 +37,36 @@ export const DataDemo = () => {
     },
   ];
 
-  const { t } = useTranslation("ui");
-  const navigate = useNavigate();
+  const data = [
+    {
+      id: 1,
+      prop: "caption",
+      type: "ReactNode",
+      default: "-",
+      description: t("data.propertiesDescription.caption"),
+    },
+    {
+      id: 2,
+      prop: "className",
+      type: "string",
+      default: "-",
+      description: t("data.propertiesDescription.className"),
+    },
+    {
+      id: 3,
+      prop: "mode",
+      type: '"attr" | "stat"',
+      default: "attr",
+      description: t("data.propertiesDescription.mode"),
+    },
+    {
+      id: 4,
+      prop: "value",
+      type: "ReactNode",
+      default: "-",
+      description: t("data.propertiesDescription.value"),
+    },
+  ];
 
   return (
     <Page
