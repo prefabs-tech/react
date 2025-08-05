@@ -45,6 +45,22 @@
       "link": "Link",
       "tooltip": "Button with tooltip"
     },
+    "propertiesDescription": {
+      "children": "The content to be displayed inside the button.",
+      "className": "Additional CSS classes to apply to the button.",
+      "disabled": "If true, the button will be disabled and non-interactive.",
+      "iconLeft": "Icon to be displayed on the left side of the button. Can be a string (class name) or a ReactNode.",
+      "iconRight": "Icon to be displayed on the right side of the button. Can be a string (class name) or a ReactNode.",
+      "label": "Text to be displayed in the button when `children` is not provided.",
+      "loading": "If true, indicates that the button is in a loading state and disables user interaction.",
+      "onClick": "Function to be called when the button is clicked.",
+      "severity": "Defines the styling severity of the button. Defaults to 'primary'.",
+      "size": "Sets the size of the button. Defaults to 'medium'.",
+      "to": "If provided, the button will act as a `Link` to the specified path instead of a regular button.",
+      "title": "Tooltip text that appears on hover.",
+      "variant": "Specifies the button variant. Defaults to 'filled'.",
+      "rounded": "Specifies the button border-radius to be rounded when set to `true`. Defaults to 'false'."
+    },
     "message": "Click to view profile"
   },
   "checkboxInput": {
