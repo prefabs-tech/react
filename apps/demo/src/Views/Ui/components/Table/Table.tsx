@@ -116,6 +116,7 @@ export const TableDemo = () => {
   return (
     <Page
       title={t("table.title")}
+      subtitle={t("table.subtitle")}
       className="demo-data-tables-page"
       toolbar={
         <Button
@@ -126,6 +127,11 @@ export const TableDemo = () => {
         />
       }
     >
+      <Section title={t("headers.usage")}>
+        <p>{t("common.usage", { component: "TDataTable" })}</p>
+        <CodeBlock exampleCode="import { TDataTable } from '@prefabs.tech/react-ui';" />
+      </Section>
+
       <Section title={t("table.usage.basic")}>
         <TDataTable
           columns={columns}
@@ -137,6 +143,19 @@ export const TableDemo = () => {
             return `row-${original.id}`;
           }}
         ></TDataTable>
+        <CodeBlock
+          // eslint-disable-next-line no-template-curly-in-string
+          exampleCode='<TDataTable
+  columns={columns}
+  data={data}
+  id="invitations-table"
+  showResetStateAction
+  initialSorting={[{ id: "email", desc: false }]}
+  rowClassName={({ row: { original } }) => {
+    return `row-${original.id}`;
+  }}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.filterable")}>
@@ -167,6 +186,35 @@ export const TableDemo = () => {
           data={data}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  visibleColumns={["email", "name", "age", "city", "country"]}
+  columns={[
+    ...columns,
+    {
+      accessorKey: "email",
+      enableColumnFilter: true,
+      filterPlaceholder: t("table.placeholder.search"),
+    },
+    {
+      accessorKey: "name",
+      enableColumnFilter: true,
+      filterPlaceholder: t("table.placeholder.search"),
+    },
+    {
+      accessorKey: "city",
+      enableColumnFilter: true,
+      filterPlaceholder: t("table.placeholder.select"),
+      meta: {
+        filterVariant: "multiselect",
+        filterOptions: city,
+      },
+    },
+    ]}
+    data={data}
+    initialSorting={[{ id: "email", desc: false }]}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.sortable")}>
@@ -180,6 +228,18 @@ export const TableDemo = () => {
           initialFilters={[{ id: "email", value: "s" }]}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  visibleColumns={["email", "name", "age", "city", "country"]}
+  columns={columns.map((column) => ({
+    ...column,
+    enableSorting: true,
+  }))}
+  data={data}
+  initialFilters={[{ id: "email", value: "s" }]}
+  initialSorting={[{ id: "email", desc: false }]}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.rowSelection")}>
@@ -189,6 +249,14 @@ export const TableDemo = () => {
           enableRowSelection={true}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  columns={[...columns]}
+  data={data.slice(0, 5)}
+  enableRowSelection={true}
+  initialSorting={[{ id: "email", desc: false }]}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.persistentState")}>
@@ -212,6 +280,23 @@ export const TableDemo = () => {
           persistState
           showColumnsAction
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  columns={[
+    ...columns,
+    {
+      accessorKey: "email",
+      enableColumnFilter: true,
+      filterPlaceholder: t("table.placeholder.search"),
+    },
+  ]}
+  data={data}
+  initialSorting={[{ id: "email", desc: false }]}
+  id="persistent-state"
+  persistState
+  showColumnsAction
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.customPagination")}>
@@ -228,6 +313,21 @@ export const TableDemo = () => {
           }}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  columns={[
+    ...columns,
+    {
+      accessorKey: "email",
+    },
+  ]}
+  data={data.slice(0, 5)}
+  renderCustomPagination={(table) => {
+    return <>Custom pagination</>;
+  }}
+  initialSorting={[{ id: "email", desc: false }]}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.customToolbarActions")}>
@@ -248,6 +348,25 @@ export const TableDemo = () => {
           }}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  columns={[
+    ...columns,
+    {
+      accessorKey: "email",
+    },
+  ]}
+  data={data.slice(0, 5)}
+  renderToolbarItems={(table) => {
+    return (
+      <>
+        <Button label="Add record" />
+      </>
+    );
+  }}
+  initialSorting={[{ id: "email", desc: false }]}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.columnTooltip")}>
@@ -291,6 +410,48 @@ export const TableDemo = () => {
           enableRowSelection={true}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+        <CodeBlock
+          exampleCode='<TDataTable
+  title={{
+    text: t("table.usage.columnTooltip"),
+    align: "left",
+  }}
+  columns={[
+    ...columns,
+    {
+      accessorKey: "email",
+      tooltip: true,
+      tooltipOptions: {
+        position: "right",
+      },
+    },
+    {
+      accessorKey: "city",
+      tooltip: true,
+      tooltipOptions: {
+        position: "left",
+      },
+    },
+    {
+      accessorKey: "name",
+      tooltip: true,
+      tooltipOptions: {
+        position: "top",
+      },
+    },
+    {
+      accessorKey: "age",
+      tooltip: true,
+      tooltipOptions: {
+        position: "bottom",
+      },
+    },
+  ]}
+  data={data.slice(0, 5)}
+  enableRowSelection={true}
+  initialSorting={[{ id: "email", desc: false }]}
+></TDataTable>'
+        />
       </Section>
 
       <Section title={t("table.usage.columnAlignment")}>

@@ -210,7 +210,6 @@
     "title": "Files presentation (fr)"
   },
   "table": {
-    "title": "Table (fr)",
     "cssCodeBlock": {
       "title": "CSS code example (fr)",
       "messages": {
@@ -219,6 +218,18 @@
         "note": "Note: (fr)"
       }
     },
+    "placeholder": {
+      "country": "Select country (fr)",
+      "date": "Select date (fr)",
+      "endDate": "End date (fr)",
+      "max": "Max (fr)",
+      "min": "Min (fr)",
+      "startDate": "Start date (fr)",
+      "search": "Search (fr)",
+      "select": "Select city (fr)",
+      "status": "Select status (fr)"
+    },
+    "subtitle": "The Table component displays data in tabular format. (fr)",
     "usage": {
       "basic": "Basic table (fr)",
       "builtInActionColumn": "Table demonstrating built in actions column use case (fr)",
@@ -246,17 +257,7 @@
       "tableBorderHorizontal": "Table with custom style for horizontal border (fr)",
       "tableBorderVertical": "Table with custom style for vertical border (fr)"
     },
-    "placeholder": {
-      "country": "Select country (fr)",
-      "date": "Select date (fr)",
-      "endDate": "End date (fr)",
-      "max": "Max (fr)",
-      "min": "Min (fr)",
-      "startDate": "Start date (fr)",
-      "search": "Search (fr)",
-      "select": "Select city (fr)",
-      "status": "Select status (fr)"
-    }
+    "title": "Table (fr)"
   },
   "message": {
     "subtitle": "The Message component displays contextual messages with optional icons and a closable action. It supports custom slots, making it flexible for various use cases. (fr)",

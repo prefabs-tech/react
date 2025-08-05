@@ -210,7 +210,6 @@
     "title": "Files presentation"
   },
   "table": {
-    "title": "Table",
     "cssCodeBlock": {
       "title": "CSS code example",
       "messages": {
@@ -219,6 +218,18 @@
         "note": "Note:"
       }
     },
+    "placeholder": {
+      "country": "Select country",
+      "date": "Select date",
+      "endDate": "End date",
+      "max": "Max",
+      "min": "Min",
+      "startDate": "Start date",
+      "search": "Search",
+      "select": "Select city",
+      "status": "Select status"
+    },
+    "subtitle": "The Table component displays data in tabular format.",
     "usage": {
       "basic": "Basic table",
       "builtInActionColumn": "Table demonstrating built in actions column use case",
@@ -246,17 +257,7 @@
       "tableBorderHorizontal": "Table with custom style for horizontal border",
       "tableBorderVertical": "Table with custom style for vertical border"
     },
-    "placeholder": {
-      "country": "Select country",
-      "date": "Select date",
-      "endDate": "End date",
-      "max": "Max",
-      "min": "Min",
-      "startDate": "Start date",
-      "search": "Search",
-      "select": "Select city",
-      "status": "Select status"
-    }
+    "title": "Table"
   },
   "message": {
     "subtitle": "The Message component displays contextual messages with optional icons and a closable action. It supports custom slots, making it flexible for various use cases.",
