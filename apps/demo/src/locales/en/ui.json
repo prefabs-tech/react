@@ -168,6 +168,11 @@
     "title": "Responsive menu"
   },
   "submitButton": {
+    "propertiesDescription": {
+      "disabled": "If true, the button will be disabled and non-interactive.",
+      "label": "Text to be displayed in the button.",
+      "loading": "If true, indicates that the button is in a loading state and disables user interaction."
+    },
     "title": "Submit button",
     "usage": {
       "basic": "Basic",
