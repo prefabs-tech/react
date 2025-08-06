@@ -1,28 +1,6 @@
 import { Button } from "@prefabs.tech/react-ui";
-import { useState } from "react";
 
 const Basic = ({
-  isString = false,
-}: {
-  isString?: boolean;
-}): JSX.Element | string => {
-  const [clicked, setClicked] = useState(false);
-
-  if (isString) {
-    return `<div className="container">
-  <Button label="Click me" onClick={() => setClicked(true)} />
-</div>`;
-  }
-
-  return (
-    <div className="container">
-      <Button label="Click me" onClick={() => setClicked(true)} />
-      {clicked && <span>{new Date().toLocaleString()}</span>}
-    </div>
-  );
-};
-
-const Severity = ({
   isString = false,
 }: {
   isString?: boolean;
@@ -222,4 +200,4 @@ const Link = ({
   );
 };
 
-export { Basic, Severity, Size, Variant, Icons, Link };
+export { Basic, Size, Variant, Icons, Link };

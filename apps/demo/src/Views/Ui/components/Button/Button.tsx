@@ -2,7 +2,7 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { TDataTable, Page, Button } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
-import { Basic, Icons, Link, Severity, Size, Variant } from "./components";
+import { Basic, Icons, Link, Size, Variant } from "./components";
 import { CodeBlock, Section } from "../../../../components/Demo";
 
 export const ButtonDemo = () => {
@@ -116,9 +116,9 @@ export const ButtonDemo = () => {
       </Section>
 
       <Section title={t("button.usage.basic")}>
-        <Severity />
+        <Basic />
         <CodeBlock
-          exampleCode={Severity({ isString: true }) as string}
+          exampleCode={Basic({ isString: true }) as string}
         ></CodeBlock>
       </Section>
 
