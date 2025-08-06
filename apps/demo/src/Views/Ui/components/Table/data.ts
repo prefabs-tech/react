@@ -8,7 +8,7 @@ export type TData = {
   disabled?: boolean;
 };
 
-const city = [
+const cities = [
   { value: "Atlanta", label: "Atlanta" },
   { value: "Austin", label: "Austin" },
   { value: "Boston", label: "Boston" },
@@ -31,7 +31,7 @@ const city = [
   { value: "Seattle", label: "Seattle" },
 ];
 
-const country = [
+const countries = [
   { label: "Estonia", value: "Estonia" },
   { label: "France", value: "France" },
   {
@@ -324,8 +324,8 @@ const HORIZONTAL_CSS_CODE = `.dz-table-container.horizontal .table-wrapper > tab
 }`;
 
 export {
-  city,
-  country,
+  cities,
+  countries,
   data,
   formatDemoData,
   HORIZONTAL_CSS_CODE,
