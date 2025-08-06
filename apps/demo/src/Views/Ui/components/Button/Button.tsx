@@ -116,13 +116,6 @@ export const ButtonDemo = () => {
       </Section>
 
       <Section title={t("button.usage.basic")}>
-        <Basic />
-        <CodeBlock
-          exampleCode={Basic({ isString: true }) as string}
-        ></CodeBlock>
-      </Section>
-
-      <Section title={t("button.usage.severity")}>
         <Severity />
         <CodeBlock
           exampleCode={Severity({ isString: true }) as string}

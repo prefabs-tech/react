@@ -36,7 +36,6 @@
     "usage": {
       "basic": "Basic",
       "variant": "Variant",
-      "severity": "Severity",
       "size": "Size",
       "outlined": "Outlined",
       "icons": "Icons",
