@@ -370,7 +370,23 @@ export const TableDemo = () => {
         ></TDataTable>
         <CodeBlock
           // eslint-disable-next-line no-template-curly-in-string
-          exampleCode='const columns: Array<TableColumnDefinition<TData>> = [
+          exampleCode='const countries = [
+  { label: "Estonia", value: "Estonia" },
+  { label: "France", value: "France" },
+  {
+    label: "United State of America",
+    value: "United State of America",
+  },
+];
+
+const cities = [
+  { value: "Atlanta", label: "Atlanta" },
+  { value: "Austin", label: "Austin" },
+  { value: "Boston", label: "Boston" },
+  ...
+];
+
+const columns: Array<TableColumnDefinition<TData>> = [
   {
     accessorKey: "email",
     header: "Email",
@@ -392,7 +408,7 @@ export const TableDemo = () => {
     dataType: "number",
     enableSorting: true,
     enableColumnFilter: true,
-    filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+    filterPlaceholder: "Min,Max",
   },
   {
     accessorKey: "city",
@@ -944,7 +960,7 @@ const data = [
                 locale: "en-IN",
               },
               enableColumnFilter: true,
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              filterPlaceholder: "Min,Max",
             },
             {
               accessorKey: "amount",
@@ -961,7 +977,7 @@ const data = [
               meta: {
                 filterVariant: "range",
               },
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              filterPlaceholder: "Min,Max",
             },
             {
               accessorKey: "date",
@@ -983,7 +999,7 @@ const data = [
                         ])
                       }
                       value={(column.getFilterValue() as [Date, Date])?.[0]}
-                      placeholder={t("table.placeholder.startDate")}
+                      placeholder={"Start date"}
                     />
                     <DatePicker
                       inputRef={null}
@@ -995,7 +1011,7 @@ const data = [
                         ])
                       }
                       value={(column.getFilterValue() as [Date, Date])?.[1]}
-                      placeholder={t("table.placeholder.endDate")}
+                      placeholder={"End date"}
                     />
                   </div>
                 );
@@ -1060,7 +1076,7 @@ const data = [
         locale: "en-IN",
       },
       enableColumnFilter: true,
-      filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+      filterPlaceholder: "Min,Max",
     },
     {
       accessorKey: "amount",
@@ -1077,7 +1093,7 @@ const data = [
       meta: {
         filterVariant: "range",
       },
-      filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+      filterPlaceholder: "Min,Max",
     },
     {
       accessorKey: "date",
@@ -1099,7 +1115,7 @@ const data = [
                 ])
               }
               value={(column.getFilterValue() as [Date, Date])?.[0]}
-              placeholder={t("table.placeholder.startDate")}
+              placeholder={"Start date"}
             />
             <DatePicker
               inputRef={null}
@@ -1111,7 +1127,7 @@ const data = [
                 ])
               }
               value={(column.getFilterValue() as [Date, Date])?.[1]}
-              placeholder={t("table.placeholder.endDate")}
+              placeholder={"End date"}
             />
           </div>
         );
