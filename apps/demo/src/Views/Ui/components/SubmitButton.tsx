@@ -5,31 +5,30 @@ import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
 
-const data = [
-  {
-    id: 1,
-    prop: "disabled",
-    type: "boolean",
-    description: "If true, the button will be disabled and non-interactive.",
-  },
-  {
-    id: 2,
-    prop: "label",
-    type: "string",
-    description: "Text to be displayed in the button.",
-  },
-  {
-    id: 3,
-    prop: "loading",
-    type: "boolean",
-    description:
-      "If true, indicates that the button is in a loading state and disables user interaction.",
-  },
-];
-
 export const SubmitButtonDemo = () => {
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
+
+  const data = [
+    {
+      id: 1,
+      prop: "disabled",
+      type: "boolean",
+      description: t("submitButton.propertiesDescription.disabled"),
+    },
+    {
+      id: 2,
+      prop: "label",
+      type: "string",
+      description: t("submitButton.propertiesDescription.label"),
+    },
+    {
+      id: 3,
+      prop: "loading",
+      type: "boolean",
+      description: t("submitButton.propertiesDescription.loading"),
+    },
+  ];
 
   return (
     <Page

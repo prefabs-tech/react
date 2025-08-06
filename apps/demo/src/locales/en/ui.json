@@ -36,7 +36,6 @@
     "usage": {
       "basic": "Basic",
       "variant": "Variant",
-      "severity": "Severity",
       "size": "Size",
       "outlined": "Outlined",
       "icons": "Icons",
@@ -44,6 +43,22 @@
       "text": "Text",
       "link": "Link",
       "tooltip": "Button with tooltip"
+    },
+    "propertiesDescription": {
+      "children": "The content to be displayed inside the button.",
+      "className": "Additional CSS classes to apply to the button.",
+      "disabled": "If true, the button will be disabled and non-interactive.",
+      "iconLeft": "Icon to be displayed on the left side of the button. Can be a string (class name) or a ReactNode.",
+      "iconRight": "Icon to be displayed on the right side of the button. Can be a string (class name) or a ReactNode.",
+      "label": "Text to be displayed in the button when `children` is not provided.",
+      "loading": "If true, indicates that the button is in a loading state and disables user interaction.",
+      "onClick": "Function to be called when the button is clicked.",
+      "severity": "Defines the styling severity of the button. Defaults to 'primary'.",
+      "size": "Sets the size of the button. Defaults to 'medium'.",
+      "to": "If provided, the button will act as a `Link` to the specified path instead of a regular button.",
+      "title": "Tooltip text that appears on hover.",
+      "variant": "Specifies the button variant. Defaults to 'filled'.",
+      "rounded": "Specifies the button border-radius to be rounded when set to `true`. Defaults to 'false'."
     },
     "message": "Click to view profile"
   },
@@ -89,6 +104,12 @@
   "data": {
     "title": "Data",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value.",
+    "propertiesDescription": {
+      "caption": "The caption displayed alongside the value.",
+      "className": "Additional CSS classes to apply to the outer container.",
+      "mode": "Defines which styling to apply to the component.",
+      "value": "The value to display."
+    },
     "usage": {
       "basic": "Basic",
       "mode": "Stat mode",
@@ -152,6 +173,11 @@
     "title": "Responsive menu"
   },
   "submitButton": {
+    "propertiesDescription": {
+      "disabled": "If true, the button will be disabled and non-interactive.",
+      "label": "Text to be displayed in the button.",
+      "loading": "If true, indicates that the button is in a loading state and disables user interaction."
+    },
     "title": "Submit button",
     "usage": {
       "basic": "Basic",
@@ -162,6 +188,15 @@
     "title": "Youtube facade"
   },
   "exportButton": {
+    "propertiesDescription": {
+      "filename": "The filename to use for the exported XLSX file.",
+      "getData": "Function that returns the data to be exported in a 2D array format.",
+      "label": "Text displayed on the export button.",
+      "onExportEnd": "Callback function invoked when export ends.",
+      "onExportStart": "Callback function invoked when export starts.",
+      "sheetName": "The name of the worksheet within the XLSX file.",
+      "sheetOptions": "Additional worksheet options."
+    },
     "title": "Export button"
   },
   "fileCard": {
@@ -174,7 +209,6 @@
     "title": "Files presentation"
   },
   "table": {
-    "title": "Table",
     "cssCodeBlock": {
       "title": "CSS code example",
       "messages": {
@@ -182,33 +216,6 @@
         "addVertical": "Add following css to your stylesheet for vertical borders",
         "note": "Note:"
       }
-    },
-    "usage": {
-      "basic": "Basic table",
-      "builtInActionColumn": "Table demonstrating built in actions column use case",
-      "cellDataFormatting": "Table demonstrating cell content formatting",
-      "filterable": "Table with filterable column",
-      "sortable": "Table with sortable column",
-      "rowSelection": "Table with row selection",
-      "persistentState": "Table with persistent state",
-      "customCellDataFormatting": "Table with custom cell data formatter",
-      "customPagination": "Table with custom pagination",
-      "customToolbarActions": "Table with custom toolbar actions",
-      "columnTooltip": "Table with tooltip column",
-      "columnAlignment": "Table cell content alignments",
-      "columnAction": "Table with column action",
-      "withFooter": "Table with footer",
-      "withoutPagination": "Table without pagination",
-      "withTitle": "Table with title",
-      "withCustomFilter": "Table with custom filter component and filterFn",
-      "withEqualServerFilter": "Table with equal server filterFn",
-      "customStaticFilter": "Table with custom  filter component and static filterFn",
-      "divContent": "Table demonstrating center aligned content",
-      "singleActionColumn": "Table with single action button",
-      "singleActionColumnWithMenu": "Table with single action menu",
-      "rowSpecificActions": "Table with actions menu items filtered based on row data logic",
-      "tableBorderHorizontal": "Table with custom style for horizontal border",
-      "tableBorderVertical": "Table with custom style for vertical border"
     },
     "placeholder": {
       "country": "Select country",
@@ -220,7 +227,58 @@
       "search": "Search",
       "select": "Select city",
       "status": "Select status"
-    }
+    },
+    "propertiesDescription": {
+      "className": "Additional CSS classes to apply to the table.",
+      "columnActionBtnLabel": "Label for the column action button.",
+      "customFormatters": "Custom functions to format data in specific columns.",
+      "dataActionsMenu": "Configuration or function to render row-specific action menus.",
+      "data": "The array of data records to be displayed in the table.",
+      "emptyTableMessage": "Message to display when there are no records in the table.",
+      "enableRowSelection": "Enables row selection functionality.",
+      "globalFilter": "Global filter.",
+      "id": "Unique identifier for the table instance.",
+      "initialFilters": "Initial column filter state applied to the table.",
+      "initialSorting": "Initial sorting state for the table.",
+      "isLoading": "Displays a loading icon.",
+      "inputDebounceTime": "Debounce time (in ms).",
+      "paginated": "Enables pagination for the table.",
+      "paginationOptions": "Additional props for the pagination component.",
+      "persistState": "Persist table state.",
+      "persistStateStorage": "Storage type to use when persisting table state.",
+      "resetStateActionBtnLabel": "Label for the reset state button in the table toolbar.",
+      "rowClassName": "Custom class name row.",
+      "rowPerPage": "Number of rows displayed per page.",
+      "rowPerPageOptions": "List of selectable options for rows per page.",
+      "showResetStateAction": "Button to reset the table state.",
+      "totalRecords": "Total number of records.",
+      "visibleColumns": "Array of columns that should be visible.",
+      "title": "Title of the table.",
+      "showColumnsAction": "Display column action.",
+      "fetchData": "Fetch table data.",
+      "handleResetState": "Callback triggered when reset state.",
+      "onRowSelectChange": "Callback triggered when selected rows change.",
+      "renderCustomPagination": "Custom pagination.",
+      "renderSortIcons": "Custom sort icon renderer for sortable columns.",
+      "renderTableFooterContent": "Custom table footer.",
+      "renderToolbarItems": "Custom toolbar items to display above the table."
+    },
+    "subtitle": "The Table component displays data in tabular format.",
+    "usage": {
+      "basic": "Basic table",
+      "cellDataFormatting": "Basic table(fr)",
+      "columnAction": "Table with column action",
+      "columnTooltip": "Table with tooltip column",
+      "customPaginationToolbarFooter": "Table with custom pagination, toolbar and footer",
+      "customStaticFilter": "Table with custom  filter component and static filterFn",
+      "rowSelection": "Table with row selection",
+      "rowSpecificActions": "Table with actions menu items filtered based on row data logic",
+      "singleActionColumn": "Table with single action button",
+      "singleActionColumnWithMenu": "Table with single action menu",
+      "withCustomFilter": "Table with custom filter component and filterFn",
+      "withEqualServerFilter": "Table with equal server filterFn"
+    },
+    "title": "Table"
   },
   "message": {
     "subtitle": "The Message component displays contextual messages with optional icons and a closable action. It supports custom slots, making it flexible for various use cases.",

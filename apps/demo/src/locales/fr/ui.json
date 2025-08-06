@@ -36,7 +36,6 @@
     "usage": {
       "basic": "Basic (fr)",
       "variant": "Variant (fr)",
-      "severity": "Severity (fr)",
       "size": "Size (fr)",
       "outlined": "Outlined (fr)",
       "icons": "Icons (fr)",
@@ -44,6 +43,22 @@
       "text": "Text (fr)",
       "link": "Link (fr)",
       "tooltip": "Button with tooltip (fr)"
+    },
+    "propertiesDescription": {
+      "children": "The content to be displayed inside the button. (fr)",
+      "className": "Additional CSS classes to apply to the button. (fr)",
+      "disabled": "If true, the button will be disabled and non-interactive. (fr)",
+      "iconLeft": "Icon to be displayed on the left side of the button. Can be a string (class name) or a ReactNode. (fr)",
+      "iconRight": "Icon to be displayed on the right side of the button. Can be a string (class name) or a ReactNode. (fr)",
+      "label": "Text to be displayed in the button when `children` is not provided. (fr)",
+      "loading": "If true, indicates that the button is in a loading state and disables user interaction. (fr)",
+      "onClick": "Function to be called when the button is clicked. (fr)",
+      "severity": "Defines the styling severity of the button. Defaults to 'primary'. (fr)",
+      "size": "Sets the size of the button. Defaults to 'medium'. (fr)",
+      "to": "If provided, the button will act as a `Link` to the specified path instead of a regular button. (fr)",
+      "title": "Tooltip text that appears on hover. (fr)",
+      "variant": "Specifies the button variant. Defaults to 'filled'. (fr)",
+      "rounded": "Specifies the button border-radius to be rounded when set to `true`. Defaults to 'false'. (fr)"
     },
     "message": "Click to view profile (fr)"
   },
@@ -88,6 +103,12 @@
   },
   "data": {
     "title": "Data (fr)",
+    "propertiesDescription": {
+      "caption": "The caption displayed alongside the value. (fr)",
+      "className": "Additional CSS classes to apply to the outer container. (fr)",
+      "mode": "Defines which styling to apply to the component. (fr)",
+      "value": "The value to display. (fr)"
+    },
     "subtitle": "The Data component is a reusable React component designed to display a labeled value. (fr)",
     "usage": {
       "basic": "Basic (fr)",
@@ -152,6 +173,11 @@
     "title": "Responsive menu (fr)"
   },
   "submitButton": {
+    "propertiesDescription": {
+      "disabled": "If true, the button will be disabled and non-interactive. (fr)",
+      "label": "Text to be displayed in the button. (fr)",
+      "loading": "If true, indicates that the button is in a loading state and disables user interaction. (fr)"
+    },
     "title": "Submit button (fr)",
     "usage": {
       "basic": "Basic (fr)",
@@ -162,6 +188,15 @@
     "title": "Youtube facade (fr)"
   },
   "exportButton": {
+    "propertiesDescription": {
+      "filename": "The filename to use for the exported XLSX file. (fr)",
+      "getData": "Function that returns the data to be exported in a 2D array format. (fr)",
+      "label": "Text displayed on the export button. (fr)",
+      "onExportEnd": "Callback function invoked when export ends. (fr)",
+      "onExportStart": "Callback function invoked when export starts. (fr)",
+      "sheetName": "The name of the worksheet within the XLSX file. (fr)",
+      "sheetOptions": "Additional worksheet options. (fr)"
+    },
     "title": "Export button (fr)"
   },
   "fileCard": {
@@ -174,7 +209,6 @@
     "title": "Files presentation (fr)"
   },
   "table": {
-    "title": "Table (fr)",
     "cssCodeBlock": {
       "title": "CSS code example (fr)",
       "messages": {
@@ -182,33 +216,6 @@
         "addVertical": "Add following css to your stylesheet for vertical borders (fr)",
         "note": "Note: (fr)"
       }
-    },
-    "usage": {
-      "basic": "Basic table (fr)",
-      "builtInActionColumn": "Table demonstrating built in actions column use case (fr)",
-      "cellDataFormatting": "Table demonstrating cell content formatting (fr)",
-      "filterable": "Table with filterable column (fr)",
-      "sortable": "Table with sortable column (fr)",
-      "rowSelection": "Table with row selection (fr)",
-      "persistentState": "Table with persistent state (fr)",
-      "customCellDataFormatting": "Table with custom cell data formatter (fr)",
-      "customPagination": "Table with custom pagination (fr)",
-      "customToolbarActions": "Table with custom toolbar actions (fr)",
-      "columnTooltip": "Table with tooltip column (fr)",
-      "columnAlignment": "Table cell content alignments (fr)",
-      "columnAction": "Table with column action (fr)",
-      "withFooter": "Table with footer (fr)",
-      "withoutPagination": "Table without pagination (fr)",
-      "withTitle": "Table with title (fr)",
-      "withCustomFilter": "Table with custom filter component and filterFn (fr)",
-      "withEqualServerFilter": "Table with equal server filterFn (fr)",
-      "customStaticFilter": "Table with custom  filter component and static filterFn (fr)",
-      "divContent": "Table demonstrating center aligned content (fr)",
-      "singleActionColumn": "Table with single action button (fr)",
-      "singleActionColumnWithMenu": "Table with single action menu (fr)",
-      "rowSpecificActions": "Table with actions menu items filtered based on row data logic (fr)",
-      "tableBorderHorizontal": "Table with custom style for horizontal border (fr)",
-      "tableBorderVertical": "Table with custom style for vertical border (fr)"
     },
     "placeholder": {
       "country": "Select country (fr)",
@@ -220,7 +227,58 @@
       "search": "Search (fr)",
       "select": "Select city (fr)",
       "status": "Select status (fr)"
-    }
+    },
+    "propertiesDescription": {
+      "className": "Additional CSS classes to apply to the table. (fr)",
+      "columnActionBtnLabel": "Label for the column action button. (fr)",
+      "customFormatters": "Custom functions to format data in specific columns. (fr)",
+      "dataActionsMenu": "Configuration or function to render row-specific action menus. (fr)",
+      "data": "The array of data records to be displayed in the table. (fr)",
+      "emptyTableMessage": "Message to display when there are no records in the table. (fr)",
+      "enableRowSelection": "Enables row selection functionality. (fr)",
+      "globalFilter": "Global filter. (fr)",
+      "id": "Unique identifier for the table instance. (fr)",
+      "initialFilters": "Initial column filter state applied to the table. (fr)",
+      "initialSorting": "Initial sorting state for the table. (fr)",
+      "isLoading": "Displays a loading icon. (fr)",
+      "inputDebounceTime": "Debounce time (in ms). (fr)",
+      "paginated": "Enables pagination for the table. (fr)",
+      "paginationOptions": "Additional props for the pagination component. (fr)",
+      "persistState": "Persist table state. (fr)",
+      "persistStateStorage": "Storage type to use when persisting table state. (fr)",
+      "resetStateActionBtnLabel": "Label for the reset state button in the table toolbar. (fr)",
+      "rowClassName": "Custom class name row. (fr)",
+      "rowPerPage": "Number of rows displayed per page. (fr)",
+      "rowPerPageOptions": "List of selectable options for rows per page. (fr)",
+      "showResetStateAction": "Button to reset the table state. (fr)",
+      "totalRecords": "Total number of records. (fr)",
+      "visibleColumns": "Array of columns that should be visible. (fr)",
+      "title": "Title of the table. (fr)",
+      "showColumnsAction": "Display column action. (fr)",
+      "fetchData": "Fetch table data. (fr)",
+      "handleResetState": "Callback triggered when reset state. (fr)",
+      "onRowSelectChange": "Callback triggered when selected rows change. (fr)",
+      "renderCustomPagination": "Custom pagination. (fr)",
+      "renderSortIcons": "Custom sort icon renderer for sortable columns. (fr)",
+      "renderTableFooterContent": "Custom table footer. (fr)",
+      "renderToolbarItems": "Custom toolbar items to display above the table. (fr)"
+    },
+    "subtitle": "The Table component displays data in tabular format. (fr)",
+    "usage": {
+      "basic": "Basic table (fr)",
+      "cellDataFormatting": "Basic table(fr)",
+      "columnAction": "Table with column action (fr)",
+      "columnTooltip": "Table with tooltip column (fr)",
+      "customPaginationToolbarFooter": "Table with custom pagination, toolbar and footer (fr)",
+      "customStaticFilter": "Table with custom  filter component and static filterFn (fr)",
+      "rowSelection": "Table with row selection (fr)",
+      "rowSpecificActions": "Table with actions menu items filtered based on row data logic (fr)",
+      "singleActionColumn": "Table with single action button (fr)",
+      "singleActionColumnWithMenu": "Table with single action menu (fr)",
+      "withCustomFilter": "Table with custom filter component and filterFn (fr)",
+      "withEqualServerFilter": "Table with equal server filterFn (fr)"
+    },
+    "title": "Table (fr)"
   },
   "message": {
     "subtitle": "The Message component displays contextual messages with optional icons and a closable action. It supports custom slots, making it flexible for various use cases. (fr)",
