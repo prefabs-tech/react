@@ -1,6 +1,7 @@
 import { Provider, emailSchema } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
+import { useLocation } from "react-router-dom";
 import * as zod from "zod";
 
 import { ForgotPasswordFormFields } from "./ForgotPasswordFormFields";
@@ -12,6 +13,11 @@ interface Properties {
 
 export const ForgotPasswordForm = ({ handleSubmit, loading }: Properties) => {
   const { t, i18n } = useTranslation("user");
+
+  const location = useLocation();
+
+  const searchParameters = new URLSearchParams(location.search);
+  const email = searchParameters.get("email");
 
   const ForgotPasswordFormSchema = zod.object({
     email: emailSchema({
@@ -25,6 +31,9 @@ export const ForgotPasswordForm = ({ handleSubmit, loading }: Properties) => {
       validationSchema={ForgotPasswordFormSchema}
       onSubmit={(data) => handleSubmit(data.email)}
       validationTriggerKey={i18n.language}
+      defaultValues={{
+        email: email,
+      }}
     >
       <ForgotPasswordFormFields loading={loading} />
     </Provider>

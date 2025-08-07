@@ -5,18 +5,29 @@ import {
   useFormContext,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
+import { useEffect } from "react";
 
 interface Properties {
   loading?: boolean;
+  onEmailChange?: (email: string) => void;
 }
-export const LoginFormFields = ({ loading }: Properties) => {
+export const LoginFormFields = ({ loading, onEmailChange }: Properties) => {
   const { t } = useTranslation("user");
 
   const {
     register,
     getFieldState,
+    watch,
     formState: { errors, submitCount }, // eslint-disable-line @typescript-eslint/no-unused-vars
   } = useFormContext();
+
+  const emailValue = watch("email");
+
+  useEffect(() => {
+    if (onEmailChange) {
+      onEmailChange(emailValue);
+    }
+  }, [emailValue, onEmailChange]);
 
   return (
     <>
