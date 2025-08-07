@@ -1,5 +1,4 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { toast } from "react-toastify";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { logout } from "@/supertokens";
