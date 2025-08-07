@@ -2,6 +2,7 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { AuthPage, Message } from "@prefabs.tech/react-ui";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { getIsFirstUser, signUpFirstUser } from "@/api/user";
 import { DEFAULT_PATHS } from "@/constants";
@@ -51,6 +52,7 @@ export const SignUpFirstUser = ({
       .then(() => {
         setSignUpFirstUserLoading(false);
         setLoginLoading(true);
+        toast.success(`${t("firstUser.signup.messages.success")}`);
 
         // TODO Sign up first-user should return authenticated user from api
         login(credentials)
@@ -58,6 +60,7 @@ export const SignUpFirstUser = ({
           .then((result: any) => {
             if (result?.user) {
               setUser(result.user);
+              toast.success(`${t("login.messages.success")}`);
             }
           })
           .catch(() => {

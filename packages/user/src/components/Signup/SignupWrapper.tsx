@@ -1,6 +1,7 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Message } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { signup } from "@/supertokens";
@@ -83,6 +84,7 @@ export const SignupWrapper: React.FC<IProperties> = ({
             await setUser(result.user);
 
             onSignupSuccess && (await onSignupSuccess(result));
+            toast.success(`${t("signup.messages.success")}`);
           }
         })
         .catch(async (error) => {
