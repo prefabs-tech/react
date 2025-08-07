@@ -52,7 +52,6 @@ export const SignUpFirstUser = ({
       .then(() => {
         setSignUpFirstUserLoading(false);
         setLoginLoading(true);
-        toast.success(`${t("firstUser.signup.messages.success")}`);
 
         // TODO Sign up first-user should return authenticated user from api
         login(credentials)

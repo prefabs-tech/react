@@ -84,8 +84,6 @@ export const SignupWrapper: React.FC<IProperties> = ({
             await setUser(result.user);
 
             onSignupSuccess && (await onSignupSuccess(result));
-
-            toast.success(`${t("signup.messages.success")}`);
           }
         })
         .catch(async (error) => {

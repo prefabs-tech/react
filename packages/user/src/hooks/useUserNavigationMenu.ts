@@ -47,8 +47,6 @@ export const useUserNavigationMenu = ({
       await setUser(null);
 
       onLogout && (await onLogout());
-
-      toast.success(t("logout.message"));
     }
   };
 

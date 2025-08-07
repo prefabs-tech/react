@@ -66,10 +66,8 @@ export const LoginWrapper: FC<IProperties> = ({
               setUser(result.user);
 
               onLoginSuccess && (await onLoginSuccess(result));
-
-              toast.success(`${t("login.messages.success")}`);
             } else {
-              toast.error(t("login.messages.permissionDenied"));
+              setLoginError("invalidCredentials");
             }
           }
         })
