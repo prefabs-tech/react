@@ -23,31 +23,21 @@ export const ToolbarActions = ({ actions }: ToolbarActionsMenuProperties) => {
     }
 
     if (actions.length > 1) {
-      return (
-        <DropdownMenu
-          label={
-            <Button iconLeft="pi pi-cog" size="medium" variant="outlined" />
-          }
-          menu={actions}
-          hideDropdownIcon
-        />
-      );
+      return <DropdownMenu menu={actions} hideDropdownIcon />;
     }
 
-    const [{ icon, iconLeft, iconRight, label, onClick, disabled, ...rest }] =
+    const [{ icon, iconLeft, iconRight, label, onClick, disabled, variant }] =
       actions;
 
     const buttonIcon = icon ?? iconLeft ?? iconRight;
 
     return (
       <Button
-        variant="textOnly"
         iconLeft={buttonIcon}
         data-pr-tooltip={label}
         label={!buttonIcon ? label : undefined}
         onClick={onClick}
-        rounded
-        {...rest}
+        variant={variant}
       />
     );
   };

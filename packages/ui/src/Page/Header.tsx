@@ -22,7 +22,9 @@ export const PageHeader = ({
   toolbarActionMenu,
 }: IHeaderProperties) => {
   const renderTitle = () => {
-    if (!title) return null;
+    if (!title) {
+      return null;
+    }
 
     if (typeof title === "string") {
       return (

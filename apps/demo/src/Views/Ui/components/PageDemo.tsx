@@ -24,8 +24,8 @@ export const PageDemo = () => {
         toolbarActionMenu={{
           actions: [
             {
-              iconLeft: <i className="pi pi-chevron-left"></i>,
-              variant: "textOnly",
+              icon: "pi pi-chevron-left",
+              variant: "outlined",
               label: t("page.breadcrumb.back"),
             },
           ],
@@ -63,8 +63,9 @@ export const PageDemo = () => {
         toolbarActionMenu={{
           actions: [
             {
-              iconLeft: <i className="pi pi-chevron-left"></i>,
-              variant: "textOnly",
+              iconLeft: <i className="pi pi-trash"></i>,
+              variant: "outlined",
+              severity: "danger",
               label: t("page.breadcrumb.back"),
             },
           ],
@@ -92,6 +93,7 @@ export const PageDemo = () => {
             {
               iconLeft: <i className="pi pi-chevron-left"></i>,
               variant: "textOnly",
+              className: "danger",
               label: t("page.breadcrumb.back"),
             },
             {
@@ -100,6 +102,7 @@ export const PageDemo = () => {
             },
             {
               label: t("page.toolbar.edit"),
+              className: "danger",
             },
           ],
         }}
