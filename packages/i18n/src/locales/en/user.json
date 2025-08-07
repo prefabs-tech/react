@@ -106,7 +106,6 @@
       "signup": "Sign up"
     },
     "messages": {
-      "success": "Logged in successfully.",
       "validation": {
         "email": "Email is required.",
         "password": "Password is required."
@@ -116,9 +115,6 @@
       "google": "Continue with Google"
     },
     "title": "Log in"
-  },
-  "logout": {
-    "message": "Logged out successfully."
   },
   "menu": {
     "signin": "Log in",

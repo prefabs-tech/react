@@ -1,7 +1,6 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Message } from "@prefabs.tech/react-ui";
 import { FC, useState } from "react";
-import { toast } from "react-toastify";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { login } from "@/supertokens";
@@ -66,10 +65,8 @@ export const LoginWrapper: FC<IProperties> = ({
               setUser(result.user);
 
               onLoginSuccess && (await onLoginSuccess(result));
-
-              toast.success(`${t("login.messages.success")}`);
             } else {
-              toast.error(t("login.messages.permissionDenied"));
+              setLoginError("invalidCredentials");
             }
           }
         })

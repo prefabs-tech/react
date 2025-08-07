@@ -23,7 +23,7 @@ export const SignUpFirstUser = ({
   const { setUser } = useUser();
 
   const [loading, setLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState<"loginError" | "signupError" | null>(null);
 
   const [signUpFirstUserLoading, setSignUpFirstUserLoading] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
@@ -38,7 +38,7 @@ export const SignUpFirstUser = ({
         }
       })
       .catch(() => {
-        setIsError(true);
+        setError("signupError");
       })
       .finally(() => {
         setLoading(false);
@@ -65,7 +65,6 @@ export const SignUpFirstUser = ({
           })
           .catch(() => {
             setLoginLoading(false);
-            toast.error(t("firstUser.login.messages.error"));
             navigate(config.customPaths?.login || DEFAULT_PATHS.LOGIN);
           })
           .finally(() => {
@@ -74,19 +73,24 @@ export const SignUpFirstUser = ({
       })
       .catch(() => {
         setSignUpFirstUserLoading(false);
-        setIsError(true);
+        setError("signupError");
       });
   };
+
+  const message =
+    error === "signupError"
+      ? t("firstUser.signup.messages.error")
+      : t("firstUser.login.messages.error");
 
   const renderPageContent = () => {
     return (
       <>
-        {isError && (
+        {error && (
           <Message
             enableClose={true}
-            message={t("firstUser.signup.messages.error")}
+            message={message}
             onClose={() => {
-              setIsError(false);
+              setError(null);
             }}
             severity="danger"
           />
