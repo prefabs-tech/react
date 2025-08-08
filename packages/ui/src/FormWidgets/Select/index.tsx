@@ -75,7 +75,7 @@ export const Select = <T extends string | number>({
   disabled: selectFieldDisabled,
   disableGroupSelect,
   errorMessage,
-  enableTooltip = false,
+  enableTooltip = true,
   hasError,
   helperText,
   hideIfSingleOption = false,
@@ -554,7 +554,9 @@ export const Select = <T extends string | number>({
     return (
       <>
         <div
-          className={`selected-options-wrapper ${hasSelectedOptions ? "visible" : ""}`}
+          className={`selected-options-wrapper ${
+            hasSelectedOptions ? "visible" : ""
+          }`}
         >
           {enableTooltip && (
             <Tooltip elementRef={menuTooltipReference} {...tooltipOptions}>
@@ -629,7 +631,9 @@ export const Select = <T extends string | number>({
 
     return (
       <div
-        className={`label-container ${disabled ? "disabled" : ""} ${focused ? "focused" : ""}`.trimEnd()}
+        className={`label-container ${disabled ? "disabled" : ""} ${
+          focused ? "focused" : ""
+        }`.trimEnd()}
         aria-invalid={hasError}
         onClick={toggleOptionsMenu}
         onKeyDown={handleKeyDown}
