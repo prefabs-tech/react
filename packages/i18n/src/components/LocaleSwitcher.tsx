@@ -1,4 +1,8 @@
-import { DropdownMenu, DropdownMenuProperties } from "@prefabs.tech/react-ui";
+import {
+  DropdownMenu,
+  DropdownMenuProperties,
+  LocaleBadge,
+} from "@prefabs.tech/react-ui";
 import { useTranslation } from "react-i18next";
 
 export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu">;
@@ -19,6 +23,7 @@ const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
       .map((locale) => {
         return {
           onClick: () => changeLocale(locale),
+          badge: <LocaleBadge locale={locale} />,
           label: t(`locales.${locale}`),
           key: locale,
         };

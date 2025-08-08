@@ -66,6 +66,9 @@
   --list-item-bg-hover: #ededed;
   --list-item-bg-active: #ededed;
 
+  --locale-switcher-badge-bg-color: #007aff;
+  --locale-switcher-badge-color: #fff;
+
   --menu-border-color: var(--border-color);
   --menu-item-active-bg: #eff6ff;
   --menu-item-active-color: #007aff;
