@@ -6,11 +6,11 @@ export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu">;
 
 const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
   const { i18n, t } = useTranslation("locales");
-  const [selectedKey, setSelectedKey] = useState<string>(i18n.language);
+  const [activeLocale, setActiveLocale] = useState<string>(i18n.language);
 
   const changeLocale = (newLocale: string) => {
     i18n.changeLanguage(newLocale);
-    setSelectedKey(newLocale);
+    setActiveLocale(newLocale);
 
     document.documentElement.lang = newLocale;
   };
@@ -34,9 +34,9 @@ const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
   return (
     <DropdownMenu
       className="dz-locale-switcher"
-      menu={locales || []}
+      highlightItem={activeLocale}
       label={t(`locales.${i18n.language}`)}
-      selectedKey={selectedKey}
+      menu={locales || []}
       {...menuOptions}
     />
   );

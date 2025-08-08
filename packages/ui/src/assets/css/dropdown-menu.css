@@ -56,8 +56,8 @@ ul.dropdown-menu-list li.danger {
   color: var(--dz-danger-color, #dc3545);
 }
 
-.dropdown-menu-list li.selected,
-.dropdown-menu-list li.selected:hover
+.dropdown-menu-list li.highlight,
+.dropdown-menu-list li.highlight:hover
 {
   color: var(--menu-item-active-color, #007aff);
   background-color: var(--menu-item-active-bg, #eff6ff);

@@ -12,16 +12,16 @@ export interface MenuItem {
 
 export interface MenuProperties {
   className?: string;
+  highlightItem?: string;
   menu: MenuItem[];
   renderOption?: (value: MenuItem) => JSX.Element;
-  selectedKey?: string;
 }
 
 const Menu: React.FC<MenuProperties> = ({
   className,
+  highlightItem,
   menu = [],
   renderOption,
-  selectedKey,
 }) => {
   return (
     <ul className={`dropdown-menu-list ${className || ""}`.trimEnd()}>
@@ -40,7 +40,7 @@ const Menu: React.FC<MenuProperties> = ({
           <li
             key={key || `menu-item-${index}`}
             onClick={disabled ? undefined : onClick}
-            className={`${className || ""} ${selectedKey === (key || `menu-item-${index}`) ? "selected" : ""}`.trim()}
+            className={`${className || ""} ${highlightItem === (key || `menu-item-${index}`) ? "highlight" : ""}`.trim()}
             aria-disabled={disabled}
           >
             {renderOption ? (
