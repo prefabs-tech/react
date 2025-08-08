@@ -1,13 +1,16 @@
 import { DropdownMenu, DropdownMenuProperties } from "@prefabs.tech/react-ui";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu">;
 
 const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
   const { i18n, t } = useTranslation("locales");
+  const [selectedKey, setSelectedKey] = useState<string>(i18n.language);
 
   const changeLocale = (newLocale: string) => {
     i18n.changeLanguage(newLocale);
+    setSelectedKey(newLocale);
 
     document.documentElement.lang = newLocale;
   };
@@ -20,6 +23,7 @@ const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
         return {
           onClick: () => changeLocale(locale),
           label: t(`locales.${locale}`),
+          key: locale,
         };
       });
 
@@ -32,6 +36,7 @@ const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
       className="dz-locale-switcher"
       menu={locales || []}
       label={t(`locales.${i18n.language}`)}
+      selectedKey={selectedKey}
       {...menuOptions}
     />
   );
