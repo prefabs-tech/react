@@ -3,16 +3,16 @@ import { Message } from "@prefabs.tech/react-ui";
 import { FC, useState } from "react";
 import { toast } from "react-toastify";
 
+import { DEFAULT_PATHS } from "@/constants";
+import { login } from "@/supertokens";
+import { LinkType } from "@/types/types";
+
 import { LoginForm } from "./LoginForm";
 import { useConfig, useUser } from "../../hooks";
 import { verifySessionRoles } from "../../supertokens/helpers";
 import { AuthLinks } from "../AuthLinks";
 
 import type { LoginCredentials, SignInUpPromise } from "../../types";
-
-import { DEFAULT_PATHS } from "@/constants";
-import { login } from "@/supertokens";
-import { LinkType } from "@/types/types";
 
 interface IProperties {
   handleSubmit?: (credential: LoginCredentials) => void;

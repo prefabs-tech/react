@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { useConfig } from "../hooks";
-
 import { ResetPasswordForm } from "@/components";
 import { DEFAULT_PATHS } from "@/constants";
 import { resetPassword } from "@/supertokens";
+
+import { useConfig } from "../hooks";
 
 export const ResetPassword = ({ centered = true }: { centered?: boolean }) => {
   const { t } = useTranslation("user");
