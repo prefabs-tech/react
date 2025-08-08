@@ -12,12 +12,14 @@ export interface MenuItem {
 
 export interface MenuProperties {
   className?: string;
+  highlightItem?: string;
   menu: MenuItem[];
   renderOption?: (value: MenuItem) => JSX.Element;
 }
 
 const Menu: React.FC<MenuProperties> = ({
   className,
+  highlightItem,
   menu = [],
   renderOption,
 }) => {
@@ -38,7 +40,7 @@ const Menu: React.FC<MenuProperties> = ({
           <li
             key={key || `menu-item-${index}`}
             onClick={disabled ? undefined : onClick}
-            className={className}
+            className={`${className || ""} ${highlightItem === (key || `menu-item-${index}`) ? "highlight" : ""}`.trim()}
             aria-disabled={disabled}
           >
             {renderOption ? (

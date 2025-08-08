@@ -20,6 +20,7 @@ const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
         return {
           onClick: () => changeLocale(locale),
           label: t(`locales.${locale}`),
+          key: locale,
         };
       });
 
@@ -30,8 +31,9 @@ const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
   return (
     <DropdownMenu
       className="dz-locale-switcher"
-      menu={locales || []}
+      highlightItem={i18n.language}
       label={t(`locales.${i18n.language}`)}
+      menu={locales || []}
       {...menuOptions}
     />
   );
