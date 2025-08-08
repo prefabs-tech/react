@@ -40,6 +40,13 @@ export const LoginWrapper: FC<IProperties> = ({
   >(null);
   const [email, setEmail] = useState("");
 
+  const baseForgotPasswordPath =
+    config.customPaths?.forgotPassword || DEFAULT_PATHS.FORGOT_PASSWORD;
+
+  const forgotPasswordUrl = email
+    ? `${baseForgotPasswordPath}?email=${encodeURIComponent(email)}`
+    : baseForgotPasswordPath;
+
   const links: Array<LinkType> = [
     {
       display: config.features?.signup !== false && showSignupLink,
@@ -50,10 +57,7 @@ export const LoginWrapper: FC<IProperties> = ({
       display:
         config.features?.forgotPassword !== false && showForgotPasswordLink,
       label: t("login.links.forgotPassword"),
-      to:
-        config.customPaths?.forgotPassword || email
-          ? `${DEFAULT_PATHS.FORGOT_PASSWORD}?email=${encodeURIComponent(email)}`
-          : DEFAULT_PATHS.FORGOT_PASSWORD,
+      to: forgotPasswordUrl,
     },
   ];
 
