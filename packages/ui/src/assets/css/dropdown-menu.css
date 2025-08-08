@@ -74,8 +74,10 @@ ul.dropdown-menu-list li:hover {
   background-color: var(--dropdown-bg-color-hover, #e5e5e5);
 }
 
-ul.dropdown-menu-list li .menu-item > i {
-  margin-right: 0.5rem;
+ul.dropdown-menu-list li .menu-item {
+  align-items: baseline;
+  display: flex;
+  gap: 0.5rem;
 }
 
 @media screen and (min-width: 576px) {
