@@ -8,9 +8,14 @@ import { ForgotPasswordFormFields } from "./ForgotPasswordFormFields";
 interface Properties {
   handleSubmit: (email: string) => void;
   loading?: boolean;
+  email?: string;
 }
 
-export const ForgotPasswordForm = ({ handleSubmit, loading }: Properties) => {
+export const ForgotPasswordForm = ({
+  handleSubmit,
+  loading,
+  email,
+}: Properties) => {
   const { t, i18n } = useTranslation("user");
 
   const ForgotPasswordFormSchema = zod.object({
@@ -25,6 +30,9 @@ export const ForgotPasswordForm = ({ handleSubmit, loading }: Properties) => {
       validationSchema={ForgotPasswordFormSchema}
       onSubmit={(data) => handleSubmit(data.email)}
       validationTriggerKey={i18n.language}
+      defaultValues={{
+        email,
+      }}
     >
       <ForgotPasswordFormFields loading={loading} />
     </Provider>
