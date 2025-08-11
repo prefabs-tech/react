@@ -37,6 +37,14 @@ export const LoginWrapper: FC<IProperties> = ({
   const [loginError, setLoginError] = useState<
     null | "invalidCredentials" | "other"
   >(null);
+  const [email, setEmail] = useState("");
+
+  const baseForgotPasswordPath =
+    config.customPaths?.forgotPassword || DEFAULT_PATHS.FORGOT_PASSWORD;
+
+  const forgotPasswordUrl = email
+    ? `${baseForgotPasswordPath}?email=${encodeURIComponent(email)}`
+    : baseForgotPasswordPath;
 
   const links: Array<LinkType> = [
     {
@@ -48,7 +56,7 @@ export const LoginWrapper: FC<IProperties> = ({
       display:
         config.features?.forgotPassword !== false && showForgotPasswordLink,
       label: t("login.links.forgotPassword"),
-      to: config.customPaths?.forgotPassword || DEFAULT_PATHS.FORGOT_PASSWORD,
+      to: forgotPasswordUrl,
     },
   ];
 
@@ -104,6 +112,7 @@ export const LoginWrapper: FC<IProperties> = ({
       <LoginForm
         handleSubmit={handleLoginSubmit}
         loading={handleSubmit ? loading : loginLoading}
+        onEmailChange={setEmail}
       />
       <AuthLinks className="login" links={links} />
     </>

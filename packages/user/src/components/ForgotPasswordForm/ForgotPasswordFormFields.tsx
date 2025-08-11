@@ -10,9 +10,12 @@ export const ForgotPasswordFormFields = ({ loading }: Properties) => {
   const { t } = useTranslation("user");
 
   const {
+    watch,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    formState: { errors, submitCount, isDirty },
+    formState: { errors, submitCount },
   } = useFormContext();
+
+  const emailValue = watch("email");
 
   return (
     <>
@@ -27,7 +30,7 @@ export const ForgotPasswordFormFields = ({ loading }: Properties) => {
           {
             id: "submit",
             label: t("forgotPassword.form.actions.submit"),
-            disabled: !isDirty,
+            disabled: !emailValue,
           },
         ]}
         loading={loading}
