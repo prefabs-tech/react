@@ -1,10 +1,10 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 
+import useConfig from "@/hooks/useConfig";
+
 import { UserMenu } from "../common/UserMenu";
 
 import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
-
-import useConfig from "@/hooks/useConfig";
 
 interface HeaderProperties {
   children?: React.ReactNode;

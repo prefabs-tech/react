@@ -1,8 +1,8 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 
-import { Copyright, Version } from "../common";
-
 import useConfig from "@/hooks/useConfig";
+
+import { Copyright, Version } from "../common";
 
 type SidebarFooterProperties = {
   children?: React.ReactNode;
