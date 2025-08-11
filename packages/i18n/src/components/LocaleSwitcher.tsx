@@ -43,13 +43,13 @@ const LocaleSwitcher = ({
       className="dz-locale-switcher"
       highlightItem={i18n.language}
       label={t(`locales.${i18n.language}`)}
+      menu={locales || []}
       renderOption={(item) => (
         <span className="menu-item">
           {showBadge && <LocaleBadge locale={item.key} />}
           {item.label}
         </span>
       )}
-      menu={locales || []}
       {...menuOptions}
     />
   );
