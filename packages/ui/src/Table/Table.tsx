@@ -104,6 +104,13 @@ const DataTable = <TData extends RowData>({
       return [];
     }
 
+    console.log(
+      "column filter",
+      columnFilters,
+      updatedColumnFilter,
+      typeof event_,
+    );
+
     const updatedFilters = updatedColumnFilter.map((filter) => {
       const column = table.getColumn(filter.id);
 
@@ -135,6 +142,8 @@ const DataTable = <TData extends RowData>({
         filterFn: column?.columnDef.meta?.serverFilterFn,
       };
     });
+
+    console.log("u[pdatedcolumn filter", updatedFilters);
 
     setColumnFilters(updatedFilters);
     table.setPageIndex(0);
@@ -314,33 +323,8 @@ const DataTable = <TData extends RowData>({
   );
 
   useEffect(() => {
-    // client side rendering with no pagination
-    if (!fetchData && !paginated) {
-      setPagination((previous) => ({
-        ...previous,
-        pageSize: data.length,
-      }));
-    }
-  }, [fetchData, data, paginated]);
-
-  useEffect(() => {
     onRowSelectChange && onRowSelectChange(table);
   }, [mappedSelectedRows]);
-
-  useEffect(() => {
-    const requestJSON = getRequestJSON(sorting, columnFilters, {
-      pageIndex: pagination.pageIndex,
-      pageSize: pagination.pageSize,
-    });
-
-    fetchData && fetchData(requestJSON);
-  }, [
-    columnFilters,
-    pagination.pageIndex,
-    pagination.pageSize,
-    sorting,
-    fetchData,
-  ]);
 
   useEffect(() => {
     if (visibleColumns.length !== 0) {
@@ -400,6 +384,33 @@ const DataTable = <TData extends RowData>({
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [id, persistState]);
+
+  useEffect(() => {
+    // client side rendering with no pagination
+    if (!fetchData && !paginated) {
+      setPagination((previous) => ({
+        ...previous,
+        pageSize: data.length,
+      }));
+    }
+  }, [fetchData, data, paginated]);
+
+  useEffect(() => {
+    const requestJSON = getRequestJSON(sorting, columnFilters, {
+      pageIndex: pagination.pageIndex,
+      pageSize: pagination.pageSize,
+    });
+
+    console.log("u[pdatedcolumn filter fet", columnFilters, requestJSON);
+
+    fetchData && fetchData(requestJSON);
+  }, [
+    columnFilters,
+    pagination.pageIndex,
+    pagination.pageSize,
+    sorting,
+    fetchData,
+  ]);
 
   return (
     <div id={id} className={("dz-table-container " + className).trimEnd()}>
