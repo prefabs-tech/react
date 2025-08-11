@@ -1,4 +1,4 @@
-import React, { memo, ReactNode } from "react";
+import React, { memo } from "react";
 
 export interface MenuItem {
   className?: string;
@@ -6,7 +6,6 @@ export interface MenuItem {
   display?: boolean;
   key?: string;
   label?: string;
-  badge?: ReactNode;
   icon?: React.ReactNode;
   onClick?: () => void;
 }
@@ -32,7 +31,6 @@ const Menu: React.FC<MenuProperties> = ({
           disabled,
           icon,
           onClick,
-          badge,
           display = true,
           key,
           label,
@@ -56,7 +54,6 @@ const Menu: React.FC<MenuProperties> = ({
                     icon
                   )
                 ) : null}
-                {badge}
                 {label}
               </span>
             )}
