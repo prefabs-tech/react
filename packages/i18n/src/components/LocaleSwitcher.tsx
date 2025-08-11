@@ -28,7 +28,6 @@ const LocaleSwitcher = ({
       .map((locale) => {
         return {
           onClick: () => changeLocale(locale),
-          badge: <LocaleBadge locale={locale} />,
           label: t(`locales.${locale}`),
           key: locale,
         };
