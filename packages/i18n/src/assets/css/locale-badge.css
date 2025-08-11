@@ -1,8 +1,8 @@
 .locale-badge {
   align-items: center;
-  background-color: var(--locale-switcher-badge-bg-color, #007aff);
+  background-color: var(--dz-primary-color, #007aff);
   border-radius: 50%;
-  color: var(--locale-switcher-badge-color, #fff);
+  color:  #fff;
   display: flex;
   font-size: 0.9rem;
   height: 2em;
@@ -13,7 +13,7 @@
 }
 
 .locale-badge .country {
-  background: var(--locale-switcher-badge-bg-color, #007aff);
+  background: var(--dz-primary-color, #007aff);
   bottom: -0.35rem;
   font-size: 0.5rem;
   font-weight: bold;
