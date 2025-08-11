@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import LocaleBadge from "./LocaleBadge";
 
-import useConfig from "@/hooks/use-config";
+import useConfig from "@/hooks/useConfig";
 
 export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu">;
 
