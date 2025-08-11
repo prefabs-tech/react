@@ -35,10 +35,10 @@ const config: AppConfig = {
     supportedLngs: ["en", "en-GB", "en-US", "fr"],
   },
   layout: {
-    logo: "/logo.png",
     localeSwitcher: {
       showBadge: true,
     },
+    logo: "/logo.png",
     mainMenu: [
       {
         name: "header.menu.ui",

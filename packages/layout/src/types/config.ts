@@ -1,9 +1,9 @@
 interface PrefabsTechReactLayoutConfig {
   homeRoute?: "/" | string;
+  localeSwitcher?: { showBadge: boolean };
   logo?: string;
   logoAlt?: string;
   logoRoute?: string;
-  localeSwitcher?: { showBadge: boolean };
   mainMenu?: {
     name: string;
     route: string;
