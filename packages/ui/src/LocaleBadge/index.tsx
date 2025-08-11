@@ -5,12 +5,12 @@ interface LocaleBadgeProperties {
 }
 
 const LocaleBadge: React.FC<LocaleBadgeProperties> = ({ locale }) => {
-  const l = locale.substring(0, 2);
+  const languageCode = locale.substring(0, 2);
   const country = locale.includes("-") ? locale.split("-")[1] : undefined;
 
   return (
     <span className="locale-badge">
-      {l}
+      {languageCode}
       {country && <span className="country">{country}</span>}
     </span>
   );
