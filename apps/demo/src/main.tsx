@@ -17,6 +17,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primeicons/primeicons.css";
 
 import "@prefabs.tech/react-form/dist/PrefabsTechReactForm.css";
+import "@prefabs.tech/react-i18n/dist/PrefabsTechReactI18n.css";
 import "@prefabs.tech/react-layout/dist/PrefabsTechReactLayout.css";
 import "@prefabs.tech/react-ui/dist/PrefabsTechReactUI.css";
 import "@prefabs.tech/react-user/dist/PrefabsTechReactUser.css";

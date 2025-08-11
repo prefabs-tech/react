@@ -5,7 +5,7 @@ const useConfig = () => {
   const context = useContext(configContext);
 
   if (context === undefined) {
-    throw new Error("UserProvider is required!");
+    throw new Error("ConfigProvider is required!");
   }
 
   return context;

@@ -1,5 +1,7 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 
+import useConfig from "@/hooks/useConfig";
+
 import { Copyright, Version } from "../common";
 
 type SidebarFooterProperties = {
@@ -12,9 +14,13 @@ export const SidebarFooter = ({
   noLocaleSwitcher,
 }: SidebarFooterProperties) => {
   const renderContent = () => {
+    const { layout: layoutConfig } = useConfig();
+
     return (
       <>
-        {!noLocaleSwitcher && <LocaleSwitcher />}
+        {!noLocaleSwitcher && (
+          <LocaleSwitcher showBadge={layoutConfig?.localeSwitcher?.showBadge} />
+        )}
         <Copyright />
         <Version />
       </>
