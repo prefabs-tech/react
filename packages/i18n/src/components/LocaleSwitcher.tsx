@@ -3,15 +3,13 @@ import { useTranslation } from "react-i18next";
 
 import LocaleBadge from "./LocaleBadge";
 
-export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu"> & {
-  showBadge?: boolean;
-};
+import useConfig from "@/hooks/use-config";
 
-const LocaleSwitcher = ({
-  showBadge,
-  ...menuOptions
-}: LocalSwitcherProperties) => {
+export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu">;
+
+const LocaleSwitcher = ({ ...menuOptions }: LocalSwitcherProperties) => {
   const { i18n, t } = useTranslation("locales");
+  const { i18n: i18nConfig } = useConfig();
 
   const changeLocale = (newLocale: string) => {
     i18n.changeLanguage(newLocale);
@@ -43,7 +41,7 @@ const LocaleSwitcher = ({
       menu={locales || []}
       renderOption={(item) => (
         <span className="menu-item">
-          {showBadge && <LocaleBadge locale={item.key} />}
+          {i18nConfig.showBadge && <LocaleBadge locale={item.key} />}
           {item.label}
         </span>
       )}
