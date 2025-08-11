@@ -21,7 +21,7 @@ export const HeaderMenu = ({
     return (
       <>
         {menu && <UserMenu menu={menu} userMenuMode={userMenuMode} />}
-        {!noLocaleSwitcher && <LocaleSwitcher />}
+        {!noLocaleSwitcher && <LocaleSwitcher showBadge={true} />}
       </>
     );
   };
