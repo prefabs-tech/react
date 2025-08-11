@@ -39,7 +39,7 @@ const plugin = (options: InitOptions) => {
 
 declare module "@prefabs.tech/react-config" {
   export interface AppConfig {
-    i18n: InitOptions & { showBadge?: boolean };
+    i18n: InitOptions;
   }
 }
 
