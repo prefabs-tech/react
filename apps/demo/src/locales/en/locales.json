@@ -1,6 +1,8 @@
 {
   "locales": {
     "cimode": "cimode",
+    "en-GB": "English (GB)",
+    "en-US": "English (US)",
     "en": "English",
     "fr": "Français"
   }

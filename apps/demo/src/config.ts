@@ -28,7 +28,7 @@ const config: AppConfig = {
     debug: true,
     defaultNS: "app",
     fallbackLng: "en",
-    supportedLngs: ["en", "fr"],
+    supportedLngs: ["en", "en-GB", "en-US", "fr"],
     resources: {
       en: en,
       fr: fr,
