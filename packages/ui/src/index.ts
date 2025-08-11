@@ -10,7 +10,6 @@ import GridContainer from "./GridContainer";
 import InlineLink from "./InlineLink";
 import LoadingIcon from "./LoadingIcon";
 import LoadingPage from "./LoadingPage";
-import LocaleBadge from "./LocaleBadge";
 import Message from "./Message";
 import Modal from "./Modal";
 import Page, { PageProperties } from "./Page";
@@ -48,7 +47,6 @@ export {
   InlineLink,
   LoadingIcon,
   LoadingPage,
-  LocaleBadge,
   Message,
   Modal,
   Page,

@@ -1,9 +1,7 @@
-import {
-  DropdownMenu,
-  DropdownMenuProperties,
-  LocaleBadge,
-} from "@prefabs.tech/react-ui";
+import { DropdownMenu, DropdownMenuProperties } from "@prefabs.tech/react-ui";
 import { useTranslation } from "react-i18next";
+
+import LocaleBadge from "./LocaleBadge";
 
 export type LocalSwitcherProperties = Omit<DropdownMenuProperties, "menu"> & {
   showBadge?: boolean;

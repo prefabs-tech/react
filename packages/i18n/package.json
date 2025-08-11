@@ -7,7 +7,8 @@
     ".": {
       "import": "./dist/PrefabsTechReactI18n.es.js",
       "require": "./dist/PrefabsTechReactI18n.umd.js"
-    }
+    },
+    "./dist/PrefabsTechReactI18n.css": "./dist/react-i18n.css"
   },
   "main": "./dist/PrefabsTechReactI18n.umd.js",
   "module": "./dist/PrefabsTechReactI18n.es.js",
