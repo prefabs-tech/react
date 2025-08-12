@@ -332,7 +332,9 @@
     "title": "Textarea (fr)"
   },
   "page": {
-    "title": {
+    "title": "Page (fr)",
+    "subtitle": "The Page component renders a structured layout with a header, optional loading and error states, and customizable content areas for flexible page composition. (fr)",
+    "usage": {
       "menu": "Page (fr)",
       "basic": "Page demo basic (fr)",
       "centerAligned": "Page with center aligned contents (fr)",
@@ -341,10 +343,6 @@
       "componentSubtitle": "Page with subtitle component (fr)",
       "breadcrumb": "Page with breadcrumb (fr)",
       "complete": "Page with every component (fr)"
-    },
-    "subTitle": {
-      "title": "Page subtitle (fr)",
-      "tag": "Subtitle tag (fr)"
     },
     "heading": {
       "tag": "Heading tag (fr)"
@@ -357,6 +355,21 @@
       "button": {
         "label": "Click (fr)"
       }
+    },
+    "propertiesDescription": {
+      "breadcrumb": "Displays a breadcrumb navigation element at the top of the page, typically used to show page hierarchy. (fr)",
+      "centered": "If true, applies centered alignment styling to the page content. (fr)",
+      "children": "The main content of the page. Rendered after the header and within the page content area. (fr)",
+      "className": "Additional CSS class to apply custom styling to the page container. (fr)",
+      "errorMessage": "Displays an error message when set. Overrides `children` and `loading`. (fr)",
+      "loading": "If true, displays a loading state instead of the page content. (fr)",
+      "loadingComponent": "Optional custom loading component to display when `loading` is true. Overrides the default loading component. (fr)",
+      "loadingPageStyle": "Props passed to the default `LoadingPage` component to customize its appearance and behavior. (fr)",
+      "subtitle": "Text or React node to display as the page subtitle, below the main title. (fr)",
+      "title": "Text or React node to display as the main title of the page. (fr)",
+      "titleTag": "Custom element or string to use as the semantic tag for the title (e.g., h1, h2). (fr)",
+      "toolbarActionMenu": "Props for configuring a toolbar action menu component next to the title. (fr)",
+      "toolbar": "Additional toolbar content to be rendered alongside the header elements. (fr)"
     },
     "content": "Page content. (fr)"
   },
