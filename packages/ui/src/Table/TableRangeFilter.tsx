@@ -2,6 +2,8 @@ import { Column } from "@tanstack/react-table";
 
 import { DebouncedInput } from "@/FormWidgets";
 
+import { isDefined } from "./utils";
+
 type DateFilterProperties<TData> = {
   column: Column<TData, unknown>;
   inputDebounceTime?: number;
@@ -38,15 +40,12 @@ export const TableRangeFilter = <TData,>({
     <div className="number-range-filter">
       <DebouncedInput
         defaultValue={
-          Array.isArray(filterValue) &&
-          filterValue[0] &&
-          filterValue[0] !== null
+          Array.isArray(filterValue) && isDefined(filterValue[0])
             ? filterValue[0]
             : ""
         }
-        id={`range-start-${key}`}
         debounceTime={inputDebounceTime}
-        name="range-start"
+        name={`range-start-${key}`}
         onInputChange={(value) => updateRangeFilter(column, 0, value)}
         placeholder={
           column.columnDef.filterPlaceholder?.split(",")[0] ??
@@ -56,15 +55,12 @@ export const TableRangeFilter = <TData,>({
       />
       <DebouncedInput
         defaultValue={
-          Array.isArray(filterValue) &&
-          filterValue[1] &&
-          filterValue[1] !== null
+          Array.isArray(filterValue) && isDefined(filterValue[1])
             ? filterValue[1]
             : ""
         }
         debounceTime={inputDebounceTime}
-        id={`range-end-${key}`}
-        name="range-end"
+        name={`range-end-${key}`}
         onInputChange={(value) => updateRangeFilter(column, 1, value)}
         placeholder={
           column.columnDef.filterPlaceholder?.split(",")[1] ??
