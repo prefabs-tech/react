@@ -70,9 +70,22 @@ export const getFilterOperator = (filterFunction: TFilterFunction_) => {
   }
 };
 
+export const isRangeFilter = (filterFunction: TFilterFunction_) => {
+  return [
+    FILTER_FUNCTIONS_ENUM.IN,
+    FILTER_FUNCTIONS_ENUM.NOT_IN,
+    FILTER_FUNCTIONS_ENUM.BETWEEN,
+    FILTER_FUNCTIONS_ENUM.NOT_BETWEEN,
+  ].includes(filterFunction as FILTER_FUNCTIONS_ENUM);
+};
+
+export const isDefined = <T>(value: T | undefined | null) => {
+  return value !== undefined && value !== null;
+};
+
 const getRangeFilter = (filterState: ColumnFilter) => {
-  const values = (filterState.value as string[]).filter(
-    (value) => value && value !== null,
+  const values = (filterState.value as string[]).filter((value) =>
+    isDefined(value),
   );
 
   if (values.length < 1) {
@@ -83,18 +96,24 @@ const getRangeFilter = (filterState: ColumnFilter) => {
     return values.length > 1
       ? {
           key: filterState.id,
-          ...getFilterOperator(
-            filterState.filterFn || FILTER_FUNCTIONS_ENUM.IN,
-          ),
-          value: values.join(","),
+          ...getFilterOperator(filterState.filterFn),
+          value: values.slice(0, 2).join(","),
         }
       : null;
+  }
+
+  if (filterState.filterFn && !isRangeFilter(filterState.filterFn)) {
+    return {
+      key: filterState.id,
+      ...getFilterOperator(filterState.filterFn),
+      value: values[0],
+    };
   }
 
   return {
     key: filterState.id,
     ...getFilterOperator(filterState.filterFn || FILTER_FUNCTIONS_ENUM.IN),
-    value: values[0],
+    value: values.join(","),
   };
 };
 
@@ -120,7 +139,7 @@ export const getRequestJSON = (
     const updatedFilterState = filterState.filter((filter) => {
       // Check if the filter value is defined or not
       if (Array.isArray(filter.value)) {
-        const values = filter.value.filter((value) => value && value !== null);
+        const values = filter.value.filter((value) => isDefined(value));
 
         return values.length > 0;
       }

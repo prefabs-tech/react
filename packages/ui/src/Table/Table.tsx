@@ -28,6 +28,7 @@ import {
   getParsedColumns,
   saveTableState,
   getSavedTableState,
+  isDefined,
 } from "./utils";
 import { Checkbox } from "../FormWidgets";
 import LoadingIcon from "../LoadingIcon";
@@ -117,11 +118,11 @@ const DataTable = <TData extends RowData>({
           | FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL
           | undefined;
 
-        if (min !== undefined && max !== undefined) {
+        if (isDefined(min) && isDefined(max)) {
           filterOperator = FILTER_FUNCTIONS_ENUM.BETWEEN;
-        } else if (min !== undefined) {
+        } else if (isDefined(min)) {
           filterOperator = FILTER_FUNCTIONS_ENUM.GREATER_THAN_OR_EQUAL;
-        } else if (max !== undefined) {
+        } else if (isDefined(max)) {
           filterOperator = FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL;
         }
 
