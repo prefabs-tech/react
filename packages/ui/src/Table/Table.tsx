@@ -28,10 +28,12 @@ import {
   getParsedColumns,
   saveTableState,
   getSavedTableState,
+  isDefined,
 } from "./utils";
 import { Checkbox } from "../FormWidgets";
 import LoadingIcon from "../LoadingIcon";
 import { Pagination } from "../Pagination";
+import { FILTER_FUNCTIONS_ENUM } from "./enums";
 
 import type { PersistentTableState, TDataTableProperties } from "./types";
 import type { ColumnDef, RowData } from "@tanstack/react-table";
@@ -111,17 +113,17 @@ const DataTable = <TData extends RowData>({
         const [min, max] = filter.value as [number, number];
 
         let filterOperator:
-          | "between"
-          | "greaterThanOrEqual"
-          | "lessThanOrEqual"
+          | FILTER_FUNCTIONS_ENUM.BETWEEN
+          | FILTER_FUNCTIONS_ENUM.GREATER_THAN_OR_EQUAL
+          | FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL
           | undefined;
 
-        if (min !== undefined && max !== undefined) {
-          filterOperator = "between";
-        } else if (min !== undefined) {
-          filterOperator = "greaterThanOrEqual";
-        } else if (max !== undefined) {
-          filterOperator = "lessThanOrEqual";
+        if (isDefined(min) && isDefined(max)) {
+          filterOperator = FILTER_FUNCTIONS_ENUM.BETWEEN;
+        } else if (isDefined(min)) {
+          filterOperator = FILTER_FUNCTIONS_ENUM.GREATER_THAN_OR_EQUAL;
+        } else if (isDefined(max)) {
+          filterOperator = FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL;
         }
 
         return {
@@ -314,33 +316,8 @@ const DataTable = <TData extends RowData>({
   );
 
   useEffect(() => {
-    // client side rendering with no pagination
-    if (!fetchData && !paginated) {
-      setPagination((previous) => ({
-        ...previous,
-        pageSize: data.length,
-      }));
-    }
-  }, [fetchData, data, paginated]);
-
-  useEffect(() => {
     onRowSelectChange && onRowSelectChange(table);
   }, [mappedSelectedRows]);
-
-  useEffect(() => {
-    const requestJSON = getRequestJSON(sorting, columnFilters, {
-      pageIndex: pagination.pageIndex,
-      pageSize: pagination.pageSize,
-    });
-
-    fetchData && fetchData(requestJSON);
-  }, [
-    columnFilters,
-    pagination.pageIndex,
-    pagination.pageSize,
-    sorting,
-    fetchData,
-  ]);
 
   useEffect(() => {
     if (visibleColumns.length !== 0) {
@@ -400,6 +377,31 @@ const DataTable = <TData extends RowData>({
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [id, persistState]);
+
+  useEffect(() => {
+    // client side rendering with no pagination
+    if (!fetchData && !paginated) {
+      setPagination((previous) => ({
+        ...previous,
+        pageSize: data.length,
+      }));
+    }
+  }, [fetchData, data, paginated]);
+
+  useEffect(() => {
+    const requestJSON = getRequestJSON(sorting, columnFilters, {
+      pageIndex: pagination.pageIndex,
+      pageSize: pagination.pageSize,
+    });
+
+    fetchData && fetchData(requestJSON);
+  }, [
+    columnFilters,
+    pagination.pageIndex,
+    pagination.pageSize,
+    sorting,
+    fetchData,
+  ]);
 
   return (
     <div id={id} className={("dz-table-container " + className).trimEnd()}>
