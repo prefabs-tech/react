@@ -32,6 +32,7 @@ import {
 import { Checkbox } from "../FormWidgets";
 import LoadingIcon from "../LoadingIcon";
 import { Pagination } from "../Pagination";
+import { FILTER_FUNCTIONS_ENUM } from "./enums";
 
 import type { PersistentTableState, TDataTableProperties } from "./types";
 import type { ColumnDef, RowData } from "@tanstack/react-table";
@@ -104,13 +105,6 @@ const DataTable = <TData extends RowData>({
       return [];
     }
 
-    console.log(
-      "column filter",
-      columnFilters,
-      updatedColumnFilter,
-      typeof event_,
-    );
-
     const updatedFilters = updatedColumnFilter.map((filter) => {
       const column = table.getColumn(filter.id);
 
@@ -118,17 +112,17 @@ const DataTable = <TData extends RowData>({
         const [min, max] = filter.value as [number, number];
 
         let filterOperator:
-          | "between"
-          | "greaterThanOrEqual"
-          | "lessThanOrEqual"
+          | FILTER_FUNCTIONS_ENUM.BETWEEN
+          | FILTER_FUNCTIONS_ENUM.GREATER_THAN_OR_EQUAL
+          | FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL
           | undefined;
 
         if (min !== undefined && max !== undefined) {
-          filterOperator = "between";
+          filterOperator = FILTER_FUNCTIONS_ENUM.BETWEEN;
         } else if (min !== undefined) {
-          filterOperator = "greaterThanOrEqual";
+          filterOperator = FILTER_FUNCTIONS_ENUM.GREATER_THAN_OR_EQUAL;
         } else if (max !== undefined) {
-          filterOperator = "lessThanOrEqual";
+          filterOperator = FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL;
         }
 
         return {
@@ -142,8 +136,6 @@ const DataTable = <TData extends RowData>({
         filterFn: column?.columnDef.meta?.serverFilterFn,
       };
     });
-
-    console.log("u[pdatedcolumn filter", updatedFilters);
 
     setColumnFilters(updatedFilters);
     table.setPageIndex(0);
@@ -400,8 +392,6 @@ const DataTable = <TData extends RowData>({
       pageIndex: pagination.pageIndex,
       pageSize: pagination.pageSize,
     });
-
-    console.log("u[pdatedcolumn filter fet", columnFilters, requestJSON);
 
     fetchData && fetchData(requestJSON);
   }, [

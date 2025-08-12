@@ -1,6 +1,6 @@
 import { TABLE_STATE_PREFIX } from "./constants";
 import { getStorage } from "../utils";
-import { FILTER_FUNCTIONS_ENUM, FILTER_OPERATORS_ENUM } from "./types";
+import { FILTER_FUNCTIONS_ENUM, FILTER_OPERATORS_ENUM } from "./enums";
 
 import type {
   CellAlignmentType,
@@ -9,7 +9,6 @@ import type {
   PersistentTableState,
   StorageType,
   TFilterFn as TFilterFunction_,
-  TFilterFn as TFilterFunction,
   TRequestJSON,
   TSortDirection,
 } from "./types";
@@ -74,32 +73,27 @@ export const getFilterOperator = (filterFunction: TFilterFunction_) => {
   }
 };
 
-const isRangeFilter = (
-  filterFunction: TFilterFunction_ | undefined = FILTER_FUNCTIONS_ENUM.IN,
-) => {
-  return [
-    FILTER_FUNCTIONS_ENUM.BETWEEN,
-    FILTER_FUNCTIONS_ENUM.IN,
-    FILTER_FUNCTIONS_ENUM.NOT_BETWEEN,
-    FILTER_FUNCTIONS_ENUM.NOT_IN,
-  ].includes(filterFunction as FILTER_FUNCTIONS_ENUM);
-};
-
 const getRangeFilter = (filterState: ColumnFilter) => {
-  if (!Array.isArray(filterState.value)) {
-    return null;
-  }
-
-  const values = filterState.value.filter((value) => value && value !== null);
+  const values = (filterState.value as string[]).filter(
+    (value) => !!value && value !== null,
+  );
 
   if (values.length < 1) {
     return null;
   }
 
+  if (filterState.filterFn === FILTER_FUNCTIONS_ENUM.BETWEEN) {
+    return {
+      key: filterState.id,
+      ...getFilterOperator(filterState.filterFn || FILTER_FUNCTIONS_ENUM.IN),
+      value: values.join(","),
+    };
+  }
+
   return {
     key: filterState.id,
     ...getFilterOperator(filterState.filterFn || FILTER_FUNCTIONS_ENUM.IN),
-    value: values.join(","),
+    value: values[0],
   };
 };
 
@@ -125,7 +119,11 @@ export const getRequestJSON = (
     const updatedFilterState = filterState.filter((filter) => {
       // Check if the filter value is defined or not
       if (Array.isArray(filter.value)) {
-        return filter.value.length > 0;
+        const values = filter.value.filter(
+          (value) => !!value && value !== null,
+        );
+
+        return values.length > 0;
       }
 
       if (typeof filter.value === "string") {
@@ -138,7 +136,7 @@ export const getRequestJSON = (
     if (updatedFilterState.length === 0) return null;
 
     if (updatedFilterState.length === 1) {
-      if (isRangeFilter(updatedFilterState[0].filterFn)) {
+      if (Array.isArray(updatedFilterState[0].value)) {
         return getRangeFilter(updatedFilterState[0]);
       }
 
@@ -153,7 +151,7 @@ export const getRequestJSON = (
 
     return {
       AND: updatedFilterState.map((filter) => {
-        if (isRangeFilter(filter.filterFn)) {
+        if (Array.isArray(filter.value)) {
           return getRangeFilter(filter);
         }
 
