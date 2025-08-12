@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Button, DropdownMenu, IButtonProperties, MenuItem } from "..";
-import { ConfirmationModal, IModalProperties } from "../ConfirmationModal";
 
 export interface ActionsMenuItem
   extends Omit<MenuItem, "onClick">,
@@ -15,39 +14,25 @@ export interface ToolbarActionsMenuProperties {
 }
 
 export const ToolbarActions = ({ actions }: ToolbarActionsMenuProperties) => {
-  const [confirmation, setConfirmation] = useState<IModalProperties | null>();
+  if (!actions || actions.length === 0) {
+    return null;
+  }
 
-  const renderActions = () => {
-    if (!actions || !actions.length) {
-      return null;
-    }
+  if (actions.length > 1) {
+    return <DropdownMenu menu={actions} hideDropdownIcon />;
+  }
 
-    if (actions.length > 1) {
-      return <DropdownMenu menu={actions} hideDropdownIcon />;
-    }
+  const [{ icon, iconLeft, iconRight, label, onClick, variant }] = actions;
 
-    const [{ icon, iconLeft, iconRight, label, onClick, disabled, variant }] =
-      actions;
-
-    const buttonIcon = icon ?? iconLeft ?? iconRight;
-
-    return (
-      <Button
-        iconLeft={buttonIcon}
-        data-pr-tooltip={label}
-        label={!buttonIcon ? label : undefined}
-        onClick={onClick}
-        variant={variant}
-      />
-    );
-  };
+  const buttonIcon = icon ?? iconLeft ?? iconRight;
 
   return (
-    <>
-      {renderActions()}
-      {!!confirmation && (
-        <ConfirmationModal {...confirmation} visible={!!confirmation} />
-      )}
-    </>
+    <Button
+      iconLeft={buttonIcon}
+      data-pr-tooltip={label}
+      label={!buttonIcon ? label : undefined}
+      onClick={onClick}
+      variant={variant}
+    />
   );
 };

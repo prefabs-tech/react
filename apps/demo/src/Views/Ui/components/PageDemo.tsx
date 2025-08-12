@@ -93,7 +93,6 @@ export const PageDemo = () => {
             {
               iconLeft: <i className="pi pi-chevron-left"></i>,
               variant: "textOnly",
-              className: "danger",
               label: t("page.breadcrumb.back"),
             },
             {
