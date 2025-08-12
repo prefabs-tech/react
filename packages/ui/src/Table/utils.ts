@@ -19,8 +19,6 @@ import type {
   SortingState,
 } from "@tanstack/react-table";
 
-// Type for the return value
-
 /**
  * Maps filter functions to their corresponding operators
  * @param filterFunction The filter function to map
@@ -28,7 +26,6 @@ import type {
  */
 export const getFilterOperator = (filterFunction: TFilterFunction_) => {
   switch (filterFunction) {
-    // Existing cases
     case FILTER_FUNCTIONS_ENUM.CONTAINS:
       return { operator: FILTER_OPERATORS_ENUM.CONTAINS };
     case FILTER_FUNCTIONS_ENUM.STARTS_WITH:
@@ -75,7 +72,7 @@ export const getFilterOperator = (filterFunction: TFilterFunction_) => {
 
 const getRangeFilter = (filterState: ColumnFilter) => {
   const values = (filterState.value as string[]).filter(
-    (value) => !!value && value !== null,
+    (value) => value && value !== null,
   );
 
   if (values.length < 1) {
@@ -83,11 +80,15 @@ const getRangeFilter = (filterState: ColumnFilter) => {
   }
 
   if (filterState.filterFn === FILTER_FUNCTIONS_ENUM.BETWEEN) {
-    return {
-      key: filterState.id,
-      ...getFilterOperator(filterState.filterFn || FILTER_FUNCTIONS_ENUM.IN),
-      value: values.join(","),
-    };
+    return values.length > 1
+      ? {
+          key: filterState.id,
+          ...getFilterOperator(
+            filterState.filterFn || FILTER_FUNCTIONS_ENUM.IN,
+          ),
+          value: values.join(","),
+        }
+      : null;
   }
 
   return {
@@ -119,9 +120,7 @@ export const getRequestJSON = (
     const updatedFilterState = filterState.filter((filter) => {
       // Check if the filter value is defined or not
       if (Array.isArray(filter.value)) {
-        const values = filter.value.filter(
-          (value) => !!value && value !== null,
-        );
+        const values = filter.value.filter((value) => value && value !== null);
 
         return values.length > 0;
       }
