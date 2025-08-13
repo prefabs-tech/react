@@ -83,22 +83,32 @@ export const DataActionsMenu = ({
       return null;
     }
 
-    const { disabled, icon, key, label, className, onClick } = items[0];
+    const {
+      disabled,
+      display = true,
+      icon,
+      key,
+      label,
+      className,
+      onClick,
+    } = items[0];
 
     if (items.length == 1 && icon && !displayActionMenu) {
       return (
-        <Button
-          key={key}
-          iconLeft={icon}
-          data-pr-tooltip={label}
-          disabled={disabled}
-          variant="textOnly"
-          size="small"
-          title={label}
-          severity={className === "danger" ? "danger" : undefined}
-          onClick={(event) => onClick && onClick()}
-          rounded
-        />
+        display && (
+          <Button
+            key={key}
+            iconLeft={icon}
+            data-pr-tooltip={label}
+            disabled={disabled}
+            variant="textOnly"
+            size="small"
+            title={label}
+            severity={className === "danger" ? "danger" : undefined}
+            onClick={(event) => onClick && onClick()}
+            rounded
+          />
+        )
       );
     }
 
