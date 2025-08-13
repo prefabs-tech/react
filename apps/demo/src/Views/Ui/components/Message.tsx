@@ -10,7 +10,7 @@ export const MessageDemo = () => {
 
   const propertiesData = [
     {
-      default: "false",
+      default: "true",
       description: t("message.propertiesDescription.enableClose"),
       prop: "enableClose",
       type: "boolean",
@@ -72,39 +72,26 @@ export const MessageDemo = () => {
 
       <Section title={t("message.usage.severity")}>
         <Message message="Info message" severity="info" enableClose={true} />
-        <Message
-          message="Success message"
-          severity="success"
-          enableClose={true}
-        />
-        <Message
-          message="Warning message"
-          severity="warning"
-          enableClose={true}
-        />
-        <Message
-          message="Danger message"
-          severity="danger"
-          enableClose={true}
-        />
+        <Message message="Success message" severity="success" />
+        <Message message="Warning message" severity="warning" />
+        <Message message="Danger message" severity="danger" />
         <Message
           message="We value your feedback: take our quick survey!"
           severity="tip"
-          enableClose={true}
         />
 
         <CodeBlock
-          exampleCode='<Message message="Info message" severity="info" enableClose={true} />
-<Message message="Success message" severity="success" enableClose={true} />
-<Message message="Warning message" severity="warning" enableClose={true} />
-<Message message="Danger message" severity="danger" enableClose={true} />
-<Message message="We value your feedback: take our quick survey!" severity="tip" enableClose={true} />'
+          exampleCode='<Message message="Info message" severity="info" />
+<Message message="Success message" severity="success" />
+<Message message="Warning message" severity="warning" />
+<Message message="Danger message" severity="danger" />
+<Message message="We value your feedback: take our quick survey!" severity="tip" />'
         />
       </Section>
 
-      <Section title={t("message.usage.enableClose")}>
+      <Section title={t("message.usage.disableClose")}>
         <Message
-          enableClose={true}
+          enableClose={false}
           icon={<i className="pi pi-bell" />}
           message="We value your feedback: take our quick survey!"
         />
@@ -112,7 +99,7 @@ export const MessageDemo = () => {
           exampleCode='<Message 
   message="We value your feedback: take our quick survey!"
   icon={<i className="pi pi-bell" />}
-  enableClose={true}
+  enableClose={false}
 />'
         />
       </Section>
@@ -124,7 +111,6 @@ export const MessageDemo = () => {
             "New features just launched! Check them out!",
             "New Year, New You: Start fresh with our services!",
           ]}
-          enableClose={true}
         />
         <CodeBlock
           exampleCode="<Message
@@ -134,7 +120,6 @@ export const MessageDemo = () => {
       'New features just launched! Check them out!',
       'New Year, New You: Start fresh with our services!'
     ]}
-    enableClose={true}
 />"
         />
       </Section>

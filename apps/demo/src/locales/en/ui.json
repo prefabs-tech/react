@@ -237,7 +237,7 @@
       "arrayMessage": "Array of message",
       "basic": "Basic",
       "customMessage": "Custom message",
-      "enableClose": "Enable close",
+      "disableClose": "Disable close",
       "hideIcon": "Hide default icon",
       "icons": {
         "customIcon": "Custom icon",

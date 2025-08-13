@@ -11,7 +11,7 @@ type MessageProperties = {
 
 const Message = ({
   onClose,
-  enableClose = false,
+  enableClose = true,
   message,
   icon,
   severity = "info",
