@@ -297,6 +297,22 @@ const breadcrumb = (
           paginated={false}
         />
       </Section>
+
+      <Section title={t("headers.types")}>
+        <CodeBlock
+          exampleCode='
+interface ActionsMenuItem
+  extends Omit<MenuItem, "onClick">,
+    Partial<IButtonProperties> {
+  iconOnly?: boolean;
+  onClick?: (event?: React.MouseEvent | React.KeyboardEvent) => void;
+}
+
+interface ToolbarActionsMenuProperties {
+actions?: ActionsMenuItem[];
+}'
+        />
+      </Section>
     </>
   );
 };
