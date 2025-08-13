@@ -25,7 +25,7 @@ export interface DataActionsMenuProperties<TData> {
 export const DataActionsMenu = ({
   actions,
   data,
-  displayActionMenu = false,
+  displayActionMenu = true,
   displayActions = true, // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
@@ -83,8 +83,15 @@ export const DataActionsMenu = ({
       return null;
     }
 
-    const { disabled, display, icon, key, label, className, onClick } =
-      items[0];
+    const {
+      disabled,
+      display = true,
+      icon,
+      key,
+      label,
+      className,
+      onClick,
+    } = items[0];
 
     if (items.length == 1 && icon && !displayActionMenu) {
       return (
