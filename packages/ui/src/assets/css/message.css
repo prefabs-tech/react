@@ -5,7 +5,7 @@
   color: var(--_color);
   display: flex;
   gap: 1rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .message .message-content {
@@ -26,7 +26,7 @@
 }
 
 .message .close-message .pi {
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
 
 .message.danger {
@@ -45,6 +45,12 @@
   --_background-color: var(--dz-success-color);
   --_border-color: var(--dz-success-color);
   --_color: var(--dz-success-color);
+}
+
+.message.tip {
+  --_background-color: var(--dz-tip-color);
+  --_border-color: var(--dz-tip-color);
+  --_color: var(--dz-tip-color);
 }
 
 .message.warning {

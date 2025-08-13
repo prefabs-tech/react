@@ -5,7 +5,7 @@ type MessageProperties = {
   icon?: ReactNode;
   message: string[] | ReactNode;
   onClose?: () => void;
-  severity?: "info" | "success" | "warning" | "danger";
+  severity?: "info" | "success" | "warning" | "danger" | "tip";
   showIcon?: boolean;
 };
 
@@ -24,6 +24,7 @@ const Message = ({
     info: "pi pi-info-circle",
     success: "pi pi-check-circle",
     warning: "pi pi-exclamation-triangle",
+    tip: "pi pi-lightbulb",
   };
 
   const handleClose = () => {

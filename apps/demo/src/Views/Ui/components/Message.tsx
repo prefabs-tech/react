@@ -37,7 +37,7 @@ export const MessageDemo = () => {
       default: "info",
       description: t("message.propertiesDescription.severity"),
       prop: "severity",
-      type: `"info" | "success" | "warning" | "danger"`,
+      type: `"info" | "success" | "warning" | "danger" | "tip"`,
     },
     {
       default: "true",
@@ -87,12 +87,18 @@ export const MessageDemo = () => {
           severity="danger"
           enableClose={true}
         />
+        <Message
+          message="We value your feedback: take our quick survey!"
+          severity="tip"
+          enableClose={true}
+        />
 
         <CodeBlock
           exampleCode='<Message message="Info message" severity="info" enableClose={true} />
 <Message message="Success message" severity="success" enableClose={true} />
 <Message message="Warning message" severity="warning" enableClose={true} />
-<Message message="Danger message" severity="danger" enableClose={true} />'
+<Message message="Danger message" severity="danger" enableClose={true} />
+<Message message="We value your feedback: take our quick survey!" severity="tip" enableClose={true} />'
         />
       </Section>
 
