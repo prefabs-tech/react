@@ -25,7 +25,7 @@ export interface DataActionsMenuProperties<TData> {
 export const DataActionsMenu = ({
   actions,
   data,
-  displayActionMenu = false,
+  displayActionMenu = true,
   displayActions = true, // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
