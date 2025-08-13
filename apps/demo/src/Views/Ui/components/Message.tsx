@@ -66,26 +66,17 @@ export const MessageDemo = () => {
       </Section>
 
       <Section title={t("message.usage.basic")}>
-        <Message message="Season sale: Up to 50% off selected items!" />
-        <CodeBlock exampleCode='<Message message="Season sale: Up to 50% off selected items!" />' />
-      </Section>
-
-      <Section title={t("message.usage.severity")}>
-        <Message message="Info message" severity="info" enableClose={true} />
+        <Message message="Info message" severity="info" />
         <Message message="Success message" severity="success" />
         <Message message="Warning message" severity="warning" />
         <Message message="Danger message" severity="danger" />
-        <Message
-          message="We value your feedback: take our quick survey!"
-          severity="tip"
-        />
-
+        <Message message="Tip message" severity="tip" />
         <CodeBlock
           exampleCode='<Message message="Info message" severity="info" />
 <Message message="Success message" severity="success" />
 <Message message="Warning message" severity="warning" />
 <Message message="Danger message" severity="danger" />
-<Message message="We value your feedback: take our quick survey!" severity="tip" />'
+<Message message="Tip message" severity="tip" />'
         />
       </Section>
 
