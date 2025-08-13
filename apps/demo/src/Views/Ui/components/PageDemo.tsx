@@ -220,8 +220,14 @@ export const PageDemo = () => {
                 severity: "secondary",
               },
               {
+                iconLeft: "pi pi-trash",
                 label: "Delete",
+                variant: "outlined",
                 className: "danger",
+                onClick: () => {
+                  console.log("Event clicked");
+                },
+                iconOnly: true,
               },
             ],
           }}
@@ -247,8 +253,14 @@ export const PageDemo = () => {
         severity: "secondary",
       },
       {
+        iconLeft: "pi pi-trash",
         label: "Delete",
+        variant: "outlined",
         className: "danger",
+        onClick: () => {
+          console.log("Event clicked");
+        },
+        iconOnly: true,
       },
     ],
   }}

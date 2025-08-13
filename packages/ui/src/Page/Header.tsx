@@ -56,9 +56,17 @@ export const PageHeader = ({
             className="dz-page-toolbar"
             data-breadcrumb={!!breadcrumb}
           >
-            {toolbarActionMenu.actions?.map((action) => (
-              <Button key={action.key} {...action} />
-            ))}
+            {toolbarActionMenu.actions?.map((action) => {
+              const { iconOnly, key, label, ...rest } = action;
+
+              return (
+                <Button
+                  key={key}
+                  label={iconOnly ? undefined : label}
+                  {...rest}
+                />
+              );
+            })}
           </div>
           <div className="toolbar-action-menu">
             <ToolbarActions {...toolbarActionMenu} />

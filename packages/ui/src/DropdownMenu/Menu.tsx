@@ -7,6 +7,8 @@ export interface MenuItem {
   key?: string;
   label?: string;
   icon?: React.ReactNode;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
   onClick?: () => void;
 }
 
@@ -28,11 +30,15 @@ const Menu: React.FC<MenuProperties> = ({
           className,
           disabled,
           icon,
+          iconLeft,
+          iconRight,
           onClick,
           display = true,
           key,
           label,
         } = item;
+
+        const menuIcon = icon || iconLeft || iconRight;
 
         return display ? (
           <li
@@ -45,11 +51,11 @@ const Menu: React.FC<MenuProperties> = ({
               renderOption(item)
             ) : (
               <span className="menu-item">
-                {icon ? (
-                  typeof icon === "string" ? (
-                    <i className={icon}></i>
+                {menuIcon ? (
+                  typeof menuIcon === "string" ? (
+                    <i className={menuIcon}></i>
                   ) : (
-                    icon
+                    menuIcon
                   )
                 ) : null}
                 {label}

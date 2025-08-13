@@ -5,7 +5,7 @@ import { Button, DropdownMenu, IButtonProperties, MenuItem } from "..";
 export interface ActionsMenuItem
   extends Omit<MenuItem, "onClick">,
     Partial<IButtonProperties> {
-  requireConfirmationModal?: boolean;
+  iconOnly?: boolean;
   onClick?: (event?: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
