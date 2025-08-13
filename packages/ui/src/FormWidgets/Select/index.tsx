@@ -45,6 +45,7 @@ export type ISelectProperties<T> = {
   name: string;
   options: Option<T>[] | GroupedOption<T>[];
   placeholder?: string;
+  selectAllLabel?: string;
   showRemoveSelection?: boolean;
   tooltipOptions?: TooltipOptions;
   valueKey?: string;
@@ -74,7 +75,7 @@ export const Select = <T extends string | number>({
   disabled: selectFieldDisabled,
   disableGroupSelect,
   errorMessage,
-  enableTooltip = false,
+  enableTooltip = true,
   hasError,
   helperText,
   hideIfSingleOption = false,
@@ -86,6 +87,7 @@ export const Select = <T extends string | number>({
   name,
   options,
   placeholder,
+  selectAllLabel = "Select all",
   showRemoveSelection = true,
   tooltipOptions,
   value,
@@ -552,7 +554,9 @@ export const Select = <T extends string | number>({
     return (
       <>
         <div
-          className={`selected-options-wrapper ${hasSelectedOptions ? "visible" : ""}`}
+          className={`selected-options-wrapper ${
+            hasSelectedOptions ? "visible" : ""
+          }`}
         >
           {enableTooltip && (
             <Tooltip elementRef={menuTooltipReference} {...tooltipOptions}>
@@ -568,10 +572,10 @@ export const Select = <T extends string | number>({
           {multiple && (
             <li role="option" onClick={toggleSelectAll}>
               <Checkbox
-                checked={isAllSelected}
+                defaultChecked={isAllSelected}
                 disabled={activeOptions.length === 0}
               />
-              <span>Select all</span>
+              <span>{selectAllLabel}</span>
             </li>
           )}
 
@@ -627,7 +631,9 @@ export const Select = <T extends string | number>({
 
     return (
       <div
-        className={`label-container ${disabled ? "disabled" : ""} ${focused ? "focused" : ""}`.trimEnd()}
+        className={`label-container ${disabled ? "disabled" : ""} ${
+          focused ? "focused" : ""
+        }`.trimEnd()}
         aria-invalid={hasError}
         onClick={toggleOptionsMenu}
         onKeyDown={handleKeyDown}

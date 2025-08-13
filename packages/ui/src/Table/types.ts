@@ -28,6 +28,7 @@ declare module "@tanstack/react-table" {
 
   // eslint-disable-next-line unicorn/prevent-abbreviations, @typescript-eslint/no-unused-vars
   interface ColumnDefBase<TData, TValue> {
+    accessorKey?: string;
     align?: CellAlignmentType;
     dataType?: CellDataType;
     className?: string;

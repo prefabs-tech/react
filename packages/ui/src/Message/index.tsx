@@ -20,10 +20,10 @@ const Message = ({
   const [showMessage, setShowMessage] = useState(true);
 
   const defaultSeverityIcons = {
+    danger: "pi pi-exclamation-triangle",
     info: "pi pi-info-circle",
     success: "pi pi-check-circle",
     warning: "pi pi-exclamation-triangle",
-    danger: "pi pi-times-circle",
   };
 
   const handleClose = () => {

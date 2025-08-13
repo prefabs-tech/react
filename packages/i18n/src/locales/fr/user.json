@@ -97,7 +97,7 @@
         "placeholder": ""
       },
       "password": {
-        "label": "votre mot de passe"
+        "label": "Votre mot de passe"
       }
     },
     "instructions": "Enter your credentials to continue. (fr)",
@@ -106,7 +106,6 @@
       "signup": "Inscription"
     },
     "messages": {
-      "success": "Logged in successfully.",
       "validation": {
         "email": "Email is required. (fr)",
         "password": "Password is required. (fr)"
@@ -116,9 +115,6 @@
       "google": "Continue with Google"
     },
     "title": "Connexion"
-  },
-  "logout": {
-    "message": "Logged out successfully. (fr)"
   },
   "menu": {
     "signin": "Connexion",
@@ -190,7 +186,7 @@
         "submit": "Reset password (fr)"
       },
       "confirmPassword": {
-        "label": "Confirm password is required. (fr)"
+        "label": "Confirm password (fr)"
       },
       "newPassword": {
         "label": "New password (fr)"

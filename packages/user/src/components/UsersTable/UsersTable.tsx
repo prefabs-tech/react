@@ -12,6 +12,8 @@ import {
   type FilterOption,
 } from "@prefabs.tech/react-ui";
 
+import { useUser } from "@/hooks";
+
 import { useUserActions } from "./useUserActionsMethods";
 import { InvitationModal } from "../Invitation";
 
@@ -22,8 +24,6 @@ import type {
   InvitationExpiryDateField,
   UserType,
 } from "@/types";
-
-import { useUser } from "@/hooks";
 
 type VisibleColumn =
   | "name"

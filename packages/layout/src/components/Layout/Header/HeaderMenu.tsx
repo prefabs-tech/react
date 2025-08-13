@@ -1,5 +1,7 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 
+import useConfig from "@/hooks/useConfig";
+
 import { UserMenu } from "../common/UserMenu";
 
 import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
@@ -18,10 +20,14 @@ export const HeaderMenu = ({
   userMenuMode,
 }: HeaderProperties) => {
   const renderContent = () => {
+    const { layout: layoutConfig } = useConfig();
+
     return (
       <>
         {menu && <UserMenu menu={menu} userMenuMode={userMenuMode} />}
-        {!noLocaleSwitcher && <LocaleSwitcher />}
+        {!noLocaleSwitcher && (
+          <LocaleSwitcher showBadge={layoutConfig?.localeSwitcher?.showBadge} />
+        )}
       </>
     );
   };

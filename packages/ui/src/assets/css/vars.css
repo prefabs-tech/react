@@ -67,6 +67,9 @@
   --list-item-bg-active: #ededed;
 
   --menu-border-color: var(--border-color);
+  --menu-item-active-bg: #eff6ff;
+  --menu-item-active-color: #007aff;
+
   --submit-button-bg-color: var(--dz-primary-color);
 
   --transition-duration: 150ms;

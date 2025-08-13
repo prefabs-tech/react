@@ -1,3 +1,5 @@
+import "./assets/css/index.css";
+
 import { use } from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import ChainedBackend from "i18next-chained-backend";

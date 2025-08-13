@@ -28,13 +28,16 @@ const config: AppConfig = {
     debug: true,
     defaultNS: "app",
     fallbackLng: "en",
-    supportedLngs: ["en", "fr"],
     resources: {
       en: en,
       fr: fr,
     },
+    supportedLngs: ["en", "en-GB", "en-US", "fr"],
   },
   layout: {
+    localeSwitcher: {
+      showBadge: true,
+    },
     logo: "/logo.png",
     mainMenu: [
       {

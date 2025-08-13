@@ -208,7 +208,11 @@ export const TableHeader = <TData extends RowData>({
             column.getIsFiltered() ? "highlight" : ""
           }`;
 
-          const filterColumnClass = `${column.getCanFilter() ? `filter ${column.columnDef.meta?.filterVariant}` : ""}`;
+          const filterColumnClass = `${
+            column.getCanFilter()
+              ? `filter ${column.columnDef.meta?.filterVariant}`
+              : ""
+          }`;
 
           return (
             <ColumnHeader
@@ -225,7 +229,9 @@ export const TableHeader = <TData extends RowData>({
               }}
               className={`${
                 column.id ? `column-${column.id}` : ``
-              } ${activeColumnClass} ${column.columnDef.className || ""} ${filterColumnClass}`
+              } ${activeColumnClass} ${
+                column.columnDef.className || ""
+              } ${filterColumnClass}`
                 .replace(/\s\s/, " ")
                 .trimEnd()}
             >

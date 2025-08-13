@@ -1,8 +1,8 @@
-import { toast } from "react-toastify";
 import { submitNewPassword } from "supertokens-web-js/recipe/thirdpartyemailpassword";
 
 interface IPromise {
   status: string | undefined;
+  message?: string;
 }
 
 export const resetPassword = async (
@@ -22,19 +22,16 @@ export const resetPassword = async (
   try {
     const response = await submitNewPassword(data);
 
-    if (response.status === "OK") {
-      status = response.status;
-    } else {
-      status = response.status;
-      toast.error(status);
-    }
+    status = response.status;
+
+    return { status };
   } catch (err) {
     let errorMessage = "Oops! Something went wrong.";
+
     if (err instanceof Error) {
       errorMessage = err.message;
     }
-    toast.error(errorMessage);
-  }
 
-  return { status };
+    return { status: "ERROR", message: errorMessage };
+  }
 };
