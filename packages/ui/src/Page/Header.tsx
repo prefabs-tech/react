@@ -1,9 +1,16 @@
+import { ToolbarActions } from "./ToolbarActions";
+
+import type { ToolbarActionsMenuProperties } from "./ToolbarActions";
+
+import { Button } from "@/Buttons";
+
 interface IHeaderProperties {
   breadcrumb?: React.ReactNode;
-  titleTag?: string | React.ReactNode;
   subtitle?: React.ReactNode | string;
-  toolbar?: React.ReactNode;
   title?: string | React.ReactNode;
+  titleTag?: string | React.ReactNode;
+  toolbar?: React.ReactNode;
+  toolbarActionMenu?: ToolbarActionsMenuProperties;
 }
 
 export const PageHeader = ({
@@ -12,9 +19,12 @@ export const PageHeader = ({
   subtitle,
   toolbar,
   title,
+  toolbarActionMenu,
 }: IHeaderProperties) => {
   const renderTitle = () => {
-    if (!title) return null;
+    if (!title) {
+      return null;
+    }
 
     if (typeof title === "string") {
       return (
@@ -38,15 +48,41 @@ export const PageHeader = ({
           </div>
         )}
       </div>
-      {(breadcrumb || toolbar) && (
-        <div
-          data-testid="page-toolbar"
-          className="dz-page-toolbar"
-          data-breadcrumb={!!breadcrumb}
-        >
-          {breadcrumb}
-          {toolbar}
-        </div>
+
+      {toolbarActionMenu ? (
+        <>
+          <div
+            data-testid="page-toolbar"
+            className="toolbar-action-wrapper"
+            data-breadcrumb={!!breadcrumb}
+          >
+            {toolbarActionMenu.actions?.map((action) => {
+              const { iconOnly, key, label, ...rest } = action;
+
+              return (
+                <Button
+                  key={key}
+                  label={iconOnly ? undefined : label}
+                  {...rest}
+                />
+              );
+            })}
+          </div>
+          <div className="toolbar-action-menu">
+            <ToolbarActions {...toolbarActionMenu} />
+          </div>
+        </>
+      ) : (
+        (breadcrumb || toolbar) && (
+          <div
+            data-testid="page-toolbar"
+            className="dz-page-toolbar"
+            data-breadcrumb={!!breadcrumb}
+          >
+            {breadcrumb}
+            {toolbar}
+          </div>
+        )
       )}
     </div>
   );
