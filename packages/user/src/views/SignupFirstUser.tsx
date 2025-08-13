@@ -87,7 +87,6 @@ export const SignUpFirstUser = ({
       <>
         {error && (
           <Message
-            enableClose={true}
             message={message}
             onClose={() => {
               setError(null);

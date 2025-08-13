@@ -180,7 +180,6 @@ export const InvitationForm = ({
     <>
       {error && (
         <Message
-          enableClose={true}
           message={t("messages.invite.error")}
           onClose={() => {
             setError(false);

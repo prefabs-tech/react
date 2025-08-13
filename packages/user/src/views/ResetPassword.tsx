@@ -51,7 +51,6 @@ export const ResetPassword = ({ centered = true }: { centered?: boolean }) => {
     >
       {error && (
         <Message
-          enableClose={true}
           message={message}
           onClose={() => {
             setIsError(null);

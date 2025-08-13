@@ -62,7 +62,6 @@ export const ChangePassword = ({ centered = true }: { centered?: boolean }) => {
     >
       {error && (
         <Message
-          enableClose={true}
           message={errorMessage}
           onClose={() => {
             setError(null);
