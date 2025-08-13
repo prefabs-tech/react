@@ -237,7 +237,7 @@
       "arrayMessage": "Array of message (fr)",
       "basic": "Basic (fr)",
       "customMessage": "Custom message (fr)",
-      "enableClose": "Enable close (fr)",
+      "disableClose": "Disable close (fr)",
       "hideIcon": "Hide default icon (fr)",
       "icons": {
         "customIcon": "Custom icon (fr)",

@@ -30,7 +30,10 @@ export const TabbedPanelDemo = () => {
         />
       }
     >
-      <Message message="@deprecated: Use TabView component from the ui package instead" />
+      <Message
+        message="@deprecated: Use TabView component from the ui package instead"
+        enableClose={false}
+      />
       <Section title={t("tabbedPanel.usage.basic")}>
         <Basic />
         <CodeBlock

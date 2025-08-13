@@ -114,7 +114,6 @@ export const SignupWrapper: React.FC<IProperties> = ({
     <>
       {signupError && (
         <Message
-          enableClose={true}
           message={message}
           onClose={() => {
             setSignupError(null);

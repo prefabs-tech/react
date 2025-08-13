@@ -116,7 +116,6 @@ export const UpdateEmailForm = ({
     <>
       {error && (
         <Message
-          enableClose={true}
           message={errorMessage}
           onClose={() => {
             setError(null);

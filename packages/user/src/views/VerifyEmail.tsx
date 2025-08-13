@@ -74,7 +74,6 @@ export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
       <>
         {error ? (
           <Message
-            enableClose={true}
             message={message}
             onClose={() => {
               setError(false);

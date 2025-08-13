@@ -101,7 +101,6 @@ export const LoginWrapper: FC<IProperties> = ({
     <>
       {loginError && (
         <Message
-          enableClose={true}
           message={message}
           onClose={() => {
             setLoginError(null);
