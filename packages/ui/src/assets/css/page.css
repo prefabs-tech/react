@@ -30,6 +30,14 @@
 }
 
 .dz-page > .dz-page-header > .dz-page-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.dz-page > .dz-page-header > .toolbar-action-wrapper {
   display: none;
 }
 
@@ -63,10 +71,16 @@
   }
 
   .dz-page > .dz-page-header > .dz-page-toolbar {
+    margin-left: auto;
+    height: fit-content;
+    justify-content: flex-end;
+  }
+
+  .dz-page > .dz-page-header > .toolbar-action-wrapper {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--dz-page-gap);
+    gap: 0.5rem;
     height: fit-content;
     justify-content: flex-end;
     margin-left: auto;

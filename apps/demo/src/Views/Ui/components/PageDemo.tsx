@@ -124,41 +124,6 @@ export const PageDemo = () => {
           toolbarActionMenu={{
             actions: [
               {
-                iconLeft: "pi pi-chevron-left",
-                variant: "textOnly",
-                label: "Back",
-              },
-            ],
-          }}
-          children={pageContent}
-        />
-        <CodeBlock
-          exampleCode='const pageContent = <div style={{ height: "20vh" }}>Page content.</div>;
-
-<Page
-  title={"Basic page title"}
-  toolbarActionMenu={{
-    actions: [
-      {
-        iconLeft: "pi pi-chevron-left",
-        variant: "outlined",
-        label: "Back",
-      },
-    ],
-  }}
-  children={pageContent}
-/>'
-        />
-      </Section>
-
-      <Section title={t("page.usage.toolbar")}>
-        <Page
-          title={"Page title"}
-          children={pageContent}
-          breadcrumb={breadcrumb}
-          toolbarActionMenu={{
-            actions: [
-              {
                 iconLeft: <i className="pi pi-chevron-left"></i>,
                 variant: "textOnly",
                 label: "Back",
@@ -173,14 +138,13 @@ export const PageDemo = () => {
               },
             ],
           }}
+          children={pageContent}
         />
         <CodeBlock
           exampleCode='const pageContent = <div style={{ height: "20vh" }}>Page content.</div>;
 
 <Page
-  title={"Page title"}
-  children={pageContent}
-  breadcrumb={breadcrumb}
+  title={"Basic page title"}
   toolbarActionMenu={{
     actions: [
       {
@@ -198,6 +162,43 @@ export const PageDemo = () => {
       },
     ],
   }}
+  children={pageContent}
+/>'
+        />
+      </Section>
+
+      <Section title={t("page.usage.toolbarAndBreadcrumb")}>
+        <Page
+          title={"Page title"}
+          children={pageContent}
+          breadcrumb={breadcrumb}
+          toolbar={
+            <>
+              <Button severity="secondary" label={"Edit"} />
+              <Button severity="danger" label={"Delete"} />
+            </>
+          }
+        />
+        <CodeBlock
+          exampleCode='const pageContent = <div style={{ height: "20vh" }}>Page content.</div>;
+const breadcrumb = (
+  <Button
+    iconLeft={<i className="pi pi-chevron-left"></i>}
+    variant="textOnly"
+    label={t("page.breadcrumb.back")}
+  />
+);
+
+<Page
+  title={"Page title"}
+  children={pageContent}
+  breadcrumb={breadcrumb}
+  toolbar={
+    <>
+      <Button severity="secondary" label={"Edit"} />
+      <Button severity="danger" label={"Delete"} />
+    </>
+  }
 />'
         />
       </Section>

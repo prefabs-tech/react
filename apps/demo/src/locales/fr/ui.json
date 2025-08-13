@@ -338,7 +338,7 @@
       "menu": "Page (fr)",
       "basic": "Page demo basic (fr)",
       "centerAligned": "Page with center aligned contents (fr)",
-      "toolbar": "Page with toolbar (fr)",
+      "toolbarAndBreadcrumb": "Page with toolbar and breadcrumb (fr)",
       "stringSubtitle": "Page with subtitle string (fr)",
       "componentSubtitle": "Page with subtitle component (fr)",
       "breadcrumb": "Page with breadcrumb (fr)",

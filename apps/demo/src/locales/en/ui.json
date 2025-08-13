@@ -338,7 +338,7 @@
       "menu": "Page",
       "basic": "Page demo basic",
       "centerAligned": "Page with center aligned contents",
-      "toolbar": "Page with toolbar",
+      "toolbarAndBreadcrumb": "Page with toolbar and breadcrumb",
       "stringSubtitle": "Page with subtitle string",
       "componentSubtitle": "Page with subtitle component",
       "breadcrumb": "Page with breadcrumb",

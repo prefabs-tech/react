@@ -53,7 +53,7 @@ export const PageHeader = ({
         <>
           <div
             data-testid="page-toolbar"
-            className="dz-page-toolbar"
+            className="toolbar-action-wrapper"
             data-breadcrumb={!!breadcrumb}
           >
             {toolbarActionMenu.actions?.map((action) => {
