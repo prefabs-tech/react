@@ -124,7 +124,7 @@ export const PageDemo = () => {
           toolbarActionMenu={{
             actions: [
               {
-                icon: "pi pi-chevron-left",
+                iconLeft: "pi pi-chevron-left",
                 variant: "textOnly",
                 label: "Back",
               },
@@ -140,7 +140,7 @@ export const PageDemo = () => {
   toolbarActionMenu={{
     actions: [
       {
-        icon: "pi pi-chevron-left",
+        iconLeft: "pi pi-chevron-left",
         variant: "outlined",
         label: "Back",
       },

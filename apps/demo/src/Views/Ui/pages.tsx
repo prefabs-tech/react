@@ -212,7 +212,7 @@ const MISC_ROUTES = [
   },
   {
     path: UI_ROUTES.PAGE_DEMO,
-    key: "page.title.menu",
+    key: "page.title",
     element: <PageDemo />,
   },
   {
