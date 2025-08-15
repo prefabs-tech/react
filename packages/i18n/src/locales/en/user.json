@@ -1,4 +1,13 @@
 {
+  "authSocialLoginCallback": {
+    "email": {
+      "error": "No email provided by social login. Please use another form of login.",
+      "success": "Logged in successfully."
+    },
+    "message": {
+      "error": "Oops! Something went wrong."
+    }
+  },
   "changePassword": {
     "form": {
       "actions": {
@@ -7,23 +16,33 @@
       "confirmPassword": {
         "label": "Confirm password"
       },
-      "newPassword": {
-        "label": "New password"
-      },
       "currentPassword": {
         "label": "Current password"
+      },
+      "newPassword": {
+        "label": "New password"
       }
     },
     "messages": {
       "success": "You have successfully changed your password.",
       "validation": {
-        "confirmPassword": "Confirm password.",
+        "confirmPassword": "Confirm password is required.",
         "currentPassword": "Current password is required.",
+        "mustContain": "Password must contain at least 8 characters, including a number and a letter.",
         "mustMatch": "Passwords must match.",
         "newPassword": "New password is required."
       }
     },
     "title": "Change password"
+  },
+  "confirmation": {
+    "disable": {
+      "message": "Are you sure you want to disable this user?"
+    },
+    "enable": {
+      "message": "Are you sure you want to enable this user?"
+    },
+    "header": "Confirmation"
   },
   "emailVerification": {
     "button": {
@@ -34,11 +53,12 @@
     "messages": {
       "alreadyVerified": "Email is already verified. Please try refreshing the page.",
       "error": "Something went wrong. Please try again.",
-      "invalidToken": "The token is invalid.",
+      "invalidToken": "This email verification link is no more valid. Either it has been already used or has expired.",
       "resendEmailInfo": "Not received yet?",
       "success": "Email verified successfully.",
       "unverified": "We've sent an email to <strong>{{ email }}</strong> with a link for verification. Please check your inbox.",
-      "unauthenticated": "User session expired. Please signin to continue."
+      "unauthenticated": "User session expired. Please signin to continue.",
+      "verifyingEmail": "Verifying email."
     },
     "title": "Please verify your email address.",
     "toastMessages": {
@@ -52,7 +72,14 @@
     },
     "verifyEmail": "Verifying your email address."
   },
+  "error": "Sorry, something went wrong",
   "firstUser": {
+    "errors": {
+      "notFirstUser": "First admin has already signed up. If this was not expected, please contact developer team."
+    },
+    "links": {
+      "login": "Back to login"
+    },
     "login": {
       "messages": {
         "error": "Automatic login failed. Redirecting to login page for manual login."
@@ -69,7 +96,7 @@
   "forgotPassword": {
     "form": {
       "actions": {
-        "submit": "Email me"
+        "submit": "Send reset link"
       },
       "email": {
         "label": "Your email",
@@ -80,12 +107,19 @@
       "login": "Back to login"
     },
     "messages": {
-      "success": "Email sent sucessfully.",
-      "validation": {
-        "email": "Email is required."
-      }
+      "success": "Email sent sucessfully."
     },
     "title": "Forgot password"
+  },
+  "info": {
+    "email": "Email",
+    "givenName": "Given name",
+    "lastLoginAt": "Last login at",
+    "middleNames": "Middle names",
+    "roles": "Roles",
+    "signedUpAt": "Signed up at",
+    "status": "Status",
+    "surname": "Surname"
   },
   "login": {
     "form": {
@@ -106,8 +140,9 @@
       "signup": "Sign up"
     },
     "messages": {
+      "permissionDenied": "The credentials you input are invalid.",
+      "success": "Logged in successfully.",
       "validation": {
-        "email": "Email is required.",
         "password": "Password is required."
       }
     },
@@ -119,6 +154,29 @@
   "menu": {
     "signin": "Log in",
     "signup": "Sign up"
+  },
+  "messages": {
+    "appNotFound": "App not found for user.",
+    "disable": {
+      "error": "Error disabling user.",
+      "success": "User disabled successfully."
+    },
+    "enable": {
+      "error": "Error enabling user.",
+      "success": "User enabled successfully."
+    },
+    "success": "Email sent successfully."
+  },
+  "modal": {
+    "buttons": {
+      "label": "Send"
+    },
+    "dialog": {
+      "header": "Select an app"
+    },
+    "placeholders": {
+      "selectApp": "Select an app"
+    }
   },
   "profile": {
     "accountInfo": {
@@ -133,17 +191,19 @@
         "success": "A verification link has been sent to your email.",
         "verify": "Verify email to complete the email update."
       },
-      "newEmail": "New Email",
+      "newEmail": "New email",
       "title": "Update email"
     },
     "button": {
       "cancel": "Cancel",
+      "edit": "Edit",
       "update": "Update"
     },
     "form": {
       "email": {
         "label": "Email",
-        "placeholder": ""
+        "placeholder": "",
+        "title": "Update email"
       },
       "firstName": {
         "label": "First name",
@@ -155,13 +215,13 @@
       },
       "validations": {
         "email": {
-          "required": "Email is required"
+          "required": "Email is required."
         },
         "firstName": {
-          "required": "First name is required"
+          "required": "First name is required."
         },
         "lastName": {
-          "required": "Last name is required"
+          "required": "Last name is required."
         }
       }
     },
@@ -193,10 +253,13 @@
       }
     },
     "messages": {
+      "invalidToken": "The token is invalid. Please request again for password reset.",
       "success": "Password reset successfully.",
       "validation": {
         "confirmPassword": "Confirm password is required.",
-        "newPassword": "New password is required."
+        "mustMatch": "Passwords must match.",
+        "newPassword": "New password is required.",
+        "validationMessage": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase."
       }
     },
     "title": "Reset password"
@@ -204,10 +267,7 @@
   "signup": {
     "form": {
       "actions": {
-        "submit": "Create my account"
-      },
-      "confirmation": {
-        "label": "Confirm password"
+        "submit": "Sign up"
       },
       "confirmPassword": {
         "label": "Confirm password"
@@ -239,14 +299,23 @@
     },
     "title": "Sign up"
   },
+  "status": {
+    "disabled": "Disabled",
+    "enabled": "Enabled"
+  },
+  "toolbar": {
+    "disable": "Disable",
+    "enable": "Enable",
+    "sendResetLink": "Send reset-password link"
+  },
   "userMenu": {
+    "label": "My account",
     "logout": "Logout",
     "profile": "Profile"
   },
   "validation": {
     "messages": {
       "email": "Email is required.",
-      "mustMatch": "Passwords must match.",
       "passwordValidation": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase.",
       "requiredField": "This field is required.",
       "validEmail": "Email must be a valid email."
