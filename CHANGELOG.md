@@ -1,3 +1,25 @@
+# [0.63.0](https://github.com/prefabs-tech/react/compare/v0.62.0...v0.63.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* **ui:** table column range filter function logic ([#1562](https://github.com/prefabs-tech/react/issues/1562)) ([33a0a31](https://github.com/prefabs-tech/react/commit/33a0a312bc426b02504ea03bc4852a615df4ae0b))
+* **ui:** update table actions menu logic to display single action ([#1560](https://github.com/prefabs-tech/react/issues/1560)) ([e88c074](https://github.com/prefabs-tech/react/commit/e88c074f3fded9473df1cd73f2864868548539b2))
+
+
+### Features
+
+* **ui+i18n:** add badge to locale switcher ([#1559](https://github.com/prefabs-tech/react/issues/1559)) ([d329ae7](https://github.com/prefabs-tech/react/commit/d329ae7b1e4eee79f41b34fcd0c2c04027a28566))
+* **ui:** add new severity 'tip' for Message component ([#1563](https://github.com/prefabs-tech/react/issues/1563)) ([05523ee](https://github.com/prefabs-tech/react/commit/05523ee24f70b0aeb98968f31bd51ae3ee742024))
+* **ui:** display action menu by default in table even if there is only one action menu ([#1564](https://github.com/prefabs-tech/react/issues/1564)) ([61502ec](https://github.com/prefabs-tech/react/commit/61502ec52defa92a8c1abc0e5b982ea5d6cd0695))
+* **ui:** enable tooltip by default in select widget ([#1558](https://github.com/prefabs-tech/react/issues/1558)) ([7af3f43](https://github.com/prefabs-tech/react/commit/7af3f43e36ad74853de83148ae4d1a0560f8cb8c))
+* **ui:** highlight the selected locale in locale switcher ([#1556](https://github.com/prefabs-tech/react/issues/1556)) ([8c91b35](https://github.com/prefabs-tech/react/commit/8c91b356146de6cfd13af730b9abef8641a54866))
+* update icon for danger severity ([#1553](https://github.com/prefabs-tech/react/issues/1553)) ([5f3b383](https://github.com/prefabs-tech/react/commit/5f3b383ee123ce72f6d4f39855f7d96f39a92bc4))
+* **user:** prefill email field in forgot password form ([#1555](https://github.com/prefabs-tech/react/issues/1555)) ([fbe115d](https://github.com/prefabs-tech/react/commit/fbe115d7bf5349477fda697802e0ca800bbc9f29))
+* **user:** remove toast message on login, logout and signup success ([#1554](https://github.com/prefabs-tech/react/issues/1554)) ([6aa7851](https://github.com/prefabs-tech/react/commit/6aa7851ae328fecd13cdccd5df976903f65c9589))
+
+
+
 # [0.62.0](https://github.com/prefabs-tech/react/compare/v0.61.0...v0.62.0) (2025-08-04)
 
 

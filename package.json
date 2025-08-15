@@ -1,6 +1,6 @@
 {
   "name": "@prefabs.tech/react",
-  "version": "0.62.0",
+  "version": "0.63.0",
   "scripts": {
     "build": "turbo run build",
     "lint": "turbo run lint",
