@@ -1,16 +1,16 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
-import { AuthPage, InlineLink, Page } from "@prefabs.tech/react-ui";
+import { AuthPage, Page } from "@prefabs.tech/react-ui";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-
-import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
 
 import { AuthLinks } from "@/components/AuthLinks";
 import { DEFAULT_PATHS } from "@/constants";
 import { useConfig } from "@/hooks";
 import { forgotPassword } from "@/supertokens";
 import { LinkType } from "@/types/types";
+
+import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
 
 export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
   const { t } = useTranslation("user");
