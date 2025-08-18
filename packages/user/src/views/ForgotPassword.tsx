@@ -1,8 +1,10 @@
-import { useTranslation } from "@prefabs.tech/react-i18n";
-import { AuthPage } from "@prefabs.tech/react-ui";
-import { useState } from "react";
+import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
+import { AuthPage, InlineLink, Page } from "@prefabs.tech/react-ui";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
 
 import { AuthLinks } from "@/components/AuthLinks";
 import { DEFAULT_PATHS } from "@/constants";
@@ -10,14 +12,15 @@ import { useConfig } from "@/hooks";
 import { forgotPassword } from "@/supertokens";
 import { LinkType } from "@/types/types";
 
-import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
-
 export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
   const { t } = useTranslation("user");
   const [loading, setLoading] = useState<boolean>(false);
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const [searchParameters] = useSearchParams();
   const email = searchParameters.get("email") ?? undefined;
+
+  const [resendTimer, setResendTimer] = useState<number>(30);
 
   const config = useConfig();
 
@@ -29,6 +32,27 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
     },
   ];
 
+  useEffect(() => {
+    if (!submitted || resendTimer === 0) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      setResendTimer((previous) => previous - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [submitted, resendTimer]);
+
+  const formatTime = (seconds: number) => {
+    const minute = Math.floor(seconds / 60)
+      .toString()
+      .padStart(1, "0");
+    const second = (seconds % 60).toString().padStart(2, "0");
+
+    return `${minute}:${second}`;
+  };
+
   const handleSubmit = async (email: string) => {
     setLoading(true);
 
@@ -38,10 +62,53 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
 
     if (result?.status === "OK") {
       toast.success(`${t("forgotPassword.messages.success")}`);
+
+      setResendTimer(30);
+      setSubmitted(true);
     }
   };
 
-  return (
+  return submitted ? (
+    <Page
+      centered={centered}
+      className="forgot-password"
+      title={t("forgotPassword.acknowledgement.title")}
+    >
+      <div className="acknowledgement-page-content">
+        <p>
+          {
+            <Trans
+              i18nKey={"forgotPassword.acknowledgement.message"}
+              values={{ email }}
+              components={{
+                strong: <strong />,
+              }}
+              t={t}
+            />
+          }
+        </p>
+
+        <div className="resend-email">
+          <span className="resend-disabled">
+            {t("forgotPassword.acknowledgement.emailNotReceived")}
+          </span>
+
+          {resendTimer > 0 ? (
+            <span className="inline-link disabled">
+              {t("forgotPassword.acknowledgement.resendIn", {
+                time: formatTime(resendTimer),
+              })}
+            </span>
+          ) : (
+            <span className="inline-link" onClick={() => setSubmitted(false)}>
+              {t("forgotPassword.acknowledgement.resend")}
+            </span>
+          )}
+        </div>
+      </div>
+      <AuthLinks className="forgot-password" links={links} />
+    </Page>
+  ) : (
     <AuthPage
       centered={centered}
       className="forgot-password"
