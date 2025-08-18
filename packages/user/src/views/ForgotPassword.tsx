@@ -17,12 +17,14 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
+  const config = useConfig();
+
   const [searchParameters] = useSearchParams();
   const email = searchParameters.get("email") ?? undefined;
 
-  const [resendTimer, setResendTimer] = useState<number>(30);
+  const resendTime = config.features?.forgotPasswordResendTimeInSeconds || 30;
 
-  const config = useConfig();
+  const [resendTimer, setResendTimer] = useState<number>(resendTime);
 
   const links: Array<LinkType> = [
     {
@@ -61,7 +63,7 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
     if (result?.status === "OK") {
       toast.success(`${t("forgotPassword.messages.success")}`);
 
-      setResendTimer(30);
+      setResendTimer(resendTime);
       setSubmitted(true);
     }
   };
