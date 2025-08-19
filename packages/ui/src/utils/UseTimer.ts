@@ -15,12 +15,5 @@ export const useTimer = (duration: number) => {
     return () => clearInterval(interval);
   }, [timer]);
 
-  const formatTimer = () => {
-    const minutes = Math.floor(timer / 60).toString();
-    const seconds = (timer % 60).toString().padStart(2, "0");
-
-    return `${minutes}:${seconds}`;
-  };
-
-  return [timer, setTimer, formatTimer] as const;
+  return [timer, setTimer] as const;
 };

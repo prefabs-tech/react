@@ -1,4 +1,5 @@
 export * from "./date";
+export * from "./FormatDuration";
 export * from "./storage";
 export * from "./UseColumnsMap";
 export * from "./UseDebouncedValue";

@@ -1,5 +1,10 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
-import { AuthPage, Page, useTimer } from "@prefabs.tech/react-ui";
+import {
+  AuthPage,
+  formatDuration,
+  Page,
+  useTimer,
+} from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -26,7 +31,7 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
 
   const resendTime = config.features?.forgotPasswordResendTimeInSeconds ?? 30;
 
-  const [timer, setTimer, formatTimer] = useTimer(resendTime);
+  const [timer, setTimer] = useTimer(resendTime);
 
   const links: Array<LinkType> = [
     {
@@ -79,7 +84,7 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
           {timer > 0 ? (
             <span className="inline-link disabled">
               {t("forgotPassword.acknowledgement.resendIn", {
-                time: formatTimer(),
+                time: formatDuration(timer),
               })}
             </span>
           ) : (
