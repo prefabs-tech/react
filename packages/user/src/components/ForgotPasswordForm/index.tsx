@@ -6,15 +6,17 @@ import * as zod from "zod";
 import { ForgotPasswordFormFields } from "./ForgotPasswordFormFields";
 
 interface Properties {
-  handleSubmit: (email: string) => void;
-  loading?: boolean;
   email?: string;
+  loading?: boolean;
+  handleSubmit: (email: string) => void;
+  onEmailChange?: (email: string) => void;
 }
 
 export const ForgotPasswordForm = ({
-  handleSubmit,
-  loading,
   email,
+  loading,
+  handleSubmit,
+  onEmailChange,
 }: Properties) => {
   const { t, i18n } = useTranslation("user");
 
@@ -34,7 +36,10 @@ export const ForgotPasswordForm = ({
         email,
       }}
     >
-      <ForgotPasswordFormFields loading={loading} />
+      <ForgotPasswordFormFields
+        onEmailChange={onEmailChange}
+        loading={loading}
+      />
     </Provider>
   );
 };

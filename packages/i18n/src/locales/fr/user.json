@@ -67,6 +67,13 @@
     "title": "Register first user (fr)"
   },
   "forgotPassword": {
+    "acknowledgement": {
+      "emailNotReceived": "Didn't receive the email? (fr)",
+      "message": "An email with a link to reset your password was sent to <strong>{{ email }}</strong>. Follow the instructions in the email to access your account. (fr)",
+      "resend": "Resend (fr)",
+      "resendIn": "Resend in {{time}} (fr)",
+      "title": "Check your email (fr)"
+    },
     "form": {
       "actions": {
         "submit": "Email me (fr)"

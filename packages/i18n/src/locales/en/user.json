@@ -67,6 +67,13 @@
     "title": "Register first user"
   },
   "forgotPassword": {
+    "acknowledgement": {
+      "emailNotReceived": "Didn't receive the email?",
+      "message": "An email with a link to reset your password was sent to <strong>{{ email }}</strong>. Follow the instructions in the email to access your account.",
+      "resend": "Resend",
+      "resendIn": "Resend in {{time}}",
+      "title": "Check your email"
+    },
     "form": {
       "actions": {
         "submit": "Email me"

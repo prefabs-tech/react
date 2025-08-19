@@ -1,12 +1,16 @@
 import { FormActions, Email, useFormContext } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface Properties {
   loading?: boolean;
+  onEmailChange?: (email: string) => void;
 }
 
-export const ForgotPasswordFormFields = ({ loading }: Properties) => {
+export const ForgotPasswordFormFields = ({
+  loading,
+  onEmailChange,
+}: Properties) => {
   const { t } = useTranslation("user");
 
   const {
@@ -16,6 +20,12 @@ export const ForgotPasswordFormFields = ({ loading }: Properties) => {
   } = useFormContext();
 
   const emailValue = watch("email");
+
+  useEffect(() => {
+    if (onEmailChange) {
+      onEmailChange(emailValue);
+    }
+  }, [emailValue]);
 
   return (
     <>

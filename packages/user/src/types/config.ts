@@ -27,6 +27,7 @@ export interface UserConfig {
       url?: string;
     };
     updateEmail?: boolean;
+    forgotPasswordResendTimeInSeconds?: number;
   };
   homeRoute?: HomeRoute;
   socialLoginProviders?: SocialLoginType[];
