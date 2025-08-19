@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
-import { AuthPage, Page } from "@prefabs.tech/react-ui";
-import { useEffect, useState } from "react";
+import { AuthPage, Page, useTimer } from "@prefabs.tech/react-ui";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -24,9 +24,9 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
 
   const [email, setEmail] = useState<string>(searchedEmail || "");
 
-  const resendTime = config.features?.forgotPasswordResendTimeInSeconds || 30;
+  const resendTime = config.features?.forgotPasswordResendTimeInSeconds ?? 30;
 
-  const [resendTimer, setResendTimer] = useState<number>(resendTime);
+  const [timer, setTimer, formatTimer] = useTimer(resendTime);
 
   const links: Array<LinkType> = [
     {
@@ -35,25 +35,6 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
       to: config.customPaths?.login || DEFAULT_PATHS.LOGIN,
     },
   ];
-
-  useEffect(() => {
-    if (!submitted || resendTimer === 0) {
-      return;
-    }
-
-    const timer = setInterval(() => {
-      setResendTimer((previous) => previous - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [submitted, resendTimer]);
-
-  const formatTime = (seconds: number) => {
-    const minute = Math.floor(seconds / 60).toString();
-    const second = (seconds % 60).toString().padStart(2, "0");
-
-    return `${minute}:${second}`;
-  };
 
   const handleSubmit = async (email: string) => {
     setLoading(true);
@@ -65,18 +46,18 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
     if (result?.status === "OK") {
       toast.success(`${t("forgotPassword.messages.success")}`);
 
-      setResendTimer(resendTime);
+      setTimer(resendTime);
       setSubmitted(true);
     }
   };
 
-  return submitted ? (
+  const renderAcknowledgement = () => (
     <Page
       centered={centered}
-      className="forgot-password"
+      className="forgot-password acknowledgement"
       title={t("forgotPassword.acknowledgement.title")}
     >
-      <div className="acknowledgement-page-content">
+      <div className="acknowledgement-content">
         <p>
           {
             <Trans
@@ -95,10 +76,10 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
             {t("forgotPassword.acknowledgement.emailNotReceived")}
           </span>
 
-          {resendTimer > 0 ? (
+          {timer > 0 ? (
             <span className="inline-link disabled">
               {t("forgotPassword.acknowledgement.resendIn", {
-                time: formatTime(resendTimer),
+                time: formatTimer(),
               })}
             </span>
           ) : (
@@ -110,6 +91,10 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
       </div>
       <AuthLinks className="forgot-password" links={links} />
     </Page>
+  );
+
+  return submitted ? (
+    renderAcknowledgement()
   ) : (
     <AuthPage
       centered={centered}
