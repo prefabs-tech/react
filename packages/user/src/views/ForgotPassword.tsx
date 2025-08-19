@@ -9,13 +9,13 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
-
 import { AuthLinks } from "@/components/AuthLinks";
 import { DEFAULT_PATHS } from "@/constants";
 import { useConfig } from "@/hooks";
 import { forgotPassword } from "@/supertokens";
 import { LinkType } from "@/types/types";
+
+import { ForgotPasswordForm } from "../components/ForgotPasswordForm";
 
 export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
   const { t } = useTranslation("user");
@@ -107,10 +107,10 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
       title={t("forgotPassword.title")}
     >
       <ForgotPasswordForm
-        handleSubmit={handleSubmit}
-        loading={loading}
         email={email}
-        setEmail={setEmail}
+        loading={loading}
+        handleSubmit={handleSubmit}
+        onEmailChange={setEmail}
       />
       <AuthLinks className="forgot-password" links={links} />
     </AuthPage>

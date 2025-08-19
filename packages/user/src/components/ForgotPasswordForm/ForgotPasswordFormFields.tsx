@@ -4,10 +4,13 @@ import React, { useEffect } from "react";
 
 interface Properties {
   loading?: boolean;
-  setEmail?: (email: string) => void;
+  onEmailChange?: (email: string) => void;
 }
 
-export const ForgotPasswordFormFields = ({ loading, setEmail }: Properties) => {
+export const ForgotPasswordFormFields = ({
+  loading,
+  onEmailChange,
+}: Properties) => {
   const { t } = useTranslation("user");
 
   const {
@@ -19,8 +22,8 @@ export const ForgotPasswordFormFields = ({ loading, setEmail }: Properties) => {
   const emailValue = watch("email");
 
   useEffect(() => {
-    if (setEmail) {
-      setEmail(emailValue);
+    if (onEmailChange) {
+      onEmailChange(emailValue);
     }
   }, [emailValue]);
 
