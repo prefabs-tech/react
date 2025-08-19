@@ -13,7 +13,7 @@ export const useTimer = (duration: number) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [timer]);
+  }, []);
 
   return [timer, setTimer] as const;
 };
