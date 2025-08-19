@@ -20,7 +20,9 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
   const config = useConfig();
 
   const [searchParameters] = useSearchParams();
-  const email = searchParameters.get("email") ?? undefined;
+  const searchedEmail = searchParameters.get("email") ?? undefined;
+
+  const [email, setEmail] = useState<string>(searchedEmail || "");
 
   const resendTime = config.features?.forgotPasswordResendTimeInSeconds || 30;
 
@@ -118,6 +120,7 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
         handleSubmit={handleSubmit}
         loading={loading}
         email={email}
+        setEmail={setEmail}
       />
       <AuthLinks className="forgot-password" links={links} />
     </AuthPage>

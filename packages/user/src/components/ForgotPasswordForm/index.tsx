@@ -9,12 +9,14 @@ interface Properties {
   handleSubmit: (email: string) => void;
   loading?: boolean;
   email?: string;
+  setEmail?: (email: string) => void;
 }
 
 export const ForgotPasswordForm = ({
   handleSubmit,
   loading,
   email,
+  setEmail,
 }: Properties) => {
   const { t, i18n } = useTranslation("user");
 
@@ -34,7 +36,7 @@ export const ForgotPasswordForm = ({
         email,
       }}
     >
-      <ForgotPasswordFormFields loading={loading} />
+      <ForgotPasswordFormFields setEmail={setEmail} loading={loading} />
     </Provider>
   );
 };
