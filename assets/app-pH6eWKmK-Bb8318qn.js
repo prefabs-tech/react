@@ -1,1 +1,0 @@
-const o={copyright:"All rights reserved"},e={menu:{about:"About",home:"Home",login:"Login",logout:"Logout",profile:"Profile"}},t="Loading ...",a="This app",i={footer:o,header:e,loading:t,thisApp:a};export{i as default,o as footer,e as header,t as loading,a as thisApp};

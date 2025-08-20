@@ -1,1 +1,0 @@
-const r={401:"Invalid credentials. Please check your email or password and try again. (fr)",emailAlreadyExists:"This email already exists. Please sign in instead. (fr)",otherErrors:"Oops! Something went wrong (fr)."},e={errors:r};export{e as default,r as errors};
