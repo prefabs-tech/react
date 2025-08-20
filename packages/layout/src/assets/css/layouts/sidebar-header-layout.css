@@ -83,6 +83,7 @@
 
   .dz-sidebar-header-layout.collapsible > .dz-sidebar {
     position: static;
+    grid-area: sidebar;
     width: auto; 
     height: auto;
     padding-top: 0;
@@ -96,7 +97,6 @@
   .dz-sidebar-header-layout > main {
     grid-area: main;
     overflow-y: auto;
-    padding-top: 1rem;
   }
 
   .dz-sidebar-header-layout > header > .dz-header-container {
