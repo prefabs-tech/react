@@ -216,6 +216,10 @@
         "label": "First name (fr)",
         "placeholder": "Enter your first name (fr)"
       },
+      "middleName": {
+        "label": "Middle name(s) (fr)",
+        "placeholder": "Enter your middle name(s) (fr)"
+      },
       "lastName": {
         "label": "Last name (fr)",
         "placeholder": "Enter your last name (fr)"

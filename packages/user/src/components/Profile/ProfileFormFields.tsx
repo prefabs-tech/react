@@ -30,6 +30,12 @@ export const ProfileFormFields = ({
         submitCount={submitCount}
       />
       <TextInput
+        label={t("profile.form.middleName.label")}
+        name="middleNames"
+        placeholder={t("profile.form.middleName.placeholder")}
+        submitCount={submitCount}
+      />
+      <TextInput
         label={t("profile.form.lastName.label")}
         name="surname"
         placeholder={t("profile.form.lastName.placeholder")}
