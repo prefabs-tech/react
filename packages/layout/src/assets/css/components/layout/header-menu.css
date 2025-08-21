@@ -59,18 +59,15 @@ ul.dz-user-menu li span.dz-user-menu-item > i {
     flex-direction: row;
   }
 
-  .dz-layout .dz-header-menu > ul.dz-user-menu li > span.dz-user-menu-item {
-    padding: var(--_layout-header-item-padding-v) 0;
-  }
-
   .dz-layout .dz-header-menu span.dz-user-menu-item {
     cursor: pointer;
   }
 
   .dz-layout ul.dz-user-menu li > span.dz-user-menu-item:hover,
   .dz-layout .dz-header-menu span.dz-user-menu-item:hover {
-    text-decoration: underline;
     background: initial;
     font-weight: initial;
+    background-color: var(--dropdown-container-bg-color-hover, #e5e5e5);
+    border-radius: 5px;
   }
 }
