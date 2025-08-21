@@ -10,6 +10,11 @@
   display: none;
 }
 
+.dz-sidebar-header-layout .dz-sidebar-locale-switcher > .dz-locale-switcher {
+  width: 100%; 
+  padding: 0.5rem 1rem
+}
+
 .dz-sidebar-header-layout > .dz-sidebar > .dz-sidebar-header {
   display: flex;
   position: fixed;
@@ -21,7 +26,7 @@
   justify-content: space-between;
   background-color: var(--dz-layout-main-bg, #ffffff);
   padding: 0 1rem;
-  z-index: 10005;
+  z-index: 3;
 }
 
 .dz-sidebar-header-layout > header > .dz-header-container > .dz-toggle-menu,
@@ -36,7 +41,7 @@
   width: 100vw;
   height: 100vh;
   transition: left 0.3s ease-in-out;
-  z-index: 9999;
+  z-index: 2;
   padding-top: 60px;
   margin-bottom: 1rem;
 }
