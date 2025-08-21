@@ -99,6 +99,10 @@
     display: none;
   }
 
+  .dz-sidebar-header-layout > .dz-sidebar > .dz-sidebar-locale-switcher{
+    display: none;
+  }
+
   .dz-sidebar-header-layout > main {
     grid-area: main;
     overflow-y: auto;
