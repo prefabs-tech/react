@@ -47,6 +47,8 @@
 }
 
 .dz-sidebar-header-layout.collapsible[aria-expanded="true"] > .dz-sidebar {
+  display: flex;
+  flex-direction: column;
   left: 0;
 }
 
