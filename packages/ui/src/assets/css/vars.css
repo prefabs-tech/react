@@ -29,6 +29,9 @@
   --dz-warning-color: #ea580c;
   --dz-tip-color: #b6af10;
 
+  --dz-highlight-bg: #eff6ff;
+  --dz-hover-bg: var(--dz-highlight-bg);
+
   --dz-nav-item-active-bg: #eff6ff;
   --dz-nav-item-active-color: var(--dz-primary-color);
   --dz-nav-item-border-radius: 0;
