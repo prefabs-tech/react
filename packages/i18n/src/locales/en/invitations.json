@@ -96,6 +96,14 @@
       "pageControl": "Go to",
       "rowsPerPage": "Rows"
     },
+    "placeholders": {
+      "appId": "Select app",
+      "email": "Search",
+      "expiresAt": "Select date",
+      "invitedBy": "Search",
+      "role": "Select roles",
+      "status": "Select status"
+    },
     "searchPlaceholder": "Search",
     "status": {
       "accepted": "Accepted",

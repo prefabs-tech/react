@@ -1,4 +1,13 @@
 {
+  "authSocialLoginCallback": {
+    "email": {
+      "error": "No email provided by social login. Please use another form of login. (fr)",
+      "success": "Logged in successfully. (fr)"
+    },
+    "message": {
+      "error": "Oops! Something went wrong. (fr)"
+    }
+  },
   "changePassword": {
     "form": {
       "actions": {
@@ -19,11 +28,21 @@
       "validation": {
         "confirmPassword": "Confirm password is required. (fr)",
         "currentPassword": "Current password is required. (fr)",
+        "mustContain": "Password must contain at least 8 characters, including a number and a letter. (fr)",
         "mustMatch": "Passwords must match. (fr)",
         "newPassword": "New password is required. (fr)"
       }
     },
     "title": "Change password (fr)"
+  },
+  "confirmation": {
+    "disable": {
+      "message": "Are you sure you want to disable this user? (fr)"
+    },
+    "enable": {
+      "message": "Are you sure you want to enable this user? (fr)"
+    },
+    "header": "Confirmation (fr)"
   },
   "emailVerification": {
     "button": {
@@ -38,13 +57,14 @@
       "resendEmailInfo": "Not received yet? (fr)",
       "success": "Email verified successfully. (fr)",
       "unverified": "We've sent an email to <strong>{{ email }}</strong> with a link for verification. Please check your inbox. (fr)",
-      "unauthenticated": "User session expired. Please signin to continue. (fr)"
+      "unauthenticated": "User session expired. Please signin to continue. (fr)",
+      "verifyingEmail": "Verifying email. (fr)"
     },
     "title": "Please verify your email address. (fr)",
     "toastMessages": {
       "alreadyVerified": "Email is already verified. (fr)",
       "error": "Something went wrong. Please try again. (fr)",
-      "invalidToken": "The token is invalid. (fr)",
+      "invalidToken": "This email verification link is no more valid. Either it has been already used or has expired. (fr)",
       "resendError": "Something went wrong. Please try again. (fr)",
       "resendSuccess": "Email resent successfully. (fr)",
       "success": "Email verified successfully. (fr)",
@@ -52,7 +72,14 @@
     },
     "verifyEmail": "Verifying your email address. (fr)"
   },
+  "error": "Sorry, something went wrong (fr)",
   "firstUser": {
+    "errors": {
+      "notFirstUser": "First admin has already signed up. If this was not expected, please contact developer team. (fr)"
+    },
+    "links": {
+      "login": "Back to login (fr)"
+    },
     "login": {
       "messages": {
         "error": "Automatic login failed. Redirecting to login page for manual login. (fr)"
@@ -67,9 +94,16 @@
     "title": "Register first user (fr)"
   },
   "forgotPassword": {
+    "acknowledgement": {
+      "emailNotReceived": "Didn't receive the email? (fr)",
+      "message": "An email with a link to reset your password was sent to <strong>{{ email }}</strong>. Follow the instructions in the email to access your account. (fr)",
+      "resend": "Resend (fr)",
+      "resendIn": "Resend in {{time}} (fr)",
+      "title": "Check your email (fr)"
+    },
     "form": {
       "actions": {
-        "submit": "Email me (fr)"
+        "submit": "Send reset link (fr)"
       },
       "email": {
         "label": "Your email (fr)",
@@ -80,12 +114,19 @@
       "login": "Back to login (fr)"
     },
     "messages": {
-      "success": "Email sent sucessfully. (fr)",
-      "validation": {
-        "email": "Email is required. (fr)"
-      }
+      "success": "Email sent sucessfully. (fr)"
     },
     "title": "Forgot password (fr)"
+  },
+  "info": {
+    "email": "Email (fr)",
+    "givenName": "Given name (fr)",
+    "lastLoginAt": "Last login at (fr)",
+    "middleNames": "Middle names (fr)",
+    "roles": "Roles (fr)",
+    "signedUpAt": "Signed up at (fr)",
+    "status": "Status (fr)",
+    "surname": "Surname (fr)"
   },
   "login": {
     "form": {
@@ -106,19 +147,43 @@
       "signup": "Inscription"
     },
     "messages": {
+      "permissionDenied": "The credentials you input are invalid. (fr)",
+      "success": "Logged in successfully. (fr)",
       "validation": {
-        "email": "Email is required. (fr)",
         "password": "Password is required. (fr)"
       }
     },
     "social": {
-      "google": "Continue with Google"
+      "google": "Continue with Google (fr)"
     },
     "title": "Connexion"
   },
   "menu": {
     "signin": "Connexion",
     "signup": "Inscription"
+  },
+  "messages": {
+    "appNotFound": "App not found for user. (fr)",
+    "disable": {
+      "error": "Error disabling user. (fr)",
+      "success": "User disabled successfully. (fr)"
+    },
+    "enable": {
+      "error": "Error enabling user. (fr)",
+      "success": "User enabled successfully. (fr)"
+    },
+    "success": "Email sent successfully. (fr)"
+  },
+  "modal": {
+    "buttons": {
+      "label": "Send (fr)"
+    },
+    "dialog": {
+      "header": "Select an app (fr)"
+    },
+    "placeholders": {
+      "selectApp": "Select an app (fr)"
+    }
   },
   "profile": {
     "accountInfo": {
@@ -133,17 +198,19 @@
         "success": "A verification link has been sent to your email. (fr)",
         "verify": "Verify email to complete the email update. (fr)"
       },
-      "newEmail": "New Email (fr)",
+      "newEmail": "New email (fr)",
       "title": "Update email (fr)"
     },
     "button": {
       "cancel": "Cancel (fr)",
+      "edit": "Edit (fr)",
       "update": "Update (fr)"
     },
     "form": {
       "email": {
         "label": "Email (fr)",
-        "placeholder": ""
+        "placeholder": "",
+        "title": "Update email (fr)"
       },
       "firstName": {
         "label": "First name (fr)",
@@ -193,10 +260,13 @@
       }
     },
     "messages": {
+      "invalidToken": "The token is invalid. Please request again for password reset. (fr)",
       "success": "Password reset successfully. (fr)",
       "validation": {
         "confirmPassword": "Confirm password is required. (fr)",
-        "newPassword": "New password is required. (fr)"
+        "mustMatch": "Passwords must match. (fr)",
+        "newPassword": "New password is required. (fr)",
+        "validationMessage": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase. (fr)"
       }
     },
     "title": "Reset password (fr)"
@@ -206,11 +276,8 @@
       "actions": {
         "submit": "M'inscrire"
       },
-      "confirmation": {
-        "label": "Confirmez votre mot de passe"
-      },
       "confirmPassword": {
-        "label": "Confirm password (fr)"
+        "label": "Confirmez votre mot de passe"
       },
       "email": {
         "label": "Votre adresse e-mail",
@@ -220,16 +287,16 @@
         "helperText": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase. (fr)",
         "label": "Votre mot de passe"
       },
-      "termsAndConditions": "I agree to the <Link>Terms and conditions</Link> as set out by the user agreement. (fr)"
+      "termsAndConditions": "I agree to the <Link>Terms and conditions</Link> as set out by the user agreement."
     },
     "links": {
-      "forgotPassword": "Mot de passe oublié",
-      "login": "Connexion"
+      "forgotPassword": "Forgot password (fr)",
+      "login": "Log in (fr)"
     },
     "messages": {
-      "success": "Signed up successfully.",
+      "success": "Signed up successfully. (fr)",
       "validation": {
-        "confirmPassword": "ConfirmPassword is required. (fr)",
+        "confirmPassword": "Confirm password is required. (fr)",
         "email": "Email is required. (fr)",
         "mustMatch": "Passwords must match. (fr)",
         "password": "Password is required. (fr)",
@@ -239,14 +306,23 @@
     },
     "title": "Inscription"
   },
+  "status": {
+    "disabled": "Disabled (fr)",
+    "enabled": "Enabled (fr)"
+  },
+  "toolbar": {
+    "disable": "Disable (fr)",
+    "enable": "Enable (fr)",
+    "sendResetLink": "Send reset-password link (fr)"
+  },
   "userMenu": {
+    "label": "My account (fr)",
     "logout": "Logout (fr)",
     "profile": "Profile (fr)"
   },
   "validation": {
     "messages": {
       "email": "Email is required. (fr)",
-      "mustMatch": "Passwords must match. (fr)",
       "passwordValidation": "Password must contain at least 8 characters, including a number, a lowercase and an uppercase. (fr)",
       "requiredField": "This field is required. (fr)",
       "validEmail": "Email must be a valid email. (fr)"
