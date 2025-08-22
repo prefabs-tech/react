@@ -216,7 +216,7 @@
         "label": "First name (fr)",
         "placeholder": "Enter your first name (fr)"
       },
-      "middleName": {
+      "middleNames": {
         "label": "Middle names (fr)",
         "placeholder": "Enter your middle names (fr)"
       },
