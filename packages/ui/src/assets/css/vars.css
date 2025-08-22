@@ -21,6 +21,11 @@
   --data-stat-padding-inline: 0.75rem;
   --data-stat-min-width: 13rem;
 
+
+  --dropdown-bg-color-hover: var(--dz-hover-bg);
+  --dropdown-container-bg-color-hover: var(--dz-hover-bg);
+  --dropdown-container-bg-color: var(--dz-highlight-bg);
+
   --dz-primary-color: #2563eb;
   --dz-secondary-color: #475569;
   --dz-alternate-color: #0284c7;
@@ -36,7 +41,7 @@
   --dz-nav-item-active-color: var(--dz-primary-color);
   --dz-nav-item-border-radius: 0;
   --dz-nav-item-color: var(--color);
-  --dz-nav-item-hover-bg: #f0f2f7ad;
+  --dz-nav-item-hover-bg: var(--dz-highlight-bg);
   --dz-nav-item-hover-color: var(--dz-nav-item-color);
   --dz-nav-item-padding-h: 1.5rem;
   --dz-nav-item-padding-v: 0.5rem;
@@ -67,11 +72,11 @@
   --field-placeholder-color: #7b7676;
 
   --list-menu-bg-color: #ffffff;
-  --list-item-bg-hover: #ededed;
-  --list-item-bg-active: #ededed;
+  --list-item-bg-hover: var(--dz-hover-bg);
+  --list-item-bg-active: var(--dz-highlight-bg);
 
   --menu-border-color: var(--border-color);
-  --menu-item-active-bg: #eff6ff;
+  --menu-item-active-bg: var(--dz-highlight-bg);
   --menu-item-active-color: #007aff;
 
   --submit-button-bg-color: var(--dz-primary-color);

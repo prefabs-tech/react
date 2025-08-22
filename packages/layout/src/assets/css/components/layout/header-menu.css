@@ -65,7 +65,7 @@ ul.dz-user-menu li span.dz-user-menu-item > i {
 
   .dz-layout ul.dz-user-menu li > span.dz-user-menu-item:hover,
   .dz-layout .dz-header-menu span.dz-user-menu-item:hover {
-    background-color: var(--dz-hover-bg, #e5e5e5);
+    background-color: var(--dropdown-container-bg-color-hover, #e5e5e5);
     background: initial;
     border-radius: 5px;
     font-weight: initial;

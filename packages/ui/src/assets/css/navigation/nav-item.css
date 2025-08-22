@@ -4,8 +4,8 @@
   --_nav-item-active-color: var(--dz-nav-item-active-color, #2c2c2c);
   --_nav-item-disabled-color: var(--dz-nav-item-disabled-color, #6d7b92);
   --_nav-item-border-radius: var(--dz-nav-item-border-radius, 0);
-  --_nav-item-hover-bg: var(--dz-hover-bg, #f0f2f7ad);
-  --_nav-item-active-bg: var(--dz-highlight-bg, #eff6ff);
+  --_nav-item-hover-bg: var(--dz-nav-item-hover-bg, #f0f2f7ad);
+  --_nav-item-active-bg: var(--dz-nav-item-active-bg, #eff6ff);
 
   --_nav-item-padding-h: var(--dz-nav-item-padding-h, 1rem);
   --_nav-item-padding-v: var(--dz-nav-item-padding-v, 0.5rem);
