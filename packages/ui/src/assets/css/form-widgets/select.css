@@ -19,8 +19,8 @@
   --_padding-block: var(--field-padding-block, 0.5rem);
   --_padding-inline: var(--field-padding-inline, 0.75rem);
   --_options-menu-background-color: var(--list-menu-bg-color, #ffffff);
-  --_option-background-color-hover: var(--list-item-bg-hover, #ededed);
-  --_option-background-color-active: var(--list-item-bg-active, #ededed);
+  --_option-background-color-hover: var(--dz-hover-bg, #ededed);
+  --_option-background-color-active: var(--dz-highlight-bg, #ededed);
 }
 
 .select {
