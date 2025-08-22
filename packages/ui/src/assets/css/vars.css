@@ -41,7 +41,7 @@
   --dz-nav-item-active-color: var(--dz-primary-color);
   --dz-nav-item-border-radius: 0;
   --dz-nav-item-color: var(--color);
-  --dz-nav-item-hover-bg: var(--dz-highlight-bg);
+  --dz-nav-item-hover-bg: var(--dz-hover-bg);
   --dz-nav-item-hover-color: var(--dz-nav-item-color);
   --dz-nav-item-padding-h: 1.5rem;
   --dz-nav-item-padding-v: 0.5rem;
