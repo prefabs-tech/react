@@ -24,7 +24,7 @@ export const ProfileForm = ({ additionalProfileFields }: Properties) => {
     givenName: z
       .string()
       .min(1, t("profile.form.validations.firstName.required")),
-
+    middleNames: z.string().optional(),
     surname: z.string().min(1, t("profile.form.validations.lastName.required")),
   });
 
@@ -58,6 +58,7 @@ export const ProfileForm = ({ additionalProfileFields }: Properties) => {
     email: user?.email || "",
     givenName: user?.givenName || "",
     surname: user?.surname || "",
+    middleNames: user?.middleNames || "",
     ...additionalProfileFields?.defaultValues,
   };
 

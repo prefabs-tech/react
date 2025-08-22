@@ -216,6 +216,10 @@
         "label": "First name",
         "placeholder": "Enter your first name"
       },
+      "middleNames": {
+        "label": "Middle names",
+        "placeholder": "Enter your middle names"
+      },
       "lastName": {
         "label": "Last name",
         "placeholder": "Enter your last name"
