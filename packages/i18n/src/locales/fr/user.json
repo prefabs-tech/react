@@ -217,8 +217,8 @@
         "placeholder": "Enter your first name (fr)"
       },
       "middleName": {
-        "label": "Middle name(s) (fr)",
-        "placeholder": "Enter your middle name(s) (fr)"
+        "label": "Middle names (fr)",
+        "placeholder": "Enter your middle names (fr)"
       },
       "lastName": {
         "label": "Last name (fr)",
