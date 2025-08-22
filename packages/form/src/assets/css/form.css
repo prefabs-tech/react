@@ -2,7 +2,7 @@ form {
   align-items: stretch;
   display: flex;
   flex-direction: column;
-  gap: var(--form-gap, 1.5rem);
+  gap: var(--form-gap);
   justify-content: flex-start;
   width: 100%;
 }
@@ -25,8 +25,7 @@ form .field .p-dropdown {
 }
 
 form .field .p-dropdown > span.p-dropdown-label {
-  padding: var(--form-input-padding-v, 0.75rem)
-    var(--form-input-padding-h, 0.65rem);
+  padding: var(--form-input-padding-v) var(--form-input-padding-h);
 }
 
 form .field .p-calendar > input {
