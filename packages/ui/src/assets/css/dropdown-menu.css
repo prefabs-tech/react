@@ -59,8 +59,8 @@ ul.dropdown-menu-list li.danger {
 .dropdown-menu-list li.highlight,
 .dropdown-menu-list li.highlight:hover
 {
-  color: var(--menu-item-active-color, #007aff);
   background-color: var(--dz-highlight-bg, #eff6ff);
+  color: var(--menu-item-active-color, #007aff);
 }
 
 ul.dropdown-menu-list li[aria-disabled="true"] {
