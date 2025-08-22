@@ -1,3 +1,19 @@
+# [0.64.0](https://github.com/prefabs-tech/react/compare/v0.63.0...v0.64.0) (2025-08-22)
+
+
+### Bug Fixes
+
+* **i18n:** update translations ([#1570](https://github.com/prefabs-tech/react/issues/1570)) ([c05ac92](https://github.com/prefabs-tech/react/commit/c05ac9206319cba9536415a6a1d172c4523f5a94))
+
+
+### Features
+
+* **layout:** add style for login and signup similar to locale switcher ([#1574](https://github.com/prefabs-tech/react/issues/1574)) ([5f7b924](https://github.com/prefabs-tech/react/commit/5f7b924651ef6a408826ca60eaa952b81f21f88d))
+* **user:** add acknowledgement page for forgot password page ([#1571](https://github.com/prefabs-tech/react/issues/1571)) ([73bfef8](https://github.com/prefabs-tech/react/commit/73bfef870394b446851322499854bad926027a01))
+* **user:** add field for middle name in profile page ([#1573](https://github.com/prefabs-tech/react/issues/1573)) ([a7d4e56](https://github.com/prefabs-tech/react/commit/a7d4e56711acaf79726452be883e9071b4590a30))
+
+
+
 # [0.63.0](https://github.com/prefabs-tech/react/compare/v0.62.0...v0.63.0) (2025-08-15)
 
 
