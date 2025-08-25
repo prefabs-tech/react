@@ -13,6 +13,10 @@
   display: none;
 }
 
+.dz-header-container .header-addon > a:hover {
+  text-decoration: none;
+}
+
 .dz-layout[aria-expanded="true"] .dz-header-container .header-addon {
   display: block;
   padding: var(--dz-layout-nav-item-padding-v)
@@ -28,7 +32,7 @@
   }
 
   .dz-header-container .header-addon:hover {
-    background-color: var(--dz-hover-bg, #e5e5e5);
+    background-color: var(--hover-bg, #e5e5e5);
     border-radius: 5px;
     cursor: pointer;
   }

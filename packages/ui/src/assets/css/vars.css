@@ -21,10 +21,9 @@
   --data-stat-padding-inline: 0.75rem;
   --data-stat-min-width: 13rem;
 
-
-  --dropdown-bg-color-hover: var(--dz-hover-bg);
-  --dropdown-container-bg-color-hover: var(--dz-hover-bg);
-  --dropdown-container-bg-color: var(--dz-highlight-bg);
+  --dropdown-bg-color-hover: var(--hover-bg);
+  --dropdown-container-bg-color-hover: var(--hover-bg);
+  --dropdown-container-bg-color: var(--highlight-bg);
 
   --dz-primary-color: #2563eb;
   --dz-secondary-color: #475569;
@@ -34,14 +33,11 @@
   --dz-warning-color: #ea580c;
   --dz-tip-color: #b6af10;
 
-  --dz-highlight-bg: #eff6ff;
-  --dz-hover-bg: var(--dz-highlight-bg);
-
-  --dz-nav-item-active-bg: #eff6ff;
+  --dz-nav-item-active-bg: var(--highlight-bg);
   --dz-nav-item-active-color: var(--dz-primary-color);
   --dz-nav-item-border-radius: 0;
   --dz-nav-item-color: var(--color);
-  --dz-nav-item-hover-bg: var(--dz-hover-bg);
+  --dz-nav-item-hover-bg: var(--hover-bg);
   --dz-nav-item-hover-color: var(--dz-nav-item-color);
   --dz-nav-item-padding-h: 1.5rem;
   --dz-nav-item-padding-v: 0.5rem;
@@ -71,12 +67,15 @@
   --field-padding-inline: 0.75rem;
   --field-placeholder-color: #7b7676;
 
+  --highlight-bg: #eff6ff;
+  --hover-bg: var(--highlight-bg);
+
   --list-menu-bg-color: #ffffff;
-  --list-item-bg-hover: var(--dz-hover-bg);
-  --list-item-bg-active: var(--dz-highlight-bg);
+  --list-item-bg-hover: var(--hover-bg);
+  --list-item-bg-active: var(--highlight-bg);
 
   --menu-border-color: var(--border-color);
-  --menu-item-active-bg: var(--dz-highlight-bg);
+  --menu-item-active-bg: var(--highlight-bg);
   --menu-item-active-color: #007aff;
 
   --submit-button-bg-color: var(--dz-primary-color);
