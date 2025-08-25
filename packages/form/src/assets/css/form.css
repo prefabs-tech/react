@@ -1,5 +1,5 @@
 form {
-  --_gap: calc(3 * var(--field-gap, 0.5rem));
+  --_gap: var(--form-gap, calc(3 * var(--field-gap, 0.5rem)));
 
   align-items: stretch;
   display: flex;
