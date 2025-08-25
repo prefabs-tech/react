@@ -48,6 +48,7 @@ const DataTable = <TData extends RowData>({
   emptyTableMessage,
   enableRowSelection = false,
   enableSortingRemoval = false,
+  highlightHeader,
   id,
   initialFilters = [],
   initialSorting = [],
@@ -428,6 +429,7 @@ const DataTable = <TData extends RowData>({
           table={table}
           renderSortIcons={renderSortIcons}
           inputDebounceTime={inputDebounceTime}
+          highlight={highlightHeader}
         />
 
         <TableBody

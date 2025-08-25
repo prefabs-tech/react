@@ -20,12 +20,14 @@ interface THeaderProperty<T>
     "renderSortIcons" | "inputDebounceTime"
   > {
   table: Table<T>;
+  highlight?: boolean;
 }
 
 export const TableHeader = <TData extends RowData>({
   inputDebounceTime,
   renderSortIcons,
   table,
+  highlight = false,
 }: THeaderProperty<TData>) => {
   const [isFilterRowVisible, setIsFilterRowVisible] = useState(false);
 
@@ -51,11 +53,8 @@ export const TableHeader = <TData extends RowData>({
               getToggleSortingHandler,
             } = column;
 
-            const activeColumnClass = `${
-              getIsSorted() === "asc" || getIsSorted() === "desc"
-                ? "highlight"
-                : ""
-            }`;
+            const isSorted = ["asc", "desc"].includes(getIsSorted() as string);
+            const activeColumnClass = isSorted && highlight ? "highlight" : "";
 
             if (!isFilterRowVisible && column.getCanFilter()) {
               setIsFilterRowVisible(true);
@@ -204,15 +203,13 @@ export const TableHeader = <TData extends RowData>({
           if (!column.getCanFilter()) {
             return <ColumnHeader key={"filter" + column.id}></ColumnHeader>;
           }
-          const activeColumnClass = `${
-            column.getIsFiltered() ? "highlight" : ""
-          }`;
 
-          const filterColumnClass = `${
-            column.getCanFilter()
-              ? `filter ${column.columnDef.meta?.filterVariant}`
-              : ""
-          }`;
+          const activeColumnClass =
+            column.getIsFiltered() && highlight ? "highlight" : "";
+
+          const filterColumnClass = column.getCanFilter()
+            ? `filter ${column.columnDef.meta?.filterVariant}`
+            : "";
 
           return (
             <ColumnHeader
