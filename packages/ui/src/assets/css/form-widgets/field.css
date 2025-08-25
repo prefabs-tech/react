@@ -2,7 +2,7 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--field-gap, 0.5rem);
   width: 100%;
 }
 
