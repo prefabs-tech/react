@@ -2,9 +2,9 @@ import { DropdownMenu, NavGroup } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
-
 import { useLayoutContext } from "@/context/LayoutProvider";
+
+import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
 
 interface IProperties {
   menu: NavMenuItemType;
