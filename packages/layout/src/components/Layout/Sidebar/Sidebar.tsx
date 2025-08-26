@@ -1,6 +1,7 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 import { NavigationMenu } from "@prefabs.tech/react-ui";
 import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { SidebarFooter } from "./Footer";
 import { SidebarHeader } from "./Header";
@@ -42,6 +43,8 @@ export const Sidebar = ({
   userMenuMode,
   trigger,
 }: SidebarProperties) => {
+  const navigate = useNavigate();
+
   const { layout: layoutConfig } = useConfig();
   const { setMenuMobileOpen } = useLayoutContext();
 
@@ -53,6 +56,10 @@ export const Sidebar = ({
       onClick: () => {
         if ("onClick" in menu && typeof menu.onClick === "function") {
           menu.onClick();
+        }
+
+        if ("route" in menu) {
+          navigate(menu.route);
         }
 
         setMenuMobileOpen(false);
