@@ -2,6 +2,8 @@ import { DropdownMenu, NavGroup } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useLayoutContext } from "@/context/LayoutProvider";
+
 import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
 
 interface IProperties {
@@ -12,6 +14,7 @@ interface IProperties {
 
 export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
   const { label: userMenuLabel, menu: userMenu = [] } = menu;
+  const { setMenuMobileOpen } = useLayoutContext();
 
   const navigate = useNavigate();
 
@@ -26,9 +29,12 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
             if ("onClick" in _menu) {
               _menu.onClick();
             }
+
             if ("route" in _menu) {
               navigate(_menu.route);
             }
+
+            setMenuMobileOpen(false);
           },
         };
       }),
