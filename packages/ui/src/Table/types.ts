@@ -226,6 +226,7 @@ export interface TDataTableProperties<TData extends RowData>
     value: string;
     placeholder: string;
   };
+  highlightHeader?: boolean;
   id?: string;
   initialFilters?: ColumnFiltersState;
   initialSorting?: SortingState;
