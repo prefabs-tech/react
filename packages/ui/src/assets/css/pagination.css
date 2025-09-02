@@ -1,5 +1,5 @@
 :root {
-  --pagination-bg-color: #f8f9fa;
+  --pagination-bg-color: transparent;
   --pagination-padding: 0.8rem;
   --pagination-gap: 0.5rem;
   --pagination-buttons-bg-color: var(--dz-primary-color);

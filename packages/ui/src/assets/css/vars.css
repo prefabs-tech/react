@@ -21,9 +21,9 @@
   --data-stat-padding-inline: 0.75rem;
   --data-stat-min-width: 13rem;
 
-  --dropdown-bg-color-hover: var(--hover-bg);
-  --dropdown-container-bg-color-hover: var(--hover-bg);
-  --dropdown-container-bg-color: var(--highlight-bg);
+  --dropdown-bg-hover: var(--hover-bg);
+  --dropdown-trigger-bg-hover: var(--hover-bg);
+  --dropdown-trigger-bg: var(--highlight-bg);
 
   --dz-primary-color: #2563eb;
   --dz-secondary-color: #475569;
@@ -49,16 +49,16 @@
   --dz-page-gap: 1.5rem;
   --dz-page-centered-max-width: 954px;
 
-  --dz-table-border: 1px solid var(--border-color);
-  --dz-table-header-bg: #f0f2f7ad;
-  --dz-table-overlay-bg: rgba(255, 255, 255, 0.6);
-  --dz-table-header-active-bg: rgb(232, 240, 255);
-  --dz-table-row-hover-bg: #318aff0f;
-  --dz-table-column-padding: 0.75rem;
-  --dz-table-row-selected-bg: rgb(240, 245, 255);
-  --dz-table-body-bg: transparent;
-  --dz-table-stripe-color: transparent;
   --dz-table-actions-column-width: 4rem;
+  --dz-table-body-bg: transparent;
+  --dz-table-border: 1px solid var(--border-color);
+  --dz-table-column-padding: 0.75rem;
+  --dz-table-header-bg: transparent;
+  --dz-table-header-highlight-bg: transparent;
+  --dz-table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
+  --dz-table-row-hover-bg: var(--hover-bg);
+  --dz-table-row-selected-bg: var(var(--highlight-bg));
+  --dz-table-stripe-color: transparent;
 
   --field-bg-color-disabled: #f8f8f8;
   --field-bg-color: transparent;

@@ -1,15 +1,15 @@
 /* Table variables */
 :root {
-  --dz-table-border: 1px solid var(--border-color, #e5e7eb);
-  --dz-table-header-bg: #f0f2f7ad;
-  --dz-table-overlay-bg: rgba(255, 255, 255, 0.6);
-  --dz-table-header-active-bg: rgb(232, 240, 255);
-  --dz-table-row-hover-bg: #318aff0f;
-  --dz-table-column-padding: 0.75rem;
-  --dz-table-row-selected-bg: rgb(240, 245, 255);
-  --dz-table-body-bg: transparent;
-  --dz-table-stripe-color: transparent;
   --dz-table-actions-column-width: 4rem;
+  --dz-table-body-bg: transparent;
+  --dz-table-border: 1px solid var(--border-color, #e5e7eb);
+  --dz-table-column-padding: 0.75rem;
+  --dz-table-header-bg: transparent;
+  --dz-table-header-highlight-bg: transparent;
+  --dz-table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
+  --dz-table-row-hover-bg: var(--hover-bg);
+  --dz-table-row-selected-bg: var(--highlight-bg);
+  --dz-table-stripe-color: transparent;
 }
 
 /* Tanstack table class definitions */
@@ -44,7 +44,7 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  background: var(--dz-table-overlay-bg);
+  background: var(--dz-table-loading-overlay-bg);
 }
 
 .dz-table-container .toolbar {
@@ -137,12 +137,12 @@
 }
 
 .dz-table-container .table-wrapper > table tr > th.sortable:active {
-  background: var(--dz-table-header-active-bg);
+  background: var(--dz-table-header-highlight-bg);
 }
 
 .dz-table-container .table-wrapper > table tr > th.highlight,
 .dz-table-container .table-wrapper > table tr > td.highlight {
-  background: var(--dz-table-header-active-bg);
+  background: var(--dz-table-header-highlight-bg);
 }
 
 .dz-table-container .table-wrapper > table > tbody > tr:nth-child(even) {
