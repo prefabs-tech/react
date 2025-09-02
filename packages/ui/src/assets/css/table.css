@@ -83,6 +83,7 @@
 }
 
 .dz-table-container .pagination {
+  background: var(--dz-table-header-bg);
   border-top: none;
 }
 

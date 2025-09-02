@@ -127,6 +127,7 @@ export const Pagination: React.FC<PaginationProperties> = ({
                     className={`page-button ${
                       page === currentPage + 1 ? "active" : ""
                     }`}
+                    variant={page === currentPage + 1 ? "filled" : "outlined"}
                     onClick={() => onPageChange(page - 1)}
                     label={`${page}`}
                     size="small"

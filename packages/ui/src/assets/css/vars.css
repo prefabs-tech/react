@@ -78,6 +78,10 @@
   --menu-item-active-bg: var(--highlight-bg);
   --menu-item-active-color: #007aff;
 
+  --pagination-bg-color: transparent;
+  --pagination-padding: 0.75rem;
+  --pagination-gap: 0.5rem;
+
   --submit-button-bg-color: var(--dz-primary-color);
 
   --transition-duration: 150ms;
