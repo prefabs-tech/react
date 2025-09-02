@@ -306,20 +306,20 @@ const formatDemoData = [
   },
 ];
 
-const VERTICAL_CSS_CODE = `.dz-table-container.vertical .table-wrapper > table > tbody > tr,
-.dz-table-container.vertical .table-wrapper > table > tbody > tr > td,
-.dz-table-container.vertical .table-wrapper > table > thead tr > th {
+const VERTICAL_CSS_CODE = `.table-container.vertical .table-wrapper > table > tbody > tr,
+.table-container.vertical .table-wrapper > table > tbody > tr > td,
+.table-container.vertical .table-wrapper > table > thead tr > th {
   border: none;
 }
 
-.dz-table-container.vertical .table-wrapper > table > tbody > tr > td,
-.dz-table-container.vertical .table-wrapper > table > thead tr > th {
+.table-container.vertical .table-wrapper > table > tbody > tr > td,
+.table-container.vertical .table-wrapper > table > thead tr > th {
   border-left: var(--dz-table-border);
   border-right: var(--dz-table-border);
 }`;
 
-const HORIZONTAL_CSS_CODE = `.dz-table-container.horizontal .table-wrapper > table > tbody > tr > td,
-.dz-table-container.horizontal .table-wrapper > table > thead tr > th {
+const HORIZONTAL_CSS_CODE = `.table-container.horizontal .table-wrapper > table > tbody > tr > td,
+.table-container.horizontal .table-wrapper > table > thead tr > th {
   border: none;
 }`;
 

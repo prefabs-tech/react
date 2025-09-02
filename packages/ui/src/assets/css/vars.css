@@ -49,17 +49,6 @@
   --dz-page-gap: 1.5rem;
   --dz-page-centered-max-width: 954px;
 
-  --dz-table-actions-column-width: 4rem;
-  --dz-table-body-bg: transparent;
-  --dz-table-border: 1px solid var(--border-color);
-  --dz-table-column-padding: 0.75rem;
-  --dz-table-header-bg: transparent;
-  --dz-table-header-highlight-bg: transparent;
-  --dz-table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
-  --dz-table-row-hover-bg: var(--hover-bg);
-  --dz-table-row-selected-bg: var(var(--highlight-bg));
-  --dz-table-stripe-color: transparent;
-
   --field-bg-color-disabled: #f8f8f8;
   --field-bg-color: transparent;
   --field-icon-color: #7b7676;
@@ -83,6 +72,17 @@
   --pagination-gap: 0.5rem;
 
   --submit-button-bg-color: var(--dz-primary-color);
+
+  --table-actions-column-width: 4rem;
+  --table-body-bg: transparent;
+  --table-border: 1px solid var(--border-color);
+  --table-column-padding: 0.75rem;
+  --table-header-footer-bg: transparent;
+  --table-header-highlight-bg: transparent;
+  --table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
+  --table-row-hover-bg: var(--hover-bg);
+  --table-row-selected-bg: var(var(--highlight-bg));
+  --table-stripe-color: transparent;
 
   --transition-duration: 150ms;
 }

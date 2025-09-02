@@ -1,27 +1,25 @@
 /* Table variables */
 :root {
-  --dz-table-actions-column-width: 4rem;
-  --dz-table-body-bg: transparent;
-  --dz-table-border: 1px solid var(--border-color, #e5e7eb);
-  --dz-table-column-padding: 0.75rem;
-  --dz-table-header-bg: transparent;
-  --dz-table-header-highlight-bg: transparent;
-  --dz-table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
-  --dz-table-row-hover-bg: var(--hover-bg);
-  --dz-table-row-selected-bg: var(--highlight-bg);
-  --dz-table-stripe-color: transparent;
+  --table-actions-column-width: 4rem;
+  --table-body-bg: transparent;
+  --table-border: 1px solid var(--border-color, #e5e7eb);
+  --table-column-padding: 0.75rem;
+  --table-header-footer-bg: transparent;
+  --table-header-highlight-bg: transparent;
+  --table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
+  --table-row-hover-bg: var(--hover-bg);
+  --table-row-selected-bg: var(--highlight-bg);
+  --table-stripe-color: transparent;
 }
 
-/* Tanstack table class definitions */
-
-.dz-table-container {
+.table-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   position: relative;
 }
 
-.dz-table-container > span {
+.table-container > span {
   font-weight: 500;
   text-align: center;
   padding: 0.2rem 0;
@@ -29,143 +27,143 @@
   font-size: 1rem;
 }
 
-.dz-table-container > span[data-align="left"] {
+.table-container > span[data-align="left"] {
   text-align: left;
 }
 
-.dz-table-container > span[data-align="right"] {
+.table-container > span[data-align="right"] {
   text-align: right;
 }
 
-.dz-table-container .loading-overlay {
+.table-container .loading-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1;
-  background: var(--dz-table-loading-overlay-bg);
+  background: var(--table-loading-overlay-bg);
 }
 
-.dz-table-container .toolbar {
+.table-container .toolbar {
   align-items: center;
-  background: var(--dz-table-header-bg);
+  background: var(--table-header-footer-bg);
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: flex-end;
-  padding: var(--dz-table-column-padding);
+  padding: var(--table-column-padding);
   width: 100%;
 }
 
-.dz-table-container .table-wrapper {
+.table-container .table-wrapper {
   width: 100%;
   overflow-x: auto;
 }
 
-.dz-table-container .table-wrapper > table {
+.table-container .table-wrapper > table {
   min-width: 100%;
   border-collapse: collapse;
 }
 
-.dz-table-container .table-wrapper > table > tbody {
-  background: var(--dz-table-body-bg);
+.table-container .table-wrapper > table > tbody {
+  background: var(--table-body-bg);
 }
 
-.dz-table-container .toolbar,
-.dz-table-container .table-wrapper > table,
-.dz-table-container .table-wrapper > table tr,
-.dz-table-container .table-wrapper > table > tbody > tr > td,
-.dz-table-container .table-wrapper > table > thead > tr > th,
-.dz-table-container .pagination {
-  border: var(--dz-table-border);
+.table-container .table-wrapper > table > tfoot > tr {
+  background: var(--table-header-footer-bg, transparent);
 }
 
-.dz-table-container .pagination {
-  background: var(--dz-table-header-bg);
+.table-container .toolbar,
+.table-container .table-wrapper > table,
+.table-container .table-wrapper > table tr,
+.table-container .table-wrapper > table > tbody > tr > td,
+.table-container .table-wrapper > table > thead > tr > th,
+.table-container .pagination {
+  border: var(--table-border);
+}
+
+.table-container .pagination {
+  background: var(--table-header-footer-bg);
   border-top: none;
 }
 
-.dz-table-container .toolbar {
+.table-container .toolbar {
   border-bottom: none;
 }
 
-.dz-table-container .table-wrapper > table > tbody > tr > td,
-.dz-table-container .table-wrapper > table > thead > tr > th {
+.table-container .table-wrapper > table > tbody > tr > td,
+.table-container .table-wrapper > table > thead > tr > th {
   overflow: hidden;
 }
 
-.dz-table-container .table-wrapper > table > thead > tr > th.filter.multiselect,
-.dz-table-container .table-wrapper > table > thead > tr > th.filter.select {
+.table-container .table-wrapper > table > thead > tr > th.filter.multiselect,
+.table-container .table-wrapper > table > thead > tr > th.filter.select {
   overflow: visible;
 }
 
-.dz-table-container .table-wrapper > table tr > td[data-align="center"] > * {
+.table-container .table-wrapper > table tr > td[data-align="center"] > * {
   margin: auto;
 }
 
-.dz-table-container .table-wrapper > table tr > th {
+.table-container .table-wrapper > table tr > th {
   text-align: left;
   font-weight: 500;
 }
 
-.dz-table-container .table-wrapper > table tr > td[data-align="center"],
-.dz-table-container .table-wrapper > table tr > th[data-align="center"] {
+.table-container .table-wrapper > table tr > td[data-align="center"],
+.table-container .table-wrapper > table tr > th[data-align="center"] {
   text-align: center;
 }
 
-.dz-table-container .table-wrapper > table tr > td[data-align="right"] {
+.table-container .table-wrapper > table tr > td[data-align="right"] {
   text-align: right;
   padding-right: 2rem;
 }
 
-.dz-table-container .table-wrapper > table tr > th[data-align="right"] {
+.table-container .table-wrapper > table tr > th[data-align="right"] {
   text-align: center;
 }
 
-.dz-table-container .table-wrapper > table tr > th.sortable {
+.table-container .table-wrapper > table tr > th.sortable {
   cursor: pointer;
 }
 
-.dz-table-container .table-wrapper > table tr > th .sort-state {
+.table-container .table-wrapper > table tr > th .sort-state {
   margin-left: 0.5rem;
 }
 
-.dz-table-container .table-wrapper > table tr > th .sort-state i {
+.table-container .table-wrapper > table tr > th .sort-state i {
   font-size: 0.7rem !important;
   font-weight: 500 !important;
 }
 
-.dz-table-container .table-wrapper > table tr > th.sortable:active {
-  background: var(--dz-table-header-highlight-bg);
+.table-container .table-wrapper > table tr > th.highlight,
+.table-container .table-wrapper > table tr > td.highlight {
+  background: var(--table-header-highlight-bg);
 }
 
-.dz-table-container .table-wrapper > table tr > th.highlight,
-.dz-table-container .table-wrapper > table tr > td.highlight {
-  background: var(--dz-table-header-highlight-bg);
+.table-container .table-wrapper > table > tbody > tr:nth-child(even) {
+  background: var(--table-stripe-color);
 }
 
-.dz-table-container .table-wrapper > table > tbody > tr:nth-child(even) {
-  background: var(--dz-table-stripe-color);
+.table-container .table-wrapper > table > tbody > tr[data-selected="true"] {
+  background: var(--table-row-selected-bg) !important;
 }
 
-.dz-table-container .table-wrapper > table > tbody > tr[data-selected="true"] {
-  background: var(--dz-table-row-selected-bg) !important;
-}
-
-.dz-table-container
+.table-container
   .table-wrapper
   > table
   > tbody
   > tr[data-selected="true"]:hover,
 .table-wrapper > table > tbody > tr:hover {
-  background: var(--dz-table-row-hover-bg) !important;
+  background: var(--table-row-hover-bg) !important;
   transition: background var(--transition-duration) ease;
 }
 
 .table-wrapper > table .header-row {
-  background: var(--dz-table-header-bg);
+  background: var(--table-header-footer-bg);
   font-size: 1rem;
 }
 
@@ -209,23 +207,23 @@
   width: 100%;
 }
 
-.dz-table-container .table-wrapper > table > tbody > tr > td,
-.dz-table-container .table-wrapper > table > thead > tr > th {
-  padding: var(--dz-table-column-padding);
+.table-container .table-wrapper > table > tbody > tr > td,
+.table-container .table-wrapper > table > thead > tr > th {
+  padding: var(--table-column-padding);
 }
 
-.dz-table-container .table-wrapper > table > thead > tr > th.column-actions,
-.dz-table-container .table-wrapper > table > thead > tr > th.column-select {
-  width: var(--dz-table-actions-column-width);
-  max-width: var(--dz-table-actions-column-width);
-  min-width: var(--dz-table-actions-column-width);
+.table-container .table-wrapper > table > thead > tr > th.column-actions,
+.table-container .table-wrapper > table > thead > tr > th.column-select {
+  width: var(--table-actions-column-width);
+  max-width: var(--table-actions-column-width);
+  min-width: var(--table-actions-column-width);
 }
 
-.dz-table-container .pagination .page-input-control input {
+.table-container .pagination .page-input-control input {
   background: #ffffff;
 }
 
-.dz-table-container
+.table-container
   .table-wrapper
   > table
   > tbody

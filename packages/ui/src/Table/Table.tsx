@@ -405,7 +405,7 @@ const DataTable = <TData extends RowData>({
   ]);
 
   return (
-    <div id={id} className={("dz-table-container " + className).trimEnd()}>
+    <div id={id} className={("table-container " + className).trimEnd()}>
       {title ? (
         <span children={title.text} data-align={title.align || "center"} />
       ) : null}
