@@ -32,7 +32,7 @@
 }
 
 .popup-trigger[aria-expanded="true"] .dropdown-menu-trigger {
-  background-color: var(--dropdown-container-bg-color, #e5e5e5);
+  background-color: var(--dropdown-trigger-bg, #e5e5e5);
   border-radius: 5px;
 }
 
@@ -71,7 +71,7 @@ ul.dropdown-menu-list li[aria-disabled="true"] {
 }
 
 ul.dropdown-menu-list li:hover {
-  background-color: var(--dropdown-bg-color-hover, #e5e5e5);
+  background-color: var(--dropdown-bg-hover, #e5e5e5);
 }
 
 ul.dropdown-menu-list li .menu-item {
@@ -82,7 +82,7 @@ ul.dropdown-menu-list li .menu-item {
 
 @media screen and (min-width: 576px) {
   .dropdown-menu-trigger:hover {
-    background-color: var(--dropdown-container-bg-color-hover, #e5e5e5);
+    background-color: var(--dropdown-trigger-bg-hover, #e5e5e5);
     border-radius: 5px;
   }
 }
