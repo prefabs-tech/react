@@ -27,6 +27,7 @@ interface TableBodyProperties<TData extends RowData>
     | "emptyTableMessage"
     | "isLoading"
   > {
+  locale?: string;
   parsedColumnsLength: number;
   rowClassName?: string | ((options: { row: Row<TData> }) => string);
   table: Table<TData>;
@@ -37,6 +38,7 @@ export const TableBody = <TData extends RowData>({
   emptyTableMessage = "No results.",
   enableRowSelection,
   isLoading,
+  locale,
   parsedColumnsLength,
   rowClassName,
   table,
@@ -97,28 +99,28 @@ export const TableBody = <TData extends RowData>({
                           number: (value: any) =>
                             formatNumber({
                               value: Number(value),
-                              locale: numberOptions?.locale,
+                              locale: numberOptions?.locale ?? locale,
                               formatOptions: numberOptions?.formatOptions,
                             }) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           date: (value: any) =>
                             formatDate(
                               value,
-                              dateOptions?.locale,
+                              dateOptions?.locale ?? locale,
                               dateOptions?.formatOptions,
                             ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           datetime: (value: any) =>
                             formatDateTime(
                               value,
-                              dateOptions?.locale,
+                              dateOptions?.locale ?? locale,
                               dateOptions?.formatOptions,
                             ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           currency: (value: any) =>
                             formatNumber({
                               value: Number(value),
-                              locale: numberOptions?.locale,
+                              locale: numberOptions?.locale ?? locale,
                               formatOptions: {
                                 style: "currency",
                                 currency: "USD",

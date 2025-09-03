@@ -232,6 +232,7 @@ export interface TDataTableProperties<TData extends RowData>
   initialSorting?: SortingState;
   isLoading?: boolean;
   inputDebounceTime?: number;
+  locale?: string;
   paginated?: boolean;
   paginationOptions?: Omit<
     ComponentProps<typeof Pagination>,

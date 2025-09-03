@@ -93,7 +93,7 @@ export const UsersTable = ({
   ],
   ...tableProperties
 }: UsersTableProperties) => {
-  const { t } = useTranslation("users");
+  const { i18n, t } = useTranslation("users");
 
   const { user: currentUser } = useUser();
 
@@ -164,7 +164,7 @@ export const UsersTable = ({
       header: t("table.defaultColumns.signedUpOn"),
       cell: ({ row: { original } }) => {
         if (original.signedUpAt) {
-          return formatDate(original.signedUpAt);
+          return formatDate(original.signedUpAt, i18n?.language);
         }
 
         return "-";

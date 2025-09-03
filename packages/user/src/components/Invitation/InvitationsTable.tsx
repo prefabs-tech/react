@@ -103,7 +103,7 @@ export const InvitationsTable = ({
 }: InvitationsTableProperties) => {
   const config = useConfig();
 
-  const { t } = useTranslation("invitations");
+  const { t, i18n } = useTranslation("invitations");
 
   const handleResendInvitation = (invitation: Invitation) => {
     resendInvitation(invitation.id, config.apiBaseUrl)
@@ -288,7 +288,7 @@ export const InvitationsTable = ({
     {
       accessorKey: "expiresAt",
       cell: ({ getValue }) => {
-        return formatDateTime(getValue() as string);
+        return formatDateTime(getValue() as string, i18n?.language);
       },
       enableColumnFilter: true,
       enableSorting: true,
@@ -326,6 +326,7 @@ export const InvitationsTable = ({
       data={invitations}
       emptyTableMessage={t("table.emptyMessage")}
       fetchData={fetchInvitations}
+      locale={i18n?.language}
       renderToolbarItems={showInviteAction ? renderToolbar : undefined}
       totalRecords={totalRecords}
       visibleColumns={visibleColumns}

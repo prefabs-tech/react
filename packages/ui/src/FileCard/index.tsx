@@ -37,6 +37,7 @@ export type VisibleFileDetails =
 
 type FileCardType = {
   file: IFile;
+  locale?: string;
   messages?: FileMessages;
   onArchive?: (arguments_: IFile) => void;
   archiveButtonProps?: ComponentProps<typeof Button>;
@@ -59,6 +60,7 @@ type FileCardType = {
 
 export const FileCard = ({
   file,
+  locale,
   messages,
   onArchive,
   archiveButtonProps,
@@ -251,7 +253,7 @@ export const FileCard = ({
                   {visibleFileDetailsMap.uploadedAt ? (
                     <div className="uploaded-at">
                       <span>{messages?.uploadedAtHeader || "Uploaded at"}</span>
-                      <span>{formatDateTime(file?.uploadedAt)}</span>
+                      <span>{formatDateTime(file?.uploadedAt, locale)}</span>
                     </div>
                   ) : null}
                 </div>
@@ -281,7 +283,9 @@ export const FileCard = ({
                             {messages?.lastDownloadedAtHeader ||
                               "Last download:"}
                           </span>
-                          <span>{formatDate(file.lastDownloadedAt)}</span>
+                          <span>
+                            {formatDate(file.lastDownloadedAt, locale)}
+                          </span>
                         </>
                       )}
                     </div>
