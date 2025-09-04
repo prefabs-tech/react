@@ -77,21 +77,20 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
         </p>
 
         <div className="resend-email">
-          <span className="resend-disabled">
-            {t("forgotPassword.acknowledgement.emailNotReceived")}
-          </span>
+          <span>{t("forgotPassword.acknowledgement.emailNotReceived")}</span>
 
-          {timer > 0 ? (
-            <span className="inline-link disabled">
-              {t("forgotPassword.acknowledgement.resendIn", {
-                time: formatDuration(timer),
-              })}
-            </span>
-          ) : (
-            <span className="inline-link" onClick={() => setSubmitted(false)}>
+          <div className={timer > 0 ? "disabled" : ""}>
+            <span
+              className="inline-link"
+              onClick={() => (timer <= 0 ? setSubmitted(false) : "")}
+            >
               {t("forgotPassword.acknowledgement.resend")}
             </span>
-          )}
+
+            {timer > 0 && (
+              <span className="timer"> ({formatDuration(timer)})</span>
+            )}
+          </div>
         </div>
       </div>
       <AuthLinks className="forgot-password" links={links} />
