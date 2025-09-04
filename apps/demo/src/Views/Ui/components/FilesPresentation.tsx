@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Section } from "../../../components/Demo";
 
 export const FilesPresentationDemo = () => {
-  const [t] = useTranslation("ui");
+  const { i18n, t } = useTranslation("ui");
   const navigate = useNavigate();
 
   return (
@@ -22,6 +22,7 @@ export const FilesPresentationDemo = () => {
     >
       <Section>
         <FilesPresentation
+          locale={i18n?.language}
           visibleFileDetails={[
             "originalFileName",
             "description",

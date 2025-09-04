@@ -87,7 +87,7 @@ export const AllUsersTable = ({
   ],
   ...tableOptions
 }: AllUsersTableProperties) => {
-  const { t } = useTranslation("users");
+  const { i18n, t } = useTranslation("users");
 
   const defaultColumns: Array<TableColumnDefinition<ExtendedUser>> = [
     {
@@ -214,7 +214,7 @@ export const AllUsersTable = ({
       header: t("table.defaultColumns.signedUpOn"),
       cell: ({ row: { original } }) => {
         if (original.signedUpAt) {
-          return formatDate(original.signedUpAt);
+          return formatDate(original.signedUpAt, i18n?.language);
         }
 
         return "-";
@@ -248,6 +248,7 @@ export const AllUsersTable = ({
       data={users}
       emptyTableMessage={t("app:table.emptyMessage")}
       fetchData={fetchUsers}
+      locale={i18n?.language}
       renderToolbarItems={showInviteAction ? renderToolbar : undefined}
       totalRecords={totalRecords}
       visibleColumns={visibleColumns}

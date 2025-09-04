@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Section } from "../../../components/Demo";
 
 export const FilesTableDemo = () => {
-  const { t } = useTranslation("ui");
+  const { i18n, t } = useTranslation("ui");
   const navigate = useNavigate();
 
   return (
@@ -44,6 +44,7 @@ export const FilesTableDemo = () => {
               downloadCount: 12,
             },
           ]}
+          locale={i18n?.language}
           visibleColumns={[
             "originalFileName",
             "description",

@@ -54,6 +54,7 @@ const DataTable = <TData extends RowData>({
   initialSorting = [],
   inputDebounceTime,
   isLoading = false,
+  locale,
   paginated = true,
   paginationOptions,
   persistState = false,
@@ -436,6 +437,7 @@ const DataTable = <TData extends RowData>({
           customFormatters={customFormatters}
           emptyTableMessage={emptyTableMessage}
           enableRowSelection={enableRowSelection}
+          locale={locale}
           parsedColumnsLength={parsedColumns.length}
           rowClassName={rowClassName}
           table={table}

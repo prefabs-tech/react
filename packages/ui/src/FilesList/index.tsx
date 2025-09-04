@@ -11,6 +11,7 @@ import { Button } from "../Buttons/ButtonBasic";
 
 export type FilesListType = {
   files: IFile[];
+  locale?: string;
   messages?: FileMessages;
   archiveButtonProps?: ComponentProps<typeof Button>;
   archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
@@ -41,6 +42,7 @@ export const FilesList = ({
   shareButtonProps,
   viewButtonProps,
   files,
+  locale,
   messages,
   onEditDescription,
   onFileArchive,
@@ -59,6 +61,7 @@ export const FilesList = ({
           <FileCard
             key={file.originalFileName}
             file={file}
+            locale={locale}
             messages={messages}
             onArchive={onFileArchive}
             onDelete={onFileDelete}

@@ -34,6 +34,7 @@ export type FilesTableProperties = Partial<
   Omit<TDataTableProperties<IFile>, "data" | "visibleColumns" | "fetchData">
 > & {
   files: Array<IFile>;
+  locale?: string;
   messages?: TableMessages;
   visibleColumns?: VisibleFileDetails[];
   fetchFiles?: (arguments_: TRequestJSON) => void;
@@ -50,6 +51,7 @@ export const FilesTable = ({
   columns = [],
   id = "table-files",
   isLoading,
+  locale,
   files,
   totalRecords,
   fetchFiles,
@@ -193,7 +195,7 @@ export const FilesTable = ({
       accessorKey: "uploadedAt",
       header: "Uploaded at",
       cell: ({ getValue }) => {
-        return formatDateTime(getValue() as number);
+        return formatDateTime(getValue() as number, locale);
       },
       enableSorting: true,
       enableColumnFilter: true,
@@ -220,7 +222,7 @@ export const FilesTable = ({
       enableColumnFilter: true,
       enableSorting: true,
       cell: ({ getValue }) => {
-        return formatDateTime(getValue() as number);
+        return formatDateTime(getValue() as number, locale);
       },
       filterPlaceholder: "Select date",
       meta: {
