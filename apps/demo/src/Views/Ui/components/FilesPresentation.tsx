@@ -22,7 +22,7 @@ export const FilesPresentationDemo = () => {
     >
       <Section>
         <FilesPresentation
-          locale={i18n.language}
+          locale={i18n?.language}
           visibleFileDetails={[
             "originalFileName",
             "description",
