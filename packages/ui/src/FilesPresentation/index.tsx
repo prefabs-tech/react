@@ -11,6 +11,7 @@ import type { ComponentProps, FC } from "react";
 export interface IFilesPresentationProperties {
   presentation?: "list" | "table";
   files: Array<IFile>;
+  locale?: string;
   messages?: TableMessages;
   onFileArchive?: (arguments_: IFile) => void;
   onFileDownload?: (arguments_: IFile) => void;
@@ -26,6 +27,7 @@ export interface IFilesPresentationProperties {
 export const FilesPresentation: FC<IFilesPresentationProperties> = ({
   presentation = "list",
   files = [],
+  locale,
   messages,
   onFileArchive,
   onFileDownload,
@@ -41,6 +43,7 @@ export const FilesPresentation: FC<IFilesPresentationProperties> = ({
     return (
       <FilesList
         files={files}
+        locale={locale}
         messages={messages}
         onFileArchive={onFileArchive}
         onFileDelete={onFileDelete}
@@ -57,6 +60,7 @@ export const FilesPresentation: FC<IFilesPresentationProperties> = ({
   return (
     <FilesTable
       files={files}
+      locale={locale}
       messages={messages}
       onFileArchive={onFileArchive}
       onFileDelete={onFileDelete}

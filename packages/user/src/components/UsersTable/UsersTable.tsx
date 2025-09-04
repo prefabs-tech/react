@@ -298,6 +298,7 @@ export const UsersTable = ({
       data={users}
       emptyTableMessage={t("app:table.emptyMessage")}
       fetchData={fetchUsers}
+      locale={i18n?.language}
       renderToolbarItems={showInviteAction ? renderToolbar : undefined}
       totalRecords={totalRecords}
       visibleColumns={visibleColumns}
