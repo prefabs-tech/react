@@ -105,7 +105,6 @@ export const InvitationsTableDemo = () => {
             { value: "revoked", label: "Revoked" },
           ]}
           id="invitation-table"
-          persistState
         />
       </Section>
     </Page>

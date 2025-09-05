@@ -201,6 +201,7 @@ export const CheckboxInputDemo = () => {
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>

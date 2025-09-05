@@ -799,6 +799,7 @@ const [multiSelectGroupSelectDisableValue, setMultiSelectGroupSelectDisableValue
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
 
