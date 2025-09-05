@@ -57,7 +57,7 @@ const DataTable = <TData extends RowData>({
   locale,
   paginated = true,
   paginationOptions,
-  persistState = false,
+  persistState = true,
   persistStateStorage = "localStorage",
   resetStateActionBtnLabel: resetStateActionButtonLabel = "Reset all",
   rowClassName,
@@ -366,6 +366,10 @@ const DataTable = <TData extends RowData>({
   }, [id, persistState]);
 
   useEffect(() => {
+    if (persistState && !id) {
+      throw new Error('Id is required when prop "persistState" is true');
+    }
+
     // Store the table state in storage on page refresh
     const handleBeforeUnload = () => {
       if (persistState && id) {
