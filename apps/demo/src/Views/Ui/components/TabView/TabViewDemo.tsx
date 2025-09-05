@@ -804,6 +804,7 @@ enableHashRouting={true}
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
       <Section title="Type">

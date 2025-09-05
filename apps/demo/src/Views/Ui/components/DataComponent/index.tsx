@@ -170,6 +170,7 @@ return (
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>

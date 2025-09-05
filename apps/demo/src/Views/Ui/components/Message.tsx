@@ -179,6 +179,7 @@ export const MessageDemo = () => {
           ]}
           data={propertiesData}
           paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>

@@ -23,7 +23,7 @@ export const AllUsersTableDemo = () => {
       }
     >
       <Section>
-        <AllUsersTable users={allUsers} />
+        <AllUsersTable id="all-users-table" users={allUsers} />
       </Section>
     </Page>
   );

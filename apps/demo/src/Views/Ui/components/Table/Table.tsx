@@ -165,6 +165,7 @@ export const TableDemo = () => {
             },
           ]}
           data={data}
+          id="filterable-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -177,6 +178,7 @@ export const TableDemo = () => {
             enableSorting: true,
           }))}
           data={data}
+          id="sortable-table"
           initialFilters={[{ id: "email", value: "s" }]}
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
@@ -187,6 +189,7 @@ export const TableDemo = () => {
           columns={[...columns]}
           data={data.slice(0, 5)}
           enableRowSelection={true}
+          id="row-selection-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -226,6 +229,7 @@ export const TableDemo = () => {
           renderCustomPagination={(table) => {
             return <>Custom pagination</>;
           }}
+          id="custom-pagination-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -246,6 +250,7 @@ export const TableDemo = () => {
               </>
             );
           }}
+          id="custom-toolbar-actions-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -289,6 +294,7 @@ export const TableDemo = () => {
           ]}
           data={data.slice(0, 5)}
           enableRowSelection={true}
+          id="custom-tooltip-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -308,6 +314,7 @@ export const TableDemo = () => {
           ]}
           data={data.slice(0, 5)}
           enableRowSelection={true}
+          id="column-alignment-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -318,6 +325,7 @@ export const TableDemo = () => {
           data={data.slice(10, 15)}
           showColumnsAction={true}
           columnActionBtnLabel="Columns"
+          id="column-action-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -333,6 +341,7 @@ export const TableDemo = () => {
               </td>
             </tr>
           )}
+          id="table-with-footer"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -345,6 +354,7 @@ export const TableDemo = () => {
           visibleColumns={["email", "name", "age", "city", "country"]}
           columns={[...columns]}
           data={data}
+          id="vertical-border-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
         <CodeBlock
@@ -372,6 +382,7 @@ export const TableDemo = () => {
           visibleColumns={["email", "name", "age", "city", "country"]}
           columns={[...columns]}
           data={data}
+          id="horizontal-border-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
         <CodeBlock
@@ -396,6 +407,7 @@ export const TableDemo = () => {
           columns={[...columns]}
           data={data.slice(10, 15)}
           paginated={false}
+          id="pagination-disabled-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -406,6 +418,7 @@ export const TableDemo = () => {
           columns={[...columns]}
           data={data.slice(10, 15)}
           paginated={false}
+          id="table-with-title"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -465,6 +478,7 @@ export const TableDemo = () => {
               return rowData.id !== 12;
             },
           }}
+          id="builtin-action-table"
           initialSorting={[{ id: "email", desc: false }]}
         />
       </Section>
@@ -530,6 +544,7 @@ export const TableDemo = () => {
               },
             ],
           }}
+          id="row-specific-action-table"
           initialSorting={[{ id: "email", desc: false }]}
         />
       </Section>
@@ -552,6 +567,7 @@ export const TableDemo = () => {
               },
             ],
           }}
+          id="single-action-table"
           initialSorting={[{ id: "email", desc: false }]}
         />
       </Section>
@@ -574,6 +590,7 @@ export const TableDemo = () => {
             ],
             displayActionMenu: true,
           }}
+          id="single-action-menu-table"
           initialSorting={[{ id: "email", desc: false }]}
         />
       </Section>
@@ -602,6 +619,7 @@ export const TableDemo = () => {
           ]}
           fetchData={() => {}}
           data={data.slice(10, 15)}
+          id="custom-filter-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -621,6 +639,7 @@ export const TableDemo = () => {
           ]}
           fetchData={() => {}}
           data={data.slice(10, 15)}
+          id="equal-server-filter-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
@@ -696,6 +715,7 @@ export const TableDemo = () => {
           ]}
           data={formatDemoData}
           paginated={false}
+          id="cell-data-formatting-table"
           initialSorting={[{ id: "quantity", desc: true }]}
         ></TDataTable>
       </Section>
@@ -755,6 +775,7 @@ export const TableDemo = () => {
             number: (value) => `~${value}`,
             currency: (value) => `$${value}`,
           }}
+          id="custom-cell-data-formatting-table"
           initialSorting={[{ id: "quantity", desc: true }]}
         ></TDataTable>
       </Section>
@@ -852,6 +873,7 @@ export const TableDemo = () => {
             inDateRangeFilter: inDateRangeFilter,
             customEqualStringFilter: customEqualStringFilter,
           }}
+          id="custom-static-filter-table"
           initialSorting={[{ id: "quantity", desc: true }]}
         ></TDataTable>
       </Section>
@@ -960,6 +982,7 @@ export const TableDemo = () => {
             },
           ]}
           data={data.slice(10, 15)}
+          id="div-content-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>

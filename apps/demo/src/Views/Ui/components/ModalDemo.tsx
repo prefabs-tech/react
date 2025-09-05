@@ -236,6 +236,7 @@ const [headerFooterModal, setHeaderFooterModal] = useState<boolean>(false);
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>
