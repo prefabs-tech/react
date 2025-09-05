@@ -76,6 +76,7 @@ export const StickyCollapsibleFooterDemo = () => {
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
 

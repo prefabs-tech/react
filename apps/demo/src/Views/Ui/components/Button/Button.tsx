@@ -144,6 +144,7 @@ export const ButtonDemo = () => {
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
 

@@ -41,7 +41,6 @@ export const UsersTableDemo = () => {
             { value: "USER", label: "USER" },
           ]}
           id="users-table"
-          persistState
         />
       </Section>
     </Page>

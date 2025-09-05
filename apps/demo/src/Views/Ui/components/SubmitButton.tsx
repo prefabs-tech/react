@@ -77,6 +77,7 @@ export const SubmitButtonDemo = () => {
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>

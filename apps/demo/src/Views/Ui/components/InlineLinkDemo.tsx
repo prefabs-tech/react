@@ -100,6 +100,7 @@ export const InlineLinkDemo = () => {
           ]}
           data={data}
           paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>

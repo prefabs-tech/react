@@ -130,6 +130,7 @@ export const EditableTitleDemo = () => {
           ]}
           data={PROPERTIES_DATA}
           paginated={false}
+          persistState={false}
         />
       </Section>
 
