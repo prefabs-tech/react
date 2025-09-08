@@ -19,14 +19,15 @@ export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
   data?: TData;
   displayActionMenu?: boolean;
+  mode?: "auto" | "buttons" | "menu";
   displayActions?: boolean | ((data: TData) => boolean);
 }
 
 export const DataActionsMenu = ({
   actions,
   data,
-  displayActionMenu = true,
-  displayActions = true, // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  displayActions = true,
+  mode = "auto", // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
 
@@ -79,46 +80,46 @@ export const DataActionsMenu = ({
     : [];
 
   const renderActions = () => {
-    if (!items.length) {
-      return null;
-    }
+    if (!items?.length) return null;
 
-    const {
-      disabled,
-      display = true,
-      icon,
-      key,
-      label,
-      className,
-      onClick,
-    } = items[0];
+    const showButtons =
+      (mode === "buttons" && items.length > 0) ||
+      (mode === "auto" && items.length === 1);
 
-    if (items.length == 1 && icon && !displayActionMenu) {
-      return (
-        display && (
+    const showMenu =
+      (mode === "menu" && items.length > 0) ||
+      (mode === "auto" && items.length > 1);
+
+    if (showButtons) {
+      return items
+        .filter((item) => item?.display)
+        .map((item) => (
           <Button
-            key={key}
-            iconLeft={icon}
-            data-pr-tooltip={label}
-            disabled={disabled}
+            key={item.key}
+            iconLeft={item.icon}
+            data-pr-tooltip={item.label}
+            disabled={item.disabled}
             variant="textOnly"
             size="small"
-            title={label}
-            severity={className === "danger" ? "danger" : undefined}
-            onClick={(event) => onClick && onClick()}
+            severity={item.severity}
+            title={item.label}
+            onClick={() => item.onClick?.()}
             rounded
           />
-        )
+        ));
+    }
+
+    if (showMenu) {
+      return (
+        <DropdownMenu
+          label={<i className="pi pi-cog"></i>}
+          menu={items}
+          hideDropdownIcon
+        />
       );
     }
 
-    return (
-      <DropdownMenu
-        label={<i className="pi pi-cog"></i>}
-        menu={items}
-        hideDropdownIcon
-      />
-    );
+    return null;
   };
 
   return (
