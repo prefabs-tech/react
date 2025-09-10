@@ -2,7 +2,7 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, DropdownMenu, Page } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
-import { Section } from "../../../components/Demo";
+import { CodeBlock, Section } from "../../../components/Demo";
 
 import type { MenuItem } from "@prefabs.tech/react-ui";
 
@@ -26,14 +26,17 @@ export const DropdownMenuDemo = () => {
 
   const severityMenuItems: MenuItem[] = [
     {
+      icon: "pi pi-eye",
       label: t("ui:dropdownMenu.label.view"),
       severity: "primary",
     },
     {
+      icon: "pi pi-pencil",
       label: t("ui:dropdownMenu.label.edit"),
       severity: "warning",
     },
     {
+      icon: "pi pi-trash",
       label: t("ui:dropdownMenu.label.delete"),
       severity: "danger",
     },
@@ -50,6 +53,7 @@ export const DropdownMenuDemo = () => {
 
   return (
     <Page
+      subtitle={t("dropdownMenu.subtitle")}
       title={t("dropdownMenu.title")}
       toolbar={
         <Button
@@ -63,8 +67,15 @@ export const DropdownMenuDemo = () => {
       <Section title={t("dropdownMenu.usage.leftAlign")}>
         <DropdownMenu
           label={t("dropdownMenu.label.setting")}
-          position="top-start"
+          position="left-start"
           menu={menuItems}
+        />
+        <CodeBlock
+          exampleCode='<DropdownMenu
+  label="Settings"
+  position="left-start"
+  menu={menuItems}
+/>'
         />
       </Section>
       <Section title={t("dropdownMenu.usage.templating")}>
@@ -73,15 +84,56 @@ export const DropdownMenuDemo = () => {
           menu={menuItems}
           renderOption={template}
         />
+
+        <CodeBlock
+          exampleCode='<DropdownMenu
+  label="User"
+  menu={menuItems}
+  renderOption={template}
+/>'
+        />
       </Section>
       <Section title={t("dropdownMenu.usage.severity")}>
         <DropdownMenu
           menu={severityMenuItems}
-          trigger={<i className="pi pi-cog"></i>}
+          trigger={
+            <div className="dropdown-menu-trigger">
+              <i className="pi pi-cog"></i>
+            </div>
+          }
+        />
+        <CodeBlock
+          exampleCode='const severityMenuItems: MenuItem[] = [
+  {
+    icon: "pi pi-eye",
+    label: t("ui:dropdownMenu.label.view"),
+    severity: "primary",
+  },
+  {
+    icon: "pi pi-pencil",
+    label: t("ui:dropdownMenu.label.edit"),
+    severity: "warning",
+  },
+  {
+    icon: "pi pi-trash",
+    label: t("ui:dropdownMenu.label.delete"),
+    severity: "danger",
+  },
+];
+    
+return (<DropdownMenu
+  menu={severityMenuItems}
+  trigger={
+    <div className="dropdown-menu-trigger">
+      <i className="pi pi-cog"></i>
+    </div>
+  }
+/>);'
         />
       </Section>
       <Section title={t("dropdownMenu.usage.hiddenDropdownIcon")}>
         <DropdownMenu menu={menuItems} hideDropdownIcon />
+        <CodeBlock exampleCode="<DropdownMenu menu={menuItems} hideDropdownIcon />" />
       </Section>
     </Page>
   );
