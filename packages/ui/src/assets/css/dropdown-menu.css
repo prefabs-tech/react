@@ -46,14 +46,37 @@ ul.dropdown-menu-list {
 }
 
 ul.dropdown-menu-list li {
+  --_color: var(--color);
+
+  color: var(--_color);
   background-color: white;
   cursor: pointer;
   padding: 0.7rem 1.25rem;
   transition: all var(--transition-duration) ease 0s;
 }
 
+ul.dropdown-menu-list li.alternate {
+  --_color: var(--dz-alternate-color, #0284c7);
+}
+
 ul.dropdown-menu-list li.danger {
-  color: var(--dz-danger-color, #dc3545);
+  --_color: var(--dz-danger-color, #dc3545);
+}
+
+ul.dropdown-menu-list li.primary {
+  --_color: var(--dz-primary-color, #2563eb);
+}
+
+ul.dropdown-menu-list li.secondary {
+  --_color: var(--dz-secondary-color, #475569);
+}
+
+ul.dropdown-menu-list li.success {
+  --_color: var(--dz-success-color, #22c55e);
+}
+
+ul.dropdown-menu-list li.warning {
+  --_color: var(--dz-warning-color, #ea580c);
 }
 
 .dropdown-menu-list li.highlight,

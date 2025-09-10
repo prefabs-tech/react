@@ -102,11 +102,15 @@
     "usage": {
       "hiddenDropdownIcon": "Hidden dropdown icon with default label",
       "leftAlign": "Popup align left",
+      "severity": "Severity",
       "templating": "Menu templating"
     },
     "label": {
+      "delete": "Delete",
+      "edit": "Edit",
       "setting": "Settings",
-      "user": "User"
+      "user": "User",
+      "view": "View"
     }
   },
   "editableTitle": {

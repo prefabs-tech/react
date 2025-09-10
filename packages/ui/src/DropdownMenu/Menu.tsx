@@ -7,6 +7,14 @@ export interface MenuItem {
   key?: string;
   label?: string;
   icon?: React.ReactNode;
+  severity?:
+    | "primary"
+    | "secondary"
+    | "alternate"
+    | "success"
+    | "danger"
+    | "warning"
+    | undefined;
   onClick?: () => void;
 }
 
@@ -34,13 +42,14 @@ const Menu: React.FC<MenuProperties> = ({
           display = true,
           key,
           label,
+          severity,
         } = item;
 
         return display ? (
           <li
             key={key || `menu-item-${index}`}
             onClick={disabled ? undefined : onClick}
-            className={`${className || ""} ${highlightItem === (key || `menu-item-${index}`) ? "highlight" : ""}`.trim()}
+            className={`${className || ""} ${highlightItem === (key || `menu-item-${index}`) ? "highlight" : ""} ${severity}`.trim()}
             aria-disabled={disabled}
           >
             {renderOption ? (

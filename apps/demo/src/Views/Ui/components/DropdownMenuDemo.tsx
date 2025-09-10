@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../components/Demo";
 
+import type { MenuItem } from "@prefabs.tech/react-ui";
+
 export const DropdownMenuDemo = () => {
   const [t] = useTranslation(["ui", "user"]);
   const navigate = useNavigate();
@@ -19,6 +21,21 @@ export const DropdownMenuDemo = () => {
     {
       icon: "pi pi-user",
       label: t("user:userMenu.profile"),
+    },
+  ];
+
+  const severityMenuItems: MenuItem[] = [
+    {
+      label: t("ui:dropdownMenu.label.view"),
+      severity: "primary",
+    },
+    {
+      label: t("ui:dropdownMenu.label.edit"),
+      severity: "warning",
+    },
+    {
+      label: t("ui:dropdownMenu.label.delete"),
+      severity: "danger",
     },
   ];
 
@@ -55,6 +72,12 @@ export const DropdownMenuDemo = () => {
           label={t("dropdownMenu.label.user")}
           menu={menuItems}
           renderOption={template}
+        />
+      </Section>
+      <Section title={t("dropdownMenu.usage.severity")}>
+        <DropdownMenu
+          menu={severityMenuItems}
+          trigger={<i className="pi pi-cog"></i>}
         />
       </Section>
       <Section title={t("dropdownMenu.usage.hiddenDropdownIcon")}>
