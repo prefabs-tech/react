@@ -491,6 +491,7 @@ export const TableDemo = () => {
           dataActionsMenu={{
             actions: [
               {
+                icon: "pi pi-eye",
                 label: "View",
                 display: (rowData) => {
                   return rowData.id !== 12;
@@ -502,6 +503,7 @@ export const TableDemo = () => {
                 },
               },
               {
+                icon: "pi pi-pencil",
                 label: "Edit",
                 display: (rowData) => {
                   return rowData.id !== 12;
@@ -514,6 +516,7 @@ export const TableDemo = () => {
                 },
               },
               {
+                icon: "pi pi-share-alt",
                 label: "Share",
                 display: (rowData) => {
                   return rowData.id !== 12;
@@ -529,8 +532,9 @@ export const TableDemo = () => {
                 },
               },
               {
+                icon: "pi pi-trash",
                 label: "Delete",
-                className: "danger",
+                severity: "danger",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -588,9 +592,80 @@ export const TableDemo = () => {
                 },
               },
             ],
-            displayActionMenu: true,
+            mode: "menu",
           }}
           id="single-action-menu-table"
+          initialSorting={[{ id: "email", desc: false }]}
+        />
+      </Section>
+
+      <Section title={t("table.usage.multipleButtonAction")}>
+        <TDataTable
+          columns={[...columns]}
+          data={data.slice(10, 15)}
+          paginated={false}
+          dataActionsMenu={{
+            actions: [
+              {
+                icon: "pi pi-eye",
+                label: "View",
+                display: (rowData) => {
+                  return rowData.id !== 12;
+                },
+                onClick: (rowData) => {
+                  //your logic here
+                  // eslint-disable-next-line no-console
+                  console.log(rowData, "view action");
+                },
+              },
+              {
+                icon: "pi pi-pencil",
+                label: "Edit",
+                display: (rowData) => {
+                  return rowData.id !== 12;
+                },
+                disabled: true,
+                onClick: (rowData) => {
+                  //your logic here
+                  // eslint-disable-next-line no-console
+                  console.log(rowData, "edit action");
+                },
+              },
+              {
+                icon: "pi pi-share-alt",
+                label: "Share",
+                display: (rowData) => {
+                  return rowData.id !== 12;
+                },
+                disabled: (rowData) => {
+                  ///your logic here
+                  return rowData.id !== 11;
+                },
+                onClick: (rowData) => {
+                  //your logic here
+                  // eslint-disable-next-line no-console
+                  console.log(rowData, "share action");
+                },
+              },
+              {
+                icon: "pi pi-trash",
+                label: "Delete",
+                severity: "danger",
+                onClick: (rowData) => {
+                  //your logic here
+                  // eslint-disable-next-line no-console
+                  console.log(rowData, "delete action");
+                },
+                requireConfirmationModal: true,
+                confirmationOptions: {
+                  header: "Are you sure!",
+                  message: "You are going to delete this data.",
+                },
+              },
+            ],
+            mode: "buttons",
+          }}
+          id="mutiple-button-action-table"
           initialSorting={[{ id: "email", desc: false }]}
         />
       </Section>

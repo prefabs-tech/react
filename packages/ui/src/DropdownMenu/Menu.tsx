@@ -7,6 +7,14 @@ export interface MenuItem {
   key?: string;
   label?: string;
   icon?: React.ReactNode;
+  severity?:
+    | "primary"
+    | "secondary"
+    | "alternate"
+    | "success"
+    | "danger"
+    | "warning"
+    | undefined;
   onClick?: () => void;
 }
 

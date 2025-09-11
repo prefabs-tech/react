@@ -229,6 +229,17 @@
   > tbody
   > tr
   > td.cell-actions
+  > .data-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.table-container
+  .table-wrapper
+  > table
+  > tbody
+  > tr
+  > td.cell-actions
   .dropdown-menu-trigger {
   padding: 0.5rem;
 }
