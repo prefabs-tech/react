@@ -491,6 +491,7 @@ export const TableDemo = () => {
           dataActionsMenu={{
             actions: [
               {
+                icon: "pi pi-eye",
                 label: "View",
                 display: (rowData) => {
                   return rowData.id !== 12;
@@ -502,6 +503,7 @@ export const TableDemo = () => {
                 },
               },
               {
+                icon: "pi pi-pencil",
                 label: "Edit",
                 display: (rowData) => {
                   return rowData.id !== 12;
@@ -514,6 +516,7 @@ export const TableDemo = () => {
                 },
               },
               {
+                icon: "pi pi-share-alt",
                 label: "Share",
                 display: (rowData) => {
                   return rowData.id !== 12;
@@ -529,8 +532,9 @@ export const TableDemo = () => {
                 },
               },
               {
+                icon: "pi pi-trash",
                 label: "Delete",
-                className: "danger",
+                severity: "danger",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
