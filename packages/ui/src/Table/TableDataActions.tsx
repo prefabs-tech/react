@@ -18,7 +18,6 @@ export interface DataActionsMenuItem
 export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
   data?: TData;
-  displayActionMenu?: boolean;
   mode?: "auto" | "buttons" | "menu";
   displayActions?: boolean | ((data: TData) => boolean);
 }
@@ -92,10 +91,10 @@ export const DataActionsMenu = ({
 
     if (showButtons) {
       return items
-        .filter((item) => item?.display)
+        .filter((item) => item?.display !== false)
         .map((item) => (
           <Button
-            key={item.key}
+            key={`action-mode-${item?.label}`}
             iconLeft={item.icon}
             data-pr-tooltip={item.label}
             disabled={item.disabled}
@@ -124,7 +123,7 @@ export const DataActionsMenu = ({
 
   return (
     <>
-      {renderActions()}
+      <div className="data-actions">{renderActions()}</div>
       {!!confirmation && (
         <ConfirmationModal {...confirmation} visible={!!confirmation} />
       )}

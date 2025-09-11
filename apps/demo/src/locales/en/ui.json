@@ -204,6 +204,7 @@
       "withEqualServerFilter": "Table with equal server filterFn",
       "customStaticFilter": "Table with custom  filter component and static filterFn",
       "divContent": "Table demonstrating center aligned content",
+      "multipleButtonAction": "Table with multiple button action",
       "singleActionColumn": "Table with single action button",
       "singleActionColumnWithMenu": "Table with single action menu",
       "rowSpecificActions": "Table with actions menu items filtered based on row data logic",
