@@ -198,19 +198,7 @@ const DataTable = <TData extends RowData>({
     ) {
       const defaultActionColumn: ColumnDef<TData, unknown> = {
         id: "actions",
-        header: () => {
-          const actionsMenu =
-            typeof dataActionsMenu !== "function" ? dataActionsMenu : {};
-
-          if (
-            actionsMenu?.mode === "buttons" &&
-            (actionsMenu?.actions?.length ?? 0) > 2
-          ) {
-            return "Actions";
-          }
-
-          return <i className="pi pi-cog"></i>;
-        },
+        header: () => <i className="pi pi-cog"></i>,
         align: "center",
         cell: ({ row: { original } }) => {
           return (

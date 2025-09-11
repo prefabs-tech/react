@@ -92,9 +92,9 @@ export const DataActionsMenu = ({
     if (showButtons) {
       return items
         .filter((item) => item?.display !== false)
-        .map((item) => (
+        .map((item, index) => (
           <Button
-            key={`action-mode-${item?.label}`}
+            key={`action-${index}`}
             iconLeft={item.icon}
             data-pr-tooltip={item.label}
             disabled={item.disabled}
