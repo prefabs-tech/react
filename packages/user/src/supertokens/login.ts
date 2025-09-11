@@ -24,8 +24,12 @@ export const login = async (
 
   try {
     response = await emailPasswordSignIn(data);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
+    // eslint-disable-next-line
+  } catch (error: any) {
+    if (error?.status === 401) {
+      throw new Error("401");
+    }
+
     throw new Error("otherErrors");
   }
 
