@@ -42,13 +42,14 @@ const Menu: React.FC<MenuProperties> = ({
           display = true,
           key,
           label,
+          severity,
         } = item;
 
         return display ? (
           <li
             key={key || `menu-item-${index}`}
             onClick={disabled ? undefined : onClick}
-            className={`${className || ""} ${highlightItem === (key || `menu-item-${index}`) ? "highlight" : ""}`.trim()}
+            className={`${className || ""} ${highlightItem === (key || `menu-item-${index}`) ? "highlight" : ""} ${severity}`.trim()}
             aria-disabled={disabled}
           >
             {renderOption ? (

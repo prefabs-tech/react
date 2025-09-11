@@ -98,15 +98,20 @@
     }
   },
   "dropdownMenu": {
+    "subtitle": "The Dropdown component provides an accessible and customizable menu for selecting actions or options. It supports labels, icons, slots for custom triggers and icons, and emits events on selection.",
     "title": "Dropdown menu",
     "usage": {
       "hiddenDropdownIcon": "Hidden dropdown icon with default label",
       "leftAlign": "Popup align left",
+      "severity": "Severity",
       "templating": "Menu templating"
     },
     "label": {
+      "delete": "Delete",
+      "edit": "Edit",
       "setting": "Settings",
-      "user": "User"
+      "user": "User",
+      "view": "View"
     }
   },
   "editableTitle": {
