@@ -201,12 +201,43 @@ const DataTable = <TData extends RowData>({
         header: () => <i className="pi pi-cog"></i>,
         align: "center",
         cell: ({ row: { original } }) => {
+          const actionsMenu =
+            typeof dataActionsMenu === "function"
+              ? dataActionsMenu(original)
+              : dataActionsMenu;
+
+          const filteredActions = (actionsMenu?.actions ?? []).filter(
+            (action) => {
+              if (typeof action.display === "function") {
+                return action.display(data);
+              } else if (typeof action.display === "boolean") {
+                return action.display;
+              } else {
+                return true;
+              }
+            },
+          );
+
+          let actionMode: "auto" | "buttons" | "menu" | undefined;
+
+          if (filteredActions.length) {
+            const {
+              mode = "auto",
+              actions = [],
+              autoModeCount = 1,
+            } = actionsMenu;
+
+            if (mode === "auto") {
+              actionMode = actions.length > autoModeCount ? "menu" : "buttons";
+            } else {
+              actionMode = mode;
+            }
+          }
           return (
             <DataActionsMenu
-              {...(typeof dataActionsMenu === "function"
-                ? dataActionsMenu(original)
-                : dataActionsMenu)}
+              {...actionsMenu}
               data={original}
+              mode={actionMode}
             />
           );
         },

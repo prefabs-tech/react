@@ -25,10 +25,9 @@ export interface DataActionsMenuProperties<TData> {
 
 export const DataActionsMenu = ({
   actions,
-  autoModeCount = 1,
   data,
   displayActions = true,
-  mode = "auto", // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mode, // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
 
@@ -83,15 +82,7 @@ export const DataActionsMenu = ({
   const renderActions = () => {
     if (!items?.length) return null;
 
-    const showButtons =
-      (mode === "buttons" && items.length > 0) ||
-      (mode === "auto" && (actions?.length ?? 0) <= autoModeCount);
-
-    const showMenu =
-      (mode === "menu" && items.length > 0) ||
-      (mode === "auto" && (actions?.length ?? 0) > autoModeCount);
-
-    if (showButtons) {
+    if (mode === "buttons") {
       return items
         .filter((item) => item?.display !== false)
         .map((item, index) => (
@@ -109,9 +100,7 @@ export const DataActionsMenu = ({
             rounded
           />
         ));
-    }
-
-    if (showMenu) {
+    } else if (mode === "menu") {
       return (
         <DropdownMenu
           label={<i className="pi pi-cog"></i>}
