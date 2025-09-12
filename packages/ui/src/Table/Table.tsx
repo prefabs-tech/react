@@ -218,10 +218,9 @@ const DataTable = <TData extends RowData>({
             },
           );
 
-          let actionMode: "auto" | "buttons" | "menu" | undefined;
-
           if (!filteredActions?.length) return null;
 
+          let actionMode: "auto" | "buttons" | "menu" | undefined;
           const {
             mode = "auto",
             actions = [],
