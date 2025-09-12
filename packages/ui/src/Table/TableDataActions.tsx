@@ -17,6 +17,7 @@ export interface DataActionsMenuItem
 
 export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
+  autoModeCount?: number;
   data?: TData;
   mode?: "auto" | "buttons" | "menu";
   displayActions?: boolean | ((data: TData) => boolean);
@@ -24,6 +25,7 @@ export interface DataActionsMenuProperties<TData> {
 
 export const DataActionsMenu = ({
   actions,
+  autoModeCount = 1,
   data,
   displayActions = true,
   mode = "auto", // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -83,11 +85,11 @@ export const DataActionsMenu = ({
 
     const showButtons =
       (mode === "buttons" && items.length > 0) ||
-      (mode === "auto" && items.length === 1);
+      (mode === "auto" && (actions?.length ?? 0) <= autoModeCount);
 
     const showMenu =
       (mode === "menu" && items.length > 0) ||
-      (mode === "auto" && items.length > 1);
+      (mode === "auto" && (actions?.length ?? 0) > autoModeCount);
 
     if (showButtons) {
       return items
@@ -101,6 +103,7 @@ export const DataActionsMenu = ({
             variant="textOnly"
             size="small"
             severity={item.severity}
+            label={!item.icon ? item.label : ""}
             title={item.label}
             onClick={() => item.onClick?.()}
             rounded
