@@ -23,20 +23,25 @@ export const login = async (
   };
 
   try {
-    response = await emailPasswordSignIn(data);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
+    const response = await emailPasswordSignIn(data);
+
+    if (response.status === "OK") {
+      const user = response.user as UserType;
+      const status = response.status;
+
+      return { user, status };
+    }
+
+    if (response.status === "WRONG_CREDENTIALS_ERROR") {
+      throw new Error("401");
+    }
+
     throw new Error("otherErrors");
-  }
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message === "401") {
+      throw error;
+    }
 
-  if (response.status === "OK") {
-    user = response.user as UserType;
-    status = response.status;
-
-    return { user, status };
-  } else if (response.status === "WRONG_CREDENTIALS_ERROR") {
-    throw new Error("401");
-  } else {
     throw new Error("otherErrors");
   }
 };
