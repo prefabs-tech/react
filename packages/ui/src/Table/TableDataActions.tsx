@@ -19,7 +19,7 @@ export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
   autoModeCount?: number;
   data?: TData;
-  mode?: "auto" | "buttons" | "menu";
+  mode?: "buttons" | "menu";
   displayActions?: boolean | ((data: TData) => boolean);
 }
 
@@ -27,7 +27,7 @@ export const DataActionsMenu = ({
   actions,
   data,
   displayActions = true,
-  mode, // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mode = "menu", // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
 
