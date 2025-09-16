@@ -52,6 +52,10 @@ export const FileDropzoneBasic: FC<IFileDropzoneBasicProperties> = ({
         return errorMessages?.fileTooLarge;
       case "file-invalid-type":
         return errorMessages?.fileInvalidType;
+      case "file-too-small":
+        return errorMessages?.fileTooSmall;
+      case "too-many-files":
+        return errorMessages?.tooManyFiles;
       default:
         return errorMessages?.default;
     }

@@ -21,9 +21,11 @@ export interface IFileDropzoneBasicProperties {
   dropzoneMessage?: string;
   dropzoneOptions?: DropzoneOptions;
   errorMessages?: {
-    fileTooLarge?: string;
-    fileInvalidType?: string;
     default?: string;
+    fileInvalidType?: string;
+    fileTooLarge?: string;
+    fileTooSmall?: string;
+    tooManyFiles?: string;
   };
   onChange: (files: FileExtended[]) => void;
 }
