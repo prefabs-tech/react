@@ -209,6 +209,11 @@ export type FormatDateType = {
 
 export type StorageType = "localStorage" | "sessionStorage";
 
+export interface TableDataActionsMenu<TData>
+  extends Omit<DataActionsMenuProperties<TData>, "mode"> {
+  mode?: "auto" | "buttons" | "menu";
+}
+
 export interface TDataTableProperties<TData extends RowData>
   extends Partial<Omit<TableOptions<TData>, "getCoreRowModel" | "data">> {
   className?: string;
@@ -216,8 +221,8 @@ export interface TDataTableProperties<TData extends RowData>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customFormatters?: Record<string, (value: any) => string>;
   dataActionsMenu?:
-    | ((data: TData) => DataActionsMenuProperties<TData>)
-    | DataActionsMenuProperties<TData>;
+    | ((data: TData) => TableDataActionsMenu<TData>)
+    | TableDataActionsMenu<TData>;
   data: TData[];
   emptyTableMessage?: string;
   enableRowSelection?: boolean;

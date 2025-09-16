@@ -17,8 +17,9 @@ export interface DataActionsMenuItem
 
 export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
+  autoModeCount?: number;
   data?: TData;
-  mode?: "auto" | "buttons" | "menu";
+  mode?: "buttons" | "menu";
   displayActions?: boolean | ((data: TData) => boolean);
 }
 
@@ -26,7 +27,7 @@ export const DataActionsMenu = ({
   actions,
   data,
   displayActions = true,
-  mode = "auto", // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mode = "menu", // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
 
@@ -81,15 +82,7 @@ export const DataActionsMenu = ({
   const renderActions = () => {
     if (!items?.length) return null;
 
-    const showButtons =
-      (mode === "buttons" && items.length > 0) ||
-      (mode === "auto" && items.length === 1);
-
-    const showMenu =
-      (mode === "menu" && items.length > 0) ||
-      (mode === "auto" && items.length > 1);
-
-    if (showButtons) {
+    if (mode === "buttons") {
       return items
         .filter((item) => item?.display !== false)
         .map((item, index) => (
@@ -101,14 +94,13 @@ export const DataActionsMenu = ({
             variant="textOnly"
             size="small"
             severity={item.severity}
+            label={!item.icon ? item.label : ""}
             title={item.label}
             onClick={() => item.onClick?.()}
             rounded
           />
         ));
-    }
-
-    if (showMenu) {
+    } else if (mode === "menu") {
       return (
         <DropdownMenu
           label={<i className="pi pi-cog"></i>}
