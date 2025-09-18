@@ -1,5 +1,7 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 import { NavigationMenu } from "@prefabs.tech/react-ui";
+import { useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { SidebarFooter } from "./Footer";
 import { SidebarHeader } from "./Header";
@@ -7,9 +9,13 @@ import { UserMenu } from "../common/UserMenu";
 
 import type {
   NavGroupDisplayMode,
+  NavGroupType,
+  NavItemType,
   NavMenuItemType,
   NavMenuType,
 } from "@prefabs.tech/react-ui";
+
+import { useLayoutContext } from "@/context/LayoutProvider";
 import useConfig from "@/hooks/useConfig";
 
 type SidebarProperties = {
@@ -37,7 +43,46 @@ export const Sidebar = ({
   userMenuMode,
   trigger,
 }: SidebarProperties) => {
+  const navigate = useNavigate();
+
   const { layout: layoutConfig } = useConfig();
+  const { setMenuMobileOpen } = useLayoutContext();
+
+  const refinedMenu = useMemo(() => {
+    const addOnClick = (
+      menu: NavItemType | NavGroupType,
+    ): NavItemType | NavGroupType => ({
+      ...menu,
+      onClick: () => {
+        if ("onClick" in menu && typeof menu.onClick === "function") {
+          menu.onClick();
+        }
+
+        if ("route" in menu) {
+          navigate(menu.route);
+        }
+
+        setMenuMobileOpen(false);
+      },
+      ...(Array.isArray((menu as NavGroupType).submenu) && {
+        submenu: (menu as NavGroupType).submenu.map(addOnClick),
+      }),
+    });
+
+    if (!Array.isArray(navigationMenu)) {
+      return {
+        ...navigationMenu,
+        menu: Array.isArray(navigationMenu?.menu)
+          ? navigationMenu.menu.map(addOnClick)
+          : [],
+      };
+    }
+
+    return navigationMenu.map((_menu) => ({
+      ..._menu,
+      menu: Array.isArray(_menu.menu) ? _menu.menu.map(addOnClick) : [],
+    }));
+  }, [navigationMenu]);
 
   const renderContent = () => {
     return (
@@ -46,7 +91,7 @@ export const Sidebar = ({
         <div className="sidebar-menu-wrapper">
           <NavigationMenu
             displayIcons={displayNavIcons}
-            navigationMenu={navigationMenu || []}
+            navigationMenu={refinedMenu || []}
           />
           {userMenu && (
             <UserMenu
