@@ -108,6 +108,7 @@
   .dz-sidebar-header-layout > main {
     grid-area: main;
     overflow-y: auto;
+    padding-top: 20px;
   }
 
   .dz-sidebar-header-layout > header > .dz-header-container {
