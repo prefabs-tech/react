@@ -39,18 +39,20 @@ export const Sidebar = ({
     return (
       <>
         {!noHeader && <SidebarHeader />}
-        <NavigationMenu
-          displayIcons={displayNavIcons}
-          navigationMenu={navigationMenu || []}
-        />
-        {userMenu && (
-          <UserMenu
-            menu={userMenu}
-            trigger={trigger}
-            userMenuMode={userMenuMode}
+        <div className="sidebar-menu-wrapper">
+          <NavigationMenu
+            displayIcons={displayNavIcons}
+            navigationMenu={navigationMenu || []}
           />
-        )}
-        {!noFooter && <SidebarFooter noLocaleSwitcher={noLocaleSwitcher} />}
+          {userMenu && (
+            <UserMenu
+              menu={userMenu}
+              trigger={trigger}
+              userMenuMode={userMenuMode}
+            />
+          )}
+          {!noFooter && <SidebarFooter noLocaleSwitcher={noLocaleSwitcher} />}
+        </div>
       </>
     );
   };

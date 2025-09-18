@@ -6,6 +6,12 @@
   width: 100%;
 }
 
+.dz-sidebar-header-layout[aria-expanded=true] > .dz-sidebar {
+  position: absolute;
+  width: 100%;
+  height: 100dvh;
+}
+
 .dz-sidebar-header-layout > header {
   display: none;
 }
@@ -17,12 +23,20 @@
 
 .dz-sidebar-header-layout > .dz-sidebar {
   grid-area: header;
+  z-index: 100;
+}
+
+.dz-sidebar .sidebar-menu-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .dz-sidebar-header-layout > main {
   grid-area: main;
   max-width: 100%;
   min-width: 100%;
+  z-index: 99;
 }
 
 .dz-sidebar-header-layout[data-user-menu-location="sidebar"]
