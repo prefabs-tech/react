@@ -22,6 +22,8 @@
 }
 
 .dz-sidebar-header-layout > .dz-sidebar {
+  display: flex;
+  flex-direction: column;
   grid-area: header;
   z-index: 100;
 }
@@ -30,6 +32,10 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+}
+
+.dz-sidebar .sidebar-menu-wrapper > .dz-navigation-menu {
+  flex: 1;
 }
 
 .dz-sidebar-header-layout > main {
