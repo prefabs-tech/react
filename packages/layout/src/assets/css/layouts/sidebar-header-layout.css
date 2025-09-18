@@ -81,6 +81,12 @@
     grid-area: header;
   }
 
+  .dz-sidebar-header-layout[aria-expanded=true] > .dz-sidebar {
+    position: relative;
+    width: var(--sidebar-width, 16rem);
+    height: auto;
+  }
+
   .dz-sidebar-header-layout.collapsible
     > header
     > .dz-header-container
