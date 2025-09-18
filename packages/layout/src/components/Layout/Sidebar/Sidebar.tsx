@@ -1,3 +1,4 @@
+import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 import { NavigationMenu } from "@prefabs.tech/react-ui";
 
 import { SidebarFooter } from "./Footer";
@@ -9,6 +10,7 @@ import type {
   NavMenuItemType,
   NavMenuType,
 } from "@prefabs.tech/react-ui";
+import useConfig from "@/hooks/useConfig";
 
 type SidebarProperties = {
   children?: React.ReactNode;
@@ -35,6 +37,8 @@ export const Sidebar = ({
   userMenuMode,
   trigger,
 }: SidebarProperties) => {
+  const { layout: layoutConfig } = useConfig();
+
   const renderContent = () => {
     return (
       <>
@@ -51,7 +55,14 @@ export const Sidebar = ({
               userMenuMode={userMenuMode}
             />
           )}
-          {!noFooter && <SidebarFooter noLocaleSwitcher={noLocaleSwitcher} />}
+          {!noLocaleSwitcher && (
+            <div className="dz-sidebar-locale-switcher">
+              <LocaleSwitcher
+                showBadge={layoutConfig?.localeSwitcher?.showBadge}
+              />
+            </div>
+          )}
+          {!noFooter && <SidebarFooter />}
         </div>
       </>
     );

@@ -38,6 +38,21 @@
   flex: 1;
 }
 
+.dz-sidebar .sidebar-menu-wrapper > .dz-sidebar-locale-switcher {
+  width: 100%; 
+  padding: 0.5rem 1rem
+}
+
+.dz-sidebar .sidebar-menu-wrapper > .dz-sidebar-footer {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: .875rem;
+  padding: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .dz-sidebar-header-layout > main {
   grid-area: main;
   max-width: 100%;
