@@ -25,15 +25,13 @@
     var(--_layout-header-item-padding-h);
 }
 
-.dz-layout .dz-header-menu .popup-trigger {
-  display: block;
-}
 
 .dz-layout .dz-header-menu > .dz-user-menu .dropdown-menu-trigger,
 .dz-layout .dz-header-menu > .dz-locale-switcher .dropdown-menu-trigger {
-  display: block;
-  padding: var(--_layout-header-item-padding-v)
-    var(--_layout-header-item-padding-h);
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: var(--_layout-header-item-padding-h);
 }
 
 .dz-layout .dz-header-menu span.dz-user-menu-item > i,
