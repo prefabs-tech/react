@@ -1,3 +1,36 @@
+# [0.65.0](https://github.com/prefabs-tech/react/compare/v0.64.0...v0.65.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency react-dropzone to v14.3.8 ([#1526](https://github.com/prefabs-tech/react/issues/1526)) ([6fe0b78](https://github.com/prefabs-tech/react/commit/6fe0b7844306c1a03092d7febb8120e32fbfe2f1))
+* **form/form-action:** update buttons alignment for filled form actions ([#1597](https://github.com/prefabs-tech/react/issues/1597)) ([8b07579](https://github.com/prefabs-tech/react/commit/8b07579bdc0ccac41448f98bdf30a3c758bc4eaf))
+* **form:** gap between the form fields ([#1576](https://github.com/prefabs-tech/react/issues/1576)) ([3cdafc0](https://github.com/prefabs-tech/react/commit/3cdafc02590c59c02db32a15389ea2115ea05f54))
+* **form:** use var for field gap and form-gap ([#1580](https://github.com/prefabs-tech/react/issues/1580)) ([92788c1](https://github.com/prefabs-tech/react/commit/92788c1fc44524ac396c415184decbd987bec418))
+* **ui:** decrease gap for auth page ([#1581](https://github.com/prefabs-tech/react/issues/1581)) ([b0300d3](https://github.com/prefabs-tech/react/commit/b0300d3700b377d92a80b1798500c667490c0d15))
+* **ui:** use px value instead of rem in media query ([#1584](https://github.com/prefabs-tech/react/issues/1584)) ([1abb9eb](https://github.com/prefabs-tech/react/commit/1abb9eb67648c3aa9a24a82c07223bc9deffe401))
+* **user/login:** update disabled user to show invalid credential on login ([#1593](https://github.com/prefabs-tech/react/issues/1593)) ([9bb0deb](https://github.com/prefabs-tech/react/commit/9bb0debf0d301540e8188528bbafc7e70708cc4e))
+
+
+### Features
+
+* add consistent background colors for hover and highlights ([#1575](https://github.com/prefabs-tech/react/issues/1575)) ([c10ab75](https://github.com/prefabs-tech/react/commit/c10ab756e727c56bdc0856c8631224a3e7fbf2b7))
+* **form:** add password field to fill full height for auto fill color ([#1582](https://github.com/prefabs-tech/react/issues/1582)) ([b743d94](https://github.com/prefabs-tech/react/commit/b743d941adaa46d2ebf0438e0542f6d90d5b9260))
+* **table:** update auto action mode to be configurable with a prop ([#1595](https://github.com/prefabs-tech/react/issues/1595)) ([f61a4eb](https://github.com/prefabs-tech/react/commit/f61a4ebf7cc9391ad202fe7476aec8b9b8a13a8a))
+* **table:** update table action to accept different modes ([#1590](https://github.com/prefabs-tech/react/issues/1590)) ([092b2ee](https://github.com/prefabs-tech/react/commit/092b2ee418b80ac7ba6142df80418855449d250f))
+* **ui/dropdown:** update dropdown menu item to support severity ([#1592](https://github.com/prefabs-tech/react/issues/1592)) ([21c7494](https://github.com/prefabs-tech/react/commit/21c7494ec4bb4a35ef9a2d6ea0ec4861d3d4db5b))
+* **ui/table:** remove dz prefix from css vars and classnames ([#1586](https://github.com/prefabs-tech/react/issues/1586)) ([87d69b5](https://github.com/prefabs-tech/react/commit/87d69b5f7f1accf6429793d9f68e91b0ec4d6868))
+* **ui/table:** remove header and pagination background ([#1585](https://github.com/prefabs-tech/react/issues/1585)) ([bf97bca](https://github.com/prefabs-tech/react/commit/bf97bcab5207cd696fbdcd4327ff210d1e3a0354))
+* **ui:** disable table highlight effects for active sorting and filtering ([#1583](https://github.com/prefabs-tech/react/issues/1583)) ([b606a97](https://github.com/prefabs-tech/react/commit/b606a978de49acfb671fc81f1aa3228670da894f))
+* **user:** update reset acknowledgement page ui ([#1588](https://github.com/prefabs-tech/react/issues/1588)) ([4103768](https://github.com/prefabs-tech/react/commit/4103768d1d9f5f3cbd456caa89bfc78e64f1223c))
+
+
+### Reverts
+
+* Revert "fix(form): gap between the form fields (#1576)" (#1578) ([85f6343](https://github.com/prefabs-tech/react/commit/85f634396e2eb06f2b9e10d58a1f80dc895b0e66)), closes [#1576](https://github.com/prefabs-tech/react/issues/1576) [#1578](https://github.com/prefabs-tech/react/issues/1578)
+
+
+
 # [0.64.0](https://github.com/prefabs-tech/react/compare/v0.63.0...v0.64.0) (2025-08-22)
 
 
