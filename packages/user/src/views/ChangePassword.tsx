@@ -4,17 +4,21 @@ import { AuthPage, Message } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
+import { useConfig } from "../hooks";
+
 import { ChangePasswordForm } from "@/components";
 import { changePassword } from "@/supertokens";
-
-import { useConfig } from "../hooks";
 
 export type ChangePasswordFormData = {
   oldPassword: string;
   password: string;
 };
 
-export const ChangePassword = ({ centered = true }: { centered?: boolean }) => {
+export const ChangePassword = ({
+  centered = false,
+}: {
+  centered?: boolean;
+}) => {
   const { t } = useTranslation("user");
   const config = useConfig();
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,11 +59,7 @@ export const ChangePassword = ({ centered = true }: { centered?: boolean }) => {
       : t("errors.otherErrors", { ns: "errors" });
 
   return (
-    <AuthPage
-      className="change-password"
-      title={t("changePassword.title")}
-      centered={centered}
-    >
+    <AuthPage className="change-password" centered={centered}>
       {error && (
         <Message
           message={errorMessage}
