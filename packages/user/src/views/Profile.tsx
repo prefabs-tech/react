@@ -1,6 +1,6 @@
 import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Page } from "@prefabs.tech/react-ui";
+import { Page, SubPane, TabbedPanel } from "@prefabs.tech/react-ui";
 import React from "react";
 
 import { AccountInfo, ProfileForm } from "@/components/Profile";
@@ -15,8 +15,14 @@ export const Profile = ({ additionalProfileFields }: Properties) => {
 
   return (
     <Page title={t("profile.title")} className="profile">
-      <AccountInfo />
-      <ProfileForm additionalProfileFields={additionalProfileFields} />
+      <TabbedPanel id="profile-tabbed-pannel">
+        <SubPane title="My profile">
+          <ProfileForm additionalProfileFields={additionalProfileFields} />
+        </SubPane>
+        <SubPane title="Credentials">
+          <AccountInfo />
+        </SubPane>
+      </TabbedPanel>
     </Page>
   );
 };
