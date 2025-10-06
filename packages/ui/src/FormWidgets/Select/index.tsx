@@ -574,8 +574,9 @@ export const Select = <T extends string | number>({
               <Checkbox
                 checked={isAllSelected}
                 disabled={activeOptions.length === 0}
+                label={selectAllLabel}
+                onChange={() => {}}
               />
-              <span>{selectAllLabel}</span>
             </li>
           )}
 
