@@ -24,34 +24,35 @@ export const SignupForm = ({
 }: Properties) => {
   const { t, i18n } = useTranslation("user");
   const config = useConfig();
+  const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? false;
 
-  const SignUpFormSchema = zod
-    .object({
-      email: emailSchema({
-        invalid: t("validation.messages.validEmail"),
-        required: t("validation.messages.email"),
-      }),
-      ...PasswordConfirmationSchema({
-        passwordRequiredMessage: t("signup.messages.validation.password"),
-        passwordValidationMessage: t(
-          "signup.messages.validation.validationMessage",
-        ),
-        confirmPasswordRequiredMessage: t(
-          "signup.messages.validation.confirmPassword",
-        ),
-      }),
-      ...(config.features?.termsAndConditions?.display &&
-      config.features.termsAndConditions.showCheckbox
-        ? {
-            termsAndConditions: zod
-              .boolean()
-              .refine((value) => value === true, {
-                message: t("signup.messages.validation.termsAndConditions"),
-              }),
-          }
-        : {}),
-    })
-    .refine(
+  const SignUpFormSchema = zod.object({
+    email: emailSchema({
+      invalid: t("validation.messages.validEmail"),
+      required: t("validation.messages.email"),
+    }),
+    ...PasswordConfirmationSchema({
+      passwordRequiredMessage: t("signup.messages.validation.password"),
+      passwordValidationMessage: t(
+        "signup.messages.validation.validationMessage",
+      ),
+      confirmPasswordRequiredMessage: t(
+        "signup.messages.validation.confirmPassword",
+      ),
+      hasConfirmPasswordFeature,
+    }),
+    ...(config.features?.termsAndConditions?.display &&
+    config.features.termsAndConditions.showCheckbox
+      ? {
+          termsAndConditions: zod.boolean().refine((value) => value === true, {
+            message: t("signup.messages.validation.termsAndConditions"),
+          }),
+        }
+      : {}),
+  });
+
+  if (hasConfirmPasswordFeature) {
+    SignUpFormSchema.refine(
       (data) => {
         return data.password === data.confirmPassword;
       },
@@ -60,6 +61,7 @@ export const SignupForm = ({
         path: ["confirmPassword"],
       },
     );
+  }
 
   return (
     <Provider
@@ -75,6 +77,7 @@ export const SignupForm = ({
     >
       <SignupFormFields
         disableEmailField={!!email}
+        hasConfirmPasswordFeature={hasConfirmPasswordFeature}
         loading={loading}
         termsAndConditions={termsAndConditions}
       />
