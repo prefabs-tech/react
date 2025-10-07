@@ -2,15 +2,17 @@ import { passwordSchema } from "@prefabs.tech/react-form";
 import * as zod from "zod";
 
 interface PasswordConfirmationSchema {
-  passwordValidationMessage?: string;
-  passwordRequiredMessage?: string;
   confirmPasswordRequiredMessage?: string;
+  hasConfirmPasswordFeature?: boolean;
+  passwordRequiredMessage?: string;
+  passwordValidationMessage?: string;
 }
 
 const schema = ({
-  passwordValidationMessage = "validation.messages.passwordValidation",
-  passwordRequiredMessage = "validation.messages.requiredField",
   confirmPasswordRequiredMessage = "validation.messages.requiredField",
+  hasConfirmPasswordFeature = true,
+  passwordRequiredMessage = "validation.messages.requiredField",
+  passwordValidationMessage = "validation.messages.passwordValidation",
 }: PasswordConfirmationSchema) => {
   return {
     password: passwordSchema(
@@ -26,7 +28,9 @@ const schema = ({
         minUppercase: 1,
       },
     ),
-    confirmPassword: zod.string().min(1, confirmPasswordRequiredMessage),
+    ...(hasConfirmPasswordFeature && {
+      confirmPassword: zod.string().min(1, confirmPasswordRequiredMessage),
+    }),
   };
 };
 
