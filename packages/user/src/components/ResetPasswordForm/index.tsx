@@ -26,6 +26,7 @@ export const ResetPasswordForm = ({ handleSubmit, loading }: Properties) => {
         confirmPasswordRequiredMessage: t(
           "resetPassword.messages.validation.confirmPassword",
         ),
+        hasConfirmPasswordFeature: true,
       }),
     })
     .refine(
