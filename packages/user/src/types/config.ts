@@ -16,6 +16,7 @@ export interface UserConfig {
     [K in keyof (ProtectedRouteOverwrites & PublicRouteOverwrites)]?: string;
   };
   features?: {
+    confirmPassword?: boolean;
     emailVerification?: boolean;
     forgotPassword?: boolean;
     signup?: boolean;
