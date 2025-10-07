@@ -26,7 +26,7 @@ export const SignupForm = ({
   const config = useConfig();
   const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? false;
 
-  const SignUpFormSchema = zod.object({
+  let SignUpFormSchema = zod.object({
     email: emailSchema({
       invalid: t("validation.messages.validEmail"),
       required: t("validation.messages.email"),
@@ -52,7 +52,7 @@ export const SignupForm = ({
   });
 
   if (hasConfirmPasswordFeature) {
-    SignUpFormSchema.refine(
+    SignUpFormSchema = SignUpFormSchema.refine(
       (data) => {
         return data.password === data.confirmPassword;
       },
@@ -60,7 +60,7 @@ export const SignupForm = ({
         message: t("signup.messages.validation.mustMatch"),
         path: ["confirmPassword"],
       },
-    );
+    ) as unknown as typeof SignUpFormSchema;
   }
 
   return (

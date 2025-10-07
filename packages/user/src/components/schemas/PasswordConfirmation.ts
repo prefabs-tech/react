@@ -10,7 +10,7 @@ interface PasswordConfirmationSchema {
 
 const schema = ({
   confirmPasswordRequiredMessage = "validation.messages.requiredField",
-  hasConfirmPasswordFeature = true,
+  hasConfirmPasswordFeature = false,
   passwordRequiredMessage = "validation.messages.requiredField",
   passwordValidationMessage = "validation.messages.passwordValidation",
 }: PasswordConfirmationSchema) => {
