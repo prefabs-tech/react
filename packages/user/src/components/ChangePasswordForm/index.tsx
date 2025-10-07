@@ -34,6 +34,7 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
         confirmPasswordRequiredMessage: t(
           "changePassword.messages.validation.confirmPassword",
         ),
+        hasConfirmPasswordFeature: true,
       }),
     })
     .refine(
