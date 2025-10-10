@@ -14,12 +14,14 @@ import { useConfig } from "../../hooks";
 
 interface IProperties {
   disableEmailField?: boolean;
+  hasConfirmPasswordFeature?: boolean;
   loading?: boolean;
   termsAndConditions?: React.ReactNode;
 }
 
 const SignupFormFields: React.FC<IProperties> = ({
   disableEmailField = false,
+  hasConfirmPasswordFeature = false,
   loading,
   termsAndConditions,
 }) => {
@@ -98,13 +100,15 @@ const SignupFormFields: React.FC<IProperties> = ({
         submitCount={submitCount}
         helperText={t("signup.form.password.helperText")}
       />
-      <Password
-        label={t("signup.form.confirmPassword.label")}
-        name="confirmPassword"
-        register={register}
-        getFieldState={getFieldState}
-        submitCount={submitCount}
-      />
+      {hasConfirmPasswordFeature && (
+        <Password
+          label={t("signup.form.confirmPassword.label")}
+          name="confirmPassword"
+          register={register}
+          getFieldState={getFieldState}
+          submitCount={submitCount}
+        />
+      )}
       {showTermsAndConditions ? (
         <TermsAndConditions
           hasCheckbox={showCheckbox}

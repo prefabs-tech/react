@@ -11,6 +11,9 @@ import { SignupForm } from "../Signup";
 const config = {
   supportedRoles: ["USER"],
   socialLoginProviders: ["google"],
+  features: {
+    confirmPassword: true,
+  },
 };
 
 const setup = (component: React.ReactElement) => {

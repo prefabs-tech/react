@@ -5,10 +5,23 @@ import { expect, test, vi } from "vitest";
 
 import { ChangePasswordForm } from "../ChangePasswordForm";
 
+import ConfigProvider from "@/context/ConfigProvider";
+import { UserConfig } from "@/types";
+
+const config = {
+  features: {
+    confirmPassword: true,
+  },
+};
+
 const setup = (component: React.ReactElement) => {
   return {
     user: userEvent.setup(),
-    ...render(component),
+    ...render(
+      <ConfigProvider config={config as UserConfig}>
+        {component}
+      </ConfigProvider>,
+    ),
   };
 };
 
