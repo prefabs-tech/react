@@ -3,10 +3,11 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
 
-import { ChangePasswordFormData } from "@/views/ChangePassword";
-
 import ChangePasswordFormFields from "./ChangePasswordFormFields";
 import { PasswordConfirmationSchema } from "../schemas";
+
+import { useConfig } from "@/hooks";
+import { ChangePasswordFormData } from "@/views/ChangePassword";
 
 interface Properties {
   handleSubmit: (
@@ -18,26 +19,29 @@ interface Properties {
 
 export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
   const { t, i18n } = useTranslation("user");
+  const config = useConfig();
+  const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? true;
 
-  const ChangePasswordFormSchema = zod
-    .object({
-      oldPassword: zod
-        .string()
-        .nonempty(t("changePassword.messages.validation.currentPassword")),
-      ...PasswordConfirmationSchema({
-        passwordValidationMessage: t(
-          "changePassword.messages.validation.mustContain",
-        ),
-        passwordRequiredMessage: t(
-          "changePassword.messages.validation.newPassword",
-        ),
-        confirmPasswordRequiredMessage: t(
-          "changePassword.messages.validation.confirmPassword",
-        ),
-        hasConfirmPasswordFeature: true,
-      }),
-    })
-    .refine(
+  let ChangePasswordFormSchema = zod.object({
+    oldPassword: zod
+      .string()
+      .nonempty(t("changePassword.messages.validation.currentPassword")),
+    ...PasswordConfirmationSchema({
+      passwordValidationMessage: t(
+        "changePassword.messages.validation.mustContain",
+      ),
+      passwordRequiredMessage: t(
+        "changePassword.messages.validation.newPassword",
+      ),
+      confirmPasswordRequiredMessage: t(
+        "changePassword.messages.validation.confirmPassword",
+      ),
+      hasConfirmPasswordFeature,
+    }),
+  });
+
+  if (hasConfirmPasswordFeature) {
+    ChangePasswordFormSchema = ChangePasswordFormSchema.refine(
       (data) => {
         return data.password === data.confirmPassword;
       },
@@ -45,7 +49,8 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
         message: t("changePassword.messages.validation.mustMatch"),
         path: ["confirmPassword"],
       },
-    );
+    ) as unknown as typeof ChangePasswordFormSchema;
+  }
 
   return (
     <Provider
@@ -58,7 +63,10 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
       }
       validationTriggerKey={i18n.language}
     >
-      <ChangePasswordFormFields loading={loading} />
+      <ChangePasswordFormFields
+        hasConfirmPasswordFeature={hasConfirmPasswordFeature}
+        loading={loading}
+      />
     </Provider>
   );
 };
