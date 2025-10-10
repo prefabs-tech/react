@@ -21,7 +21,7 @@ interface IProperties {
 
 const SignupFormFields: React.FC<IProperties> = ({
   disableEmailField = false,
-  hasConfirmPasswordFeature = true,
+  hasConfirmPasswordFeature = false,
   loading,
   termsAndConditions,
 }) => {

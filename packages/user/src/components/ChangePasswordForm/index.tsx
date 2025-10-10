@@ -20,7 +20,7 @@ interface Properties {
 export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
   const { t, i18n } = useTranslation("user");
   const config = useConfig();
-  const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? true;
+  const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? false;
 
   let ChangePasswordFormSchema = zod.object({
     oldPassword: zod
