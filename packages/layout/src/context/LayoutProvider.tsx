@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 export type LayoutContextType = {
   menuDesktopOpen: boolean;
@@ -16,6 +17,12 @@ type LayoutProviderProperties = {
 export const LayoutProvider = ({ children }: LayoutProviderProperties) => {
   const [menuDesktopOpen, setMenuDesktopOpen] = useState(true);
   const [menuMobileOpen, setMenuMobileOpen] = useState(false);
+
+  // Close sidebar when route changes (only on mobile)
+  const pathname = window.location.pathname;
+  useEffect(() => {
+    setMenuMobileOpen(false);
+  }, [pathname]);
 
   return (
     <LayoutContext.Provider

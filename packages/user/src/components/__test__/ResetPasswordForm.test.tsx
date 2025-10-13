@@ -3,10 +3,10 @@ import { userEvent } from "@testing-library/user-event";
 import React, { act } from "react";
 import { expect, test, vi } from "vitest";
 
-import { ResetPasswordForm } from "../ResetPasswordForm";
-
 import ConfigProvider from "@/context/ConfigProvider";
 import { UserConfig } from "@/types";
+
+import { ResetPasswordForm } from "../ResetPasswordForm";
 
 const config = {
   features: {

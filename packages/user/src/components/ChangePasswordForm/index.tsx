@@ -3,11 +3,11 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
 
-import ChangePasswordFormFields from "./ChangePasswordFormFields";
-import { PasswordConfirmationSchema } from "../schemas";
-
 import { useConfig } from "@/hooks";
 import { ChangePasswordFormData } from "@/views/ChangePassword";
+
+import ChangePasswordFormFields from "./ChangePasswordFormFields";
+import { PasswordConfirmationSchema } from "../schemas";
 
 interface Properties {
   handleSubmit: (
