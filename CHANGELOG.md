@@ -1,3 +1,12 @@
+## [0.66.1](https://github.com/prefabs-tech/react/compare/v0.66.0...v0.66.1) (2025-10-14)
+
+
+### Bug Fixes
+
+* **layout:** update footer ui ([#1608](https://github.com/prefabs-tech/react/issues/1608)) ([9a14acc](https://github.com/prefabs-tech/react/commit/9a14acc5912a54da463fd053615bfa7192155c90))
+
+
+
 # [0.66.0](https://github.com/prefabs-tech/react/compare/v0.65.0...v0.66.0) (2025-10-14)
 
 
