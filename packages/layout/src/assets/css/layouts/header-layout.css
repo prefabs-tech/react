@@ -59,10 +59,10 @@
   }
 
   .dz-header-layout > header {
-    display: unset;
+    display: block;
   }
   .dz-header-layout > footer {
-    display: unset;
+    display: flex;
   }
 
   .dz-header-layout {
