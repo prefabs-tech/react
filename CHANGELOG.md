@@ -1,3 +1,18 @@
+# [0.66.0](https://github.com/prefabs-tech/react/compare/v0.65.0...v0.66.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* **ui:** fix select-all behavior in select widget ([#1602](https://github.com/prefabs-tech/react/issues/1602)) ([1c4534b](https://github.com/prefabs-tech/react/commit/1c4534bd6b4e790418a15fdd873af066b1e4a167))
+
+
+### Features
+
+* **layout:** show sidebar for navigation menu in mobile view ([#1606](https://github.com/prefabs-tech/react/issues/1606)) ([5069172](https://github.com/prefabs-tech/react/commit/506917296cfef4557aa8b196020e42c81de4bb25))
+* **user:** update confirm password field to be configurable ([#1604](https://github.com/prefabs-tech/react/issues/1604)) ([2421417](https://github.com/prefabs-tech/react/commit/2421417235c073cc9f72752459c1b7a50fa5b50b))
+
+
+
 # [0.65.0](https://github.com/prefabs-tech/react/compare/v0.64.0...v0.65.0) (2025-09-25)
 
 
