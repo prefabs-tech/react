@@ -28,7 +28,7 @@
   --dz-layout-header-logo-max-width: var(--dz-layout-logo-max-width);
   --dz-layout-header-max-width: 1920px;
   --dz-layout-header-padding-h: var(--dz-layout-main-padding-h, 1rem);
-  --dz-layout-header-padding-v: 0.5rem;
+  --dz-layout-header-padding-v: 0.75rem;
 }
 
 @media screen and (min-width: 576px) {
