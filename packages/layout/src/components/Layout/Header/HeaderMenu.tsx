@@ -1,14 +1,15 @@
 import { LocaleSwitcher } from "@prefabs.tech/react-i18n";
 
 import useConfig from "@/hooks/useConfig";
+import { UserMenuType } from "@/types";
 
 import { UserMenu } from "../common/UserMenu";
 
-import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
+import type { UserMenuModeType } from "@prefabs.tech/react-ui";
 
 interface HeaderProperties {
   children?: React.ReactNode;
-  menu?: NavMenuItemType;
+  menu?: UserMenuType;
   noLocaleSwitcher?: boolean;
   userMenuMode?: UserMenuModeType;
 }

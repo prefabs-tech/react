@@ -17,6 +17,18 @@
   margin-right: -0.75rem;
 }
 
+.dz-sidebar-header-layout[aria-expanded="false"]
+  > .dz-sidebar
+  > .dz-sidebar-header
+  > .dz-toggle-menu {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.dz-sidebar-header-layout > .dz-sidebar > .dz-sidebar-header > .dz-toggle-menu {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
 .dz-sidebar-header-layout > .dz-sidebar {
   grid-area: sidebar;
   position: fixed;

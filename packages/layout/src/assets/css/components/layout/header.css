@@ -83,6 +83,7 @@
   }
 
   .dz-layout > header > .dz-header-container > .dz-navigation-menu {
+    display: flex;
     grid-area: nav;
     flex-grow: 1;
   }

@@ -31,7 +31,8 @@
   background: var(--_layout-sidebar-bg);
   border-right: var(--_layout-sidebar-border);
   color: var(--_layout-sidebar-color);
-  width: 100%;
+  display: flex;
+  flex-direction: column;
   transition: width var(--_layout-sidebar-transition-duration) ease-in;
 }
 

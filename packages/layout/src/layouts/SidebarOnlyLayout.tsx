@@ -1,10 +1,7 @@
 import { Layout, Sidebar } from "@/components/Layout";
+import { UserMenuModeType, UserMenuType } from "@/types";
 
-import type {
-  NavGroupDisplayMode,
-  NavMenuType,
-  NavMenuItemType,
-} from "@prefabs.tech/react-ui";
+import type { NavMenuType } from "@prefabs.tech/react-ui";
 
 export interface SidebarOnlyLayoutProperties {
   className?: string;
@@ -16,8 +13,8 @@ export interface SidebarOnlyLayoutProperties {
   noLocaleSwitcher?: boolean;
   noSidebarHeader?: boolean;
   noSidebarFooter?: boolean;
-  userMenu?: NavMenuItemType;
-  userMenuMode?: NavGroupDisplayMode;
+  userMenu?: UserMenuType;
+  userMenuMode?: UserMenuModeType;
 }
 
 export const SidebarOnlyLayout: React.FC<SidebarOnlyLayoutProperties> = ({

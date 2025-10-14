@@ -1,11 +1,11 @@
-import { DropdownMenu, NavGroup } from "@prefabs.tech/react-ui";
+import { DropdownMenu, NavGroup, NavItem } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
-import type { NavMenuItemType, UserMenuModeType } from "@prefabs.tech/react-ui";
+import { UserMenuModeType, UserMenuType } from "@/types";
 
 interface IProperties {
-  menu: NavMenuItemType;
+  menu: UserMenuType;
   userMenuMode?: UserMenuModeType;
   trigger?: React.ReactNode;
 }
@@ -46,27 +46,14 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
       );
     };
 
-    if (refinedMenu.length === 1) {
-      const _menuItem = refinedMenu[0];
-
-      return (
-        <ul className="dz-user-menu">
-          <span className="dz-user-menu-item" onClick={_menuItem.onClick}>
-            {_menuItem.icon && <i className={_menuItem.icon}></i>}
-            {_menuItem.label}
-          </span>
-        </ul>
-      );
-    }
-
     switch (userMenuMode) {
       case "horizontal":
         return (
           <ul className="dz-user-menu" aria-orientation={userMenuMode}>
-            {refinedMenu.map(({ onClick, ..._menuItem }) => {
+            {userMenu.map((_menuItem, index) => {
               return (
-                <li key={_menuItem.label} onClick={onClick}>
-                  {template(_menuItem)}
+                <li key={index}>
+                  <NavItem navItem={_menuItem} />
                 </li>
               );
             })}
@@ -88,7 +75,7 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
             className="dz-user-menu"
             navGroup={{
               label: userMenuLabel,
-              submenu: refinedMenu,
+              submenu: userMenu,
             }}
             displayMode={userMenuMode}
           />
