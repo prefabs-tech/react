@@ -1,15 +1,15 @@
 import { SidebarOnlyLayout } from "@prefabs.tech/react-layout";
 
-import { useUser } from "@/hooks";
-
 import { useUserNavigationMenu } from "..";
 
-import type { SidebarOnlyLayoutProperties } from "@prefabs.tech/react-layout";
-import type { NavMenuItemType } from "@prefabs.tech/react-ui";
+import type {
+  SidebarOnlyLayoutProperties,
+  UserMenuType,
+} from "@prefabs.tech/react-layout";
 
 interface Properties extends Omit<SidebarOnlyLayoutProperties, "userMenu"> {
-  authNavigationMenu?: NavMenuItemType;
-  userNavigationMenu?: NavMenuItemType;
+  authNavigationMenu?: UserMenuType;
+  userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
 }
@@ -29,8 +29,6 @@ export const UserEnabledSidebarOnlyLayout: React.FC<Properties> = ({
   userMenuMode,
   onLogout,
 }) => {
-  const { user } = useUser();
-
   const userMenu = useUserNavigationMenu({
     authNavigationMenu,
     addAuthNavigationMenu: true,
@@ -44,12 +42,12 @@ export const UserEnabledSidebarOnlyLayout: React.FC<Properties> = ({
       className={className}
       collapsible={collapsible}
       displayNavIcons={displayNavIcons}
-      navigationMenu={user ? navigationMenu : authNavigationMenu}
+      navigationMenu={navigationMenu}
       customSidebar={customSidebar}
       noSidebarHeader={noSidebarHeader}
       noSidebarFooter={noSidebarFooter}
       noLocaleSwitcher={noLocaleSwitcher}
-      userMenu={user ? userMenu : undefined}
+      userMenu={userMenu}
       userMenuMode={userMenuMode}
     />
   );

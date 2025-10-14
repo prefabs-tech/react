@@ -1,10 +1,8 @@
+import { UserMenuModeType, UserMenuType } from "@/types";
+
 import { Header, Layout, Sidebar } from "..";
 
-import type {
-  NavGroupDisplayMode,
-  NavMenuItemType,
-  NavMenuType,
-} from "@prefabs.tech/react-ui";
+import type { NavMenuType } from "@prefabs.tech/react-ui";
 
 export interface SidebarHeaderLayoutProperties {
   children: React.ReactNode;
@@ -17,8 +15,8 @@ export interface SidebarHeaderLayoutProperties {
   navigationMenu?: NavMenuType;
   noLocaleSwitcher?: boolean;
   title?: string | React.ReactNode;
-  userMenu?: NavMenuItemType;
-  userMenuMode?: NavGroupDisplayMode;
+  userMenu?: UserMenuType;
+  userMenuMode?: UserMenuModeType;
   userMenuLocation?: "sidebar" | "header";
   userMenuTrigger?: React.ReactNode;
 }
@@ -52,6 +50,7 @@ export const SidebarHeaderLayout = ({
           menu={userMenu}
           noLocaleSwitcher={noLocaleSwitcher}
           title={title}
+          userMenuMode={userMenuMode}
         />
       )}
       {customSidebar || (

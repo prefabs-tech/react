@@ -64,7 +64,11 @@ export {
   useLayoutContext,
 };
 
-export type { PrefabsTechReactLayoutConfig } from "./types";
+export type {
+  PrefabsTechReactLayoutConfig,
+  UserMenuModeType,
+  UserMenuType,
+} from "./types";
 
 export type {
   HeaderLayoutProperties,

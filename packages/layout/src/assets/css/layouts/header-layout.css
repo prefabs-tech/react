@@ -2,20 +2,39 @@
   display: grid;
   grid-template-areas:
     "header"
-    "main"
-    "footer";
-  grid-template-rows: auto 1fr auto;
-  min-height: 100dvh;
+    "main";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  width: 100%;
 }
 
 .dz-header-layout > header {
-  --_layout-header-padding-h: var(--_layout-main-padding-h);
-
   grid-area: header;
 }
 
-.dz-header-layout > header > .dz-header-container > .dz-toggle-menu {
+.dz-header-layout > header > .dz-header-container > .dz-toggle-menu,
+.dz-header-layout > .dz-sidebar > .dz-sidebar-header > .dz-toggle-menu {
   margin-right: -0.75rem;
+}
+
+.dz-header-layout[aria-expanded="false"]
+  > .dz-sidebar
+  > .dz-sidebar-header
+  > .dz-toggle-menu {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+.dz-header-layout > .dz-sidebar > .dz-sidebar-header > .dz-toggle-menu {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.dz-header-layout > .dz-sidebar {
+  grid-area: sidebar;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
 }
 
 .dz-header-layout > main {
@@ -24,6 +43,55 @@
   min-width: 100%;
 }
 
+.dz-header-layout[data-user-menu-location="sidebar"]
+  > .dz-sidebar
+  > .dz-user-menu {
+  padding: 0.5rem 0;
+}
+
 .dz-header-layout > footer {
-  grid-area: footer;
+  display: none;
+}
+
+@media screen and (min-width: 576px) {
+  .dz-header-layout > .dz-sidebar {
+    display: none !important;
+  }
+
+  .dz-header-layout > header {
+    display: unset;
+  }
+  .dz-header-layout > footer {
+    display: unset;
+  }
+
+  .dz-header-layout {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+  }
+
+  .dz-header-layout > header {
+    --_layout-header-padding-h: var(--_layout-main-padding-h);
+
+    grid-area: header;
+  }
+
+  .dz-header-layout > header > .dz-header-container > .dz-toggle-menu {
+    margin-right: -0.75rem;
+  }
+
+  .dz-header-layout > main {
+    grid-area: main;
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .dz-header-layout > footer {
+    grid-area: footer;
+  }
 }

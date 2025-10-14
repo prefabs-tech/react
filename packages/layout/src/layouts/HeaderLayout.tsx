@@ -1,10 +1,7 @@
-import { Layout, Header, Footer } from "@/components/Layout";
+import { Layout, Header, Footer, Sidebar } from "@/components/Layout";
+import { UserMenuType } from "@/types";
 
-import type {
-  NavMenuType,
-  NavMenuItemType,
-  UserMenuModeType,
-} from "@prefabs.tech/react-ui";
+import type { NavMenuType, UserMenuModeType } from "@prefabs.tech/react-ui";
 
 export interface HeaderLayoutProperties {
   className?: string;
@@ -15,7 +12,7 @@ export interface HeaderLayoutProperties {
   fixed?: boolean;
   headerAddon?: React.ReactNode;
   navigationMenu?: NavMenuType;
-  menu?: NavMenuItemType;
+  menu?: UserMenuType;
   noLocaleSwitcher?: boolean;
   noLogo?: boolean;
   noToggle?: boolean;
@@ -57,6 +54,13 @@ export const HeaderLayout: React.FC<HeaderLayoutProperties> = ({
           userMenuMode={userMenuMode}
         ></Header>
       )}
+      <Sidebar
+        displayNavIcons={displayNavIcons}
+        navigationMenu={navigationMenu}
+        noLocaleSwitcher={noLocaleSwitcher}
+        userMenu={menu}
+        userMenuMode="collapsible-reverse"
+      ></Sidebar>
       <main>{children}</main>
       {customFooter || <Footer></Footer>}
     </Layout>

@@ -1,16 +1,15 @@
 import {
   HeaderLayout,
   HeaderLayoutProperties,
+  UserMenuType,
 } from "@prefabs.tech/react-layout";
 
 import { useUser, useUserNavigationMenu } from "..";
 
-import type { NavMenuItemType } from "@prefabs.tech/react-ui";
-
 interface IProperties
   extends Omit<HeaderLayoutProperties, "userMenuMode" | "menu"> {
-  authNavigationMenu?: NavMenuItemType;
-  userNavigationMenu?: NavMenuItemType;
+  authNavigationMenu?: UserMenuType;
+  userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
 }

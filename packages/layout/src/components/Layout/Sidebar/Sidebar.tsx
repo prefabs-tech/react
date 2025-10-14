@@ -1,14 +1,12 @@
 import { NavigationMenu } from "@prefabs.tech/react-ui";
 
+import { UserMenuModeType, UserMenuType } from "@/types";
+
 import { SidebarFooter } from "./Footer";
 import { SidebarHeader } from "./Header";
 import { UserMenu } from "../common/UserMenu";
 
-import type {
-  NavGroupDisplayMode,
-  NavMenuItemType,
-  NavMenuType,
-} from "@prefabs.tech/react-ui";
+import type { NavMenuType } from "@prefabs.tech/react-ui";
 
 type SidebarProperties = {
   children?: React.ReactNode;
@@ -18,8 +16,8 @@ type SidebarProperties = {
   noFooter?: boolean;
   noHeader?: boolean;
   noLocaleSwitcher?: boolean;
-  userMenu?: NavMenuItemType;
-  userMenuMode?: NavGroupDisplayMode;
+  userMenu?: UserMenuType;
+  userMenuMode?: UserMenuModeType;
   trigger?: React.ReactNode;
 };
 

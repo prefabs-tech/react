@@ -3,10 +3,10 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
 
+import { useConfig } from "@/hooks";
+
 import ResetPasswordFormFields from "./ResetPasswordFormFields";
 import { PasswordConfirmationSchema } from "../schemas";
-
-import { useConfig } from "@/hooks";
 
 interface Properties {
   handleSubmit: (newPassword: string) => void;

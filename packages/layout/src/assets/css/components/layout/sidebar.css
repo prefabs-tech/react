@@ -29,11 +29,16 @@
   --_layout-sidebar-width: var(--dz-layout-sidebar-width, 16rem);
 
   background: var(--_layout-sidebar-bg);
+  border-right: var(--_layout-sidebar-border);
   color: var(--_layout-sidebar-color);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--_layout-sidebar-transition-duration) ease-in;
 }
 
-.dz-layout[aria-expanded="false"] > .dz-sidebar > :not(.dz-sidebar-header) {
-  display: none;
+.dz-layout[aria-expanded="false"] > .dz-sidebar {
+  width: 0;
+  overflow: hidden;
 }
 
 .dz-layout > .dz-sidebar > .dz-sidebar-header {
