@@ -59,7 +59,9 @@ export const HeaderLayout: React.FC<HeaderLayoutProperties> = ({
         navigationMenu={navigationMenu}
         noLocaleSwitcher={noLocaleSwitcher}
         userMenu={menu}
-        userMenuMode="collapsible-reverse"
+        userMenuMode={
+          userMenuMode === "horizontal" ? "horizontal" : "collapsible-reverse"
+        }
       ></Sidebar>
       <main>{children}</main>
       {customFooter || <Footer></Footer>}
