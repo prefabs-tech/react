@@ -195,7 +195,14 @@ export const FilesTable = ({
       accessorKey: "uploadedAt",
       header: "Uploaded at",
       cell: ({ getValue }) => {
-        return formatDateTime(getValue() as number, locale);
+        return formatDateTime(getValue() as number, locale, {
+          day: "2-digit",
+          hour: "2-digit",
+          hour12: false,
+          minute: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
       },
       enableSorting: true,
       enableColumnFilter: true,
@@ -222,7 +229,14 @@ export const FilesTable = ({
       enableColumnFilter: true,
       enableSorting: true,
       cell: ({ getValue }) => {
-        return formatDateTime(getValue() as number, locale);
+        return formatDateTime(getValue() as number, locale, {
+          day: "2-digit",
+          hour: "2-digit",
+          hour12: false,
+          minute: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
       },
       filterPlaceholder: "Select date",
       meta: {
