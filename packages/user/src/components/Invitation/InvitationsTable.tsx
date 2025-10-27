@@ -7,7 +7,6 @@ import {
   IButtonProperties,
   TableColumnDefinition,
   Tag,
-  formatDateTime,
   FilterOption,
 } from "@prefabs.tech/react-ui";
 import { toast } from "react-toastify";
@@ -287,9 +286,7 @@ export const InvitationsTable = ({
     },
     {
       accessorKey: "expiresAt",
-      cell: ({ getValue }) => {
-        return formatDateTime(getValue() as string, i18n?.language);
-      },
+      dataType: "datetime",
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholders.expiresAt"),

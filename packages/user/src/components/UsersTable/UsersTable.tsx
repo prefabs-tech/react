@@ -7,7 +7,6 @@ import {
   IButtonProperties,
   TableColumnDefinition,
   Tag,
-  formatDate,
   type DataActionsMenuProperties,
   type FilterOption,
 } from "@prefabs.tech/react-ui";
@@ -162,13 +161,7 @@ export const UsersTable = ({
     {
       accessorKey: "signedUpAt",
       header: t("table.defaultColumns.signedUpOn"),
-      cell: ({ row: { original } }) => {
-        if (original.signedUpAt) {
-          return formatDate(original.signedUpAt, i18n?.language);
-        }
-
-        return "-";
-      },
+      dataType: "date",
       enableSorting: true,
       enableColumnFilter: true,
       meta: {

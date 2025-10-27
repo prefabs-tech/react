@@ -87,6 +87,18 @@ export const TableBody = <TData extends RowData>({
                       const cellContext = cell.getContext();
                       const renderValue = cellContext.getValue;
                       const dateOptions = cell.column.columnDef.dateOptions;
+                      const defaultDateOptions: Intl.DateTimeFormatOptions = {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "numeric",
+                      };
+                      const defaultDateTimeOptions: Intl.DateTimeFormatOptions =
+                        {
+                          ...defaultDateOptions,
+                          hour: "2-digit",
+                          minute: "2-digit",
+                          hour12: false,
+                        };
                       const numberOptions = cell.column.columnDef.numberOptions;
 
                       const getFormattedValue = (): NoInfer<never> => {
@@ -107,14 +119,15 @@ export const TableBody = <TData extends RowData>({
                             formatDate(
                               value,
                               dateOptions?.locale ?? locale,
-                              dateOptions?.formatOptions,
+                              dateOptions?.formatOptions ?? defaultDateOptions,
                             ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           datetime: (value: any) =>
                             formatDateTime(
                               value,
                               dateOptions?.locale ?? locale,
-                              dateOptions?.formatOptions,
+                              dateOptions?.formatOptions ??
+                                defaultDateTimeOptions,
                             ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           currency: (value: any) =>
