@@ -116,19 +116,18 @@ export const TableBody = <TData extends RowData>({
                             }) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           date: (value: any) =>
-                            formatDate(value, dateOptions?.locale ?? locale, {
-                              ...defaultDateOptions,
-                              ...dateOptions?.formatOptions,
-                            }) as NoInfer<never>,
+                            formatDate(
+                              value,
+                              dateOptions?.locale ?? locale,
+                              dateOptions?.formatOptions ?? defaultDateOptions,
+                            ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           datetime: (value: any) =>
                             formatDateTime(
                               value,
                               dateOptions?.locale ?? locale,
-                              {
-                                ...defaultDateTimeOptions,
-                                ...dateOptions?.formatOptions,
-                              },
+                              dateOptions?.formatOptions ??
+                                defaultDateTimeOptions,
                             ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           currency: (value: any) =>
