@@ -1,3 +1,12 @@
+# [0.67.0](https://github.com/prefabs-tech/react/compare/v0.66.1...v0.67.0) (2025-10-27)
+
+
+### Features
+
+* **layout:** improve auth menu ui in mobile view ([#1610](https://github.com/prefabs-tech/react/issues/1610)) ([5dcaa4f](https://github.com/prefabs-tech/react/commit/5dcaa4f7fe654a8e06433773dee876dd6de2126b))
+
+
+
 ## [0.66.1](https://github.com/prefabs-tech/react/compare/v0.66.0...v0.66.1) (2025-10-14)
 
 
