@@ -6,7 +6,6 @@ import {
   TDataTableProperties,
   TRequestJSON,
   VisibleFileDetails,
-  formatDateTime,
 } from "../index";
 import { DataActionsMenuItem } from "../Table/TableDataActions";
 
@@ -194,16 +193,7 @@ export const FilesTable = ({
     {
       accessorKey: "uploadedAt",
       header: "Uploaded at",
-      cell: ({ getValue }) => {
-        return formatDateTime(getValue() as number, locale, {
-          day: "2-digit",
-          hour: "2-digit",
-          hour12: false,
-          minute: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        });
-      },
+      dataType: "datetime",
       enableSorting: true,
       enableColumnFilter: true,
       filterPlaceholder: "Select date",
@@ -228,16 +218,7 @@ export const FilesTable = ({
       header: "Last downloaded at",
       enableColumnFilter: true,
       enableSorting: true,
-      cell: ({ getValue }) => {
-        return formatDateTime(getValue() as number, locale, {
-          day: "2-digit",
-          hour: "2-digit",
-          hour12: false,
-          minute: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        });
-      },
+      dataType: "datetime",
       filterPlaceholder: "Select date",
       meta: {
         filterVariant: "dateRange",
