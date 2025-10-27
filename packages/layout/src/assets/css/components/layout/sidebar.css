@@ -72,6 +72,24 @@
   border-top: 1px solid var(--_layout-sidebar-separator-color);
 }
 
+.dz-layout > .dz-sidebar .dz-user-menu {
+  padding: var(--_layout-sidebar-padding-v) 0;
+}
+
+.dz-layout > .dz-sidebar .dz-user-menu[aria-orientation="horizontal"] {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: var(--_layout-sidebar-padding-v) var(--_layout-sidebar-padding-h);
+}
+
+.dz-layout
+  > .dz-sidebar
+  .dz-user-menu[aria-orientation="horizontal"]
+  .dz-nav-item {
+  border-radius: 0.25rem;
+}
+
 .dz-layout > .dz-sidebar > .dz-sidebar-footer {
   align-items: center;
   display: flex;
