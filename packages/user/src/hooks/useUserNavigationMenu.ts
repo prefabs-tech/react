@@ -38,6 +38,7 @@ export const useUserNavigationMenu = ({
 
   const isSocialLogin = !!user?.thirdParty;
 
+  //TODO [KT 2025-10-29]: use correct login path instead of default
   const logoutRedirectRoute =
     config?.logoutRedirectRoute || DEFAULT_PATHS.LOGIN;
 
