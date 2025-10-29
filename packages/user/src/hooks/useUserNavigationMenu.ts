@@ -1,4 +1,5 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
+import { useNavigate } from "react-router-dom";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { logout } from "@/supertokens";
@@ -37,6 +38,11 @@ export const useUserNavigationMenu = ({
 
   const isSocialLogin = !!user?.thirdParty;
 
+  const logoutRedirectRoute =
+    config?.logoutRedirectRoute || DEFAULT_PATHS.LOGIN;
+
+  const navigate = useNavigate();
+
   if (!user && addAuthNavigationMenu) {
     return authNavigationMenu;
   }
@@ -46,6 +52,8 @@ export const useUserNavigationMenu = ({
       await setUser(null);
 
       onLogout && (await onLogout());
+
+      navigate(logoutRedirectRoute);
     }
   };
 
