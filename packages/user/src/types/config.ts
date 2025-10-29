@@ -31,6 +31,7 @@ export interface UserConfig {
     forgotPasswordResendTimeInSeconds?: number;
   };
   homeRoute?: HomeRoute;
+  logoutRedirectRoute?: string;
   socialLoginProviders?: SocialLoginType[];
   supertokens: {
     appName: string;
