@@ -1,3 +1,13 @@
+# [0.68.0](https://github.com/prefabs-tech/react/compare/v0.67.0...v0.68.0) (2025-11-05)
+
+
+### Features
+
+* **user:** register default translations ([#1616](https://github.com/prefabs-tech/react/issues/1616)) ([c4a4133](https://github.com/prefabs-tech/react/commit/c4a4133a93b401ef4d587204816a5e78a2aab697))
+* **user:** update logout redirect route to be configurable ([#1615](https://github.com/prefabs-tech/react/issues/1615)) ([084da03](https://github.com/prefabs-tech/react/commit/084da03ea54532ba3f6a4083cb59a1e6c3b24b0d))
+
+
+
 # [0.67.0](https://github.com/prefabs-tech/react/compare/v0.66.1...v0.67.0) (2025-10-27)
 
 
