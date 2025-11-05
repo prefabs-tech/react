@@ -242,3 +242,12 @@ Supported route options by getUserPublicRoutes
 - resetPassword
 - signup
 - signupFirstUser
+
+## Translations
+- By default, user package provide translations for `en` and `fr` locales for following namespaces
+  - user
+  - users
+
+- The translations are automatically added by the package so you don't need to add them in the app unless you need to overwrite some of the translation values.
+- To overwrite the translation of a particular key, add the corresponding namespace file and then add the required key translations. No need to copy paste the entire file from the package to app.
+- Future plan: Separate out namespaces for each view page (login, profile) instead of just user and users.
