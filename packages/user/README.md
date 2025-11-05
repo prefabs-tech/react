@@ -245,6 +245,8 @@ Supported route options by getUserPublicRoutes
 
 ## Translations
 - By default, user package provide translations for `en` and `fr` locales for following namespaces
+  - errors
+  - invitations
   - user
   - users
 
