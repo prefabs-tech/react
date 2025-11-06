@@ -1,20 +1,20 @@
 import { FormSubmitOptions } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { AuthPage, Message } from "@prefabs.tech/react-ui";
+import { Message } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 import { ChangePasswordForm } from "@/components";
 import { changePassword } from "@/supertokens";
 
-import { useConfig } from "../hooks";
+import { useConfig } from "../../hooks";
 
 export type ChangePasswordFormData = {
   oldPassword: string;
   password: string;
 };
 
-export const ChangePassword = ({
+export const ChangePasswordTab = ({
   centered = false,
 }: {
   centered?: boolean;
@@ -59,7 +59,7 @@ export const ChangePassword = ({
       : t("errors.otherErrors", { ns: "errors" });
 
   return (
-    <AuthPage className="change-password" centered={centered}>
+    <>
       {error && (
         <Message
           message={errorMessage}
@@ -70,6 +70,6 @@ export const ChangePassword = ({
         />
       )}
       <ChangePasswordForm handleSubmit={handleSubmit} loading={loading} />
-    </AuthPage>
+    </>
   );
 };

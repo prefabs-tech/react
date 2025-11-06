@@ -236,6 +236,10 @@
         }
       }
     },
+    "tabs": {
+      "credentials": "Credentials",
+      "profile": "My profile"
+    },
     "title": "Profile",
     "toastMessages": {
       "error": "Something went wrong. Please try again.",
