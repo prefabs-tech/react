@@ -47,8 +47,15 @@ export const Profile = ({
         t("profile.tabs.credentials"),
       children: defaultTabsProperties?.credentials?.children ?? (
         <>
-          <AccountInfo />
-          <ChangePasswordTab />
+          <section>
+            <h2>{t("profile.accountInfo.title")}</h2>
+            <AccountInfo />
+          </section>
+
+          <section>
+            <h2>{t("changePassword.title")}</h2>
+            <ChangePasswordTab />
+          </section>
         </>
       ),
     },
