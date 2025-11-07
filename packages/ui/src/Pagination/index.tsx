@@ -41,7 +41,6 @@ export const Pagination: React.FC<PaginationProperties> = ({
 
   useEffect(() => {
     setItemsPerPage(defaultItemsPerPage);
-    onPageChange(0);
   }, [defaultItemsPerPage]);
 
   const lastPage = Math.ceil(totalItems / itemsPerPage);
