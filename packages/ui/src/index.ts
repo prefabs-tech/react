@@ -18,6 +18,8 @@ import { Stepper } from "./Stepper";
 import { TabbedPanel } from "./TabbedPanel";
 import TabView from "./TabView";
 
+import type { Tab } from "./TabView/types";
+
 export * from "./AuthPage";
 export * from "./Buttons";
 export * from "./Card";
@@ -57,4 +59,4 @@ export {
   ConfirmationModal,
 };
 
-export type { DropdownMenuProperties, MenuItem, PageProperties };
+export type { DropdownMenuProperties, MenuItem, PageProperties, Tab };

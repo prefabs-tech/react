@@ -7,17 +7,27 @@ import { AccountInfo, ProfileForm } from "@/components/Profile";
 
 import { ChangePasswordTab } from "./ChangePasswordTab";
 
+import type { Tab } from "@prefabs.tech/react-ui";
+
 interface Properties {
+  activeKey?: string;
   additionalProfileFields?: AdditionalFormFields;
+  additionalTabs?: Tab[];
   centered?: boolean;
+  visibleTabs?: string[];
 }
 
-export const Profile = ({ additionalProfileFields }: Properties) => {
+export const Profile = ({
+  activeKey = "profile",
+  additionalProfileFields,
+  additionalTabs,
+  visibleTabs,
+}: Properties) => {
   const { t } = useTranslation("user");
 
   const tabList = [
     {
-      key: "my-profile",
+      key: "profile",
       label: t("profile.tabs.profile"),
       children: (
         <ProfileForm additionalProfileFields={additionalProfileFields} />
@@ -33,11 +43,18 @@ export const Profile = ({ additionalProfileFields }: Properties) => {
         </>
       ),
     },
-  ];
+    ...(additionalTabs ?? []),
+  ] as Tab[];
 
   return (
     <Page title={t("profile.title")} className="profile">
-      <TabView id="profile-tabbed-pannel" tabs={tabList} />
+      <TabView
+        id="profile-tabs"
+        activeKey={activeKey}
+        enableHashRouting={true}
+        tabs={tabList}
+        visibleTabs={visibleTabs}
+      />
     </Page>
   );
 };

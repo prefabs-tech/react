@@ -50,7 +50,7 @@ const ChangePasswordFormFields = ({ loading }: Properties) => {
           },
         ]}
         loading={loading}
-        alignment="fill"
+        alignment="left"
       />
     </>
   );
