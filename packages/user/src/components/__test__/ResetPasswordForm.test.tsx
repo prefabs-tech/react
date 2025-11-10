@@ -3,12 +3,25 @@ import { userEvent } from "@testing-library/user-event";
 import React, { act } from "react";
 import { expect, test, vi } from "vitest";
 
+import ConfigProvider from "@/context/ConfigProvider";
+import { UserConfig } from "@/types";
+
 import { ResetPasswordForm } from "../ResetPasswordForm";
+
+const config = {
+  features: {
+    confirmPassword: true,
+  },
+};
 
 const setup = (component: React.ReactElement) => {
   return {
     user: userEvent.setup(),
-    ...render(component),
+    ...render(
+      <ConfigProvider config={config as UserConfig}>
+        {component}
+      </ConfigProvider>,
+    ),
   };
 };
 

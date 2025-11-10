@@ -1,3 +1,46 @@
+# [0.68.0](https://github.com/prefabs-tech/react/compare/v0.67.0...v0.68.0) (2025-11-05)
+
+
+### Features
+
+* **user:** register default translations ([#1616](https://github.com/prefabs-tech/react/issues/1616)) ([c4a4133](https://github.com/prefabs-tech/react/commit/c4a4133a93b401ef4d587204816a5e78a2aab697))
+* **user:** update logout redirect route to be configurable ([#1615](https://github.com/prefabs-tech/react/issues/1615)) ([084da03](https://github.com/prefabs-tech/react/commit/084da03ea54532ba3f6a4083cb59a1e6c3b24b0d))
+
+
+
+# [0.67.0](https://github.com/prefabs-tech/react/compare/v0.66.1...v0.67.0) (2025-10-27)
+
+
+### Features
+
+* **layout:** improve auth menu ui in mobile view ([#1610](https://github.com/prefabs-tech/react/issues/1610)) ([5dcaa4f](https://github.com/prefabs-tech/react/commit/5dcaa4f7fe654a8e06433773dee876dd6de2126b))
+
+
+
+## [0.66.1](https://github.com/prefabs-tech/react/compare/v0.66.0...v0.66.1) (2025-10-14)
+
+
+### Bug Fixes
+
+* **layout:** update footer ui ([#1608](https://github.com/prefabs-tech/react/issues/1608)) ([9a14acc](https://github.com/prefabs-tech/react/commit/9a14acc5912a54da463fd053615bfa7192155c90))
+
+
+
+# [0.66.0](https://github.com/prefabs-tech/react/compare/v0.65.0...v0.66.0) (2025-10-14)
+
+
+### Bug Fixes
+
+* **ui:** fix select-all behavior in select widget ([#1602](https://github.com/prefabs-tech/react/issues/1602)) ([1c4534b](https://github.com/prefabs-tech/react/commit/1c4534bd6b4e790418a15fdd873af066b1e4a167))
+
+
+### Features
+
+* **layout:** show sidebar for navigation menu in mobile view ([#1606](https://github.com/prefabs-tech/react/issues/1606)) ([5069172](https://github.com/prefabs-tech/react/commit/506917296cfef4557aa8b196020e42c81de4bb25))
+* **user:** update confirm password field to be configurable ([#1604](https://github.com/prefabs-tech/react/issues/1604)) ([2421417](https://github.com/prefabs-tech/react/commit/2421417235c073cc9f72752459c1b7a50fa5b50b))
+
+
+
 # [0.65.0](https://github.com/prefabs-tech/react/compare/v0.64.0...v0.65.0) (2025-09-25)
 
 

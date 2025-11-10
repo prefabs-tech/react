@@ -5,10 +5,6 @@ import type { LoginCredentials, SignInUpPromise, UserType } from "../types";
 export const login = async (
   credentials: LoginCredentials,
 ): Promise<SignInUpPromise | undefined> => {
-  let user: UserType;
-  let status: string;
-  let response;
-
   const data = {
     formFields: [
       {

@@ -1,17 +1,16 @@
 import {
   SidebarHeaderLayout,
   SidebarHeaderLayoutProperties,
+  UserMenuType,
 } from "@prefabs.tech/react-layout";
 
 import { useUser } from "@/hooks";
 
 import { useUserNavigationMenu } from "..";
 
-import type { NavMenuItemType } from "@prefabs.tech/react-ui";
-
 interface Properties extends SidebarHeaderLayoutProperties {
-  authNavigationMenu?: NavMenuItemType;
-  userNavigationMenu?: NavMenuItemType;
+  authNavigationMenu?: UserMenuType;
+  userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
 }
@@ -25,6 +24,7 @@ export const UserEnabledSidebarHeaderLayout: React.FC<Properties> = ({
   userNavigationMenu,
   onLogout,
   userMenuLocation = "header",
+  userMenuMode,
   ...otherProperties
 }) => {
   const { user } = useUser();
@@ -41,9 +41,10 @@ export const UserEnabledSidebarHeaderLayout: React.FC<Properties> = ({
       children={children}
       className={className}
       collapsible={collapsible}
-      navigationMenu={user ? navigationMenu : authNavigationMenu}
-      userMenu={user ? userMenu : undefined}
+      navigationMenu={navigationMenu}
+      userMenu={userMenu}
       userMenuLocation={userMenuLocation}
+      userMenuMode={user ? userMenuMode : "horizontal"}
       {...otherProperties}
     />
   );

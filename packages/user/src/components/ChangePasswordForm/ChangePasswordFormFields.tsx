@@ -7,10 +7,14 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 
 interface Properties {
+  hasConfirmPasswordFeature?: boolean;
   loading?: boolean;
 }
 
-const ChangePasswordFormFields = ({ loading }: Properties) => {
+const ChangePasswordFormFields = ({
+  hasConfirmPasswordFeature,
+  loading,
+}: Properties) => {
   const { t } = useTranslation("user");
 
   const {
@@ -35,12 +39,14 @@ const ChangePasswordFormFields = ({ loading }: Properties) => {
         register={register}
         getFieldState={getFieldState}
       />
-      <Password
-        label={t("changePassword.form.confirmPassword.label")}
-        name="confirmPassword"
-        register={register}
-        getFieldState={getFieldState}
-      />
+      {hasConfirmPasswordFeature && (
+        <Password
+          label={t("changePassword.form.confirmPassword.label")}
+          name="confirmPassword"
+          register={register}
+          getFieldState={getFieldState}
+        />
+      )}
 
       <FormActions
         actions={[

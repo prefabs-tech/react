@@ -1,15 +1,13 @@
 import { NavigationMenu } from "@prefabs.tech/react-ui";
 import React from "react";
 
+import { UserMenuType } from "@/types";
+
 import { HeaderMenu } from "./HeaderMenu";
 import { HeaderTitle } from "./HeaderTitle";
 import { Logo, ToggleMenuMobile } from "../common";
 
-import type {
-  NavMenuItemType,
-  NavMenuType,
-  UserMenuModeType,
-} from "@prefabs.tech/react-ui";
+import type { NavMenuType, UserMenuModeType } from "@prefabs.tech/react-ui";
 
 interface HeaderProperties {
   children?: React.ReactNode;
@@ -17,7 +15,7 @@ interface HeaderProperties {
   headerAddon?: React.ReactNode;
   navigationMenu?: NavMenuType;
   title?: string | React.ReactNode;
-  menu?: NavMenuItemType;
+  menu?: UserMenuType;
   noLocaleSwitcher?: boolean;
   noLogo?: boolean;
   noToggle?: boolean;

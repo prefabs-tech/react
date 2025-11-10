@@ -29,11 +29,16 @@
   --_layout-sidebar-width: var(--dz-layout-sidebar-width, 16rem);
 
   background: var(--_layout-sidebar-bg);
+  border-right: var(--_layout-sidebar-border);
   color: var(--_layout-sidebar-color);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--_layout-sidebar-transition-duration) ease-in;
 }
 
-.dz-layout[aria-expanded="false"] > .dz-sidebar > :not(.dz-sidebar-header) {
-  display: none;
+.dz-layout[aria-expanded="false"] > .dz-sidebar {
+  width: 0;
+  overflow: hidden;
 }
 
 .dz-layout > .dz-sidebar > .dz-sidebar-header {
@@ -65,6 +70,24 @@
 
 .dz-layout > .dz-sidebar > :not(.dz-sidebar-header):not(.dz-navigation-menu) {
   border-top: 1px solid var(--_layout-sidebar-separator-color);
+}
+
+.dz-layout > .dz-sidebar .dz-user-menu {
+  padding: var(--_layout-sidebar-padding-v) 0;
+}
+
+.dz-layout > .dz-sidebar .dz-user-menu[aria-orientation="horizontal"] {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+  padding: var(--_layout-sidebar-padding-v) var(--_layout-sidebar-padding-h);
+}
+
+.dz-layout
+  > .dz-sidebar
+  .dz-user-menu[aria-orientation="horizontal"]
+  .dz-nav-item {
+  border-radius: 0.25rem;
 }
 
 .dz-layout > .dz-sidebar > .dz-sidebar-footer {

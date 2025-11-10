@@ -7,7 +7,6 @@ import {
   IButtonProperties,
   TableColumnDefinition,
   Tag,
-  formatDate,
 } from "@prefabs.tech/react-ui";
 
 import { InvitationModal } from "../Invitation";
@@ -212,13 +211,7 @@ export const AllUsersTable = ({
     {
       accessorKey: "signedUpAt",
       header: t("table.defaultColumns.signedUpOn"),
-      cell: ({ row: { original } }) => {
-        if (original.signedUpAt) {
-          return formatDate(original.signedUpAt, i18n?.language);
-        }
-
-        return "-";
-      },
+      dataType: "date",
     },
   ];
 
