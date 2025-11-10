@@ -14,11 +14,7 @@ export type ChangePasswordFormData = {
   password: string;
 };
 
-export const ChangePassword = ({
-  centered = false,
-}: {
-  centered?: boolean;
-}) => {
+export const ChangePassword = ({ centered = true }: { centered?: boolean }) => {
   const { t } = useTranslation("user");
   const config = useConfig();
   const [loading, setLoading] = useState<boolean>(false);
@@ -59,7 +55,11 @@ export const ChangePassword = ({
       : t("errors.otherErrors", { ns: "errors" });
 
   return (
-    <AuthPage className="change-password" centered={centered}>
+    <AuthPage
+      className="change-password"
+      title={t("changePassword.title")}
+      centered={centered}
+    >
       {error && (
         <Message
           message={errorMessage}
