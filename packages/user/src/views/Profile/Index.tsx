@@ -9,13 +9,18 @@ import { ChangePasswordTab } from "./ChangePasswordTab";
 
 import type { Tab } from "@prefabs.tech/react-ui";
 
-interface ProfileTabsProperty {
+interface ProfileTabProperties {
   label?: string;
   children?: React.ReactNode;
 }
 
+interface DefaultTabs {
+  profile?: ProfileTabProperties;
+  credentials?: ProfileTabProperties;
+}
+
 interface Properties {
-  defaultTabsProperties?: Record<string, ProfileTabsProperty>;
+  defaultTabsProperties?: DefaultTabs;
   activeKey?: string;
   additionalProfileFields?: AdditionalFormFields;
   additionalTabs?: Tab[];
