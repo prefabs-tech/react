@@ -237,6 +237,7 @@ export const FilesTable = ({
         fetchData={fetchFiles}
         id={id}
         isLoading={isLoading}
+        locale={locale}
         totalRecords={totalRecords}
         visibleColumns={visibleColumns}
         dataActionsMenu={{
