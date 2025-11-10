@@ -1,3 +1,13 @@
+## [0.68.1](https://github.com/prefabs-tech/react/compare/v0.68.0...v0.68.1) (2025-11-10)
+
+
+### Bug Fixes
+
+* **ui/files-table:** update missing locale props to pass to data table ([#1619](https://github.com/prefabs-tech/react/issues/1619)) ([444839b](https://github.com/prefabs-tech/react/commit/444839b9558d19552b0f07d7fc55ec159126f294))
+* **ui/table:** update persistence logic to avoid double requests ([#1618](https://github.com/prefabs-tech/react/issues/1618)) ([860f076](https://github.com/prefabs-tech/react/commit/860f0762c402496fd34730dffd755cf5a8e7fffa))
+
+
+
 # [0.68.0](https://github.com/prefabs-tech/react/compare/v0.67.0...v0.68.0) (2025-11-05)
 
 
