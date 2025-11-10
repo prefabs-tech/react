@@ -76,15 +76,83 @@ const DataTable = <TData extends RowData>({
   renderToolbarItems,
   ...tableOptions
 }: TDataTableProperties<TData>) => {
-  const persistentStateReference = useRef<PersistentTableState>({
-    sorting: initialSorting,
-    columnFilters: initialFilters,
-    columnVisibility: {},
-    pagination: {
-      pageIndex: DEFAULT_PAGE_INDEX,
-      pageSize: rowPerPage || DEFAULT_PAGE_SIZE,
-    },
-  });
+  // Try to synchronously hydrate persisted state to avoid a visual "flash"
+  // from defaults -> restored state. We also clamp the restored pageIndex
+  // to a valid range when possible.
+  const hasHydratedFromStorage = useRef<boolean>(false);
+
+  const computeInitialPersistentState = (): PersistentTableState => {
+    const base: PersistentTableState = {
+      sorting: initialSorting,
+      columnFilters: initialFilters,
+      columnVisibility: {},
+      pagination: {
+        pageIndex: DEFAULT_PAGE_INDEX,
+        pageSize: rowPerPage || DEFAULT_PAGE_SIZE,
+      },
+    };
+
+    if (!persistState || !id) return base;
+
+    try {
+      const syncStorage = getStorage(persistStateStorage);
+      const saved = getSavedTableState(id, syncStorage);
+
+      if (!saved) return base;
+
+      hasHydratedFromStorage.current = true;
+
+      const {
+        columnFilters: savedColumnFilters,
+        columnVisibility: savedColumnVisibility,
+        pagination: savedPagination,
+        sorting: savedSorting,
+      } = saved;
+
+      const pageSize = rowPerPageOptions.includes(savedPagination.pageSize)
+        ? savedPagination.pageSize
+        : base.pagination.pageSize;
+
+      let pageIndex =
+        typeof savedPagination.pageIndex === "number"
+          ? savedPagination.pageIndex
+          : base.pagination.pageIndex;
+
+      // compute page count where possible and clamp pageIndex
+      let pageCount: number | undefined;
+      if (fetchData) {
+        pageCount =
+          totalRecords > 0 ? Math.ceil(totalRecords / pageSize) : undefined;
+      } else {
+        pageCount = Math.ceil((data?.length ?? 0) / pageSize);
+      }
+
+      if (typeof pageCount === "number") {
+        pageIndex = Math.max(
+          0,
+          Math.min(pageIndex, Math.max(0, pageCount - 1)),
+        );
+      }
+
+      return {
+        sorting: savedSorting ?? base.sorting,
+        columnFilters: savedColumnFilters ?? base.columnFilters,
+        columnVisibility: savedColumnVisibility ?? base.columnVisibility,
+        pagination: {
+          pageIndex,
+          pageSize,
+        },
+      };
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      return base;
+    }
+  };
+
+  const persistentStateReference = useRef<PersistentTableState>(
+    computeInitialPersistentState(),
+  );
 
   const [sorting, setSorting] = useState<SortingState>(
     persistentStateReference.current.sorting,
@@ -141,6 +209,7 @@ const DataTable = <TData extends RowData>({
     });
 
     setColumnFilters(updatedFilters);
+
     table.setPageIndex(0);
   };
 
@@ -371,23 +440,59 @@ const DataTable = <TData extends RowData>({
   }, [id, pagination, persistState, sorting, columnFilters, columnVisibility]);
 
   useEffect(() => {
-    // Restore the table state from storage
+    // Restore the table state from storage. If we already hydrated
+    // synchronously above, skip re-applying it here. When applying a
+    // pagination from storage ensure the pageIndex is clamped to a valid
+    // range when possible.
     if (!persistState || !id) {
       return;
+    }
+
+    if (hasHydratedFromStorage.current) {
+      // still return a cleanup that will save state on unmount
+      return () => {
+        saveTableState(id, persistentStateReference.current, storage);
+      };
     }
 
     const savedState = getSavedTableState(id, storage);
 
     if (savedState) {
-      const { columnFilters, columnVisibility, pagination, sorting } =
-        savedState;
+      const {
+        columnFilters,
+        columnVisibility,
+        pagination: savedPagination,
+        sorting,
+      } = savedState;
 
       setColumnFilters(columnFilters);
       setColumnVisibility(columnVisibility);
       setSorting(sorting);
 
-      if (rowPerPageOptions.includes(pagination.pageSize)) {
-        setPagination(pagination);
+      if (rowPerPageOptions.includes(savedPagination.pageSize)) {
+        // Clamp pageIndex if we can compute a pageCount
+        const pageSize = savedPagination.pageSize;
+        let pageIndex =
+          typeof savedPagination.pageIndex === "number"
+            ? savedPagination.pageIndex
+            : DEFAULT_PAGE_INDEX;
+
+        let pageCount: number | undefined;
+        if (fetchData) {
+          pageCount =
+            totalRecords > 0 ? Math.ceil(totalRecords / pageSize) : undefined;
+        } else {
+          pageCount = Math.ceil((data?.length ?? 0) / pageSize);
+        }
+
+        if (typeof pageCount === "number") {
+          pageIndex = Math.max(
+            0,
+            Math.min(pageIndex, Math.max(0, pageCount - 1)),
+          );
+        }
+
+        setPagination({ pageIndex, pageSize });
       }
     }
 
@@ -426,12 +531,14 @@ const DataTable = <TData extends RowData>({
   }, [fetchData, data, paginated]);
 
   useEffect(() => {
-    const requestJSON = getRequestJSON(sorting, columnFilters, {
-      pageIndex: pagination.pageIndex,
-      pageSize: pagination.pageSize,
-    });
+    if (fetchData) {
+      const requestJSON = getRequestJSON(sorting, columnFilters, {
+        pageIndex: pagination.pageIndex,
+        pageSize: pagination.pageSize,
+      });
 
-    fetchData && fetchData(requestJSON);
+      fetchData(requestJSON);
+    }
   }, [
     columnFilters,
     pagination.pageIndex,
@@ -498,6 +605,7 @@ const DataTable = <TData extends RowData>({
               itemsPerPageOptions={rowPerPageOptions}
               onItemsPerPageChange={(itemsPerPage) => {
                 table.setPageSize(itemsPerPage);
+                table.setPageIndex(0);
               }}
               totalItems={totalItems}
               {...paginationOptions}
