@@ -9,15 +9,7 @@ import { ChangePasswordTab } from "./ChangePasswordTab";
 
 import type { Tab } from "@prefabs.tech/react-ui";
 
-interface ProfileTabProperties {
-  label?: string;
-  children?: React.ReactNode;
-}
-
-interface DefaultTabs {
-  profile?: ProfileTabProperties;
-  credentials?: ProfileTabProperties;
-}
+type DefaultTabs = Record<"profile" | "credentials", Omit<Tab, "key">>;
 
 interface Properties {
   defaultTabsProperties?: DefaultTabs;
@@ -44,6 +36,8 @@ export const Profile = ({
       children: defaultTabsProperties?.profile?.children ?? (
         <ProfileForm additionalProfileFields={additionalProfileFields} />
       ),
+      closable: defaultTabsProperties?.profile?.closable ?? false,
+      icon: defaultTabsProperties?.profile?.icon ?? undefined,
     },
     {
       key: "credentials",
@@ -63,6 +57,8 @@ export const Profile = ({
           </section>
         </>
       ),
+      closable: defaultTabsProperties?.credentials?.closable ?? false,
+      icon: defaultTabsProperties?.credentials?.icon ?? undefined,
     },
     ...(additionalTabs ?? []),
   ] as Tab[];
