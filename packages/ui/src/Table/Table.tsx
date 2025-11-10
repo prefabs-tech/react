@@ -143,8 +143,9 @@ const DataTable = <TData extends RowData>({
           pageSize,
         },
       };
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
-      // If anything goes wrong reading storage, fall back to defaults
       return base;
     }
   };
@@ -208,7 +209,6 @@ const DataTable = <TData extends RowData>({
     });
 
     setColumnFilters(updatedFilters);
-    console.log("columnFilterchange", pagination);
 
     table.setPageIndex(0);
   };
