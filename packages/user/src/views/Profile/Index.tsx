@@ -31,19 +31,15 @@ export const Profile = ({
 
   const tabList = [
     {
-      key: "profile",
-      label: defaultTabsProperties?.profile?.label ?? t("profile.tabs.profile"),
       children: defaultTabsProperties?.profile?.children ?? (
         <ProfileForm additionalProfileFields={additionalProfileFields} />
       ),
       closable: defaultTabsProperties?.profile?.closable ?? false,
       icon: defaultTabsProperties?.profile?.icon ?? undefined,
+      key: "profile",
+      label: defaultTabsProperties?.profile?.label ?? t("profile.tabs.profile"),
     },
     {
-      key: "credentials",
-      label:
-        defaultTabsProperties?.credentials?.label ??
-        t("profile.tabs.credentials"),
       children: defaultTabsProperties?.credentials?.children ?? (
         <>
           <section>
@@ -59,6 +55,10 @@ export const Profile = ({
       ),
       closable: defaultTabsProperties?.credentials?.closable ?? false,
       icon: defaultTabsProperties?.credentials?.icon ?? undefined,
+      key: "credentials",
+      label:
+        defaultTabsProperties?.credentials?.label ??
+        t("profile.tabs.credentials"),
     },
     ...(additionalTabs ?? []),
   ] as Tab[];
