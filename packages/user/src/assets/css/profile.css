@@ -30,3 +30,14 @@
 .profile .account-info .data.update-email .value {
   margin-bottom: 0;
 }
+
+.profile .tabbed-panel h2 {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.profile .tabbed-panel .tab-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

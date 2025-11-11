@@ -6,7 +6,7 @@ import { ProtectedRoutesProperties } from "@/types/routes";
 import {
   ChangePassword,
   EmailVerificationReminder,
-  Profile,
+  ProfileTabsPage,
   VerifyEmail,
 } from "@/views";
 
@@ -52,7 +52,7 @@ export const getUserProtectedRoutes = (options?: ProtectedRoutesProperties) => {
     },
     {
       path: customPaths?.profile || DEFAULT_PATHS.PROFILE,
-      element: profile?.element || <Profile />,
+      element: profile?.element || <ProfileTabsPage />,
     },
   ];
 
