@@ -10,7 +10,7 @@ interface Properties {
   centered?: boolean;
 }
 
-export const Profile = ({ additionalProfileFields }: Properties) => {
+export const ProfilePage = ({ additionalProfileFields }: Properties) => {
   const { t } = useTranslation("user");
 
   return (

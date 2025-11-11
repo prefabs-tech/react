@@ -14,7 +14,7 @@ interface Properties {
   visibleTabs?: string[];
 }
 
-export const Profile = ({
+export const ProfileTabsPage = ({
   activeKey = "profile",
   additionalProfileFields,
   tabs = [],
