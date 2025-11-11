@@ -1,3 +1,4 @@
+export * from "./ChangePassword";
 export * from "./ProfileForm";
 export * from "./ProfileFormFields";
 export * from "./UpdateEmailForm";

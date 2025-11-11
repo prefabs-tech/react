@@ -33,5 +33,11 @@
 
 .profile .tabbed-panel h2 {
   font-weight: 500;
-  margin-bottom: 0.5rem;
-} 
+  margin-bottom: 1rem;
+}
+
+.profile .tabbed-panel .tab-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

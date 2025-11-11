@@ -14,11 +14,7 @@ export type ChangePasswordFormData = {
   password: string;
 };
 
-export const ChangePasswordTab = ({
-  centered = false,
-}: {
-  centered?: boolean;
-}) => {
+export const ChangePassword = () => {
   const { t } = useTranslation("user");
   const config = useConfig();
   const [loading, setLoading] = useState<boolean>(false);

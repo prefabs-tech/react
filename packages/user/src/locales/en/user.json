@@ -33,7 +33,7 @@
         "newPassword": "New password is required."
       }
     },
-    "title": "Change password"
+    "title": "Update password"
   },
   "confirmation": {
     "disable": {

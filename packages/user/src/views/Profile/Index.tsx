@@ -1,46 +1,37 @@
 import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Page, TabView } from "@prefabs.tech/react-ui";
-import React from "react";
+import React, { useMemo } from "react";
 
-import { AccountInfo, ProfileForm } from "@/components/Profile";
-
-import { ChangePasswordTab } from "./ChangePasswordTab";
+import { AccountInfo, ChangePassword, ProfileForm } from "@/components/Profile";
 
 import type { Tab } from "@prefabs.tech/react-ui";
 
-type DefaultTabs = Record<"profile" | "credentials", Omit<Tab, "key">>;
-
 interface Properties {
-  defaultTabsProperties?: DefaultTabs;
   activeKey?: string;
   additionalProfileFields?: AdditionalFormFields;
-  additionalTabs?: Tab[];
-  centered?: boolean;
+  tabs?: Tab[];
   visibleTabs?: string[];
 }
 
 export const Profile = ({
   activeKey = "profile",
   additionalProfileFields,
-  additionalTabs,
-  defaultTabsProperties,
+  tabs = [],
   visibleTabs,
 }: Properties) => {
   const { t } = useTranslation("user");
 
-  const tabList = [
+  const defaultTabs = [
     {
-      children: defaultTabsProperties?.profile?.children ?? (
+      children: (
         <ProfileForm additionalProfileFields={additionalProfileFields} />
       ),
-      closable: defaultTabsProperties?.profile?.closable ?? false,
-      icon: defaultTabsProperties?.profile?.icon ?? undefined,
       key: "profile",
-      label: defaultTabsProperties?.profile?.label ?? t("profile.tabs.profile"),
+      label: t("profile.tabs.profile"),
     },
     {
-      children: defaultTabsProperties?.credentials?.children ?? (
+      children: (
         <>
           <section>
             <h2>{t("profile.accountInfo.title")}</h2>
@@ -49,19 +40,27 @@ export const Profile = ({
 
           <section>
             <h2>{t("changePassword.title")}</h2>
-            <ChangePasswordTab />
+            <ChangePassword />
           </section>
         </>
       ),
-      closable: defaultTabsProperties?.credentials?.closable ?? false,
-      icon: defaultTabsProperties?.credentials?.icon ?? undefined,
       key: "credentials",
-      label:
-        defaultTabsProperties?.credentials?.label ??
-        t("profile.tabs.credentials"),
+      label: t("profile.tabs.credentials"),
     },
-    ...(additionalTabs ?? []),
   ] as Tab[];
+
+  const mergedTabs = useMemo(
+    () => [
+      ...defaultTabs.map((defaultTab) => {
+        const override = tabs.find((tab) => tab.key === defaultTab.key);
+        return override ? { ...defaultTab, ...override } : defaultTab;
+      }),
+      ...tabs.filter(
+        (tab) => !defaultTabs.some((defaultTab) => defaultTab.key === tab.key),
+      ),
+    ],
+    [defaultTabs, tabs],
+  );
 
   return (
     <Page title={t("profile.title")} className="profile">
@@ -69,7 +68,7 @@ export const Profile = ({
         id="profile-tabs"
         activeKey={activeKey}
         enableHashRouting={true}
-        tabs={tabList}
+        tabs={mergedTabs}
         visibleTabs={visibleTabs}
       />
     </Page>

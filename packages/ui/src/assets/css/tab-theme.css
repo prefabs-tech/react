@@ -5,7 +5,7 @@
 
 .tabbed-panel > div[role="tabpanel"] {
   width: 100%;
-  padding: 1rem 0.25rem;
+  padding: 1.5rem 0.25rem;
 }
 
 .tabbed-panel > div > button {
