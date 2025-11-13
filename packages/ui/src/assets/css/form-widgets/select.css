@@ -90,6 +90,15 @@
   color: var(--_placeholder-color);
 }
 
+.select-menu > .loading-container {
+  padding-block: 1.25rem;
+}
+
+.select-menu > .loading-container > .loading {
+  color: var(--field-icon-color, #7b7676);
+  font-size: 5px;
+}
+
 .select-menu .selected-options-wrapper {
   height: 0;
   min-height: 0;

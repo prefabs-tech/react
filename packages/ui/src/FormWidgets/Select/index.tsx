@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import Divider from "@/Divider";
+import LoadingIcon from "@/LoadingIcon";
 
 import { PopupMenu, PopupMenuProperties } from "../../Popup";
 import { Tooltip, TooltipProperties } from "../../Tooltip";
@@ -39,6 +40,7 @@ export type ISelectProperties<T> = {
   hideIfSingleOption?: boolean;
   label?: string | React.ReactNode;
   labelKey?: string;
+  loading?: boolean;
   matchMenuTriggerWidth?: boolean;
   menuOptions?: MenuOptions;
   multiple?: boolean;
@@ -81,6 +83,7 @@ export const Select = <T extends string | number>({
   hideIfSingleOption = false,
   label = "",
   labelKey,
+  loading = false,
   matchMenuTriggerWidth = true,
   menuOptions,
   multiple,
@@ -568,45 +571,52 @@ export const Select = <T extends string | number>({
           </span>
           {hasSelectedOptions && <Divider />}
         </div>
-        <ul aria-multiselectable={multiple} role="listbox">
-          {multiple && (
-            <li role="option" onClick={toggleSelectAll}>
-              <Checkbox
-                checked={isAllSelected}
-                disabled={activeOptions.length === 0}
-                label={selectAllLabel}
-                onChange={() => {}}
-              />
-            </li>
-          )}
 
-          {isGrouped && groupedOptions
-            ? Object.entries(groupedOptions).map(([groupLabel, options]) => (
-                <React.Fragment key={groupLabel}>
-                  {groupLabel && multiple && !disableGroupSelect ? (
-                    <li
-                      className="multi-select-group-label"
-                      onClick={() => toggleGroupSelection(groupLabel)}
-                    >
-                      <Checkbox
-                        checked={isGroupSelected(groupLabel)}
-                        disabled={options.every((option) => option.disabled)}
-                        onChange={() => toggleGroupSelection(groupLabel)}
-                      />
-                      <span>{groupLabel}</span>
-                    </li>
-                  ) : (
-                    <li className="group-label">{groupLabel}</li>
-                  )}
-                  {options.map((option, index) =>
-                    renderOptionItem(option, index),
-                  )}
-                </React.Fragment>
-              ))
-            : filteredOptions.map((option, index) =>
-                renderOptionItem(option, index),
-              )}
-        </ul>
+        {loading ? (
+          <div className="loading-container">
+            <LoadingIcon />
+          </div>
+        ) : (
+          <ul aria-multiselectable={multiple} role="listbox">
+            {multiple && (
+              <li role="option" onClick={toggleSelectAll}>
+                <Checkbox
+                  checked={isAllSelected}
+                  disabled={activeOptions.length === 0}
+                  label={selectAllLabel}
+                  onChange={() => {}}
+                />
+              </li>
+            )}
+
+            {isGrouped && groupedOptions
+              ? Object.entries(groupedOptions).map(([groupLabel, options]) => (
+                  <React.Fragment key={groupLabel}>
+                    {groupLabel && multiple && !disableGroupSelect ? (
+                      <li
+                        className="multi-select-group-label"
+                        onClick={() => toggleGroupSelection(groupLabel)}
+                      >
+                        <Checkbox
+                          checked={isGroupSelected(groupLabel)}
+                          disabled={options.every((option) => option.disabled)}
+                          onChange={() => toggleGroupSelection(groupLabel)}
+                        />
+                        <span>{groupLabel}</span>
+                      </li>
+                    ) : (
+                      <li className="group-label">{groupLabel}</li>
+                    )}
+                    {options.map((option, index) =>
+                      renderOptionItem(option, index),
+                    )}
+                  </React.Fragment>
+                ))
+              : filteredOptions.map((option, index) =>
+                  renderOptionItem(option, index),
+                )}
+          </ul>
+        )}
       </>
     );
   };
