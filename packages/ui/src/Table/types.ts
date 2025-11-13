@@ -211,7 +211,7 @@ export type StorageType = "localStorage" | "sessionStorage";
 
 export interface TableDataActionsMenu<TData>
   extends Omit<DataActionsMenuProperties<TData>, "mode"> {
-  mode?: "auto" | "buttons" | "menu";
+  mode?: "auto" | "buttons" | "dropdown";
 }
 
 export interface TDataTableProperties<TData extends RowData>
