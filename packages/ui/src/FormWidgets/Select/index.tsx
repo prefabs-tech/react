@@ -51,7 +51,7 @@ export type ISelectProperties<T> = {
   showRemoveSelection?: boolean;
   tooltipOptions?: TooltipOptions;
   valueKey?: string;
-  customSearchFn?: (searchInput: string) => Option<T>[];
+  customSearchFn?: (searchInput: string) => void;
   renderOption?: (option: Option<T> | GroupedOption<T>) => React.ReactNode;
   renderValue?: (
     value?: T | T[],
@@ -162,18 +162,20 @@ export const Select = <T extends string | number>({
   }, [normalizedOptions]);
 
   const filteredOptions = useMemo(() => {
-    if (!searchInput) {
+    if (!searchInput || customSearchFn) {
       return sortedOptions;
-    }
-
-    if (customSearchFn) {
-      return customSearchFn(searchInput);
     }
 
     return sortedOptions.filter((option) =>
       String(option.label).toLowerCase().includes(searchInput.toLowerCase()),
     );
   }, [searchInput, sortedOptions]);
+
+  useEffect(() => {
+    if (searchInput && customSearchFn) {
+      customSearchFn(searchInput);
+    }
+  }, [searchInput]);
 
   const activeOptions = useMemo(
     () => filteredOptions.filter((option) => !option.disabled),
