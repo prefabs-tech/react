@@ -191,9 +191,13 @@ export const SelectDemo = () => {
     },
   ];
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+  const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
+  const [serverSideSelectValue, setServerSideSelectValue] =
+    useState<string>("");
   const [singleSelectGroupValue, setSingleSelectGroupValue] =
     useState<string>("");
   const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>(
@@ -230,6 +234,29 @@ export const SelectDemo = () => {
         })}
       </span>
     );
+  };
+
+  const fetchRoles = async (searchInput: string) => {
+    setLoading(true);
+
+    const options = [
+      { name: "Superadmin", id: "1" },
+      { name: "Admin", id: "2" },
+      { disabled: true, name: "Guest", id: "3" },
+      { name: "Maintainer", id: "4" },
+      { name: "User", id: "5" },
+    ];
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const filteredOptions = searchInput
+      ? options.filter((option) =>
+          option.name.toLowerCase().includes(searchInput.toLowerCase()),
+        )
+      : options;
+
+    setRolesOptions(filteredOptions);
+    setLoading(false);
   };
 
   const renderOption = (option: Option<string>) => {
@@ -499,6 +526,49 @@ const [value, setValue] = useState<string>("");
   placeholder={t("select.placeholder")}
   valueKey="code"
   labelKey="country"
+/>'
+        />
+      </Section>
+
+      <Section title={t("select.usage.serverSide")}>
+        <Select
+          label={t("select.roleSelectLabel")}
+          labelKey="name"
+          loading={loading}
+          name="select"
+          options={rolesOptions}
+          value={serverSideSelectValue}
+          valueKey="id"
+          onChange={(value: string) => setServerSideSelectValue(value)}
+          placeholder={t("select.roleSelectPlaceholder")}
+          customSearchFn={fetchRoles}
+        />
+        <CodeBlock
+          exampleCode='
+const [ loading, setLoading ] = useState<boolean>(false);
+const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
+const [selectValue, setSelectValue] = useState<string>("");
+
+const fetchRoles = async (searchInput: string) => {
+  setLoading(true);
+
+  const response = await ...;
+
+  setRolesOptions(response);
+  setLoading(false);
+};
+
+<Select
+  label={t("select.label")}
+  labelKey="name"
+  loading={loading}
+  name="select"
+  options={rolesOptions}
+  value={selectValue}
+  valueKey="id"
+  onChange={(value: string) => setSelectValue(value)}
+  placeholder={t("select.placeholder")}
+  customSearchFn={fetchRoles}
 />'
         />
       </Section>
