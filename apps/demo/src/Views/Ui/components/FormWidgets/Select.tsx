@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import { Select, Page, Button, Tag } from "@prefabs.tech/react-ui";
 import { TDataTable } from "@prefabs.tech/react-ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../../components/Demo";
@@ -236,7 +236,7 @@ export const SelectDemo = () => {
     );
   };
 
-  const fetchRoles = async (searchInput: string) => {
+  const fetchRoles = async (searchInput?: string) => {
     setLoading(true);
 
     const roles = [
@@ -258,6 +258,10 @@ export const SelectDemo = () => {
     setRolesOptions(filteredOptions);
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchRoles();
+  }, []);
 
   const renderOption = (option: Option<string>) => {
     return (
