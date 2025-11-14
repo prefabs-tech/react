@@ -239,21 +239,21 @@ export const SelectDemo = () => {
   const fetchRoles = async (searchInput: string) => {
     setLoading(true);
 
-    const options = [
-      { name: "Superadmin", id: "1" },
-      { name: "Admin", id: "2" },
-      { disabled: true, name: "Guest", id: "3" },
-      { name: "Maintainer", id: "4" },
-      { name: "User", id: "5" },
+    const roles = [
+      { id: "1", name: "Superadmin" },
+      { id: "2", name: "Admin" },
+      { disabled: true, id: "3", name: "Guest" },
+      { id: "4", name: "Maintainer" },
+      { id: "5", name: "User" },
     ];
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     const filteredOptions = searchInput
-      ? options.filter((option) =>
+      ? roles.filter((option) =>
           option.name.toLowerCase().includes(searchInput.toLowerCase()),
         )
-      : options;
+      : roles;
 
     setRolesOptions(filteredOptions);
     setLoading(false);
