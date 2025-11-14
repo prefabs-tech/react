@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import { Select, Page, Button, Tag } from "@prefabs.tech/react-ui";
 import { TDataTable } from "@prefabs.tech/react-ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../../components/Demo";
@@ -191,9 +191,13 @@ export const SelectDemo = () => {
     },
   ];
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+  const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
+  const [serverSideSelectValue, setServerSideSelectValue] =
+    useState<string>("");
   const [singleSelectGroupValue, setSingleSelectGroupValue] =
     useState<string>("");
   const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>(
@@ -231,6 +235,33 @@ export const SelectDemo = () => {
       </span>
     );
   };
+
+  const fetchRoles = async (searchInput?: string) => {
+    setLoading(true);
+
+    const roles = [
+      { id: "1", name: "Superadmin" },
+      { id: "2", name: "Admin" },
+      { disabled: true, id: "3", name: "Guest" },
+      { id: "4", name: "Maintainer" },
+      { id: "5", name: "User" },
+    ];
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const filteredOptions = searchInput
+      ? roles.filter((option) =>
+          option.name.toLowerCase().includes(searchInput.toLowerCase()),
+        )
+      : roles;
+
+    setRolesOptions(filteredOptions);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchRoles();
+  }, []);
 
   const renderOption = (option: Option<string>) => {
     return (
@@ -499,6 +530,49 @@ const [value, setValue] = useState<string>("");
   placeholder={t("select.placeholder")}
   valueKey="code"
   labelKey="country"
+/>'
+        />
+      </Section>
+
+      <Section title={t("select.usage.serverSide")}>
+        <Select
+          label={t("select.roleSelectLabel")}
+          labelKey="name"
+          loading={loading}
+          name="select"
+          options={rolesOptions}
+          value={serverSideSelectValue}
+          valueKey="id"
+          onChange={(value: string) => setServerSideSelectValue(value)}
+          placeholder={t("select.roleSelectPlaceholder")}
+          customSearchFn={fetchRoles}
+        />
+        <CodeBlock
+          exampleCode='
+const [ loading, setLoading ] = useState<boolean>(false);
+const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
+const [selectValue, setSelectValue] = useState<string>("");
+
+const fetchRoles = async (searchInput: string) => {
+  setLoading(true);
+
+  const response = await ...;
+
+  setRolesOptions(response);
+  setLoading(false);
+};
+
+<Select
+  label={t("select.label")}
+  labelKey="name"
+  loading={loading}
+  name="select"
+  options={rolesOptions}
+  value={selectValue}
+  valueKey="id"
+  onChange={(value: string) => setSelectValue(value)}
+  placeholder={t("select.placeholder")}
+  customSearchFn={fetchRoles}
 />'
         />
       </Section>

@@ -407,6 +407,8 @@
       "renderValue": "Function to be called to render custom select value.",
       "onChange": "Function to be called when value changes."
     },
+    "roleSelectLabel": "Role",
+    "roleSelectPlaceholder": "Select a role",
     "title": "Select",
     "usage": {
       "basic": "Basic",
@@ -419,6 +421,7 @@
       "multiple": "Multiple select",
       "renderOption": "Select with custom option",
       "renderValue": "Select with custom selected value",
+      "serverSide": "With server-side data",
       "withTooltip": "With tooltip"
     }
   },

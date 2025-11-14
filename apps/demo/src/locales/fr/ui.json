@@ -407,6 +407,8 @@
       "renderValue": "Function to be called to render custom select value. (fr)",
       "onChange": "Function to be called when value changes. (fr)"
     },
+    "roleSelectLabel": "Role (fr)",
+    "roleSelectPlaceholder": "Select a role (fr)",
     "title": "Select (fr)",
     "usage": {
       "basic": "Basic",
@@ -419,6 +421,7 @@
       "multiple": "Multiple select (fr)",
       "renderOption": "Select with custom option (fr)",
       "renderValue": "Select with custom selected value (fr)",
+      "serverSide": "With server-side data (fr)",
       "withTooltip": "With tooltip (fr)"
     }
   },
