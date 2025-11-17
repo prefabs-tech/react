@@ -180,6 +180,13 @@
   },
   "table": {
     "title": "Table (fr)",
+    "confirmation": {
+      "header": "Are you sure! (fr)",
+      "message": {
+        "deleteUser": "You are going to delete the user <strong>{{user}}</strong> (fr).",
+        "deleteUserData": "You are going to delete the user {{user}} data (fr)."
+      }
+    },
     "cssCodeBlock": {
       "title": "CSS code example (fr)",
       "messages": {

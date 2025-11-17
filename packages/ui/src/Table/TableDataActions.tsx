@@ -8,7 +8,8 @@ export interface DataActionsMenuItem
   requireConfirmationModal?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (arguments_: any) => void | Promise<void>;
-  confirmationOptions?: IModalProperties;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  confirmationOptions?: IModalProperties | ((data: any) => IModalProperties);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   disabled?: boolean | ((data: any) => boolean);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -64,7 +65,9 @@ export const DataActionsMenu = ({
           onClick: () => {
             if (action.requireConfirmationModal) {
               setConfirmation({
-                ...action.confirmationOptions,
+                ...(typeof action.confirmationOptions === "function"
+                  ? action.confirmationOptions(data)
+                  : action.confirmationOptions),
                 onHide: () => setConfirmation(null),
                 accept: async () => {
                   await action.onClick?.(data);

@@ -8,10 +8,10 @@ export interface IModalProperties
   cancelButtonOptions?: IButtonProperties;
   closable?: boolean;
   closeIcon?: string | ReactNode;
-  footer?: ReactNode;
+  footer?: ReactNode | string;
   header?: ReactNode | string;
   icon?: ReactNode | string;
-  message?: string;
+  message?: ReactNode | string;
   visible?: boolean;
   accept?: () => void;
   onHide?: () => void;
