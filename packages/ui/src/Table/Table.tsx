@@ -289,26 +289,7 @@ const DataTable = <TData extends RowData>({
 
           if (!filteredActions?.length) return null;
 
-          let actionMode: "auto" | "buttons" | "menu" | undefined;
-          const {
-            mode = "auto",
-            actions = [],
-            autoModeCount = 1,
-          } = actionsMenu;
-
-          if (mode === "auto") {
-            actionMode = actions.length > autoModeCount ? "menu" : "buttons";
-          } else {
-            actionMode = mode;
-          }
-
-          return (
-            <DataActionsMenu
-              {...actionsMenu}
-              data={original}
-              mode={actionMode}
-            />
-          );
+          return <DataActionsMenu {...actionsMenu} data={original} />;
         },
       };
 

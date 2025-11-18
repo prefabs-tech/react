@@ -20,15 +20,16 @@ export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
   autoModeCount?: number;
   data?: TData;
-  mode?: "buttons" | "menu";
+  mode?: "auto" | "buttons" | "dropdown";
   displayActions?: boolean | ((data: TData) => boolean);
 }
 
 export const DataActionsMenu = ({
   actions,
+  autoModeCount = 1,
   data,
   displayActions = true,
-  mode = "menu", // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  mode = "auto", // eslint-disable-next-line @typescript-eslint/no-explicit-any
 }: DataActionsMenuProperties<any>) => {
   const [confirmation, setConfirmation] = useState<IModalProperties | null>();
 
@@ -85,7 +86,15 @@ export const DataActionsMenu = ({
   const renderActions = () => {
     if (!items?.length) return null;
 
-    if (mode === "buttons") {
+    const showButtons =
+      (mode === "buttons" && items.length > 0) ||
+      (mode === "auto" && (actions?.length ?? 0) <= autoModeCount);
+
+    const showDropdown =
+      (mode === "dropdown" && items.length > 0) ||
+      (mode === "auto" && (actions?.length ?? 0) > autoModeCount);
+
+    if (showButtons) {
       return items
         .filter((item) => item?.display !== false)
         .map((item, index) => (
@@ -103,7 +112,9 @@ export const DataActionsMenu = ({
             rounded
           />
         ));
-    } else if (mode === "menu") {
+    }
+
+    if (showDropdown) {
       return (
         <DropdownMenu
           label={<i className="pi pi-cog"></i>}

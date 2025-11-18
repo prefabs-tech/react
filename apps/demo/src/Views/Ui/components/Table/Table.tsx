@@ -606,7 +606,7 @@ export const TableDemo = () => {
                 },
               },
             ],
-            mode: "menu",
+            mode: "dropdown",
           }}
           id="single-action-menu-table"
           initialSorting={[{ id: "email", desc: false }]}
