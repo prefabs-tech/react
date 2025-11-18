@@ -178,7 +178,7 @@ export const Select = <T extends string | number>({
   }, [searchInput, sortedOptions]);
 
   useEffect(() => {
-    if (searchInput && serverSearchFn) {
+    if (serverSearchFn) {
       serverSearchFn(searchInput);
     }
   }, [searchInput]);
