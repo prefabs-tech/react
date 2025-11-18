@@ -164,7 +164,7 @@ export const Select = <T extends string | number>({
   }, [normalizedOptions]);
 
   const filteredOptions = useMemo(() => {
-    if (!searchInput) {
+    if (!searchInput || serverSearchFn) {
       return sortedOptions;
     }
 
