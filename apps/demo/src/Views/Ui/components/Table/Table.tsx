@@ -1,4 +1,4 @@
-import { useTranslation } from "@prefabs.tech/react-i18n";
+import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable,
   Page,
@@ -468,9 +468,13 @@ export const TableDemo = () => {
                   console.log(rowData, "delete action");
                 },
                 requireConfirmationModal: true,
-                confirmationOptions: {
-                  header: "Are you sure!",
-                  message: "You are going to delete this data.",
+                confirmationOptions: (rowData) => {
+                  return {
+                    header: t("table.confirmation.header"),
+                    message: t("table.confirmation.message.deleteUserData", {
+                      user: rowData?.name,
+                    }),
+                  };
                 },
               },
             ],
@@ -541,9 +545,19 @@ export const TableDemo = () => {
                   console.log(rowData, "delete action");
                 },
                 requireConfirmationModal: true,
-                confirmationOptions: {
-                  header: "Are you sure!",
-                  message: "You are going to delete this data.",
+                confirmationOptions: (rowData) => {
+                  return {
+                    header: t("table.confirmation.header"),
+                    message: (
+                      <p>
+                        <Trans
+                          i18nKey="ui:table.confirmation.message.deleteUser"
+                          component={{ strong: <strong /> }}
+                          values={{ user: rowData?.name }}
+                        ></Trans>
+                      </p>
+                    ),
+                  };
                 },
               },
             ],
