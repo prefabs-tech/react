@@ -545,7 +545,7 @@ const [value, setValue] = useState<string>("");
           valueKey="id"
           onChange={(value: string) => setServerSideSelectValue(value)}
           placeholder={t("select.roleSelectPlaceholder")}
-          customSearchFn={fetchRoles}
+          serverSearchFn={fetchRoles}
         />
         <CodeBlock
           exampleCode='
@@ -572,7 +572,7 @@ const fetchRoles = async (searchInput: string) => {
   valueKey="id"
   onChange={(value: string) => setSelectValue(value)}
   placeholder={t("select.placeholder")}
-  customSearchFn={fetchRoles}
+  serverSearchFn={fetchRoles}
 />'
         />
       </Section>
