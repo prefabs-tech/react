@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import { Select, Page, Button, Tag } from "@prefabs.tech/react-ui";
 import { TDataTable } from "@prefabs.tech/react-ui";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../../components/Demo";
