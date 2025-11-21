@@ -196,8 +196,7 @@ export const SelectDemo = () => {
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
-  const [serverSideSelectValue, setServerSideSelectValue] =
-    useState<string>("");
+  const [roleSelectValue, setRoleSelectValue] = useState<string>("");
   const [singleSelectGroupValue, setSingleSelectGroupValue] =
     useState<string>("");
   const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>(
@@ -237,6 +236,28 @@ export const SelectDemo = () => {
   };
 
   const fetchRoles = async (searchInput?: string) => {
+    const payload = {
+      filters: {
+        OR: [] as Array<Record<string, string | string[]>>,
+      },
+    };
+
+    if (searchInput?.trim()) {
+      payload.filters.OR.push({
+        key: "name",
+        operator: "ct",
+        value: searchInput,
+      });
+    }
+
+    if (roleSelectValue) {
+      payload.filters.OR.push({
+        key: "id",
+        operator: "in",
+        value: roleSelectValue,
+      });
+    }
+
     setLoading(true);
 
     const roles = [
@@ -249,19 +270,24 @@ export const SelectDemo = () => {
 
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    const filteredOptions = searchInput
-      ? roles.filter((option) =>
-          option.name.toLowerCase().includes(searchInput.toLowerCase()),
-        )
-      : roles;
+    const filtered = roles.filter((role) =>
+      payload.filters.OR.some((filter) => {
+        if (filter.key === "name" && filter.operator === "ct") {
+          return String(role.name)
+            .toLowerCase()
+            .includes(String(filter.value).toLowerCase());
+        }
 
-    setRolesOptions(filteredOptions);
+        if (filter.key === "id" && filter.operator === "in") {
+          return filter.value.includes(role.id);
+        }
+        return false;
+      }),
+    );
+
+    setRolesOptions(filtered);
     setLoading(false);
   };
-
-  useEffect(() => {
-    fetchRoles();
-  }, []);
 
   const renderOption = (option: Option<string>) => {
     return (
@@ -541,9 +567,9 @@ const [value, setValue] = useState<string>("");
           loading={loading}
           name="select"
           options={rolesOptions}
-          value={serverSideSelectValue}
+          value={roleSelectValue}
           valueKey="id"
-          onChange={(value: string) => setServerSideSelectValue(value)}
+          onChange={(value: string) => setRoleSelectValue(value)}
           placeholder={t("select.roleSelectPlaceholder")}
           serverSearchFn={fetchRoles}
         />

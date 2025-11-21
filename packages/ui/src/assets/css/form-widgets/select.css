@@ -126,6 +126,13 @@
   margin: 0.65rem 0;
 }
 
+.select-menu .no-options {
+  display: block;
+  opacity: 0.8;
+  padding-block: var(--_padding-block);
+  padding-inline: var(--_padding-inline);
+}
+
 .select-menu ul {
   display: flex;
   flex-direction: column;

@@ -45,8 +45,10 @@ export type ISelectProperties<T> = {
   menuOptions?: MenuOptions;
   multiple?: boolean;
   name: string;
+  noOptionsMessage?: string;
   options: Option<T>[] | GroupedOption<T>[];
   placeholder?: string;
+  serverSearchHelperText?: string;
   selectAllLabel?: string;
   showRemoveSelection?: boolean;
   tooltipOptions?: TooltipOptions;
@@ -89,8 +91,10 @@ export const Select = <T extends string | number>({
   menuOptions,
   multiple,
   name,
+  noOptionsMessage = "No options available",
   options,
   placeholder,
+  serverSearchHelperText = "Please type to search...",
   selectAllLabel = "Select all",
   showRemoveSelection = true,
   tooltipOptions,
@@ -178,7 +182,7 @@ export const Select = <T extends string | number>({
   }, [searchInput, sortedOptions]);
 
   useEffect(() => {
-    if (serverSearchFn) {
+    if (serverSearchFn && searchInput) {
       serverSearchFn(searchInput);
     }
   }, [searchInput]);
@@ -584,6 +588,12 @@ export const Select = <T extends string | number>({
           <div className="loading-container">
             <LoadingIcon />
           </div>
+        ) : !filteredOptions?.length ? (
+          <span className="no-options">
+            {!searchInput && serverSearchFn
+              ? serverSearchHelperText
+              : noOptionsMessage}
+          </span>
         ) : (
           <ul aria-multiselectable={multiple} role="listbox">
             {multiple && (
