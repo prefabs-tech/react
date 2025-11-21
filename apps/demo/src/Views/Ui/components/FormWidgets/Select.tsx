@@ -566,7 +566,9 @@ const [value, setValue] = useState<string>("");
           labelKey="name"
           loading={loading}
           name="select"
+          noOptionsMessage={t("select.noRoleOptions")}
           options={rolesOptions}
+          serverSearchHelperText={t("select.serverSearchHelper")}
           value={roleSelectValue}
           valueKey="id"
           onChange={(value: string) => setRoleSelectValue(value)}
@@ -593,7 +595,9 @@ const fetchRoles = async (searchInput: string) => {
   labelKey="name"
   loading={loading}
   name="select"
+  noOptionsMessage={t("select.noRoleOptions")}
   options={rolesOptions}
+  serverSearchHelperText={t("select.serverSearchHelper")}
   value={selectValue}
   valueKey="id"
   onChange={(value: string) => setSelectValue(value)}

@@ -387,6 +387,7 @@
     "autoSortOptionsInfo": "By default, options are sorted alphabetically. To render options in original order as provided, you can use <code>autoSortOptions={false}</code>",
     "label": "Country",
     "multiSelectPlaceholder": "Select countries",
+    "noRoleOptions": "No role options available",
     "placeholder": "Select a country",
     "propertiesDescription": {
       "autoSortOptions": "By default, options are sorted alphabetically by label. If set to false, the order of options is preserved.",
@@ -416,6 +417,7 @@
     },
     "roleSelectLabel": "Role",
     "roleSelectPlaceholder": "Select a role",
+    "serverSearchHelper": "Please type to search roles...",
     "title": "Select",
     "usage": {
       "basic": "Basic",
