@@ -32,6 +32,33 @@ export const StepperDemo = () => {
     },
   ];
 
+  const steps = [
+    {
+      completedStepIcon: "pi pi-check",
+      content: "Please enter personal details",
+      label: "Personal",
+      step: 1,
+    },
+    {
+      completedStepIcon: "pi pi-check",
+      content: "Please enter contact details",
+      label: "Contact",
+      step: 2,
+    },
+    {
+      completedStepIcon: "pi pi-check",
+      content: "Please enter payment details",
+      label: "Payment",
+      step: 3,
+    },
+    {
+      completedStepIcon: "pi pi-check",
+      content: "Do you wish to continue?",
+      label: "Confirmation",
+      step: 4,
+    },
+  ];
+
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0:
@@ -69,11 +96,16 @@ export const StepperDemo = () => {
         />
       }
     >
-      <Section>
+      <Section title={t("stepper.usage.basic")}>
+        <Stepper steps={steps} align="start" />
+      </Section>
+
+      <Section title={t("stepper.usage.controlled")}>
         <Stepper
           steps={list}
           activeIndex={activeIndex}
           readOnly={true}
+          controlled={true}
           onChange={(event: any) => {
             setActiveIndex(event.index);
           }}

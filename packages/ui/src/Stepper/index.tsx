@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { Button, IButtonProperties } from "../Buttons";
 import { IStepEvent, LineStyleType, AlignType, Step } from "./Step";
@@ -38,6 +38,12 @@ export const Stepper: React.FC<IProperties> = ({
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
   const [disablePrevious, setDisablePrevious] = useState<boolean>(true);
 
+  useEffect(() => {
+    if (controlled) {
+      setActiveStepIndex(activeIndex);
+    }
+  });
+
   const onClick = (event: IStepEvent) => {
     if (!readOnly && onChange) {
       onChange(event);
@@ -51,6 +57,7 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex < steps.length - 1) {
       setActiveStepIndex(activeStepIndex + 1);
+      setDisablePrevious(false);
     } else {
       if (onComplete) {
         onComplete();
@@ -66,17 +73,19 @@ export const Stepper: React.FC<IProperties> = ({
     if (activeStepIndex > 0) {
       setActiveStepIndex(activeStepIndex - 1);
       setDisablePrevious(false);
-    } else {
+    }
+
+    if (!activeStepIndex) {
       setDisablePrevious(true);
     }
   };
 
   const renderContent = () => {
-    return steps.forEach((step, index) => {
-      if (index === activeStepIndex && step?.content) {
-        return <div className="content">{step?.content}</div>;
-      }
-    });
+    const activeStep = steps.find((_, index) => index === activeStepIndex);
+
+    return activeStep?.content ? (
+      <div className="content">{activeStep.content}</div>
+    ) : null;
   };
 
   const renderButtons = () => {
@@ -108,8 +117,8 @@ export const Stepper: React.FC<IProperties> = ({
   };
 
   return (
-    <>
-      <ul className="stepper">
+    <div className="stepper">
+      <ul className="steps">
         {steps.map((element, index) => {
           return (
             <Step
@@ -118,8 +127,8 @@ export const Stepper: React.FC<IProperties> = ({
               index={index}
               lineStyle={lineStyle}
               onClick={onClick}
-              isCompleted={activeIndex > index ? true : false}
-              isActive={activeIndex === index ? true : false}
+              isCompleted={activeStepIndex > index ? true : false}
+              isActive={activeStepIndex === index ? true : false}
               align={align}
             />
           );
@@ -128,6 +137,6 @@ export const Stepper: React.FC<IProperties> = ({
 
       {!controlled && renderContent()}
       {!controlled && renderButtons()}
-    </>
+    </div>
   );
 };

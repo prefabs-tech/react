@@ -306,7 +306,11 @@
     "title": "Popup"
   },
   "stepper": {
-    "title": "Stepper"
+    "title": "Stepper",
+    "usage": {
+      "controlled": "Controlled",
+      "basic": "Basic"
+    }
   },
   "tabbedPanel": {
     "title": "Tabbed panel",

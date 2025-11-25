@@ -306,7 +306,11 @@
     "title": "Popup (fr)"
   },
   "stepper": {
-    "title": "Stepper (fr)"
+    "title": "Stepper (fr)",
+    "usage": {
+      "controlled": "Controlled (fr)",
+      "basic": "Basic (fr)"
+    }
   },
   "tabbedPanel": {
     "title": "Tabbed panel (fr)",
