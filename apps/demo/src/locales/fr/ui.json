@@ -387,6 +387,7 @@
     "autoSortOptionsInfo": "By default, options are sorted alphabetically. To render options in original order as provided, you can use <code>autoSortOptions={false}</code> (fr)",
     "label": "Country (fr)",
     "multiSelectPlaceholder": "Select countries (fr)",
+    "noRoleOptions": "No role options available (fr)",
     "placeholder": "Select a country (fr)",
     "propertiesDescription": {
       "autoSortOptions": "By default, options are sorted alphabetically by label. If set to false, the order of options is preserved. (fr)",
@@ -414,6 +415,9 @@
       "renderValue": "Function to be called to render custom select value. (fr)",
       "onChange": "Function to be called when value changes. (fr)"
     },
+    "roleSelectLabel": "Role (fr)",
+    "roleSelectPlaceholder": "Select a role (fr)",
+    "serverSearchHelper": "Please type to search roles... (fr)",
     "title": "Select (fr)",
     "usage": {
       "basic": "Basic",
@@ -426,6 +430,7 @@
       "multiple": "Multiple select (fr)",
       "renderOption": "Select with custom option (fr)",
       "renderValue": "Select with custom selected value (fr)",
+      "serverSide": "With server-side data (fr)",
       "withTooltip": "With tooltip (fr)"
     }
   },

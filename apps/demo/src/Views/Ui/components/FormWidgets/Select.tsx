@@ -191,9 +191,12 @@ export const SelectDemo = () => {
     },
   ];
 
+  const [loading, setLoading] = useState<boolean>(false);
   const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+  const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
+  const [roleSelectValue, setRoleSelectValue] = useState<string>("");
   const [singleSelectGroupValue, setSingleSelectGroupValue] =
     useState<string>("");
   const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>(
@@ -230,6 +233,60 @@ export const SelectDemo = () => {
         })}
       </span>
     );
+  };
+
+  const fetchRoles = async (searchInput?: string) => {
+    const payload = {
+      filters: {
+        OR: [] as Array<Record<string, string | string[]>>,
+      },
+    };
+
+    if (searchInput?.trim()) {
+      payload.filters.OR.push({
+        key: "name",
+        operator: "ct",
+        value: searchInput,
+      });
+    }
+
+    if (roleSelectValue) {
+      payload.filters.OR.push({
+        key: "id",
+        operator: "in",
+        value: roleSelectValue,
+      });
+    }
+
+    setLoading(true);
+
+    const roles = [
+      { id: "1", name: "Superadmin" },
+      { id: "2", name: "Admin" },
+      { disabled: true, id: "3", name: "Guest" },
+      { id: "4", name: "Maintainer" },
+      { id: "5", name: "User" },
+    ];
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const filtered = roles.filter((role) =>
+      payload.filters.OR.some((filter) => {
+        if (filter.key === "name" && filter.operator === "ct") {
+          return String(role.name)
+            .toLowerCase()
+            .includes(String(filter.value).toLowerCase());
+        }
+
+        if (filter.key === "id" && filter.operator === "in") {
+          return filter.value.includes(role.id);
+        }
+        return false;
+      }),
+    );
+
+    setRolesOptions(filtered);
+    setLoading(false);
   };
 
   const renderOption = (option: Option<string>) => {
@@ -499,6 +556,53 @@ const [value, setValue] = useState<string>("");
   placeholder={t("select.placeholder")}
   valueKey="code"
   labelKey="country"
+/>'
+        />
+      </Section>
+
+      <Section title={t("select.usage.serverSide")}>
+        <Select
+          label={t("select.roleSelectLabel")}
+          labelKey="name"
+          loading={loading}
+          name="select"
+          noOptionsMessage={t("select.noRoleOptions")}
+          options={rolesOptions}
+          serverSearchHelperText={t("select.serverSearchHelper")}
+          value={roleSelectValue}
+          valueKey="id"
+          onChange={(value: string) => setRoleSelectValue(value)}
+          placeholder={t("select.roleSelectPlaceholder")}
+          serverSearchFn={fetchRoles}
+        />
+        <CodeBlock
+          exampleCode='
+const [ loading, setLoading ] = useState<boolean>(false);
+const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
+const [selectValue, setSelectValue] = useState<string>("");
+
+const fetchRoles = async (searchInput: string) => {
+  setLoading(true);
+
+  const response = await ...;
+
+  setRolesOptions(response);
+  setLoading(false);
+};
+
+<Select
+  label={t("select.label")}
+  labelKey="name"
+  loading={loading}
+  name="select"
+  noOptionsMessage={t("select.noRoleOptions")}
+  options={rolesOptions}
+  serverSearchHelperText={t("select.serverSearchHelper")}
+  value={selectValue}
+  valueKey="id"
+  onChange={(value: string) => setSelectValue(value)}
+  placeholder={t("select.placeholder")}
+  serverSearchFn={fetchRoles}
 />'
         />
       </Section>
