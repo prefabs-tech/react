@@ -44,6 +44,14 @@ export const Stepper: React.FC<IProperties> = ({
     }
   });
 
+  useEffect(() => {
+    if (activeStepIndex === 0) {
+      setDisablePrevious(true);
+    } else {
+      setDisablePrevious(false);
+    }
+  }, [activeStepIndex]);
+
   const onClick = (event: IStepEvent) => {
     if (!readOnly && onChange) {
       onChange(event);
@@ -57,7 +65,6 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex < steps.length - 1) {
       setActiveStepIndex(activeStepIndex + 1);
-      setDisablePrevious(false);
     } else {
       if (onComplete) {
         onComplete();
@@ -72,11 +79,6 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex > 0) {
       setActiveStepIndex(activeStepIndex - 1);
-      setDisablePrevious(false);
-    }
-
-    if (!activeStepIndex) {
-      setDisablePrevious(true);
     }
   };
 
