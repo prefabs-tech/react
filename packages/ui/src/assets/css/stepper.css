@@ -11,13 +11,37 @@
 .stepper {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
-.stepper > .actions {
+.stepper .actions {
   margin-top: 2rem;
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+}
+
+.stepper.horizontal > .content-wrapper {
+  margin-top: 2rem;
+}
+
+.stepper.vertical {
+  flex-direction: row;
+}
+
+.stepper.vertical > .steps {
+  flex-direction: column;
+  min-width: 25%;
+  max-width: 50%;
+}
+
+.stepper.vertical > .steps > .step {
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.stepper.vertical .steps > .step {
+  flex: unset;
 }
 
 .steps {
@@ -67,14 +91,22 @@
   height: 3rem;
   justify-content: center;
   transition: all 0.4s ease;
-  width: 3rem;
+  min-width: 3rem;
   z-index: 1;
 }
 
-.steps > .step > .step-label {
+.steps > .step .step-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.steps > .step .step-content-wrapper > .step-content {
+  padding-block: 1rem;
+}
+
+.steps > .step .step-label {
   color: var(--stepper-label-color);
   display: flex;
-  justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
   word-break: break-word;
@@ -83,13 +115,17 @@
 }
 
 .steps > .step > .step-number:hover,
-.steps > .step > .step-label:hover {
+.steps > .step .step-label:hover {
   cursor: pointer;
 }
 
-.steps > .step > .step-label.active {
+.steps > .step .step-label.active {
   color: var(--stepper-label-active-color);
   font-weight: 500;
+}
+
+.steps > .step .step-subtitle {
+  color: var(--stepper-label-color);
 }
 
 .steps > .step::before {
@@ -98,9 +134,18 @@
   display: block;
   left: 0;
   position: absolute;
-  top: 20%;
+  top: 1.5rem;
   width: 100%;
   z-index: 0;
+}
+
+.stepper.vertical > .steps > .step::before {
+  border: 0;
+  border-left: 1px solid var(--stepper-line-border-color);
+  left: 1.5rem;
+  top: unset;
+  bottom: 0;
+  height: 100%;
 }
 
 .steps > .step.dashed::before {
@@ -132,7 +177,7 @@
     font-size: 0.8rem;
   }
 
-  .steps > .step > .step-label {
+  .steps > .step .step-label {
     font-size: 0.8rem;
   }
 

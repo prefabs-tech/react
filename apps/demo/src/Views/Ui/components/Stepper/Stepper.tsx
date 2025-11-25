@@ -35,27 +35,46 @@ export const StepperDemo = () => {
   const steps = [
     {
       completedStepIcon: "pi pi-check",
-      content: "Please enter personal details",
+      content: "Please enter your personal details",
       label: "Personal",
       step: 1,
+      stepContent: (
+        <p>
+          Provide your basic personal information such as your{" "}
+          <strong>full name</strong>, <strong>date of birth</strong>, and{" "}
+          <strong>nationality</strong>. This helps us create your profile and
+          verify your identity. Make sure all details match your official
+          documents.
+        </p>
+      ),
+      subtitle: "Personal information",
     },
     {
       completedStepIcon: "pi pi-check",
-      content: "Please enter contact details",
+      content: "Please enter your contact details",
       label: "Contact",
       step: 2,
+      stepContent:
+        "Share your contact information including email address, phone number, and current address. We will use these details to send important updates and verify your account when necessary.",
+      subtitle: "Contact information",
     },
     {
       completedStepIcon: "pi pi-check",
-      content: "Please enter payment details",
+      content: "Please enter your payment details",
       label: "Payment",
       step: 3,
+      stepContent:
+        "Provide your preferred payment information securely. You can use a debit card, credit card, or digital wallet. Your payment details will be encrypted and used only for authorized transactions.",
+      subtitle: "Payment information",
     },
     {
       completedStepIcon: "pi pi-check",
-      content: "Do you wish to continue?",
+      content: "Confirm your details",
       label: "Confirmation",
       step: 4,
+      stepContent:
+        "Review all information you have entered so far. Make sure your personal, contact, and payment details are accurate. If everything looks correct, continue to complete the process.",
+      subtitle: "Confirm your details",
     },
   ];
 
@@ -98,6 +117,10 @@ export const StepperDemo = () => {
     >
       <Section title={t("stepper.usage.basic")}>
         <Stepper steps={steps} align="start" />
+      </Section>
+
+      <Section title={t("stepper.usage.basic")}>
+        <Stepper steps={steps} align="start" direction="vertical" />
       </Section>
 
       <Section title={t("stepper.usage.controlled")}>

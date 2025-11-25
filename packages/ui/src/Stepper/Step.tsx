@@ -19,6 +19,8 @@ interface IStepProperties {
   lineStyle?: LineStyleType;
   align?: AlignType;
   step?: number | string | ReactNode;
+  stepContent?: string | ReactNode;
+  subtitle?: string;
 }
 
 export const Step: FC<IStepProperties> = ({
@@ -31,6 +33,8 @@ export const Step: FC<IStepProperties> = ({
   lineStyle,
   align,
   step,
+  stepContent,
+  subtitle,
 }) => {
   const renderLabel = (label?: string) => {
     if (!label) {
@@ -39,6 +43,18 @@ export const Step: FC<IStepProperties> = ({
 
     return (
       <span className={`step-label ${isActive ? "active" : ""} `}>{label}</span>
+    );
+  };
+
+  const renderSubtitle = (subtitle?: string) => {
+    if (!subtitle) {
+      return null;
+    }
+
+    return (
+      <span className={`step-subtitle ${isActive ? "active" : ""} `}>
+        {subtitle}
+      </span>
     );
   };
 
@@ -79,7 +95,12 @@ export const Step: FC<IStepProperties> = ({
       }}
     >
       {renderStep(index, completedStepIcon)}
-      {renderLabel(label)}
+
+      <div className="step-content-wrapper">
+        {renderLabel(label)}
+        {renderSubtitle(subtitle)}
+        {stepContent}
+      </div>
     </li>
   );
 };

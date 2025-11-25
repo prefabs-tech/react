@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 import { Button, IButtonProperties } from "../Buttons";
+import Divider from "../Divider";
 import { IStepEvent, LineStyleType, AlignType, Step } from "./Step";
 
 type StepItem = {
@@ -8,11 +9,14 @@ type StepItem = {
   content?: string | ReactNode;
   label?: string;
   step?: number | string | ReactNode;
+  stepContent?: string | ReactNode;
+  subtitle?: string;
 };
 
 interface IProperties {
-  controlled?: boolean;
   activeIndex?: number;
+  controlled?: boolean;
+  direction?: "horizontal" | "vertical";
   onChange?: (event: IStepEvent) => void;
   previousButtonProperties?: IButtonProperties;
   nextButtonProperties?: IButtonProperties;
@@ -24,10 +28,11 @@ interface IProperties {
 }
 
 export const Stepper: React.FC<IProperties> = ({
+  activeIndex = 0,
   align = "center",
   controlled = false,
+  direction = "horizontal",
   lineStyle = "solid",
-  activeIndex = 0,
   onChange,
   onComplete,
   previousButtonProperties,
@@ -44,6 +49,14 @@ export const Stepper: React.FC<IProperties> = ({
     }
   });
 
+  useEffect(() => {
+    if (activeStepIndex === 0) {
+      setDisablePrevious(true);
+    } else {
+      setDisablePrevious(false);
+    }
+  }, [activeStepIndex]);
+
   const onClick = (event: IStepEvent) => {
     if (!readOnly && onChange) {
       onChange(event);
@@ -57,7 +70,6 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex < steps.length - 1) {
       setActiveStepIndex(activeStepIndex + 1);
-      setDisablePrevious(false);
     } else {
       if (onComplete) {
         onComplete();
@@ -72,11 +84,6 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex > 0) {
       setActiveStepIndex(activeStepIndex - 1);
-      setDisablePrevious(false);
-    }
-
-    if (!activeStepIndex) {
-      setDisablePrevious(true);
     }
   };
 
@@ -116,8 +123,21 @@ export const Stepper: React.FC<IProperties> = ({
     );
   };
 
+  const renderActiveStepContent = (
+    content?: string | ReactNode,
+    stepIndex?: number,
+  ) => {
+    const isActive = activeStepIndex === stepIndex;
+
+    if (!content || !isActive || direction === "horizontal") {
+      return null;
+    }
+
+    return <div className="step-content">{content}</div>;
+  };
+
   return (
-    <div className="stepper">
+    <div className={`stepper ${direction}`}>
       <ul className="steps">
         {steps.map((element, index) => {
           return (
@@ -130,13 +150,17 @@ export const Stepper: React.FC<IProperties> = ({
               isCompleted={activeStepIndex > index ? true : false}
               isActive={activeStepIndex === index ? true : false}
               align={align}
+              stepContent={renderActiveStepContent(element.stepContent, index)}
             />
           );
         })}
       </ul>
 
-      {!controlled && renderContent()}
-      {!controlled && renderButtons()}
+      {direction === "vertical" ? <Divider orientation="vertical" /> : null}
+      <div className="content-wrapper">
+        {!controlled && renderContent()}
+        {!controlled && renderButtons()}
+      </div>
     </div>
   );
 };
