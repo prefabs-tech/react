@@ -104,7 +104,7 @@ export const StepperDemo = () => {
         <Stepper steps={steps} align="start" />
       </Section>
 
-      <Section title={t("stepper.usage.basic")}>
+      <Section title={t("stepper.usage.vertical")}>
         <Stepper steps={steps} align="start" direction="vertical" />
       </Section>
 

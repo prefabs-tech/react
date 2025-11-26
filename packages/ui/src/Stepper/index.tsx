@@ -1,7 +1,9 @@
 import { ReactNode, useEffect, useState } from "react";
 
 import { Button, IButtonProperties } from "../Buttons";
-import { IStepEvent, LineStyleType, AlignType, Step } from "./Step";
+import { IStepEvent, LineStyleType, Step } from "./Step";
+
+type AlignType = "start" | "center" | "end";
 
 type StepItem = {
   activeStepIcon?: string | ReactNode;
@@ -134,7 +136,7 @@ export const Stepper: React.FC<IProperties> = ({
   };
 
   return (
-    <div className={`stepper ${direction}`}>
+    <div className={`stepper ${align} ${direction}`}>
       <ul className="steps">
         {steps.map((element, index) => {
           return (
@@ -146,7 +148,6 @@ export const Stepper: React.FC<IProperties> = ({
               onClick={onClick}
               isCompleted={activeStepIndex > index ? true : false}
               isActive={activeStepIndex === index ? true : false}
-              align={align}
               activeContent={
                 direction === "vertical" && activeStepIndex === index
                   ? renderActiveContent()

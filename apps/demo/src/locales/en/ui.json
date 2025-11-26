@@ -308,8 +308,9 @@
   "stepper": {
     "title": "Stepper",
     "usage": {
-      "controlled": "Controlled",
-      "basic": "Basic"
+      "controlled": "Controlled content",
+      "basic": "Basic",
+      "vertical": "Vertical"
     }
   },
   "tabbedPanel": {
