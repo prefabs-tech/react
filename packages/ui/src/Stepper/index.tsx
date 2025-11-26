@@ -21,6 +21,7 @@ interface IProperties {
   steps: StepItem[];
   align?: AlignType;
   onComplete?: () => void;
+  onStepUpdate?: (stepIndex: number) => void;
 }
 
 export const Stepper: React.FC<IProperties> = ({
@@ -30,27 +31,19 @@ export const Stepper: React.FC<IProperties> = ({
   activeIndex = 0,
   onChange,
   onComplete,
+  onStepUpdate,
   previousButtonProperties,
   nextButtonProperties,
   readOnly = true,
   steps = [],
 }) => {
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
-  const [disablePrevious, setDisablePrevious] = useState<boolean>(true);
 
   useEffect(() => {
     if (controlled) {
       setActiveStepIndex(activeIndex);
     }
-  });
-
-  useEffect(() => {
-    if (activeStepIndex === 0) {
-      setDisablePrevious(true);
-    } else {
-      setDisablePrevious(false);
-    }
-  }, [activeStepIndex]);
+  }, []);
 
   const onClick = (event: IStepEvent) => {
     if (!readOnly && onChange) {
@@ -65,6 +58,7 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex < steps.length - 1) {
       setActiveStepIndex(activeStepIndex + 1);
+      onStepUpdate?.(activeStepIndex + 1);
     } else {
       if (onComplete) {
         onComplete();
@@ -79,6 +73,7 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex > 0) {
       setActiveStepIndex(activeStepIndex - 1);
+      onStepUpdate?.(activeStepIndex - 1);
     }
   };
 
@@ -94,7 +89,7 @@ export const Stepper: React.FC<IProperties> = ({
     return (
       <div className="actions">
         <Button
-          disabled={disablePrevious}
+          disabled={activeStepIndex === 0}
           label={previousButtonProperties?.label || "Previous"}
           variant={previousButtonProperties?.variant || "outlined"}
           onClick={handlePrevious}
