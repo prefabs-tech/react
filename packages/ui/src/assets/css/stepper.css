@@ -19,20 +19,16 @@
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
+  position: relative;
 }
 
-.stepper.horizontal > .content-wrapper {
-  margin-top: 2rem;
-}
-
-.stepper.vertical {
-  flex-direction: row;
+.stepper .content-wrapper {
+  margin-top: 1rem;
+  padding-block: 2rem;
 }
 
 .stepper.vertical > .steps {
   flex-direction: column;
-  min-width: 25%;
-  max-width: 50%;
 }
 
 .stepper.vertical > .steps > .step {
@@ -98,10 +94,6 @@
 .steps > .step .step-content-wrapper {
   display: flex;
   flex-direction: column;
-}
-
-.steps > .step .step-content-wrapper > .step-content {
-  padding-block: 1rem;
 }
 
 .steps > .step .step-label {

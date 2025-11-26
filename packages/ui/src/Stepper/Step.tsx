@@ -19,7 +19,7 @@ interface IStepProperties {
   lineStyle?: LineStyleType;
   align?: AlignType;
   step?: number | string | ReactNode;
-  stepContent?: string | ReactNode;
+  activeContent?: string | ReactNode;
   subtitle?: string;
 }
 
@@ -33,7 +33,7 @@ export const Step: FC<IStepProperties> = ({
   lineStyle,
   align,
   step,
-  stepContent,
+  activeContent,
   subtitle,
 }) => {
   const renderLabel = (label?: string) => {
@@ -99,7 +99,7 @@ export const Step: FC<IStepProperties> = ({
       <div className="step-content-wrapper">
         {renderLabel(label)}
         {renderSubtitle(subtitle)}
-        {stepContent}
+        {activeContent}
       </div>
     </li>
   );

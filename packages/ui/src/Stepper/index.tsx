@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useState } from "react";
 
 import { Button, IButtonProperties } from "../Buttons";
-import Divider from "../Divider";
 import { IStepEvent, LineStyleType, AlignType, Step } from "./Step";
 
 type StepItem = {
@@ -9,14 +8,13 @@ type StepItem = {
   content?: string | ReactNode;
   label?: string;
   step?: number | string | ReactNode;
-  stepContent?: string | ReactNode;
   subtitle?: string;
 };
 
 interface IProperties {
   activeIndex?: number;
-  controlled?: boolean;
   direction?: "horizontal" | "vertical";
+  hideButtons?: boolean;
   onChange?: (event: IStepEvent) => void;
   previousButtonProperties?: IButtonProperties;
   nextButtonProperties?: IButtonProperties;
@@ -29,10 +27,10 @@ interface IProperties {
 }
 
 export const Stepper: React.FC<IProperties> = ({
-  activeIndex = 0,
+  activeIndex,
   align = "center",
-  controlled = false,
   direction = "horizontal",
+  hideButtons = false,
   lineStyle = "solid",
   onChange,
   onComplete,
@@ -45,7 +43,7 @@ export const Stepper: React.FC<IProperties> = ({
   const [activeStepIndex, setActiveStepIndex] = useState<number>(0);
 
   useEffect(() => {
-    if (controlled) {
+    if (activeIndex !== undefined && activeIndex !== null) {
       setActiveStepIndex(activeIndex);
     }
   }, [activeIndex]);
@@ -57,7 +55,7 @@ export const Stepper: React.FC<IProperties> = ({
   };
 
   const handleNext = () => {
-    if (controlled) {
+    if (hideButtons) {
       return;
     }
 
@@ -72,7 +70,7 @@ export const Stepper: React.FC<IProperties> = ({
   };
 
   const handlePrevious = () => {
-    if (controlled) {
+    if (hideButtons) {
       return;
     }
 
@@ -91,6 +89,10 @@ export const Stepper: React.FC<IProperties> = ({
   };
 
   const renderButtons = () => {
+    if (hideButtons) {
+      return null;
+    }
+
     return (
       <div className="actions">
         <Button
@@ -111,24 +113,24 @@ export const Stepper: React.FC<IProperties> = ({
               ? "success"
               : nextButtonProperties?.severity || "primary"
           }
-          onClick={handleNext}
           {...nextButtonProperties}
+          onClick={handleNext}
         />
       </div>
     );
   };
 
-  const renderActiveStepContent = (
-    content?: string | ReactNode,
-    stepIndex?: number,
-  ) => {
-    const isActive = activeStepIndex === stepIndex;
-
-    if (!content || !isActive || direction === "horizontal") {
+  const renderActiveContent = () => {
+    if (!renderContent() && !renderButtons()) {
       return null;
     }
 
-    return <div className="step-content">{content}</div>;
+    return (
+      <div className="content-wrapper">
+        {renderContent()}
+        {renderButtons()}
+      </div>
+    );
   };
 
   return (
@@ -145,17 +147,17 @@ export const Stepper: React.FC<IProperties> = ({
               isCompleted={activeStepIndex > index ? true : false}
               isActive={activeStepIndex === index ? true : false}
               align={align}
-              stepContent={renderActiveStepContent(element.stepContent, index)}
+              activeContent={
+                direction === "vertical" && activeStepIndex === index
+                  ? renderActiveContent()
+                  : null
+              }
             />
           );
         })}
       </ul>
 
-      {direction === "vertical" ? <Divider orientation="vertical" /> : null}
-      <div className="content-wrapper">
-        {!controlled && renderContent()}
-        {!controlled && renderButtons()}
-      </div>
+      {direction === "horizontal" ? renderActiveContent() : null}
     </div>
   );
 };
