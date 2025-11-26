@@ -43,7 +43,7 @@ export const Stepper: React.FC<IProperties> = ({
     if (controlled) {
       setActiveStepIndex(activeIndex);
     }
-  }, []);
+  }, [activeIndex]);
 
   const onClick = (event: IStepEvent) => {
     if (!readOnly && onChange) {
