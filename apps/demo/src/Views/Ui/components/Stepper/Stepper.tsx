@@ -1,5 +1,5 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, Stepper, Page } from "@prefabs.tech/react-ui";
+import { Button, Divider, Stepper, Page } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,7 @@ export const StepperDemo = () => {
   const navigate = useNavigate();
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [verticalStepperIndex, setVerticalStepperIndex] = useState(0);
   const list = [
     {
       step: "a",
@@ -66,13 +67,13 @@ export const StepperDemo = () => {
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0:
-        return "Please enter personal details";
+        return <h3>Personal details</h3>;
       case 1:
-        return "Please enter family details";
+        return <h3>Family details</h3>;
       case 2:
-        return "Please enter payment details";
+        return <h3>Payment details</h3>;
       case 3:
-        return "Do you wish to continue?";
+        return <h3>Confirm submit</h3>;
     }
   };
 
@@ -85,6 +86,18 @@ export const StepperDemo = () => {
   const handleNext = () => {
     if (activeIndex < list.length - 1) {
       setActiveIndex(activeIndex + 1);
+    }
+  };
+
+  const handleStepperPrevious = () => {
+    if (verticalStepperIndex > 0) {
+      setVerticalStepperIndex(verticalStepperIndex - 1);
+    }
+  };
+
+  const handleStepperNext = () => {
+    if (verticalStepperIndex < list.length - 1) {
+      setVerticalStepperIndex(verticalStepperIndex + 1);
     }
   };
 
@@ -129,6 +142,35 @@ export const StepperDemo = () => {
             variant="outlined"
           />
           <Button onClick={handleNext} label="Next" />
+        </div>
+      </Section>
+
+      <Section title={t("stepper.usage.verticalControlled")}>
+        <div className="demo-stepper-wrapper">
+          <Stepper
+            activeIndex={verticalStepperIndex}
+            align="start"
+            direction="vertical"
+            hideButtons
+            steps={steps}
+          />
+          <Divider orientation="vertical" />
+          <div className="demo-stepper-content-actions">
+            <div className="demo-stepper-content-wrapper">
+              {renderStepContent(verticalStepperIndex)}
+            </div>
+            <div className="demo-stepper-button-wrapper">
+              <Button
+                onClick={handleStepperPrevious}
+                label={t("stepper.label.previous")}
+                variant="outlined"
+              />
+              <Button
+                onClick={handleStepperNext}
+                label={t("stepper.label.next")}
+              />
+            </div>
+          </div>
         </div>
       </Section>
     </Page>

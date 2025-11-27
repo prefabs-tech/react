@@ -25,7 +25,7 @@ interface IProperties {
   steps: StepItem[];
   align?: AlignType;
   onComplete?: () => void;
-  onStepUpdate?: (stepIndex: number) => void;
+  onActiveIndexUpdate?: (index: number) => void;
 }
 
 export const Stepper: React.FC<IProperties> = ({
@@ -36,7 +36,7 @@ export const Stepper: React.FC<IProperties> = ({
   lineStyle = "solid",
   onChange,
   onComplete,
-  onStepUpdate,
+  onActiveIndexUpdate,
   previousButtonProperties,
   nextButtonProperties,
   readOnly = true,
@@ -63,7 +63,7 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex < steps.length - 1) {
       setActiveStepIndex(activeStepIndex + 1);
-      onStepUpdate?.(activeStepIndex + 1);
+      onActiveIndexUpdate?.(activeStepIndex + 1);
     } else {
       if (onComplete) {
         onComplete();
@@ -78,7 +78,7 @@ export const Stepper: React.FC<IProperties> = ({
 
     if (activeStepIndex > 0) {
       setActiveStepIndex(activeStepIndex - 1);
-      onStepUpdate?.(activeStepIndex - 1);
+      onActiveIndexUpdate?.(activeStepIndex - 1);
     }
   };
 
@@ -99,21 +99,15 @@ export const Stepper: React.FC<IProperties> = ({
       <div className="actions">
         <Button
           disabled={activeStepIndex === 0}
-          label={previousButtonProperties?.label || "Previous"}
-          variant={previousButtonProperties?.variant || "outlined"}
+          label="Previous"
+          variant="outlined"
           onClick={handlePrevious}
           {...previousButtonProperties}
         />
         <Button
-          label={
-            activeStepIndex === steps.length - 1
-              ? "Finish"
-              : nextButtonProperties?.label || "Next"
-          }
+          label={activeStepIndex === steps.length - 1 ? "Finish" : "Next"}
           severity={
-            activeStepIndex === steps.length - 1
-              ? "success"
-              : nextButtonProperties?.severity || "primary"
+            activeStepIndex === steps.length - 1 ? "success" : "primary"
           }
           {...nextButtonProperties}
           onClick={handleNext}
