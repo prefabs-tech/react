@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import Divider from "@/Divider";
+import LoadingIcon from "@/LoadingIcon";
 
 import { PopupMenu, PopupMenuProperties } from "../../Popup";
 import { Tooltip, TooltipProperties } from "../../Tooltip";
@@ -39,17 +40,21 @@ export type ISelectProperties<T> = {
   hideIfSingleOption?: boolean;
   label?: string | React.ReactNode;
   labelKey?: string;
+  loading?: boolean;
   matchMenuTriggerWidth?: boolean;
   menuOptions?: MenuOptions;
   multiple?: boolean;
   name: string;
+  noOptionsMessage?: string;
   options: Option<T>[] | GroupedOption<T>[];
   placeholder?: string;
+  serverSearchHelperText?: string;
   selectAllLabel?: string;
   showRemoveSelection?: boolean;
   tooltipOptions?: TooltipOptions;
   valueKey?: string;
   customSearchFn?: (searchInput: string) => Option<T>[];
+  serverSearchFn?: (searchInput: string) => void;
   renderOption?: (option: Option<T> | GroupedOption<T>) => React.ReactNode;
   renderValue?: (
     value?: T | T[],
@@ -81,18 +86,22 @@ export const Select = <T extends string | number>({
   hideIfSingleOption = false,
   label = "",
   labelKey,
+  loading = false,
   matchMenuTriggerWidth = true,
   menuOptions,
   multiple,
   name,
+  noOptionsMessage = "No options available",
   options,
   placeholder,
+  serverSearchHelperText = "Please type to search...",
   selectAllLabel = "Select all",
   showRemoveSelection = true,
   tooltipOptions,
   value,
   valueKey,
   customSearchFn,
+  serverSearchFn,
   onChange,
   renderOption,
   renderValue,
@@ -159,7 +168,7 @@ export const Select = <T extends string | number>({
   }, [normalizedOptions]);
 
   const filteredOptions = useMemo(() => {
-    if (!searchInput) {
+    if (!searchInput || serverSearchFn) {
       return sortedOptions;
     }
 
@@ -171,6 +180,12 @@ export const Select = <T extends string | number>({
       String(option.label).toLowerCase().includes(searchInput.toLowerCase()),
     );
   }, [searchInput, sortedOptions]);
+
+  useEffect(() => {
+    if (serverSearchFn && searchInput) {
+      serverSearchFn(searchInput);
+    }
+  }, [searchInput]);
 
   const activeOptions = useMemo(
     () => filteredOptions.filter((option) => !option.disabled),
@@ -568,45 +583,58 @@ export const Select = <T extends string | number>({
           </span>
           {hasSelectedOptions && <Divider />}
         </div>
-        <ul aria-multiselectable={multiple} role="listbox">
-          {multiple && (
-            <li role="option" onClick={toggleSelectAll}>
-              <Checkbox
-                checked={isAllSelected}
-                disabled={activeOptions.length === 0}
-                label={selectAllLabel}
-                onChange={() => {}}
-              />
-            </li>
-          )}
 
-          {isGrouped && groupedOptions
-            ? Object.entries(groupedOptions).map(([groupLabel, options]) => (
-                <React.Fragment key={groupLabel}>
-                  {groupLabel && multiple && !disableGroupSelect ? (
-                    <li
-                      className="multi-select-group-label"
-                      onClick={() => toggleGroupSelection(groupLabel)}
-                    >
-                      <Checkbox
-                        checked={isGroupSelected(groupLabel)}
-                        disabled={options.every((option) => option.disabled)}
-                        onChange={() => toggleGroupSelection(groupLabel)}
-                      />
-                      <span>{groupLabel}</span>
-                    </li>
-                  ) : (
-                    <li className="group-label">{groupLabel}</li>
-                  )}
-                  {options.map((option, index) =>
-                    renderOptionItem(option, index),
-                  )}
-                </React.Fragment>
-              ))
-            : filteredOptions.map((option, index) =>
-                renderOptionItem(option, index),
-              )}
-        </ul>
+        {loading ? (
+          <div className="loading-container">
+            <LoadingIcon />
+          </div>
+        ) : !filteredOptions?.length ? (
+          <span className="no-options">
+            {!searchInput && serverSearchFn
+              ? serverSearchHelperText
+              : noOptionsMessage}
+          </span>
+        ) : (
+          <ul aria-multiselectable={multiple} role="listbox">
+            {multiple && (
+              <li role="option" onClick={toggleSelectAll}>
+                <Checkbox
+                  checked={isAllSelected}
+                  disabled={activeOptions.length === 0}
+                  label={selectAllLabel}
+                  onChange={() => {}}
+                />
+              </li>
+            )}
+
+            {isGrouped && groupedOptions
+              ? Object.entries(groupedOptions).map(([groupLabel, options]) => (
+                  <React.Fragment key={groupLabel}>
+                    {groupLabel && multiple && !disableGroupSelect ? (
+                      <li
+                        className="multi-select-group-label"
+                        onClick={() => toggleGroupSelection(groupLabel)}
+                      >
+                        <Checkbox
+                          checked={isGroupSelected(groupLabel)}
+                          disabled={options.every((option) => option.disabled)}
+                          onChange={() => toggleGroupSelection(groupLabel)}
+                        />
+                        <span>{groupLabel}</span>
+                      </li>
+                    ) : (
+                      <li className="group-label">{groupLabel}</li>
+                    )}
+                    {options.map((option, index) =>
+                      renderOptionItem(option, index),
+                    )}
+                  </React.Fragment>
+                ))
+              : filteredOptions.map((option, index) =>
+                  renderOptionItem(option, index),
+                )}
+          </ul>
+        )}
       </>
     );
   };
