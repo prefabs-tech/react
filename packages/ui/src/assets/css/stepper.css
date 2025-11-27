@@ -175,7 +175,7 @@
 @media screen and (max-width: 576px) {
   .steps > .step > .step-number {
     height: 2rem;
-    width: 2rem;
+    min-width: 2rem;
     font-size: 0.8rem;
   }
 
@@ -185,6 +185,10 @@
 
   .steps > .step .step-label {
     font-size: 0.8rem;
+  }
+
+  .stepper.vertical>.steps>.step:before {
+    left: 1rem;
   }
 
   .steps > .step::before {
