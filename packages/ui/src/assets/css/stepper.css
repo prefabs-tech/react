@@ -10,12 +10,44 @@
 
 .stepper {
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.stepper .actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  position: relative;
+}
+
+.stepper .content-wrapper {
+  margin-top: 1rem;
+  padding-block: 2rem;
+}
+
+.stepper.vertical > .steps {
+  flex-direction: column;
+}
+
+.stepper.vertical > .steps > .step {
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.stepper.vertical .steps > .step {
+  flex: unset;
+}
+
+.steps {
+  display: flex;
   justify-content: space-between;
   list-style: none;
   padding: 0;
 }
 
-.stepper > .step {
+.steps > .step {
   display: flex;
   min-height: 7rem;
   flex-direction: column;
@@ -24,29 +56,42 @@
   position: relative;
 }
 
-.stepper > .step.start {
+.stepper.start .steps > .step,
+.stepper.start .steps > .step .step-content-wrapper,
+.stepper.vertical.start {
   align-items: start;
 }
 
-.stepper > .step.end {
+.stepper.end .steps > .step,
+.stepper.end .steps > .step .step-content-wrapper,
+.stepper.vertical.end {
   align-items: end;
 }
 
-.stepper > .step > .step-number.active {
+.stepper.vertical.center {
+  align-items: center;
+}
+
+.stepper.vertical .steps > .step,
+.stepper.vertical .steps > .step .step-content-wrapper {
+  align-items: start;
+}
+
+.steps > .step > .step-number.active {
   background-color: var(--stepper-active-color);
   border: none;
   color: var(--stepper-number-color);
 }
 
-.stepper > .step > .step-number.completed {
+.steps > .step > .step-number.completed {
   border: 1px solid var(--stepper-completed-border-color);
 }
 
-.stepper > .step > .step-number.completed > i {
+.steps > .step > .step-number.completed > i {
   color: var(--stepper-completed-border-color);
 }
 
-.stepper > .step > .step-number {
+.steps > .step > .step-number {
   align-items: center;
   background: var(--stepper-number-color);
   border: 1px solid var(--stepper-number-border-color);
@@ -55,14 +100,19 @@
   height: 3rem;
   justify-content: center;
   transition: all 0.4s ease;
-  width: 3rem;
+  min-width: 3rem;
   z-index: 1;
 }
 
-.stepper > .step > .step-label {
+.steps > .step .step-content-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.steps > .step .step-label {
   color: var(--stepper-label-color);
   display: flex;
-  justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
   word-break: break-word;
@@ -70,61 +120,78 @@
   transition: all 0.4s ease;
 }
 
-.stepper > .step > .step-number:hover,
-.stepper > .step > .step-label:hover {
+.steps > .step > .step-number:hover,
+.steps > .step .step-label:hover {
   cursor: pointer;
 }
 
-.stepper > .step > .step-label.active {
+.steps > .step .step-label.active {
   color: var(--stepper-label-active-color);
   font-weight: 500;
 }
 
-.stepper > .step::before {
+.steps > .step .step-subtitle {
+  color: var(--stepper-label-color);
+}
+
+.steps > .step::before {
   border-top: 1px solid var(--stepper-line-border-color);
   content: " ";
   display: block;
   left: 0;
   position: absolute;
-  top: 20%;
+  top: 1.5rem;
   width: 100%;
   z-index: 0;
 }
 
-.stepper > .step.dashed::before {
+.steps > .step.dashed::before {
   border-top: 1px dashed var(--stepper-line-border-color);
 }
 
-.stepper > .step.center:first-child::before {
+.stepper.horizontal.center .steps > .step:first-child::before {
   left: 50%;
 }
 
-.stepper > .step.center:last-child::before {
+.stepper.vertical > .steps > .step::before {
+  border: 0;
+  border-left: 1px solid var(--stepper-line-border-color);
+  left: 1.5rem;
+  top: unset;
+  bottom: 0;
+  height: 100%;
+}
+
+.stepper.center .steps > .step:last-child::before {
   left: -50%;
 }
 
-.stepper > .step.start:last-child::before,
-.stepper > .step.end:first-child::before,
-.stepper > .step:only-child::before {
+.stepper.start .steps > .step:last-child::before,
+.stepper.end .steps > .step:first-child::before,
+.steps > .step:only-child::before {
   display: none;
 }
 
 @media screen and (max-width: 576px) {
-  .stepper > .step > .step-number {
+  .steps > .step > .step-number {
     height: 2rem;
-    width: 2rem;
+    min-width: 2rem;
     font-size: 0.8rem;
   }
 
-  .stepper > .step > .step-number > i {
+  .steps > .step > .step-number > i {
     font-size: 0.8rem;
   }
 
-  .stepper > .step > .step-label {
+  .steps > .step .step-label {
     font-size: 0.8rem;
   }
 
-  .stepper > .step::before {
+  .stepper.vertical>.steps>.step:before {
+    left: 1rem;
+  }
+
+  .steps > .step::before {
     top: 15%;
   }
 }

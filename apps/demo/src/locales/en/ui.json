@@ -306,7 +306,17 @@
     "title": "Popup"
   },
   "stepper": {
-    "title": "Stepper"
+    "label": {
+      "next": "Next",
+      "previous": "Previous"
+    },
+    "title": "Stepper",
+    "usage": {
+      "controlled": "Controlled content",
+      "basic": "Basic",
+      "vertical": "Vertical",
+      "verticalControlled":"Vertical with controlled content"
+    }
   },
   "tabbedPanel": {
     "title": "Tabbed panel",

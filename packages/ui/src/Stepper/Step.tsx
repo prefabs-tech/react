@@ -5,8 +5,6 @@ export interface IStepEvent extends MouseEvent<HTMLElement> {
   index?: number;
 }
 
-export type AlignType = "start" | "center" | "end";
-
 export type LineStyleType = "solid" | "dashed";
 
 interface IStepProperties {
@@ -17,8 +15,9 @@ interface IStepProperties {
   index: number;
   label?: string;
   lineStyle?: LineStyleType;
-  align?: AlignType;
   step?: number | string | ReactNode;
+  activeContent?: string | ReactNode;
+  subtitle?: string;
 }
 
 export const Step: FC<IStepProperties> = ({
@@ -29,8 +28,9 @@ export const Step: FC<IStepProperties> = ({
   index,
   label,
   lineStyle,
-  align,
   step,
+  activeContent,
+  subtitle,
 }) => {
   const renderLabel = (label?: string) => {
     if (!label) {
@@ -39,6 +39,18 @@ export const Step: FC<IStepProperties> = ({
 
     return (
       <span className={`step-label ${isActive ? "active" : ""} `}>{label}</span>
+    );
+  };
+
+  const renderSubtitle = (subtitle?: string) => {
+    if (!subtitle) {
+      return null;
+    }
+
+    return (
+      <span className={`step-subtitle ${isActive ? "active" : ""} `}>
+        {subtitle}
+      </span>
     );
   };
 
@@ -72,14 +84,19 @@ export const Step: FC<IStepProperties> = ({
 
   return (
     <li
-      className={`step ${align} ${lineStyle}`}
+      className={`step ${lineStyle}`}
       key={index}
       onClick={(event) => {
         handleClick({ ...event, index, label: label });
       }}
     >
       {renderStep(index, completedStepIcon)}
-      {renderLabel(label)}
+
+      <div className="step-content-wrapper">
+        {renderLabel(label)}
+        {renderSubtitle(subtitle)}
+        {activeContent}
+      </div>
     </li>
   );
 };

@@ -306,7 +306,17 @@
     "title": "Popup (fr)"
   },
   "stepper": {
-    "title": "Stepper (fr)"
+    "label": {
+      "next": "Next (fr)",
+      "previous": "Previous (fr)"
+    },
+    "title": "Stepper (fr)",
+    "usage": {
+      "controlled": "Controlled content(fr)",
+      "basic": "Basic (fr)",
+      "vertical": "Vertical (fr)",
+      "verticalControlled":"Vertical with controlled content (fr)"
+    }
   },
   "tabbedPanel": {
     "title": "Tabbed panel (fr)",
