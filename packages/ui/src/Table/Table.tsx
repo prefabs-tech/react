@@ -168,6 +168,15 @@ const DataTable = <TData extends RowData>({
     persistentStateReference.current.pagination,
   );
 
+  const handleColumnSortChange = (event_: Updater<SortingState>) => {
+    const updatedSorting =
+      typeof event_ === "function" ? event_(sorting) : event_;
+
+    setSorting(updatedSorting);
+
+    table.setPageIndex(0);
+  };
+
   const handleColumnFilterChange = (event_: Updater<ColumnFiltersState>) => {
     const updatedColumnFilter =
       typeof event_ === "function" ? event_(columnFilters) : event_;
@@ -371,7 +380,7 @@ const DataTable = <TData extends RowData>({
     onColumnVisibilityChange: setColumnVisibility,
     onPaginationChange: setPagination,
     onRowSelectionChange: setRowSelection,
-    onSortingChange: setSorting,
+    onSortingChange: handleColumnSortChange,
     state: {
       columnFilters,
       columnVisibility,
