@@ -44,11 +44,23 @@ export const AccordionDemo = () => {
       }
     >
       <Section title={t("accordion.usage.basic")}>
-        <Accordion className="separate" defaultActiveIndex={0}>
+        <Accordion canSelfCollapse className="separate" defaultActiveIndex={0}>
           {data.map((item) => {
             return <SubPane title={item.title}>{item.content}</SubPane>;
           })}
         </Accordion>
+
+        <CodeBlock
+          exampleCode='
+import { Accordion, SubPane } from "@prefabs.tech/react-ui";
+
+<Accordion canSelfCollapse defaultActiveIndex={0}>
+  {data.map((item) => {
+    return <SubPane title={item.title}>{item.content}</SubPane>;
+  })}
+</Accordion>
+          '
+        />
       </Section>
     </Page>
   );

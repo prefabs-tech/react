@@ -7,9 +7,9 @@ type Properties = {
   children: ReactElement | ReactElement[];
   defaultActiveIndex?: number;
   direction?: "horizontal" | "vertical";
-  activeIcon?: string;
+  activeIcon?: string | React.ReactNode;
   canSelfCollapse?: boolean;
-  inactiveIcon?: string;
+  inactiveIcon?: string | React.ReactNode;
 };
 
 const Accordion: React.FC<Properties> = ({
@@ -34,6 +34,16 @@ const Accordion: React.FC<Properties> = ({
     throw new Error("Accordion needs at least one children");
   }
 
+  const renderIcon = (icon: string | React.ReactNode) => {
+    if (!icon) return null;
+
+    if (typeof icon === "string") {
+      return <img src={icon} alt="icon" aria-hidden="true" />;
+    }
+
+    return icon;
+  };
+
   return (
     <ul
       className={`accordion ${direction} ${className}`}
@@ -56,17 +66,13 @@ const Accordion: React.FC<Properties> = ({
               aria-disabled={!canSelfCollapse && isActive}
               aria-expanded={isActive}
             >
-              {icon ? (
-                <img src={icon} alt="title icon" aria-hidden="true" />
-              ) : null}
+              {icon ? renderIcon(icon) : null}
               <span>{title}</span>
-              {activeIcon && inactiveIcon ? (
-                <img
-                  src={isActive ? activeIcon : inactiveIcon}
-                  alt="toggle icon"
-                  aria-hidden="true"
-                />
-              ) : null}
+              {activeIcon && inactiveIcon
+                ? isActive
+                  ? renderIcon(activeIcon)
+                  : renderIcon(inactiveIcon)
+                : null}
             </button>
 
             <div role="region" id={bodyId}>

@@ -7,6 +7,10 @@
   gap: 0;
 }
 
+.accordion.horizontal {
+  width: fit-content;
+}
+
 .accordion.separate {
   border: none;
   border-radius: 0;
