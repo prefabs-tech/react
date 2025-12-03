@@ -1,28 +1,24 @@
 .accordion {
-gap: var(--accordion-gap, 0.5rem);
+  --_border-radius: var(--border-radius);
+  --_padding: var(--accordion-padding, 1rem);
+
+  gap: var(--accordion-gap, 0.5rem);
 }
 
 .accordion > li {
   background: var(--accordion-background, #fff);
-  border: var(--accordion-border, 1px solid hsl(0deg 0% 52%));
+  border: 1px solid var(--border-color);
+  border-radius: var(--_border-radius);
   margin: 0;
   padding: 0;
 }
 
 .accordion > li > button {
-  background-color: var(--accordion-header-background, #f0f0f0);
+  background-color: var(--accordion-header-background, #f9f8fa);
   border-style: none;
   margin: 0;
   outline: none;
-  padding: var(--accordion-header-padding, 1rem 1.5rem);
-}
-
-.accordion > li > button:focus {
-  background: var(--accordion-focus-background, hsl(216deg 94% 94%));
-}
-
-.accordion > li > button:hover {
-  background: var(--accordion-hover-background, hsl(216deg 94% 94%));
+  padding: var(--_padding);
 }
 
 .accordion > li > button > img:first-child {
@@ -38,7 +34,7 @@ gap: var(--accordion-gap, 0.5rem);
 }
 
 .accordion > li > button > span {
-  color: var(--accordion-title-color, #000);
+  color: var(--color);
   flex-grow: 1;
   font-size: var(--accordion-title-size, 1rem);
   text-align: left;
@@ -46,7 +42,8 @@ gap: var(--accordion-gap, 0.5rem);
 
 .accordion > li > div[role="region"] {
   max-height: var(--accordion-height, 30rem);
-  overflow-y: scroll;
+  overflow-y: auto;
+  padding: var(--_padding);
   width: 100%;
 }
 
@@ -60,7 +57,7 @@ gap: var(--accordion-gap, 0.5rem);
 }
 
 .accordion.horizontal > li > button {
-  padding: var(--accordion-header-padding, 1.5rem 1rem);
+  padding: var(--_padding);
   width: min-content;
 }
 
@@ -79,9 +76,9 @@ gap: var(--accordion-gap, 0.5rem);
 }
 
 .accordion.vertical > li.active > * + * {
-  border-top: var(--accordion-border, 1px solid hsl(0deg 0% 52%));
+  border-top: 1px solid var(--border-color);
 }
 
 .accordion.horizontal > li.active > * + * {
-  border-left: var(--accordion-border, 1px solid hsl(0deg 0% 52%));
+  border-left: 1px solid var(--border-color);
 }
