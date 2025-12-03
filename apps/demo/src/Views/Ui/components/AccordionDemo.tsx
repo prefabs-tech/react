@@ -27,6 +27,33 @@ const data = [
   },
 ];
 
+const accordionItems = [
+  {
+    content:
+      "This section provides a general introduction and purpose of the accordion component.",
+    icon: <i className="pi pi-home"></i>,
+    title: "Overview",
+  },
+  {
+    content:
+      "The accordion supports custom icons, smooth transitions, and flexible layouts.",
+    icon: <i className="pi pi-list"></i>,
+    title: "Features",
+  },
+  {
+    content:
+      "Learn how to configure and customize the accordion to suit your application needs.",
+    icon: <i className="pi pi-cog"></i>,
+    title: "Settings",
+  },
+  {
+    content:
+      "Answers to common questions related to configuration, events, and customization.",
+    icon: <i className="pi pi-question-circle"></i>,
+    title: "FAQ",
+  },
+];
+
 export const AccordionDemo = () => {
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
@@ -54,7 +81,65 @@ export const AccordionDemo = () => {
           exampleCode='
 import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
-<Accordion canSelfCollapse defaultActiveIndex={0}>
+<Accordion canSelfCollapse className="separate" defaultActiveIndex={0}>
+  {data.map((item) => {
+    return <SubPane title={item.title}>{item.content}</SubPane>;
+  })}
+</Accordion>
+          '
+        />
+      </Section>
+
+      <Section title={t("accordion.usage.icons")}>
+        <Accordion
+          activeIcon={<i className="pi pi-chevron-up" />}
+          canSelfCollapse
+          defaultActiveIndex={0}
+          inactiveIcon={<i className="pi pi-chevron-down" />}
+        >
+          {accordionItems.map((item) => {
+            return (
+              <SubPane icon={item.icon} title={item.title}>
+                {item.content}
+              </SubPane>
+            );
+          })}
+        </Accordion>
+
+        <CodeBlock
+          exampleCode='
+import { Accordion, SubPane } from "@prefabs.tech/react-ui";
+
+<Accordion
+  activeIcon={<i className="pi pi-chevron-up" />}
+  canSelfCollapse
+  defaultActiveIndex={0}
+  inactiveIcon={<i className="pi pi-chevron-down" />}
+>
+  {accordionItems.map((item) => {
+    return (
+      <SubPane icon={item.icon} title={item.title}>
+        {item.content}
+      </SubPane>
+    );
+  })}
+</Accordion>
+          '
+        />
+      </Section>
+
+      <Section title={t("accordion.usage.vertical")}>
+        <Accordion direction="horizontal" defaultActiveIndex={0}>
+          {data.map((item) => {
+            return <SubPane title={item.title}>{item.content}</SubPane>;
+          })}
+        </Accordion>
+
+        <CodeBlock
+          exampleCode='
+import { Accordion, SubPane } from "@prefabs.tech/react-ui";
+
+<Accordion direction="horizontal" defaultActiveIndex={0}>
   {data.map((item) => {
     return <SubPane title={item.title}>{item.content}</SubPane>;
   })}

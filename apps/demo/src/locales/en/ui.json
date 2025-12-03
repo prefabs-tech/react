@@ -33,7 +33,9 @@
   "accordion": {
     "title": "Accordion",
     "usage": {
-      "basic": "Basic"
+      "basic": "Basic",
+      "icons": "With icons",
+      "vertical": "Vertical"
     }
   },
   "button": {
