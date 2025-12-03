@@ -2,15 +2,36 @@
   --_border-radius: var(--border-radius);
   --_padding: var(--accordion-padding, 1rem);
 
+  border: 1px solid var(--border-color);
+  border-radius: var(--_border-radius);
+  gap: 0;
+}
+
+.accordion.separate {
+  border: none;
+  border-radius: 0;
   gap: var(--accordion-gap, 0.5rem);
 }
 
 .accordion > li {
   background: var(--accordion-background, #fff);
-  border: 1px solid var(--border-color);
-  border-radius: var(--_border-radius);
+  border: none;
+  border-radius: 0;
   margin: 0;
   padding: 0;
+}
+
+.accordion.separate > li {
+  border: 1px solid var(--border-color);
+  border-radius: var(--_border-radius);
+}
+
+.accordion.horizontal > li:not(:last-child) {
+  border-right: 1px solid var(--border-color);
+}
+
+.accordion.vertical > li:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
 }
 
 .accordion > li > button {
@@ -40,11 +61,34 @@
   text-align: left;
 }
 
-.accordion > li > div[role="region"] {
+.accordion.vertical > li > div[role="region"] {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-duration) ease;
+  width: 100%;
+}
+
+.accordion.vertical > li.active > div[role="region"] {
   max-height: var(--accordion-height, 30rem);
   overflow-y: auto;
+}
+
+.accordion.horizontal > li > div[role="region"] {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-width var(--transition-duration) ease, opacity var(--transition-duration) ease;
+  height: 100%;
+}
+
+.accordion.horizontal > li.active > div[role="region"] {
+  max-width: var(--accordion-height, 100dvh);
+  opacity: 1;
+  overflow-y: auto;
+}
+
+.accordion > li > div[role="region"] > .content-wrapper {
   padding: var(--_padding);
-  width: 100%;
 }
 
 .accordion > li.active,

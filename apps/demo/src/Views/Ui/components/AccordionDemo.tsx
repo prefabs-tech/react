@@ -44,7 +44,7 @@ export const AccordionDemo = () => {
       }
     >
       <Section title={t("accordion.usage.basic")}>
-        <Accordion>
+        <Accordion className="separate" defaultActiveIndex={0}>
           {data.map((item) => {
             return <SubPane title={item.title}>{item.content}</SubPane>;
           })}

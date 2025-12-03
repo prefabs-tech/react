@@ -3,6 +3,7 @@ import React, { useId, useState } from "react";
 import type { ReactElement } from "react";
 
 type Properties = {
+  className?: string;
   children: ReactElement | ReactElement[];
   defaultActiveIndex?: number;
   direction?: "horizontal" | "vertical";
@@ -12,6 +13,7 @@ type Properties = {
 };
 
 const Accordion: React.FC<Properties> = ({
+  className = "",
   children,
   defaultActiveIndex,
   direction = "vertical",
@@ -33,7 +35,10 @@ const Accordion: React.FC<Properties> = ({
   }
 
   return (
-    <ul className={`accordion ${direction}`} aria-orientation={direction}>
+    <ul
+      className={`accordion ${direction} ${className}`}
+      aria-orientation={direction}
+    >
       {childNodes.map((item, index) => {
         const isActive = active === index;
         const key = `${id}-${index}`;
@@ -64,8 +69,8 @@ const Accordion: React.FC<Properties> = ({
               ) : null}
             </button>
 
-            <div role="region" id={bodyId} hidden={!isActive}>
-              {isActive ? childNodes[active] : null}
+            <div role="region" id={bodyId}>
+              <div className="content-wrapper">{childNodes[index]}</div>
             </div>
           </li>
         );
