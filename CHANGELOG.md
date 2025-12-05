@@ -1,20 +1,3 @@
-# [0.69.0](https://github.com/prefabs-tech/react/compare/v0.68.1...v0.69.0) (2025-12-05)
-
-
-### Bug Fixes
-
-* **ui/table:** reset pagination on sorting ([#1627](https://github.com/prefabs-tech/react/issues/1627)) ([3042907](https://github.com/prefabs-tech/react/commit/30429077eaffc7dfaff1df09a19606aec4f88426))
-
-
-### Features
-
-* **select:** add server-side search support  ([#1622](https://github.com/prefabs-tech/react/issues/1622)) ([e45bb75](https://github.com/prefabs-tech/react/commit/e45bb759996e7f47aba13dc291d074e5ac82a7a1))
-* **ui/stepper:** add support to vertical stepper ([#1626](https://github.com/prefabs-tech/react/issues/1626)) ([3a74fbd](https://github.com/prefabs-tech/react/commit/3a74fbd70c967b25337f56e7bba4168720e479ec))
-* **ui/table:** allow confirmation modal actions to receive the corresponding row data ([#1624](https://github.com/prefabs-tech/react/issues/1624)) ([e3d3ec2](https://github.com/prefabs-tech/react/commit/e3d3ec25a2a0464c4488c5a94882389ce6c18196))
-* **user:** add profile page with tabs including change-password ([#1603](https://github.com/prefabs-tech/react/issues/1603)) ([3e69745](https://github.com/prefabs-tech/react/commit/3e697456f4dfebcbfc42d6c54d35bae67c4d688f))
-
-
-
 ## [0.68.1](https://github.com/prefabs-tech/react/compare/v0.68.0...v0.68.1) (2025-11-10)
 
 
