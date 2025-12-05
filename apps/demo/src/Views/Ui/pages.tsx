@@ -16,6 +16,7 @@ import {
   CheckboxDemo,
   CheckboxInputDemo,
   CurrencyPickerDemo,
+  CountryPickerDemo,
   InputDemo,
   SelectDemo,
   SwitchInputDemo,
@@ -47,6 +48,7 @@ export const UI_ROUTES = {
   CHECKBOX_INPUT: "/ui/checkbox-input",
   CONFIRMATION_MODAL: "/ui/confirmation-modal",
   CURRENCY_SELECTOR: "/ui/currency-picker",
+  COUNTRY_PICKER: "/ui/country-picker",
   DATA_COMPONENT: "/ui/data-component",
   DROPDOWN_MENU: "/ui/dropdown-menu",
   EDITABLE_TITLE: "/ui/editable-title",
@@ -140,6 +142,11 @@ const FORM_WIDGETS_ROUTES = [
     path: UI_ROUTES.CHECKBOX,
     key: "checkbox.title",
     element: <CheckboxDemo />,
+  },
+  {
+    path: UI_ROUTES.COUNTRY_PICKER,
+    key: "countryPicker.title",
+    element: <CountryPickerDemo />,
   },
   {
     path: UI_ROUTES.CHECKBOX_INPUT,

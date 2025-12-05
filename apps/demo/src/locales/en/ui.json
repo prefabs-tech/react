@@ -86,6 +86,9 @@
       "multiple": "Multiple currency select"
     }
   },
+  "countryPicker":{
+    "title":"CountryPicker"
+  },
   "data": {
     "title": "Data",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value.",
