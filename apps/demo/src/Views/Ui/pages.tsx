@@ -1,6 +1,7 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Outlet } from "react-router-dom";
 
+import { AccordionDemo } from "./components/AccordionDemo";
 import { ButtonDemo } from "./components/Button";
 import { CardDemo } from "./components/CardDemo";
 import { ConfirmationModalDemo } from "./components/ConfirmationModal";
@@ -41,6 +42,7 @@ import { YoutubeFacadeDemo } from "./components/YoutubeFacade";
 import { Demo } from "../../components/Demo";
 
 export const UI_ROUTES = {
+  ACCORDION: "/ui/accordion",
   BUTTON: "/ui/button",
   CARD: "/ui/card",
   CHECKBOX: "/ui/checkbox",
@@ -261,6 +263,11 @@ const OVERLAY_ROUTES = [
 ];
 
 const PANEL_ROUTES = [
+  {
+    path: UI_ROUTES.ACCORDION,
+    key: "accordion.title",
+    element: <AccordionDemo />,
+  },
   {
     path: UI_ROUTES.CARD,
     key: "card.title",

@@ -30,6 +30,14 @@
     "usage": "Usage (fr)",
     "types": "Types (fr)"
   },
+  "accordion": {
+    "title": "Accordion (fr)",
+    "usage": {
+      "basic": "Basic (fr)",
+      "icons": "With icons (fr)",
+      "vertical": "Vertical (fr)"
+    }
+  },
   "button": {
     "title": "Button (fr)",
     "subtitle": "The Button component is a flexible and customizable button implementation for React applications. It supports various properties for styling, behavior, and functionality, making it suitable for different use cases. (fr)",

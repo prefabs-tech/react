@@ -8,10 +8,10 @@ import Accordion from "../Accordion";
 test("Component matches snapshot", () => {
   const { container } = render(
     <Accordion activeIcon="arrow-down.jpg" inactiveIcon="arrow-up.jpg">
-      <SubPane icon="icon1.jpg" title="Topic 1">
+      <SubPane icon="pi pi-home" title="Topic 1">
         Pane 1 content
       </SubPane>
-      <SubPane icon="icon2.jpg" title="Topic 2">
+      <SubPane icon="pi pi-list" title="Topic 2">
         Pane 2 content
       </SubPane>
     </Accordion>,

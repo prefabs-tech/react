@@ -4,7 +4,7 @@ exports[`Component matches snapshot 1`] = `
 <div>
   <ul
     aria-orientation="vertical"
-    class="accordion vertical"
+    class="accordion vertical "
   >
     <li
       class=""
@@ -16,25 +16,30 @@ exports[`Component matches snapshot 1`] = `
         aria-label="Topic 1"
         type="button"
       >
-        <img
-          alt="title icon"
-          aria-hidden="true"
-          src="icon1.jpg"
+        <i
+          class="pi pi-home"
         />
         <span>
           Topic 1
         </span>
-        <img
-          alt="toggle icon"
-          aria-hidden="true"
-          src="arrow-up.jpg"
+        <i
+          class="arrow-up.jpg"
         />
       </button>
       <div
-        hidden=""
         id="pane-body-:r0:-0"
         role="region"
-      />
+      >
+        <div
+          class="content-wrapper"
+        >
+          <div
+            class="sub-pane"
+          >
+            Pane 1 content
+          </div>
+        </div>
+      </div>
     </li>
     <li
       class=""
@@ -46,25 +51,30 @@ exports[`Component matches snapshot 1`] = `
         aria-label="Topic 2"
         type="button"
       >
-        <img
-          alt="title icon"
-          aria-hidden="true"
-          src="icon2.jpg"
+        <i
+          class="pi pi-list"
         />
         <span>
           Topic 2
         </span>
-        <img
-          alt="toggle icon"
-          aria-hidden="true"
-          src="arrow-up.jpg"
+        <i
+          class="arrow-up.jpg"
         />
       </button>
       <div
-        hidden=""
         id="pane-body-:r0:-1"
         role="region"
-      />
+      >
+        <div
+          class="content-wrapper"
+        >
+          <div
+            class="sub-pane"
+          >
+            Pane 2 content
+          </div>
+        </div>
+      </div>
     </li>
   </ul>
 </div>
