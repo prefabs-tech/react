@@ -6,18 +6,18 @@ import { Select, ISelectProperties, Option } from "../Select";
 export type CountryOption<T> = Option<T> & {
   code: string;
   i18n?: {
-    En: string;
-    Fr: string;
-    Th: string;
+    en: string;
+    fr: string;
+    th: string;
   };
 };
 
 export interface CountryData {
   code: string;
   i18n: {
-    En: string;
-    Fr: string;
-    Th: string;
+    en: string;
+    fr: string;
+    th: string;
   };
 }
 
@@ -26,7 +26,7 @@ export type CountryPickerProperties<T> = Omit<
   "options" | "renderOption" | "multiple" | "value" | "onChange"
 > & {
   data?: CountryData[];
-  locale?: "En" | "Fr" | "Th";
+  locale?: "en" | "fr" | "th";
   renderOption?: (option: CountryOption<T>) => React.ReactNode;
 } & (
     | {
@@ -43,13 +43,13 @@ export type CountryPickerProperties<T> = Omit<
 
 export const CountryPicker = <T extends string | number>({
   data = countryList as CountryData[],
-  locale = "En",
+  locale = "en",
   renderOption,
   ...properties
 }: CountryPickerProperties<T>) => {
   const selectOptions = data.map((item) => ({
     value: item.code as unknown as T,
-    label: item.i18n[locale] || item.i18n.En,
+    label: item.i18n[locale] || item.i18n.en,
     code: item.code,
     i18n: item.i18n,
   }));

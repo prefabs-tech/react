@@ -5,8 +5,9 @@ export const CountryPickerDemo = () => {
     <>
       <CountryPicker
         name="country"
-        value="US"
-        onChange={() => console.log("hello")}
+        locale="fr"
+        value="NP"
+        onChange={() => {}}
       />
     </>
   );
