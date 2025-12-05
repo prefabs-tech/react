@@ -72,8 +72,12 @@ export const AccordionDemo = () => {
     >
       <Section title={t("accordion.usage.basic")}>
         <Accordion canSelfCollapse className="separate" defaultActiveIndex={0}>
-          {data.map((item) => {
-            return <SubPane title={item.title}>{item.content}</SubPane>;
+          {data.map((item, index) => {
+            return (
+              <SubPane key={`accordion-basic-${index}`} title={item.title}>
+                {item.content}
+              </SubPane>
+            );
           })}
         </Accordion>
 
@@ -82,8 +86,8 @@ export const AccordionDemo = () => {
 import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
 <Accordion canSelfCollapse className="separate" defaultActiveIndex={0}>
-  {data.map((item) => {
-    return <SubPane title={item.title}>{item.content}</SubPane>;
+  {data.map((item, index) => {
+    return <SubPane key={index} title={item.title}>{item.content}</SubPane>;
   })}
 </Accordion>
           '
@@ -97,9 +101,13 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
           defaultActiveIndex={0}
           inactiveIcon="pi pi-chevron-down"
         >
-          {accordionItems.map((item) => {
+          {accordionItems.map((item, index) => {
             return (
-              <SubPane icon={item.icon} title={item.title}>
+              <SubPane
+                key={`accordion-icon-${index}`}
+                icon={item.icon}
+                title={item.title}
+              >
                 {item.content}
               </SubPane>
             );
@@ -116,9 +124,9 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
   defaultActiveIndex={0}
   inactiveIcon="pi pi-chevron-down"
 >
-  {accordionItems.map((item) => {
+  {accordionItems.map((item, index) => {
     return (
-      <SubPane icon={item.icon} title={item.title}>
+      <SubPane key={index} icon={item.icon} title={item.title}>
         {item.content}
       </SubPane>
     );
@@ -130,8 +138,12 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
       <Section title={t("accordion.usage.vertical")}>
         <Accordion direction="horizontal" defaultActiveIndex={0}>
-          {data.map((item) => {
-            return <SubPane title={item.title}>{item.content}</SubPane>;
+          {data.map((item, index) => {
+            return (
+              <SubPane key={`accordion-vertical-${index}`} title={item.title}>
+                {item.content}
+              </SubPane>
+            );
           })}
         </Accordion>
 
@@ -140,8 +152,8 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
 <Accordion direction="horizontal" defaultActiveIndex={0}>
-  {data.map((item) => {
-    return <SubPane title={item.title}>{item.content}</SubPane>;
+  {data.map((item, index) => {
+    return <SubPane key={index} title={item.title}>{item.content}</SubPane>;
   })}
 </Accordion>
           '
