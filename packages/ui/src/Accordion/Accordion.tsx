@@ -38,7 +38,7 @@ const Accordion: React.FC<Properties> = ({
     if (!icon) return null;
 
     if (typeof icon === "string") {
-      return <img src={icon} alt="icon" aria-hidden="true" />;
+      return <i className={icon} />;
     }
 
     return icon;

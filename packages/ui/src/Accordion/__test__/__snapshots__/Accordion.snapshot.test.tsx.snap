@@ -16,18 +16,14 @@ exports[`Component matches snapshot 1`] = `
         aria-label="Topic 1"
         type="button"
       >
-        <img
-          alt="icon"
-          aria-hidden="true"
-          src="icon1.jpg"
+        <i
+          class="icon1.jpg"
         />
         <span>
           Topic 1
         </span>
-        <img
-          alt="icon"
-          aria-hidden="true"
-          src="arrow-up.jpg"
+        <i
+          class="arrow-up.jpg"
         />
       </button>
       <div
@@ -55,18 +51,14 @@ exports[`Component matches snapshot 1`] = `
         aria-label="Topic 2"
         type="button"
       >
-        <img
-          alt="icon"
-          aria-hidden="true"
-          src="icon2.jpg"
+        <i
+          class="icon2.jpg"
         />
         <span>
           Topic 2
         </span>
-        <img
-          alt="icon"
-          aria-hidden="true"
-          src="arrow-up.jpg"
+        <i
+          class="arrow-up.jpg"
         />
       </button>
       <div

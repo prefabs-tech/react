@@ -31,13 +31,13 @@ const accordionItems = [
   {
     content:
       "This section provides a general introduction and purpose of the accordion component.",
-    icon: <i className="pi pi-home"></i>,
+    icon: "pi pi-home",
     title: "Overview",
   },
   {
     content:
       "The accordion supports custom icons, smooth transitions, and flexible layouts.",
-    icon: <i className="pi pi-list"></i>,
+    icon: "pi pi-list",
     title: "Features",
   },
   {
@@ -92,10 +92,10 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
       <Section title={t("accordion.usage.icons")}>
         <Accordion
-          activeIcon={<i className="pi pi-chevron-up" />}
+          activeIcon="pi pi-chevron-up"
           canSelfCollapse
           defaultActiveIndex={0}
-          inactiveIcon={<i className="pi pi-chevron-down" />}
+          inactiveIcon="pi pi-chevron-down"
         >
           {accordionItems.map((item) => {
             return (
@@ -111,10 +111,10 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 import { Accordion, SubPane } from "@prefabs.tech/react-ui";
 
 <Accordion
-  activeIcon={<i className="pi pi-chevron-up" />}
+  activeIcon="pi pi-chevron-up"
   canSelfCollapse
   defaultActiveIndex={0}
-  inactiveIcon={<i className="pi pi-chevron-down" />}
+  inactiveIcon="pi pi-chevron-down"
 >
   {accordionItems.map((item) => {
     return (

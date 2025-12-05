@@ -46,16 +46,12 @@
   padding: var(--_padding);
 }
 
-.accordion > li > button > img:first-child {
-  height: var(--accordion-title-icon-height, 16px);
-  object-fit: contain;
-  width: var(--accordion-title-icon-width, 16px);
+.accordion > li > button > i:first-child {
+  margin-right: 0.5rem;
 }
 
-.accordion > li > button > img:last-child {
-  border: 0;
-  height: var(--accordion-icon-height, 1.5rem);
-  width: var(--accordion-icon-width, 1.5rem);
+.accordion > li > button > i {
+  color: var(--color);
 }
 
 .accordion > li > button > span {
@@ -113,14 +109,6 @@
   line-height: normal;
   padding: 0;
   width: fit-content;
-}
-
-.accordion.horizontal > li > button > img:first-child {
-  margin: var(--accordion-title-icon-margin, 0 0 5px 0);
-}
-
-.accordion.vertical > li > button > img:first-child {
-  margin: var(--accordion-title-icon-margin, 0 5px 0 0);
 }
 
 .accordion.vertical > li.active > * + * {
