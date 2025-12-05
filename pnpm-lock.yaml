@@ -725,8 +725,8 @@ importers:
         specifier: 3.0.8
         version: 3.0.8(vitest@3.0.8(@types/node@22.13.4)(jiti@2.4.2)(jsdom@25.0.1)(terser@5.36.0))
       axios:
-        specifier: 1.12.0
-        version: 1.12.0
+        specifier: 1.12.1
+        version: 1.12.1
       eslint:
         specifier: 8.57.1
         version: 8.57.1
@@ -2502,8 +2502,8 @@ packages:
   axios@0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
 
-  axios@1.12.0:
-    resolution: {integrity: sha512-oXTDccv8PcfjZmPGlWsPSwtOJCZ/b6W5jAMCNcfwJbCzDckwG0jrYJFaWH1yvivfCXjVzV/SPDEhMB3Q+DSurg==}
+  axios@1.12.1:
+    resolution: {integrity: sha512-Kn4kbSXpkFHCGE6rBFNwIv0GQs4AvDT80jlveJDKFxjbTYMUeB4QtsdPCv6H8Cm19Je7IU6VFtRl2zWZI0rudQ==}
 
   axobject-query@3.2.4:
     resolution: {integrity: sha512-aPTElBrbifBU1krmZxGZOlBkslORe7Ll7+BDnI50Wy4LgOt69luMgevkDfTq1O/ZgprooPCtWpjCwKSZw/iZ4A==}
@@ -7724,7 +7724,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  axios@1.12.0:
+  axios@1.12.1:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.4
