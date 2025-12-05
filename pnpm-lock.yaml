@@ -1,7 +1,7 @@
 lockfileVersion: '9.0'
 
 settings:
-  autoInstallPeers: false
+  autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 importers:
@@ -24,8 +24,8 @@ importers:
         specifier: 3.5.3
         version: 3.5.3
       shipjs:
-        specifier: 0.26.4
-        version: 0.26.4
+        specifier: 0.27.0
+        version: 0.27.0
       turbo:
         specifier: 2.5.4
         version: 2.5.4
@@ -3295,10 +3295,6 @@ packages:
     deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
-  esm@3.2.25:
-    resolution: {integrity: sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==}
-    engines: {node: '>=6'}
-
   espree@9.6.1:
     resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -5023,12 +5019,12 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  shipjs-lib@0.26.4:
-    resolution: {integrity: sha512-14gBpRocyYPyi5DWlct+lKk3YwRSLLL650UFzM/8L2gnFoYOrk0JAesuXa0X5PC6Pg+aVmmwd372yh7nmVN84A==}
+  shipjs-lib@0.27.0:
+    resolution: {integrity: sha512-BLqiL4CqTTk6yj2hFOcIRzlGHLpSshPof9ldEx2HierdzeueDm/4Rd+RXdeL53EGYqT+HuqVIC5DYMLARPPJEQ==}
 
-  shipjs@0.26.4:
-    resolution: {integrity: sha512-NeXCbCuvwMzUL544kGVQIahshRddj2AskkScock5iH75868zWE1l5esnj0jWTvWkQ6UnBS0wuip/5v9vHQ4eyA==}
-    engines: {node: '>=8'}
+  shipjs@0.27.0:
+    resolution: {integrity: sha512-4lbARswZR6ZaSvHsKfJcHpSZTHAum08lWx29aYvt48ytl3jIP2a3mu6m3QrH1N9wwiFrUgtM9eI8B14Cc0GSzA==}
+    engines: {node: '>=18'}
     hasBin: true
 
   side-channel-list@1.0.0:
@@ -8918,8 +8914,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  esm@3.2.25: {}
-
   espree@9.6.1:
     dependencies:
       acorn: 8.14.0
@@ -10728,15 +10722,14 @@ snapshots:
       interpret: 1.4.0
       rechoir: 0.6.2
 
-  shipjs-lib@0.26.4:
+  shipjs-lib@0.27.0:
     dependencies:
       deepmerge: 4.3.1
-      dotenv: 8.6.0
       parse-github-url: 1.0.2
       semver: 6.3.0
       shelljs: 0.8.5
 
-  shipjs@0.26.4:
+  shipjs@0.27.0:
     dependencies:
       '@babel/runtime': 7.27.0
       '@octokit/rest': 17.11.2
@@ -10751,7 +10744,6 @@ snapshots:
       deepmerge: 4.3.1
       dotenv: 8.6.0
       ejs: 3.1.10
-      esm: 3.2.25
       globby: 10.0.2
       inquirer: 7.1.0
       mkdirp: 1.0.4
@@ -10759,7 +10751,7 @@ snapshots:
       prettier: 2.8.8
       serialize-javascript: 3.1.0
       shell-quote: 1.8.1
-      shipjs-lib: 0.26.4
+      shipjs-lib: 0.27.0
       temp-write: 4.0.0
       tempfile: 3.0.0
     transitivePeerDependencies:
