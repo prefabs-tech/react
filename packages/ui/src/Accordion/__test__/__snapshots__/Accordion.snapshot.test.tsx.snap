@@ -17,7 +17,7 @@ exports[`Component matches snapshot 1`] = `
         type="button"
       >
         <i
-          class="icon1.jpg"
+          class="pi pi-home"
         />
         <span>
           Topic 1
@@ -52,7 +52,7 @@ exports[`Component matches snapshot 1`] = `
         type="button"
       >
         <i
-          class="icon2.jpg"
+          class="pi pi-list"
         />
         <span>
           Topic 2

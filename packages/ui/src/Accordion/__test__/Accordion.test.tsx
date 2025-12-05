@@ -6,20 +6,20 @@ import { SubPane } from "../../components/SubPane";
 import Accordion from "../Accordion";
 
 const accordionValues = {
-  activeIcon: "arrow-down.jpg",
-  inactiveIcon: "arrow-up.jpg",
+  activeIcon: "pi pi-chevron-up",
+  inactiveIcon: "pi pi-chevron-down",
   accordionId1: "test-accordion-1",
   accordionId2: "test-accordion-2",
 };
 
 const paneValues = {
   pane1: {
-    icon: "icon1.jpg",
+    icon: "pi pi-home",
     content: "Pane 1 content",
     title: "Topic 1",
   },
   pane2: {
-    icon: "icon2.jpg",
+    icon: "pi pi-list",
     content: "Pane 2 content",
     title: "Topic 2",
   },
