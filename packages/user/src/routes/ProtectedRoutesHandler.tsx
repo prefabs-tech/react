@@ -3,11 +3,12 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import { DEFAULT_PATHS } from "@/constants";
 import { useConfig, useEmailVerification, useUser } from "@/hooks";
+import { logout } from "@/supertokens";
 
 export const ProtectedRoutesHandler: React.FC = () => {
   const location = useLocation();
   const config = useConfig();
-  const { user } = useUser();
+  const { user, setUser } = useUser();
   const [emailVerificationEnabled, isEmailVerified] = useEmailVerification();
 
   const { homeRoute = "/", customPaths } = config;
@@ -32,6 +33,28 @@ export const ProtectedRoutesHandler: React.FC = () => {
   }
 
   const home = typeof homeRoute === "string" ? homeRoute : homeRoute(user);
+
+  if (config.supportedRoles?.length) {
+    const hasAccess = user?.roles?.some((role) =>
+      config.supportedRoles.includes(role),
+    );
+
+    if (!hasAccess) {
+      logout().then((response) => {
+        if (response) {
+          setUser(null);
+        }
+      });
+
+      return (
+        <Navigate
+          to={`${loginPath}?redirect=${window.encodeURI(
+            location.pathname + location.search,
+          )}`}
+        />
+      );
+    }
+  }
 
   if (emailVerificationEnabled) {
     if (location.pathname === profilePath) {
