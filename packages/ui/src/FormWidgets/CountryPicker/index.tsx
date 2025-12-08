@@ -27,16 +27,11 @@ export const CountryPicker = <T extends string | number>({
 }: CountryPickerProperties<T>) => {
   const countries = data.map((item) => ({
     value: item.code as unknown as T,
-    label: `${item.i18n[locale] || item.i18n.en} (${item.code})`,
+    label: `${item.i18n[locale] || item.i18n.en}`,
     ...item,
   }));
 
   return (
-    <Select
-      {...(properties as unknown as ISelectProperties<T>)}
-      className="country-picker"
-      menuOptions={{ className: "country-picker-menu" }}
-      options={countries}
-    />
+    <Select {...(properties as ISelectProperties<T>)} options={countries} />
   );
 };
