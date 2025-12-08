@@ -1,3 +1,17 @@
+# [0.70.0](https://github.com/prefabs-tech/react/compare/v0.69.0...v0.70.0) (2025-12-08)
+
+
+### Bug Fixes
+
+* **ui/accordion:** update accordion for better visual appearance and add demo ([#1628](https://github.com/prefabs-tech/react/issues/1628)) ([00f1e61](https://github.com/prefabs-tech/react/commit/00f1e61c9c8bb8bb6b9b404516cd772fb5610bbf))
+
+
+### Features
+
+* **user/profile:** update profile completion behavior with auto redirection ([#1642](https://github.com/prefabs-tech/react/issues/1642)) ([54db02b](https://github.com/prefabs-tech/react/commit/54db02bfec39272c36f8b462c3582a2a5f1aa1d6))
+
+
+
 # [0.69.0](https://github.com/prefabs-tech/react/compare/v0.68.1...v0.69.0) (2025-12-05)
 
 
