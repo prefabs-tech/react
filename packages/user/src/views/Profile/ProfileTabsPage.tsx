@@ -2,8 +2,11 @@ import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Page, TabView } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 
 import { AccountInfo, ChangePassword, ProfileForm } from "@/components/Profile";
+import { useUser } from "@/hooks";
+import { UpdateProfileResponse } from "@/types";
 
 import type { Tab } from "@prefabs.tech/react-ui";
 
@@ -12,6 +15,8 @@ interface Properties {
   additionalProfileFields?: AdditionalFormFields;
   tabs?: Tab[];
   visibleTabs?: string[];
+  onProfileCancel?: () => void;
+  onProfileSubmitted?: (response: UpdateProfileResponse) => void;
 }
 
 export const ProfileTabsPage = ({
@@ -19,13 +24,21 @@ export const ProfileTabsPage = ({
   additionalProfileFields,
   tabs = [],
   visibleTabs,
+  onProfileCancel,
+  onProfileSubmitted,
 }: Properties) => {
   const { t } = useTranslation("user");
+  const location = useLocation();
+  const { user } = useUser();
 
   const defaultTabs = [
     {
       children: (
-        <ProfileForm additionalProfileFields={additionalProfileFields} />
+        <ProfileForm
+          additionalProfileFields={additionalProfileFields}
+          onCancel={onProfileCancel}
+          onSubmitted={onProfileSubmitted}
+        />
       ),
       key: "profile",
       label: t("profile.tabs.profile"),
@@ -61,6 +74,17 @@ export const ProfileTabsPage = ({
     ],
     [defaultTabs, tabs],
   );
+
+  if (user?.isProfileCompleted) {
+    if (location.search?.startsWith("?redirect=")) {
+      const searchParameters = new URLSearchParams(location.search);
+      const redirectTo = searchParameters.get("redirect");
+
+      if (redirectTo && redirectTo.length) {
+        return <Navigate to={redirectTo} />;
+      }
+    }
+  }
 
   return (
     <Page title={t("profile.title")} className="profile">

@@ -10,7 +10,7 @@ export const ProtectedRoutesHandler: React.FC = () => {
   const { user } = useUser();
   const [emailVerificationEnabled, isEmailVerified] = useEmailVerification();
 
-  const { homeRoute = "/", customPaths } = config;
+  const { homeRoute = "/", customPaths, features } = config;
 
   const loginPath = customPaths?.login || DEFAULT_PATHS.LOGIN;
   const profilePath = customPaths?.profile || DEFAULT_PATHS.PROFILE;
@@ -70,11 +70,20 @@ export const ProtectedRoutesHandler: React.FC = () => {
   }
 
   if (user.isProfileCompleted === false) {
-    return [profilePath].includes(location.pathname) ? (
-      <Outlet />
-    ) : (
-      <Navigate to={profilePath} />
-    );
+    if ([profilePath].includes(location.pathname)) {
+      return <Outlet />;
+    }
+
+    let profileRoute = profilePath;
+
+    const { autoRedirect = true, autoRedirectTo = home } =
+      features?.profileCompletion || {};
+
+    if (autoRedirect) {
+      profileRoute = `${profilePath}?redirect=${autoRedirectTo}`;
+    }
+
+    return <Navigate to={profileRoute} />;
   }
 
   return <Outlet />;

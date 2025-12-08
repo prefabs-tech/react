@@ -7,13 +7,15 @@ import {
 import { useTranslation } from "@prefabs.tech/react-i18n";
 
 interface Properties {
-  submitting?: boolean;
   additionalProfileFields?: AdditionalFormFields;
+  submitting?: boolean;
+  onCancel?: () => void;
 }
 
 export const ProfileFormFields = ({
-  submitting,
   additionalProfileFields,
+  submitting,
+  onCancel,
 }: Properties) => {
   const {
     reset,
@@ -21,6 +23,18 @@ export const ProfileFormFields = ({
   } = useFormContext();
 
   const { t } = useTranslation("user");
+
+  const handleCancel = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    if (onCancel) {
+      event.preventDefault();
+      onCancel && onCancel();
+    } else {
+      reset();
+    }
+  };
+
   return (
     <>
       <TextInput
@@ -58,7 +72,7 @@ export const ProfileFormFields = ({
             label: t("profile.button.cancel"),
             type: "button",
             disabled: !isDirty,
-            onClick: () => reset(),
+            onClick: handleCancel,
           },
         ]}
         loading={submitting}
