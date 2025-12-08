@@ -19,6 +19,11 @@ export interface UserConfig {
     confirmPassword?: boolean;
     emailVerification?: boolean;
     forgotPassword?: boolean;
+    forgotPasswordResendTimeInSeconds?: number;
+    profileCompletion?: {
+      autoRedirect?: boolean; // default true
+      autoRedirectTo?: string; // default /
+    };
     signup?: boolean;
     signupFirstUser?: boolean;
     termsAndConditions?: {
@@ -28,7 +33,6 @@ export interface UserConfig {
       url?: string;
     };
     updateEmail?: boolean;
-    forgotPasswordResendTimeInSeconds?: number;
   };
   homeRoute?: HomeRoute;
   logoutRedirectRoute?: string;

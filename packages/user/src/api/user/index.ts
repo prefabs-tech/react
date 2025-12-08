@@ -2,7 +2,8 @@ import client from "../axios";
 
 import type {
   LoginCredentials,
-  UpdateProfileInputType,
+  UpdateProfileInput,
+  UpdateProfileResponse,
   UserType,
 } from "@/types";
 
@@ -66,9 +67,9 @@ export const disableUser = async (id: string, apiBaseUrl: string) => {
 };
 
 export const updateUserProfile = async (
-  data: UpdateProfileInputType,
+  data: UpdateProfileInput,
   apiBaseUrl: string,
-): Promise<{ data: UserType }> => {
+): Promise<UpdateProfileResponse> => {
   const response = await client(apiBaseUrl).put(`me`, data, {
     withCredentials: true,
   });

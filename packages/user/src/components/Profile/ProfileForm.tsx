@@ -6,15 +6,21 @@ import { z } from "zod";
 
 import { updateUserProfile } from "@/api/user";
 import { useConfig, useUser } from "@/hooks";
-import { UpdateProfileInputType } from "@/types";
+import { UpdateProfileInput, UpdateProfileResponse } from "@/types";
 
 import { ProfileFormFields } from "./ProfileFormFields";
 
 interface Properties {
   additionalProfileFields?: AdditionalFormFields;
+  onCancel?: () => void;
+  onSubmitted?: (response: UpdateProfileResponse) => void;
 }
 
-export const ProfileForm = ({ additionalProfileFields }: Properties) => {
+export const ProfileForm = ({
+  additionalProfileFields,
+  onCancel,
+  onSubmitted,
+}: Properties) => {
   const { t, i18n } = useTranslation("user");
   const { user, setUser } = useUser();
   const config = useConfig();
@@ -34,13 +40,18 @@ export const ProfileForm = ({ additionalProfileFields }: Properties) => {
     );
   }
 
-  const handleSubmit = async (data: UpdateProfileInputType) => {
+  const handleSubmit = async (data: UpdateProfileInput) => {
     setSubmitting(true);
 
     updateUserProfile(data, config.apiBaseUrl)
       .then((response) => {
         if ("data" in response) {
           toast.success(t("profile.toastMessages.success"));
+
+          if (onSubmitted) {
+            onSubmitted(response);
+          }
+
           setUser(response.data);
         } else {
           toast.error(t("profile.toastMessages.error"));
@@ -64,14 +75,15 @@ export const ProfileForm = ({ additionalProfileFields }: Properties) => {
 
   return (
     <Provider
-      validationSchema={profileValidationSchema}
       onSubmit={handleSubmit}
-      values={formValues}
+      validationSchema={profileValidationSchema}
       validationTriggerKey={i18n.language}
+      values={formValues}
     >
       <ProfileFormFields
         submitting={submitting}
         additionalProfileFields={additionalProfileFields}
+        onCancel={onCancel}
       />
     </Provider>
   );
