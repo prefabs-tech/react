@@ -104,6 +104,9 @@
       "multiple": "Multiple currency select (fr)"
     }
   },
+  "countryPicker":{
+    "title":"CountryPicker (fr)"
+  },
   "data": {
     "title": "Data (fr)",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value. (fr)",

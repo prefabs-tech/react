@@ -40,6 +40,7 @@ import { TagDemo } from "./components/Tag/Tag";
 import { TooltipDemo } from "./components/Tooltip";
 import { YoutubeFacadeDemo } from "./components/YoutubeFacade";
 import { Demo } from "../../components/Demo";
+import { CountryPickerDemo } from "./components/FormWidgets/CountryPicker";
 
 export const UI_ROUTES = {
   ACCORDION: "/ui/accordion",
@@ -49,6 +50,7 @@ export const UI_ROUTES = {
   CHECKBOX_INPUT: "/ui/checkbox-input",
   CONFIRMATION_MODAL: "/ui/confirmation-modal",
   CURRENCY_SELECTOR: "/ui/currency-picker",
+  COUNTRY_PICKER: "/ui/country-picker",
   DATA_COMPONENT: "/ui/data-component",
   DROPDOWN_MENU: "/ui/dropdown-menu",
   EDITABLE_TITLE: "/ui/editable-title",
@@ -147,6 +149,11 @@ const FORM_WIDGETS_ROUTES = [
     path: UI_ROUTES.CHECKBOX_INPUT,
     key: "checkboxInput.title",
     element: <CheckboxInputDemo />,
+  },
+  {
+    path: UI_ROUTES.COUNTRY_PICKER,
+    key: "countryPicker.title",
+    element: <CountryPickerDemo />,
   },
   {
     path: UI_ROUTES.CURRENCY_SELECTOR,
