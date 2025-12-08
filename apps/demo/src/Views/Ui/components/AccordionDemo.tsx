@@ -1,5 +1,11 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Accordion, Button, Page, SubPane } from "@prefabs.tech/react-ui";
+import {
+  Accordion,
+  Button,
+  Page,
+  SubPane,
+  TDataTable,
+} from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
@@ -58,8 +64,61 @@ export const AccordionDemo = () => {
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
 
+  const propertiesData = [
+    {
+      id: 1,
+      prop: "activeIcon",
+      type: "string | ReactNode",
+      default: "-",
+      description: t("accordion.propertiesDescription.activeIcon"),
+    },
+    {
+      id: 2,
+      prop: "canSelfCollapse",
+      type: "boolean",
+      default: "false",
+      description: t("accordion.propertiesDescription.canSelfCollapse"),
+    },
+    {
+      id: 3,
+      prop: "children",
+      type: "ReactElement | ReactElement[]",
+      default: "-",
+      description: t("accordion.propertiesDescription.children"),
+    },
+    {
+      id: 4,
+      prop: "className",
+      type: "string",
+      default: "-",
+      description: t("accordion.propertiesDescription.className"),
+    },
+    {
+      id: 5,
+      prop: "defaultActiveIndex",
+      type: "number",
+      default: "-",
+      description: t("accordion.propertiesDescription.defaultActiveIndex"),
+    },
+    {
+      id: 6,
+      prop: "direction",
+      type: `"horizontal" | "vertical"`,
+      default: `"vertical"`,
+      description: t("accordion.propertiesDescription.direction"),
+    },
+    {
+      id: 7,
+      prop: "inactiveIcon",
+      type: "string | ReactNode",
+      default: "-",
+      description: t("accordion.propertiesDescription.inactiveIcon"),
+    },
+  ];
+
   return (
     <Page
+      subtitle={t("accordion.subtitle")}
       title={t("accordion.title")}
       toolbar={
         <Button
@@ -70,6 +129,11 @@ export const AccordionDemo = () => {
         />
       }
     >
+      <Section title={t("headers.usage")}>
+        <p>{t("common.usage", { component: "Accordion" })}</p>
+        <CodeBlock exampleCode='import { Accordion } from "@prefabs.tech/react-ui"' />
+      </Section>
+
       <Section title={t("accordion.usage.basic")}>
         <Accordion canSelfCollapse className="separate" defaultActiveIndex={0}>
           {data.map((item, index) => {
@@ -157,6 +221,36 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
   })}
 </Accordion>
           '
+        />
+      </Section>
+
+      <Section
+        title={t("headers.propertiesValue", {
+          value: "AccordionProperties",
+        })}
+      >
+        <TDataTable
+          columns={[
+            {
+              accessorKey: "prop",
+              header: t("propertiesTable.header.properties"),
+            },
+            {
+              accessorKey: "type",
+              header: t("propertiesTable.header.type"),
+            },
+            {
+              accessorKey: "default",
+              header: t("propertiesTable.header.default"),
+            },
+            {
+              accessorKey: "description",
+              header: t("propertiesTable.header.description"),
+            },
+          ]}
+          data={propertiesData}
+          paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>
