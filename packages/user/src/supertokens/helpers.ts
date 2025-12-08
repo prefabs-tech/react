@@ -98,7 +98,7 @@ export const isProfileCompleted = async (): Promise<boolean | undefined> => {
   });
 
   if (!profileClaim) {
-    return;
+    return true;
   }
 
   if (profileClaim.isVerified) {
