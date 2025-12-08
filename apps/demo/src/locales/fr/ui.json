@@ -30,6 +30,24 @@
     "usage": "Usage (fr)",
     "types": "Types (fr)"
   },
+  "accordion": {
+    "title": "Accordion (fr)",
+    "propertiesDescription": {
+      "activeIcon": "Icon to display when the accordion item is active (fr).",
+      "canSelfCollapse": "Allows the active item to collapse when clicked again (fr).",
+      "children": "The accordion items to display. Each child must provide a title and content (fr).",
+      "className": "Additional CSS classes to apply to the accordion wrapper (fr).",
+      "defaultActiveIndex": "The initially active accordion item index (fr).",
+      "direction": "Defines the orientation of the accordion, either vertical or horizontal (fr).",
+      "inactiveIcon": "Icon to display when the accordion item is inactive (fr)."
+    },
+    "subtitle": "The accordion component is a collapsible content display element that allows users to expand or collapse sections with optional icons, orientations, and self-collapse behavior (fr).",
+    "usage": {
+      "basic": "Basic (fr)",
+      "icons": "With icons (fr)",
+      "vertical": "Vertical (fr)"
+    }
+  },
   "button": {
     "title": "Button (fr)",
     "subtitle": "The Button component is a flexible and customizable button implementation for React applications. It supports various properties for styling, behavior, and functionality, making it suitable for different use cases. (fr)",

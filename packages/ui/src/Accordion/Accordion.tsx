@@ -3,15 +3,17 @@ import React, { useId, useState } from "react";
 import type { ReactElement } from "react";
 
 type Properties = {
+  className?: string;
   children: ReactElement | ReactElement[];
   defaultActiveIndex?: number;
   direction?: "horizontal" | "vertical";
-  activeIcon?: string;
+  activeIcon?: string | React.ReactNode;
   canSelfCollapse?: boolean;
-  inactiveIcon?: string;
+  inactiveIcon?: string | React.ReactNode;
 };
 
 const Accordion: React.FC<Properties> = ({
+  className = "",
   children,
   defaultActiveIndex,
   direction = "vertical",
@@ -32,8 +34,21 @@ const Accordion: React.FC<Properties> = ({
     throw new Error("Accordion needs at least one children");
   }
 
+  const renderIcon = (icon: string | React.ReactNode) => {
+    if (!icon) return null;
+
+    if (typeof icon === "string") {
+      return <i className={icon} />;
+    }
+
+    return icon;
+  };
+
   return (
-    <ul className={`accordion ${direction}`} aria-orientation={direction}>
+    <ul
+      className={`accordion ${direction} ${className}`}
+      aria-orientation={direction}
+    >
       {childNodes.map((item, index) => {
         const isActive = active === index;
         const key = `${id}-${index}`;
@@ -51,21 +66,17 @@ const Accordion: React.FC<Properties> = ({
               aria-disabled={!canSelfCollapse && isActive}
               aria-expanded={isActive}
             >
-              {icon ? (
-                <img src={icon} alt="title icon" aria-hidden="true" />
-              ) : null}
+              {icon ? renderIcon(icon) : null}
               <span>{title}</span>
-              {activeIcon && inactiveIcon ? (
-                <img
-                  src={isActive ? activeIcon : inactiveIcon}
-                  alt="toggle icon"
-                  aria-hidden="true"
-                />
-              ) : null}
+              {activeIcon && inactiveIcon
+                ? isActive
+                  ? renderIcon(activeIcon)
+                  : renderIcon(inactiveIcon)
+                : null}
             </button>
 
-            <div role="region" id={bodyId} hidden={!isActive}>
-              {isActive ? childNodes[active] : null}
+            <div role="region" id={bodyId}>
+              <div className="content-wrapper">{childNodes[index]}</div>
             </div>
           </li>
         );
