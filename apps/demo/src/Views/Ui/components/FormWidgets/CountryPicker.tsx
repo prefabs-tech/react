@@ -1,19 +1,84 @@
-import { CountryPicker } from "@prefabs.tech/react-ui";
+import { useTranslation } from "@prefabs.tech/react-i18n";
+import { CountryPicker, Page, Button } from "@prefabs.tech/react-ui";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { CodeBlock, Section } from "../../../../components/Demo";
 
 export const CountryPickerDemo = () => {
-  const [selectedCountry, setSelectedCountry] = useState<string[]>(["NP"]);
+  const [t] = useTranslation("ui");
+  const navigate = useNavigate();
+
+  const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+
+  const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
+
   return (
-    <>
-      <CountryPicker
-        name="country"
-        locale="fr"
-        multiple={true}
-        value={selectedCountry}
-        onChange={(value: string[]) => {
-          setSelectedCountry(value as string[]);
-        }}
-      />
-    </>
+    <Page
+      title="Country Picker"
+      toolbar={
+        <Button
+          label={t("buttons.back")}
+          variant="textOnly"
+          iconLeft={<i className="pi pi-chevron-left"></i>}
+          onClick={() => navigate("..")}
+        />
+      }
+    >
+      <Section title={t("headers.usage")}>
+        <p>{t("common.usage", { component: "CountryPicker" })}</p>
+        <CodeBlock exampleCode='import { CountryPicker } from "@prefabs.tech/react-ui"' />
+      </Section>
+
+      <Section title="Basic (Single Select)">
+        <CountryPicker
+          label="Select Country"
+          name="countryPickerSingle"
+          locale="fr"
+          value={singleSelectValue}
+          onChange={(value: string) => setSingleSelectValue(value)}
+          placeholder="Select a country..."
+        />
+        <CodeBlock
+          exampleCode='
+const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+
+<CountryPicker
+  label="Select Country"
+  name="countryPickerSingle"
+  locale="fr"
+  value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
+  placeholder="Select a country..."
+/>'
+        />
+      </Section>
+
+      <Section title="Multiple Selection">
+        <CountryPicker
+          label="Select Countries"
+          name="countryPickerMulti"
+          locale="en"
+          multiple={true}
+          value={multiSelectValue}
+          onChange={(value: string[]) => setMultiSelectValue(value)}
+          placeholder="Select countries..."
+        />
+        <CodeBlock
+          exampleCode='
+const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
+
+<CountryPicker
+  label="Select Countries"
+  name="countryPickerMulti"
+  locale="en"
+  multiple={true}
+  value={multiSelectValue}
+  onChange={(value: string[]) => setMultiSelectValue(value)}
+  placeholder="Select countries..."
+/>'
+        />
+      </Section>
+    </Page>
   );
 };
