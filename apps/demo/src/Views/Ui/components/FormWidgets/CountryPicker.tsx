@@ -10,8 +10,8 @@ export const CountryPickerDemo = () => {
   const navigate = useNavigate();
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
-
   const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
+  const [customDataValue, setCustomDataValue] = useState<string>("");
 
   return (
     <Page
@@ -30,7 +30,7 @@ export const CountryPickerDemo = () => {
         <CodeBlock exampleCode='import { CountryPicker } from "@prefabs.tech/react-ui"' />
       </Section>
 
-      <Section title="Basic (Single Select)">
+      <Section title="Basic (single select)">
         <CountryPicker
           label="Select Country"
           name="countryPickerSingle"
@@ -54,7 +54,7 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
         />
       </Section>
 
-      <Section title="Multiple Selection">
+      <Section title="Multiple selection">
         <CountryPicker
           label="Select Countries"
           name="countryPickerMulti"
@@ -76,6 +76,54 @@ const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
   value={multiSelectValue}
   onChange={(value: string[]) => setMultiSelectValue(value)}
   placeholder="Select countries..."
+/>'
+        />
+      </Section>
+      <Section title="Custom data (overwrite & create)">
+        <p>
+          This example overwrites "France" (FR) with a custom label and adds a
+          new entry for "Mars" (XX).
+        </p>
+        <CountryPicker
+          label="Select Country (with Custom Data)"
+          name="countryPickerCustom"
+          locale="en"
+          value={customDataValue}
+          onChange={(value: string) => setCustomDataValue(value)}
+          placeholder="Look for Mars or Custom France..."
+          data={[
+            {
+              code: "FR",
+              i18n: {
+                en: "France (Custom Overwrite)",
+                fr: "La France (Custom)",
+              },
+            },
+            {
+              code: "XX",
+              i18n: { en: "Mars Republic", fr: "République de Mars" },
+            },
+          ]}
+        />
+        <CodeBlock
+          exampleCode='
+const [customDataValue, setCustomDataValue] = useState<string>("");
+
+<CountryPicker
+  label="Select Country"
+  locale="en"
+  value={customDataValue}
+  onChange={(value) => setCustomDataValue(value)}
+  data={[
+    { 
+      code: "FR", 
+      i18n: { en: "France (Custom Overwrite)" } 
+    },
+    { 
+      code: "XX", 
+      i18n: { en: "Mars Republic" } 
+    }
+  ]}
 />'
         />
       </Section>
