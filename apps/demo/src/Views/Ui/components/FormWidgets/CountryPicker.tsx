@@ -10,7 +10,6 @@ export const CountryPickerDemo = () => {
   const navigate = useNavigate();
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
-
   const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
   const [customDataValue, setCustomDataValue] = useState<string>("");
 
