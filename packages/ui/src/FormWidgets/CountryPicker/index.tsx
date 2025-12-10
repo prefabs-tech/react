@@ -12,29 +12,29 @@ export interface Country {
   };
 }
 
-type CountryInput = {
+export type CountryData = {
   code: string;
-  i18n: Partial<Country["i18n"]>;
+  i18n?: Partial<Country["i18n"]>;
 };
 
 export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
 > & {
-  data?: CountryInput[];
+  data?: CountryData[];
   locale?: "en" | "fr" | "th";
 };
 
 export const CountryPicker = <T extends string | number>({
-  data = [],
+  data,
   locale = "en",
   ...properties
 }: CountryPickerProperties<T>) => {
-  let updatedcountriesList = countriesList as Country[];
+  let updatedCountriesList = countriesList as Country[];
 
   if (data && data.length > 0) {
-    const countryMap = new Map<string, Country | CountryInput>(
-      updatedcountriesList.map((country) => [country.code, country]),
+    const countryMap = new Map<string, Country | CountryData>(
+      updatedCountriesList.map((country) => [country.code, country]),
     );
 
     data.forEach((item) => {
@@ -54,10 +54,10 @@ export const CountryPicker = <T extends string | number>({
       }
     });
 
-    updatedcountriesList = Array.from(countryMap.values()) as Country[];
+    updatedCountriesList = Array.from(countryMap.values()) as Country[];
   }
 
-  const options = updatedcountriesList.map((item) => {
+  const options = updatedCountriesList.map((item) => {
     const label = item.i18n?.[locale] || item.i18n?.en;
 
     return {

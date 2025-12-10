@@ -13,6 +13,7 @@ export const CountryPickerDemo = () => {
 
   const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
   const [customDataValue, setCustomDataValue] = useState<string>("");
+
   return (
     <Page
       title="Country Picker"
