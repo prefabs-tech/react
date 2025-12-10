@@ -31,7 +31,7 @@ export const CountryPickerDemo = () => {
         <CodeBlock exampleCode='import { CountryPicker } from "@prefabs.tech/react-ui"' />
       </Section>
 
-      <Section title="Basic (Single Select)">
+      <Section title="Basic (single select)">
         <CountryPicker
           label="Select Country"
           name="countryPickerSingle"
@@ -55,7 +55,7 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
         />
       </Section>
 
-      <Section title="Multiple Selection">
+      <Section title="Multiple selection">
         <CountryPicker
           label="Select Countries"
           name="countryPickerMulti"
@@ -80,7 +80,7 @@ const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
 />'
         />
       </Section>
-      <Section title="Custom Data (Overwrite & Create)">
+      <Section title="Custom data (overwrite & create)">
         <p>
           This example overwrites "France" (FR) with a custom label and adds a
           new entry for "Mars" (XX).
