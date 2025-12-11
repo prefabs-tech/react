@@ -107,16 +107,16 @@
 "countryPicker": {
   "title": "CountryPicker (fr)",
   "basic": "Basic (fr)",
-  "multiSelect": "Multiple selection (fr)",
+  "multipleSelect": "Multiple selection (fr)",
   "customData": "Custom data (fr)",
   "labels": {
     "single": "Select country (fr)",
-    "multi": "Select countries (fr)",
+    "multiple": "Select countries (fr)",
     "custom": "Select country (with custom data) (fr)"
   },
   "placeholders": {
     "single": "Select a country... (fr)",
-    "multi": "Select countries... (fr)",
+    "multiple": "Select countries... (fr)",
     "custom": "Look for Mars or custom France... (fr)"
   },
   "propertiesDescription": {

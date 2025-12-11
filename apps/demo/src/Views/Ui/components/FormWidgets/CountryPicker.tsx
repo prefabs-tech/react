@@ -74,7 +74,7 @@ export const CountryPickerDemo = () => {
   ];
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
-  const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
+  const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
   const [customDataValue, setCustomDataValue] = useState<string>("");
 
   return (
@@ -118,45 +118,45 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
         />
       </Section>
 
-      <Section title={t("countryPicker.multiSelect")}>
+      <Section title={t("countryPicker.multipleSelect")}>
         <CountryPicker
-          label={t("countryPicker.labels.multi")}
-          name="countryPickerMulti"
+          label={t("countryPicker.labels.multiple")}
+          name="countryPickerMultiple"
           locale="en"
           multiple={true}
-          value={multiSelectValue}
-          onChange={(value: string[]) => setMultiSelectValue(value)}
-          placeholder={t("countryPicker.placeholders.multi")}
+          value={multipleSelectValue}
+          onChange={(value: string[]) => setMultipleSelectValue(value)}
+          placeholder={t("countryPicker.placeholders.multiple")}
         />
         <CodeBlock
           exampleCode='
-const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
+const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
 
 <CountryPicker
-  label={t("countryPicker.labels.multi")}
-  name="countryPickerMulti"
+  label={t("countryPicker.labels.multiple")}
+  name="countryPickerMultiple"
   locale="en"
   multiple={true}
-  value={multiSelectValue}
-  onChange={(value: string[]) => setMultiSelectValue(value)}
-  placeholder={t("countryPicker.placeholders.multi")}
+  value={multipleSelectValue}
+  onChange={(value: string[]) => setMultipleSelectValue(value)}
+  placeholder={t("countryPicker.placeholders.multiple")}
 />'
         />
       </Section>
       <Section title={t("countryPicker.customData")}>
         <CountryPicker
-          label={t("countryPicker.labels.custom")}
+          label={t("countryPicker.labels.single")}
           name="countryPickerCustom"
           locale="en"
           value={customDataValue}
           onChange={(value: string) => setCustomDataValue(value)}
-          placeholder={t("countryPicker.placeholders.custom")}
+          placeholder={t("countryPicker.placeholders.single")}
           data={[
             {
               code: "FR",
               i18n: {
-                en: "France (Custom Overwrite)",
-                fr: "La France (Custom)",
+                en: "French",
+                fr: "La French",
               },
             },
             {
@@ -178,7 +178,10 @@ const [customDataValue, setCustomDataValue] = useState<string>("");
   data={[
     { 
       code: "FR", 
-      i18n: { en: "France (Custom Overwrite)" } 
+      i18n: { 
+        en: "French",
+        fr: "La French",
+       } 
     },
     { 
       code: "XX", 
