@@ -106,9 +106,9 @@
   },
   "countryPicker": {
   "title": "CountryPicker",
-  "basic": "Basic (single select)",
+  "basic": "Basic",
   "multiSelect": "Multiple selection",
-  "customData": "Custom data (overwrite and create)",
+  "customData": "Custom data",
   "labels": {
     "single": "Select country",
     "multi": "Select countries",
@@ -118,9 +118,6 @@
     "single": "Select a country...",
     "multi": "Select countries...",
     "custom": "Look for Mars or custom France..."
-  },
-  "descriptions": {
-    "custom": "This example overwrites \"France\" (FR) with a custom label and adds a new entry for \"Mars\" (XX)."
   },
   "propertiesDescription": {
     "label": "The label text displayed above the picker.",

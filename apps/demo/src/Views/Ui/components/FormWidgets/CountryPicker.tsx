@@ -144,7 +144,6 @@ const [multiSelectValue, setMultiSelectValue] = useState<string[]>([]);
         />
       </Section>
       <Section title={t("countryPicker.customData")}>
-        <p>{t("countryPicker.descriptions.custom")}</p>
         <CountryPicker
           label={t("countryPicker.labels.custom")}
           name="countryPickerCustom"
