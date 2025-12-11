@@ -104,30 +104,30 @@
       "multiple": "Multiple currency select (fr)"
     }
   },
-"countryPicker": {
-  "title": "CountryPicker (fr)",
-  "basic": "Basic (fr)",
-  "multipleSelect": "Multiple selection (fr)",
-  "customData": "Custom data (fr)",
-  "labels": {
-    "single": "Select country (fr)",
-    "multiple": "Select countries (fr)"
+  "countryPicker": {
+    "basic": "Basic (fr)",
+    "customData": "Custom data (fr)",
+    "labels": {
+      "multiple": "Select countries (fr)",
+      "single": "Select country (fr)"
+    },
+    "multipleSelect": "Multiple selection (fr)",
+    "placeholders": {
+      "multiple": "Select countries... (fr)",
+      "single": "Select a country... (fr)"
+    },
+    "propertiesDescription": {
+      "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
+      "label": "The label text displayed above the picker. (fr)",
+      "locale": "The locale code (e.g., 'en', 'fr') used to translate country names. (fr)",
+      "multiple": "If true, allows selecting multiple countries. (fr)",
+      "name": "The name attribute for the input field. (fr)",
+      "onChange": "Callback function triggered when the selection changes. (fr)",
+      "placeholder": "Placeholder text displayed when no selection is made. (fr)",
+      "value": "The currently selected country code (or array of codes if multiple). (fr)"
+    },
+    "title": "CountryPicker (fr)"
   },
-  "placeholders": {
-    "single": "Select a country... (fr)",
-    "multiple": "Select countries... (fr)"
-  },
-  "propertiesDescription": {
-    "label": "The label text displayed above the picker. (fr)",
-    "name": "The name attribute for the input field. (fr)",
-    "locale": "The locale code (e.g., 'en', 'fr') used to translate country names. (fr)",
-    "value": "The currently selected country code (or array of codes if multiple). (fr)",
-    "onChange": "Callback function triggered when the selection changes. (fr)",
-    "placeholder": "Placeholder text displayed when no selection is made. (fr)",
-    "multiple": "If true, allows selecting multiple countries. (fr)",
-    "data": "Custom country data to overwrite existing entries or add new ones. (fr)"
-  }
-},
   "data": {
     "title": "Data (fr)",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value. (fr)",
@@ -357,7 +357,7 @@
       "controlled": "Controlled content(fr)",
       "basic": "Basic (fr)",
       "vertical": "Vertical (fr)",
-      "verticalControlled":"Vertical with controlled content (fr)"
+      "verticalControlled": "Vertical with controlled content (fr)"
     }
   },
   "tabbedPanel": {

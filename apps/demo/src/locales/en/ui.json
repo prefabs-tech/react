@@ -105,29 +105,29 @@
     }
   },
   "countryPicker": {
-  "title": "CountryPicker",
-  "basic": "Basic",
-  "multipleSelect": "Multiple selection",
-  "customData": "Custom data",
-  "labels": {
-    "single": "Select country",
-    "multiple": "Select countries"
+    "basic": "Basic",
+    "customData": "Custom data",
+    "labels": {
+      "multiple": "Select countries",
+      "single": "Select country"
+    },
+    "multipleSelect": "Multiple selection",
+    "placeholders": {
+      "multiple": "Select countries...",
+      "single": "Select a country..."
+    },
+    "propertiesDescription": {
+      "data": "Custom country data to overwrite existing entries or add new ones.",
+      "label": "The label text displayed above the picker.",
+      "locale": "The locale code (e.g., 'en', 'fr') used to translate country names.",
+      "multiple": "If true, allows selecting multiple countries.",
+      "name": "The name attribute for the input field.",
+      "onChange": "Callback function triggered when the selection changes.",
+      "placeholder": "Placeholder text displayed when no selection is made.",
+      "value": "The currently selected country code (or array of codes if multiple)."
+    },
+    "title": "CountryPicker"
   },
-  "placeholders": {
-    "single": "Select a country...",
-    "multiple": "Select countries..."
-  },
-  "propertiesDescription": {
-    "label": "The label text displayed above the picker.",
-    "name": "The name attribute for the input field.",
-    "locale": "The locale code (e.g., 'en', 'fr') used to translate country names.",
-    "value": "The currently selected country code (or array of codes if multiple).",
-    "onChange": "Callback function triggered when the selection changes.",
-    "placeholder": "Placeholder text displayed when no selection is made.",
-    "multiple": "If true, allows selecting multiple countries.",
-    "data": "Custom country data to overwrite existing entries or add new ones."
-  }
-},
   "data": {
     "title": "Data",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value.",
@@ -357,7 +357,7 @@
       "controlled": "Controlled content",
       "basic": "Basic",
       "vertical": "Vertical",
-      "verticalControlled":"Vertical with controlled content"
+      "verticalControlled": "Vertical with controlled content"
     }
   },
   "tabbedPanel": {
