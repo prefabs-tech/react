@@ -22,11 +22,13 @@ export type CountryPickerProperties<T> = Omit<
   "options"
 > & {
   data?: CountryData[];
+  include?: string[];
   locale?: "en" | "fr" | "th";
 };
 
 export const CountryPicker = <T extends string | number>({
   data,
+  include,
   locale = "en",
   ...properties
 }: CountryPickerProperties<T>) => {
@@ -57,6 +59,11 @@ export const CountryPicker = <T extends string | number>({
     updatedCountriesList = Array.from(countryMap.values()) as Country[];
   }
 
+  if (include && include.length > 0) {
+    updatedCountriesList = updatedCountriesList.filter((country) =>
+      include.includes(country.code),
+    );
+  }
   const options = updatedCountriesList.map((item) => {
     const label = item.i18n?.[locale] || item.i18n?.en;
 

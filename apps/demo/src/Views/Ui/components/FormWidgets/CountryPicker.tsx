@@ -71,11 +71,19 @@ export const CountryPickerDemo = () => {
       default: "[]",
       description: t("countryPicker.propertiesDescription.data"),
     },
+    {
+      id: 9,
+      prop: "include",
+      type: "string[]",
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.include"),
+    },
   ];
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
   const [customDataValue, setCustomDataValue] = useState<string>("");
+  const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
 
   return (
     <Page
@@ -143,6 +151,7 @@ const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
 />'
         />
       </Section>
+
       <Section title={t("countryPicker.customData")}>
         <CountryPicker
           label={t("countryPicker.labels.single")}
@@ -191,6 +200,33 @@ const [customDataValue, setCustomDataValue] = useState<string>("");
 />'
         />
       </Section>
+
+      <Section title={t("countryPicker.include")}>
+        <CountryPicker
+          label={t("countryPicker.labels.single")}
+          name="countryPickerInclude"
+          locale="en"
+          value={includeSelectValue}
+          onChange={(value: string) => setIncludeSelectValue(value)}
+          placeholder={t("countryPicker.placeholders.single")}
+          include={["US", "GB", "DE", "FR", "JP"]}
+        />
+        <CodeBlock
+          exampleCode='
+const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
+
+<CountryPicker
+  label={t("countryPicker.labels.single")}
+  name="countryPickerInclude"
+  locale="en"
+  value={includeSelectValue}
+  onChange={(value: string) => setIncludeSelectValue(value)}
+  placeholder={t("countryPicker.placeholders.single")}
+  include={["US", "GB", "DE", "FR", "JP"]}
+/>'
+        />
+      </Section>
+
       <Section
         title={t("headers.propertiesValue", {
           value: "CountryPicker",

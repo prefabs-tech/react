@@ -107,6 +107,7 @@
   "countryPicker": {
     "basic": "Basic",
     "customData": "Custom data",
+    "include": "Include filter",
     "labels": {
       "multiple": "Select countries",
       "single": "Select country"
@@ -124,7 +125,8 @@
       "name": "The name attribute for the input field.",
       "onChange": "Callback function triggered when the selection changes.",
       "placeholder": "Placeholder text displayed when no selection is made.",
-      "value": "The currently selected country code (or array of codes if multiple)."
+      "value": "The currently selected country code (or array of codes if multiple).",
+      "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible."
     },
     "title": "CountryPicker"
   },
