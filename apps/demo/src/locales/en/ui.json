@@ -104,9 +104,35 @@
       "multiple": "Multiple currency select"
     }
   },
-   "countryPicker":{
-    "title":"CountryPicker"
+  "countryPicker": {
+  "title": "CountryPicker",
+  "basic": "Basic (single select)",
+  "multiSelect": "Multiple selection",
+  "customData": "Custom data (overwrite and create)",
+  "labels": {
+    "single": "Select country",
+    "multi": "Select countries",
+    "custom": "Select country (with custom data)"
   },
+  "placeholders": {
+    "single": "Select a country...",
+    "multi": "Select countries...",
+    "custom": "Look for Mars or custom France..."
+  },
+  "descriptions": {
+    "custom": "This example overwrites \"France\" (FR) with a custom label and adds a new entry for \"Mars\" (XX)."
+  },
+  "propertiesDescription": {
+    "label": "The label text displayed above the picker.",
+    "name": "The name attribute for the input field.",
+    "locale": "The locale code (e.g., 'en', 'fr') used to translate country names.",
+    "value": "The currently selected country code (or array of codes if multiple).",
+    "onChange": "Callback function triggered when the selection changes.",
+    "placeholder": "Placeholder text displayed when no selection is made.",
+    "multiple": "If true, allows selecting multiple countries.",
+    "data": "Custom country data to overwrite existing entries or add new ones."
+  }
+},
   "data": {
     "title": "Data",
     "subtitle": "The Data component is a reusable React component designed to display a labeled value.",
