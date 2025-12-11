@@ -104,8 +104,29 @@
       "multiple": "Multiple currency select (fr)"
     }
   },
-  "countryPicker":{
-    "title":"CountryPicker (fr)"
+  "countryPicker": {
+    "basic": "Basic (fr)",
+    "customData": "Custom data (fr)",
+    "labels": {
+      "multiple": "Select countries (fr)",
+      "single": "Select country (fr)"
+    },
+    "multipleSelect": "Multiple selection (fr)",
+    "placeholders": {
+      "multiple": "Select countries... (fr)",
+      "single": "Select a country... (fr)"
+    },
+    "propertiesDescription": {
+      "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
+      "label": "The label text displayed above the picker. (fr)",
+      "locale": "The locale code (e.g., 'en', 'fr') used to translate country names. (fr)",
+      "multiple": "If true, allows selecting multiple countries. (fr)",
+      "name": "The name attribute for the input field. (fr)",
+      "onChange": "Callback function triggered when the selection changes. (fr)",
+      "placeholder": "Placeholder text displayed when no selection is made. (fr)",
+      "value": "The currently selected country code (or array of codes if multiple). (fr)"
+    },
+    "title": "CountryPicker (fr)"
   },
   "data": {
     "title": "Data (fr)",
@@ -336,7 +357,7 @@
       "controlled": "Controlled content(fr)",
       "basic": "Basic (fr)",
       "vertical": "Vertical (fr)",
-      "verticalControlled":"Vertical with controlled content (fr)"
+      "verticalControlled": "Vertical with controlled content (fr)"
     }
   },
   "tabbedPanel": {

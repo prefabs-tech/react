@@ -104,8 +104,29 @@
       "multiple": "Multiple currency select"
     }
   },
-   "countryPicker":{
-    "title":"CountryPicker"
+  "countryPicker": {
+    "basic": "Basic",
+    "customData": "Custom data",
+    "labels": {
+      "multiple": "Select countries",
+      "single": "Select country"
+    },
+    "multipleSelect": "Multiple selection",
+    "placeholders": {
+      "multiple": "Select countries...",
+      "single": "Select a country..."
+    },
+    "propertiesDescription": {
+      "data": "Custom country data to overwrite existing entries or add new ones.",
+      "label": "The label text displayed above the picker.",
+      "locale": "The locale code (e.g., 'en', 'fr') used to translate country names.",
+      "multiple": "If true, allows selecting multiple countries.",
+      "name": "The name attribute for the input field.",
+      "onChange": "Callback function triggered when the selection changes.",
+      "placeholder": "Placeholder text displayed when no selection is made.",
+      "value": "The currently selected country code (or array of codes if multiple)."
+    },
+    "title": "CountryPicker"
   },
   "data": {
     "title": "Data",
@@ -336,7 +357,7 @@
       "controlled": "Controlled content",
       "basic": "Basic",
       "vertical": "Vertical",
-      "verticalControlled":"Vertical with controlled content"
+      "verticalControlled": "Vertical with controlled content"
     }
   },
   "tabbedPanel": {
