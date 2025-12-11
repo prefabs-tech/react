@@ -111,13 +111,11 @@
   "customData": "Custom data",
   "labels": {
     "single": "Select country",
-    "multiple": "Select countries",
-    "custom": "Select country (with custom data)"
+    "multiple": "Select countries"
   },
   "placeholders": {
     "single": "Select a country...",
-    "multiple": "Select countries...",
-    "custom": "Look for Mars or custom France..."
+    "multiple": "Select countries..."
   },
   "propertiesDescription": {
     "label": "The label text displayed above the picker.",

@@ -155,8 +155,8 @@ const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
             {
               code: "FR",
               i18n: {
-                en: "French",
-                fr: "La French",
+                en: "France (fr)",
+                fr: "La France (fr)",
               },
             },
             {
@@ -179,8 +179,8 @@ const [customDataValue, setCustomDataValue] = useState<string>("");
     { 
       code: "FR", 
       i18n: { 
-        en: "French",
-        fr: "La French",
+        en: "France (fr)",
+        fr: "La France (fr)",
        } 
     },
     { 
