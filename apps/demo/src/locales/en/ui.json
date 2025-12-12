@@ -107,6 +107,7 @@
   "countryPicker": {
     "basic": "Basic",
     "customData": "Custom data",
+    "exclude":"Exclude filter",
     "include": "Include filter",
     "labels": {
       "multiple": "Select countries",
@@ -119,14 +120,15 @@
     },
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones.",
+      "exclude": "An array of country codes to remove from the list.",
+      "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible.",
       "label": "The label text displayed above the picker.",
       "locale": "The locale code (e.g., 'en', 'fr') used to translate country names.",
       "multiple": "If true, allows selecting multiple countries.",
       "name": "The name attribute for the input field.",
       "onChange": "Callback function triggered when the selection changes.",
       "placeholder": "Placeholder text displayed when no selection is made.",
-      "value": "The currently selected country code (or array of codes if multiple).",
-      "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible."
+      "value": "The currently selected country code (or array of codes if multiple)."
     },
     "title": "CountryPicker"
   },
