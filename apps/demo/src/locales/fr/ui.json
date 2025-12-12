@@ -107,6 +107,7 @@
   "countryPicker": {
     "basic": "Basic (fr)",
     "customData": "Custom data (fr)",
+    "include": "Include filter (fr)",
     "labels": {
       "multiple": "Select countries (fr)",
       "single": "Select country (fr)"
@@ -124,7 +125,8 @@
       "name": "The name attribute for the input field. (fr)",
       "onChange": "Callback function triggered when the selection changes. (fr)",
       "placeholder": "Placeholder text displayed when no selection is made. (fr)",
-      "value": "The currently selected country code (or array of codes if multiple). (fr)"
+      "value": "The currently selected country code (or array of codes if multiple). (fr)",
+      "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible. (fr)"
     },
     "title": "CountryPicker (fr)"
   },
