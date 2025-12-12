@@ -201,6 +201,8 @@ export const SelectDemo = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
 
+  const [disableSearchSelectValue, setDisableSearchSelectValue] =
+    useState<string>("");
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   const [rolesOptions, setRolesOptions] = useState<Option<string>[]>([]);
   const [roleSelectValue, setRoleSelectValue] = useState<string>("");
@@ -381,6 +383,43 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   value="NP"
   onChange={() => {}}
   disabled={true}
+/>'
+        />
+      </Section>
+      <Section title={t("select.usage.disableSearch")}>
+        <Select
+          disableSearch
+          label={t("select.label")}
+          name="select"
+          options={[
+            { label: "France", value: "FR" },
+            { label: "Germany", value: "DE" },
+            { disabled: true, label: "Belgium", value: "BE" },
+            { label: "Nepal", value: "NP" },
+            { label: "India", value: "IN" },
+          ]}
+          value={disableSearchSelectValue}
+          onChange={(value: string) => setDisableSearchSelectValue(value)}
+          placeholder={t("select.placeholder")}
+        />
+        <CodeBlock
+          exampleCode='
+const [disableSearchSelectValue, setDisableSearchSelectValue] = useState<string>("");
+
+<Select
+  disableSearch
+  label={t("select.label")}
+  name="select"
+  options={[
+    { label: "France", value: "FR" },
+    { label: "Germany", value: "DE" },
+    { disabled: true, label: "Belgium", value: "BE" },
+    { label: "Nepal", value: "NP" },
+    { label: "India", value: "IN" }
+  ]}
+  value={disableSearchSelectValue}
+  onChange={(value: string) => setDisableSearchSelectValue(value)}
+  placeholder={t("select.placeholder")}
 />'
         />
       </Section>

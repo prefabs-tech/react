@@ -475,6 +475,7 @@
     "usage": {
       "basic": "Basic",
       "disabled": "Disabled",
+      "disableSearch": "Disable search",
       "group": "With grouping",
       "groupMultiSelect": "Multiselect with grouping",
       "groupMultiSelectDisabled": "Multiselect with group select disabled",

@@ -475,6 +475,7 @@
     "usage": {
       "basic": "Basic",
       "disabled": "Disabled (fr)",
+      "disableSearch": "Disable search (fr)",
       "group": "With grouping (fr)",
       "groupMultiSelect": "Multiselect with grouping (fr)",
       "groupMultiSelectDisabled": "Multiselect with group select disabled (fr)",
