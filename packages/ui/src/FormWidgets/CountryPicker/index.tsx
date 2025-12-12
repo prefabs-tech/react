@@ -23,12 +23,14 @@ export type CountryPickerProperties<T> = Omit<
 > & {
   data?: CountryData[];
   include?: string[];
+  exclude?: string[];
   locale?: "en" | "fr" | "th";
 };
 
 export const CountryPicker = <T extends string | number>({
   data,
   include,
+  exclude,
   locale = "en",
   ...properties
 }: CountryPickerProperties<T>) => {
@@ -60,10 +62,21 @@ export const CountryPicker = <T extends string | number>({
       updatedCountriesList = Array.from(countryMap.values()) as Country[];
     }
 
-    if (include && include.length > 0) {
-      updatedCountriesList = updatedCountriesList.filter((country) =>
-        include.includes(country.code),
-      );
+    const includeSet = include && include.length > 0 ? new Set(include) : null;
+    const excludeSet = exclude && exclude.length > 0 ? new Set(exclude) : null;
+
+    if (includeSet || excludeSet) {
+      updatedCountriesList = updatedCountriesList.filter((country) => {
+        if (excludeSet && excludeSet.has(country.code)) {
+          return false;
+        }
+
+        if (includeSet && !includeSet.has(country.code)) {
+          return false;
+        }
+
+        return true;
+      });
     }
 
     return updatedCountriesList.map((item) => {

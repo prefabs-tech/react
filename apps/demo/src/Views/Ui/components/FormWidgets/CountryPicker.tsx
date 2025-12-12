@@ -78,12 +78,20 @@ export const CountryPickerDemo = () => {
       default: "[]",
       description: t("countryPicker.propertiesDescription.include"),
     },
+    {
+      id: 10,
+      prop: "exclude",
+      type: "string[]",
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.exclude"),
+    },
   ];
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
   const [customDataValue, setCustomDataValue] = useState<string>("");
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
+  const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
 
   return (
     <Page
@@ -223,6 +231,31 @@ const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   onChange={(value: string) => setIncludeSelectValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
   include={["US", "GB", "DE", "FR", "JP"]}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.exclude")}>
+        <CountryPicker
+          label={t("countryPicker.labels.single")}
+          name="countryPickerPriority"
+          locale="en"
+          value={excludeSelectValue}
+          onChange={(value: string) => setExcludeSelectValue(value)}
+          placeholder={t("countryPicker.placeholders.single")}
+          include={["US", "GB", "DE", "FR"]}
+          exclude={["FR", "CN", "BR"]}
+        />
+        <CodeBlock
+          exampleCode='
+const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
+
+<CountryPicker
+  label={t("countryPicker.labels.single")}
+  value={excludeSelectValue}
+  onChange={(value: string) => setExcludeSelectValue(value)}
+  include={["US", "GB", "DE", "FR"]}
+  exclude={["FR", "CN", "BR"]}
 />'
         />
       </Section>
