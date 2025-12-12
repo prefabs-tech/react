@@ -447,6 +447,7 @@
       "className": "Additional CSS classes for styling. (fr)",
       "disabled": "Disables the select component. (fr)",
       "disableGroupSelect": "Remove checkbox on group label for selecting all group options. (fr)",
+      "disableSearch": "Disables the search functionality inside the select component. (fr)",
       "errorMessage": "Displays an error message below the component. (fr)",
       "enableTooltip": "When enableTooltip is true, select component renders the <Tooltip> component for the selected value. (fr)",
       "hasError": "If true, error in component. (fr)",
