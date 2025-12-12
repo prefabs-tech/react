@@ -90,6 +90,11 @@
   color: var(--_placeholder-color);
 }
 
+.select > .label-container .placeholder:empty::before {
+  content: "\00A0";
+  display: inline-block;
+}
+
 .select-menu > .loading-container {
   padding-block: 1.25rem;
 }

@@ -33,6 +33,7 @@ export type ISelectProperties<T> = {
   className?: string;
   disabled?: boolean;
   disableGroupSelect?: boolean;
+  disableSearch?: boolean;
   enableTooltip?: boolean;
   errorMessage?: string;
   hasError?: boolean;
@@ -79,6 +80,7 @@ export const Select = <T extends string | number>({
   className = "",
   disabled: selectFieldDisabled,
   disableGroupSelect,
+  disableSearch = false,
   errorMessage,
   enableTooltip = true,
   hasError,
@@ -649,11 +651,15 @@ export const Select = <T extends string | number>({
             </Tooltip>
           )}
 
-          <span ref={selectTooltipReference} className="selected-options">
-            {renderValue
-              ? renderValue(value, normalizedOptions)
-              : selectedOptions}
-          </span>
+          {!renderValue && !selectedOptions?.length ? (
+            <span className="placeholder">{placeholder}</span>
+          ) : (
+            <span ref={selectTooltipReference} className="selected-options">
+              {renderValue
+                ? renderValue(value, normalizedOptions)
+                : selectedOptions}
+            </span>
+          )}
         </>
       );
     };
@@ -668,7 +674,7 @@ export const Select = <T extends string | number>({
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        {!selectedOptions.length || showOptions ? (
+        {!disableSearch && (!selectedOptions.length || showOptions) ? (
           <DebouncedInput
             ref={searchInputReference}
             placeholder={placeholder}
