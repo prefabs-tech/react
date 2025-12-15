@@ -9,6 +9,7 @@ export interface Country {
     en: string;
     fr: string;
     th: string;
+    [key: string]: string;
   };
 }
 
@@ -24,7 +25,7 @@ export type CountryPickerProperties<T> = Omit<
   data?: CountryData[];
   include?: string[];
   exclude?: string[];
-  locale?: "en" | "fr" | "th";
+  locale?: string;
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -88,7 +89,7 @@ export const CountryPicker = <T extends string | number>({
         ...item,
       };
     });
-  }, [data, include, locale]);
+  }, [data, include, locale, exclude]);
 
   return <Select {...(properties as ISelectProperties<T>)} options={options} />;
 };

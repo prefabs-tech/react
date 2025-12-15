@@ -92,6 +92,7 @@ export const CountryPickerDemo = () => {
   const [customDataValue, setCustomDataValue] = useState<string>("");
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
+  const [nepaliValue, setNepaliValue] = useState<string>("");
 
   return (
     <Page
@@ -256,6 +257,59 @@ const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
   onChange={(value: string) => setExcludeSelectValue(value)}
   include={["US", "GB", "DE", "FR"]}
   exclude={["FR", "CN", "BR"]}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.locale")}>
+        <CountryPicker
+          label={t("countryPicker.labels.single")}
+          name="countryPickerNepali"
+          locale="np"
+          value={nepaliValue}
+          onChange={(value: string) => setNepaliValue(value)}
+          placeholder={t("countryPicker.placeholders.single")}
+          include={["NP", "US", "CN", "GB", "IN"]}
+          data={[
+            {
+              code: "NP",
+              i18n: { np: "नेपाल" },
+            },
+            {
+              code: "US",
+              i18n: { np: "संयुक्त राज्य अमेरिका" },
+            },
+            {
+              code: "CN",
+              i18n: { np: "चीन" },
+            },
+            {
+              code: "GB",
+              i18n: { np: "बेलायत" },
+            },
+            {
+              code: "IN",
+              i18n: { np: "भारत" },
+            },
+          ]}
+        />
+        <CodeBlock
+          exampleCode='
+const [nepaliValue, setNepaliValue] = useState<string>("");
+
+<CountryPicker
+  label={t("countryPicker.locale")} 
+  locale="np"
+  value={nepaliValue}
+  onChange={(value: string) => setNepaliValue(value)}
+  placeholder={t("countryPicker.placeholders.single")}
+  data={[
+    { code: "NP", i18n: { np: "नेपाल" } },
+    { code: "US", i18n: { np: "संयुक्त राज्य अमेरिका" } },
+    { code: "CN", i18n: { np: "चीन" } },
+    { code: "GB", i18n: { np: "बेलायत" } },
+    { code: "IN", i18n: { np: "भारत" } },
+  ]}
 />'
         />
       </Section>
