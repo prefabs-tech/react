@@ -11,36 +11,36 @@ interface Properties {
 export const Copyright = ({
   children,
   defaultMessage = "All rights reserved",
-  holder: pHolder,
-  url: pUrl,
-  year: pYear,
+  holder,
+  url,
+  year,
 }: Properties) => {
   const appConfig = useConfig();
 
   const renderContent = () => {
-    const holder = pHolder || appConfig?.copyright?.holder;
-    const url = pUrl || appConfig?.copyright?.url;
-    const year = pYear || new Date().getFullYear();
+    const _holder = holder || appConfig?.copyright?.holder;
+    const _url = url || appConfig?.copyright?.url;
+    const _year = year || new Date().getFullYear();
 
-    if (holder) {
-      const holderElement = url ? (
-        <a href={url} target="_blank" rel="noreferrer">
-          {holder}
+    if (_holder) {
+      const holderElement = _url ? (
+        <a href={_url} target="_blank" rel="noreferrer">
+          {_holder}
         </a>
       ) : (
-        holder
+        _holder
       );
 
       return (
         <div className="dz-copyright">
-          &copy; {year} {holderElement}
+          &copy; {_year} {holderElement}
         </div>
       );
     }
 
     return (
       <>
-        &copy; {year} {defaultMessage}
+        &copy; {_year} {defaultMessage}
       </>
     );
   };
