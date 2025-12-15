@@ -85,6 +85,13 @@ export const CountryPickerDemo = () => {
       default: "[]",
       description: t("countryPicker.propertiesDescription.exclude"),
     },
+    {
+      id: 11,
+      prop: "favorites",
+      type: "string[]",
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.favorites"),
+    },
   ];
 
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
@@ -93,6 +100,7 @@ export const CountryPickerDemo = () => {
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
   const [nepaliValue, setNepaliValue] = useState<string>("");
+  const [favValue, setFavValue] = useState<string>("");
 
   return (
     <Page
@@ -310,6 +318,33 @@ const [nepaliValue, setNepaliValue] = useState<string>("");
     { code: "GB", i18n: { np: "बेलायत" } },
     { code: "IN", i18n: { np: "भारत" } },
   ]}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.favorites")}>
+        <CountryPicker
+          label={t("countryPicker.labels.single")}
+          name="countryPickerFav"
+          locale="en"
+          value={favValue}
+          onChange={(value: string) => setFavValue(value)}
+          placeholder={t("countryPicker.placeholders.single")}
+          autoSortOptions={false}
+          favorites={["NP", "US", "GB"]}
+        />
+        <CodeBlock
+          exampleCode='
+const [favValue, setFavValue] = useState<string>("");
+
+<CountryPicker
+  label={t("countryPicker.labels.single")}
+  locale="en"
+  value={favValue}
+  onChange={(value) => setFavValue(value)}
+  placeholder={t("countryPicker.placeholders.single")}
+  autoSortOptions={false}
+  favorites={["NP", "US", "GB"]} 
 />'
         />
       </Section>

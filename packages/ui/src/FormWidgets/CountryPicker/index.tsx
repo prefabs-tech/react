@@ -26,6 +26,7 @@ export type CountryPickerProperties<T> = Omit<
   include?: string[];
   exclude?: string[];
   locale?: string;
+  favorites?: string[];
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -33,9 +34,10 @@ export const CountryPicker = <T extends string | number>({
   include,
   exclude,
   locale = "en",
+  favorites,
   ...properties
 }: CountryPickerProperties<T>) => {
-  let updatedCountriesList = countriesList as Country[];
+  let updatedCountriesList = [...countriesList] as Country[];
 
   const options = useMemo(() => {
     if (data && data.length > 0) {
@@ -80,16 +82,32 @@ export const CountryPicker = <T extends string | number>({
       });
     }
 
+    if (favorites && favorites.length > 0) {
+      const favSet = new Set(favorites);
+      updatedCountriesList.sort((a, b) => {
+        const aFav = favSet.has(a.code);
+        const bFav = favSet.has(b.code);
+
+        if (aFav && !bFav) return -1;
+
+        if (!aFav && bFav) return 1;
+
+        return 0;
+      });
+    }
+
     return updatedCountriesList.map((item) => {
       const label = item.i18n?.[locale] || item.i18n?.en;
+      const isFavorite = favorites?.includes(item.code);
 
       return {
         value: item.code as unknown as T,
         label,
         ...item,
+        isFavorite,
       };
     });
-  }, [data, include, locale, exclude]);
+  }, [data, include, locale, exclude, favorites]);
 
   return <Select {...(properties as ISelectProperties<T>)} options={options} />;
 };
