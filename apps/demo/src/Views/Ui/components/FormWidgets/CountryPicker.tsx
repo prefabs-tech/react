@@ -100,7 +100,7 @@ export const CountryPickerDemo = () => {
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
   const [nepaliValue, setNepaliValue] = useState<string>("");
-  const [favValue, setFavValue] = useState<string>("");
+  const [favoriteValue, setFavoriteValue] = useState<string>("");
 
   return (
     <Page
@@ -327,21 +327,21 @@ const [nepaliValue, setNepaliValue] = useState<string>("");
           label={t("countryPicker.labels.single")}
           name="countryPickerFav"
           locale="en"
-          value={favValue}
-          onChange={(value: string) => setFavValue(value)}
+          value={favoriteValue}
+          onChange={(value: string) => setFavoriteValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           autoSortOptions={false}
           favorites={["NP", "US", "GB"]}
         />
         <CodeBlock
           exampleCode='
-const [favValue, setFavValue] = useState<string>("");
+const [favoriteValue, setFavoriteValue] = useState<string>("");
 
 <CountryPicker
   label={t("countryPicker.labels.single")}
   locale="en"
-  value={favValue}
-  onChange={(value) => setFavValue(value)}
+  value={favoriteValue}
+  onChange={(value) => setFavoriteValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
   autoSortOptions={false}
   favorites={["NP", "US", "GB"]} 

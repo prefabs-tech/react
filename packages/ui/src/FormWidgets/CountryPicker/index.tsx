@@ -82,31 +82,31 @@ export const CountryPicker = <T extends string | number>({
       });
     }
 
-    if (favorites && favorites.length > 0) {
-      const favSet = new Set(favorites);
-      updatedCountriesList.sort((a, b) => {
-        const aFav = favSet.has(a.code);
-        const bFav = favSet.has(b.code);
-
-        if (aFav && !bFav) return -1;
-
-        if (!aFav && bFav) return 1;
-
-        return 0;
-      });
-    }
-
-    return updatedCountriesList.map((item) => {
+    const mappedCountriesList = updatedCountriesList.map((item) => {
       const label = item.i18n?.[locale] || item.i18n?.en;
-      const isFavorite = favorites?.includes(item.code);
 
       return {
         value: item.code as unknown as T,
         label,
         ...item,
-        isFavorite,
       };
     });
+
+    if (favorites && favorites.length > 0) {
+      const favoriteSet = new Set(favorites);
+      const favoriteList = mappedCountriesList.filter((item) =>
+        favoriteSet.has(item.code),
+      );
+
+      if (favoriteList.length > 0) {
+        return [
+          { label: "Favourites", options: favoriteList },
+          { label: "All Countries", options: mappedCountriesList },
+        ];
+      }
+    }
+
+    return mappedCountriesList;
   }, [data, include, locale, exclude, favorites]);
 
   return <Select {...(properties as ISelectProperties<T>)} options={options} />;
