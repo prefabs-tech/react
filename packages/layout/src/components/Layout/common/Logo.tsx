@@ -10,12 +10,7 @@ interface Properties {
   src?: string;
 }
 
-export const Logo = ({
-  alt: pAlt,
-  children,
-  route: pRoute,
-  src: pSource,
-}: Properties) => {
+export const Logo = ({ alt, children, route, src }: Properties) => {
   const { appName, layout: layoutConfig } = useConfig();
 
   const hasRouterContext = useInRouterContext();
@@ -28,19 +23,19 @@ export const Logo = ({
     return appName.replace("@", "").replace("/", " ");
   }, [appName]);
 
-  const route = pRoute || layoutConfig?.logoRoute || "/";
-  const source = pSource || layoutConfig?.logo;
-  const alt = pAlt || layoutConfig?.logoAlt || parseLogoAlt || "My app";
+  const _route = route || layoutConfig?.logoRoute || "/";
+  const _source = src || layoutConfig?.logo;
+  const _alt = alt || layoutConfig?.logoAlt || parseLogoAlt || "My app";
 
   const renderLogo = () => {
-    if (source) {
-      return <img src={source} alt={alt} />;
+    if (_source) {
+      return <img src={_source} alt={_alt} />;
     }
 
     return (
       <span className="logo-default">
-        <span>{alt[0]}</span>
-        <span>{alt}</span>
+        <span>{_alt[0]}</span>
+        <span>{_alt}</span>
       </span>
     );
   };
@@ -49,9 +44,9 @@ export const Logo = ({
     return (
       <>
         {hasRouterContext ? (
-          <Link to={route}>{renderLogo()}</Link>
+          <Link to={_route}>{renderLogo()}</Link>
         ) : (
-          <a href={route}>{renderLogo()}</a>
+          <a href={_route}>{renderLogo()}</a>
         )}
       </>
     );

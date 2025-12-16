@@ -5,10 +5,10 @@ interface Properties {
   version?: string;
 }
 
-export const Version = ({ children, version: pVersion }: Properties) => {
+export const Version = ({ children, version }: Properties) => {
   const appConfig = useConfig();
 
-  const version = pVersion || appConfig?.appVersion || "[App version]";
+  const _version = version || appConfig?.appVersion || "[App version]";
 
-  return <div className="dz-version">{children || version}</div>;
+  return <div className="dz-version">{children || _version}</div>;
 };
