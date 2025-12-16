@@ -100,8 +100,8 @@ export const CountryPicker = <T extends string | number>({
 
       if (favoriteList.length > 0) {
         return [
-          { label: "Favourites", options: favoriteList },
-          { label: "All Countries", options: mappedCountriesList },
+          { label: "Favorites", options: favoriteList },
+          { label: "All countries", options: mappedCountriesList },
         ];
       }
     }
