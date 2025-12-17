@@ -108,6 +108,7 @@
     "basic": "Basic",
     "customData": "Custom data",
     "exclude":"Exclude filter",
+    "favorites":"Favorites",
     "locale":"New locale support",
     "include": "Include filter",
     "labels": {
@@ -122,6 +123,7 @@
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones.",
       "exclude": "An array of country codes to remove from the list.",
+      "favorites": "An array of country codes to prioritize and display at the top of the list.",
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible.",
       "label": "The label text displayed above the picker.",
       "locale": "The locale code (e.g., 'en', 'fr'). Accepts custom codes (like 'np') if provided in data.",
@@ -131,7 +133,8 @@
       "placeholder": "Placeholder text displayed when no selection is made.",
       "value": "The currently selected country code (or array of codes if multiple)."
     },
-    "title": "CountryPicker"
+    "title": "CountryPicker",
+    "typeDefinitions":"Type definitions"
   },
   "data": {
     "title": "Data",

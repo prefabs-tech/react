@@ -18,6 +18,11 @@ export type CountryData = {
   i18n?: Partial<Country["i18n"]>;
 };
 
+export type CountryPickerLabels = {
+  favorites?: string;
+  allCountries?: string;
+};
+
 export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
@@ -26,6 +31,8 @@ export type CountryPickerProperties<T> = Omit<
   include?: string[];
   exclude?: string[];
   locale?: string;
+  favorites?: string[];
+  labels?: CountryPickerLabels;
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -33,14 +40,16 @@ export const CountryPicker = <T extends string | number>({
   include,
   exclude,
   locale = "en",
+  favorites,
+  labels,
   ...properties
 }: CountryPickerProperties<T>) => {
-  let updatedCountriesList = countriesList as Country[];
-
   const options = useMemo(() => {
+    let updatedCountriesList = [...countriesList] as Country[];
+
     if (data && data.length > 0) {
       const countryMap = new Map<string, Country | CountryData>(
-        updatedCountriesList.map((country) => [country.code, country]),
+        [...updatedCountriesList].map((country) => [country.code, country]),
       );
 
       data.forEach((item) => {
@@ -80,7 +89,7 @@ export const CountryPicker = <T extends string | number>({
       });
     }
 
-    return updatedCountriesList.map((item) => {
+    const mappedCountriesList = updatedCountriesList.map((item) => {
       const label = item.i18n?.[locale] || item.i18n?.en;
 
       return {
@@ -89,7 +98,46 @@ export const CountryPicker = <T extends string | number>({
         ...item,
       };
     });
-  }, [data, include, locale, exclude]);
 
-  return <Select {...(properties as ISelectProperties<T>)} options={options} />;
+    if (favorites && favorites.length > 0) {
+      const favoriteSet = new Set(favorites);
+      const favoriteList = mappedCountriesList.filter((item) =>
+        favoriteSet.has(item.code),
+      );
+
+      if (favoriteList.length > 0) {
+        const favoritesLabel = labels?.favorites || "Favorites";
+        const allCountriesLabel = labels?.allCountries || "All countries";
+
+        return [
+          { label: favoritesLabel, options: favoriteList },
+          { label: allCountriesLabel, options: mappedCountriesList },
+        ];
+      }
+    }
+
+    return mappedCountriesList;
+  }, [data, include, locale, exclude, favorites]);
+
+  const handleOnChange = (incomingValue: T | T[]) => {
+    if (!properties.onChange) return;
+
+    let cleanedValue: T | T[];
+
+    if (Array.isArray(incomingValue)) {
+      cleanedValue = Array.from(new Set(incomingValue)) as T[];
+    } else {
+      cleanedValue = incomingValue;
+    }
+
+    (properties.onChange as (value: T | T[]) => void)(cleanedValue);
+  };
+
+  return (
+    <Select
+      {...(properties as ISelectProperties<T>)}
+      options={options}
+      onChange={handleOnChange}
+    />
+  );
 };
