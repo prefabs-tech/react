@@ -18,6 +18,11 @@ export type CountryData = {
   i18n?: Partial<Country["i18n"]>;
 };
 
+export type CountryPickerLabels = {
+  favorites?: string;
+  allCountries?: string;
+};
+
 export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
@@ -27,6 +32,7 @@ export type CountryPickerProperties<T> = Omit<
   exclude?: string[];
   locale?: string;
   favorites?: string[];
+  labels?: CountryPickerLabels;
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -35,6 +41,7 @@ export const CountryPicker = <T extends string | number>({
   exclude,
   locale = "en",
   favorites,
+  labels,
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
@@ -99,9 +106,11 @@ export const CountryPicker = <T extends string | number>({
       );
 
       if (favoriteList.length > 0) {
+        const favoritesLabel = labels?.favorites || "Favorites";
+        const allCountriesLabel = labels?.allCountries || "All countries";
         return [
-          { label: "Favorites", options: favoriteList },
-          { label: "All countries", options: mappedCountriesList },
+          { label: favoritesLabel, options: favoriteList },
+          { label: allCountriesLabel, options: mappedCountriesList },
         ];
       }
     }
