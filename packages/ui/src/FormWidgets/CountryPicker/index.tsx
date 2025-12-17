@@ -29,11 +29,6 @@ export type CountryPickerProperties<T> = Omit<
   favorites?: string[];
 };
 
-type GenericChangeHandler = (
-  selectedValue: unknown,
-  metaData?: unknown,
-) => void;
-
 export const CountryPicker = <T extends string | number>({
   data,
   include,
@@ -114,7 +109,7 @@ export const CountryPicker = <T extends string | number>({
     return mappedCountriesList;
   }, [data, include, locale, exclude, favorites]);
 
-  const handleOnChange = (incomingValue: T | T[], metadata?: unknown) => {
+  const handleOnChange = (incomingValue: T | T[]) => {
     if (!properties.onChange) return;
 
     let cleanedValue: T | T[];
@@ -125,7 +120,7 @@ export const CountryPicker = <T extends string | number>({
       cleanedValue = incomingValue;
     }
 
-    (properties.onChange as GenericChangeHandler)(cleanedValue, metadata);
+    (properties.onChange as (value: T | T[]) => void)(cleanedValue);
   };
 
   return (
