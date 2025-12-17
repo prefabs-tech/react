@@ -133,7 +133,9 @@
       "placeholder": "Placeholder text displayed when no selection is made. (fr)",
       "value": "The currently selected country code (or array of codes if multiple). (fr)"
     },
-    "title": "CountryPicker (fr)"
+    "title": "CountryPicker (fr)",
+    "typeDefinitions":"Type definitions (fr)"
+
   },
   "data": {
     "title": "Data (fr)",

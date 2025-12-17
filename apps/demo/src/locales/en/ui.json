@@ -133,7 +133,8 @@
       "placeholder": "Placeholder text displayed when no selection is made.",
       "value": "The currently selected country code (or array of codes if multiple)."
     },
-    "title": "CountryPicker"
+    "title": "CountryPicker",
+    "typeDefinitions":"Type definitions"
   },
   "data": {
     "title": "Data",

@@ -42,12 +42,12 @@ export const CountryPicker = <T extends string | number>({
   favorites,
   ...properties
 }: CountryPickerProperties<T>) => {
-  let updatedCountriesList = [...countriesList] as Country[];
-
   const options = useMemo(() => {
+    let updatedCountriesList = [...countriesList] as Country[];
+
     if (data && data.length > 0) {
       const countryMap = new Map<string, Country | CountryData>(
-        updatedCountriesList.map((country) => [country.code, country]),
+        [...updatedCountriesList].map((country) => [country.code, country]),
       );
 
       data.forEach((item) => {
