@@ -45,27 +45,34 @@ export const CountryPickerDemo = () => {
     },
     {
       id: 5,
+      prop: "includeFavorites",
+      type: "boolean",
+      default: "true",
+      description: t("countryPicker.propertiesDescription.includeFavorites"),
+    },
+    {
+      id: 6,
       prop: "label",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.label"),
     },
     {
-      id: 6,
+      id: 7,
       prop: "locale",
       type: "string",
       default: '"en"',
       description: t("countryPicker.propertiesDescription.locale"),
     },
     {
-      id: 7,
+      id: 8,
       prop: "multiple",
       type: "boolean",
       default: "false",
       description: t("countryPicker.propertiesDescription.multiple"),
     },
     {
-      id: 8,
+      id: 9,
       prop: "name",
       type: "string",
       default: "-",
@@ -73,21 +80,21 @@ export const CountryPickerDemo = () => {
     },
 
     {
-      id: 9,
+      id: 10,
       prop: "onChange",
       type: "(value: string | string[]) => void",
       default: "-",
       description: t("countryPicker.propertiesDescription.onChange"),
     },
     {
-      id: 10,
+      id: 11,
       prop: "placeholder",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.placeholder"),
     },
     {
-      id: 11,
+      id: 12,
       prop: "value",
       type: "string | string[]",
       default: "-",
@@ -375,6 +382,56 @@ const [favoriteValue, setFavoriteValue] = useState<string>("");
         />
       </Section>
 
+      <Section title={t("countryPicker.includeFavorites")}>
+        <CountryPicker
+          autoSortOptions={false}
+          exclude={["FR", "CN", "BR"]}
+          favorites={["NP", "US", "GB", "AF"]}
+          include={[
+            "US",
+            "GB",
+            "DE",
+            "FR",
+            "CA",
+            "AU",
+            "IN",
+            "JP",
+            "CN",
+            "BR",
+            "IT",
+            "ES",
+            "NL",
+            "SE",
+          ]}
+          includeFavorites={false}
+          label={t("countryPicker.labels.multiple")}
+          locale={i18n.language}
+          multiple={true}
+          name="countryPickerFav"
+          onChange={(value: string) => setFavoriteValue(value)}
+          placeholder={t("countryPicker.placeholders.multiple")}
+          value={favoriteValue}
+        />
+        <CodeBlock
+          exampleCode='
+const [favoriteValue, setFavoriteValue] = useState<string>("");
+
+<CountryPicker
+  autoSortOptions={false}
+  exclude={["FR", "CN", "BR"]}
+  favorites={["NP", "US", "GB"]} 
+  include={["US", "GB", "DE", "FR", "CA", "AU", "IN", "JP", "CN", "BR", "IT", "ES", "NL", "SE"]}
+  includeFavorites={false}
+  label={t("countryPicker.labels.multiple")}
+  locale={i18n.language}
+  multiple={true}
+  onChange={(value) => setFavoriteValue(value)}
+  placeholder={t("countryPicker.placeholders.multiple")}
+  value={favoriteValue}
+/>'
+        />
+      </Section>
+
       <Section
         title={t("headers.propertiesValue", {
           value: "CountryPicker",
@@ -404,6 +461,7 @@ const [favoriteValue, setFavoriteValue] = useState<string>("");
           persistState={false}
         />
       </Section>
+
       <Section title={t("countryPicker.typeDefinitions")}>
         <CodeBlock
           exampleCode={`interface Country {

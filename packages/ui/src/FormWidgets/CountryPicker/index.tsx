@@ -33,6 +33,7 @@ export type CountryPickerProperties<T> = Omit<
   locale?: string;
   favorites?: string[];
   labels?: CountryPickerLabels;
+  includeFavorites?: boolean;
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -42,6 +43,7 @@ export const CountryPicker = <T extends string | number>({
   locale = "en",
   favorites,
   labels,
+  includeFavorites = true,
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
@@ -109,15 +111,19 @@ export const CountryPicker = <T extends string | number>({
         const favoritesLabel = labels?.favorites || "Favorites";
         const allCountriesLabel = labels?.allCountries || "All countries";
 
+        const allCountriesList = includeFavorites
+          ? mappedCountriesList
+          : mappedCountriesList.filter((item) => !favoriteSet.has(item.code));
+
         return [
           { label: favoritesLabel, options: favoriteList },
-          { label: allCountriesLabel, options: mappedCountriesList },
+          { label: allCountriesLabel, options: allCountriesList },
         ];
       }
     }
 
     return mappedCountriesList;
-  }, [data, include, locale, exclude, favorites]);
+  }, [data, include, locale, exclude, favorites, includeFavorites]);
 
   const handleOnChange = (incomingValue: T | T[]) => {
     if (!properties.onChange) return;

@@ -111,6 +111,7 @@
     "favorites":"Favorites (fr)",
     "locale":"New locale support (fr)",
     "include": "Include filter (fr)",
+    "includeFavorites":"Include favorites (fr)",
     "labels": {
       "multiple": "Select countries (fr)",
       "single": "Select country (fr)"
@@ -125,6 +126,7 @@
       "exclude": "An array of country codes to remove from the list. (fr)",
       "favorites": "An array of country codes to prioritize and display at the top of the list. (fr)",
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible. (fr)",
+      "includeFavorites":"If false, removes favorite items from the main list. (fr)",
       "label": "The label text displayed above the picker. (fr)",
       "locale": "The locale code (e.g., 'en', 'fr'). Accepts custom codes (like 'np') if provided in data. (fr)",
       "multiple": "If true, allows selecting multiple countries. (fr)",
