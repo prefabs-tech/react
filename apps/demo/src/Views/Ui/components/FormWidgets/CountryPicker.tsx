@@ -299,7 +299,7 @@ const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
           ]}
           include={["NP", "US", "CN", "GB", "IN"]}
           label={t("countryPicker.labels.single")}
-          locale={i18n.language}
+          locale="np"
           name="countryPickerNepali"
           onChange={(value: string) => setNepaliValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
