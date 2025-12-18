@@ -318,7 +318,7 @@ const [nepaliValue, setNepaliValue] = useState<string>("");
     { code: "IN", i18n: { np: "भारत" } },
   ]}
   label={t("countryPicker.locale")} 
-  locale={i18n.language}
+  locale="np"
   onChange={(value: string) => setNepaliValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
   value={nepaliValue}
