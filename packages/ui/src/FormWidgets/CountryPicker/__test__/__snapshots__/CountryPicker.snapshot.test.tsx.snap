@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CountryPicker Component > should render correctly with a limited list of countries 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <span
+          class="selected-options"
+        >
+          Nepal
+        </span>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CountryPicker Component > should render correctly with favorites and localization 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <span
+          class="selected-options"
+        >
+          France
+        </span>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
