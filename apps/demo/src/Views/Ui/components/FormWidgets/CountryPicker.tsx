@@ -8,11 +8,13 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import nepaliData from "./np.json";
 import { CodeBlock, Section } from "../../../../components/Demo";
 
 export const CountryPickerDemo = () => {
   const [t, i18n] = useTranslation("ui");
   const navigate = useNavigate();
+  const locale = i18n.language;
 
   const data = [
     {
@@ -130,7 +132,7 @@ export const CountryPickerDemo = () => {
       <Section title={t("countryPicker.basic")}>
         <CountryPicker
           label={t("countryPicker.labels.single")}
-          locale={i18n.language}
+          locale={locale}
           name="countryPickerSingle"
           onChange={(value: string) => setSingleSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
@@ -139,10 +141,11 @@ export const CountryPickerDemo = () => {
         <CodeBlock
           exampleCode='
 const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+const locale = i18n.language;
 
 <CountryPicker
   label={t("countryPicker.labels.single")}
-  locale={i18n.language}
+  locale={locale}
   name="countryPickerSingle"
   onChange={(value: string) => setSingleSelectValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
@@ -154,7 +157,7 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
       <Section title={t("countryPicker.multipleSelect")}>
         <CountryPicker
           label={t("countryPicker.labels.multiple")}
-          locale={i18n.language}
+          locale={locale}
           multiple={true}
           name="countryPickerMultiple"
           onChange={(value: string[]) => setMultipleSelectValue(value)}
@@ -164,10 +167,11 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
         <CodeBlock
           exampleCode='
 const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
+const locale = i18n.language;
 
 <CountryPicker
   label={t("countryPicker.labels.multiple")}
-  locale={i18n.language}
+  locale={locale}
   multiple={true}
   name="countryPickerMultiple"
   onChange={(value: string[]) => setMultipleSelectValue(value)}
@@ -193,7 +197,7 @@ const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
             },
           ]}
           label={t("countryPicker.labels.single")}
-          locale={i18n.language}
+          locale={locale}
           name="countryPickerCustom"
           onChange={(value: string) => setCustomDataValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
@@ -202,6 +206,7 @@ const [multipleSelectValue, setMultipleSelectValue] = useState<string[]>([]);
         <CodeBlock
           exampleCode='
 const [customDataValue, setCustomDataValue] = useState<string>("");
+const locale = i18n.language;
 
 <CountryPicker
   data={[
@@ -218,7 +223,7 @@ const [customDataValue, setCustomDataValue] = useState<string>("");
     }
   ]}
   label={t("countryPicker.labels.custom")}
-  locale={i18n.language}
+  locale={locale}
   name="countryPickerCustom"
   onChange={(value) => setCustomDataValue(value)}
   placeholder={t("countryPicker.placeholders.custom")}
@@ -232,7 +237,7 @@ const [customDataValue, setCustomDataValue] = useState<string>("");
         <CountryPicker
           include={["US", "GB", "DE", "FR", "JP"]}
           label={t("countryPicker.labels.single")}
-          locale={i18n.language}
+          locale={locale}
           name="countryPickerInclude"
           onChange={(value: string) => setIncludeSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
@@ -241,11 +246,12 @@ const [customDataValue, setCustomDataValue] = useState<string>("");
         <CodeBlock
           exampleCode='
 const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
+const locale = i18n.language;
 
 <CountryPicker
   include={["US", "GB", "DE", "FR", "JP"]}
   label={t("countryPicker.labels.single")}
-  locale={i18n.language}
+  locale={locale}
   name="countryPickerInclude"
   onChange={(value: string) => setIncludeSelectValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
@@ -257,9 +263,8 @@ const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
       <Section title={t("countryPicker.exclude")}>
         <CountryPicker
           exclude={["FR", "CN", "BR"]}
-          include={["US", "GB", "DE", "FR"]}
           label={t("countryPicker.labels.single")}
-          locale={i18n.language}
+          locale={locale}
           name="countryPickerPriority"
           onChange={(value: string) => setExcludeSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
@@ -268,12 +273,12 @@ const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
         <CodeBlock
           exampleCode='
 const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
+const locale = i18n.language;
 
 <CountryPicker
   exclude={["FR", "CN", "BR"]}
-  include={["US", "GB", "DE", "FR"]}
   label={t("countryPicker.labels.single")}
-  locale={i18n.language}
+  locale={locale}
   onChange={(value: string) => setExcludeSelectValue(value)}
   value={excludeSelectValue}
 />'
@@ -282,29 +287,7 @@ const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
 
       <Section title={t("countryPicker.locale")}>
         <CountryPicker
-          data={[
-            {
-              code: "NP",
-              i18n: { np: "नेपाल" },
-            },
-            {
-              code: "US",
-              i18n: { np: "संयुक्त राज्य अमेरिका" },
-            },
-            {
-              code: "CN",
-              i18n: { np: "चीन" },
-            },
-            {
-              code: "GB",
-              i18n: { np: "बेलायत" },
-            },
-            {
-              code: "IN",
-              i18n: { np: "भारत" },
-            },
-          ]}
-          include={["NP", "US", "CN", "GB", "IN"]}
+          data={nepaliData}
           label={t("countryPicker.labels.single")}
           locale="np"
           name="countryPickerNepali"
@@ -314,18 +297,15 @@ const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
         />
         <CodeBlock
           exampleCode='
+import nepaliData from "./np.json";
+
 const [nepaliValue, setNepaliValue] = useState<string>("");
+const locale = "np";
 
 <CountryPicker
- data={[
-    { code: "NP", i18n: { np: "नेपाल" } },
-    { code: "US", i18n: { np: "संयुक्त राज्य अमेरिका" } },
-    { code: "CN", i18n: { np: "चीन" } },
-    { code: "GB", i18n: { np: "बेलायत" } },
-    { code: "IN", i18n: { np: "भारत" } },
-  ]}
+ data={nepaliData}
   label={t("countryPicker.locale")} 
-  locale="np"
+  locale={locale}
   onChange={(value: string) => setNepaliValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
   value={nepaliValue}
@@ -337,46 +317,26 @@ const [nepaliValue, setNepaliValue] = useState<string>("");
       <Section title={t("countryPicker.favorites")}>
         <CountryPicker
           autoSortOptions={false}
-          exclude={["FR", "CN", "BR"]}
           favorites={["NP", "US", "GB", "AF"]}
-          include={[
-            "US",
-            "GB",
-            "DE",
-            "FR",
-            "CA",
-            "AU",
-            "IN",
-            "JP",
-            "CN",
-            "BR",
-            "IT",
-            "ES",
-            "NL",
-            "SE",
-          ]}
-          label={t("countryPicker.labels.multiple")}
-          locale={i18n.language}
-          multiple={true}
+          label={t("countryPicker.labels.single")}
+          locale={locale}
           name="countryPickerFav"
           onChange={(value: string) => setFavoriteValue(value)}
-          placeholder={t("countryPicker.placeholders.multiple")}
+          placeholder={t("countryPicker.placeholders.single")}
           value={favoriteValue}
         />
         <CodeBlock
           exampleCode='
 const [favoriteValue, setFavoriteValue] = useState<string>("");
+const locale = i18n.language;
 
 <CountryPicker
   autoSortOptions={false}
-  exclude={["FR", "CN", "BR"]}
   favorites={["NP", "US", "GB"]} 
-  include={["US", "GB", "DE", "FR", "CA", "AU", "IN", "JP", "CN", "BR", "IT", "ES", "NL", "SE"]}
-  label={t("countryPicker.labels.multiple")}
-  locale={i18n.language}
-  multiple={true}
+  label={t("countryPicker.labels.single")}
+  locale={locale}
   onChange={(value) => setFavoriteValue(value)}
-  placeholder={t("countryPicker.placeholders.multiple")}
+  placeholder={t("countryPicker.placeholders.single")}
   value={favoriteValue}
 />'
         />
@@ -385,48 +345,28 @@ const [favoriteValue, setFavoriteValue] = useState<string>("");
       <Section title={t("countryPicker.includeFavorites")}>
         <CountryPicker
           autoSortOptions={false}
-          exclude={["FR", "CN", "BR"]}
           favorites={["NP", "US", "GB", "AF"]}
-          include={[
-            "US",
-            "GB",
-            "DE",
-            "FR",
-            "CA",
-            "AU",
-            "IN",
-            "JP",
-            "CN",
-            "BR",
-            "IT",
-            "ES",
-            "NL",
-            "SE",
-          ]}
           includeFavorites={false}
-          label={t("countryPicker.labels.multiple")}
-          locale={i18n.language}
-          multiple={true}
+          label={t("countryPicker.labels.single")}
+          locale={locale}
           name="countryPickerFav"
           onChange={(value: string) => setFavoriteValue(value)}
-          placeholder={t("countryPicker.placeholders.multiple")}
+          placeholder={t("countryPicker.placeholders.single")}
           value={favoriteValue}
         />
         <CodeBlock
           exampleCode='
 const [favoriteValue, setFavoriteValue] = useState<string>("");
+const locale = i18n.language;
 
 <CountryPicker
   autoSortOptions={false}
-  exclude={["FR", "CN", "BR"]}
   favorites={["NP", "US", "GB"]} 
-  include={["US", "GB", "DE", "FR", "CA", "AU", "IN", "JP", "CN", "BR", "IT", "ES", "NL", "SE"]}
   includeFavorites={false}
-  label={t("countryPicker.labels.multiple")}
-  locale={i18n.language}
-  multiple={true}
+  label={t("countryPicker.labels.single")}
+  locale={locale}
   onChange={(value) => setFavoriteValue(value)}
-  placeholder={t("countryPicker.placeholders.multiple")}
+  placeholder={t("countryPicker.placeholders.single")}
   value={favoriteValue}
 />'
         />
