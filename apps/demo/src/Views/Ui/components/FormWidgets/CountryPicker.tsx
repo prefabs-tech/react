@@ -4,6 +4,7 @@ import {
   Page,
   Button,
   TDataTable,
+  defaultGroups,
 } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -69,41 +70,48 @@ export const CountryPickerDemo = () => {
     },
     {
       id: 8,
+      prop: "groups",
+      type: "GroupConfig",
+      default: "undefined",
+      description: t("countryPicker.propertiesDescription.groups"),
+    },
+    {
+      id: 9,
       prop: "label",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.label"),
     },
     {
-      id: 9,
+      id: 10,
       prop: "multiple",
       type: "boolean",
       default: "false",
       description: t("countryPicker.propertiesDescription.multiple"),
     },
     {
-      id: 10,
+      id: 11,
       prop: "name",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.name"),
     },
     {
-      id: 11,
+      id: 12,
       prop: "onChange",
       type: "(value: string | string[]) => void",
       default: "-",
       description: t("countryPicker.propertiesDescription.onChange"),
     },
     {
-      id: 12,
+      id: 13,
       prop: "placeholder",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.placeholder"),
     },
     {
-      id: 13,
+      id: 14,
       prop: "value",
       type: "string | string[]",
       default: "-",
@@ -115,7 +123,6 @@ export const CountryPickerDemo = () => {
   const [multipleSelectValues, setMultipleSelectValues] = useState<string[]>(
     [],
   );
-  // const [customDataValue, setCustomDataValue] = useState<string>("");
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
   const [nepaliValue, setNepaliValue] = useState<string>("");
@@ -123,6 +130,9 @@ export const CountryPickerDemo = () => {
   const [favoriteValue, setFavoriteValue] = useState<string>("");
   const [includeFavoritesValue, setIncludeFavoritesValue] =
     useState<string>("");
+  const [groupedValue, setGroupedValue] = useState<string>("");
+  const [customGroupValue, setCustomGroupValue] = useState<string>("");
+  const [favGroupValue, setFavGroupValue] = useState<string>("");
 
   return (
     <Page
@@ -365,6 +375,115 @@ const selectedLocale = i18n.language;
         />
       </Section>
 
+      <Section title={t("countryPicker.groupingDefault")}>
+        <CountryPicker
+          autoSortOptions={false}
+          groups={{
+            EU: defaultGroups?.EU || [],
+            ASEAN: defaultGroups?.ASEAN || [],
+          }}
+          label={t("countryPicker.labels.single")}
+          placeholder={t("countryPicker.placeholders.single")}
+          locale={locale}
+          name="groupingDefault"
+          onChange={(value: string | number | (string | number)[]) =>
+            setGroupedValue(value as string)
+          }
+          value={groupedValue}
+        />
+        <CodeBlock
+          exampleCode='
+import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
+
+<CountryPicker
+  autoSortOptions={false}
+  groups={{
+    "European Union": defaultGroups.EU,
+    "ASEAN": defaultGroups.ASEAN
+  }}
+  label={t("countryPicker.labels.single")}
+  placeholder={t("countryPicker.placeholders.single")}
+  name="groupingDefault"
+  locale={locale}
+  onChange={(value) => setGroupedValue(value)}
+  value={groupedValue}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.groupingCustom")}>
+        <CountryPicker
+          autoSortOptions={false}
+          groups={{
+            "North America HQ": ["US", "CA"],
+            "Offshore Dev Center": ["IN", "VN", "PH"],
+            "European Hubs": ["GB", "DE", "FR"],
+          }}
+          label={t("countryPicker.labels.single")}
+          placeholder={t("countryPicker.placeholders.single")}
+          locale={locale}
+          name="groupingCustom"
+          onChange={(value: string | number | (string | number)[]) =>
+            setCustomGroupValue(value as string)
+          }
+          value={customGroupValue}
+        />
+        <CodeBlock
+          exampleCode='
+const myRegions = {
+  "North America HQ": ["US", "CA"],
+  "Offshore Dev Center": ["IN", "VN", "PH"],
+  "European Hubs": ["GB", "DE", "FR"]
+};
+
+<CountryPicker
+  autoSortOptions={false}
+  groups={myRegions}
+  label={t("countryPicker.labels.single")}
+  placeholder={t("countryPicker.placeholders.single")}
+  name="groupingCustom"
+  locale={locale}
+  onChange={(value) => setCustomGroupValue(value)}
+  value={customGroupValue}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.groupingFavorites")}>
+        <CountryPicker
+          autoSortOptions={false}
+          favorites={["FR", "US"]}
+          groups={{
+            Europe: ["FR", "DE", "IT", "ES"],
+            "North America": ["US", "CA"],
+          }}
+          label={t("countryPicker.labels.single")}
+          placeholder={t("countryPicker.placeholders.single")}
+          locale={locale}
+          onChange={(value: string | number | (string | number)[]) =>
+            setFavGroupValue(value as string)
+          }
+          name="groupingFavorites"
+          value={favGroupValue}
+        />
+        <CodeBlock
+          exampleCode='
+<CountryPicker
+  favorites={["FR", "US"]}
+  groups={{
+    "Europe": ["FR", "DE", "IT", "ES"],
+    "North America": ["US", "CA"]
+  }}
+  label={t("countryPicker.labels.single")}
+  placeholder={t("countryPicker.placeholders.single")}
+  locale={locale}
+  name="groupingFavorites"
+  onChange={(value) => setFavGroupValue(value)}
+  value={favGroupValue}
+/>'
+        />
+      </Section>
+
       <Section
         title={t("headers.propertiesValue", {
           value: "CountryPicker",
@@ -402,11 +521,19 @@ type TranslationCatalogue = Record<string, string>;
 
 type I18nConfig = Record<string, TranslationCatalogue>;
 
-Example: 
-          { 
-            en:{ "US": "USA" }, 
-            fr: { "US": "États-Unis" } 
-          }
+type GroupConfig = Record<string, string[]>;
+
+Example I18n: 
+  { 
+    en:{ "US": "USA" }, 
+    fr: { "US": "États-Unis" } 
+  }
+
+Example GroupConfig:
+  {
+    "European Union": ["AT", "BE", "FR", "DE"],
+    "North America": ["US", "CA", "MX"]
+  }
 `}
         />
       </Section>
