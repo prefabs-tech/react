@@ -108,6 +108,14 @@ export const CountryPickerDemo = () => {
   const [multipleSelectValues, setMultipleSelectValues] = useState<string[]>(
     [],
   );
+  const [customDataValue, setCustomDataValue] = useState<string>("");
+  const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
+  const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
+  const [nepaliValue, setNepaliValue] = useState<string>("");
+  const [fallbackValue, setFallbackValue] = useState<string>("");
+  const [favoriteValue, setFavoriteValue] = useState<string>("");
+  const [includeFavoritesValue, setIncludeFavoritesValue] =
+    useState<string>("");
 
   return (
     <Page
@@ -196,9 +204,9 @@ const locale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerCustom"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setCustomDataValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={customDataValue}
         />
         <CodeBlock
           exampleCode='
@@ -236,9 +244,9 @@ const locale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerInclude"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setIncludeSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={includeSelectValue}
         />
         <CodeBlock
           exampleCode='
@@ -263,9 +271,9 @@ const locale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerPriority"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setExcludeSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={excludeSelectValue}
         />
         <CodeBlock
           exampleCode='
@@ -288,9 +296,9 @@ const locale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale="np"
           name="countryPickerNepali"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setNepaliValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={nepaliValue}
         />
         <CodeBlock
           exampleCode='
@@ -318,9 +326,9 @@ const locale = "np";
           label={t("countryPicker.labels.single")}
           locale="gb"
           name="countryPickerFallback"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setFallbackValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={fallbackValue}
         />
         <CodeBlock
           exampleCode='
@@ -349,9 +357,9 @@ const fallback = "np";
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerFav"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setFavoriteValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={favoriteValue}
         />
         <CodeBlock
           exampleCode='
@@ -378,9 +386,9 @@ const locale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerFav"
-          onChange={(value: string) => setSingleSelectValue(value)}
+          onChange={(value: string) => setIncludeFavoritesValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
-          value={singleSelectValue}
+          value={includeFavoritesValue}
         />
         <CodeBlock
           exampleCode='
