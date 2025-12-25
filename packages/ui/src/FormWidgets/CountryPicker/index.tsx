@@ -31,6 +31,7 @@ export type CountryPickerProperties<T> = Omit<
   include?: string[];
   exclude?: string[];
   locale?: string;
+  fallbackLocale?: string;
   favorites?: string[];
   labels?: CountryPickerLabels;
   includeFavorites?: boolean;
@@ -41,6 +42,7 @@ export const CountryPicker = <T extends string | number>({
   include,
   exclude,
   locale = "en",
+  fallbackLocale = "en",
   favorites,
   labels,
   includeFavorites = true,
@@ -49,6 +51,7 @@ export const CountryPicker = <T extends string | number>({
   const options = useMemo(() => {
     let updatedCountriesList = [...countriesList] as Country[];
 
+    // 1. Merge Custom Data
     if (data && data.length > 0) {
       const countryMap = new Map<string, Country | CountryData>(
         [...updatedCountriesList].map((country) => [country.code, country]),
@@ -91,8 +94,10 @@ export const CountryPicker = <T extends string | number>({
       });
     }
 
+    // 3. Map to Options & Resolve Labels
     const mappedCountriesList = updatedCountriesList.map((item) => {
-      const label = item.i18n?.[locale] || item.i18n?.en;
+      const label =
+        item.i18n?.[locale] || item.i18n?.[fallbackLocale] || item.i18n?.en;
 
       return {
         value: item.code as unknown as T,
@@ -123,7 +128,16 @@ export const CountryPicker = <T extends string | number>({
     }
 
     return mappedCountriesList;
-  }, [data, include, locale, exclude, favorites, includeFavorites]);
+  }, [
+    data,
+    include,
+    locale,
+    fallbackLocale,
+    exclude,
+    favorites,
+    includeFavorites,
+    labels,
+  ]);
 
   const handleOnChange = (incomingValue: T | T[]) => {
     if (!properties.onChange) return;

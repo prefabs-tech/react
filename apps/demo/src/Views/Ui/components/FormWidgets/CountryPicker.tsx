@@ -311,6 +311,37 @@ const locale = "np";
         />
       </Section>
 
+      <Section title={t("countryPicker.fallbackLocale")}>
+        <CountryPicker
+          data={nepaliData}
+          fallbackLocale="np"
+          label={t("countryPicker.labels.single")}
+          locale="gb"
+          name="countryPickerFallback"
+          onChange={(value: string) => setSingleSelectValue(value)}
+          placeholder={t("countryPicker.placeholders.single")}
+          value={singleSelectValue}
+        />
+        <CodeBlock
+          exampleCode='
+import nepaliData from "./np.json";
+
+const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+const locale = "gb"; 
+const fallback = "np";
+
+<CountryPicker
+  data={nepaliData}
+  fallbackLocale={fallback}
+  label={t("countryPicker.fallbackLocale")}
+  locale={locale}
+  onChange={(value: string) => setSingleSelectValue(value)}
+  placeholder={t("countryPicker.placeholders.single")}
+  value={singleSelectValue}
+/>'
+        />
+      </Section>
+
       <Section title={t("countryPicker.favorites")}>
         <CountryPicker
           autoSortOptions={false}

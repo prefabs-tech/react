@@ -108,6 +108,7 @@
     "basic": "Basic",
     "customData": "Custom data",
     "exclude":"Exclude filter",
+    "fallbackLocale":"Fallback locale",
     "favorites":"Favorites",
     "locale":"New locale support",
     "include": "Include filter",
