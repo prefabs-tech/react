@@ -125,7 +125,9 @@
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
+      "fallbackLocale":"Backup language used if the primary translation is missing. (fr)",
       "favorites": "An array of country codes to prioritize and display at the top of the list. (fr)",
+      "i18n":"Injects custom country lists or translation overrides. (fr)", 
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible. (fr)",
       "includeFavorites":"If false, removes favorite items from the main list. (fr)",
       "label": "The label text displayed above the picker. (fr)",
