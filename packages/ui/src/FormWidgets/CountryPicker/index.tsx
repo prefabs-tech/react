@@ -1,22 +1,10 @@
 import React, { useMemo } from "react";
 
-import countriesList from "./countries.json";
 import { Select, ISelectProperties } from "../Select";
+import defaultEnCatalogue from "./en.json";
 
-export interface Country {
-  code: string;
-  i18n: {
-    en: string;
-    fr: string;
-    th: string;
-    [key: string]: string;
-  };
-}
-
-export type CountryData = {
-  code: string;
-  i18n?: Partial<Country["i18n"]>;
-};
+export type TranslationCatalogue = Record<string, string>;
+export type I18nConfig = Record<string, TranslationCatalogue>;
 
 export type CountryPickerLabels = {
   favorites?: string;
@@ -27,77 +15,68 @@ export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
 > & {
-  data?: CountryData[];
-  include?: string[];
   exclude?: string[];
-  locale?: string;
+  fallbackLocale?: string;
   favorites?: string[];
-  labels?: CountryPickerLabels;
+  i18n?: I18nConfig;
+  include?: string[];
   includeFavorites?: boolean;
+  labels?: CountryPickerLabels;
+  locale?: string;
 };
 
 export const CountryPicker = <T extends string | number>({
-  data,
-  include,
   exclude,
-  locale = "en",
+  fallbackLocale = "en",
   favorites,
-  labels,
+  i18n,
+  include,
   includeFavorites = true,
+  labels,
+  locale = "en",
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
-    let updatedCountriesList = [...countriesList] as Country[];
+    const translationSource: I18nConfig = i18n || { en: defaultEnCatalogue };
 
-    if (data && data.length > 0) {
-      const countryMap = new Map<string, Country | CountryData>(
-        [...updatedCountriesList].map((country) => [country.code, country]),
+    const allCountryCodes = new Set(
+      i18n ? [] : Object.keys(defaultEnCatalogue),
+    );
+
+    if (translationSource[fallbackLocale]) {
+      Object.keys(translationSource[fallbackLocale]).forEach((code) =>
+        allCountryCodes.add(code),
       );
-
-      data.forEach((item) => {
-        const existing = countryMap.get(item.code) as Country;
-
-        if (existing) {
-          countryMap.set(item.code, {
-            ...existing,
-            ...item,
-            i18n: {
-              ...existing.i18n,
-              ...item.i18n,
-            },
-          });
-        } else {
-          countryMap.set(item.code, item);
-        }
-      });
-
-      updatedCountriesList = Array.from(countryMap.values()) as Country[];
     }
+
+    if (translationSource[locale]) {
+      Object.keys(translationSource[locale]).forEach((code) =>
+        allCountryCodes.add(code),
+      );
+    }
+
+    let countryCodes = Array.from(allCountryCodes);
 
     const includeSet = include && include.length > 0 ? new Set(include) : null;
     const excludeSet = exclude && exclude.length > 0 ? new Set(exclude) : null;
 
     if (includeSet || excludeSet) {
-      updatedCountriesList = updatedCountriesList.filter((country) => {
-        if (excludeSet && excludeSet.has(country.code)) {
-          return false;
-        }
-
-        if (includeSet && !includeSet.has(country.code)) {
-          return false;
-        }
-
+      countryCodes = countryCodes.filter((code) => {
+        if (excludeSet && excludeSet.has(code)) return false;
+        if (includeSet && !includeSet.has(code)) return false;
         return true;
       });
     }
 
-    const mappedCountriesList = updatedCountriesList.map((item) => {
-      const label = item.i18n?.[locale] || item.i18n?.en;
+    const mappedCountriesList = countryCodes.map((code) => {
+      const label =
+        translationSource[locale]?.[code] ||
+        translationSource[fallbackLocale]?.[code];
 
       return {
-        value: item.code as unknown as T,
+        value: code as unknown as T,
         label,
-        ...item,
+        code,
       };
     });
 
@@ -123,20 +102,23 @@ export const CountryPicker = <T extends string | number>({
     }
 
     return mappedCountriesList;
-  }, [data, include, locale, exclude, favorites, includeFavorites]);
+  }, [
+    exclude,
+    fallbackLocale,
+    favorites,
+    i18n,
+    include,
+    includeFavorites,
+    labels,
+    locale,
+  ]);
 
-  const handleOnChange = (incomingValue: T | T[]) => {
+  const handleOnChange = (value: T | T[]) => {
     if (!properties.onChange) return;
-
-    let cleanedValue: T | T[];
-
-    if (Array.isArray(incomingValue)) {
-      cleanedValue = Array.from(new Set(incomingValue)) as T[];
-    } else {
-      cleanedValue = incomingValue;
-    }
-
-    (properties.onChange as (value: T | T[]) => void)(cleanedValue);
+    const result = Array.isArray(value)
+      ? (Array.from(new Set(value)) as T[])
+      : value;
+    (properties.onChange as (value: T | T[]) => void)(result);
   };
 
   return (
