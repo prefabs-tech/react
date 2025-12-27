@@ -15,40 +15,42 @@ export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
 > & {
-  locale?: string;
+  exclude?: string[];
   fallbackLocale?: string;
+  favorites?: string[];
   i18n?: I18nConfig;
   include?: string[];
-  exclude?: string[];
-  favorites?: string[];
-  labels?: CountryPickerLabels;
   includeFavorites?: boolean;
+  labels?: CountryPickerLabels;
+  locale?: string;
 };
 
 export const CountryPicker = <T extends string | number>({
-  locale = "en",
+  exclude,
   fallbackLocale = "en",
+  favorites,
   i18n,
   include,
-  exclude,
-  favorites,
-  labels,
   includeFavorites = true,
+  labels,
+  locale = "en",
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
-    const effectiveI18n: I18nConfig = i18n || { en: defaultEnCatalogue };
+    const translationSource: I18nConfig = i18n || { en: defaultEnCatalogue };
 
-    const allCountryCodes = new Set(Object.keys(defaultEnCatalogue));
+    const allCountryCodes = new Set(
+      i18n ? [] : Object.keys(defaultEnCatalogue),
+    );
 
-    if (effectiveI18n[fallbackLocale]) {
-      Object.keys(effectiveI18n[fallbackLocale]).forEach((code) =>
+    if (translationSource[fallbackLocale]) {
+      Object.keys(translationSource[fallbackLocale]).forEach((code) =>
         allCountryCodes.add(code),
       );
     }
 
-    if (effectiveI18n[locale]) {
-      Object.keys(effectiveI18n[locale]).forEach((code) =>
+    if (translationSource[locale]) {
+      Object.keys(translationSource[locale]).forEach((code) =>
         allCountryCodes.add(code),
       );
     }
@@ -68,9 +70,8 @@ export const CountryPicker = <T extends string | number>({
 
     const mappedCountriesList = countryCodes.map((code) => {
       const label =
-        effectiveI18n[locale]?.[code] ||
-        effectiveI18n[fallbackLocale]?.[code] ||
-        (defaultEnCatalogue as Record<string, string>)[code];
+        translationSource[locale]?.[code] ||
+        translationSource[fallbackLocale]?.[code];
 
       return {
         value: code as unknown as T,
@@ -102,22 +103,22 @@ export const CountryPicker = <T extends string | number>({
 
     return mappedCountriesList;
   }, [
-    i18n,
-    locale,
-    fallbackLocale,
-    include,
     exclude,
+    fallbackLocale,
     favorites,
+    i18n,
+    include,
     includeFavorites,
     labels,
+    locale,
   ]);
 
-  const handleOnChange = (incomingValue: T | T[]) => {
+  const handleOnChange = (value: T | T[]) => {
     if (!properties.onChange) return;
-    const cleanedValue = Array.isArray(incomingValue)
-      ? (Array.from(new Set(incomingValue)) as T[])
-      : incomingValue;
-    (properties.onChange as (value: T | T[]) => void)(cleanedValue);
+    const result = Array.isArray(value)
+      ? (Array.from(new Set(value)) as T[])
+      : value;
+    (properties.onChange as (value: T | T[]) => void)(result);
   };
 
   return (
