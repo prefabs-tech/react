@@ -113,8 +113,228 @@ export const TableDemo = () => {
     return false;
   };
 
+  const propertiesData = [
+    {
+      default: "-",
+      description: t("table.propertiesDescription.className"),
+      prop: "className",
+      type: "string",
+    },
+    {
+      default: "'Columns'",
+      description: t("table.propertiesDescription.columnActionButtonLabel"),
+      prop: "columnActionBtnLabel",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.columnsData"),
+      prop: "columns",
+      type: "Array<ColumnDef>",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.customFormatters"),
+      prop: "customFormatters",
+      type: "Record<string, (value) => string>",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.data"),
+      prop: "data",
+      type: "Array<TData>",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.dataActionMenu"),
+      prop: "dataActionMenu",
+      type: "((data: TData) => DataActionsMenuProperties<TData>) | DataActionsMenuProperties<TData>",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.emptyTableMessage"),
+      prop: "emptyTableMessage",
+      type: "string",
+    },
+    {
+      default: "false",
+      description: t("table.propertiesDescription.enableRowSelection"),
+      prop: "enableRowSelection",
+      type: "boolean",
+    },
+    {
+      default: "false",
+      description: t("table.propertiesDescription.enableSortingRemoval"),
+      prop: "enableSortingRemoval",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.highlightHeader"),
+      prop: "highlightHeader",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.id"),
+      prop: "id",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.initialFilters"),
+      prop: "initialFilters",
+      type: "ColumnFiltersState",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.initialSorting"),
+      prop: "initialSorting",
+      type: "SortingState",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.inputDebounceTime"),
+      prop: "inputDebounceTime",
+      type: "number",
+    },
+    {
+      default: "false",
+      description: t("table.propertiesDescription.isLoading"),
+      prop: "isLoading",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.locale"),
+      prop: "locale",
+      type: "string",
+    },
+    {
+      default: "true",
+      description: t("table.propertiesDescription.paginated"),
+      prop: "paginated",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.paginationOptions"),
+      prop: "paginationOptions",
+      type: "object",
+    },
+    {
+      default: "true",
+      description: t("table.propertiesDescription.persistState"),
+      prop: "persistState",
+      type: "boolean",
+    },
+    {
+      default: "localStorage",
+      description: t("table.propertiesDescription.persistStateStorage"),
+      prop: "persistStateStorage",
+      type: "localStorage | sessionStorage",
+    },
+    {
+      default: "Reset all",
+      description: t("table.propertiesDescription.resetButtonLabel"),
+      prop: "resetStateActionBtnLabel",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.rowClassName"),
+      prop: "rowClassName",
+      type: "string | ((options: { row: Row<TData> }) => string)",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.rowPerPage"),
+      prop: "rowPerPage",
+      type: "number",
+    },
+    {
+      default: "[10, 20, 30]",
+      description: t("table.propertiesDescription.rowPerPageOptions"),
+      prop: "rowPerPageOptions",
+      type: "number[]",
+    },
+    {
+      default: "false",
+      description: t("table.propertiesDescription.showColumnAction"),
+      prop: "showColumnsAction",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.showResetButton"),
+      prop: "showResetStateAction",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.titleInfo"),
+      prop: "title",
+      type: "{ text: string; align?: 'left' | 'center' | 'right' }",
+    },
+    {
+      default: "0",
+      description: t("table.propertiesDescription.totalRecords"),
+      prop: "totalRecords",
+      type: "number",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.visibleColumns"),
+      prop: "visibleColumns",
+      type: "string[]",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.fetchData"),
+      prop: "fetchData",
+      type: "(data: TRequestJSON) => void",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.handleResetState"),
+      prop: "handleResetState",
+      type: "function",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.onRowSelectChange"),
+      prop: "onRowSelectChange",
+      type: "(table: Table<TData>) => void",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.renderCustomPagination"),
+      prop: "renderCustomPagination",
+      type: "(table: Table<TData>) => React.ReactNode",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.renderSortIcons"),
+      prop: "renderSortIcons",
+      type: "(direction: false | SortDirection) => React.ReactNode",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.renderTableFooterContent"),
+      prop: "renderTableFooterContent",
+      type: "(table: Table<TData>) => React.ReactNode",
+    },
+    {
+      default: "-",
+      description: t("table.propertiesDescription.renderToolbarItems"),
+      prop: "renderToolbarItems",
+      type: "(table: Table<TData>) => React.ReactNode",
+    },
+  ];
+
   return (
     <Page
+      subtitle={t("table.subtitle")}
       title={t("table.title")}
       className="demo-data-tables-page"
       toolbar={
@@ -126,6 +346,11 @@ export const TableDemo = () => {
         />
       }
     >
+      <Section title={t("headers.usage")}>
+        <p>{t("common.usage", { component: "Table" })}</p>
+        <CodeBlock exampleCode='import { TDataTable } from "@prefabs.tech/react-ui"' />
+      </Section>
+
       <Section title={t("table.usage.basic")}>
         <TDataTable
           columns={columns}
@@ -1074,6 +1299,79 @@ export const TableDemo = () => {
           id="div-content-table"
           initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
+      </Section>
+      <Section
+        title={t("headers.propertiesValue", {
+          value: "TDataTableProperties",
+        })}
+      >
+        <TDataTable
+          columns={[
+            {
+              accessorKey: "prop",
+              header: "Properties",
+            },
+            {
+              accessorKey: "type",
+              header: "Type",
+            },
+            {
+              accessorKey: "default",
+              header: "Default",
+            },
+            {
+              accessorKey: "description",
+              header: "Description",
+            },
+          ]}
+          data={propertiesData}
+          paginated={false}
+          persistState={false}
+        />
+      </Section>
+
+      <Section title={t("headers.types")}>
+        <CodeBlock
+          exampleCode='
+interface ColumnFilter {
+  id: string;
+  value: unknown;
+}
+
+interface ColumnSort {
+  desc: boolean;
+  id: string;
+}
+
+interface DataActionsMenuItem
+  extends Omit<MenuItem, "disabled" | "display" | "onClick"> {
+  requireConfirmationModal?: boolean;
+  onClick?: (arguments_) => void | Promise<void>;
+  confirmationOptions?: IModalProperties | ((data) => IModalProperties);
+  disabled?: boolean | ((data) => boolean);
+  display?: boolean | ((data) => boolean);
+}
+
+interface DataActionsMenuProperties<TData> {
+  actions?: DataActionsMenuItem[];
+  autoModeCount?: number;
+  data?: TData;
+  mode?: "auto" | "buttons" | "dropdown";
+  displayActions?: boolean | ((data: TData) => boolean);
+}
+
+type ColumnFiltersState = ColumnFilter[];
+type SortDirection = "asc" | "desc";
+type SortingState = ColumnSort[];
+
+type TRequestJSON = {
+  filter: TFilterRequest;
+  sort: TSortRequest;
+  offset: TOffset;
+  limit: TLimit;
+};
+'
+        />
       </Section>
     </Page>
   );
