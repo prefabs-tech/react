@@ -284,12 +284,12 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
 const selectedLocale = i18n.language;
 
 const customEn = {
-  FR: "France (edited)",
+  FR: "France",
   XX: "Mars Republic",
 };
 
 const customFr = {
-  FR: "La France (edited)",
+  FR: "La France",
   XX: "République de Mars",
 };
 
