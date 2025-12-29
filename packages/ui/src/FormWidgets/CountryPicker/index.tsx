@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 
 import { Select, ISelectProperties } from "../Select";
-import defaultEnCatalogue from "./en.json";
+import defaultEnglishCatalogue from "./en.json";
 
 export type TranslationCatalogue = Record<string, string>;
 export type I18nConfig = Record<string, TranslationCatalogue>;
@@ -25,6 +25,59 @@ export type CountryPickerProperties<T> = Omit<
   locale?: string;
 };
 
+const getAllCountryCodes = (
+  i18n: I18nConfig | undefined,
+  locale: string,
+  fallbackLocale: string,
+): string[] => {
+  const allCountryCodes = new Set(Object.keys(defaultEnglishCatalogue));
+
+  if (i18n) {
+    if (locale && i18n[locale]) {
+      Object.keys(i18n[locale]).forEach((code) => allCountryCodes.add(code));
+    }
+
+    if (fallbackLocale && fallbackLocale !== locale && i18n[fallbackLocale]) {
+      Object.keys(i18n[fallbackLocale]).forEach((code) =>
+        allCountryCodes.add(code),
+      );
+    }
+  }
+
+  return Array.from(allCountryCodes);
+};
+
+const getFilteredCountryCodes = (
+  codes: string[],
+  include?: string[],
+  exclude?: string[],
+): string[] => {
+  const includeSet = include && include.length > 0 ? new Set(include) : null;
+  const excludeSet = exclude && exclude.length > 0 ? new Set(exclude) : null;
+
+  if (!includeSet && !excludeSet) return codes;
+
+  return codes.filter((code) => {
+    if (excludeSet && excludeSet.has(code)) return false;
+    if (includeSet && !includeSet.has(code)) return false;
+
+    return true;
+  });
+};
+
+const countryLabel = (
+  code: string,
+  i18n: I18nConfig | undefined,
+  locale: string,
+  fallbackLocale: string,
+): string => {
+  return (
+    i18n?.[locale]?.[code] ||
+    i18n?.[fallbackLocale]?.[code] ||
+    defaultEnglishCatalogue[code as keyof typeof defaultEnglishCatalogue]
+  );
+};
+
 export const CountryPicker = <T extends string | number>({
   exclude,
   fallbackLocale = "en",
@@ -37,52 +90,21 @@ export const CountryPicker = <T extends string | number>({
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
-    const translationSource: I18nConfig = i18n || { en: defaultEnCatalogue };
-
-    const allCountryCodes = new Set(
-      i18n ? [] : Object.keys(defaultEnCatalogue),
+    const countryCodes = getAllCountryCodes(i18n, locale, fallbackLocale);
+    const filteredCountryCodes = getFilteredCountryCodes(
+      countryCodes,
+      include,
+      exclude,
     );
-
-    if (translationSource[fallbackLocale]) {
-      Object.keys(translationSource[fallbackLocale]).forEach((code) =>
-        allCountryCodes.add(code),
-      );
-    }
-
-    if (translationSource[locale]) {
-      Object.keys(translationSource[locale]).forEach((code) =>
-        allCountryCodes.add(code),
-      );
-    }
-
-    let countryCodes = Array.from(allCountryCodes);
-
-    const includeSet = include && include.length > 0 ? new Set(include) : null;
-    const excludeSet = exclude && exclude.length > 0 ? new Set(exclude) : null;
-
-    if (includeSet || excludeSet) {
-      countryCodes = countryCodes.filter((code) => {
-        if (excludeSet && excludeSet.has(code)) return false;
-        if (includeSet && !includeSet.has(code)) return false;
-        return true;
-      });
-    }
-
-    const mappedCountriesList = countryCodes.map((code) => {
-      const label =
-        translationSource[locale]?.[code] ||
-        translationSource[fallbackLocale]?.[code];
-
-      return {
-        value: code as unknown as T,
-        label,
-        code,
-      };
-    });
+    const countryOptions = filteredCountryCodes.map((code) => ({
+      value: code as unknown as T,
+      label: countryLabel(code, i18n, locale, fallbackLocale),
+      code,
+    }));
 
     if (favorites && favorites.length > 0) {
       const favoriteSet = new Set(favorites);
-      const favoriteList = mappedCountriesList.filter((item) =>
+      const favoriteList = countryOptions.filter((item) =>
         favoriteSet.has(item.code),
       );
 
@@ -91,8 +113,8 @@ export const CountryPicker = <T extends string | number>({
         const allCountriesLabel = labels?.allCountries || "All countries";
 
         const allCountriesList = includeFavorites
-          ? mappedCountriesList
-          : mappedCountriesList.filter((item) => !favoriteSet.has(item.code));
+          ? countryOptions
+          : countryOptions.filter((item) => !favoriteSet.has(item.code));
 
         return [
           { label: favoritesLabel, options: favoriteList },
@@ -101,7 +123,7 @@ export const CountryPicker = <T extends string | number>({
       }
     }
 
-    return mappedCountriesList;
+    return countryOptions;
   }, [
     exclude,
     fallbackLocale,
