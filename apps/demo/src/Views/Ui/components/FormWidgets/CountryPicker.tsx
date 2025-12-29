@@ -263,11 +263,11 @@ const fallbackLocale = "fr";
         <CountryPicker
           i18n={{
             en: {
-              FR: "France (edited)",
+              FR: "France",
               XX: "Mars Republic",
             },
             fr: {
-              FR: "La France (edited)",
+              FR: "La France",
               XX: "République de Mars",
             },
           }}
