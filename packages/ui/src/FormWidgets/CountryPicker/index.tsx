@@ -11,6 +11,12 @@ export type CountryPickerLabels = {
   allCountries?: string;
 };
 
+type CountryOption<T> = {
+  value: T;
+  label: string;
+  code: string;
+};
+
 export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
@@ -78,6 +84,32 @@ const countryLabel = (
   );
 };
 
+const getFavoritesList = <T,>(
+  options: CountryOption<T>[],
+  favorites?: string[],
+  labels?: CountryPickerLabels,
+  includeFavorites: boolean = true,
+) => {
+  if (!favorites || favorites.length === 0) return options;
+
+  const favoriteSet = new Set(favorites);
+  const favoriteList = options.filter((item) => favoriteSet.has(item.code));
+
+  if (favoriteList.length === 0) return options;
+
+  const favoritesLabel = labels?.favorites || "Favorites";
+  const allCountriesLabel = labels?.allCountries || "All countries";
+
+  const allCountriesList = includeFavorites
+    ? options
+    : options.filter((item) => !favoriteSet.has(item.code));
+
+  return [
+    { label: favoritesLabel, options: favoriteList },
+    { label: allCountriesLabel, options: allCountriesList },
+  ];
+};
+
 export const CountryPicker = <T extends string | number>({
   exclude,
   fallbackLocale = "en",
@@ -102,28 +134,12 @@ export const CountryPicker = <T extends string | number>({
       code,
     }));
 
-    if (favorites && favorites.length > 0) {
-      const favoriteSet = new Set(favorites);
-      const favoriteList = countryOptions.filter((item) =>
-        favoriteSet.has(item.code),
-      );
-
-      if (favoriteList.length > 0) {
-        const favoritesLabel = labels?.favorites || "Favorites";
-        const allCountriesLabel = labels?.allCountries || "All countries";
-
-        const allCountriesList = includeFavorites
-          ? countryOptions
-          : countryOptions.filter((item) => !favoriteSet.has(item.code));
-
-        return [
-          { label: favoritesLabel, options: favoriteList },
-          { label: allCountriesLabel, options: allCountriesList },
-        ];
-      }
-    }
-
-    return countryOptions;
+    return getFavoritesList(
+      countryOptions,
+      favorites,
+      labels,
+      includeFavorites,
+    );
   }, [
     exclude,
     fallbackLocale,
