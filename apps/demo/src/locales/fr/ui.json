@@ -232,7 +232,6 @@
     "title": "Files presentation (fr)"
   },
   "table": {
-    "title": "Table (fr)",
     "confirmation": {
       "header": "Are you sure! (fr)",
       "message": {
@@ -248,6 +247,46 @@
         "note": "Note: (fr)"
       }
     },
+    "propertiesDescription": {
+      "className": "Additional CSS classes for styling (fr)",
+      "columnActionButtonLabel": "Label for the action button in toolbar section for sorting and visibility toggle (fr)",
+      "columnsData": "Column definitions for the table (fr)",
+      "customFormatters": "Collection of custom formatting functions for cell values (fr)",
+      "data": "Array of table row data (fr)",
+      "dataActionMenu": "List of actions properties available for each row (fr)",
+      "emptyTableMessage": "Message shown when the table has no data (fr)",
+      "enableRowSelection": "Enables row selection using checkboxes (fr)",
+      "enableSortingRemoval": "Allows a column’s sort state to toggle between ascending, descending, and none (fr)",
+      "fetchData": "Function to fetch server-side data with pagination, sorting, and filtering (fr)",
+      "handleResetState": "Function called when reset button is clicked (fr)",
+      "highlightHeader": "Highlights the currently active column header (fr)",
+      "id": "Unique identifier required for persisting table state (fr)",
+      "initialFilters": "Initial filter configuration for columns (fr)",
+      "initialSorting": "Initial sorting configuration (fr)",
+      "inputDebounceTime": "Debounce time for column filter inputs (fr)",
+      "isLoading": "Displays a loading overlay on the table (fr)",
+      "locale": "Locale used for formatting values (fr)",
+      "onRowSelectChange": "Callback function when row selection changes (fr)",
+      "paginated": "Enables pagination for the table (fr)",
+      "paginationOptions": "Additional pagination component properties (fr)",
+      "persistState": "Persists table state across page reloads (fr)",
+      "persistStateStorage": "Storage type used for persisting table state (fr)",
+      "renderCustomPagination": "Function to render a custom pagination component (fr)",
+      "renderSortIcons": "Function to render custom sort icons in column headers (fr)",
+      "renderTableFooterContent": "Function to render custom content in the table footer (fr)",
+      "renderToolbarItems": "Function to render custom items in the toolbar (fr)",
+      "resetButtonLabel": "Label for the reset button (fr)",
+      "rowClassName": "Addtional CSS class for row styling (fr)",
+      "rowPerPage": "Default number of rows per page (fr)",
+      "rowPerPageOptions": "Available options for rows per page (fr)",
+      "showColumnAction": "Shows a button for column sorting and visibility controls in toolbar section (fr)",
+      "showResetButton": "Shows reset button in the toolbar section (fr)",
+      "titleInfo": "Configuration for table title’s text and alignment (fr)",
+      "totalRecords": "Total number of records for table (fr)",
+      "visibleColumns": "Controls column’s visibility and order initially (fr)"
+    },
+    "subtitle": "The table component is a flexible and powerful solution for managing and displaying tabular data.",
+    "title": "Table (fr)",
     "usage": {
       "basic": "Basic table (fr)",
       "builtInActionColumn": "Table demonstrating built in actions column use case (fr)",
