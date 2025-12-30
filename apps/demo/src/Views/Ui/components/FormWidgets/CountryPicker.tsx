@@ -258,55 +258,6 @@ const fallbackLocale = "fr";
 />'
         />
       </Section>
-      {/* 
-      <Section title={t("countryPicker.customData")}>
-        <CountryPicker
-          i18n={{
-            en: {
-              FR: "France",
-              XX: "Mars Republic",
-            },
-            fr: {
-              FR: "La France",
-              XX: "République de Mars",
-            },
-          }}
-          label={t("countryPicker.labels.single")}
-          locale={locale}
-          name="countryPickerCustom"
-          onChange={(value: string) => setCustomDataValue(value)}
-          placeholder={t("countryPicker.placeholders.single")}
-          value={customDataValue}
-        />
-        <CodeBlock
-          exampleCode='
-const [singleSelectValue, setSingleSelectValue] = useState<string>("");
-const selectedLocale = i18n.language;
-
-const customEn = {
-  FR: "France",
-  XX: "Mars Republic",
-};
-
-const customFr = {
-  FR: "La France",
-  XX: "République de Mars",
-};
-
-const locales = {
-  en: customEn,
-  fr: customFr,
-};
-
-<CountryPicker
-  i18n={locales}
-  label={t("countryPicker.labels.custom")}
-  locale={selectedLocale}
-  onChange={(value) => setSingleSelectValue(value)}
-  value={singleSelectValue}
-/>'
-        />
-      </Section> */}
 
       <Section title={t("countryPicker.include")}>
         <CountryPicker
