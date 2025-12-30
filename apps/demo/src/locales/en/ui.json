@@ -107,11 +107,12 @@
   "countryPicker": {
     "basic": "Basic",
     "customData": "Custom data",
-    "exclude":"Exclude filter",
-    "favorites":"Favorites",
-    "locale":"New locale support",
+    "exclude": "Exclude filter",
+    "fallbackLocale": "Fallback locale",
+    "favorites": "Favorites",
+    "locale": "New locale support",
     "include": "Include filter",
-    "includeFavorites":"Include favorites",
+    "includeFavorites": "Include favorites",
     "labels": {
       "multiple": "Select countries",
       "single": "Select country"
@@ -124,9 +125,11 @@
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones.",
       "exclude": "An array of country codes to remove from the list.",
+      "fallbackLocale": "Locale used when active locale translation is missing.",
       "favorites": "An array of country codes to prioritize and display at the top of the list.",
+      "i18n":"Additional translation catalogues to be supported.", 
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible.",
-      "includeFavorites":"If false, removes favorite items from the main list.",
+      "includeFavorites": "If false, removes favorite items from the main list.",
       "label": "The label text displayed above the picker.",
       "locale": "The locale code (e.g., 'en', 'fr'). Accepts custom codes (like 'np') if provided in data.",
       "multiple": "If true, allows selecting multiple countries.",
@@ -136,7 +139,7 @@
       "value": "The currently selected country code (or array of codes if multiple)."
     },
     "title": "CountryPicker",
-    "typeDefinitions":"Type definitions"
+    "typeDefinitions": "Types"
   },
   "data": {
     "title": "Data",
