@@ -115,7 +115,7 @@ export const CountryPickerDemo = () => {
   const [multipleSelectValues, setMultipleSelectValues] = useState<string[]>(
     [],
   );
-  const [customDataValue, setCustomDataValue] = useState<string>("");
+  // const [customDataValue, setCustomDataValue] = useState<string>("");
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
   const [nepaliValue, setNepaliValue] = useState<string>("");
@@ -258,7 +258,7 @@ const fallbackLocale = "fr";
 />'
         />
       </Section>
-
+      {/* 
       <Section title={t("countryPicker.customData")}>
         <CountryPicker
           i18n={{
@@ -306,7 +306,7 @@ const locales = {
   value={singleSelectValue}
 />'
         />
-      </Section>
+      </Section> */}
 
       <Section title={t("countryPicker.include")}>
         <CountryPicker
