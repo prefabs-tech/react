@@ -84,7 +84,7 @@ const countryLabel = (
   );
 };
 
-const getFavoritesList = <T,>(
+const getOptionsWithFavorites = <T,>(
   options: CountryOption<T>[],
   favorites?: string[],
   labels?: CountryPickerLabels,
@@ -134,7 +134,7 @@ export const CountryPicker = <T extends string | number>({
       code,
     }));
 
-    return getFavoritesList(
+    return getOptionsWithFavorites(
       countryOptions,
       favorites,
       labels,
