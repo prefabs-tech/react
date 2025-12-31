@@ -71,7 +71,7 @@ export const CountryPickerDemo = () => {
     {
       id: 8,
       prop: "groups",
-      type: "GroupConfig",
+      type: "GroupData",
       default: "-",
       description: t("countryPicker.propertiesDescription.groups"),
     },

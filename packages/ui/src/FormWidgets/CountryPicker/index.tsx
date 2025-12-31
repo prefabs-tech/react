@@ -11,7 +11,6 @@ export type GroupData = Record<string, string[]>;
 export type CountryPickerLabels = {
   favorites?: string;
   allCountries?: string;
-  others?: string;
 };
 
 type CountryOption<T> = {
