@@ -5,8 +5,8 @@ import defaultEnglishCatalogue from "./en.json";
 import defaultGroups from "./groups.json";
 
 export type TranslationCatalogue = Record<string, string>;
-export type I18nConfig = Record<string, TranslationCatalogue>;
-export type GroupConfig = Record<string, string[]>;
+export type I18nData = Record<string, TranslationCatalogue>;
+export type GroupData = Record<string, string[]>;
 
 export type CountryPickerLabels = {
   favorites?: string;
@@ -27,8 +27,8 @@ export type CountryPickerProperties<T> = Omit<
   exclude?: string[];
   fallbackLocale?: string;
   favorites?: string[];
-  groups?: GroupConfig;
-  i18n?: I18nConfig;
+  groups?: GroupData;
+  i18n?: I18nData;
   include?: string[];
   includeFavorites?: boolean;
   labels?: CountryPickerLabels;
@@ -38,28 +38,25 @@ export type CountryPickerProperties<T> = Omit<
 export { defaultGroups };
 
 const getAllCountryCodes = (
-  i18n: I18nConfig | undefined,
+  i18n: I18nData | undefined,
   locale: string,
   fallbackLocale: string,
 ): string[] => {
-  const customCodes = new Set<string>();
-  let hasCustomConfig = false;
+  if (!i18n) return Object.keys(defaultEnglishCatalogue);
 
-  if (i18n) {
-    if (locale && i18n[locale]) {
-      Object.keys(i18n[locale]).forEach((code) => customCodes.add(code));
-      hasCustomConfig = true;
-    }
-    if (fallbackLocale && i18n[fallbackLocale]) {
-      Object.keys(i18n[fallbackLocale]).forEach((code) =>
-        customCodes.add(code),
-      );
-      hasCustomConfig = true;
-    }
+  const localeData = i18n[locale];
+  const fallbackData = i18n[fallbackLocale];
+
+  if (!localeData && !fallbackData) {
+    return Object.keys(defaultEnglishCatalogue);
   }
 
-  if (hasCustomConfig) return Array.from(customCodes);
-  return Object.keys(defaultEnglishCatalogue);
+  return Array.from(
+    new Set([
+      ...(localeData ? Object.keys(localeData) : []),
+      ...(fallbackData ? Object.keys(fallbackData) : []),
+    ]),
+  );
 };
 
 const getFilteredCountryCodes = (
@@ -81,7 +78,7 @@ const getFilteredCountryCodes = (
 
 const countryLabel = (
   code: string,
-  i18n: I18nConfig | undefined,
+  i18n: I18nData | undefined,
   locale: string,
   fallbackLocale: string,
 ): string => {
@@ -121,7 +118,7 @@ const getOptionsWithFavorites = <T,>(
 
 const getOptionsWithGroups = <T,>(
   baseOptions: CountryOption<T>[],
-  groups: GroupConfig,
+  groups: GroupData,
   favorites: string[] | undefined,
   labels: CountryPickerLabels | undefined,
 ) => {
@@ -130,8 +127,6 @@ const getOptionsWithGroups = <T,>(
   const optionsMap = new Map(
     baseOptions.map((option) => [option.code, option]),
   );
-
-  const groupedCodes = new Set(Object.values(groups).flat());
 
   if (favorites && favorites.length > 0) {
     const favoriteList = favorites
@@ -158,17 +153,6 @@ const getOptionsWithGroups = <T,>(
       });
     }
   });
-
-  const othersOptions = baseOptions.filter(
-    (option) => !groupedCodes.has(option.code),
-  );
-
-  if (othersOptions.length > 0) {
-    finalGroupedOptions.push({
-      label: labels?.others || labels?.allCountries || "Others",
-      options: othersOptions,
-    });
-  }
 
   return finalGroupedOptions;
 };

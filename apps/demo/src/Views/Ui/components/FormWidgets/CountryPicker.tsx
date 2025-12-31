@@ -72,7 +72,7 @@ export const CountryPickerDemo = () => {
       id: 8,
       prop: "groups",
       type: "GroupConfig",
-      default: "undefined",
+      default: "-",
       description: t("countryPicker.propertiesDescription.groups"),
     },
     {
@@ -132,7 +132,7 @@ export const CountryPickerDemo = () => {
     useState<string>("");
   const [groupedValue, setGroupedValue] = useState<string>("");
   const [customGroupValue, setCustomGroupValue] = useState<string>("");
-  const [favGroupValue, setFavGroupValue] = useState<string>("");
+  const [favoriteGroupValue, setFavoriteGroupValue] = useState<string>("");
 
   return (
     <Page
@@ -461,10 +461,10 @@ const myRegions = {
           placeholder={t("countryPicker.placeholders.single")}
           locale={locale}
           onChange={(value: string | number | (string | number)[]) =>
-            setFavGroupValue(value as string)
+            setFavoriteGroupValue(value as string)
           }
           name="groupingFavorites"
-          value={favGroupValue}
+          value={favoriteGroupValue}
         />
         <CodeBlock
           exampleCode='
@@ -479,8 +479,8 @@ const myRegions = {
   placeholder={t("countryPicker.placeholders.single")}
   locale={locale}
   name="groupingFavorites"
-  onChange={(value) => setFavGroupValue(value)}
-  value={favGroupValue}
+  onChange={(value) => setFavoriteGroupValue(value)}
+  value={favoriteGroupValue}
 />'
         />
       </Section>
@@ -520,9 +520,9 @@ const myRegions = {
           exampleCode={`
 type TranslationCatalogue = Record<string, string>;
 
-type I18nConfig = Record<string, TranslationCatalogue>;
+type I18nData = Record<string, TranslationCatalogue>;
 
-type GroupConfig = Record<string, string[]>;
+type GroupData = Record<string, string[]>;
 
 Example I18n: 
   { 
@@ -530,7 +530,7 @@ Example I18n:
     fr: { "US": "États-Unis" } 
   }
 
-Example GroupConfig:
+Example Group:
   {
     "European Union": ["AT", "BE", "FR", "DE"],
     "North America": ["US", "CA", "MX"]
