@@ -107,12 +107,15 @@
   "countryPicker": {
     "basic": "Basic (fr)",
     "customData": "Custom data (fr)",
-    "exclude":"Exclude filter (fr)",
-    "fallbackLocale":"Fallback locale (fr)",
-    "favorites":"Favorites (fr)",
-    "locale":"New locale support (fr)",
+    "exclude": "Exclude filter (fr)",
+    "fallbackLocale": "Fallback locale (fr)",
+    "favorites": "Favorites (fr)",
+    "groupingCustom": "Custom grouping (fr)",
+    "groupingDefault": "Default grouping (fr)",
+    "groupingFavorites": "Grouping with favorites (fr)",
+    "locale": "New locale support (fr)",
     "include": "Include filter (fr)",
-    "includeFavorites":"Include favorites (fr)",
+    "includeFavorites": "Include favorites (fr)",
     "labels": {
       "multiple": "Select countries (fr)",
       "single": "Select country (fr)"
@@ -125,11 +128,12 @@
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
-      "fallbackLocale":"Locale used when active locale translation is missing. (fr)",
+      "fallbackLocale": "Locale used when active locale translation is missing. (fr)",
       "favorites": "An array of country codes to prioritize and display at the top of the list. (fr)",
-      "i18n":"Additional translation catalogues to be supported (fr)", 
+      "groups": "Configuration object to organize countries into specific categories (e.g., EU, ASEAN). (fr)",
+      "i18n": "Additional translation catalogues to be supported (fr)",
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible. (fr)",
-      "includeFavorites":"If false, removes favorite items from the main list. (fr)",
+      "includeFavorites": "If false, removes favorite items from the main list. (fr)",
       "label": "The label text displayed above the picker. (fr)",
       "locale": "The locale code (e.g., 'en', 'fr'). Accepts custom codes (like 'np') if provided in data. (fr)",
       "multiple": "If true, allows selecting multiple countries. (fr)",
@@ -139,8 +143,7 @@
       "value": "The currently selected country code (or array of codes if multiple). (fr)"
     },
     "title": "CountryPicker (fr)",
-    "typeDefinitions":"Types (fr)"
-
+    "typeDefinitions": "Types (fr)"
   },
   "data": {
     "title": "Data (fr)",
