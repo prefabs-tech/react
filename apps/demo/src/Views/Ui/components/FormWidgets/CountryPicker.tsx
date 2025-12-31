@@ -469,6 +469,7 @@ const myRegions = {
         <CodeBlock
           exampleCode='
 <CountryPicker
+  autoSortOptions={false}
   favorites={["FR", "US"]}
   groups={{
     "Europe": ["FR", "DE", "IT", "ES"],
