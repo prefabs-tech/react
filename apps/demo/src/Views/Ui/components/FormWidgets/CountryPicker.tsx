@@ -156,9 +156,9 @@ export const CountryPickerDemo = () => {
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerSingle"
-          onChange={(value: string) => setSingleSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={singleSelectValue}
+          onChange={(value: string) => setSingleSelectValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -169,9 +169,9 @@ const selectedLocale = i18n.language;
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
   name="countryPickerSingle"
-  onChange={(value: string) => setSingleSelectValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -182,9 +182,9 @@ const selectedLocale = i18n.language;
           locale={locale}
           multiple={true}
           name="countryPickerMultiple"
-          onChange={(value: string[]) => setMultipleSelectValues(value)}
           placeholder={t("countryPicker.placeholders.multiple")}
           value={multipleSelectValues}
+          onChange={(value: string[]) => setMultipleSelectValues(value)}
         />
         <CodeBlock
           exampleCode='
@@ -196,9 +196,9 @@ const selectedLocale = i18n.language;
   locale={selectedLocale}
   multiple={true}
   name="countryPickerMultiple"
-  onChange={(value: string[]) => setMultipleSelectValues(value)}
   placeholder={t("countryPicker.placeholders.multiple")}
   value={multipleSelectValues}
+  onChange={(value: string[]) => setMultipleSelectValues(value)}
 />'
         />
       </Section>
@@ -209,9 +209,9 @@ const selectedLocale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale="np"
           name="countryPickerNepali"
-          onChange={(value: string) => setNepaliValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={nepaliValue}
+          onChange={(value: string) => setNepaliValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -226,8 +226,8 @@ const selectedLocale = "np";
 <CountryPicker
   i18n={locales}
   locale={selectedLocale}
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -242,9 +242,9 @@ const selectedLocale = "np";
           label={t("countryPicker.labels.single")}
           locale="gb"
           name="countryPickerFallback"
-          onChange={(value: string) => setFallbackValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={fallbackValue}
+          onChange={(value: string) => setFallbackValue(value)}
         />
         <CodeBlock
           exampleCode='import nepaliData from "./np.json
@@ -259,12 +259,12 @@ const selectedLocale = "gb";
 const fallbackLocale = "fr";
 
 <CountryPicker
+  fallbackLocale={fallbackLocale}
   i18n={locales}
   locale={selectedLocale}
-  fallbackLocale={fallbackLocale}
   label="Fallback Demo"
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -275,9 +275,9 @@ const fallbackLocale = "fr";
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerInclude"
-          onChange={(value: string) => setIncludeSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={includeSelectValue}
+          onChange={(value: string) => setIncludeSelectValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -288,8 +288,8 @@ const selectedLocale = i18n.language;
   include={["US", "GB", "DE", "FR", "JP"]}
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -313,8 +313,8 @@ const selectedLocale = i18n.language;
   exclude={["FR", "CN", "BR"]}
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -326,9 +326,9 @@ const selectedLocale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerFav"
-          onChange={(value: string) => setFavoriteValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={favoriteValue}
+          onChange={(value: string) => setFavoriteValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -340,8 +340,8 @@ const selectedLocale = i18n.language;
   favorites={["NP", "US", "GB"]} 
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -354,9 +354,9 @@ const selectedLocale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerFav"
-          onChange={(value: string) => setIncludeFavoritesValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={includeFavoritesValue}
+          onChange={(value: string) => setIncludeFavoritesValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -369,8 +369,8 @@ const selectedLocale = i18n.language;
   includeFavorites={false}
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -379,17 +379,17 @@ const selectedLocale = i18n.language;
         <CountryPicker
           autoSortOptions={false}
           groups={{
-            EU: defaultGroups?.EU || [],
+            "European Union": defaultGroups?.EU || [],
             ASEAN: defaultGroups?.ASEAN || [],
           }}
           label={t("countryPicker.labels.single")}
-          placeholder={t("countryPicker.placeholders.single")}
           locale={locale}
           name="groupingDefault"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={groupedValue}
           onChange={(value: string | number | (string | number)[]) =>
             setGroupedValue(value as string)
           }
-          value={groupedValue}
         />
         <CodeBlock
           exampleCode='
@@ -402,11 +402,11 @@ import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
     "ASEAN": defaultGroups.ASEAN
   }}
   label={t("countryPicker.labels.single")}
-  placeholder={t("countryPicker.placeholders.single")}
-  name="groupingDefault"
   locale={locale}
-  onChange={(value) => setGroupedValue(value)}
+  name="countryPicker"
+  placeholder={t("countryPicker.placeholders.single")}
   value={groupedValue}
+  onChange={(value) => setGroupedValue(value)}
 />'
         />
       </Section>
@@ -420,13 +420,13 @@ import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
             "European Hubs": ["GB", "DE", "FR"],
           }}
           label={t("countryPicker.labels.single")}
-          placeholder={t("countryPicker.placeholders.single")}
           locale={locale}
           name="groupingCustom"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={customGroupValue}
           onChange={(value: string | number | (string | number)[]) =>
             setCustomGroupValue(value as string)
           }
-          value={customGroupValue}
         />
         <CodeBlock
           exampleCode='
@@ -440,11 +440,11 @@ const myRegions = {
   autoSortOptions={false}
   groups={myRegions}
   label={t("countryPicker.labels.single")}
-  placeholder={t("countryPicker.placeholders.single")}
-  name="groupingCustom"
   locale={locale}
-  onChange={(value) => setCustomGroupValue(value)}
+  name="countryPicker"
+  placeholder={t("countryPicker.placeholders.single")}
   value={customGroupValue}
+  onChange={(value) => setCustomGroupValue(value)}
 />'
         />
       </Section>
@@ -458,13 +458,13 @@ const myRegions = {
             "North America": ["US", "CA"],
           }}
           label={t("countryPicker.labels.single")}
-          placeholder={t("countryPicker.placeholders.single")}
           locale={locale}
+          name="groupingFavorites"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={favoriteGroupValue}
           onChange={(value: string | number | (string | number)[]) =>
             setFavoriteGroupValue(value as string)
           }
-          name="groupingFavorites"
-          value={favoriteGroupValue}
         />
         <CodeBlock
           exampleCode='
@@ -476,11 +476,11 @@ const myRegions = {
     "North America": ["US", "CA"]
   }}
   label={t("countryPicker.labels.single")}
-  placeholder={t("countryPicker.placeholders.single")}
   locale={locale}
   name="groupingFavorites"
-  onChange={(value) => setFavoriteGroupValue(value)}
+  placeholder={t("countryPicker.placeholders.single")}
   value={favoriteGroupValue}
+  onChange={(value) => setFavoriteGroupValue(value)}
 />'
         />
       </Section>
