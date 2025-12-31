@@ -4,6 +4,7 @@ import {
   Page,
   Button,
   TDataTable,
+  defaultGroups,
 } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -69,41 +70,48 @@ export const CountryPickerDemo = () => {
     },
     {
       id: 8,
+      prop: "groups",
+      type: "GroupData",
+      default: "-",
+      description: t("countryPicker.propertiesDescription.groups"),
+    },
+    {
+      id: 9,
       prop: "label",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.label"),
     },
     {
-      id: 9,
+      id: 10,
       prop: "multiple",
       type: "boolean",
       default: "false",
       description: t("countryPicker.propertiesDescription.multiple"),
     },
     {
-      id: 10,
+      id: 11,
       prop: "name",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.name"),
     },
     {
-      id: 11,
+      id: 12,
       prop: "onChange",
       type: "(value: string | string[]) => void",
       default: "-",
       description: t("countryPicker.propertiesDescription.onChange"),
     },
     {
-      id: 12,
+      id: 13,
       prop: "placeholder",
       type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.placeholder"),
     },
     {
-      id: 13,
+      id: 14,
       prop: "value",
       type: "string | string[]",
       default: "-",
@@ -115,7 +123,6 @@ export const CountryPickerDemo = () => {
   const [multipleSelectValues, setMultipleSelectValues] = useState<string[]>(
     [],
   );
-  // const [customDataValue, setCustomDataValue] = useState<string>("");
   const [includeSelectValue, setIncludeSelectValue] = useState<string>("");
   const [excludeSelectValue, setExcludeSelectValue] = useState<string>("");
   const [nepaliValue, setNepaliValue] = useState<string>("");
@@ -123,6 +130,9 @@ export const CountryPickerDemo = () => {
   const [favoriteValue, setFavoriteValue] = useState<string>("");
   const [includeFavoritesValue, setIncludeFavoritesValue] =
     useState<string>("");
+  const [groupedValue, setGroupedValue] = useState<string>("");
+  const [customGroupValue, setCustomGroupValue] = useState<string>("");
+  const [favoriteGroupValue, setFavoriteGroupValue] = useState<string>("");
 
   return (
     <Page
@@ -146,9 +156,9 @@ export const CountryPickerDemo = () => {
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerSingle"
-          onChange={(value: string) => setSingleSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={singleSelectValue}
+          onChange={(value: string) => setSingleSelectValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -159,9 +169,9 @@ const selectedLocale = i18n.language;
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
   name="countryPickerSingle"
-  onChange={(value: string) => setSingleSelectValue(value)}
   placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -172,9 +182,9 @@ const selectedLocale = i18n.language;
           locale={locale}
           multiple={true}
           name="countryPickerMultiple"
-          onChange={(value: string[]) => setMultipleSelectValues(value)}
           placeholder={t("countryPicker.placeholders.multiple")}
           value={multipleSelectValues}
+          onChange={(value: string[]) => setMultipleSelectValues(value)}
         />
         <CodeBlock
           exampleCode='
@@ -186,9 +196,9 @@ const selectedLocale = i18n.language;
   locale={selectedLocale}
   multiple={true}
   name="countryPickerMultiple"
-  onChange={(value: string[]) => setMultipleSelectValues(value)}
   placeholder={t("countryPicker.placeholders.multiple")}
   value={multipleSelectValues}
+  onChange={(value: string[]) => setMultipleSelectValues(value)}
 />'
         />
       </Section>
@@ -199,9 +209,9 @@ const selectedLocale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale="np"
           name="countryPickerNepali"
-          onChange={(value: string) => setNepaliValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={nepaliValue}
+          onChange={(value: string) => setNepaliValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -216,8 +226,8 @@ const selectedLocale = "np";
 <CountryPicker
   i18n={locales}
   locale={selectedLocale}
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -232,9 +242,9 @@ const selectedLocale = "np";
           label={t("countryPicker.labels.single")}
           locale="gb"
           name="countryPickerFallback"
-          onChange={(value: string) => setFallbackValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={fallbackValue}
+          onChange={(value: string) => setFallbackValue(value)}
         />
         <CodeBlock
           exampleCode='import nepaliData from "./np.json
@@ -249,12 +259,12 @@ const selectedLocale = "gb";
 const fallbackLocale = "fr";
 
 <CountryPicker
+  fallbackLocale={fallbackLocale}
   i18n={locales}
   locale={selectedLocale}
-  fallbackLocale={fallbackLocale}
   label="Fallback Demo"
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -265,9 +275,9 @@ const fallbackLocale = "fr";
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerInclude"
-          onChange={(value: string) => setIncludeSelectValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={includeSelectValue}
+          onChange={(value: string) => setIncludeSelectValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -278,8 +288,8 @@ const selectedLocale = i18n.language;
   include={["US", "GB", "DE", "FR", "JP"]}
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -303,8 +313,8 @@ const selectedLocale = i18n.language;
   exclude={["FR", "CN", "BR"]}
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value: string) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -316,9 +326,9 @@ const selectedLocale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerFav"
-          onChange={(value: string) => setFavoriteValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={favoriteValue}
+          onChange={(value: string) => setFavoriteValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -330,8 +340,8 @@ const selectedLocale = i18n.language;
   favorites={["NP", "US", "GB"]} 
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -344,9 +354,9 @@ const selectedLocale = i18n.language;
           label={t("countryPicker.labels.single")}
           locale={locale}
           name="countryPickerFav"
-          onChange={(value: string) => setIncludeFavoritesValue(value)}
           placeholder={t("countryPicker.placeholders.single")}
           value={includeFavoritesValue}
+          onChange={(value: string) => setIncludeFavoritesValue(value)}
         />
         <CodeBlock
           exampleCode='
@@ -359,8 +369,118 @@ const selectedLocale = i18n.language;
   includeFavorites={false}
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
-  onChange={(value) => setSingleSelectValue(value)}
   value={singleSelectValue}
+  onChange={(value) => setSingleSelectValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.groupingDefault")}>
+        <CountryPicker
+          autoSortOptions={false}
+          groups={{
+            "European Union": defaultGroups?.EU || [],
+            ASEAN: defaultGroups?.ASEAN || [],
+          }}
+          label={t("countryPicker.labels.single")}
+          locale={locale}
+          name="groupingDefault"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={groupedValue}
+          onChange={(value: string | number | (string | number)[]) =>
+            setGroupedValue(value as string)
+          }
+        />
+        <CodeBlock
+          exampleCode='
+import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
+
+<CountryPicker
+  autoSortOptions={false}
+  groups={{
+    "European Union": defaultGroups.EU,
+    "ASEAN": defaultGroups.ASEAN
+  }}
+  label={t("countryPicker.labels.single")}
+  locale={locale}
+  name="countryPicker"
+  placeholder={t("countryPicker.placeholders.single")}
+  value={groupedValue}
+  onChange={(value) => setGroupedValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.groupingCustom")}>
+        <CountryPicker
+          autoSortOptions={false}
+          groups={{
+            "North America HQ": ["US", "CA"],
+            "Offshore Dev Center": ["IN", "VN", "PH"],
+            "European Hubs": ["GB", "DE", "FR"],
+          }}
+          label={t("countryPicker.labels.single")}
+          locale={locale}
+          name="groupingCustom"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={customGroupValue}
+          onChange={(value: string | number | (string | number)[]) =>
+            setCustomGroupValue(value as string)
+          }
+        />
+        <CodeBlock
+          exampleCode='
+const myRegions = {
+  "North America HQ": ["US", "CA"],
+  "Offshore Dev Center": ["IN", "VN", "PH"],
+  "European Hubs": ["GB", "DE", "FR"]
+};
+
+<CountryPicker
+  autoSortOptions={false}
+  groups={myRegions}
+  label={t("countryPicker.labels.single")}
+  locale={locale}
+  name="countryPicker"
+  placeholder={t("countryPicker.placeholders.single")}
+  value={customGroupValue}
+  onChange={(value) => setCustomGroupValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.groupingFavorites")}>
+        <CountryPicker
+          autoSortOptions={false}
+          favorites={["FR", "US"]}
+          groups={{
+            Europe: ["FR", "DE", "IT", "ES"],
+            "North America": ["US", "CA"],
+          }}
+          label={t("countryPicker.labels.single")}
+          locale={locale}
+          name="groupingFavorites"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={favoriteGroupValue}
+          onChange={(value: string | number | (string | number)[]) =>
+            setFavoriteGroupValue(value as string)
+          }
+        />
+        <CodeBlock
+          exampleCode='
+<CountryPicker
+  autoSortOptions={false}
+  favorites={["FR", "US"]}
+  groups={{
+    "Europe": ["FR", "DE", "IT", "ES"],
+    "North America": ["US", "CA"]
+  }}
+  label={t("countryPicker.labels.single")}
+  locale={locale}
+  name="countryPicker"
+  placeholder={t("countryPicker.placeholders.single")}
+  value={favoriteGroupValue}
+  onChange={(value) => setFavoriteGroupValue(value)}
 />'
         />
       </Section>
@@ -400,13 +520,21 @@ const selectedLocale = i18n.language;
           exampleCode={`
 type TranslationCatalogue = Record<string, string>;
 
-type I18nConfig = Record<string, TranslationCatalogue>;
+type I18nData = Record<string, TranslationCatalogue>;
 
-Example: 
-          { 
-            en:{ "US": "USA" }, 
-            fr: { "US": "États-Unis" } 
-          }
+type GroupData = Record<string, string[]>;
+
+Example I18n: 
+  { 
+    en:{ "US": "USA" }, 
+    fr: { "US": "États-Unis" } 
+  }
+
+Example Group:
+  {
+    "European Union": ["AT", "BE", "FR", "DE"],
+    "North America": ["US", "CA", "MX"]
+  }
 `}
         />
       </Section>

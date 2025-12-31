@@ -2,9 +2,11 @@ import React, { useMemo } from "react";
 
 import { Select, ISelectProperties } from "../Select";
 import defaultEnglishCatalogue from "./en.json";
+import defaultGroups from "./groups.json";
 
 export type TranslationCatalogue = Record<string, string>;
-export type I18nConfig = Record<string, TranslationCatalogue>;
+export type I18nData = Record<string, TranslationCatalogue>;
+export type GroupData = Record<string, string[]>;
 
 export type CountryPickerLabels = {
   favorites?: string;
@@ -24,33 +26,36 @@ export type CountryPickerProperties<T> = Omit<
   exclude?: string[];
   fallbackLocale?: string;
   favorites?: string[];
-  i18n?: I18nConfig;
+  groups?: GroupData;
+  i18n?: I18nData;
   include?: string[];
   includeFavorites?: boolean;
   labels?: CountryPickerLabels;
   locale?: string;
 };
 
+export { defaultGroups };
+
 const getAllCountryCodes = (
-  i18n: I18nConfig | undefined,
+  i18n: I18nData | undefined,
   locale: string,
   fallbackLocale: string,
 ): string[] => {
-  const allCountryCodes = new Set(Object.keys(defaultEnglishCatalogue));
+  if (!i18n) return Object.keys(defaultEnglishCatalogue);
 
-  if (i18n) {
-    if (locale && i18n[locale]) {
-      Object.keys(i18n[locale]).forEach((code) => allCountryCodes.add(code));
-    }
+  const localeData = i18n[locale];
+  const fallbackData = i18n[fallbackLocale];
 
-    if (fallbackLocale && fallbackLocale !== locale && i18n[fallbackLocale]) {
-      Object.keys(i18n[fallbackLocale]).forEach((code) =>
-        allCountryCodes.add(code),
-      );
-    }
+  if (!localeData && !fallbackData) {
+    return Object.keys(defaultEnglishCatalogue);
   }
 
-  return Array.from(allCountryCodes);
+  return Array.from(
+    new Set([
+      ...(localeData ? Object.keys(localeData) : []),
+      ...(fallbackData ? Object.keys(fallbackData) : []),
+    ]),
+  );
 };
 
 const getFilteredCountryCodes = (
@@ -66,54 +71,96 @@ const getFilteredCountryCodes = (
   return codes.filter((code) => {
     if (excludeSet && excludeSet.has(code)) return false;
     if (includeSet && !includeSet.has(code)) return false;
-
     return true;
   });
 };
 
 const countryLabel = (
   code: string,
-  i18n: I18nConfig | undefined,
+  i18n: I18nData | undefined,
   locale: string,
   fallbackLocale: string,
 ): string => {
   return (
     i18n?.[locale]?.[code] ||
     i18n?.[fallbackLocale]?.[code] ||
-    defaultEnglishCatalogue[code as keyof typeof defaultEnglishCatalogue]
+    defaultEnglishCatalogue[code as keyof typeof defaultEnglishCatalogue] ||
+    code
   );
 };
 
 const getOptionsWithFavorites = <T,>(
-  options: CountryOption<T>[],
-  favorites?: string[],
-  labels?: CountryPickerLabels,
-  includeFavorites: boolean = true,
+  baseOptions: CountryOption<T>[],
+  favorites: string[] | undefined,
+  labels: CountryPickerLabels | undefined,
+  includeFavorites: boolean,
 ) => {
-  if (!favorites || favorites.length === 0) return options;
+  if (!favorites || favorites.length === 0) return baseOptions;
 
   const favoriteSet = new Set(favorites);
-  const favoriteList = options.filter((item) => favoriteSet.has(item.code));
+  const favoriteList = baseOptions.filter((item) => favoriteSet.has(item.code));
 
-  if (favoriteList.length === 0) return options;
+  if (favoriteList.length === 0) return baseOptions;
 
   const favoritesLabel = labels?.favorites || "Favorites";
   const allCountriesLabel = labels?.allCountries || "All countries";
 
-  const allCountriesList = includeFavorites
-    ? options
-    : options.filter((item) => !favoriteSet.has(item.code));
+  const remainingList = includeFavorites
+    ? baseOptions
+    : baseOptions.filter((item) => !favoriteSet.has(item.code));
 
   return [
     { label: favoritesLabel, options: favoriteList },
-    { label: allCountriesLabel, options: allCountriesList },
+    { label: allCountriesLabel, options: remainingList },
   ];
+};
+
+const getOptionsWithGroups = <T,>(
+  baseOptions: CountryOption<T>[],
+  groups: GroupData,
+  favorites: string[] | undefined,
+  labels: CountryPickerLabels | undefined,
+) => {
+  const finalGroupedOptions: { label: string; options: CountryOption<T>[] }[] =
+    [];
+  const optionsMap = new Map(
+    baseOptions.map((option) => [option.code, option]),
+  );
+
+  if (favorites && favorites.length > 0) {
+    const favoriteList = favorites
+      .map((code) => optionsMap.get(code))
+      .filter((option): option is CountryOption<T> => !!option);
+
+    if (favoriteList.length > 0) {
+      finalGroupedOptions.push({
+        label: labels?.favorites || "Favorites",
+        options: favoriteList,
+      });
+    }
+  }
+
+  Object.entries(groups).forEach(([groupLabel, groupCodes]) => {
+    const groupOptions = groupCodes
+      .map((code) => optionsMap.get(code))
+      .filter((option): option is CountryOption<T> => !!option);
+
+    if (groupOptions.length > 0) {
+      finalGroupedOptions.push({
+        label: groupLabel,
+        options: groupOptions,
+      });
+    }
+  });
+
+  return finalGroupedOptions;
 };
 
 export const CountryPicker = <T extends string | number>({
   exclude,
   fallbackLocale = "en",
   favorites,
+  groups,
   i18n,
   include,
   includeFavorites = true,
@@ -123,19 +170,25 @@ export const CountryPicker = <T extends string | number>({
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
     const countryCodes = getAllCountryCodes(i18n, locale, fallbackLocale);
+
     const filteredCountryCodes = getFilteredCountryCodes(
       countryCodes,
       include,
       exclude,
     );
-    const countryOptions = filteredCountryCodes.map((code) => ({
+
+    const baseOptions = filteredCountryCodes.map((code) => ({
       value: code as unknown as T,
       label: countryLabel(code, i18n, locale, fallbackLocale),
       code,
     }));
 
+    if (groups && Object.keys(groups).length > 0) {
+      return getOptionsWithGroups(baseOptions, groups, favorites, labels);
+    }
+
     return getOptionsWithFavorites(
-      countryOptions,
+      baseOptions,
       favorites,
       labels,
       includeFavorites,
@@ -144,6 +197,7 @@ export const CountryPicker = <T extends string | number>({
     exclude,
     fallbackLocale,
     favorites,
+    groups,
     i18n,
     include,
     includeFavorites,

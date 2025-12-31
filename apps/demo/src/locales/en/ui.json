@@ -110,13 +110,16 @@
     "exclude": "Exclude filter",
     "fallbackLocale": "Fallback locale",
     "favorites": "Favorites",
-    "locale": "New locale support",
+    "groupingCustom": "Custom grouping",
+    "groupingDefault": "Default grouping",
+    "groupingFavorites": "Grouping with favorites",
     "include": "Include filter",
     "includeFavorites": "Include favorites",
     "labels": {
       "multiple": "Select countries",
       "single": "Select country"
     },
+    "locale": "New locale support",
     "multipleSelect": "Multiple selection",
     "placeholders": {
       "multiple": "Select countries...",
@@ -127,7 +130,8 @@
       "exclude": "An array of country codes to remove from the list.",
       "fallbackLocale": "Locale used when active locale translation is missing.",
       "favorites": "An array of country codes to prioritize and display at the top of the list.",
-      "i18n":"Additional translation catalogues to be supported.", 
+      "groups": "An object to organize countries into specific categories (e.g., EU, ASEAN).",
+      "i18n": "Additional translation catalogues to be supported.",
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible.",
       "includeFavorites": "If false, removes favorite items from the main list.",
       "label": "The label text displayed above the picker.",
