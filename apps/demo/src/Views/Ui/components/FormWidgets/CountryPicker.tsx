@@ -477,7 +477,7 @@ const myRegions = {
   }}
   label={t("countryPicker.labels.single")}
   locale={locale}
-  name="groupingFavorites"
+  name="countryPicker"
   placeholder={t("countryPicker.placeholders.single")}
   value={favoriteGroupValue}
   onChange={(value) => setFavoriteGroupValue(value)}
