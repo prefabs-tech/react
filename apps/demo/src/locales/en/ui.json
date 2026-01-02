@@ -104,6 +104,23 @@
       "multiple": "Multiple currency select"
     }
   },
+  "countryDisplay": {
+    "basic": "Basic",
+    "customLocale": "New locale support",
+    "fallback": "Fallback locale",
+    "label": "Label",
+    "locale": "Locale support",
+    "notFound": "Missing country code",
+    "propertiesDescription": {
+      "code": "The ISO country code to display (e.g., 'US', 'gb').",
+      "className": "CSS class to append to the wrapper span.",
+      "fallbackLocale": "Locale to use if the specific translation is missing.",
+      "i18n": "External translation dictionary for additional languages.",
+      "locale": "The target locale for translation (e.g., 'en', 'fr')."
+    },
+    "title": "Country",
+    "typeDefinitions": "Types"
+  },
   "countryPicker": {
     "basic": "Basic",
     "customData": "Custom data",

@@ -40,6 +40,7 @@ import { TagDemo } from "./components/Tag/Tag";
 import { TooltipDemo } from "./components/Tooltip";
 import { YoutubeFacadeDemo } from "./components/YoutubeFacade";
 import { Demo } from "../../components/Demo";
+import { CountryDisplayDemo } from "./components/CountryDisplay/CountryDisplayDemo";
 import { CountryPickerDemo } from "./components/FormWidgets/CountryPicker";
 
 export const UI_ROUTES = {
@@ -49,6 +50,7 @@ export const UI_ROUTES = {
   CHECKBOX: "/ui/checkbox",
   CHECKBOX_INPUT: "/ui/checkbox-input",
   CONFIRMATION_MODAL: "/ui/confirmation-modal",
+  COUNTRY_DISPLAY: "/ui/country-display",
   CURRENCY_SELECTOR: "/ui/currency-picker",
   COUNTRY_PICKER: "/ui/country-picker",
   DATA_COMPONENT: "/ui/data-component",
@@ -113,6 +115,11 @@ const DATA_COMPONENT_ROUTES = [
     path: UI_ROUTES.TABLE,
     key: "table.title",
     element: <TableDemo />,
+  },
+  {
+    path: UI_ROUTES.COUNTRY_DISPLAY,
+    key: "countryDisplay.title",
+    element: <CountryDisplayDemo />,
   },
 ];
 
