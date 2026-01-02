@@ -145,7 +145,7 @@ fallbackLocale = np;
       </Section>
 
       <Section title={t("countryDisplay.notFound")}>
-        <span>Unknown</span>
+        <span>Country</span>
         <Country code="WW" />
         <CodeBlock exampleCode='<Country code="WW" />' />
       </Section>
