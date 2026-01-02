@@ -1,7 +1,10 @@
+@import "@dzangolab/flag-icon-css/css/flag-icon.min.css";
+
 @import "./field.css";
 
 @import "./checkbox-input.css";
 @import "./checkbox.css";
+@import "./country-picker.css";
 @import "./date-picker.css";
 @import "./editable-title.css";
 @import "./input.css";

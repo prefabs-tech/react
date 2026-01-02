@@ -4,6 +4,8 @@ import { Select, ISelectProperties } from "../Select";
 import defaultEnglishCatalogue from "./en.json";
 import defaultGroups from "./groups.json";
 
+import type { Option } from "../Select";
+
 export type TranslationCatalogue = Record<string, string>;
 export type I18nData = Record<string, TranslationCatalogue>;
 export type GroupData = Record<string, string[]>;
@@ -26,6 +28,10 @@ export type CountryPickerProperties<T> = Omit<
   exclude?: string[];
   fallbackLocale?: string;
   favorites?: string[];
+  flags?: boolean;
+  flagsPath?: (code: string) => string;
+  flagsPosition?: "left" | "right" | "right-edge";
+  flagsStyle?: "circle" | "rectangular" | "square";
   groups?: GroupData;
   i18n?: I18nData;
   include?: string[];
@@ -160,6 +166,10 @@ export const CountryPicker = <T extends string | number>({
   exclude,
   fallbackLocale = "en",
   favorites,
+  flags = true,
+  flagsPath,
+  flagsPosition = "left",
+  flagsStyle = "rectangular",
   groups,
   i18n,
   include,
@@ -205,6 +215,18 @@ export const CountryPicker = <T extends string | number>({
     locale,
   ]);
 
+  const getFlagClass = (code?: string) =>
+    [
+      "flag-icon",
+      code && `flag-icon-${code.trim().toLowerCase()}`,
+      flagsPosition === "right" && "flag-icon-right",
+      flagsPosition === "right-edge" && "flag-icon-right-edge",
+      flagsStyle === "circle" && "flag-icon-rounded",
+      flagsStyle === "square" && "flag-icon-squared",
+    ]
+      .filter(Boolean)
+      .join(" ");
+
   const handleOnChange = (value: T | T[]) => {
     if (!properties.onChange) return;
     const result = Array.isArray(value)
@@ -213,10 +235,35 @@ export const CountryPicker = <T extends string | number>({
     (properties.onChange as (value: T | T[]) => void)(result);
   };
 
+  const renderOptionWithFlags = (
+    option: Option<T> & {
+      groupLabel?: string;
+    },
+  ) => {
+    const code = (option.code ?? option.value) as string;
+
+    return (
+      <div className="options-wrapper" data-country-code={code}>
+        {flags &&
+          (flagsPath ? (
+            <img
+              alt={option.label}
+              className={getFlagClass()}
+              src={flagsPath(code)}
+            />
+          ) : (
+            <span className={getFlagClass(code)} />
+          ))}
+        <span className="option-label">{option.label}</span>
+      </div>
+    );
+  };
+
   return (
     <Select
       {...(properties as ISelectProperties<T>)}
       options={options}
+      renderOption={properties.renderOption ?? renderOptionWithFlags}
       onChange={handleOnChange}
     />
   );
