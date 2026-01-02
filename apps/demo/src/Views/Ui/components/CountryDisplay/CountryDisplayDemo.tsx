@@ -145,8 +145,16 @@ fallbackLocale = np;
       </Section>
 
       <Section title={t("countryDisplay.notFound")}>
-        <span>Country</span>
-        <Country code="WW" />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.25rem",
+          }}
+        >
+          <span>Country</span>
+          <Country code="WW" />
+        </div>
         <CodeBlock exampleCode='<Country code="WW" />' />
       </Section>
 
