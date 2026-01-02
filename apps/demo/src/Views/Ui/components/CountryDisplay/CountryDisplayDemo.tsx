@@ -6,6 +6,7 @@ import englishData from "./en.json";
 import { CodeBlock, Section } from "../../../../components/Demo";
 import frenchData from "../FormWidgets/fr.json";
 import nepaliData from "../FormWidgets/np.json";
+import "../../../../assets/css/country.css";
 
 export const CountryDisplayDemo = () => {
   const [t] = useTranslation("ui");
@@ -145,13 +146,7 @@ fallbackLocale = np;
       </Section>
 
       <Section title={t("countryDisplay.notFound")}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.25rem",
-          }}
-        >
+        <div className="vertical-stack">
           <span>Country</span>
           <Country code="WW" />
         </div>
