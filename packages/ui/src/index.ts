@@ -23,6 +23,7 @@ import type { Tab } from "./TabView/types";
 export * from "./AuthPage";
 export * from "./Buttons";
 export * from "./Card";
+export * from "./CountryDisplay";
 export * from "./Data";
 export * from "./EditableTitle";
 export * from "./FilesTable";
