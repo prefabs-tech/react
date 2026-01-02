@@ -1,0 +1,30 @@
+.options-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+.options-wrapper:has(.flag-icon-right) {
+  flex-direction: row-reverse;
+}
+
+.options-wrapper:has(.flag-icon-right-edge) {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.options-wrapper > .flag-icon {
+  line-height: inherit;
+  min-width: 1.5rem;
+}
+
+.options-wrapper > .flag-icon.flag-icon-rounded {
+  object-fit: cover;
+}
+
+.options-wrapper > .option-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

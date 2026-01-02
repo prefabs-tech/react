@@ -37,6 +37,7 @@
     "react-popper": "^2.3.0"
   },
   "devDependencies": {
+    "@dzangolab/flag-icon-css": "3.4.5",
     "@prefabs.tech/eslint-config": "0.2.0",
     "@prefabs.tech/tsconfig": "0.2.0",
     "@testing-library/jest-dom": "6.6.3",

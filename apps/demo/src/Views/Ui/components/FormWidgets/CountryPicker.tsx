@@ -20,105 +20,135 @@ export const CountryPickerDemo = () => {
 
   const data = [
     {
+      default: "{ en: defaultEnCatalogue }",
+      description: t("countryPicker.propertiesDescription.i18n"),
       id: 1,
       prop: "i18n",
       type: "Record<string, Record<string, string>>",
-      default: "{ en: defaultEnCatalogue }",
-      description: t("countryPicker.propertiesDescription.i18n"),
     },
     {
+      default: '"en"',
+      description: t("countryPicker.propertiesDescription.fallbackLocale"),
       id: 2,
       prop: "fallbackLocale",
       type: "string",
-      default: '"en"',
-      description: t("countryPicker.propertiesDescription.fallbackLocale"),
     },
     {
+      default: "true",
+      description: t("countryPicker.propertiesDescription.flags"),
       id: 3,
-      prop: "locale",
-      type: "string",
+      prop: "flags",
+      type: "Boolean",
+    },
+    {
+      default: "-",
+      description: t("countryPicker.propertiesDescription.flagsPath"),
+      id: 4,
+      prop: "flagsPath",
+      type: "(code: string) => string",
+    },
+    {
+      default: "left",
+      description: t("countryPicker.propertiesDescription.flagsPosition"),
+      id: 5,
+      prop: "flagsPosition",
+      type: "left | right | right-edge",
+    },
+    {
+      default: "rectangular",
+      description: t("countryPicker.propertiesDescription.flagsStyle"),
+      id: 6,
+      prop: "flagsStyle",
+      type: "circle | rectangular | square",
+    },
+    {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.locale"),
+      id: 7,
+      prop: "locale",
+      type: "string",
     },
     {
-      id: 4,
-      prop: "include",
-      type: "string[]",
       default: "[]",
       description: t("countryPicker.propertiesDescription.include"),
+      id: 8,
+      prop: "include",
+      type: "string[]",
     },
     {
-      id: 5,
-      prop: "exclude",
-      type: "string[]",
       default: "[]",
       description: t("countryPicker.propertiesDescription.exclude"),
+      id: 9,
+      prop: "exclude",
+      type: "string[]",
     },
     {
-      id: 6,
-      prop: "favorites",
-      type: "string[]",
       default: "[]",
       description: t("countryPicker.propertiesDescription.favorites"),
+      id: 10,
+      prop: "favorites",
+      type: "string[]",
     },
     {
-      id: 7,
-      prop: "includeFavorites",
-      type: "boolean",
       default: "true",
       description: t("countryPicker.propertiesDescription.includeFavorites"),
+      id: 11,
+      prop: "includeFavorites",
+      type: "boolean",
     },
     {
-      id: 8,
-      prop: "groups",
-      type: "GroupData",
       default: "-",
       description: t("countryPicker.propertiesDescription.groups"),
+      id: 12,
+      prop: "groups",
+      type: "GroupData",
     },
     {
-      id: 9,
-      prop: "label",
-      type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.label"),
+      id: 13,
+      prop: "label",
+      type: "string",
     },
     {
-      id: 10,
-      prop: "multiple",
-      type: "boolean",
       default: "false",
       description: t("countryPicker.propertiesDescription.multiple"),
+      id: 14,
+      prop: "multiple",
+      type: "boolean",
     },
     {
-      id: 11,
-      prop: "name",
-      type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.name"),
+      id: 15,
+      prop: "name",
+      type: "string",
     },
     {
-      id: 12,
-      prop: "onChange",
-      type: "(value: string | string[]) => void",
       default: "-",
       description: t("countryPicker.propertiesDescription.onChange"),
+      id: 16,
+      prop: "onChange",
+      type: "(value: string | string[]) => void",
     },
     {
-      id: 13,
-      prop: "placeholder",
-      type: "string",
       default: "-",
       description: t("countryPicker.propertiesDescription.placeholder"),
+      id: 17,
+      prop: "placeholder",
+      type: "string",
     },
     {
-      id: 14,
-      prop: "value",
-      type: "string | string[]",
       default: "-",
       description: t("countryPicker.propertiesDescription.value"),
+      id: 18,
+      prop: "value",
+      type: "string | string[]",
     },
   ];
 
+  const [customFlagsSelectValue, setCustomFlagsSelectValue] =
+    useState<string>("");
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   const [multipleSelectValues, setMultipleSelectValues] = useState<string[]>(
     [],
@@ -128,11 +158,16 @@ export const CountryPickerDemo = () => {
   const [nepaliValue, setNepaliValue] = useState<string>("");
   const [fallbackValue, setFallbackValue] = useState<string>("");
   const [favoriteValue, setFavoriteValue] = useState<string>("");
+  const [flagsSelectValue, setFlagsSelectValue] = useState<string>("");
   const [includeFavoritesValue, setIncludeFavoritesValue] =
     useState<string>("");
   const [groupedValue, setGroupedValue] = useState<string>("");
   const [customGroupValue, setCustomGroupValue] = useState<string>("");
   const [favoriteGroupValue, setFavoriteGroupValue] = useState<string>("");
+
+  const customFlagsPath = (code: string) => {
+    return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+  };
 
   return (
     <Page
@@ -263,6 +298,60 @@ const fallbackLocale = "fr";
   i18n={locales}
   locale={selectedLocale}
   label="Fallback Demo"
+  value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.flagsStyle")}>
+        <CountryPicker
+          flagsPosition="right-edge"
+          flagsStyle="circle"
+          label={t("countryPicker.labels.single")}
+          name="countryPickerFlags"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={flagsSelectValue}
+          onChange={(value: string) => setFlagsSelectValue(value)}
+        />
+        <CodeBlock
+          exampleCode='
+const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+
+<CountryPicker
+  flagsPosition="right-edge"
+  flagsStyle="circle"
+  label={t("countryPicker.labels.single")}
+  name="country-picker"
+  placeholder={t("countryPicker.placeholders.single")}
+  value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.customFlagsPath")}>
+        <CountryPicker
+          flagsPath={customFlagsPath}
+          label={t("countryPicker.labels.single")}
+          name="countryPickerCustomFlags"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={customFlagsSelectValue}
+          onChange={(value: string) => setCustomFlagsSelectValue(value)}
+        />
+        <CodeBlock
+          exampleCode='
+const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+
+const flagsPath = (code: string) => {
+  return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+};
+
+<CountryPicker
+  flagsPath={flagsPath}
+  label={t("countryPicker.labels.single")}
+  name="country-picker"
+  placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
 />'
