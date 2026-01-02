@@ -146,7 +146,7 @@ fallbackLocale = np;
       </Section>
 
       <Section title={t("countryDisplay.notFound")}>
-        <div className="vertical-stack">
+        <div className="country-wrapper">
           <span>Country</span>
           <Country code="WW" />
         </div>
