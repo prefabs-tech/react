@@ -147,6 +147,8 @@ export const CountryPickerDemo = () => {
     },
   ];
 
+  const [customFlagsSelectValue, setCustomFlagsSelectValue] =
+    useState<string>("");
   const [singleSelectValue, setSingleSelectValue] = useState<string>("");
   const [multipleSelectValues, setMultipleSelectValues] = useState<string[]>(
     [],
@@ -156,11 +158,16 @@ export const CountryPickerDemo = () => {
   const [nepaliValue, setNepaliValue] = useState<string>("");
   const [fallbackValue, setFallbackValue] = useState<string>("");
   const [favoriteValue, setFavoriteValue] = useState<string>("");
+  const [flagsSelectValue, setFlagsSelectValue] = useState<string>("");
   const [includeFavoritesValue, setIncludeFavoritesValue] =
     useState<string>("");
   const [groupedValue, setGroupedValue] = useState<string>("");
   const [customGroupValue, setCustomGroupValue] = useState<string>("");
   const [favoriteGroupValue, setFavoriteGroupValue] = useState<string>("");
+
+  const customFlagsPath = (code: string) => {
+    return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+  };
 
   return (
     <Page
@@ -291,6 +298,60 @@ const fallbackLocale = "fr";
   i18n={locales}
   locale={selectedLocale}
   label="Fallback Demo"
+  value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.flagsStyle")}>
+        <CountryPicker
+          flagsPosition="right-edge"
+          flagsStyle="circle"
+          label={t("countryPicker.labels.single")}
+          name="countryPickerFlags"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={flagsSelectValue}
+          onChange={(value: string) => setFlagsSelectValue(value)}
+        />
+        <CodeBlock
+          exampleCode='
+const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+
+<CountryPicker
+  flagsPosition="right-edge"
+  flagsStyle="circle"
+  label={t("countryPicker.labels.single")}
+  name="country-picker"
+  placeholder={t("countryPicker.placeholders.single")}
+  value={singleSelectValue}
+  onChange={(value: string) => setSingleSelectValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.customFlagsPath")}>
+        <CountryPicker
+          flagsPath={customFlagsPath}
+          label={t("countryPicker.labels.single")}
+          name="countryPickerCustomFlags"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={customFlagsSelectValue}
+          onChange={(value: string) => setCustomFlagsSelectValue(value)}
+        />
+        <CodeBlock
+          exampleCode='
+const [singleSelectValue, setSingleSelectValue] = useState<string>("");
+
+const flagsPath = (code: string) => {
+  return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+};
+
+<CountryPicker
+  flagsPath={flagsPath}
+  label={t("countryPicker.labels.single")}
+  name="country-picker"
+  placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
 />'

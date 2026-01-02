@@ -107,9 +107,11 @@
   "countryPicker": {
     "basic": "Basic (fr)",
     "customData": "Custom data (fr)",
+    "customFlagsPath": "Custom flags path (fr)",
     "exclude": "Exclude filter (fr)",
     "fallbackLocale": "Fallback locale (fr)",
     "favorites": "Favorites (fr)",
+    "flagsStyle": "Flags style and position (fr)",
     "groupingCustom": "Custom grouping (fr)",
     "groupingDefault": "Default grouping (fr)",
     "groupingFavorites": "Grouping with favorites (fr)",
