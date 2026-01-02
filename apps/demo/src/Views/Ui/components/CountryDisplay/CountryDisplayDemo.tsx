@@ -36,17 +36,17 @@ export const CountryDisplayDemo = () => {
     },
     {
       id: 4,
-      prop: "label",
-      type: "string",
-      default: "-",
-      description: t("countryDisplay.propertiesDescription.label"),
-    },
-    {
-      id: 5,
       prop: "i18n",
       type: "Record<string, Record<string, string>>",
       default: "{}",
       description: t("countryDisplay.propertiesDescription.i18n"),
+    },
+    {
+      id: 5,
+      prop: "locale",
+      type: "string",
+      default: "en",
+      description: t("countryDisplay.propertiesDescription.locale"),
     },
   ];
 
@@ -55,9 +55,9 @@ export const CountryDisplayDemo = () => {
       title={t("countryDisplay.title")}
       toolbar={
         <Button
+          iconLeft={<i className="pi pi-chevron-left"></i>}
           label={t("buttons.back", "Back")}
           variant="textOnly"
-          iconLeft={<i className="pi pi-chevron-left"></i>}
           onClick={() => navigate("..")}
         />
       }
@@ -70,11 +70,6 @@ export const CountryDisplayDemo = () => {
       <Section title={t("countryDisplay.basic")}>
         <Country code="US" />
         <CodeBlock exampleCode='<Country code="US" />' />
-      </Section>
-
-      <Section title={t("countryDisplay.label")}>
-        <Country code="US" label="Country" />
-        <CodeBlock exampleCode='<Country code="US" label="Country" />' />
       </Section>
 
       <Section title={t("countryDisplay.customLocale")}>
@@ -150,8 +145,9 @@ fallbackLocale = np;
       </Section>
 
       <Section title={t("countryDisplay.notFound")}>
-        <Country code="XX" />
-        <CodeBlock exampleCode='<Country code="XX" />' />
+        <span>Unknown</span>
+        <Country code="WW" />
+        <CodeBlock exampleCode='<Country code="WW" />' />
       </Section>
 
       <Section
@@ -192,7 +188,6 @@ interface CountryDisplayProperties {
   locale?: string;          
   fallbackLocale?: string;  
   i18n?: I18nData;         
-  label?: string;
   className?: string;
 }
 

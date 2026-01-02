@@ -9,7 +9,6 @@ export interface CountryDisplayProperties {
   code: string;
   fallbackLocale?: string;
   i18n?: I18nData;
-  label?: string | React.ReactNode;
   locale?: string;
 }
 
@@ -40,7 +39,6 @@ export const Country: React.FC<CountryDisplayProperties> = ({
   code,
   fallbackLocale = "en",
   i18n = {},
-  label,
   locale = "en",
 }) => {
   const countryLabel = useMemo(() => {
@@ -49,25 +47,13 @@ export const Country: React.FC<CountryDisplayProperties> = ({
 
   const normalizedCode = code?.trim().toUpperCase() || "";
 
-  if (!label) {
-    return (
-      <span
-        className={`country ${className}`.trim()}
-        data-country-code={normalizedCode}
-      >
-        {countryLabel}
-      </span>
-    );
-  }
-
   return (
-    <div className={`field ${className}`.trimEnd()}>
-      <label>{label}</label>
-
-      <span className="country" data-country-code={normalizedCode}>
-        {countryLabel}
-      </span>
-    </div>
+    <span
+      className={`country ${className}`.trim()}
+      data-country-code={normalizedCode}
+    >
+      {countryLabel}
+    </span>
   );
 };
 
