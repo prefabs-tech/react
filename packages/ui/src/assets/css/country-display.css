@@ -1,0 +1,17 @@
+.country {
+  display: inline-flex; 
+  align-items: center;   
+  width: auto;         
+}
+
+.country-label {
+  display: block;        
+  overflow: hidden;      
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  flex: 1;               
+}
+
+.flag-icon {
+  margin-right: 0.5rem; 
+}

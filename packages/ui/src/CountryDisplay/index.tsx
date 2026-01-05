@@ -10,6 +10,7 @@ export interface CountryDisplayProperties {
   fallbackLocale?: string;
   i18n?: I18nData;
   locale?: string;
+  showFlag?: boolean;
 }
 
 function getCountryLabel(
@@ -40,19 +41,27 @@ export const Country: React.FC<CountryDisplayProperties> = ({
   fallbackLocale = "en",
   i18n = {},
   locale = "en",
+  showFlag = true,
 }) => {
   const countryLabel = useMemo(() => {
     return getCountryLabel(code, locale, fallbackLocale, i18n);
   }, [code, locale, fallbackLocale, i18n]);
 
   const normalizedCode = code?.trim().toUpperCase() || "";
+  const flagCode = normalizedCode.toLowerCase();
 
   return (
     <span
       className={`country ${className}`.trim()}
       data-country-code={normalizedCode}
     >
-      {countryLabel}
+      {showFlag && (
+        <span
+          className={`flag-icon flag-icon-${flagCode} flag-icon-squared`}
+          title={normalizedCode}
+        />
+      )}
+      <span className="country-label">{countryLabel}</span>
     </span>
   );
 };
