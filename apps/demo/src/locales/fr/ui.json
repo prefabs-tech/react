@@ -104,14 +104,37 @@
       "multiple": "Multiple currency select (fr)"
     }
   },
+  "countryDisplay": {
+    "basic": "Basic (fr)",
+    "customLocale": "New locale support (fr)",
+    "fallback": "Fallback locale (fr)",
+    "label": "Label (fr)",
+    "locale": "Locale support (fr)",
+    "notFound": "Missing country code (fr)",
+    "propertiesDescription": {
+      "code": "The ISO country code to display (e.g., 'US', 'gb'). (fr)",
+      "className": "CSS class to append to the wrapper span. (fr)",
+      "fallbackLocale": "Locale to use if the specific translation is missing. (fr)",
+      "i18n": "External translation dictionary for additional languages. (fr)",
+      "locale": "The target locale for translation (e.g., 'en', 'fr'). (fr)"
+    },
+    "title": "Country (fr)",
+    "typeDefinitions": "Types (fr)"
+  },
   "countryPicker": {
     "basic": "Basic (fr)",
     "customData": "Custom data (fr)",
-    "exclude":"Exclude filter (fr)",
-    "favorites":"Favorites (fr)",
-    "locale":"New locale support (fr)",
+    "customFlagsPath": "Custom flags path (fr)",
+    "exclude": "Exclude filter (fr)",
+    "fallbackLocale": "Fallback locale (fr)",
+    "favorites": "Favorites (fr)",
+    "flagsStyle": "Flags style and position (fr)",
+    "groupingCustom": "Custom grouping (fr)",
+    "groupingDefault": "Default grouping (fr)",
+    "groupingFavorites": "Grouping with favorites (fr)",
+    "locale": "New locale support (fr)",
     "include": "Include filter (fr)",
-    "includeFavorites":"Include favorites (fr)",
+    "includeFavorites": "Include favorites (fr)",
     "labels": {
       "multiple": "Select countries (fr)",
       "single": "Select country (fr)"
@@ -124,9 +147,16 @@
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
+      "fallbackLocale": "Locale used when active locale translation is missing. (fr)",
       "favorites": "An array of country codes to prioritize and display at the top of the list. (fr)",
+      "flags": "If true, displays country flags alongside country names (fr)",
+      "flagsPath": "A function that returns the URL/path of the flag image for a given country code (fr)",
+      "flagsPosition": "Position of the flags relative to the country name (fr)",
+      "flagsStyle": "Shape of the flags to be displayed (fr)",
+      "groups": "An object to organize countries into specific categories (e.g., EU, ASEAN). (fr)",
+      "i18n": "Additional translation catalogues to be supported (fr)",
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible. (fr)",
-      "includeFavorites":"If false, removes favorite items from the main list. (fr)",
+      "includeFavorites": "If false, removes favorite items from the main list. (fr)",
       "label": "The label text displayed above the picker. (fr)",
       "locale": "The locale code (e.g., 'en', 'fr'). Accepts custom codes (like 'np') if provided in data. (fr)",
       "multiple": "If true, allows selecting multiple countries. (fr)",
@@ -136,8 +166,7 @@
       "value": "The currently selected country code (or array of codes if multiple). (fr)"
     },
     "title": "CountryPicker (fr)",
-    "typeDefinitions":"Type definitions (fr)"
-
+    "typeDefinitions": "Types (fr)"
   },
   "data": {
     "title": "Data (fr)",
@@ -232,7 +261,6 @@
     "title": "Files presentation (fr)"
   },
   "table": {
-    "title": "Table (fr)",
     "confirmation": {
       "header": "Are you sure! (fr)",
       "message": {
@@ -248,6 +276,46 @@
         "note": "Note: (fr)"
       }
     },
+    "propertiesDescription": {
+      "className": "Additional CSS classes for styling (fr)",
+      "columnActionButtonLabel": "Label for the action button in toolbar section for sorting and visibility toggle (fr)",
+      "columnsData": "Column definitions for the table (fr)",
+      "customFormatters": "Collection of custom formatting functions for cell values (fr)",
+      "data": "Array of table row data (fr)",
+      "dataActionMenu": "List of actions properties available for each row (fr)",
+      "emptyTableMessage": "Message shown when the table has no data (fr)",
+      "enableRowSelection": "Enables row selection using checkboxes (fr)",
+      "enableSortingRemoval": "Allows a column’s sort state to toggle between ascending, descending, and none (fr)",
+      "fetchData": "Function to fetch server-side data with pagination, sorting, and filtering (fr)",
+      "handleResetState": "Function called when reset button is clicked (fr)",
+      "highlightHeader": "Highlights the currently active column header (fr)",
+      "id": "Unique identifier required for persisting table state (fr)",
+      "initialFilters": "Initial filter configuration for columns (fr)",
+      "initialSorting": "Initial sorting configuration (fr)",
+      "inputDebounceTime": "Debounce time for column filter inputs (fr)",
+      "isLoading": "Displays a loading overlay on the table (fr)",
+      "locale": "Locale used for formatting values (fr)",
+      "onRowSelectChange": "Callback function when row selection changes (fr)",
+      "paginated": "Enables pagination for the table (fr)",
+      "paginationOptions": "Additional pagination component properties (fr)",
+      "persistState": "Persists table state across page reloads (fr)",
+      "persistStateStorage": "Storage type used for persisting table state (fr)",
+      "renderCustomPagination": "Function to render a custom pagination component (fr)",
+      "renderSortIcons": "Function to render custom sort icons in column headers (fr)",
+      "renderTableFooterContent": "Function to render custom content in the table footer (fr)",
+      "renderToolbarItems": "Function to render custom items in the toolbar (fr)",
+      "resetButtonLabel": "Label for the reset button (fr)",
+      "rowClassName": "Addtional CSS class for row styling (fr)",
+      "rowPerPage": "Default number of rows per page (fr)",
+      "rowPerPageOptions": "Available options for rows per page (fr)",
+      "showColumnAction": "Shows a button for column sorting and visibility controls in toolbar section (fr)",
+      "showResetButton": "Shows reset button in the toolbar section (fr)",
+      "titleInfo": "Configuration for table title’s text and alignment (fr)",
+      "totalRecords": "Total number of records for table (fr)",
+      "visibleColumns": "Controls column’s visibility and order initially (fr)"
+    },
+    "subtitle": "The table component is a flexible and powerful solution for managing and displaying tabular data.",
+    "title": "Table (fr)",
     "usage": {
       "basic": "Basic table (fr)",
       "builtInActionColumn": "Table demonstrating built in actions column use case (fr)",

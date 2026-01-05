@@ -104,18 +104,41 @@
       "multiple": "Multiple currency select"
     }
   },
+  "countryDisplay": {
+    "basic": "Basic",
+    "customLocale": "New locale support",
+    "fallback": "Fallback locale",
+    "label": "Label",
+    "locale": "Locale support",
+    "notFound": "Missing country code",
+    "propertiesDescription": {
+      "code": "The ISO country code to display (e.g., 'US', 'gb').",
+      "className": "CSS class to append to the wrapper span.",
+      "fallbackLocale": "Locale to use if the specific translation is missing.",
+      "i18n": "External translation dictionary for additional languages.",
+      "locale": "The target locale for translation (e.g., 'en', 'fr')."
+    },
+    "title": "Country",
+    "typeDefinitions": "Types"
+  },
   "countryPicker": {
     "basic": "Basic",
     "customData": "Custom data",
-    "exclude":"Exclude filter",
-    "favorites":"Favorites",
-    "locale":"New locale support",
+    "customFlagsPath": "Custom flags path",
+    "exclude": "Exclude filter",
+    "fallbackLocale": "Fallback locale",
+    "favorites": "Favorites",
+    "flagsStyle": "Flags style and position",
+    "groupingCustom": "Custom grouping",
+    "groupingDefault": "Default grouping",
+    "groupingFavorites": "Grouping with favorites",
     "include": "Include filter",
-    "includeFavorites":"Include favorites",
+    "includeFavorites": "Include favorites",
     "labels": {
       "multiple": "Select countries",
       "single": "Select country"
     },
+    "locale": "New locale support",
     "multipleSelect": "Multiple selection",
     "placeholders": {
       "multiple": "Select countries...",
@@ -124,9 +147,16 @@
     "propertiesDescription": {
       "data": "Custom country data to overwrite existing entries or add new ones.",
       "exclude": "An array of country codes to remove from the list.",
+      "fallbackLocale": "Locale used when active locale translation is missing.",
       "favorites": "An array of country codes to prioritize and display at the top of the list.",
+      "flags": "If true, displays country flags alongside country names",
+      "flagsPath": "A function that returns the URL/path of the flag image for a given country code",
+      "flagsPosition": "Position of the flags relative to the country name",
+      "flagsStyle": "Shape of the flags to be displayed",
+      "groups": "An object to organize countries into specific categories (e.g., EU, ASEAN).",
+      "i18n": "Additional translation catalogues to be supported.",
       "include": "An array of country codes (e.g., ['US', 'DE']). Only these countries will be visible.",
-      "includeFavorites":"If false, removes favorite items from the main list.",
+      "includeFavorites": "If false, removes favorite items from the main list.",
       "label": "The label text displayed above the picker.",
       "locale": "The locale code (e.g., 'en', 'fr'). Accepts custom codes (like 'np') if provided in data.",
       "multiple": "If true, allows selecting multiple countries.",
@@ -136,7 +166,7 @@
       "value": "The currently selected country code (or array of codes if multiple)."
     },
     "title": "CountryPicker",
-    "typeDefinitions":"Type definitions"
+    "typeDefinitions": "Types"
   },
   "data": {
     "title": "Data",
@@ -231,7 +261,6 @@
     "title": "Files presentation"
   },
   "table": {
-    "title": "Table",
     "confirmation": {
       "header": "Are you sure!",
       "message": {
@@ -247,6 +276,46 @@
         "note": "Note:"
       }
     },
+    "propertiesDescription": {
+      "className": "Additional CSS classes for styling",
+      "columnActionButtonLabel": "Label for the action button in toolbar section for sorting and visibility toggle",
+      "columnsData": "Column definitions for the table",
+      "customFormatters": "Collection of custom formatting functions for cell values",
+      "data": "Array of table row data",
+      "dataActionMenu": "List of actions properties available for each row",
+      "emptyTableMessage": "Message shown when the table has no data",
+      "enableRowSelection": "Enables row selection using checkboxes",
+      "enableSortingRemoval": "Allows a column’s sort state to toggle between ascending, descending, and none",
+      "fetchData": "Function to fetch server-side data with pagination, sorting, and filtering",
+      "handleResetState": "Function called when reset button is clicked",
+      "highlightHeader": "Highlights the currently active column header",
+      "id": "Unique identifier required for persisting table state",
+      "initialFilters": "Initial filter configuration for columns",
+      "initialSorting": "Initial sorting configuration",
+      "inputDebounceTime": "Debounce time for column filter inputs",
+      "isLoading": "Displays a loading overlay on the table",
+      "locale": "Locale used for formatting values",
+      "onRowSelectChange": "Callback function when row selection changes",
+      "paginated": "Enables pagination for the table",
+      "paginationOptions": "Additional pagination component properties",
+      "persistState": "Persists table state across page reloads",
+      "persistStateStorage": "Storage type used for persisting table state",
+      "renderCustomPagination": "Function to render a custom pagination component",
+      "renderSortIcons": "Function to render custom sort icons in column headers",
+      "renderTableFooterContent": "Function to render custom content in the table footer",
+      "renderToolbarItems": "Function to render custom items in the toolbar",
+      "resetButtonLabel": "Label for the reset button",
+      "rowClassName": "Addtional CSS class for row styling",
+      "rowPerPage": "Default number of rows per page",
+      "rowPerPageOptions": "Available options for rows per page",
+      "showColumnAction": "Shows a button for column sorting and visibility controls in toolbar section",
+      "showResetButton": "Shows reset button in the toolbar section",
+      "titleInfo": "Configuration for table title’s text and alignment",
+      "totalRecords": "Total number of records for table",
+      "visibleColumns": "Controls column’s visibility and order initially"
+    },
+    "subtitle": "The table component is a flexible and powerful solution for managing and displaying tabular data.",
+    "title": "Table",
     "usage": {
       "basic": "Basic table",
       "builtInActionColumn": "Table demonstrating built in actions column use case",
