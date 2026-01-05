@@ -18,7 +18,6 @@ export type CountryPickerLabels = {
 type CountryOption<T> = {
   value: T;
   label: string;
-  code: string;
 };
 
 export type CountryPickerProperties<T> = Omit<
@@ -104,7 +103,9 @@ const getOptionsWithFavorites = <T,>(
   if (!favorites || favorites.length === 0) return baseOptions;
 
   const favoriteSet = new Set(favorites);
-  const favoriteList = baseOptions.filter((item) => favoriteSet.has(item.code));
+  const favoriteList = baseOptions.filter((item) =>
+    favoriteSet.has(String(item.value)),
+  );
 
   if (favoriteList.length === 0) return baseOptions;
 
@@ -113,7 +114,7 @@ const getOptionsWithFavorites = <T,>(
 
   const remainingList = includeFavorites
     ? baseOptions
-    : baseOptions.filter((item) => !favoriteSet.has(item.code));
+    : baseOptions.filter((item) => !favoriteSet.has(String(item.value)));
 
   return [
     { label: favoritesLabel, options: favoriteList },
@@ -129,8 +130,9 @@ const getOptionsWithGroups = <T,>(
 ) => {
   const finalGroupedOptions: { label: string; options: CountryOption<T>[] }[] =
     [];
+
   const optionsMap = new Map(
-    baseOptions.map((option) => [option.code, option]),
+    baseOptions.map((option) => [String(option.value), option]),
   );
 
   if (favorites && favorites.length > 0) {
@@ -186,11 +188,9 @@ export const CountryPicker = <T extends string | number>({
       include,
       exclude,
     );
-
     const baseOptions = filteredCountryCodes.map((code) => ({
       value: code as unknown as T,
       label: countryLabel(code, i18n, locale, fallbackLocale),
-      code,
     }));
 
     if (groups && Object.keys(groups).length > 0) {
@@ -240,7 +240,7 @@ export const CountryPicker = <T extends string | number>({
       groupLabel?: string;
     },
   ) => {
-    const code = (option.code ?? option.value) as string;
+    const code = String(option.value);
 
     return (
       <div className="options-wrapper" data-country-code={code}>
