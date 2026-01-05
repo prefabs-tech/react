@@ -25,14 +25,13 @@ export const Country: React.FC<CountryDisplayProperties> = ({
     const countryCode = code?.trim().toUpperCase();
 
     if (!countryCode) {
-      return "-";
+      return;
     }
 
     return (
       i18n?.[locale]?.[countryCode] ||
       i18n?.[fallbackLocale]?.[countryCode] ||
-      (englishData as Record<string, string>)[countryCode] ||
-      "-"
+      (englishData as Record<string, string>)[countryCode]
     );
   }, [code, locale, fallbackLocale, i18n]);
 
@@ -49,7 +48,7 @@ export const Country: React.FC<CountryDisplayProperties> = ({
           title={countryCode.toUpperCase()}
         />
       )}
-      <span className="country-label">{countryLabel}</span>
+      <span className="country-label">{countryLabel ?? "-"}</span>
     </span>
   );
 };
