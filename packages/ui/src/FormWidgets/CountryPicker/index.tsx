@@ -57,8 +57,8 @@ const getAllCountryCodes = (
 
   return Array.from(
     new Set([
-      ...(localeData ? Object.keys(localeData) : []),
       ...(fallbackData ? Object.keys(fallbackData) : []),
+      ...(localeData ? Object.keys(localeData) : []),
     ]),
   );
 };
