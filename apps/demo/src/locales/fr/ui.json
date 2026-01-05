@@ -109,7 +109,7 @@
     "customLocale": "New locale support (fr)",
     "fallback": "Fallback locale (fr)",
     "label": "Label (fr)",
-    "locale": "Locale support (fr)",
+    "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
     "propertiesDescription": {
       "code": "The ISO country code to display (e.g., 'US', 'gb'). (fr)",
