@@ -49,6 +49,13 @@ export const CountryDisplayDemo = () => {
       default: "en",
       description: t("countryDisplay.propertiesDescription.locale"),
     },
+    {
+      id: 6,
+      prop: "showFlag",
+      type: "boolean",
+      default: "true",
+      description: t("countryDisplay.propertiesDescription.showFlag"),
+    },
   ];
 
   return (
@@ -153,6 +160,11 @@ fallbackLocale = np;
         <CodeBlock exampleCode='<Country code="WW" />' />
       </Section>
 
+      <Section title={t("countryDisplay.showFlag")}>
+        <Country code="CA" showFlag={false} />
+        <CodeBlock exampleCode='<Country code="CA" showFlag={false} />' />
+      </Section>
+
       <Section
         title={t("headers.propertiesValue", {
           value: "Country",
@@ -188,10 +200,11 @@ fallbackLocale = np;
 
 interface CountryDisplayProperties {
   code: string;
-  locale?: string;          
+  className?: string;
   fallbackLocale?: string;  
   i18n?: I18nData;         
-  className?: string;
+  locale?: string;          
+  showFlag?: boolean;
 }
 
 Example I18n:

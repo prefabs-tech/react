@@ -109,15 +109,17 @@
     "customLocale": "New locale support (fr)",
     "fallback": "Fallback locale (fr)",
     "label": "Label (fr)",
-    "locale": "Locale support (fr)",
+    "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
     "propertiesDescription": {
       "code": "The ISO country code to display (e.g., 'US', 'gb'). (fr)",
       "className": "CSS class to append to the wrapper span. (fr)",
       "fallbackLocale": "Locale to use if the specific translation is missing. (fr)",
       "i18n": "External translation dictionary for additional languages. (fr)",
-      "locale": "The target locale for translation (e.g., 'en', 'fr'). (fr)"
+      "locale": "The target locale for translation (e.g., 'en', 'fr'). (fr)",
+      "showFlag": "If false, the flag will not be displayed. (fr)"
     },
+    "showFlag": "Flag visibility (fr)",
     "title": "Country (fr)",
     "typeDefinitions": "Types (fr)"
   },
