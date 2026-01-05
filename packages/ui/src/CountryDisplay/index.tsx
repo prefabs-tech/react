@@ -42,7 +42,7 @@ export const Country: React.FC<CountryDisplayProperties> = ({
       className={`country ${className}`.trim()}
       data-country-code={countryCode}
     >
-      {showFlag && (
+      {showFlag && countryLabel && (
         <span
           className={`flag-icon flag-icon-${countryCode.toLowerCase()}`}
           title={countryCode.toUpperCase()}
