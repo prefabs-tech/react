@@ -15,12 +15,6 @@ export type CountryPickerLabels = {
   allCountries?: string;
 };
 
-type CountryOption<T> = {
-  value: T;
-  label: string;
-  code: string;
-};
-
 export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
@@ -58,8 +52,8 @@ const getAllCountryCodes = (
 
   return Array.from(
     new Set([
-      ...(localeData ? Object.keys(localeData) : []),
       ...(fallbackData ? Object.keys(fallbackData) : []),
+      ...(localeData ? Object.keys(localeData) : []),
     ]),
   );
 };
@@ -75,8 +69,14 @@ const getFilteredCountryCodes = (
   if (!includeSet && !excludeSet) return codes;
 
   return codes.filter((code) => {
-    if (excludeSet && excludeSet.has(code)) return false;
-    if (includeSet && !includeSet.has(code)) return false;
+    if (excludeSet && excludeSet.has(code)) {
+      return false;
+    }
+
+    if (includeSet && !includeSet.has(code)) {
+      return false;
+    }
+
     return true;
   });
 };
@@ -96,24 +96,30 @@ const countryLabel = (
 };
 
 const getOptionsWithFavorites = <T,>(
-  baseOptions: CountryOption<T>[],
+  baseOptions: Option<T>[],
   favorites: string[] | undefined,
   labels: CountryPickerLabels | undefined,
   includeFavorites: boolean,
 ) => {
-  if (!favorites || favorites.length === 0) return baseOptions;
+  if (!favorites || favorites.length === 0) {
+    return baseOptions;
+  }
 
   const favoriteSet = new Set(favorites);
-  const favoriteList = baseOptions.filter((item) => favoriteSet.has(item.code));
+  const favoriteList = baseOptions.filter((item) =>
+    favoriteSet.has(String(item.value)),
+  );
 
-  if (favoriteList.length === 0) return baseOptions;
+  if (favoriteList.length === 0) {
+    return baseOptions;
+  }
 
   const favoritesLabel = labels?.favorites || "Favorites";
   const allCountriesLabel = labels?.allCountries || "All countries";
 
   const remainingList = includeFavorites
     ? baseOptions
-    : baseOptions.filter((item) => !favoriteSet.has(item.code));
+    : baseOptions.filter((item) => !favoriteSet.has(String(item.value)));
 
   return [
     { label: favoritesLabel, options: favoriteList },
@@ -122,21 +128,21 @@ const getOptionsWithFavorites = <T,>(
 };
 
 const getOptionsWithGroups = <T,>(
-  baseOptions: CountryOption<T>[],
+  baseOptions: Option<T>[],
   groups: GroupData,
   favorites: string[] | undefined,
   labels: CountryPickerLabels | undefined,
 ) => {
-  const finalGroupedOptions: { label: string; options: CountryOption<T>[] }[] =
-    [];
+  const finalGroupedOptions: { label: string; options: Option<T>[] }[] = [];
+
   const optionsMap = new Map(
-    baseOptions.map((option) => [option.code, option]),
+    baseOptions.map((option) => [String(option.value), option]),
   );
 
   if (favorites && favorites.length > 0) {
     const favoriteList = favorites
       .map((code) => optionsMap.get(code))
-      .filter((option): option is CountryOption<T> => !!option);
+      .filter((option): option is Option<T> => !!option);
 
     if (favoriteList.length > 0) {
       finalGroupedOptions.push({
@@ -149,7 +155,7 @@ const getOptionsWithGroups = <T,>(
   Object.entries(groups).forEach(([groupLabel, groupCodes]) => {
     const groupOptions = groupCodes
       .map((code) => optionsMap.get(code))
-      .filter((option): option is CountryOption<T> => !!option);
+      .filter((option): option is Option<T> => !!option);
 
     if (groupOptions.length > 0) {
       finalGroupedOptions.push({
@@ -186,11 +192,9 @@ export const CountryPicker = <T extends string | number>({
       include,
       exclude,
     );
-
-    const baseOptions = filteredCountryCodes.map((code) => ({
+    const baseOptions: Option<T>[] = filteredCountryCodes.map((code) => ({
       value: code as unknown as T,
       label: countryLabel(code, i18n, locale, fallbackLocale),
-      code,
     }));
 
     if (groups && Object.keys(groups).length > 0) {
@@ -240,7 +244,7 @@ export const CountryPicker = <T extends string | number>({
       groupLabel?: string;
     },
   ) => {
-    const code = (option.code ?? option.value) as string;
+    const code = String(option.value);
 
     return (
       <div className="options-wrapper" data-country-code={code}>
