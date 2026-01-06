@@ -2,16 +2,30 @@ import React, { useMemo } from "react";
 
 import englishData from "../FormWidgets/CountryPicker/en.json";
 
-type I18nData = Record<string, Record<string, string>>;
+export type Translation = Record<string, string>;
+export type LocalesData = Record<string, Translation>;
 
 export interface CountryDisplayProperties {
   className?: string;
   code: string;
   fallbackLocale?: string;
-  i18n?: I18nData;
+  i18n?: LocalesData;
   locale?: string;
   showFlag?: boolean;
 }
+
+const determineFallback = (
+  locales: LocalesData | undefined,
+  fallbackLocale: string,
+): Translation | null => {
+  if (locales?.[fallbackLocale]) {
+    return locales[fallbackLocale];
+  }
+  if (fallbackLocale === "en") {
+    return englishData as Translation;
+  }
+  return null;
+};
 
 export const Country: React.FC<CountryDisplayProperties> = ({
   className = "",
@@ -21,21 +35,21 @@ export const Country: React.FC<CountryDisplayProperties> = ({
   locale = "en",
   showFlag = true,
 }) => {
-  const countryLabel = useMemo(() => {
-    const countryCode = code?.trim().toUpperCase();
+  const countryCode = code?.trim();
 
+  const countryLabel = useMemo(() => {
     if (!countryCode) {
-      return;
+      return undefined;
     }
+
+    const fallbackData = determineFallback(i18n, fallbackLocale);
 
     return (
       i18n?.[locale]?.[countryCode] ||
-      i18n?.[fallbackLocale]?.[countryCode] ||
-      (englishData as Record<string, string>)[countryCode]
+      fallbackData?.[countryCode] ||
+      countryCode
     );
-  }, [code, locale, fallbackLocale, i18n]);
-
-  const countryCode = code.trim();
+  }, [countryCode, locale, fallbackLocale, i18n]);
 
   return (
     <span
@@ -45,7 +59,7 @@ export const Country: React.FC<CountryDisplayProperties> = ({
       {showFlag && countryLabel && (
         <span
           className={`flag-icon flag-icon-${countryCode.toLowerCase()}`}
-          title={countryCode.toUpperCase()}
+          title={countryLabel}
         />
       )}
       <span className="country-label">{countryLabel ?? "-"}</span>
