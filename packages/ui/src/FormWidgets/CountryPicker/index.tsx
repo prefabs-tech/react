@@ -7,7 +7,7 @@ import defaultGroups from "./groups.json";
 import type { Option } from "../Select";
 
 export type TranslationCatalogue = Record<string, string>;
-export type I18nData = Record<string, TranslationCatalogue>;
+export type LocalesData = Record<string, TranslationCatalogue>;
 export type GroupData = Record<string, string[]>;
 
 export type CountryPickerLabels = {
@@ -27,7 +27,7 @@ export type CountryPickerProperties<T> = Omit<
   flagsPosition?: "left" | "right" | "right-edge";
   flagsStyle?: "circle" | "rectangular" | "square";
   groups?: GroupData;
-  i18n?: I18nData;
+  locales?: LocalesData;
   include?: string[];
   includeFavorites?: boolean;
   labels?: CountryPickerLabels;
@@ -36,136 +36,158 @@ export type CountryPickerProperties<T> = Omit<
 
 export { defaultGroups };
 
-const getAllCountryCodes = (
-  i18n: I18nData | undefined,
+const determineFallback = (
+  locales: LocalesData | undefined,
+  fallbackLocale: string,
+): TranslationCatalogue | null => {
+  if (locales?.[fallbackLocale]) {
+    return locales[fallbackLocale];
+  }
+  if (fallbackLocale === "en") {
+    return defaultEnglishCatalogue;
+  }
+  return null;
+};
+
+const generateBaseOptions = <T,>(
+  locales: LocalesData | undefined,
   locale: string,
   fallbackLocale: string,
-): string[] => {
-  if (!i18n) return Object.keys(defaultEnglishCatalogue);
+  include: string[] | undefined,
+  exclude: string[] | undefined,
+): Option<T>[] => {
+  const fallbackData = determineFallback(locales, fallbackLocale);
 
-  const localeData = i18n[locale];
-  const fallbackData = i18n[fallbackLocale];
-
-  if (!localeData && !fallbackData) {
-    return Object.keys(defaultEnglishCatalogue);
+  if (!fallbackData) {
+    return [];
   }
 
-  return Array.from(
-    new Set([
-      ...(fallbackData ? Object.keys(fallbackData) : []),
-      ...(localeData ? Object.keys(localeData) : []),
-    ]),
-  );
-};
+  const baseOptions: Option<T>[] = [];
 
-const getFilteredCountryCodes = (
-  codes: string[],
-  include?: string[],
-  exclude?: string[],
-): string[] => {
-  const includeSet = include && include.length > 0 ? new Set(include) : null;
-  const excludeSet = exclude && exclude.length > 0 ? new Set(exclude) : null;
-
-  if (!includeSet && !excludeSet) return codes;
-
-  return codes.filter((code) => {
-    if (excludeSet && excludeSet.has(code)) {
-      return false;
+  Object.entries(fallbackData).forEach(([code, fallbackLabel]) => {
+    if (exclude && exclude.includes(code)) {
+      return;
     }
 
-    if (includeSet && !includeSet.has(code)) {
-      return false;
+    if (include && !include.includes(code)) {
+      return;
     }
 
-    return true;
+    const label = locales?.[locale]?.[code] || fallbackLabel || code;
+    baseOptions.push({ value: code as unknown as T, label });
   });
+
+  return baseOptions;
 };
 
-const countryLabel = (
-  code: string,
-  i18n: I18nData | undefined,
-  locale: string,
-  fallbackLocale: string,
-): string => {
-  return (
-    i18n?.[locale]?.[code] ||
-    i18n?.[fallbackLocale]?.[code] ||
-    defaultEnglishCatalogue[code as keyof typeof defaultEnglishCatalogue] ||
-    code
-  );
-};
-
-const getOptionsWithFavorites = <T,>(
+const splitFavoritesAndMain = <T,>(
   baseOptions: Option<T>[],
-  favorites: string[] | undefined,
-  labels: CountryPickerLabels | undefined,
+  favorites: string[],
   includeFavorites: boolean,
 ) => {
-  if (!favorites || favorites.length === 0) {
-    return baseOptions;
-  }
+  const favoriteOptions: Option<T>[] = [];
+  const mainOptions: Option<T>[] = [];
 
-  const favoriteSet = new Set(favorites);
-  const favoriteList = baseOptions.filter((item) =>
-    favoriteSet.has(String(item.value)),
-  );
+  baseOptions.forEach((option) => {
+    if (favorites.includes(String(option.value))) {
+      favoriteOptions.push(option);
+      if (includeFavorites) {
+        mainOptions.push(option);
+      }
+    } else {
+      mainOptions.push(option);
+    }
+  });
 
-  if (favoriteList.length === 0) {
-    return baseOptions;
-  }
-
-  const favoritesLabel = labels?.favorites || "Favorites";
-  const allCountriesLabel = labels?.allCountries || "All countries";
-
-  const remainingList = includeFavorites
-    ? baseOptions
-    : baseOptions.filter((item) => !favoriteSet.has(String(item.value)));
-
-  return [
-    { label: favoritesLabel, options: favoriteList },
-    { label: allCountriesLabel, options: remainingList },
-  ];
+  return { favoriteOptions, mainOptions };
 };
 
-const getOptionsWithGroups = <T,>(
-  baseOptions: Option<T>[],
+const divideListInGroups = <T,>(
+  list: Option<T>[],
   groups: GroupData,
-  favorites: string[] | undefined,
-  labels: CountryPickerLabels | undefined,
-) => {
-  const finalGroupedOptions: { label: string; options: Option<T>[] }[] = [];
-
-  const optionsMap = new Map(
-    baseOptions.map((option) => [String(option.value), option]),
-  );
-
-  if (favorites && favorites.length > 0) {
-    const favoriteList = favorites
-      .map((code) => optionsMap.get(code))
-      .filter((option): option is Option<T> => !!option);
-
-    if (favoriteList.length > 0) {
-      finalGroupedOptions.push({
-        label: labels?.favorites || "Favorites",
-        options: favoriteList,
-      });
-    }
-  }
+): { label: string; options: Option<T>[] }[] => {
+  const groupedResult: { label: string; options: Option<T>[] }[] = [];
 
   Object.entries(groups).forEach(([groupLabel, groupCodes]) => {
-    const groupOptions = groupCodes
-      .map((code) => optionsMap.get(code))
-      .filter((option): option is Option<T> => !!option);
+    const groupOptions = list.filter((option) =>
+      groupCodes.includes(String(option.value)),
+    );
 
     if (groupOptions.length > 0) {
-      finalGroupedOptions.push({
+      groupedResult.push({
         label: groupLabel,
         options: groupOptions,
       });
     }
   });
 
-  return finalGroupedOptions;
+  return groupedResult;
+};
+
+type GetCountryOptions = {
+  locales?: LocalesData;
+  locale: string;
+  fallbackLocale: string;
+  include?: string[];
+  exclude?: string[];
+  groups?: GroupData;
+  favorites?: string[];
+  labels?: CountryPickerLabels;
+  includeFavorites?: boolean;
+};
+
+export const getCountryOptions = <T,>({
+  locales,
+  locale,
+  fallbackLocale,
+  include,
+  exclude,
+  groups,
+  favorites,
+  labels,
+  includeFavorites = true,
+}: GetCountryOptions) => {
+  const baseOptions = generateBaseOptions<T>(
+    locales,
+    locale,
+    fallbackLocale,
+    include,
+    exclude,
+  );
+
+  const hasGroups = groups && Object.keys(groups).length > 0;
+  const hasFavorites = favorites && favorites.length > 0;
+
+  if (!hasFavorites) {
+    if (hasGroups) {
+      return divideListInGroups(baseOptions, groups!);
+    }
+    return baseOptions;
+  }
+
+  const { favoriteOptions, mainOptions } = splitFavoritesAndMain(
+    baseOptions,
+    favorites,
+    includeFavorites,
+  );
+
+  const favoriteGroup = {
+    label: labels?.favorites || "Favorites",
+    options: favoriteOptions,
+  };
+
+  if (hasGroups) {
+    const groupedMain = divideListInGroups(mainOptions, groups!);
+    return [favoriteGroup, ...groupedMain];
+  }
+
+  return [
+    favoriteGroup,
+    {
+      label: labels?.allCountries || "All countries",
+      options: mainOptions,
+    },
+  ];
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -177,7 +199,7 @@ export const CountryPicker = <T extends string | number>({
   flagsPosition = "left",
   flagsStyle = "rectangular",
   groups,
-  i18n,
+  locales,
   include,
   includeFavorites = true,
   labels,
@@ -185,38 +207,27 @@ export const CountryPicker = <T extends string | number>({
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
-    const countryCodes = getAllCountryCodes(i18n, locale, fallbackLocale);
-
-    const filteredCountryCodes = getFilteredCountryCodes(
-      countryCodes,
+    return getCountryOptions<T>({
+      locales,
+      locale,
+      fallbackLocale,
       include,
       exclude,
-    );
-    const baseOptions: Option<T>[] = filteredCountryCodes.map((code) => ({
-      value: code as unknown as T,
-      label: countryLabel(code, i18n, locale, fallbackLocale),
-    }));
-
-    if (groups && Object.keys(groups).length > 0) {
-      return getOptionsWithGroups(baseOptions, groups, favorites, labels);
-    }
-
-    return getOptionsWithFavorites(
-      baseOptions,
+      groups,
       favorites,
       labels,
       includeFavorites,
-    );
+    });
   }, [
-    exclude,
-    fallbackLocale,
-    favorites,
-    groups,
-    i18n,
-    include,
-    includeFavorites,
-    labels,
+    locales,
     locale,
+    fallbackLocale,
+    include,
+    exclude,
+    groups,
+    favorites,
+    labels,
+    includeFavorites,
   ]);
 
   const getFlagClass = (code?: string) =>

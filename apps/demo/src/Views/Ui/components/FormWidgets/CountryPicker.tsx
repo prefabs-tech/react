@@ -20,53 +20,53 @@ export const CountryPickerDemo = () => {
 
   const data = [
     {
-      default: "{ en: defaultEnCatalogue }",
-      description: t("countryPicker.propertiesDescription.i18n"),
-      id: 1,
-      prop: "i18n",
-      type: "Record<string, Record<string, string>>",
-    },
-    {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.fallbackLocale"),
-      id: 2,
+      id: 1,
       prop: "fallbackLocale",
       type: "string",
     },
     {
       default: "true",
       description: t("countryPicker.propertiesDescription.flags"),
-      id: 3,
+      id: 2,
       prop: "flags",
       type: "Boolean",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.flagsPath"),
-      id: 4,
+      id: 3,
       prop: "flagsPath",
       type: "(code: string) => string",
     },
     {
       default: "left",
       description: t("countryPicker.propertiesDescription.flagsPosition"),
-      id: 5,
+      id: 4,
       prop: "flagsPosition",
       type: "left | right | right-edge",
     },
     {
       default: "rectangular",
       description: t("countryPicker.propertiesDescription.flagsStyle"),
-      id: 6,
+      id: 5,
       prop: "flagsStyle",
       type: "circle | rectangular | square",
     },
     {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.locale"),
-      id: 7,
+      id: 6,
       prop: "locale",
       type: "string",
+    },
+    {
+      default: "{ en: defaultEnCatalogue }",
+      description: t("countryPicker.propertiesDescription.i18n"),
+      id: 7,
+      prop: "locales",
+      type: "Record<string, Record<string, string>>",
     },
     {
       default: "[]",
@@ -240,7 +240,7 @@ const selectedLocale = i18n.language;
 
       <Section title={t("countryPicker.locale")}>
         <CountryPicker
-          i18n={{ np: nepaliData }}
+          locales={{ np: nepaliData }}
           label={t("countryPicker.labels.single")}
           locale="np"
           name="countryPickerNepali"
@@ -259,7 +259,7 @@ const locales = {
 const selectedLocale = "np";
 
 <CountryPicker
-  i18n={locales}
+  locales={locales}
   locale={selectedLocale}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
@@ -270,7 +270,7 @@ const selectedLocale = "np";
       <Section title={t("countryPicker.fallbackLocale")}>
         <CountryPicker
           fallbackLocale="fr"
-          i18n={{
+          locales={{
             np: nepaliData,
             fr: frenchData,
           }}
@@ -295,7 +295,7 @@ const fallbackLocale = "fr";
 
 <CountryPicker
   fallbackLocale={fallbackLocale}
-  i18n={locales}
+  locales={locales}
   locale={selectedLocale}
   label="Fallback Demo"
   value={singleSelectValue}
