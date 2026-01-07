@@ -1,39 +1,26 @@
 import React, { useMemo } from "react";
 
-import englishData from "../FormWidgets/CountryPicker/en.json";
-
-export type Translation = Record<string, string>;
-export type LocalesData = Record<string, Translation>;
+import { Locales } from "../FormWidgets/CountryPicker";
+import { getFallbackTranslation } from "../utils/CountryPicker";
 
 export interface CountryDisplayProperties {
   className?: string;
   code: string;
   fallbackLocale?: string;
-  i18n?: LocalesData;
+  locales?: Locales;
   locale?: string;
   showFlag?: boolean;
+  renderOption?: (code: string, label: string) => React.ReactNode;
 }
-
-const determineFallback = (
-  locales: LocalesData | undefined,
-  fallbackLocale: string,
-): Translation | null => {
-  if (locales?.[fallbackLocale]) {
-    return locales[fallbackLocale];
-  }
-  if (fallbackLocale === "en") {
-    return englishData as Translation;
-  }
-  return null;
-};
 
 export const Country: React.FC<CountryDisplayProperties> = ({
   className = "",
   code,
   fallbackLocale = "en",
-  i18n = {},
+  locales = {},
   locale = "en",
   showFlag = true,
+  renderOption,
 }) => {
   const countryCode = code?.trim();
 
@@ -42,14 +29,18 @@ export const Country: React.FC<CountryDisplayProperties> = ({
       return undefined;
     }
 
-    const fallbackData = determineFallback(i18n, fallbackLocale);
+    const fallbackData = getFallbackTranslation(fallbackLocale, locales);
 
     return (
-      i18n?.[locale]?.[countryCode] ||
+      locales?.[locale]?.[countryCode] ||
       fallbackData?.[countryCode] ||
       countryCode
     );
-  }, [countryCode, locale, fallbackLocale, i18n]);
+  }, [countryCode, locale, fallbackLocale, locales]);
+
+  if (renderOption && countryCode && countryLabel) {
+    return <>{renderOption(countryCode, countryLabel)}</>;
+  }
 
   return (
     <span
