@@ -6,8 +6,8 @@ import defaultGroups from "./groups.json";
 
 import type { Option } from "../Select";
 
-export type TranslationCatalogue = Record<string, string>;
-export type LocalesData = Record<string, TranslationCatalogue>;
+export type Translation = Record<string, string>;
+export type LocalesData = Record<string, Translation>;
 export type GroupData = Record<string, string[]>;
 
 export type CountryPickerLabels = {
@@ -36,16 +36,18 @@ export type CountryPickerProperties<T> = Omit<
 
 export { defaultGroups };
 
-const determineFallback = (
+const getFallbackLocale = (
   locales: LocalesData | undefined,
   fallbackLocale: string,
-): TranslationCatalogue | null => {
+): Translation | null => {
   if (locales?.[fallbackLocale]) {
     return locales[fallbackLocale];
   }
+
   if (fallbackLocale === "en") {
     return defaultEnglishCatalogue;
   }
+
   return null;
 };
 
@@ -56,7 +58,7 @@ const generateBaseOptions = <T,>(
   include: string[] | undefined,
   exclude: string[] | undefined,
 ): Option<T>[] => {
-  const fallbackData = determineFallback(locales, fallbackLocale);
+  const fallbackData = getFallbackLocale(locales, fallbackLocale);
 
   if (!fallbackData) {
     return [];
@@ -124,7 +126,7 @@ const divideListInGroups = <T,>(
   return groupedResult;
 };
 
-type GetCountryOptions = {
+type CountryOptions = {
   locales?: LocalesData;
   locale: string;
   fallbackLocale: string;
@@ -146,7 +148,7 @@ export const getCountryOptions = <T,>({
   favorites,
   labels,
   includeFavorites = true,
-}: GetCountryOptions) => {
+}: CountryOptions) => {
   const baseOptions = generateBaseOptions<T>(
     locales,
     locale,
@@ -162,6 +164,7 @@ export const getCountryOptions = <T,>({
     if (hasGroups) {
       return divideListInGroups(baseOptions, groups!);
     }
+
     return baseOptions;
   }
 
