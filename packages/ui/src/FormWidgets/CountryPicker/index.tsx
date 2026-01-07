@@ -1,14 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 
+import { getFallbackTranslation } from "../../utils/CountryPicker";
 import { Select, ISelectProperties } from "../Select";
-import defaultEnglishCatalogue from "./en.json";
 import defaultGroups from "./groups.json";
 
 import type { Option } from "../Select";
 
-export type TranslationCatalogue = Record<string, string>;
-export type I18nData = Record<string, TranslationCatalogue>;
-export type GroupData = Record<string, string[]>;
+export type Translation = Record<string, string>;
+export type Locales = Record<string, Translation>;
+export type Groups = Record<string, string[]>;
 
 export type CountryPickerLabels = {
   favorites?: string;
@@ -26,146 +26,192 @@ export type CountryPickerProperties<T> = Omit<
   flagsPath?: (code: string) => string;
   flagsPosition?: "left" | "right" | "right-edge";
   flagsStyle?: "circle" | "rectangular" | "square";
-  groups?: GroupData;
-  i18n?: I18nData;
+  groups?: Groups;
   include?: string[];
   includeFavorites?: boolean;
   labels?: CountryPickerLabels;
   locale?: string;
+  locales?: Locales;
 };
 
 export { defaultGroups };
 
-const getAllCountryCodes = (
-  i18n: I18nData | undefined,
-  locale: string,
+const getBaseOptions = <T,>(
+  exclude: string[] | undefined,
   fallbackLocale: string,
-): string[] => {
-  if (!i18n) return Object.keys(defaultEnglishCatalogue);
+  include: string[] | undefined,
+  locale: string,
+  locales: Locales | undefined,
+): Option<T>[] => {
+  const fallbackData = getFallbackTranslation(fallbackLocale, locales);
 
-  const localeData = i18n[locale];
-  const fallbackData = i18n[fallbackLocale];
-
-  if (!localeData && !fallbackData) {
-    return Object.keys(defaultEnglishCatalogue);
+  if (!fallbackData) {
+    return [];
   }
 
-  return Array.from(
-    new Set([
-      ...(fallbackData ? Object.keys(fallbackData) : []),
-      ...(localeData ? Object.keys(localeData) : []),
-    ]),
-  );
-};
+  const baseOptions: Option<T>[] = [];
 
-const getFilteredCountryCodes = (
-  codes: string[],
-  include?: string[],
-  exclude?: string[],
-): string[] => {
-  const includeSet = include && include.length > 0 ? new Set(include) : null;
-  const excludeSet = exclude && exclude.length > 0 ? new Set(exclude) : null;
-
-  if (!includeSet && !excludeSet) return codes;
-
-  return codes.filter((code) => {
-    if (excludeSet && excludeSet.has(code)) {
-      return false;
+  Object.entries(fallbackData).forEach(([code, fallbackLabel]) => {
+    if (exclude && exclude.includes(code)) {
+      return;
     }
 
-    if (includeSet && !includeSet.has(code)) {
-      return false;
+    if (include && !include.includes(code)) {
+      return;
     }
 
-    return true;
+    const label = locales?.[locale]?.[code] || fallbackLabel || code;
+    baseOptions.push({ value: code as unknown as T, label });
   });
+
+  return baseOptions;
 };
 
-const countryLabel = (
-  code: string,
-  i18n: I18nData | undefined,
-  locale: string,
-  fallbackLocale: string,
-): string => {
-  return (
-    i18n?.[locale]?.[code] ||
-    i18n?.[fallbackLocale]?.[code] ||
-    defaultEnglishCatalogue[code as keyof typeof defaultEnglishCatalogue] ||
-    code
-  );
-};
+const getFlagClass = (
+  code: string | undefined,
+  position: string,
+  style: string,
+) =>
+  [
+    "flag-icon",
+    code && `flag-icon-${code.trim().toLowerCase()}`,
+    position === "right" && "flag-icon-right",
+    position === "right-edge" && "flag-icon-right-edge",
+    style === "circle" && "flag-icon-rounded",
+    style === "square" && "flag-icon-squared",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
-const getOptionsWithFavorites = <T,>(
-  baseOptions: Option<T>[],
-  favorites: string[] | undefined,
-  labels: CountryPickerLabels | undefined,
-  includeFavorites: boolean,
-) => {
-  if (!favorites || favorites.length === 0) {
-    return baseOptions;
-  }
-
-  const favoriteSet = new Set(favorites);
-  const favoriteList = baseOptions.filter((item) =>
-    favoriteSet.has(String(item.value)),
-  );
-
-  if (favoriteList.length === 0) {
-    return baseOptions;
-  }
-
-  const favoritesLabel = labels?.favorites || "Favorites";
-  const allCountriesLabel = labels?.allCountries || "All countries";
-
-  const remainingList = includeFavorites
-    ? baseOptions
-    : baseOptions.filter((item) => !favoriteSet.has(String(item.value)));
-
-  return [
-    { label: favoritesLabel, options: favoriteList },
-    { label: allCountriesLabel, options: remainingList },
-  ];
-};
-
-const getOptionsWithGroups = <T,>(
-  baseOptions: Option<T>[],
-  groups: GroupData,
-  favorites: string[] | undefined,
-  labels: CountryPickerLabels | undefined,
-) => {
-  const finalGroupedOptions: { label: string; options: Option<T>[] }[] = [];
-
-  const optionsMap = new Map(
-    baseOptions.map((option) => [String(option.value), option]),
-  );
-
-  if (favorites && favorites.length > 0) {
-    const favoriteList = favorites
-      .map((code) => optionsMap.get(code))
-      .filter((option): option is Option<T> => !!option);
-
-    if (favoriteList.length > 0) {
-      finalGroupedOptions.push({
-        label: labels?.favorites || "Favorites",
-        options: favoriteList,
-      });
-    }
-  }
+const getGroups = <T,>(
+  groups: Groups,
+  list: Option<T>[],
+): { label: string; options: Option<T>[] }[] => {
+  const groupedResult: { label: string; options: Option<T>[] }[] = [];
 
   Object.entries(groups).forEach(([groupLabel, groupCodes]) => {
-    const groupOptions = groupCodes
-      .map((code) => optionsMap.get(code))
-      .filter((option): option is Option<T> => !!option);
+    const groupOptions = list.filter((option) =>
+      groupCodes.includes(String(option.value)),
+    );
 
     if (groupOptions.length > 0) {
-      finalGroupedOptions.push({
+      groupedResult.push({
         label: groupLabel,
         options: groupOptions,
       });
     }
   });
 
-  return finalGroupedOptions;
+  return groupedResult;
+};
+
+const getOptions = <T,>({
+  exclude,
+  fallbackLocale = "en",
+  favorites,
+  groups,
+  include,
+  includeFavorites = true,
+  labels,
+  locale = "en",
+  locales,
+}: Pick<
+  CountryPickerProperties<T>,
+  | "exclude"
+  | "fallbackLocale"
+  | "favorites"
+  | "groups"
+  | "include"
+  | "includeFavorites"
+  | "labels"
+  | "locale"
+  | "locales"
+>) => {
+  const baseOptions = getBaseOptions<T>(
+    exclude,
+    fallbackLocale,
+    include,
+    locale,
+    locales,
+  );
+
+  if (favorites && favorites.length > 0) {
+    return getOptionsWithFavorites(
+      baseOptions,
+      favorites,
+      includeFavorites,
+      groups,
+      labels,
+    );
+  }
+
+  if (groups && Object.keys(groups).length > 0) {
+    return getGroups(groups, baseOptions);
+  }
+
+  return baseOptions;
+};
+
+const getOptionsWithFavorites = <T,>(
+  baseOptions: Option<T>[],
+  favorites: string[],
+  includeFavorites: boolean,
+  groups?: Groups,
+  labels?: CountryPickerLabels,
+) => {
+  const favoriteOptions = baseOptions.filter((option) =>
+    favorites.includes(String(option.value)),
+  );
+
+  const mainOptions = includeFavorites
+    ? baseOptions
+    : baseOptions.filter((option) => !favorites.includes(String(option.value)));
+
+  const mainGroups =
+    groups && Object.keys(groups).length > 0
+      ? getGroups(groups, mainOptions)
+      : [
+          {
+            label: labels?.allCountries || "All countries",
+            options: mainOptions,
+          },
+        ];
+
+  return [
+    {
+      label: labels?.favorites || "Favorites",
+      options: favoriteOptions,
+    },
+    ...mainGroups,
+  ];
+};
+
+const renderCountryOption = <T,>(
+  option: Option<T>,
+  {
+    flags,
+    flagsPath,
+    flagsPosition = "left",
+    flagsStyle = "rectangular",
+  }: Pick<
+    CountryPickerProperties<T>,
+    "flags" | "flagsPath" | "flagsPosition" | "flagsStyle"
+  >,
+) => {
+  const code = String(option.value);
+  const flagClass = getFlagClass(code, flagsPosition, flagsStyle);
+
+  return (
+    <div className="options-wrapper" data-country-code={code}>
+      {flags &&
+        (flagsPath ? (
+          <img alt={option.label} className={flagClass} src={flagsPath(code)} />
+        ) : (
+          <span className={flagClass} />
+        ))}
+      <span className="option-label">{option.label}</span>
+    </div>
+  );
 };
 
 export const CountryPicker = <T extends string | number>({
@@ -177,7 +223,7 @@ export const CountryPicker = <T extends string | number>({
   flagsPosition = "left",
   flagsStyle = "rectangular",
   groups,
-  i18n,
+  locales,
   include,
   includeFavorites = true,
   labels,
@@ -185,89 +231,59 @@ export const CountryPicker = <T extends string | number>({
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
-    const countryCodes = getAllCountryCodes(i18n, locale, fallbackLocale);
-
-    const filteredCountryCodes = getFilteredCountryCodes(
-      countryCodes,
-      include,
+    return getOptions<T>({
       exclude,
-    );
-    const baseOptions: Option<T>[] = filteredCountryCodes.map((code) => ({
-      value: code as unknown as T,
-      label: countryLabel(code, i18n, locale, fallbackLocale),
-    }));
-
-    if (groups && Object.keys(groups).length > 0) {
-      return getOptionsWithGroups(baseOptions, groups, favorites, labels);
-    }
-
-    return getOptionsWithFavorites(
-      baseOptions,
+      fallbackLocale,
       favorites,
-      labels,
+      groups,
+      include,
       includeFavorites,
-    );
+      labels,
+      locale,
+      locales,
+    });
   }, [
     exclude,
     fallbackLocale,
     favorites,
     groups,
-    i18n,
     include,
     includeFavorites,
     labels,
     locale,
+    locales,
   ]);
 
-  const getFlagClass = (code?: string) =>
-    [
-      "flag-icon",
-      code && `flag-icon-${code.trim().toLowerCase()}`,
-      flagsPosition === "right" && "flag-icon-right",
-      flagsPosition === "right-edge" && "flag-icon-right-edge",
-      flagsStyle === "circle" && "flag-icon-rounded",
-      flagsStyle === "square" && "flag-icon-squared",
-    ]
-      .filter(Boolean)
-      .join(" ");
+  const handleOnChange = useCallback(
+    (value: T | T[]) => {
+      if (!properties.onChange) {
+        return;
+      }
 
-  const handleOnChange = (value: T | T[]) => {
-    if (!properties.onChange) return;
-    const result = Array.isArray(value)
-      ? (Array.from(new Set(value)) as T[])
-      : value;
-    (properties.onChange as (value: T | T[]) => void)(result);
-  };
-
-  const renderOptionWithFlags = (
-    option: Option<T> & {
-      groupLabel?: string;
+      const result = Array.isArray(value)
+        ? (Array.from(new Set(value)) as T[])
+        : value;
+      (properties.onChange as (value: T | T[]) => void)(result);
     },
-  ) => {
-    const code = String(option.value);
+    [properties.onChange],
+  );
 
-    return (
-      <div className="options-wrapper" data-country-code={code}>
-        {flags &&
-          (flagsPath ? (
-            <img
-              alt={option.label}
-              className={getFlagClass()}
-              src={flagsPath(code)}
-            />
-          ) : (
-            <span className={getFlagClass(code)} />
-          ))}
-        <span className="option-label">{option.label}</span>
-      </div>
-    );
-  };
+  const handleRenderOption = useCallback(
+    (option: Option<T>) =>
+      renderCountryOption(option, {
+        flags,
+        flagsPath,
+        flagsPosition,
+        flagsStyle,
+      }),
+    [flags, flagsPath, flagsPosition, flagsStyle],
+  );
 
   return (
     <Select
       {...(properties as ISelectProperties<T>)}
       options={options}
-      renderOption={properties.renderOption ?? renderOptionWithFlags}
+      renderOption={properties.renderOption ?? handleRenderOption}
       onChange={handleOnChange}
     />
   );
