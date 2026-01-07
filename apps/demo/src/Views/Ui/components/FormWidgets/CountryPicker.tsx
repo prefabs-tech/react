@@ -20,11 +20,11 @@ export const CountryPickerDemo = () => {
 
   const data = [
     {
-      default: "{ en: defaultEnCatalogue }",
-      description: t("countryPicker.propertiesDescription.i18n"),
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.exclude"),
       id: 1,
-      prop: "i18n",
-      type: "Record<string, Record<string, string>>",
+      prop: "exclude",
+      type: "string[]",
     },
     {
       default: '"en"',
@@ -34,81 +34,81 @@ export const CountryPickerDemo = () => {
       type: "string",
     },
     {
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.favorites"),
+      id: 3,
+      prop: "favorites",
+      type: "string[]",
+    },
+    {
       default: "true",
       description: t("countryPicker.propertiesDescription.flags"),
-      id: 3,
+      id: 4,
       prop: "flags",
       type: "Boolean",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.flagsPath"),
-      id: 4,
+      id: 5,
       prop: "flagsPath",
       type: "(code: string) => string",
     },
     {
       default: "left",
       description: t("countryPicker.propertiesDescription.flagsPosition"),
-      id: 5,
+      id: 6,
       prop: "flagsPosition",
       type: "left | right | right-edge",
     },
     {
       default: "rectangular",
       description: t("countryPicker.propertiesDescription.flagsStyle"),
-      id: 6,
+      id: 7,
       prop: "flagsStyle",
       type: "circle | rectangular | square",
     },
     {
-      default: '"en"',
-      description: t("countryPicker.propertiesDescription.locale"),
-      id: 7,
-      prop: "locale",
-      type: "string",
+      default: "-",
+      description: t("countryPicker.propertiesDescription.groups"),
+      id: 8,
+      prop: "groups",
+      type: "GroupData",
     },
     {
       default: "[]",
       description: t("countryPicker.propertiesDescription.include"),
-      id: 8,
-      prop: "include",
-      type: "string[]",
-    },
-    {
-      default: "[]",
-      description: t("countryPicker.propertiesDescription.exclude"),
       id: 9,
-      prop: "exclude",
-      type: "string[]",
-    },
-    {
-      default: "[]",
-      description: t("countryPicker.propertiesDescription.favorites"),
-      id: 10,
-      prop: "favorites",
+      prop: "include",
       type: "string[]",
     },
     {
       default: "true",
       description: t("countryPicker.propertiesDescription.includeFavorites"),
-      id: 11,
+      id: 10,
       prop: "includeFavorites",
       type: "boolean",
     },
     {
       default: "-",
-      description: t("countryPicker.propertiesDescription.groups"),
-      id: 12,
-      prop: "groups",
-      type: "GroupData",
-    },
-    {
-      default: "-",
       description: t("countryPicker.propertiesDescription.label"),
-      id: 13,
+      id: 11,
       prop: "label",
       type: "string",
+    },
+    {
+      default: '"en"',
+      description: t("countryPicker.propertiesDescription.locale"),
+      id: 12,
+      prop: "locale",
+      type: "string",
+    },
+    {
+      default: "{ en: defaultEnCatalogue }",
+      description: t("countryPicker.propertiesDescription.i18n"),
+      id: 13,
+      prop: "locales",
+      type: "Record<string, Record<string, string>>",
     },
     {
       default: "false",
@@ -240,7 +240,7 @@ const selectedLocale = i18n.language;
 
       <Section title={t("countryPicker.locale")}>
         <CountryPicker
-          i18n={{ np: nepaliData }}
+          locales={{ np: nepaliData }}
           label={t("countryPicker.labels.single")}
           locale="np"
           name="countryPickerNepali"
@@ -259,7 +259,7 @@ const locales = {
 const selectedLocale = "np";
 
 <CountryPicker
-  i18n={locales}
+  locales={locales}
   locale={selectedLocale}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
@@ -270,7 +270,7 @@ const selectedLocale = "np";
       <Section title={t("countryPicker.fallbackLocale")}>
         <CountryPicker
           fallbackLocale="fr"
-          i18n={{
+          locales={{
             np: nepaliData,
             fr: frenchData,
           }}
@@ -295,7 +295,7 @@ const fallbackLocale = "fr";
 
 <CountryPicker
   fallbackLocale={fallbackLocale}
-  i18n={locales}
+  locales={locales}
   locale={selectedLocale}
   label="Fallback Demo"
   value={singleSelectValue}
@@ -350,7 +350,7 @@ const flagsPath = (code: string) => {
 <CountryPicker
   flagsPath={flagsPath}
   label={t("countryPicker.labels.single")}
-  name="country-picker"
+  name="countryPicker"
   placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
@@ -607,19 +607,19 @@ const myRegions = {
       <Section title={t("countryPicker.typeDefinitions")}>
         <CodeBlock
           exampleCode={`
-type TranslationCatalogue = Record<string, string>;
+type Translation = Record<string, string>;
 
-type I18nData = Record<string, TranslationCatalogue>;
+type Locales = Record<string, TranslationCatalogue>;
 
-type GroupData = Record<string, string[]>;
+type Groups = Record<string, string[]>;
 
-Example I18n: 
+Example Locales: 
   { 
     en:{ "US": "USA" }, 
     fr: { "US": "États-Unis" } 
   }
 
-Example Group:
+Example Groups:
   {
     "European Union": ["AT", "BE", "FR", "DE"],
     "North America": ["US", "CA", "MX"]
