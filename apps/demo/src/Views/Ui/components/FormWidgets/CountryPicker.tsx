@@ -607,19 +607,19 @@ const myRegions = {
       <Section title={t("countryPicker.typeDefinitions")}>
         <CodeBlock
           exampleCode={`
-type TranslationCatalogue = Record<string, string>;
+type Translation = Record<string, string>;
 
-type I18nData = Record<string, TranslationCatalogue>;
+type Locales = Record<string, TranslationCatalogue>;
 
-type GroupData = Record<string, string[]>;
+type Groups = Record<string, string[]>;
 
-Example I18n: 
+Example Locales: 
   { 
     en:{ "US": "USA" }, 
     fr: { "US": "États-Unis" } 
   }
 
-Example Group:
+Example Groups:
   {
     "European Union": ["AT", "BE", "FR", "DE"],
     "North America": ["US", "CA", "MX"]
