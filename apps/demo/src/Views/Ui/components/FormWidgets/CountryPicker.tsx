@@ -20,95 +20,95 @@ export const CountryPickerDemo = () => {
 
   const data = [
     {
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.exclude"),
+      id: 1,
+      prop: "exclude",
+      type: "string[]",
+    },
+    {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.fallbackLocale"),
-      id: 1,
+      id: 2,
       prop: "fallbackLocale",
       type: "string",
     },
     {
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.favorites"),
+      id: 3,
+      prop: "favorites",
+      type: "string[]",
+    },
+    {
       default: "true",
       description: t("countryPicker.propertiesDescription.flags"),
-      id: 2,
+      id: 4,
       prop: "flags",
       type: "Boolean",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.flagsPath"),
-      id: 3,
+      id: 5,
       prop: "flagsPath",
       type: "(code: string) => string",
     },
     {
       default: "left",
       description: t("countryPicker.propertiesDescription.flagsPosition"),
-      id: 4,
+      id: 6,
       prop: "flagsPosition",
       type: "left | right | right-edge",
     },
     {
       default: "rectangular",
       description: t("countryPicker.propertiesDescription.flagsStyle"),
-      id: 5,
+      id: 7,
       prop: "flagsStyle",
       type: "circle | rectangular | square",
     },
     {
+      default: "-",
+      description: t("countryPicker.propertiesDescription.groups"),
+      id: 8,
+      prop: "groups",
+      type: "GroupData",
+    },
+    {
+      default: "[]",
+      description: t("countryPicker.propertiesDescription.include"),
+      id: 9,
+      prop: "include",
+      type: "string[]",
+    },
+    {
+      default: "true",
+      description: t("countryPicker.propertiesDescription.includeFavorites"),
+      id: 10,
+      prop: "includeFavorites",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("countryPicker.propertiesDescription.label"),
+      id: 11,
+      prop: "label",
+      type: "string",
+    },
+    {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.locale"),
-      id: 6,
+      id: 12,
       prop: "locale",
       type: "string",
     },
     {
       default: "{ en: defaultEnCatalogue }",
       description: t("countryPicker.propertiesDescription.i18n"),
-      id: 7,
+      id: 13,
       prop: "locales",
       type: "Record<string, Record<string, string>>",
-    },
-    {
-      default: "[]",
-      description: t("countryPicker.propertiesDescription.include"),
-      id: 8,
-      prop: "include",
-      type: "string[]",
-    },
-    {
-      default: "[]",
-      description: t("countryPicker.propertiesDescription.exclude"),
-      id: 9,
-      prop: "exclude",
-      type: "string[]",
-    },
-    {
-      default: "[]",
-      description: t("countryPicker.propertiesDescription.favorites"),
-      id: 10,
-      prop: "favorites",
-      type: "string[]",
-    },
-    {
-      default: "true",
-      description: t("countryPicker.propertiesDescription.includeFavorites"),
-      id: 11,
-      prop: "includeFavorites",
-      type: "boolean",
-    },
-    {
-      default: "-",
-      description: t("countryPicker.propertiesDescription.groups"),
-      id: 12,
-      prop: "groups",
-      type: "GroupData",
-    },
-    {
-      default: "-",
-      description: t("countryPicker.propertiesDescription.label"),
-      id: 13,
-      prop: "label",
-      type: "string",
     },
     {
       default: "false",
@@ -350,7 +350,7 @@ const flagsPath = (code: string) => {
 <CountryPicker
   flagsPath={flagsPath}
   label={t("countryPicker.labels.single")}
-  name="country-picker"
+  name="countryPicker"
   placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
