@@ -212,19 +212,7 @@ fallbackLocale = np;
         <Country
           code="JP"
           renderOption={(code, label) => (
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                background: "#eef2ff",
-                padding: "4px 12px",
-                borderRadius: "20px",
-                border: "1px solid #c7d2fe",
-                color: "#3730a3",
-                width: "8rem",
-              }}
-            >
+            <div className="custom-style">
               <span
                 className={`flag-icon flag-icon-${code.toLowerCase()} flag-icon-rounded`}
               />
@@ -234,10 +222,12 @@ fallbackLocale = np;
         />
 
         <CodeBlock
-          exampleCode={`<Country
+          exampleCode={`@import "./country.css";
+
+<Country
   code="JP"
   renderOption={(code, label) => (
-    <div className="chip">
+    <div className="custom-style">
       <span className={\`flag-icon flag-icon-\${code.toLowerCase()} flag-icon-rounded\`}></span>
       <span>{label}</span>
     </div>
