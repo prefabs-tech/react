@@ -86,7 +86,7 @@ export const Country: React.FC<CountryDisplayProperties> = ({
   };
 
   return renderOption && countryCode && countryLabel ? (
-    <>{renderOption(countryCode, countryLabel)}</>
+    renderOption(countryCode, countryLabel)
   ) : (
     <span
       className={`country ${className}`.trim()}

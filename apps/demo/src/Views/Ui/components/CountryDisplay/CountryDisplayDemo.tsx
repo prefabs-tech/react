@@ -184,6 +184,11 @@ fallbackLocale = np;
         />
       </Section>
 
+      <Section title={t("countryDisplay.showFlag")}>
+        <Country code="CA" showFlag={false} />
+        <CodeBlock exampleCode='<Country code="CA" showFlag={false} />' />
+      </Section>
+
       <Section title={t("countryDisplay.flagsStyle")}>
         <Country code="US" flagsStyle="circle" />
         <CodeBlock exampleCode='<Country code="US" flagsStyle="circle" />' />
@@ -242,11 +247,6 @@ fallbackLocale = np;
           <Country code="WW" />
         </div>
         <CodeBlock exampleCode='<Country code="WW" />' />
-      </Section>
-
-      <Section title={t("countryDisplay.showFlag")}>
-        <Country code="CA" showFlag={false} />
-        <CodeBlock exampleCode='<Country code="CA" showFlag={false} />' />
       </Section>
 
       <Section

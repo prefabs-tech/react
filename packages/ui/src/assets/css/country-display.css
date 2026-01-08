@@ -24,8 +24,8 @@
   flex-shrink: 0;
   background-size: cover;
   background-position: center;
-  min-width: 1.33em;
-  line-height: 1em;
+  min-width: 1.5rem;
+  line-height: inherit;
 }
 
 .flag-icon-right {
@@ -40,14 +40,3 @@
   order: 2;
 }
 
-.flag-icon-rounded {
-  border-radius: 50%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
-
-.flag-icon-squared {
-  border-radius: 0;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-}
