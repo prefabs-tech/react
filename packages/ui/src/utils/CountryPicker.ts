@@ -1,5 +1,5 @@
-import defaultEnglishCatalogue from "../FormWidgets/CountryPicker/en.json";
-import { Translation, Locales } from "../FormWidgets/CountryPicker/index";
+import defaultEnglishTranslation from "../FormWidgets/CountryPicker/en.json";
+import { Translation, Locales } from "../types";
 
 export const getFallbackTranslation = (
   fallbackLocale: string,
@@ -10,7 +10,7 @@ export const getFallbackTranslation = (
   }
 
   if (fallbackLocale === "en") {
-    return defaultEnglishCatalogue;
+    return defaultEnglishTranslation;
   }
 
   return null;
