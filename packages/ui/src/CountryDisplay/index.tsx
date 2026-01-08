@@ -3,22 +3,44 @@ import React, { useMemo } from "react";
 import { Locales } from "../FormWidgets/CountryPicker";
 import { getFallbackTranslation } from "../utils/CountryPicker";
 
-export interface CountryDisplayProperties {
+interface CountryDisplayProperties {
   className?: string;
   code: string;
   fallbackLocale?: string;
-  locales?: Locales;
+  flagsPath?: (code: string) => string;
+  flagsPosition?: "left" | "right" | "right-edge";
+  flagsStyle?: "circle" | "rectangular" | "square";
   locale?: string;
+  locales?: Locales;
   showFlag?: boolean;
   renderOption?: (code: string, label: string) => React.ReactNode;
 }
+
+const getFlagClass = (
+  code: string | undefined,
+  position: string,
+  style: string,
+) =>
+  [
+    "flag-icon",
+    code && `flag-icon-${code.trim().toLowerCase()}`,
+    position === "right" && "flag-icon-right",
+    position === "right-edge" && "flag-icon-right-edge",
+    style === "circle" && "flag-icon-rounded",
+    style === "square" && "flag-icon-squared",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
 export const Country: React.FC<CountryDisplayProperties> = ({
   className = "",
   code,
   fallbackLocale = "en",
-  locales = {},
+  flagsPath,
+  flagsPosition = "left",
+  flagsStyle = "rectangular",
   locale = "en",
+  locales = {},
   showFlag = true,
   renderOption,
 }) => {
@@ -29,11 +51,11 @@ export const Country: React.FC<CountryDisplayProperties> = ({
       return undefined;
     }
 
-    const fallbackData = getFallbackTranslation(fallbackLocale, locales);
+    const fallbackTranslation = getFallbackTranslation(fallbackLocale, locales);
 
     return (
       locales?.[locale]?.[countryCode] ||
-      fallbackData?.[countryCode] ||
+      fallbackTranslation?.[countryCode] ||
       countryCode
     );
   }, [countryCode, locale, fallbackLocale, locales]);
@@ -42,17 +64,36 @@ export const Country: React.FC<CountryDisplayProperties> = ({
     return <>{renderOption(countryCode, countryLabel)}</>;
   }
 
-  return (
-    <span
-      className={`country ${className}`.trim()}
-      data-country-code={countryCode}
-    >
-      {showFlag && countryLabel && (
-        <span
-          className={`flag-icon flag-icon-${countryCode.toLowerCase()}`}
+  const flagClass = useMemo(
+    () => getFlagClass(countryCode, flagsPosition, flagsStyle),
+    [countryCode, flagsPosition, flagsStyle],
+  );
+
+  const flagElement = useMemo(() => {
+    if (!showFlag || !countryCode) {
+      return null;
+    }
+
+    if (flagsPath) {
+      return (
+        <img
+          alt={countryLabel}
+          className={flagClass}
+          src={flagsPath(countryCode)}
           title={countryLabel}
         />
-      )}
+      );
+    }
+
+    return <span className={flagClass} title={countryLabel} />;
+  }, [showFlag, countryCode, countryLabel, flagClass, flagsPath]);
+
+  return (
+    <span
+      className={`country ${countryLabel === countryCode ? "is-code-only" : ""} ${className}`.trim()}
+      data-country-code={countryCode}
+    >
+      {flagElement}
       <span className="country-label">{countryLabel ?? "-"}</span>
     </span>
   );
