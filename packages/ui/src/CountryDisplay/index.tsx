@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
 
-import { Locales } from "../FormWidgets/CountryPicker";
 import { getFallbackTranslation } from "../utils/CountryPicker";
+
+import type { Locales } from "../types";
 
 interface CountryDisplayProperties {
   className?: string;
@@ -48,7 +49,7 @@ export const Country: React.FC<CountryDisplayProperties> = ({
 
   const countryLabel = useMemo(() => {
     if (!countryCode) {
-      return undefined;
+      return;
     }
 
     const fallbackTranslation = getFallbackTranslation(fallbackLocale, locales);
@@ -60,17 +61,13 @@ export const Country: React.FC<CountryDisplayProperties> = ({
     );
   }, [countryCode, locale, fallbackLocale, locales]);
 
-  if (renderOption && countryCode && countryLabel) {
-    return <>{renderOption(countryCode, countryLabel)}</>;
-  }
-
   const flagClass = useMemo(
     () => getFlagClass(countryCode, flagsPosition, flagsStyle),
     [countryCode, flagsPosition, flagsStyle],
   );
 
-  const flagElement = useMemo(() => {
-    if (!showFlag || !countryCode) {
+  const getFlagElement = () => {
+    if (!showFlag || !countryCode || countryLabel === countryCode) {
       return null;
     }
 
@@ -86,14 +83,16 @@ export const Country: React.FC<CountryDisplayProperties> = ({
     }
 
     return <span className={flagClass} title={countryLabel} />;
-  }, [showFlag, countryCode, countryLabel, flagClass, flagsPath]);
+  };
 
-  return (
+  return renderOption && countryCode && countryLabel ? (
+    <>{renderOption(countryCode, countryLabel)}</>
+  ) : (
     <span
-      className={`country ${countryLabel === countryCode ? "is-code-only" : ""} ${className}`.trim()}
+      className={`country ${className}`.trim()}
       data-country-code={countryCode}
     >
-      {flagElement}
+      {getFlagElement()}
       <span className="country-label">{countryLabel ?? "-"}</span>
     </span>
   );
