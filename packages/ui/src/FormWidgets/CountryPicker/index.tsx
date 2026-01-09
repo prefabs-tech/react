@@ -101,15 +101,6 @@ const getFlagClass = (
     .filter(Boolean)
     .join(" ");
 
-const getLabel = (
-  code: string,
-  locale: string,
-  locales: Locales | undefined,
-  fallbackLabel?: string,
-) => {
-  return locales?.[locale]?.[code] || fallbackLabel || code;
-};
-
 const getGroups = <T,>(groups: Groups, list: Option<T>[]): OptionGroup<T>[] => {
   const optionMap = new Map(
     list.map((option) => [String(option.value), option]),
@@ -129,6 +120,15 @@ const getGroups = <T,>(groups: Groups, list: Option<T>[]): OptionGroup<T>[] => {
     },
     [],
   );
+};
+
+const getLabel = (
+  code: string,
+  locale: string,
+  locales: Locales | undefined,
+  fallbackLabel?: string,
+) => {
+  return locales?.[locale]?.[code] || fallbackLabel || code;
 };
 
 const getOptions = <T,>({
