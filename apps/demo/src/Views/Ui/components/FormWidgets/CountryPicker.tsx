@@ -20,128 +20,135 @@ export const CountryPickerDemo = () => {
 
   const data = [
     {
+      default: "true",
+      description: t("countryPicker.propertiesDescription.autoSortOptions"),
+      id: 1,
+      prop: "autoSortOptions",
+      type: "boolean",
+    },
+    {
       default: "[]",
       description: t("countryPicker.propertiesDescription.exclude"),
-      id: 1,
+      id: 2,
       prop: "exclude",
       type: "string[]",
     },
     {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.fallbackLocale"),
-      id: 2,
+      id: 3,
       prop: "fallbackLocale",
       type: "string",
     },
     {
       default: "[]",
       description: t("countryPicker.propertiesDescription.favorites"),
-      id: 3,
+      id: 4,
       prop: "favorites",
       type: "string[]",
     },
     {
       default: "true",
       description: t("countryPicker.propertiesDescription.flags"),
-      id: 4,
+      id: 5,
       prop: "flags",
       type: "Boolean",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.flagsPath"),
-      id: 5,
+      id: 6,
       prop: "flagsPath",
       type: "(code: string) => string",
     },
     {
       default: "left",
       description: t("countryPicker.propertiesDescription.flagsPosition"),
-      id: 6,
+      id: 7,
       prop: "flagsPosition",
       type: "left | right | right-edge",
     },
     {
       default: "rectangular",
       description: t("countryPicker.propertiesDescription.flagsStyle"),
-      id: 7,
+      id: 8,
       prop: "flagsStyle",
       type: "circle | rectangular | square",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.groups"),
-      id: 8,
+      id: 9,
       prop: "groups",
       type: "GroupData",
     },
     {
       default: "[]",
       description: t("countryPicker.propertiesDescription.include"),
-      id: 9,
+      id: 10,
       prop: "include",
       type: "string[]",
     },
     {
       default: "true",
       description: t("countryPicker.propertiesDescription.includeFavorites"),
-      id: 10,
+      id: 11,
       prop: "includeFavorites",
       type: "boolean",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.label"),
-      id: 11,
+      id: 12,
       prop: "label",
       type: "string",
     },
     {
       default: '"en"',
       description: t("countryPicker.propertiesDescription.locale"),
-      id: 12,
+      id: 13,
       prop: "locale",
       type: "string",
     },
     {
       default: "{ en: defaultEnCatalogue }",
       description: t("countryPicker.propertiesDescription.i18n"),
-      id: 13,
+      id: 14,
       prop: "locales",
       type: "Record<string, Record<string, string>>",
     },
     {
       default: "false",
       description: t("countryPicker.propertiesDescription.multiple"),
-      id: 14,
+      id: 15,
       prop: "multiple",
       type: "boolean",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.name"),
-      id: 15,
+      id: 16,
       prop: "name",
       type: "string",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.onChange"),
-      id: 16,
+      id: 17,
       prop: "onChange",
       type: "(value: string | string[]) => void",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.placeholder"),
-      id: 17,
+      id: 18,
       prop: "placeholder",
       type: "string",
     },
     {
       default: "-",
       description: t("countryPicker.propertiesDescription.value"),
-      id: 18,
+      id: 19,
       prop: "value",
       type: "string | string[]",
     },
@@ -410,7 +417,6 @@ const selectedLocale = i18n.language;
 
       <Section title={t("countryPicker.favorites")}>
         <CountryPicker
-          autoSortOptions={false}
           favorites={["NP", "US", "GB"]}
           label={t("countryPicker.labels.single")}
           locale={locale}
@@ -425,7 +431,6 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
 const selectedLocale = i18n.language;
 
 <CountryPicker
-  autoSortOptions={false}
   favorites={["NP", "US", "GB"]} 
   label={t("countryPicker.labels.single")}
   locale={selectedLocale}
@@ -437,7 +442,6 @@ const selectedLocale = i18n.language;
 
       <Section title={t("countryPicker.includeFavorites")}>
         <CountryPicker
-          autoSortOptions={false}
           favorites={["NP", "US", "GB"]}
           includeFavorites={false}
           label={t("countryPicker.labels.single")}
@@ -453,7 +457,6 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
 const selectedLocale = i18n.language;
 
 <CountryPicker
-  autoSortOptions={false}
   favorites={["NP", "US", "GB"]} 
   includeFavorites={false}
   label={t("countryPicker.labels.single")}
@@ -466,7 +469,6 @@ const selectedLocale = i18n.language;
 
       <Section title={t("countryPicker.groupingDefault")}>
         <CountryPicker
-          autoSortOptions={false}
           groups={{
             "European Union": defaultGroups?.EU || [],
             ASEAN: defaultGroups?.ASEAN || [],
@@ -485,7 +487,6 @@ const selectedLocale = i18n.language;
 import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
 
 <CountryPicker
-  autoSortOptions={false}
   groups={{
     "European Union": defaultGroups.EU,
     "ASEAN": defaultGroups.ASEAN
@@ -502,7 +503,6 @@ import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
 
       <Section title={t("countryPicker.groupingCustom")}>
         <CountryPicker
-          autoSortOptions={false}
           groups={{
             "North America HQ": ["US", "CA"],
             "Offshore Dev Center": ["IN", "VN", "PH"],
@@ -526,7 +526,6 @@ const myRegions = {
 };
 
 <CountryPicker
-  autoSortOptions={false}
   groups={myRegions}
   label={t("countryPicker.labels.single")}
   locale={locale}
@@ -541,10 +540,10 @@ const myRegions = {
       <Section title={t("countryPicker.groupingFavorites")}>
         <CountryPicker
           autoSortOptions={false}
-          favorites={["FR", "US"]}
+          favorites={["US", "FR"]}
           groups={{
-            Europe: ["FR", "DE", "IT", "ES"],
             "North America": ["US", "CA"],
+            Europe: ["FR", "DE", "IT", "ES"],
           }}
           label={t("countryPicker.labels.single")}
           locale={locale}
@@ -559,10 +558,10 @@ const myRegions = {
           exampleCode='
 <CountryPicker
   autoSortOptions={false}
-  favorites={["FR", "US"]}
+  favorites={["US", "FR"]}
   groups={{
-    "Europe": ["FR", "DE", "IT", "ES"],
-    "North America": ["US", "CA"]
+    "North America": ["US", "CA"],
+    Europe: ["FR", "DE", "IT", "ES"],
   }}
   label={t("countryPicker.labels.single")}
   locale={locale}
