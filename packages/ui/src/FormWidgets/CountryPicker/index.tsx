@@ -258,7 +258,12 @@ const hasOptionGroup = <T,>(
   options: Option<T>[] | OptionGroup<T>[],
 ): options is OptionGroup<T>[] => {
   return (
-    Array.isArray(options) && options.length > 0 && "options" in options[0]
+    Array.isArray(options) &&
+    options.length > 0 &&
+    options.every(
+      (option): option is OptionGroup<T> =>
+        typeof option === "object" && "options" in option,
+    )
   );
 };
 
