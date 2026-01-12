@@ -37,7 +37,7 @@ export const CountryDisplayDemo = () => {
     },
     {
       id: 4,
-      prop: "i18n",
+      prop: "locales",
       type: "Record<string, Record<string, string>>",
       default: "{}",
       description: t("countryDisplay.propertiesDescription.i18n"),
@@ -84,7 +84,7 @@ export const CountryDisplayDemo = () => {
         <Country
           code="NP"
           locale="np"
-          i18n={{
+          locales={{
             np: nepaliData,
           }}
         />
@@ -98,7 +98,7 @@ const selectedLocale = "np";
 
 <Country 
   code="NP" 
-  i18n={locales} 
+  locales={locales} 
   locale={selectedLocale} 
 />'
         />
@@ -107,7 +107,7 @@ const selectedLocale = "np";
       <Section title={t("countryDisplay.locale")}>
         <Country
           code="EG"
-          i18n={{ fr: frenchData, en: englishData }}
+          locales={{ fr: frenchData, en: englishData }}
           locale={selectedLocale}
         />
         <CodeBlock
@@ -129,7 +129,7 @@ selectedLocale = i18n.language
         <Country
           code="GB"
           fallbackLocale="np"
-          i18n={{ np: nepaliData, en: englishData }}
+          locales={{ np: nepaliData, en: englishData }}
           locale={selectedLocale}
         />
         <CodeBlock
@@ -146,7 +146,7 @@ fallbackLocale = np;
 <Country 
   code="GB" 
   fallbackLocale={fallbackLocale} 
-  i18n={locales} 
+  locales={locales} 
   locale={selectedLocale} 
 />'
         />
@@ -196,18 +196,18 @@ fallbackLocale = np;
       </Section>
       <Section title={t("countryDisplay.typeDefinitions")}>
         <CodeBlock
-          exampleCode={`type I18nData = Record<string, Record<string, string>>;
+          exampleCode={`type Locales = Record<string, Record<string, string>>;
 
 interface CountryDisplayProperties {
   code: string;
   className?: string;
   fallbackLocale?: string;  
-  i18n?: I18nData;         
+  locales?: Locales;         
   locale?: string;          
   showFlag?: boolean;
 }
 
-Example I18n:
+Example locales:
    { 
     en:{ "US": "USA" }, 
     fr: { "US": "États-Unis" } 
