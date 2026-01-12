@@ -131,9 +131,9 @@
     "fallbackLocale": "Fallback locale",
     "favorites": "Favorites",
     "flagsStyle": "Flags style and position",
-    "groupingCustom": "Custom grouping",
-    "groupingDefault": "Default grouping",
+    "groupingDefault": "Grouping",
     "groupingFavorites": "Grouping with favorites",
+    "groupingWithTranslation": "Grouping with translations",
     "include": "Include filter",
     "includeFavorites": "Include favorites",
     "labels": {

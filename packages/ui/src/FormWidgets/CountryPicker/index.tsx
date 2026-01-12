@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 
 import { getFallbackTranslation } from "../../utils/CountryPicker";
 import { Select, ISelectProperties } from "../Select";
+import defaultGroups from "./groups.json";
 
 import type { Option, GroupedOption as OptionGroup } from "../Select";
 
@@ -33,6 +34,7 @@ export type CountryPickerProperties<T> = Omit<
   locale?: string;
   locales?: Locales;
 };
+export { defaultGroups };
 
 const getBaseOptions = <T,>(
   exclude: string[] | undefined,
