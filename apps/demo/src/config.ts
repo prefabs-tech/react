@@ -38,7 +38,7 @@ const config: AppConfig = {
     localeSwitcher: {
       showBadge: true,
     },
-    logo: "/logo.png",
+    logo: "/react/logo.png",
     mainMenu: [
       {
         name: "header.menu.ui",
