@@ -1,5 +1,6 @@
 import defaultEnglishTranslation from "../FormWidgets/CountryPicker/en.json";
-import { Translation, Locales } from "../types";
+
+import type { Locales, Translation } from "../types";
 
 export const getFallbackTranslation = (
   fallbackLocale: string,

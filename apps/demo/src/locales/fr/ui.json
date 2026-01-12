@@ -114,6 +114,11 @@
     "label": "Label (fr)",
     "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
+      "positions": {
+      "left": "Left (default) (fr)",
+      "right": "Right (fr)",
+      "rightEdge": "Right edge (fr)"
+    },
     "propertiesDescription": {
       "code": "The ISO country code to display (e.g., 'US', 'gb'). (fr)",
       "className": "CSS class to append to the wrapper span. (fr)",
@@ -128,6 +133,11 @@
     },
     "renderOption": "Custom render option (fr)",
     "showFlag": "Flag visibility (fr)",
+    "styles": {
+      "circle": "Circle (fr)",
+      "rectangular": "Rectangular (default) (fr)",
+      "square": "Square (fr)"
+    },
     "title": "Country (fr)",
     "typeDefinitions": "Types (fr)"
   },
