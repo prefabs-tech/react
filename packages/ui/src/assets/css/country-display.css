@@ -18,7 +18,7 @@
   order: 1;
 }
 
-.flag-icon {
+.country .flag-icon {
   margin-right: 0.5rem;
   order: 0;
   flex-shrink: 0;
@@ -28,15 +28,14 @@
   line-height: inherit;
 }
 
-.flag-icon-right {
+.country .flag-icon-right {
   margin-right: 0;
   margin-left: 0.5rem;
   order: 2;
 }
 
-.flag-icon-right-edge {
+.country .flag-icon-right-edge {
   margin-right: 0;
   margin-left: auto;
   order: 2;
 }
-
