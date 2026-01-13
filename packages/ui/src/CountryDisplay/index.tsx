@@ -1,53 +1,82 @@
 import React, { useMemo } from "react";
 
-import englishData from "../FormWidgets/CountryPicker/en.json";
+import { getFallbackTranslation, getFlagClass } from "../utils/country-picker";
 
-type I18nData = Record<string, Record<string, string>>;
+import type { Locales } from "../types";
 
-export interface CountryDisplayProperties {
+interface CountryDisplayProperties {
   className?: string;
   code: string;
   fallbackLocale?: string;
-  i18n?: I18nData;
+  flagsPath?: (code: string) => string;
+  flagsPosition?: "left" | "right" | "right-edge";
+  flagsStyle?: "circle" | "rectangular" | "square";
   locale?: string;
+  locales?: Locales;
   showFlag?: boolean;
+  renderOption?: (code: string, label: string) => React.ReactNode;
 }
 
 export const Country: React.FC<CountryDisplayProperties> = ({
   className = "",
   code,
   fallbackLocale = "en",
-  i18n = {},
+  flagsPath,
+  flagsPosition = "left",
+  flagsStyle = "rectangular",
   locale = "en",
+  locales = {},
   showFlag = true,
+  renderOption,
 }) => {
-  const countryLabel = useMemo(() => {
-    const countryCode = code?.trim().toUpperCase();
+  const countryCode = code?.trim();
 
+  const countryLabel = useMemo(() => {
     if (!countryCode) {
       return;
     }
 
+    const fallbackTranslation = getFallbackTranslation(fallbackLocale, locales);
+
     return (
-      i18n?.[locale]?.[countryCode] ||
-      i18n?.[fallbackLocale]?.[countryCode] ||
-      (englishData as Record<string, string>)[countryCode]
+      locales?.[locale]?.[countryCode] ||
+      fallbackTranslation?.[countryCode] ||
+      countryCode
     );
-  }, [code, locale, fallbackLocale, i18n]);
+  }, [countryCode, locale, fallbackLocale, locales]);
 
-  const countryCode = code.trim();
+  const flagClass = useMemo(
+    () => getFlagClass(countryCode, flagsPosition, flagsStyle),
+    [countryCode, flagsPosition, flagsStyle],
+  );
 
-  return (
+  const getFlagElement = () => {
+    if (!showFlag || !countryCode || countryLabel === countryCode) {
+      return null;
+    }
+
+    if (flagsPath) {
+      return (
+        <img
+          alt={countryLabel}
+          className={flagClass}
+          src={flagsPath(countryCode)}
+          title={countryLabel}
+        />
+      );
+    }
+
+    return <span className={flagClass} title={countryLabel} />;
+  };
+
+  return renderOption && countryCode && countryLabel ? (
+    renderOption(countryCode, countryLabel)
+  ) : (
     <span
       className={`country ${className}`.trim()}
       data-country-code={countryCode}
     >
-      {showFlag && countryLabel && (
-        <span
-          className={`flag-icon flag-icon-${countryCode.toLowerCase()}`}
-          title={countryCode.toUpperCase()}
-        />
-      )}
+      {getFlagElement()}
       <span className="country-label">{countryLabel ?? "-"}</span>
     </span>
   );

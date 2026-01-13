@@ -106,20 +106,38 @@
   },
   "countryDisplay": {
     "basic": "Basic",
+    "customFlagsPath": "Custom flag path",
     "customLocale": "New locale support",
     "fallback": "Fallback locale",
+    "flagsPosition": "Flag position",
+    "flagsStyle": "Flag style",
     "label": "Label",
     "locale": "Locales support",
     "notFound": "Missing country code",
+    "positions": {
+      "left": "Left (default)",
+      "right": "Right",
+      "rightEdge": "Right edge"
+    },
     "propertiesDescription": {
       "code": "The ISO country code to display (e.g., 'US', 'gb').",
       "className": "CSS class to append to the wrapper span.",
       "fallbackLocale": "Locale to use if the specific translation is missing.",
+      "flagsPath": "Custom function to resolve image paths for flags.",
+      "flagsPosition": "Position of the flag relative to text ('left', 'right', 'right-edge').",
+      "flagsStyle": "Shape style of the flag ('circle', 'rectangular', 'square').",
       "i18n": "External translation dictionary for additional languages.",
       "locale": "The target locale for translation (e.g., 'en', 'fr').",
+      "renderOption": "Function to customize rendering: (code, label, flagElement) => ReactNode.",
       "showFlag": "If false, the flag will not be displayed."
     },
+    "renderOption": "Custom render option",
     "showFlag": "Flag visibility",
+    "styles": {
+      "circle": "Circle",
+      "rectangular": "Rectangular (default)",
+      "square": "Square"
+    },
     "title": "Country",
     "typeDefinitions": "Types"
   },
@@ -147,7 +165,7 @@
       "single": "Select a country..."
     },
     "propertiesDescription": {
-      "autoSortOptions":"By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order.",
+      "autoSortOptions": "By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order.",
       "data": "Custom country data to overwrite existing entries or add new ones.",
       "exclude": "An array of country codes to remove from the list.",
       "fallbackLocale": "Locale used when active locale translation is missing.",
