@@ -46,6 +46,7 @@ const getBaseOptions = <T,>(
   }
 
   const baseOptions: Option<T>[] = [];
+
   const processCode = (code: string, fallbackLabel: string) => {
     if (exclude?.includes(code)) {
       return;
@@ -59,10 +60,12 @@ const getBaseOptions = <T,>(
   if (include?.length) {
     include.forEach((code) => {
       const fallbackLabel = fallbackTranslation[code];
+
       if (fallbackLabel) {
         processCode(code, fallbackLabel);
       }
     });
+
     return baseOptions;
   }
 
