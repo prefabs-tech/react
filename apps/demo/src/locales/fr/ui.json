@@ -106,20 +106,38 @@
   },
   "countryDisplay": {
     "basic": "Basic (fr)",
+    "customFlagsPath": "Custom flag path (fr)",
     "customLocale": "New locale support (fr)",
     "fallback": "Fallback locale (fr)",
+    "flagsPosition": "Flag position (fr)",
+    "flagsStyle": "Flag style (fr)",
     "label": "Label (fr)",
     "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
+      "positions": {
+      "left": "Left (default) (fr)",
+      "right": "Right (fr)",
+      "rightEdge": "Right edge (fr)"
+    },
     "propertiesDescription": {
       "code": "The ISO country code to display (e.g., 'US', 'gb'). (fr)",
       "className": "CSS class to append to the wrapper span. (fr)",
       "fallbackLocale": "Locale to use if the specific translation is missing. (fr)",
+      "flagsPath": "Custom function to resolve image paths for flags. (fr)",
+      "flagsPosition": "Position of the flag relative to text ('left', 'right', 'right-edge'). (fr)",
+      "flagsStyle": "Shape style of the flag ('circle', 'rectangular', 'square'). (fr)",
       "i18n": "External translation dictionary for additional languages. (fr)",
       "locale": "The target locale for translation (e.g., 'en', 'fr'). (fr)",
+      "renderOption": "Function to customize rendering: (code, label, flagElement) => ReactNode. (fr)",
       "showFlag": "If false, the flag will not be displayed. (fr)"
     },
+    "renderOption": "Custom render option (fr)",
     "showFlag": "Flag visibility (fr)",
+    "styles": {
+      "circle": "Circle (fr)",
+      "rectangular": "Rectangular (default) (fr)",
+      "square": "Square (fr)"
+    },
     "title": "Country (fr)",
     "typeDefinitions": "Types (fr)"
   },

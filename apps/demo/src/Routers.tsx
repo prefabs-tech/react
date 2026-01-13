@@ -25,74 +25,79 @@ import {
   routes as userRoutes,
 } from "./Views/User";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <BasicLayout />,
+      errorElement: <ErrorBoundary />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "/ui",
+          element: <UIPages />,
+          children: [
+            {
+              index: true,
+              element: <UIPage></UIPage>,
+            },
+            ...uiRoutes,
+          ],
+        },
+        {
+          path: "/user",
+          element: <UserPages />,
+          children: [
+            {
+              index: true,
+              element: <UserPage></UserPage>,
+            },
+            ...userRoutes,
+          ],
+        },
+        {
+          path: "/form",
+          element: <FormPages />,
+          children: [
+            {
+              index: true,
+              element: <FormPage></FormPage>,
+            },
+            ...formRoutes,
+          ],
+        },
+        {
+          path: "/layout",
+          element: <LayoutPages />,
+          children: [
+            {
+              index: true,
+              element: <LayoutPage></LayoutPage>,
+            },
+            ...layoutRoutes,
+          ],
+        },
+        {
+          path: "/i18n",
+          element: <I18nPages />,
+          children: [
+            {
+              index: true,
+              element: <I18nPage></I18nPage>,
+            },
+            ...i18nRoutes,
+          ],
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <BasicLayout />,
-    errorElement: <ErrorBoundary />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/ui",
-        element: <UIPages />,
-        children: [
-          {
-            index: true,
-            element: <UIPage></UIPage>,
-          },
-          ...uiRoutes,
-        ],
-      },
-      {
-        path: "/user",
-        element: <UserPages />,
-        children: [
-          {
-            index: true,
-            element: <UserPage></UserPage>,
-          },
-          ...userRoutes,
-        ],
-      },
-      {
-        path: "/form",
-        element: <FormPages />,
-        children: [
-          {
-            index: true,
-            element: <FormPage></FormPage>,
-          },
-          ...formRoutes,
-        ],
-      },
-      {
-        path: "/layout",
-        element: <LayoutPages />,
-        children: [
-          {
-            index: true,
-            element: <LayoutPage></LayoutPage>,
-          },
-          ...layoutRoutes,
-        ],
-      },
-      {
-        path: "/i18n",
-        element: <I18nPages />,
-        children: [
-          {
-            index: true,
-            element: <I18nPage></I18nPage>,
-          },
-          ...i18nRoutes,
-        ],
-      },
-    ],
+    basename: "/react/",
   },
-]);
+);
 
 const Routers = () => {
   return <RouterProvider router={router} />;

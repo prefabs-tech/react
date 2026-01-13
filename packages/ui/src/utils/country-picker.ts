@@ -1,0 +1,34 @@
+import defaultEnglishTranslation from "../FormWidgets/CountryPicker/en.json";
+
+import type { Locales, Translation } from "../types";
+
+export const getFallbackTranslation = (
+  fallbackLocale: string,
+  locales: Locales | undefined,
+): Translation | null => {
+  if (locales?.[fallbackLocale]) {
+    return locales[fallbackLocale];
+  }
+
+  if (fallbackLocale === "en") {
+    return defaultEnglishTranslation;
+  }
+
+  return null;
+};
+
+export const getFlagClass = (
+  code: string | undefined,
+  position: string,
+  style: string,
+) =>
+  [
+    "flag-icon",
+    code && `flag-icon-${code.trim().toLowerCase()}`,
+    position === "right" && "flag-icon-right",
+    position === "right-edge" && "flag-icon-right-edge",
+    style === "circle" && "flag-icon-rounded",
+    style === "square" && "flag-icon-squared",
+  ]
+    .filter(Boolean)
+    .join(" ");

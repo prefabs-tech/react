@@ -13,6 +13,10 @@ export const CountryDisplayDemo = () => {
   const navigate = useNavigate();
   const selectedLocale = i18n.language;
 
+  const customFlagsPath = (code: string) => {
+    return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+  };
+
   const data = [
     {
       id: 1,
@@ -37,20 +41,48 @@ export const CountryDisplayDemo = () => {
     },
     {
       id: 4,
-      prop: "i18n",
-      type: "Record<string, Record<string, string>>",
-      default: "{}",
-      description: t("countryDisplay.propertiesDescription.i18n"),
+      prop: "flagsPath",
+      type: "(code: string) => string",
+      default: "undefined",
+      description: t("countryDisplay.propertiesDescription.flagsPath"),
     },
     {
       id: 5,
+      prop: "flagsPosition",
+      type: '"left" | "right" | "right-edge"',
+      default: '"left"',
+      description: t("countryDisplay.propertiesDescription.flagsPosition"),
+    },
+    {
+      id: 6,
+      prop: "flagsStyle",
+      type: '"circle" | "rectangular" | "square"',
+      default: '"rectangular"',
+      description: t("countryDisplay.propertiesDescription.flagsStyle"),
+    },
+    {
+      id: 7,
       prop: "locale",
       type: "string",
       default: "en",
       description: t("countryDisplay.propertiesDescription.locale"),
     },
     {
-      id: 6,
+      id: 8,
+      prop: "locales",
+      type: "Record<string, Record<string, string>>",
+      default: "{}",
+      description: t("countryDisplay.propertiesDescription.i18n"),
+    },
+    {
+      id: 9,
+      prop: "renderOption",
+      type: "(code: string, label: string) => ReactNode",
+      default: "undefined",
+      description: t("countryDisplay.propertiesDescription.renderOption"),
+    },
+    {
+      id: 10,
       prop: "showFlag",
       type: "boolean",
       default: "true",
@@ -84,7 +116,7 @@ export const CountryDisplayDemo = () => {
         <Country
           code="NP"
           locale="np"
-          i18n={{
+          locales={{
             np: nepaliData,
           }}
         />
@@ -98,8 +130,8 @@ const selectedLocale = "np";
 
 <Country 
   code="NP" 
-  i18n={locales} 
   locale={selectedLocale} 
+  locales={locales} 
 />'
         />
       </Section>
@@ -107,8 +139,8 @@ const selectedLocale = "np";
       <Section title={t("countryDisplay.locale")}>
         <Country
           code="EG"
-          i18n={{ fr: frenchData, en: englishData }}
           locale={selectedLocale}
+          locales={{ fr: frenchData, en: englishData }}
         />
         <CodeBlock
           exampleCode='import frenchData from "./fr.json";
@@ -118,9 +150,9 @@ locales = { fr: frenchData, en: englishData }
 selectedLocale = i18n.language
 
 <Country 
-  code="EG" 
-  i18n={locales} 
-  locale={selectedLocale} 
+  code="EG"
+  locale={selectedLocale}
+  locales={locales}
 />'
         />
       </Section>
@@ -129,8 +161,8 @@ selectedLocale = i18n.language
         <Country
           code="GB"
           fallbackLocale="np"
-          i18n={{ np: nepaliData, en: englishData }}
           locale={selectedLocale}
+          locales={{ np: nepaliData, en: englishData }}
         />
         <CodeBlock
           exampleCode='import englishData from "./en.json";
@@ -146,9 +178,84 @@ fallbackLocale = np;
 <Country 
   code="GB" 
   fallbackLocale={fallbackLocale} 
-  i18n={locales} 
   locale={selectedLocale} 
+  locales={locales} 
 />'
+        />
+      </Section>
+
+      <Section title={t("countryDisplay.showFlag")}>
+        <Country code="CA" showFlag={false} />
+        <CodeBlock exampleCode='<Country code="CA" showFlag={false} />' />
+      </Section>
+
+      <Section title={t("countryDisplay.flagsStyle")}>
+        <h3>{t("countryDisplay.styles.rectangular")}</h3>
+        <Country code="US" flagsStyle="rectangular" />
+        <CodeBlock exampleCode='<Country code="US" />' />
+
+        <h3>{t("countryDisplay.styles.square")}</h3>
+        <Country code="US" flagsStyle="square" />
+        <CodeBlock exampleCode='<Country code="US" flagsStyle="square" />' />
+
+        <h3>{t("countryDisplay.styles.circle")}</h3>
+        <Country code="US" flagsStyle="circle" />
+        <CodeBlock exampleCode='<Country code="US" flagsStyle="circle" />' />
+      </Section>
+
+      <Section title={t("countryDisplay.flagsPosition")}>
+        <h3>{t("countryDisplay.positions.left")}</h3>
+        <Country code="BR" flagsPosition="left" />
+        <CodeBlock exampleCode='<Country code="BR" />' />
+
+        <h3>{t("countryDisplay.positions.right")}</h3>
+        <Country code="BR" flagsPosition="right" />
+        <CodeBlock exampleCode='<Country code="BR" flagsPosition="right" />' />
+
+        <h3>{t("countryDisplay.positions.rightEdge")}</h3>
+        <Country code="BR" flagsPosition="right-edge" />
+        <CodeBlock exampleCode='<Country code="BR" flagsPosition="right-edge" />' />
+      </Section>
+
+      <Section title={t("countryDisplay.customFlagsPath", "Custom Flag Path")}>
+        <Country code="CA" flagsPath={customFlagsPath} />
+        <CodeBlock
+          exampleCode='const flagsPath = (code: string) => {
+  return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+};
+
+<Country 
+  code="CA" 
+  flagsPath={customFlagsPath} 
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryDisplay.renderOption")}>
+        <Country
+          code="JP"
+          renderOption={(code, label) => (
+            <div className="custom-style">
+              <span
+                className={`flag-icon flag-icon-${code.toLowerCase()} flag-icon-rounded`}
+              />
+              <span className="font-bold text-sm">{label}</span>
+            </div>
+          )}
+        />
+
+        <CodeBlock
+          exampleCode={`@import "./country.css";
+
+<Country
+  code="JP"
+  renderOption={(code, label) => (
+    <div className="custom-style">
+      <span className={\`flag-icon flag-icon-\${code.toLowerCase()} flag-icon-rounded\`}></span>
+      <span>{label}</span>
+    </div>
+  )}
+/>`}
         />
       </Section>
 
@@ -158,11 +265,6 @@ fallbackLocale = np;
           <Country code="WW" />
         </div>
         <CodeBlock exampleCode='<Country code="WW" />' />
-      </Section>
-
-      <Section title={t("countryDisplay.showFlag")}>
-        <Country code="CA" showFlag={false} />
-        <CodeBlock exampleCode='<Country code="CA" showFlag={false} />' />
       </Section>
 
       <Section
@@ -196,22 +298,20 @@ fallbackLocale = np;
       </Section>
       <Section title={t("countryDisplay.typeDefinitions")}>
         <CodeBlock
-          exampleCode={`type I18nData = Record<string, Record<string, string>>;
+          exampleCode={`type Locales = Record<string, Record<string, string>>;
 
 interface CountryDisplayProperties {
   code: string;
   className?: string;
-  fallbackLocale?: string;  
-  i18n?: I18nData;         
+  fallbackLocale?: string;
+  flagsPath?: (code: string) => string;
+  flagsPosition?: "left" | "right" | "right-edge";
+  flagsStyle?: "circle" | "rectangular" | "square";
   locale?: string;          
+  locales?: I18nData;         
   showFlag?: boolean;
+  renderOption?: (code: string, label: string) => React.ReactNode;
 }
-
-Example I18n:
-   { 
-    en:{ "US": "USA" }, 
-    fr: { "US": "États-Unis" } 
-   }
 `}
         />
       </Section>

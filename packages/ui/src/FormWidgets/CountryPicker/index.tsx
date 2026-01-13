@@ -1,38 +1,19 @@
 import React, { useCallback, useMemo } from "react";
 
-import { getFallbackTranslation } from "../../utils/CountryPicker";
+import {
+  getFallbackTranslation,
+  getFlagClass,
+} from "../../utils/country-picker";
 import { Select, ISelectProperties } from "../Select";
 
+import type {
+  CountryPickerLabels,
+  CountryPickerProperties,
+  Groups,
+  Locales,
+  Translation,
+} from "../../types/country-picker";
 import type { Option, GroupedOption as OptionGroup } from "../Select";
-
-export type Translation = Record<string, string>;
-export type Locales = Record<string, Translation>;
-export type Groups = Record<string, string[]>;
-
-export type CountryPickerLabels = {
-  favorites?: string;
-  allCountries?: string;
-};
-
-export type CountryPickerProperties<T> = Omit<
-  ISelectProperties<T>,
-  "options"
-> & {
-  autoSortOptions?: boolean;
-  exclude?: string[];
-  fallbackLocale?: string;
-  favorites?: string[];
-  flags?: boolean;
-  flagsPath?: (code: string) => string;
-  flagsPosition?: "left" | "right" | "right-edge";
-  flagsStyle?: "circle" | "rectangular" | "square";
-  groups?: Groups;
-  include?: string[];
-  includeFavorites?: boolean;
-  labels?: CountryPickerLabels;
-  locale?: string;
-  locales?: Locales;
-};
 
 const getBaseOptions = <T,>(
   exclude: string[] | undefined,
@@ -75,22 +56,6 @@ const getBaseOptions = <T,>(
 
   return baseOptions;
 };
-
-const getFlagClass = (
-  code: string | undefined,
-  position: string,
-  style: string,
-) =>
-  [
-    "flag-icon",
-    code && `flag-icon-${code.trim().toLowerCase()}`,
-    position === "right" && "flag-icon-right",
-    position === "right-edge" && "flag-icon-right-edge",
-    style === "circle" && "flag-icon-rounded",
-    style === "square" && "flag-icon-squared",
-  ]
-    .filter(Boolean)
-    .join(" ");
 
 const getGroups = <T,>(
   groups: Groups,
