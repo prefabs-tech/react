@@ -16,3 +16,19 @@ export const getFallbackTranslation = (
 
   return null;
 };
+
+export const getFlagClass = (
+  code: string | undefined,
+  position: string,
+  style: string,
+) =>
+  [
+    "flag-icon",
+    code && `flag-icon-${code.trim().toLowerCase()}`,
+    position === "right" && "flag-icon-right",
+    position === "right-edge" && "flag-icon-right-edge",
+    style === "circle" && "flag-icon-rounded",
+    style === "square" && "flag-icon-squared",
+  ]
+    .filter(Boolean)
+    .join(" ");

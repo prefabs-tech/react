@@ -1,6 +1,9 @@
 import React, { useCallback, useMemo } from "react";
 
-import { getFallbackTranslation } from "../../utils/CountryPicker";
+import {
+  getFallbackTranslation,
+  getFlagClass,
+} from "../../utils/country-picker";
 import { Select, ISelectProperties } from "../Select";
 import defaultGroups from "./groups.json";
 
@@ -84,22 +87,6 @@ const getBaseOptions = <T,>(
 
   return baseOptions;
 };
-
-const getFlagClass = (
-  code: string | undefined,
-  position: string,
-  style: string,
-) =>
-  [
-    "flag-icon",
-    code && `flag-icon-${code.trim().toLowerCase()}`,
-    position === "right" && "flag-icon-right",
-    position === "right-edge" && "flag-icon-right-edge",
-    style === "circle" && "flag-icon-rounded",
-    style === "square" && "flag-icon-squared",
-  ]
-    .filter(Boolean)
-    .join(" ");
 
 const getGroups = <T,>(groups: Groups, list: Option<T>[]): OptionGroup<T>[] => {
   const optionMap = new Map(

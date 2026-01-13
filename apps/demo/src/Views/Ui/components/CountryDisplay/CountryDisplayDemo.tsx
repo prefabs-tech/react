@@ -190,43 +190,31 @@ fallbackLocale = np;
       </Section>
 
       <Section title={t("countryDisplay.flagsStyle")}>
-        <div>
-          <h3>{t("countryDisplay.styles.rectangular")}</h3>
-          <Country code="US" flagsStyle="rectangular" />
-          <CodeBlock exampleCode='<Country code="US" />' />
-        </div>
+        <h3>{t("countryDisplay.styles.rectangular")}</h3>
+        <Country code="US" flagsStyle="rectangular" />
+        <CodeBlock exampleCode='<Country code="US" />' />
 
-        <div>
-          <h3>{t("countryDisplay.styles.square")}</h3>
-          <Country code="US" flagsStyle="square" />
-          <CodeBlock exampleCode='<Country code="US" flagsStyle="square" />' />
-        </div>
+        <h3>{t("countryDisplay.styles.square")}</h3>
+        <Country code="US" flagsStyle="square" />
+        <CodeBlock exampleCode='<Country code="US" flagsStyle="square" />' />
 
-        <div>
-          <h3>{t("countryDisplay.styles.circle")}</h3>
-          <Country code="US" flagsStyle="circle" />
-          <CodeBlock exampleCode='<Country code="US" flagsStyle="circle" />' />
-        </div>
+        <h3>{t("countryDisplay.styles.circle")}</h3>
+        <Country code="US" flagsStyle="circle" />
+        <CodeBlock exampleCode='<Country code="US" flagsStyle="circle" />' />
       </Section>
 
       <Section title={t("countryDisplay.flagsPosition")}>
-        <div>
-          <h3>{t("countryDisplay.positions.left")}</h3>
-          <Country code="BR" flagsPosition="left" />
-          <CodeBlock exampleCode='<Country code="BR" />' />
-        </div>
+        <h3>{t("countryDisplay.positions.left")}</h3>
+        <Country code="BR" flagsPosition="left" />
+        <CodeBlock exampleCode='<Country code="BR" />' />
 
-        <div>
-          <h3>{t("countryDisplay.positions.right")}</h3>
-          <Country code="BR" flagsPosition="right" />
-          <CodeBlock exampleCode='<Country code="BR" flagsPosition="right" />' />
-        </div>
+        <h3>{t("countryDisplay.positions.right")}</h3>
+        <Country code="BR" flagsPosition="right" />
+        <CodeBlock exampleCode='<Country code="BR" flagsPosition="right" />' />
 
-        <div>
-          <h3>{t("countryDisplay.positions.rightEdge")}</h3>
-          <Country code="BR" flagsPosition="right-edge" />
-          <CodeBlock exampleCode='<Country code="BR" flagsPosition="right-edge" />' />
-        </div>
+        <h3>{t("countryDisplay.positions.rightEdge")}</h3>
+        <Country code="BR" flagsPosition="right-edge" />
+        <CodeBlock exampleCode='<Country code="BR" flagsPosition="right-edge" />' />
       </Section>
 
       <Section title={t("countryDisplay.customFlagsPath", "Custom Flag Path")}>

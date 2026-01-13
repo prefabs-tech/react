@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 
-import { getFallbackTranslation } from "../utils/CountryPicker";
+import { getFallbackTranslation, getFlagClass } from "../utils/country-picker";
 
 import type { Locales } from "../types";
 
@@ -16,22 +16,6 @@ interface CountryDisplayProperties {
   showFlag?: boolean;
   renderOption?: (code: string, label: string) => React.ReactNode;
 }
-
-const getFlagClass = (
-  code: string | undefined,
-  position: string,
-  style: string,
-) =>
-  [
-    "flag-icon",
-    code && `flag-icon-${code.trim().toLowerCase()}`,
-    position === "right" && "flag-icon-right",
-    position === "right-edge" && "flag-icon-right-edge",
-    style === "circle" && "flag-icon-rounded",
-    style === "square" && "flag-icon-squared",
-  ]
-    .filter(Boolean)
-    .join(" ");
 
 export const Country: React.FC<CountryDisplayProperties> = ({
   className = "",
