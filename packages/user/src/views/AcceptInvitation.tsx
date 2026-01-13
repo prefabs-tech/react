@@ -30,6 +30,8 @@ export const AcceptInvitation = ({
 
   useEffect(() => {
     if (token) {
+      setLoading(true);
+
       getInvitationByToken(token, config.apiBaseUrl)
         .then((response) => {
           if ("data" in response && response.data.status === "ERROR") {
