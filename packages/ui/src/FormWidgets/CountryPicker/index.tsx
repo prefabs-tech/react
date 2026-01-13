@@ -4,7 +4,7 @@ import { getFallbackTranslation } from "../../utils/CountryPicker";
 import { Select, ISelectProperties } from "../Select";
 import defaultGroups from "./groups.json";
 
-import type { Option, GroupedOption } from "../Select";
+import type { Option, GroupedOption as OptionGroup } from "../Select";
 
 export type Translation = Record<string, string>;
 export type Locales = Record<string, Translation>;
@@ -78,20 +78,11 @@ const getBaseOptions = <T,>(
 
     baseOptions.push({
       value: code as unknown as T,
-      label: getLabel(code, locale, locales, fallbackData[code]),
+      label: getLabel(code, locale, locales, fallbackLabel),
     });
   });
 
   return baseOptions;
-};
-
-const getFavoriteOptions = <T,>(
-  baseOptions: Option<T>[],
-  favorites: string[],
-) => {
-  return favorites
-    .map((code) => baseOptions.find((option) => String(option.value) === code))
-    .filter(Boolean) as Option<T>[];
 };
 
 const getFlagClass = (
@@ -110,15 +101,12 @@ const getFlagClass = (
     .filter(Boolean)
     .join(" ");
 
-const getGroups = <T,>(
-  groups: Groups,
-  list: Option<T>[],
-): GroupedOption<T>[] => {
+const getGroups = <T,>(groups: Groups, list: Option<T>[]): OptionGroup<T>[] => {
   const optionMap = new Map(
     list.map((option) => [String(option.value), option]),
   );
 
-  return Object.entries(groups).reduce<GroupedOption<T>[]>(
+  return Object.entries(groups).reduce<OptionGroup<T>[]>(
     (groupedOptions, [groupLabel, groupCodes]) => {
       const options = groupCodes
         .map((code) => optionMap.get(code))
@@ -144,30 +132,62 @@ const getLabel = (
 };
 
 const getOptions = <T,>({
-  baseOptions,
+  autoSortOptions = true,
+  exclude,
+  fallbackLocale = "en",
   favorites,
   groups,
+  include,
   includeFavorites = true,
   labels,
+  locale = "en",
+  locales,
 }: Pick<
   CountryPickerProperties<T>,
-  "favorites" | "groups" | "includeFavorites" | "labels"
-> & { baseOptions: Option<T>[] }) => {
+  | "autoSortOptions"
+  | "exclude"
+  | "fallbackLocale"
+  | "favorites"
+  | "groups"
+  | "include"
+  | "includeFavorites"
+  | "labels"
+  | "locale"
+  | "locales"
+>) => {
+  const baseOptions = getBaseOptions<T>(
+    exclude,
+    fallbackLocale,
+    include,
+    locale,
+    locales,
+  );
+
   if (favorites && favorites.length > 0) {
-    return getOptionsWithFavorites(
+    const optionsWithFavorites = getOptionsWithFavorites(
       baseOptions,
       favorites,
       includeFavorites,
       groups,
       labels,
     );
+
+    const hasFavoriteOptions = optionsWithFavorites[0].options.length > 0;
+
+    return getSortedOptions(
+      autoSortOptions,
+      optionsWithFavorites,
+      hasFavoriteOptions,
+    );
   }
 
   if (groups && Object.keys(groups).length > 0) {
-    return getGroups(groups, baseOptions);
+    const optionGroups = getGroups(groups, baseOptions);
+
+    return getSortedOptions(autoSortOptions, optionGroups);
   }
 
-  return baseOptions;
+  return getSortedOptions(autoSortOptions, baseOptions);
 };
 
 const getOptionsWithFavorites = <T,>(
@@ -177,7 +197,9 @@ const getOptionsWithFavorites = <T,>(
   groups?: Groups,
   labels?: CountryPickerLabels,
 ) => {
-  const favoriteOptions = getFavoriteOptions(baseOptions, favorites);
+  const favoriteOptions = favorites
+    .map((code) => baseOptions.find((option) => String(option.value) === code))
+    .filter(Boolean) as Option<T>[];
 
   const mainOptions = includeFavorites
     ? baseOptions
@@ -203,15 +225,19 @@ const getOptionsWithFavorites = <T,>(
 };
 
 const getSortedOptions = <T,>(
-  isOptionsGrouped: boolean,
-  hasFavoriteOptions: boolean,
-  options: Option<T>[] | GroupedOption<T>[],
+  autoSortOptions: boolean,
+  options: Option<T>[] | OptionGroup<T>[],
+  hasFavoriteOptions?: boolean,
 ) => {
-  if (!isOptionsGrouped) {
+  if (!autoSortOptions) {
+    return options as Option<T>[] | OptionGroup<T>[];
+  }
+
+  if (!hasOptionGroup(options)) {
     return [...(options as Option<T>[])].sort(sortByLabel);
   }
 
-  const sortedOptionsGroup = (options as GroupedOption<T>[]).map((group) => {
+  const sortedOptionsGroup = (options as OptionGroup<T>[]).map((group) => {
     return {
       ...group,
       options: [...(group.options as Option<T>[])].sort(sortByLabel),
@@ -226,6 +252,19 @@ const getSortedOptions = <T,>(
   }
 
   return sortedOptionsGroup.sort(sortByLabel);
+};
+
+const hasOptionGroup = <T,>(
+  options: Option<T>[] | OptionGroup<T>[],
+): options is OptionGroup<T>[] => {
+  return (
+    Array.isArray(options) &&
+    options.length > 0 &&
+    options.every(
+      (option): option is OptionGroup<T> =>
+        typeof option === "object" && "options" in option,
+    )
+  );
 };
 
 const renderCountryOption = <T,>(
@@ -257,8 +296,8 @@ const renderCountryOption = <T,>(
 };
 
 const sortByLabel = <T,>(
-  optionA: Option<T> | GroupedOption<T>,
-  optionB: Option<T> | GroupedOption<T>,
+  optionA: Option<T> | OptionGroup<T>,
+  optionB: Option<T> | OptionGroup<T>,
 ) => {
   if (!optionA.label) {
     return 1;
@@ -288,47 +327,31 @@ export const CountryPicker = <T extends string | number>({
   locale = "en",
   ...properties
 }: CountryPickerProperties<T>) => {
-  const baseOptions = useMemo(() => {
-    return getBaseOptions<T>(
-      exclude,
-      fallbackLocale,
-      include,
-      locale,
-      locales,
-    ) as Option<T>[];
-  }, [exclude, fallbackLocale, include, locale, locales]);
-
   const options = useMemo(() => {
     return getOptions<T>({
-      baseOptions,
+      autoSortOptions,
+      exclude,
+      fallbackLocale,
       favorites,
       groups,
+      include,
       includeFavorites,
       labels,
+      locale,
+      locales,
     });
-  }, [baseOptions, favorites, groups, includeFavorites, labels]);
-
-  const favoriteOptions = useMemo(() => {
-    return favorites?.length ? getFavoriteOptions(baseOptions, favorites) : [];
-  }, [baseOptions, favorites]);
-
-  const isOptionsGrouped = useMemo(() => {
-    return (
-      Array.isArray(options) && options.length > 0 && "options" in options[0]
-    );
-  }, [options]);
-
-  const sortedOptions = useMemo<Option<T>[] | GroupedOption<T>[]>(() => {
-    if (!autoSortOptions) {
-      return options as Option<T>[] | GroupedOption<T>[];
-    }
-
-    return getSortedOptions(
-      isOptionsGrouped,
-      !!favoriteOptions.length,
-      options,
-    );
-  }, [autoSortOptions, favoriteOptions, isOptionsGrouped, options]);
+  }, [
+    autoSortOptions,
+    exclude,
+    fallbackLocale,
+    favorites,
+    groups,
+    include,
+    includeFavorites,
+    labels,
+    locale,
+    locales,
+  ]);
 
   const handleOnChange = useCallback(
     (value: T | T[]) => {
@@ -359,7 +382,7 @@ export const CountryPicker = <T extends string | number>({
     <Select
       {...(properties as ISelectProperties<T>)}
       autoSortOptions={false}
-      options={sortedOptions}
+      options={options}
       renderOption={properties.renderOption ?? handleRenderOption}
       onChange={handleOnChange}
     />

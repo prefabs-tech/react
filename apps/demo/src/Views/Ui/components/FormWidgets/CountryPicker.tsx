@@ -561,7 +561,7 @@ const myRegions = {
   favorites={["US", "FR"]}
   groups={{
     "North America": ["US", "CA"],
-    "Europe": ["FR", "DE", "IT", "ES"],
+    Europe: ["FR", "DE", "IT", "ES"],
   }}
   label={t("countryPicker.labels.single")}
   locale={locale}
