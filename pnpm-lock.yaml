@@ -36,22 +36,22 @@ importers:
   apps/demo:
     dependencies:
       '@prefabs.tech/react-config':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../../packages/config
       '@prefabs.tech/react-form':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../../packages/form
       '@prefabs.tech/react-i18n':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../../packages/i18n
       '@prefabs.tech/react-layout':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../../packages/layout
       '@prefabs.tech/react-ui':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../../packages/ui
       '@prefabs.tech/react-user':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../../packages/user
       '@prefabs.tech/tsconfig':
         specifier: 0.2.0
@@ -272,7 +272,7 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-cypress@3.6.0(eslint@8.57.1))(eslint-plugin-import@2.31.0)(eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3)(typescript@5.7.3)
       '@prefabs.tech/react-ui':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../ui
       '@prefabs.tech/tsconfig':
         specifier: 0.2.0
@@ -359,7 +359,7 @@ importers:
   packages/i18n:
     dependencies:
       '@prefabs.tech/react-ui':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../ui
       i18next:
         specifier: 24.2.3
@@ -381,7 +381,7 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-cypress@3.6.0(eslint@8.57.1))(eslint-plugin-import@2.31.0)(eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3)(typescript@5.7.3)
       '@prefabs.tech/react-config':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../config
       '@prefabs.tech/tsconfig':
         specifier: 0.2.0
@@ -462,13 +462,13 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-cypress@3.6.0(eslint@8.57.1))(eslint-plugin-import@2.31.0)(eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3)(typescript@5.7.3)
       '@prefabs.tech/react-config':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../config
       '@prefabs.tech/react-i18n':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../i18n
       '@prefabs.tech/react-ui':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../ui
       '@prefabs.tech/tsconfig':
         specifier: 0.2.0
@@ -680,16 +680,16 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@typescript-eslint/eslint-plugin@8.24.1(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3))(@typescript-eslint/parser@8.24.1(eslint@8.57.1)(typescript@5.7.3))(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint-config-react-app@7.0.1(@babel/plugin-syntax-flow@7.26.0(@babel/core@7.26.10))(@babel/plugin-transform-react-jsx@7.25.9(@babel/core@7.26.10))(eslint-import-resolver-typescript@3.8.3)(eslint@8.57.1)(typescript@5.7.3))(eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.31.0))(eslint-import-resolver-typescript@3.8.3)(eslint-plugin-cypress@3.6.0(eslint@8.57.1))(eslint-plugin-import@2.31.0)(eslint-plugin-prettier@5.2.6(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3))(eslint-plugin-unicorn@56.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.5.3)(typescript@5.7.3)
       '@prefabs.tech/react-form':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../form
       '@prefabs.tech/react-i18n':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../i18n
       '@prefabs.tech/react-layout':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../layout
       '@prefabs.tech/react-ui':
-        specifier: 0.70.0
+        specifier: 0.71.0
         version: link:../ui
       '@prefabs.tech/tsconfig':
         specifier: 0.2.0
