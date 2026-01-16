@@ -1,3 +1,33 @@
+# [0.71.0](https://github.com/prefabs-tech/react/compare/v0.70.0...v0.71.0) (2026-01-14)
+
+
+### Bug Fixes
+
+* **user:** set loading to true until invitation response in invitation accept page ([#1672](https://github.com/prefabs-tech/react/issues/1672)) ([6a9cd12](https://github.com/prefabs-tech/react/commit/6a9cd12b23a1ace6447ff2275ebf0630148f5c7b))
+
+
+### Features
+
+* **demo/CountryPicker:** add translations and properties table ([#1647](https://github.com/prefabs-tech/react/issues/1647)) ([1e4cb4b](https://github.com/prefabs-tech/react/commit/1e4cb4b52535a81d796604cd00af655a3f8c3388))
+* **demo/CountryPicker:** localize option labels using selected locale ([#1654](https://github.com/prefabs-tech/react/issues/1654)) ([3ba0c9a](https://github.com/prefabs-tech/react/commit/3ba0c9a6dca1ff452ac372c8dfc78a2eb24e740f))
+* **ui/country-picker:** add support to flags and related style ([#1664](https://github.com/prefabs-tech/react/issues/1664)) ([bd5d04d](https://github.com/prefabs-tech/react/commit/bd5d04da032aa3136c7f71e6ba27a75a69172bdf))
+* **ui/Country-picker:** implement country grouping logic and update demo ([#1662](https://github.com/prefabs-tech/react/issues/1662)) ([163b018](https://github.com/prefabs-tech/react/commit/163b01861acd5b2850bfff95d8b8aa6fa8ee89e8))
+* **ui/Country:** add country display component ([#1663](https://github.com/prefabs-tech/react/issues/1663)) ([549f644](https://github.com/prefabs-tech/react/commit/549f644877bb39d7f5d5064458d56768ae232f7e))
+* **ui/country:** add flag props and update demo ([#1668](https://github.com/prefabs-tech/react/issues/1668)) ([1ed45e0](https://github.com/prefabs-tech/react/commit/1ed45e0adc8f4eda0b7d3927595bacc1f70f6a57))
+* **ui/CountryDisplay:** add showFlag prop and update demo ([#1665](https://github.com/prefabs-tech/react/issues/1665)) ([6762136](https://github.com/prefabs-tech/react/commit/6762136c03cb29150164ffa91657fdcbc7195c31))
+* **ui/CountryPicker:** add autoSortOptions prop and update descriptions in translations ([#1669](https://github.com/prefabs-tech/react/issues/1669)) ([9f5a17b](https://github.com/prefabs-tech/react/commit/9f5a17bb4eba347d2f8c10dac3c0c8f02ff51143))
+* **ui/CountryPicker:** add custom data support and update demo ([#1646](https://github.com/prefabs-tech/react/issues/1646)) ([ab0c9be](https://github.com/prefabs-tech/react/commit/ab0c9bee079bf10b06e32ff4ef0f575b3a9e1d22))
+* **ui/CountryPicker:** add custom locale support ([#1651](https://github.com/prefabs-tech/react/issues/1651)) ([365df0d](https://github.com/prefabs-tech/react/commit/365df0dc718e573d1b1a1ebec5ff6fa2aa15cf06))
+* **ui/CountryPicker:** add exclude prop and update demo ([#1650](https://github.com/prefabs-tech/react/issues/1650)) ([823a20b](https://github.com/prefabs-tech/react/commit/823a20b0dc51a3fd48d77295095df9e44cc9739c))
+* **ui/CountryPicker:** add favorites prop and update demo ([#1652](https://github.com/prefabs-tech/react/issues/1652)) ([7649db4](https://github.com/prefabs-tech/react/commit/7649db44c66fd4877a24ceaaaef8969287ee8c75))
+* **ui/CountryPicker:** add include prop and update demo ([#1648](https://github.com/prefabs-tech/react/issues/1648)) ([399e4c5](https://github.com/prefabs-tech/react/commit/399e4c5c083fade9ee863e0160bb0beb5f01e004))
+* **ui/CountryPicker:** add includeFavorites prop and update demo ([#1656](https://github.com/prefabs-tech/react/issues/1656)) ([a9dee8b](https://github.com/prefabs-tech/react/commit/a9dee8bcbea88f10582a4c27da7eccbaa126caaf))
+* **ui/CountryPicker:** add multiselect demo and fix labels ([#1644](https://github.com/prefabs-tech/react/issues/1644)) ([6e07dc6](https://github.com/prefabs-tech/react/commit/6e07dc6ae8d59d4a1290fea621381482f71fcda3))
+* **ui/CountryPicker:** add new country picker component ([#1641](https://github.com/prefabs-tech/react/issues/1641)) ([f0a4f39](https://github.com/prefabs-tech/react/commit/f0a4f39258dd67123e1cd2da123663e23ad1240a))
+* **ui/Select:** add support to disable search feature ([#1649](https://github.com/prefabs-tech/react/issues/1649)) ([68e07b1](https://github.com/prefabs-tech/react/commit/68e07b134d98a07657ec29a1dc2f8a840ae734f7))
+
+
+
 # [0.70.0](https://github.com/prefabs-tech/react/compare/v0.69.0...v0.70.0) (2025-12-08)
 
 
