@@ -24,10 +24,18 @@ const getLabel = (
 };
 
 const sortByLabel = <T,>(
-  a: Option<T> | OptionGroup<T>,
-  b: Option<T> | OptionGroup<T>,
+  optionA: Option<T> | OptionGroup<T>,
+  optionB: Option<T> | OptionGroup<T>,
 ) => {
-  return (a.label || "").localeCompare(b.label || "");
+  if (!optionA.label) {
+    return 1;
+  }
+
+  if (!optionB.label) {
+    return -1;
+  }
+
+  return optionA.label.localeCompare(optionB.label);
 };
 
 const getFavoriteOptions = <T,>(
@@ -41,10 +49,12 @@ const getFavoriteOptions = <T,>(
     return [];
   }
 
-  const options = favorites.map((code) => ({
-    value: code as unknown as T,
-    label: getLabel(code, locale, locales, fallbackTranslation),
-  }));
+  const options = favorites.map((code) => {
+    return {
+      value: code as unknown as T,
+      label: getLabel(code, locale, locales, fallbackTranslation),
+    };
+  });
 
   if (autoSortOptions) {
     options.sort(sortByLabel);
@@ -66,11 +76,13 @@ const getFullList = <T,>(
   autoSortOptions: boolean,
 ): Option<T>[] | OptionGroup<T>[] => {
   if (groups && Object.keys(groups).length > 0) {
-    return Object.entries(groups).map(([groupKey, groupCodes]) => {
-      const groupOptions = groupCodes.map((code) => ({
-        value: code as unknown as T,
-        label: getLabel(code, locale, locales, fallbackTranslation),
-      }));
+    const groupList = Object.entries(groups).map(([groupKey, groupCodes]) => {
+      const groupOptions = groupCodes.map((code) => {
+        return {
+          value: code as unknown as T,
+          label: getLabel(code, locale, locales, fallbackTranslation),
+        };
+      });
 
       if (autoSortOptions) {
         groupOptions.sort(sortByLabel);
@@ -81,6 +93,12 @@ const getFullList = <T,>(
         options: groupOptions,
       };
     });
+
+    if (autoSortOptions) {
+      groupList.sort(sortByLabel);
+    }
+
+    return groupList;
   }
 
   const codes = include || Object.keys(fallbackTranslation);
@@ -97,12 +115,16 @@ const getFullList = <T,>(
 
       return true;
     })
-    .map((code) => ({
-      value: code as unknown as T,
-      label: getLabel(code, locale, locales, fallbackTranslation),
-    }));
+    .map((code) => {
+      return {
+        value: code as unknown as T,
+        label: getLabel(code, locale, locales, fallbackTranslation),
+      };
+    });
 
-  if (autoSortOptions) options.sort(sortByLabel);
+  if (autoSortOptions) {
+    options.sort(sortByLabel);
+  }
 
   if (favorites.length > 0) {
     return [
@@ -223,7 +245,9 @@ export const CountryPicker = <T extends string | number>({
 
   const handleOnChange = useCallback(
     (value: T | T[]) => {
-      if (!properties.onChange) return;
+      if (!properties.onChange) {
+        return;
+      }
       const result = Array.isArray(value)
         ? (Array.from(new Set(value)) as T[])
         : value;
