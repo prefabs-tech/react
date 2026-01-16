@@ -49,14 +49,14 @@ const getAuthoritativeList = <T,>(
   exclude: string[] = [],
 ): Option<T>[] => {
   const options: Option<T>[] = [];
-  const processedCodes = new Set<string>();
+  const countryCodes = new Set<string>();
 
   if (groups && Object.keys(groups).length > 0) {
     Object.values(groups)
       .flat()
       .forEach((code) => {
-        if (!processedCodes.has(code) && fallbackTranslation[code]) {
-          processedCodes.add(code);
+        if (!countryCodes.has(code) && fallbackTranslation[code]) {
+          countryCodes.add(code);
           options.push({
             value: code as unknown as T,
             label: getLabel(code, locale, locales, fallbackTranslation[code]),
@@ -64,14 +64,14 @@ const getAuthoritativeList = <T,>(
         }
       });
   } else {
-    const sourceCodes = include || Object.keys(fallbackTranslation);
-    sourceCodes.forEach((code) => {
+    const availableCodes = include || Object.keys(fallbackTranslation);
+    availableCodes.forEach((code) => {
       if (
         !exclude.includes(code) &&
-        !processedCodes.has(code) &&
+        !countryCodes.has(code) &&
         fallbackTranslation[code]
       ) {
-        processedCodes.add(code);
+        countryCodes.add(code);
         options.push({
           value: code as unknown as T,
           label: getLabel(code, locale, locales, fallbackTranslation[code]),
