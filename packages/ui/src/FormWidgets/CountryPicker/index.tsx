@@ -14,17 +14,31 @@ import type {
 } from "../../types/country-picker";
 import type { GroupedOption as OptionGroup, Option } from "../Select";
 
-const getLabel = (
-  code: string,
-  locale: string,
-  locales: Locales | undefined,
-  fallbackLabel?: string,
-) => locales?.[locale]?.[code] || fallbackLabel || code;
+const getAllCountries = <T,>(
+  allOptions: Option<T>[],
+  favorites: string[],
+  includeFavorites: boolean,
+  labels: CountryPickerProperties<T>["labels"],
+  autoSortOptions: boolean,
+): Option<T>[] | OptionGroup<T>[] => {
+  const allCountries =
+    !includeFavorites && favorites.length > 0
+      ? allOptions.filter((option) => !favorites.includes(String(option.value)))
+      : [...allOptions];
 
-const sortByLabel = <T,>(
-  a: Option<T> | OptionGroup<T>,
-  b: Option<T> | OptionGroup<T>,
-) => (a.label || "").localeCompare(b.label || "");
+  if (autoSortOptions) allCountries.sort(sortByLabel);
+
+  if (favorites.length > 0) {
+    return [
+      {
+        label: labels?.allCountries || "All Countries",
+        options: allCountries,
+      },
+    ];
+  }
+
+  return allCountries;
+};
 
 const getAuthoritativeList = <T,>(
   fallbackTranslation: Translation,
@@ -131,31 +145,12 @@ const getGroupedOptions = <T,>(
   );
 };
 
-const getAllCountries = <T,>(
-  allOptions: Option<T>[],
-  favorites: string[],
-  includeFavorites: boolean,
-  labels: CountryPickerProperties<T>["labels"],
-  autoSortOptions: boolean,
-): Option<T>[] | OptionGroup<T>[] => {
-  const allCountries =
-    !includeFavorites && favorites.length > 0
-      ? allOptions.filter((option) => !favorites.includes(String(option.value)))
-      : [...allOptions];
-
-  if (autoSortOptions) allCountries.sort(sortByLabel);
-
-  if (favorites.length > 0) {
-    return [
-      {
-        label: labels?.allCountries || "All Countries",
-        options: allCountries,
-      },
-    ];
-  }
-
-  return allCountries;
-};
+const getLabel = (
+  code: string,
+  locale: string,
+  locales: Locales | undefined,
+  fallbackLabel?: string,
+) => locales?.[locale]?.[code] || fallbackLabel || code;
 
 const getOptions = <T,>({
   autoSortOptions = true,
@@ -235,6 +230,11 @@ const getOptions = <T,>({
 
   return options;
 };
+
+const sortByLabel = <T,>(
+  a: Option<T> | OptionGroup<T>,
+  b: Option<T> | OptionGroup<T>,
+) => (a.label || "").localeCompare(b.label || "");
 
 export const CountryPicker = <T extends string | number>({
   autoSortOptions = true,
