@@ -670,8 +670,8 @@ importers:
   packages/user:
     dependencies:
       supertokens-web-js:
-        specifier: 0.6.0
-        version: 0.6.0
+        specifier: 0.15.0
+        version: 0.15.0
       zod:
         specifier: 3.23.8
         version: 3.23.8
@@ -2074,6 +2074,9 @@ packages:
 
   '@rushstack/eslint-patch@1.10.4':
     resolution: {integrity: sha512-WJgX9nzTqknM393q1QJDJmoW28kUfEnybeTfVNcNAPnIx210RXm2DiXiHzfNPJNIUUb1tJnz/l4QGtJ30PgWmA==}
+
+  '@simplewebauthn/browser@13.1.0':
+    resolution: {integrity: sha512-WuHZ/PYvyPJ9nxSzgHtOEjogBhwJfC8xzYkPC+rR/+8chl/ft4ngjiK8kSU5HtRJfczupyOh33b25TjYbvwAcg==}
 
   '@slack/types@1.10.0':
     resolution: {integrity: sha512-tA7GG7Tj479vojfV3AoxbckalA48aK6giGjNtgH6ihpLwTyHE3fIgRrvt8TWfLwW8X8dyu7vgmAsGLRG7hWWOg==}
@@ -5186,11 +5189,11 @@ packages:
   supertokens-js-override@0.0.4:
     resolution: {integrity: sha512-r0JFBjkMIdep3Lbk3JA+MpnpuOtw4RSyrlRAbrzMcxwiYco3GFWl/daimQZ5b1forOiUODpOlXbSOljP/oyurg==}
 
-  supertokens-web-js@0.6.0:
-    resolution: {integrity: sha512-2KOgWNGanh+/zpdaFQgiA9dQa6T9wA6LcoB6m1BTZ7JIqR3mYmpLD5uu8ERtISNAGUjcXziON/Fp5ZnlBByCcw==}
+  supertokens-web-js@0.15.0:
+    resolution: {integrity: sha512-IJB1Z+SI5gsWwunvrLyhbpyVaetQt23QlMoD6Gy7+OcmJ8EaPO+knhZnqzQAppe4HiNhROAiGZb7gUTJgXonzg==}
 
-  supertokens-website@17.0.5:
-    resolution: {integrity: sha512-NBOiKO3NV2VBAFgO+ZEmpOPVde2BwOjB6T0qjj2XaZX4jh+6yDGhrckJMwF5R0ucpTgOQXmBrpDnUJ5kFZlgiQ==}
+  supertokens-website@20.1.6:
+    resolution: {integrity: sha512-WSehco2PsrFp4WY7h6tDutYyi2nPgJS8lahUadcL/cpBqgEuZ3pjnvN1NDASSNSTfXeO1smm3HrvvLZG5C7qHA==}
 
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
@@ -7197,6 +7200,8 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.10.4': {}
+
+  '@simplewebauthn/browser@13.1.0': {}
 
   '@slack/types@1.10.0': {}
 
@@ -10967,12 +10972,13 @@ snapshots:
 
   supertokens-js-override@0.0.4: {}
 
-  supertokens-web-js@0.6.0:
+  supertokens-web-js@0.15.0:
     dependencies:
+      '@simplewebauthn/browser': 13.1.0
       supertokens-js-override: 0.0.4
-      supertokens-website: 17.0.5
+      supertokens-website: 20.1.6
 
-  supertokens-website@17.0.5:
+  supertokens-website@20.1.6:
     dependencies:
       browser-tabs-lock: 1.3.0
       supertokens-js-override: 0.0.4
