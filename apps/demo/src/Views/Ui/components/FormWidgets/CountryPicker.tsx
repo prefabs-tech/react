@@ -497,14 +497,14 @@ const selectedLocale = i18n.language;
         />
         <CodeBlock
           exampleCode='
-const myRegions = {
+const groups = {
   "North America HQ": ["US", "CA"],
   "Offshore Dev Center": ["IN", "VN", "PH"],
   "European Hubs": ["GB", "DE", "FR"]
 };
 
 <CountryPicker
-  groups={myRegions}
+  groups={groups}
   label={t("countryPicker.labels.single")}
   locale={locale}
   name="countryPicker"
@@ -550,13 +550,13 @@ const englishTranslation = {
 const locales = { en: englishTranslation, fr: frenchTranslation };
 const selectedLocale = i18n.language;
 
-const myGroups = {
+const groups = {
   "EU": ["FR", "DE", "IT", "ES"],
   "ASEAN": ["VN", "TH", "SG"]
 };
 
 <CountryPicker
-  groups={myGroups}
+  groups={groups}
   locale={selectedLocale}
   locales={locales}
   value={value}

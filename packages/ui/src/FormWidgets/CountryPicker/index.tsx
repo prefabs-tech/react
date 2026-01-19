@@ -248,6 +248,7 @@ export const CountryPicker = <T extends string | number>({
       if (!properties.onChange) {
         return;
       }
+
       const result = Array.isArray(value)
         ? (Array.from(new Set(value)) as T[])
         : value;
