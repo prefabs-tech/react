@@ -1,41 +1,55 @@
-.country {
-  align-items: center;
-  display: inline-flex;
-  width: 100%;
+.country-display {
+  overflow: hidden;
+  max-width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
   vertical-align: middle;
 }
 
-.country.is-code-only .flag-icon {
-  display: none;
+.country-display > .country-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
-.country-label {
-  display: block;
-  flex: 0 1 auto;
+.country-display > .country-content > .country-label {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  order: 1;
 }
 
-.country .flag-icon {
-  margin-right: 0.5rem;
-  order: 0;
-  flex-shrink: 0;
+.country-display > .country-content:has(.flag-icon-right) {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.country-display :has(.flag-icon-right-edge) {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.country-display > .country-content > .flag-icon {
+  line-height: inherit;
+  min-width: 1.5rem;
   background-size: cover;
   background-position: center;
-  min-width: 1.5rem;
-  line-height: inherit;
+  flex-shrink: 0;
 }
 
-.country .flag-icon-right {
-  margin-right: 0;
-  margin-left: 0.5rem;
-  order: 2;
+.country-display > .country-content > .flag-icon-rounded,
+.country-display > .country-content > .flag-icon-circle {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
-.country .flag-icon-right-edge {
-  margin-right: 0;
-  margin-left: auto;
-  order: 2;
+.country-display > .country-content > .flag-icon-squared,
+.country-display > .country-content > .flag-icon-square {
+  border-radius: 0;
+  object-fit: cover;
+  width: 1.5rem;
+  height: 1.5rem;
 }
