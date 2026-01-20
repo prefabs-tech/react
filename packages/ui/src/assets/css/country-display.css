@@ -7,47 +7,51 @@
   vertical-align: middle;
 }
 
-.country-display > .country-content {
+.country-display > div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
 }
 
-.country-display > .country-content > .country-label {
+.country-display .country-label {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.country-display > .country-content:has(.flag-icon-right) {
+.country-display > div:has(.flag-icon-right),
+.country-display > div:has(.flag-icon-right-edge) {
   flex-direction: row-reverse;
-  justify-content: flex-end;
 }
 
-.country-display :has(.flag-icon-right-edge) {
-  flex-direction: row-reverse;
+.country-display > div:has(.flag-icon-right-edge) {
   justify-content: space-between;
 }
 
-.country-display > .country-content > .flag-icon {
+.country-display .flag-icon {
+  display: inline-block;
   line-height: inherit;
+  width: 2rem;
+  height: 1.5rem;
   min-width: 1.5rem;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   flex-shrink: 0;
+  vertical-align: middle;
 }
 
-.country-display > .country-content > .flag-icon-rounded,
-.country-display > .country-content > .flag-icon-circle {
+.country-display .flag-icon-rounded,
+.country-display .flag-icon-circle {
   border-radius: 50%;
   object-fit: cover;
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.country-display > .country-content > .flag-icon-squared,
-.country-display > .country-content > .flag-icon-square {
+.country-display .flag-icon-squared,
+.country-display .flag-icon-square {
   border-radius: 0;
   object-fit: cover;
   width: 1.5rem;
