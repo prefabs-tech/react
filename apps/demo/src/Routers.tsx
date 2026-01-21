@@ -95,7 +95,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/react/",
+    basename: import.meta.env.VITE_APP_BASE_PATH,
   },
 );
 

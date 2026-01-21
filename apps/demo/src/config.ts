@@ -38,7 +38,7 @@ const config: AppConfig = {
     localeSwitcher: {
       showBadge: true,
     },
-    logo: "/react/logo.png",
+    logo: `${(import.meta.env.VITE_APP_BASE_PATH || "").replace(/\/$/, "")}/logo.png`,
     mainMenu: [
       {
         name: "header.menu.ui",
