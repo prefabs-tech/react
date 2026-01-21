@@ -4,11 +4,11 @@ import {
   Page,
   Button,
   TDataTable,
-  defaultGroups,
 } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import englishData from "./en.json";
 import frenchData from "./fr.json";
 import nepaliData from "./np.json";
 import { CodeBlock, Section } from "../../../../components/Demo";
@@ -17,6 +17,17 @@ export const CountryPickerDemo = () => {
   const [t, i18n] = useTranslation("ui");
   const navigate = useNavigate();
   const locale = i18n.language;
+
+  const frenchTranslation = {
+    ...frenchData,
+    EU: "Union Européenne",
+    ASEAN: "ASEAN",
+  };
+  const englishTranslation = {
+    ...englishData,
+    EU: "European Union",
+    ASEAN: "ASEAN",
+  };
 
   const data = [
     {
@@ -80,7 +91,7 @@ export const CountryPickerDemo = () => {
       description: t("countryPicker.propertiesDescription.groups"),
       id: 9,
       prop: "groups",
-      type: "GroupData",
+      type: "Groups",
     },
     {
       default: "[]",
@@ -168,9 +179,10 @@ export const CountryPickerDemo = () => {
   const [flagsSelectValue, setFlagsSelectValue] = useState<string>("");
   const [includeFavoritesValue, setIncludeFavoritesValue] =
     useState<string>("");
-  const [groupedValue, setGroupedValue] = useState<string>("");
   const [customGroupValue, setCustomGroupValue] = useState<string>("");
   const [favoriteGroupValue, setFavoriteGroupValue] = useState<string>("");
+  const [translationGroupValue, setTranslationGroupValue] =
+    useState<string>("");
 
   const customFlagsPath = (code: string) => {
     return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
@@ -470,40 +482,6 @@ const selectedLocale = i18n.language;
       <Section title={t("countryPicker.groupingDefault")}>
         <CountryPicker
           groups={{
-            "European Union": defaultGroups?.EU || [],
-            ASEAN: defaultGroups?.ASEAN || [],
-          }}
-          label={t("countryPicker.labels.single")}
-          locale={locale}
-          name="groupingDefault"
-          placeholder={t("countryPicker.placeholders.single")}
-          value={groupedValue}
-          onChange={(value: string | number | (string | number)[]) =>
-            setGroupedValue(value as string)
-          }
-        />
-        <CodeBlock
-          exampleCode='
-import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
-
-<CountryPicker
-  groups={{
-    "European Union": defaultGroups.EU,
-    "ASEAN": defaultGroups.ASEAN
-  }}
-  label={t("countryPicker.labels.single")}
-  locale={locale}
-  name="countryPicker"
-  placeholder={t("countryPicker.placeholders.single")}
-  value={groupedValue}
-  onChange={(value) => setGroupedValue(value)}
-/>'
-        />
-      </Section>
-
-      <Section title={t("countryPicker.groupingCustom")}>
-        <CountryPicker
-          groups={{
             "North America HQ": ["US", "CA"],
             "Offshore Dev Center": ["IN", "VN", "PH"],
             "European Hubs": ["GB", "DE", "FR"],
@@ -519,20 +497,70 @@ import { CountryPicker, defaultGroups } from "@prefabs.tech/react-ui";
         />
         <CodeBlock
           exampleCode='
-const myRegions = {
+const groups = {
   "North America HQ": ["US", "CA"],
   "Offshore Dev Center": ["IN", "VN", "PH"],
   "European Hubs": ["GB", "DE", "FR"]
 };
 
 <CountryPicker
-  groups={myRegions}
+  groups={groups}
   label={t("countryPicker.labels.single")}
   locale={locale}
   name="countryPicker"
   placeholder={t("countryPicker.placeholders.single")}
   value={customGroupValue}
-  onChange={(value) => setCustomGroupValue(value)}
+  onChange={(value) => setSingleSelectValue(value)}
+/>'
+        />
+      </Section>
+
+      <Section title={t("countryPicker.groupingWithTranslation")}>
+        <CountryPicker
+          locales={{ fr: frenchTranslation, en: englishTranslation }}
+          groups={{
+            EU: ["FR", "DE", "IT", "ES"],
+            ASEAN: ["VN", "TH", "SG"],
+          }}
+          label={t("countryPicker.labels.single")}
+          locale={locale}
+          name="groupingTranslationKeys"
+          placeholder={t("countryPicker.placeholders.single")}
+          value={translationGroupValue}
+          onChange={(value: string | number | (string | number)[]) =>
+            setTranslationGroupValue(value as string)
+          }
+        />
+        <CodeBlock
+          exampleCode='import englishData from "./locales/en.json";
+import frenchData from "./locales/fr.json";
+
+ const frenchTranslation = {
+    ...frenchData,
+    EU: "Union Européenne",
+    ASEAN: "ASEAN",
+  };
+
+const englishTranslation = {
+    ...englishData,
+    EU: "European Union",
+    ASEAN: "ASEAN",
+  };
+
+const locales = { en: englishTranslation, fr: frenchTranslation };
+const selectedLocale = i18n.language;
+
+const groups = {
+  "EU": ["FR", "DE", "IT", "ES"],
+  "ASEAN": ["VN", "TH", "SG"]
+};
+
+<CountryPicker
+  groups={groups}
+  locale={selectedLocale}
+  locales={locales}
+  value={value}
+  onChange={(value) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -568,7 +596,7 @@ const myRegions = {
   name="countryPicker"
   placeholder={t("countryPicker.placeholders.single")}
   value={favoriteGroupValue}
-  onChange={(value) => setFavoriteGroupValue(value)}
+  onChange={(value) => setSingleSelectValue(value)}
 />'
         />
       </Section>
@@ -608,7 +636,7 @@ const myRegions = {
           exampleCode={`
 type Translation = Record<string, string>;
 
-type Locales = Record<string, TranslationCatalogue>;
+type Locales = Record<string, Translation>;
 
 type Groups = Record<string, string[]>;
 
