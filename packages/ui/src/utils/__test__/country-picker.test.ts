@@ -49,7 +49,7 @@ describe("getFallbackTranslation", () => {
     expect(result).toEqual(defaultEnglishTranslation);
   });
 
-  test("Should prioritize locales['en'] (custom englishTranslation) over defaultEnglishTranslation if provided", () => {
+  test("Should prioritize locales['en'] over defaultEnglishTranslation if provided", () => {
     const englishTranslation = { FR: "France" };
     const locales = { en: englishTranslation };
     const result = getFallbackTranslation("en", locales);
