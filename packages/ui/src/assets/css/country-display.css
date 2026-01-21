@@ -1,15 +1,15 @@
 .country-display {
-  overflow: hidden;
-  max-width: 100%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
-.country-display > div {
-  display: flex;
+.country-display > .country-content {
   align-items: center;
+  display: flex;
   gap: 0.5rem;
   width: 100%;
 }
@@ -20,26 +20,23 @@
   white-space: nowrap;
 }
 
-.country-display > div:has(.flag-icon-right),
-.country-display > div:has(.flag-icon-right-edge) {
+.country-display > .country-content:has(.flag-icon-right) {
   flex-direction: row-reverse;
-}
-
-.country-display > div:has(.flag-icon-right) {
   justify-content: flex-end;
 }
 
-.country-display > div:has(.flag-icon-right-edge) {
+.country-display > .country-content:has(.flag-icon-right-edge) {
+  flex-direction: row-reverse;
   justify-content: space-between;
 }
 
 .country-display .flag-icon {
-  display: inline-block;
-  line-height: inherit;
-  min-width: 1.5rem;
   background-position: center;
   background-repeat: no-repeat;
+  display: inline-block;
   flex-shrink: 0;
+  line-height: inherit;
+  min-width: 1.5rem;
   vertical-align: middle;
 }
 

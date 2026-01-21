@@ -75,14 +75,16 @@ export const Country: React.FC<CountryDisplayProperties> = ({
       className={`country-display ${className}`.trim()}
       data-country-code={countryCode}
     >
-      {renderOption && countryCode && countryLabel ? (
-        renderOption(countryCode, countryLabel)
-      ) : (
-        <div className="country-content">
-          {renderFlag()}
-          <span className="country-label">{countryLabel ?? "-"}</span>
-        </div>
-      )}
+      <div className="country-content">
+        {renderOption && countryCode && countryLabel ? (
+          renderOption(countryCode, countryLabel)
+        ) : (
+          <>
+            {renderFlag()}
+            <span className="country-label">{countryLabel ?? "-"}</span>
+          </>
+        )}
+      </div>
     </div>
   );
 };
