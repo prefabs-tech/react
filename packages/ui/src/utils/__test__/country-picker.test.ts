@@ -3,15 +3,43 @@ import { describe, expect, test } from "vitest";
 import defaultEnglishTranslation from "../../FormWidgets/CountryPicker/en.json";
 import { getFallbackTranslation, getFlagClass } from "../country-picker";
 
+const frenchTranslation = {
+  DE: "Allemagne",
+  BR: "Brésil",
+  CA: "Canada",
+  CN: "Chine",
+  ES: "Espagne",
+  US: "États‑Unis",
+  FR: "France",
+  IT: "Italie",
+  JP: "Japon",
+  GB: "Royaume‑Uni",
+  RU: "Russie",
+};
+
+const spanishTranslation = {
+  DE: "Alemania",
+  BR: "Brasil",
+  CA: "Canadá",
+  CN: "China",
+  ES: "España",
+  US: "Estados Unidos",
+  FR: "Francia",
+  IT: "Italia",
+  JP: "Japón",
+  GB: "Reino Unido",
+  RU: "Rusia",
+};
+
 const locales = {
-  fr: { key: "Bonjour" },
-  es: { key: "Hola" },
+  fr: frenchTranslation,
+  es: spanishTranslation,
 };
 
 describe("getFallbackTranslation", () => {
   test("Should return translation from locales if fallbackLocale exists in it", () => {
     const result = getFallbackTranslation("fr", locales);
-    expect(result).toEqual({ key: "Bonjour" });
+    expect(result).toEqual(frenchTranslation);
   });
 
   test("Should return defaultEnglishTranslation if fallbackLocale is 'en' and not in locales", () => {
@@ -20,7 +48,7 @@ describe("getFallbackTranslation", () => {
   });
 
   test("Should prioritize locales['en'] over defaultEnglishTranslation if provided", () => {
-    const customEn = { key: "Hello Custom" };
+    const customEn = { FR: "Hello Custom" };
     const localesWithEn = { en: customEn };
     const result = getFallbackTranslation("en", localesWithEn);
     expect(result).toEqual(customEn);
