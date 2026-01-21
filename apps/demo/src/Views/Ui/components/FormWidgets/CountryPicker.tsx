@@ -91,7 +91,7 @@ export const CountryPickerDemo = () => {
       description: t("countryPicker.propertiesDescription.groups"),
       id: 9,
       prop: "groups",
-      type: "GroupData",
+      type: "Groups",
     },
     {
       default: "[]",
@@ -636,7 +636,7 @@ const groups = {
           exampleCode={`
 type Translation = Record<string, string>;
 
-type Locales = Record<string, TranslationCatalogue>;
+type Locales = Record<string, Translation>;
 
 type Groups = Record<string, string[]>;
 
