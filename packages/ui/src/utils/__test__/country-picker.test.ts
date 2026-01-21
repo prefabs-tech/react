@@ -49,12 +49,12 @@ describe("getFallbackTranslation", () => {
     expect(result).toEqual(defaultEnglishTranslation);
   });
 
-  test("Should prioritize locales['np'] over defaultEnglishTranslation if provided", () => {
-    const nepaliTranslation = { NP: "नेपाल" };
-    const locales = { np: nepaliTranslation };
-    const result = getFallbackTranslation("np", locales);
+  test("Should prioritize locales['en'] (custom englishTranslation) over defaultEnglishTranslation if provided", () => {
+    const englishTranslation = { FR: "France" };
+    const locales = { en: englishTranslation };
+    const result = getFallbackTranslation("en", locales);
 
-    expect(result).toEqual(nepaliTranslation);
+    expect(result).toEqual(englishTranslation);
   });
 
   test("Should return null if fallbackLocale is not found and is not 'en'", () => {
