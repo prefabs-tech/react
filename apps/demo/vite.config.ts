@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return {
-    base: "/react/",
+    base: process.env.VITE_APP_BASE_PATH || "/",
     plugins: [
       react(),
       createHtmlPlugin({

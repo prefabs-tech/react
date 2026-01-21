@@ -39,6 +39,7 @@ jobs:
           VITE_API_BASE_URL: "https://api.monorepo.prefabs.tech"
           VITE_APP_TITLE: 'React Demo'
           VITE_APP_VERSION: ${{ steps.package-version.outputs.current-version}}
+          VITE_APP_BASE_PATH=: '/react/'
           VITE_APP_BUILD: 'develop'
           VITE_APP_COPYRIGHT_HOLDER: 'Prefabs Tech'
           VITE_APP_COPYRIGHT_HOLDER_URL: 'https://prefabs.tech'
