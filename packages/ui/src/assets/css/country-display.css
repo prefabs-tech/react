@@ -1,9 +1,7 @@
 .country-display {
-  display: inline-block;
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  vertical-align: middle;
   white-space: nowrap;
 }
 
@@ -31,23 +29,14 @@
 }
 
 .country-display .flag-icon {
-  background-position: center;
-  background-repeat: no-repeat;
-  display: inline-block;
-  flex-shrink: 0;
   line-height: inherit;
   min-width: 1.5rem;
-  vertical-align: middle;
 }
 
-.country-display .flag-icon-rounded,
-.country-display .flag-icon-circle {
-  border-radius: 50%;
+.country-display .flag-icon-rounded {
   object-fit: cover;
 }
 
-.country-display .flag-icon-squared,
-.country-display .flag-icon-square {
+.country-display .flag-icon-squared {
   border-radius: 0;
-  object-fit: cover;
 }
