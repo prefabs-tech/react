@@ -4,6 +4,8 @@ import { getFallbackTranslation, getFlagClass } from "../utils/country-picker";
 
 import type { Locales } from "../types";
 
+import "../assets/css/country-display.css";
+
 interface CountryDisplayProperties {
   className?: string;
   code: string;
@@ -45,12 +47,11 @@ export const Country: React.FC<CountryDisplayProperties> = ({
     );
   }, [countryCode, locale, fallbackLocale, locales]);
 
-  const flagClass = useMemo(
-    () => getFlagClass(countryCode, flagsPosition, flagsStyle),
-    [countryCode, flagsPosition, flagsStyle],
-  );
+  const flagClass = useMemo(() => {
+    return getFlagClass(countryCode, flagsPosition, flagsStyle);
+  }, [countryCode, flagsPosition, flagsStyle]);
 
-  const getFlagElement = () => {
+  const renderFlag = () => {
     if (!showFlag || !countryCode || countryLabel === countryCode) {
       return null;
     }
@@ -69,16 +70,22 @@ export const Country: React.FC<CountryDisplayProperties> = ({
     return <span className={flagClass} title={countryLabel} />;
   };
 
-  return renderOption && countryCode && countryLabel ? (
-    renderOption(countryCode, countryLabel)
-  ) : (
-    <span
-      className={`country ${className}`.trim()}
+  return (
+    <div
+      className={`country-display ${className}`.trim()}
       data-country-code={countryCode}
     >
-      {getFlagElement()}
-      <span className="country-label">{countryLabel ?? "-"}</span>
-    </span>
+      <div className="country-content">
+        {renderOption && countryCode && countryLabel ? (
+          renderOption(countryCode, countryLabel)
+        ) : (
+          <>
+            {renderFlag()}
+            <span className="country-label">{countryLabel ?? "-"}</span>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

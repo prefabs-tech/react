@@ -1,17 +1,10 @@
-.country-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.custom-style {
+.country-display .custom-render {
+  background-color: #eef2ff;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 1rem;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: #eef2ff;
-  padding: 4px 12px;
-  border-radius: 20px;
-  border: 1px solid #c7d2fe;
-  color: #3730a3;
+  gap: 0.5rem;
+  padding: 0.25rem 1rem;
   width: 8rem;
 }

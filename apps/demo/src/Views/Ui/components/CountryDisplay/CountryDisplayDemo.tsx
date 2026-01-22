@@ -235,7 +235,7 @@ fallbackLocale = np;
         <Country
           code="JP"
           renderOption={(code, label) => (
-            <div className="custom-style">
+            <div className="custom-render">
               <span
                 className={`flag-icon flag-icon-${code.toLowerCase()} flag-icon-rounded`}
               />
@@ -250,7 +250,7 @@ fallbackLocale = np;
 <Country
   code="JP"
   renderOption={(code, label) => (
-    <div className="custom-style">
+    <div className="custom-render">
       <span className={\`flag-icon flag-icon-\${code.toLowerCase()} flag-icon-rounded\`}></span>
       <span>{label}</span>
     </div>

@@ -1,41 +1,42 @@
-.country {
-  align-items: center;
-  display: inline-flex;
-  width: 100%;
-  vertical-align: middle;
-}
-
-.country.is-code-only .flag-icon {
-  display: none;
-}
-
-.country-label {
-  display: block;
-  flex: 0 1 auto;
+.country-display {
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  order: 1;
 }
 
-.country .flag-icon {
-  margin-right: 0.5rem;
-  order: 0;
-  flex-shrink: 0;
-  background-size: cover;
-  background-position: center;
-  min-width: 1.5rem;
+.country-display > .country-content {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.country-display .country-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.country-display > .country-content:has(.flag-icon-right) {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.country-display > .country-content:has(.flag-icon-right-edge) {
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.country-display .flag-icon {
   line-height: inherit;
+  min-width: 1.5rem;
 }
 
-.country .flag-icon-right {
-  margin-right: 0;
-  margin-left: 0.5rem;
-  order: 2;
+.country-display .flag-icon-rounded {
+  object-fit: cover;
 }
 
-.country .flag-icon-right-edge {
-  margin-right: 0;
-  margin-left: auto;
-  order: 2;
+.country-display .flag-icon-squared {
+  border-radius: 0;
 }
