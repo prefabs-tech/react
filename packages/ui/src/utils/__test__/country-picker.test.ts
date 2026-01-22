@@ -7,128 +7,161 @@ import {
   getLabel,
 } from "../country-picker";
 
-const frenchTranslation = {
-  DE: "Allemagne",
-  BR: "Brésil",
-  CA: "Canada",
-  CN: "Chine",
-  ES: "Espagne",
-  US: "États‑Unis",
-  FR: "France",
-  IT: "Italie",
-  JP: "Japon",
-  GB: "Royaume‑Uni",
-  RU: "Russie",
-};
-
-const spanishTranslation = {
-  DE: "Alemania",
-  BR: "Brasil",
-  CA: "Canadá",
-  CN: "China",
-  ES: "España",
-  US: "Estados Unidos",
-  FR: "Francia",
-  IT: "Italia",
-  JP: "Japón",
-  GB: "Reino Unido",
-  RU: "Rusia",
-};
-
-const locales = {
-  fr: frenchTranslation,
-  es: spanishTranslation,
-};
+import type { Locales } from "../../types";
 
 describe("getFallbackTranslation", () => {
-  test("Should return translation from locales if fallbackLocale exists in it", () => {
-    const result = getFallbackTranslation("fr", locales);
+  const frenchTranslation = {
+    DE: "Allemagne",
+    BR: "Brésil",
+    CA: "Canada",
+    CN: "Chine",
+    ES: "Espagne",
+    US: "États‑Unis",
+    FR: "France",
+    IT: "Italie",
+    JP: "Japon",
+    GB: "Royaume‑Uni",
+    RU: "Russie",
+  };
 
-    expect(result).toEqual(frenchTranslation);
-  });
+  const spanishTranslation = {
+    DE: "Alemania",
+    BR: "Brasil",
+    CA: "Canadá",
+    CN: "China",
+    ES: "España",
+    US: "Estados Unidos",
+    FR: "Francia",
+    IT: "Italia",
+    JP: "Japón",
+    GB: "Reino Unido",
+    RU: "Rusia",
+  };
 
-  test("Should return defaultEnglishTranslation if fallbackLocale is 'en' and not in locales", () => {
-    const result = getFallbackTranslation("en", {});
+  const locales = {
+    fr: frenchTranslation,
+    es: spanishTranslation,
+  };
 
-    expect(result).toEqual(defaultEnglishTranslation);
-  });
+  const customEnglishTranslation = { FR: "France" };
 
-  test("Should prioritize locales['en'] over defaultEnglishTranslation if provided", () => {
-    const englishTranslation = { FR: "France" };
-    const locales = { en: englishTranslation };
-    const result = getFallbackTranslation("en", locales);
+  const testCases = [
+    {
+      name: "Should return translation from locales if fallbackLocale exists in it",
+      arguments: {
+        fallbackLocale: "fr",
+        locales: locales,
+      },
+      result: frenchTranslation,
+    },
+    {
+      name: "Should return defaultEnglishTranslation if fallbackLocale is 'en' and not in locales",
+      arguments: {
+        fallbackLocale: "en",
+        locales: {},
+      },
+      result: defaultEnglishTranslation,
+    },
+    {
+      name: "Should prioritize locales['en'] over defaultEnglishTranslation if provided",
+      arguments: {
+        fallbackLocale: "en",
+        locales: { en: customEnglishTranslation },
+      },
+      result: customEnglishTranslation,
+    },
+    {
+      name: "Should return null if fallbackLocale is not found and is not 'en'",
+      arguments: {
+        fallbackLocale: "de",
+        locales: locales,
+      },
+      result: null,
+    },
+    {
+      name: "Should handle undefined locales gracefully",
+      arguments: {
+        fallbackLocale: "fr",
+        locales: undefined,
+      },
+      result: null,
+    },
+    {
+      name: "Should return defaultEnglishTranslation when locales is undefined but fallback is 'en'",
+      arguments: {
+        fallbackLocale: "en",
+        locales: undefined,
+      },
+      result: defaultEnglishTranslation,
+    },
+  ];
 
-    expect(result).toEqual(englishTranslation);
-  });
+  testCases.map((testCase) => {
+    test(testCase.name, () => {
+      const result = getFallbackTranslation(
+        testCase.arguments.fallbackLocale,
+        testCase.arguments.locales as Locales,
+      );
 
-  test("Should return null if fallbackLocale is not found and is not 'en'", () => {
-    const result = getFallbackTranslation("de", locales);
-
-    expect(result).toBeNull();
-  });
-
-  test("Should handle undefined locales gracefully", () => {
-    const result = getFallbackTranslation("fr", undefined);
-
-    expect(result).toBeNull();
-  });
-
-  test("Should return defaultEnglishTranslation when locales is undefined but fallback is 'en'", () => {
-    const result = getFallbackTranslation("en", undefined);
-
-    expect(result).toEqual(defaultEnglishTranslation);
+      expect(result).toEqual(testCase.result);
+    });
   });
 });
 
 describe("getFlagClass", () => {
-  test("Should generate basic class with code only", () => {
-    const result = getFlagClass("US", "left", "normal");
+  const testCases = [
+    {
+      name: "Should generate basic class with code only",
+      arguments: { code: "US", position: "left", style: "normal" },
+      result: "flag-icon flag-icon-us",
+    },
+    {
+      name: "Should handle lowercase and trimming of country code",
+      arguments: { code: "  GB  ", position: "left", style: "normal" },
+      result: "flag-icon flag-icon-gb",
+    },
+    {
+      name: "Should add 'flag-icon-right' when position is 'right'",
+      arguments: { code: "fr", position: "right", style: "normal" },
+      result: "flag-icon flag-icon-fr flag-icon-right",
+    },
+    {
+      name: "Should add 'flag-icon-right-edge' when position is 'right-edge'",
+      arguments: { code: "fr", position: "right-edge", style: "normal" },
+      result: "flag-icon flag-icon-fr flag-icon-right-edge",
+    },
+    {
+      name: "Should add 'flag-icon-rounded' when style is 'circle'",
+      arguments: { code: "jp", position: "left", style: "circle" },
+      result: "flag-icon flag-icon-jp flag-icon-rounded",
+    },
+    {
+      name: "Should add 'flag-icon-squared' when style is 'square'",
+      arguments: { code: "jp", position: "left", style: "square" },
+      result: "flag-icon flag-icon-jp flag-icon-squared",
+    },
+    {
+      name: "Should combine multiple classes correctly",
+      arguments: { code: "ca", position: "right", style: "circle" },
+      result: "flag-icon flag-icon-ca flag-icon-right flag-icon-rounded",
+    },
+    {
+      name: "Should handle undefined code gracefully",
+      arguments: { code: undefined, position: "left", style: "normal" },
+      result: "flag-icon",
+    },
+  ];
 
-    expect(result).toBe("flag-icon flag-icon-us");
-  });
+  testCases.map((testCase) => {
+    test(testCase.name, () => {
+      const result = getFlagClass(
+        testCase.arguments.code as string,
+        testCase.arguments.position,
+        testCase.arguments.style,
+      );
 
-  test("Should handle lowercase and trimming of country code", () => {
-    const result = getFlagClass("  GB  ", "left", "normal");
-
-    expect(result).toBe("flag-icon flag-icon-gb");
-  });
-
-  test("Should add 'flag-icon-right' when position is 'right'", () => {
-    const result = getFlagClass("fr", "right", "normal");
-
-    expect(result).toBe("flag-icon flag-icon-fr flag-icon-right");
-  });
-
-  test("Should add 'flag-icon-right-edge' when position is 'right-edge'", () => {
-    const result = getFlagClass("fr", "right-edge", "normal");
-
-    expect(result).toBe("flag-icon flag-icon-fr flag-icon-right-edge");
-  });
-
-  test("Should add 'flag-icon-rounded' when style is 'circle'", () => {
-    const result = getFlagClass("jp", "left", "circle");
-
-    expect(result).toBe("flag-icon flag-icon-jp flag-icon-rounded");
-  });
-
-  test("Should add 'flag-icon-squared' when style is 'square'", () => {
-    const result = getFlagClass("jp", "left", "square");
-
-    expect(result).toBe("flag-icon flag-icon-jp flag-icon-squared");
-  });
-
-  test("Should combine multiple classes correctly", () => {
-    const result = getFlagClass("ca", "right", "circle");
-
-    expect(result).toBe(
-      "flag-icon flag-icon-ca flag-icon-right flag-icon-rounded",
-    );
-  });
-
-  test("Should handle undefined code gracefully", () => {
-    const result = getFlagClass(undefined, "left", "normal");
-
-    expect(result).toBe("flag-icon");
+      expect(result).toBe(testCase.result);
+    });
   });
 });
 
@@ -164,7 +197,7 @@ describe("getLabel", () => {
         code: "FR",
         locale: "es",
         locales: locales,
-        fallback: fallbackTranslation,
+        fallbackTranslation: fallbackTranslation,
       },
       result: "Francia",
     },
@@ -174,7 +207,7 @@ describe("getLabel", () => {
         code: "DE",
         locale: "it",
         locales: locales,
-        fallback: fallbackTranslation,
+        fallbackTranslation: fallbackTranslation,
       },
       result: "Germany",
     },
@@ -184,7 +217,7 @@ describe("getLabel", () => {
         code: "JP",
         locale: "fr",
         locales: { fr: { FR: "France" } },
-        fallback: fallbackTranslation,
+        fallbackTranslation: fallbackTranslation,
       },
       result: "Japan",
     },
@@ -194,7 +227,7 @@ describe("getLabel", () => {
         code: "ZZ",
         locale: "fr",
         locales: locales,
-        fallback: fallbackTranslation,
+        fallbackTranslation: fallbackTranslation,
       },
       result: "ZZ",
     },
@@ -204,7 +237,7 @@ describe("getLabel", () => {
         code: "US",
         locale: "fr",
         locales: undefined,
-        fallback: fallbackTranslation,
+        fallbackTranslation: fallbackTranslation,
       },
       result: "United States",
     },
@@ -214,7 +247,7 @@ describe("getLabel", () => {
         code: "ZZ",
         locale: "en",
         locales: undefined,
-        fallback: fallbackTranslation,
+        fallbackTranslation: fallbackTranslation,
       },
       result: "ZZ",
     },
@@ -225,8 +258,8 @@ describe("getLabel", () => {
       const result = getLabel(
         testCase.arguments.code,
         testCase.arguments.locale,
-        testCase.arguments.locales,
-        testCase.arguments.fallback,
+        testCase.arguments.locales as Locales,
+        testCase.arguments.fallbackTranslation,
       );
 
       expect(result).toBe(testCase.result);
