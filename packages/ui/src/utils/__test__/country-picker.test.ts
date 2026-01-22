@@ -1,7 +1,11 @@
 import { describe, expect, test } from "vitest";
 
 import defaultEnglishTranslation from "../../FormWidgets/CountryPicker/en.json";
-import { getFallbackTranslation, getFlagClass } from "../country-picker";
+import {
+  getFallbackTranslation,
+  getFlagClass,
+  getLabel,
+} from "../country-picker";
 
 const frenchTranslation = {
   DE: "Allemagne",
@@ -125,5 +129,107 @@ describe("getFlagClass", () => {
     const result = getFlagClass(undefined, "left", "normal");
 
     expect(result).toBe("flag-icon");
+  });
+});
+
+describe("getLabel", () => {
+  const frenchTranslation = {
+    DE: "Allemagne",
+    US: "États‑Unis",
+    FR: "France",
+  };
+
+  const spanishTranslation = {
+    DE: "Alemania",
+    US: "Estados Unidos",
+    FR: "Francia",
+  };
+
+  const locales = {
+    fr: frenchTranslation,
+    es: spanishTranslation,
+  };
+
+  const fallbackTranslation = {
+    US: "United States",
+    FR: "France",
+    DE: "Germany",
+    JP: "Japan",
+  };
+
+  const testCases = [
+    {
+      name: "Should return translation from locales if available (ES -> FR)",
+      arguments: {
+        code: "FR",
+        locale: "es",
+        locales: locales,
+        fallback: fallbackTranslation,
+      },
+      result: "Francia",
+    },
+    {
+      name: "Should return fallback translation if locale is missing in locales",
+      arguments: {
+        code: "DE",
+        locale: "it",
+        locales: locales,
+        fallback: fallbackTranslation,
+      },
+      result: "Germany",
+    },
+    {
+      name: "Should return fallback translation if code is missing in specific locale",
+      arguments: {
+        code: "JP",
+        locale: "fr",
+        locales: { fr: { FR: "France" } },
+        fallback: fallbackTranslation,
+      },
+      result: "Japan",
+    },
+    {
+      name: "Should return the raw code if found nowhere",
+      arguments: {
+        code: "ZZ",
+        locale: "fr",
+        locales: locales,
+        fallback: fallbackTranslation,
+      },
+      result: "ZZ",
+    },
+    {
+      name: "Should handle undefined locales gracefully",
+      arguments: {
+        code: "US",
+        locale: "fr",
+        locales: undefined,
+        fallback: fallbackTranslation,
+      },
+      result: "United States",
+    },
+    {
+      name: "Should return code if locales is undefined and fallback is missing code",
+      arguments: {
+        code: "ZZ",
+        locale: "en",
+        locales: undefined,
+        fallback: fallbackTranslation,
+      },
+      result: "ZZ",
+    },
+  ];
+
+  testCases.map((testCase) => {
+    test(testCase.name, () => {
+      const result = getLabel(
+        testCase.arguments.code,
+        testCase.arguments.locale,
+        testCase.arguments.locales,
+        testCase.arguments.fallback,
+      );
+
+      expect(result).toBe(testCase.result);
+    });
   });
 });
