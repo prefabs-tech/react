@@ -1,4 +1,4 @@
-import i18n from "i18next";
+import { default as i18n } from "i18next";
 
 export const registerTranslations = (translations: object) => {
   Object.entries(translations).forEach(([lang, namespaces]) => {

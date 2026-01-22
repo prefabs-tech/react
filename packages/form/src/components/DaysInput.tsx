@@ -16,7 +16,9 @@ export const DaysInput: React.FC<IDaysInputField> = ({
   register,
   ...others
 }) => {
-  if (!register || !getFieldState) return null;
+  if (!register || !getFieldState) {
+    return null;
+  }
 
   const updatedRegister = register(name, {
     setValueAs: (value) => {
@@ -38,8 +40,13 @@ export const DaysInput: React.FC<IDaysInputField> = ({
   const { error, isDirty, isTouched, invalid } = getFieldState(name);
 
   let inputClassName = "";
-  if (isDirty && !invalid) inputClassName = "valid";
-  if (isTouched && invalid) inputClassName = "invalid";
+  if (isDirty && !invalid) {
+    inputClassName = "valid";
+  }
+
+  if (isTouched && invalid) {
+    inputClassName = "invalid";
+  }
 
   return (
     <div className={`field ${className}`.trimEnd()}>

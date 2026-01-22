@@ -54,7 +54,7 @@ export const FileInputBasic: FC<IFileInputBasicProperties> = ({
   const renderInputUi = () => {
     const { onClick } = getRootProps();
 
-    if (inputMethod == "button")
+    if (inputMethod == "button") {
       return (
         <div className="input-button-wrapper">
           <Button
@@ -74,6 +74,7 @@ export const FileInputBasic: FC<IFileInputBasicProperties> = ({
           <input id={name} name={name} {...getInputProps()} />
         </div>
       );
+    }
 
     return (
       <div {...getRootProps({ className })}>

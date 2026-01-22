@@ -60,7 +60,10 @@ export const Step: FC<IStepProperties> = ({
   ) => {
     const renderContent = () => {
       if (isCompleted && completedStepIcon) {
-        if (typeof completedStepIcon !== "string") return completedStepIcon;
+        if (typeof completedStepIcon !== "string") {
+          return completedStepIcon;
+        }
+
         return <i className={completedStepIcon} />;
       }
 

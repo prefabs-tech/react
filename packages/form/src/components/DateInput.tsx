@@ -33,7 +33,9 @@ export const DateInput: React.FC<IDateInput> = ({
   register,
   getFieldState,
 }) => {
-  if (!register || !getFieldState) return null;
+  if (!register || !getFieldState) {
+    return null;
+  }
 
   const inputReference = useRef<HTMLInputElement | null>(null);
 
@@ -42,9 +44,13 @@ export const DateInput: React.FC<IDateInput> = ({
   const { ref, ...rest } = register(name);
 
   const checkInvalidState = () => {
-    if (showInvalidState && invalid) return true;
+    if (showInvalidState && invalid) {
+      return true;
+    }
 
-    if (showValidState && !invalid) return false;
+    if (showValidState && !invalid) {
+      return false;
+    }
   };
 
   const handleClick = () => {
@@ -54,7 +60,9 @@ export const DateInput: React.FC<IDateInput> = ({
   };
 
   const convertToDateString = (value: string | number | Date | undefined) => {
-    if (!value) return undefined;
+    if (!value) {
+      return undefined;
+    }
 
     const date = new Date(value);
 

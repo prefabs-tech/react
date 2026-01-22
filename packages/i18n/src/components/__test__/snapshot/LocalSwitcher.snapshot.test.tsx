@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
 
-import i18n from "../../../index";
+import { default as i18n } from "../../../index";
 import LocaleSwitcher from "../../LocaleSwitcher";
 
 test("Component matches snapshot", () => {

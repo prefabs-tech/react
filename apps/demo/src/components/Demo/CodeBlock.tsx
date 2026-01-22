@@ -54,7 +54,9 @@ export const CodeBlock = ({
   };
 
   const renderHeader = () => {
-    if (!title && !subheader) return null;
+    if (!title && !subheader) {
+      return null;
+    }
 
     return (
       <header>

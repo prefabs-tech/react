@@ -1,6 +1,6 @@
 import "./assets/css/index.css";
 
-import i18n from "i18next";
+import { default as i18n } from "i18next";
 import { useTranslation, Trans } from "react-i18next";
 
 import LocaleSwitcher from "./components/LocaleSwitcher";

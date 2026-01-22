@@ -195,7 +195,9 @@ export const TableHeader = <TData extends RowData>({
   };
 
   const renderFilterRow = () => {
-    if (!isFilterRowVisible) return null;
+    if (!isFilterRowVisible) {
+      return null;
+    }
 
     return (
       <TableRow key="filters" className="header-row filters">

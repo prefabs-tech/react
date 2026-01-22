@@ -259,17 +259,33 @@ export const InvitationsTable = ({
         const { acceptedAt, revokedAt, expiresAt } = original;
 
         const getLabel = () => {
-          if (acceptedAt) return t("table.status.accepted");
-          if (revokedAt) return t("table.status.revoked");
-          if (isExpired(expiresAt)) return t("table.status.expired");
+          if (acceptedAt) {
+            return t("table.status.accepted");
+          }
+
+          if (revokedAt) {
+            return t("table.status.revoked");
+          }
+
+          if (isExpired(expiresAt)) {
+            return t("table.status.expired");
+          }
 
           return t("table.status.pending");
         };
 
         const getColor = () => {
-          if (acceptedAt) return "green";
-          if (revokedAt) return "red";
-          if (isExpired(expiresAt)) return "gray";
+          if (acceptedAt) {
+            return "green";
+          }
+
+          if (revokedAt) {
+            return "red";
+          }
+
+          if (isExpired(expiresAt)) {
+            return "gray";
+          }
 
           return "yellow";
         };

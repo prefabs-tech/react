@@ -42,8 +42,13 @@ export const Select = <T extends string | number>({
   const { error, invalid } = getFieldState(name);
 
   const checkInvalidState = () => {
-    if (showInvalidState && invalid) return true;
-    if (showValidState && !invalid) return false;
+    if (showInvalidState && invalid) {
+      return true;
+    }
+
+    if (showValidState && !invalid) {
+      return false;
+    }
   };
 
   const flatOptions = useMemo(() => {
@@ -71,7 +76,9 @@ export const Select = <T extends string | number>({
       defaultValue={multiple ? [] : undefined}
       rules={{
         validate: (value: T[] | T) => {
-          if (!multiple || !Array.isArray(value)) return;
+          if (!multiple || !Array.isArray(value)) {
+            return;
+          }
 
           const count = value.length;
 

@@ -25,9 +25,13 @@ const TabView: React.FC<Properties> = ({
     _visibleTabs?.length ? _visibleTabs : tabs.map((tab) => tab.key),
   );
   const [activeTab, setActiveTab] = useState(() => {
-    if (activeKey) return activeKey;
+    if (activeKey) {
+      return activeKey;
+    }
 
-    if (_visibleTabs?.length) return _visibleTabs[0];
+    if (_visibleTabs?.length) {
+      return _visibleTabs[0];
+    }
 
     return tabs[0]?.key;
   });
@@ -133,7 +137,9 @@ const TabView: React.FC<Properties> = ({
   };
 
   const handleTabSwitch = (key: string) => {
-    if (currentActiveKey === key) return;
+    if (currentActiveKey === key) {
+      return;
+    }
 
     if (controlled) {
       onActiveTabChange?.(key);
@@ -171,7 +177,9 @@ const TabView: React.FC<Properties> = ({
     }
   };
 
-  if (!initialized) return null;
+  if (!initialized) {
+    return null;
+  }
 
   return (
     <div className={`tabbed-panel ${position}`}>

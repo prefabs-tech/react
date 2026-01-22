@@ -1,5 +1,5 @@
 import { AppConfig, configContext } from "@prefabs.tech/react-config";
-import i18n from "@prefabs.tech/react-i18n";
+import { default as i18n } from "@prefabs.tech/react-i18n";
 import { render } from "@testing-library/react";
 import { expect, test } from "vitest";
 

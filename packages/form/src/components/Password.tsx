@@ -17,15 +17,21 @@ export const Password: React.FC<CustomInputProperties & IInputProperties> = ({
   submitCount = 0,
   ...others
 }) => {
-  if (!register || !getFieldState) return null;
+  if (!register || !getFieldState) {
+    return null;
+  }
 
   const { error, invalid } = getFieldState(name);
   const [showPassword, setShowPassword] = useState(false);
 
   const checkInvalidState = () => {
-    if (showInvalidState && invalid) return true;
+    if (showInvalidState && invalid) {
+      return true;
+    }
 
-    if (showValidState && !invalid) return false;
+    if (showValidState && !invalid) {
+      return false;
+    }
   };
 
   return (

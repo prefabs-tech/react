@@ -58,7 +58,9 @@ export const TableBody = <TData extends RowData>({
   };
 
   const getRowClassName = (row: Row<TData>) => {
-    if (!rowClassName) return "";
+    if (!rowClassName) {
+      return "";
+    }
 
     if (typeof rowClassName === "string") {
       return rowClassName;

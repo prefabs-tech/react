@@ -359,11 +359,11 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
           onChange={(value: string) => setCustomFlagsSelectValue(value)}
         />
         <CodeBlock
-          exampleCode='
+          exampleCode={`
 const [singleSelectValue, setSingleSelectValue] = useState<string>("");
 
 const flagsPath = (code: string) => {
-  return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+  return \`https://flagcdn.com/\${code.toLowerCase().trim()}.svg\`;
 };
 
 <CountryPicker
@@ -373,7 +373,7 @@ const flagsPath = (code: string) => {
   placeholder={t("countryPicker.placeholders.single")}
   value={singleSelectValue}
   onChange={(value: string) => setSingleSelectValue(value)}
-/>'
+/>`}
         />
       </Section>
 

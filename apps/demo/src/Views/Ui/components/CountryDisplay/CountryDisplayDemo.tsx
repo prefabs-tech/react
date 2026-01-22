@@ -220,14 +220,14 @@ fallbackLocale = np;
       <Section title={t("countryDisplay.customFlagsPath", "Custom Flag Path")}>
         <Country code="CA" flagsPath={customFlagsPath} />
         <CodeBlock
-          exampleCode='const flagsPath = (code: string) => {
-  return `https://flagcdn.com/${code.toLowerCase().trim()}.svg`;
+          exampleCode={`const flagsPath = (code: string) => {
+  return \`https://flagcdn.com/\${code.toLowerCase().trim()}.svg\`;
 };
 
 <Country 
   code="CA" 
   flagsPath={customFlagsPath} 
-/>'
+/>`}
         />
       </Section>
 

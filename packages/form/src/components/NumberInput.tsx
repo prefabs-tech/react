@@ -25,8 +25,13 @@ export const NumberInput = ({
   const { error, invalid } = getFieldState(name);
 
   const checkInvalidState = () => {
-    if (showInvalidState && invalid) return true;
-    if (showValidState && !invalid) return false;
+    if (showInvalidState && invalid) {
+      return true;
+    }
+
+    if (showValidState && !invalid) {
+      return false;
+    }
   };
 
   return (

@@ -41,8 +41,13 @@ export const CurrencyPicker = <T extends string | number>({
   const { error, invalid } = getFieldState(name);
 
   const checkInvalidState = () => {
-    if (showInvalidState && invalid) return true;
-    if (showValidState && !invalid) return false;
+    if (showInvalidState && invalid) {
+      return true;
+    }
+
+    if (showValidState && !invalid) {
+      return false;
+    }
   };
 
   //TODO [MA 2024-05-31]: remove this redundant useEffect for auto selecting single option
@@ -59,7 +64,9 @@ export const CurrencyPicker = <T extends string | number>({
       name={name}
       rules={{
         validate: (value: T[] | T) => {
-          if (!multiple || !Array.isArray(value)) return;
+          if (!multiple || !Array.isArray(value)) {
+            return;
+          }
 
           const count = value.length;
 
