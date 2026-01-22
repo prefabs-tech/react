@@ -3,6 +3,7 @@ import React, { useCallback, useMemo } from "react";
 import {
   getFallbackTranslation,
   getFlagClass,
+  getLabel,
 } from "../../utils/country-picker";
 import { Select, ISelectProperties } from "../Select";
 
@@ -13,15 +14,6 @@ import type {
   Translation,
 } from "../../types/country-picker";
 import type { GroupedOption as OptionGroup, Option } from "../Select";
-
-const getLabel = (
-  code: string,
-  locale: string,
-  locales: Locales | undefined,
-  fallbackTranslation: Translation,
-) => {
-  return locales?.[locale]?.[code] || fallbackTranslation[code] || code;
-};
 
 const sortByLabel = <T,>(
   optionA: Option<T> | OptionGroup<T>,

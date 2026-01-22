@@ -32,3 +32,12 @@ export const getFlagClass = (
   ]
     .filter(Boolean)
     .join(" ");
+
+export const getLabel = (
+  code: string,
+  locale: string,
+  locales: Locales | undefined,
+  fallbackTranslation: Translation,
+) => {
+  return locales?.[locale]?.[code] || fallbackTranslation[code] || code;
+};
