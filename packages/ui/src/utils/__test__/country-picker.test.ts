@@ -16,11 +16,11 @@ describe("getFallbackTranslation", () => {
     CA: "Canada",
     CN: "Chine",
     ES: "Espagne",
-    US: "États‑Unis",
+    US: "États-Unis",
     FR: "France",
     IT: "Italie",
     JP: "Japon",
-    GB: "Royaume‑Uni",
+    GB: "Royaume-Uni",
     RU: "Russie",
   };
 
@@ -168,7 +168,7 @@ describe("getFlagClass", () => {
 describe("getLabel", () => {
   const frenchTranslation = {
     DE: "Allemagne",
-    US: "États‑Unis",
+    US: "États-Unis",
     FR: "France",
   };
 
@@ -254,13 +254,10 @@ describe("getLabel", () => {
   ];
 
   testCases.map((testCase) => {
+    const { code, locale, locales, fallbackTranslation } = testCase.arguments;
+
     test(testCase.name, () => {
-      const result = getLabel(
-        testCase.arguments.code,
-        testCase.arguments.locale,
-        testCase.arguments.locales as Locales,
-        testCase.arguments.fallbackTranslation,
-      );
+      const result = getLabel(code, locale, locales, fallbackTranslation);
 
       expect(result).toBe(testCase.result);
     });
