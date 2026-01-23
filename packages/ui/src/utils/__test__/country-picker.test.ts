@@ -47,51 +47,51 @@ describe("getFallbackTranslation", () => {
 
   const testCases = [
     {
-      name: "Should return translation from locales if fallbackLocale exists in it",
       arguments: {
         fallbackLocale: "fr",
         locales: locales,
       },
+      name: "Should return translation from locales if fallbackLocale exists in it",
       result: frenchTranslation,
     },
     {
-      name: "Should return defaultEnglishTranslation if fallbackLocale is 'en' and not in locales",
       arguments: {
         fallbackLocale: "en",
         locales: {},
       },
+      name: "Should return defaultEnglishTranslation if fallbackLocale is 'en' and not in locales",
       result: defaultEnglishTranslation,
     },
     {
-      name: "Should prioritize locales['en'] over defaultEnglishTranslation if provided",
       arguments: {
         fallbackLocale: "en",
         locales: { en: customEnglishTranslation },
       },
+      name: "Should prioritize locales['en'] over defaultEnglishTranslation if provided",
       result: customEnglishTranslation,
     },
     {
-      name: "Should return null if fallbackLocale is not found and is not 'en'",
       arguments: {
         fallbackLocale: "de",
         locales: locales,
       },
+      name: "Should return null if fallbackLocale is not found and is not 'en'",
       result: null,
     },
     {
-      name: "Should handle undefined locales gracefully",
       arguments: {
         fallbackLocale: "fr",
         locales: undefined,
       },
+      name: "Should handle undefined locales gracefully",
       result: null,
     },
     {
-      name: "Should return defaultEnglishTranslation when locales is undefined but fallback is 'en'",
       arguments: {
         fallbackLocale: "en",
         locales: undefined,
       },
+      name: "Should return defaultEnglishTranslation when locales is undefined but fallback is 'en'",
       result: defaultEnglishTranslation,
     },
   ];
@@ -110,43 +110,43 @@ describe("getFallbackTranslation", () => {
 describe("getFlagClass", () => {
   const testCases = [
     {
-      name: "Should generate basic class with code only",
       arguments: { code: "US", position: "left", style: "normal" },
+      name: "Should generate basic class with code only",
       result: "flag-icon flag-icon-us",
     },
     {
-      name: "Should handle lowercase and trimming of country code",
       arguments: { code: "  GB  ", position: "left", style: "normal" },
+      name: "Should handle lowercase and trimming of country code",
       result: "flag-icon flag-icon-gb",
     },
     {
-      name: "Should add 'flag-icon-right' when position is 'right'",
       arguments: { code: "fr", position: "right", style: "normal" },
+      name: "Should add 'flag-icon-right' when position is 'right'",
       result: "flag-icon flag-icon-fr flag-icon-right",
     },
     {
-      name: "Should add 'flag-icon-right-edge' when position is 'right-edge'",
       arguments: { code: "fr", position: "right-edge", style: "normal" },
+      name: "Should add 'flag-icon-right-edge' when position is 'right-edge'",
       result: "flag-icon flag-icon-fr flag-icon-right-edge",
     },
     {
-      name: "Should add 'flag-icon-rounded' when style is 'circle'",
       arguments: { code: "jp", position: "left", style: "circle" },
+      name: "Should add 'flag-icon-rounded' when style is 'circle'",
       result: "flag-icon flag-icon-jp flag-icon-rounded",
     },
     {
-      name: "Should add 'flag-icon-squared' when style is 'square'",
       arguments: { code: "jp", position: "left", style: "square" },
+      name: "Should add 'flag-icon-squared' when style is 'square'",
       result: "flag-icon flag-icon-jp flag-icon-squared",
     },
     {
       name: "Should combine multiple classes correctly",
-      arguments: { code: "ca", position: "right", style: "circle" },
       result: "flag-icon flag-icon-ca flag-icon-right flag-icon-rounded",
+      arguments: { code: "ca", position: "right", style: "circle" },
     },
     {
-      name: "Should handle undefined code gracefully",
       arguments: { code: undefined, position: "left", style: "normal" },
+      name: "Should handle undefined code gracefully",
       result: "flag-icon",
     },
   ];
@@ -189,63 +189,63 @@ describe("getLabel", () => {
 
   const testCases = [
     {
-      name: "Should return translation from locales if available (ES -> FR)",
       arguments: {
         code: "FR",
+        fallbackTranslation: fallbackTranslation,
         locale: "es",
         locales: locales,
-        fallbackTranslation: fallbackTranslation,
       },
+      name: "Should return translation from locales if available (ES -> FR)",
       result: "Francia",
     },
     {
-      name: "Should return fallback translation if locale is missing in locales",
       arguments: {
         code: "DE",
+        fallbackTranslation: fallbackTranslation,
         locale: "it",
         locales: locales,
-        fallbackTranslation: fallbackTranslation,
       },
+      name: "Should return fallback translation if locale is missing in locales",
       result: "Germany",
     },
     {
-      name: "Should return fallback translation if code is missing in specific locale",
       arguments: {
         code: "JP",
+        fallbackTranslation: fallbackTranslation,
         locale: "fr",
         locales: { fr: { FR: "France" } },
-        fallbackTranslation: fallbackTranslation,
       },
+      name: "Should return fallback translation if code is missing in specific locale",
       result: "Japan",
     },
     {
-      name: "Should return the raw code if found nowhere",
       arguments: {
         code: "ZZ",
+        fallbackTranslation: fallbackTranslation,
         locale: "fr",
         locales: locales,
-        fallbackTranslation: fallbackTranslation,
       },
+      name: "Should return the raw code if found nowhere",
       result: "ZZ",
     },
     {
-      name: "Should handle undefined locales gracefully",
       arguments: {
         code: "US",
+        fallbackTranslation: fallbackTranslation,
         locale: "fr",
         locales: undefined,
-        fallbackTranslation: fallbackTranslation,
       },
+      name: "Should handle undefined locales gracefully",
       result: "United States",
     },
     {
-      name: "Should return code if locales is undefined and fallback is missing code",
       arguments: {
         code: "ZZ",
+        fallbackTranslation: fallbackTranslation,
         locale: "en",
         locales: undefined,
-        fallbackTranslation: fallbackTranslation,
       },
+      name: "Should return code if locales is undefined and fallback is missing code",
       result: "ZZ",
     },
   ];
