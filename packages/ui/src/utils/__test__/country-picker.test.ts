@@ -97,11 +97,10 @@ describe("getFallbackTranslation", () => {
   ];
 
   testCases.map((testCase) => {
+    const { fallbackLocale, locales } = testCase.arguments;
+
     test(testCase.name, () => {
-      const result = getFallbackTranslation(
-        testCase.arguments.fallbackLocale,
-        testCase.arguments.locales as Locales,
-      );
+      const result = getFallbackTranslation(fallbackLocale, locales as Locales);
 
       expect(result).toEqual(testCase.result);
     });
@@ -153,12 +152,10 @@ describe("getFlagClass", () => {
   ];
 
   testCases.map((testCase) => {
+    const { code, position, style } = testCase.arguments;
+
     test(testCase.name, () => {
-      const result = getFlagClass(
-        testCase.arguments.code as string,
-        testCase.arguments.position,
-        testCase.arguments.style,
-      );
+      const result = getFlagClass(code, position, style);
 
       expect(result).toBe(testCase.result);
     });
