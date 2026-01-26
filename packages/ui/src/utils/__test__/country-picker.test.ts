@@ -5,6 +5,7 @@ import {
   getFallbackTranslation,
   getFlagClass,
   getLabel,
+  sortByLabel,
 } from "../country-picker";
 
 import type { Locales } from "../../types";
@@ -140,9 +141,9 @@ describe("getFlagClass", () => {
       result: "flag-icon flag-icon-jp flag-icon-squared",
     },
     {
+      arguments: { code: "ca", position: "right", style: "circle" },
       name: "Should combine multiple classes correctly",
       result: "flag-icon flag-icon-ca flag-icon-right flag-icon-rounded",
-      arguments: { code: "ca", position: "right", style: "circle" },
     },
     {
       arguments: { code: undefined, position: "left", style: "normal" },
@@ -255,6 +256,83 @@ describe("getLabel", () => {
 
     test(testCase.name, () => {
       const result = getLabel(code, locale, locales, fallbackTranslation);
+
+      expect(result).toBe(testCase.result);
+    });
+  });
+});
+
+describe("sortByLabel", () => {
+  const optionAlpha = { label: "Alpha", value: 1 };
+  const optionBeta = { label: "Beta", value: 2 };
+  const optionZebra = { label: "Zebra", value: 3 };
+  const optionNoLabel = { label: undefined, value: 4 };
+  const optionEmptyLabel = { label: "", value: 5 };
+
+  const testCases = [
+    {
+      arguments: {
+        optionA: optionAlpha,
+        optionB: optionBeta,
+      },
+      name: "Should return negative number when Option A comes alphabetically before Option B",
+      result: -1,
+    },
+    {
+      arguments: {
+        optionA: optionZebra,
+        optionB: optionAlpha,
+      },
+      name: "Should return positive number when Option A comes alphabetically after Option B",
+      result: 1,
+    },
+    {
+      arguments: {
+        optionA: optionAlpha,
+        optionB: { ...optionAlpha, value: 99 },
+      },
+      name: "Should return 0 when labels are identical",
+      result: 0,
+    },
+    {
+      arguments: {
+        optionA: optionNoLabel,
+        optionB: optionAlpha,
+      },
+      name: "Should return 1 (move A to end) if Option A has no label",
+      result: 1,
+    },
+    {
+      arguments: {
+        optionA: optionAlpha,
+        optionB: optionNoLabel,
+      },
+      name: "Should return -1 (move B to end) if Option B has no label",
+      result: -1,
+    },
+    {
+      arguments: {
+        optionA: optionEmptyLabel,
+        optionB: optionAlpha,
+      },
+      name: "Should return 1 (move A to end) if Option A has an empty string label",
+      result: 1,
+    },
+    {
+      arguments: {
+        optionA: optionNoLabel,
+        optionB: optionNoLabel,
+      },
+      name: "Should return 1 (move A to end) if both options have missing labels",
+      result: 1,
+    },
+  ];
+
+  testCases.map((testCase) => {
+    const { optionA, optionB } = testCase.arguments;
+
+    test(testCase.name, () => {
+      const result = sortByLabel(optionA, optionB);
 
       expect(result).toBe(testCase.result);
     });

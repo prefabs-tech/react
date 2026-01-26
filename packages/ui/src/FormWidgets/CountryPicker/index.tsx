@@ -4,6 +4,7 @@ import {
   getFallbackTranslation,
   getFlagClass,
   getLabel,
+  sortByLabel,
 } from "../../utils/country-picker";
 import { Select, ISelectProperties } from "../Select";
 
@@ -14,21 +15,6 @@ import type {
   Translation,
 } from "../../types/country-picker";
 import type { GroupedOption as OptionGroup, Option } from "../Select";
-
-const sortByLabel = <T,>(
-  optionA: Option<T> | OptionGroup<T>,
-  optionB: Option<T> | OptionGroup<T>,
-) => {
-  if (!optionA.label) {
-    return 1;
-  }
-
-  if (!optionB.label) {
-    return -1;
-  }
-
-  return optionA.label.localeCompare(optionB.label);
-};
 
 const getFavoriteOptions = <T,>(
   favorites: string[],
