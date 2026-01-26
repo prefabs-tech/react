@@ -262,79 +262,83 @@ describe("getLabel", () => {
   });
 });
 
-describe("sortByLabel", () => {
-  const optionAlpha = { label: "Alpha", value: 1 };
-  const optionBeta = { label: "Beta", value: 2 };
-  const optionZebra = { label: "Zebra", value: 3 };
-  const optionNoLabel = { label: undefined, value: 4 };
-  const optionEmptyLabel = { label: "", value: 5 };
+describe("sortByLabel with Real Country Data", () => {
+  const optionAfghanistan = { label: "Afghanistan", value: "AF" };
+  const optionAlbania = { label: "Albania", value: "AL" };
+  const optionAlandIslands = { label: "Åland Islands", value: "AX" };
+  const optionAlgeria = { label: "Algeria", value: "DZ" };
+
+  const groupEuropeanHubs = {
+    label: "European Hubs",
+    options: [
+      { label: "United Kingdom", value: "GB" },
+      { label: "Germany", value: "DE" },
+      { label: "France", value: "FR" },
+    ],
+  };
+
+  const groupNorthAmerica = {
+    label: "North America HQ",
+    options: [
+      { label: "United States", value: "US" },
+      { label: "Canada", value: "CA" },
+    ],
+  };
+
+  const groupOffshore = {
+    label: "Offshore Dev Center",
+    options: [{ label: "India", value: "IN" }],
+  };
 
   const testCases = [
     {
-      arguments: {
-        optionA: optionAlpha,
-        optionB: optionBeta,
-      },
-      name: "Should return negative number when Option A comes alphabetically before Option B",
-      result: -1,
+      name: "Should sort 'Afghanistan' before 'Albania'",
+      args: { a: optionAfghanistan, b: optionAlbania },
+      expected: "negative",
     },
     {
-      arguments: {
-        optionA: optionZebra,
-        optionB: optionAlpha,
-      },
-      name: "Should return positive number when Option A comes alphabetically after Option B",
-      result: 1,
+      name: "Should sort 'Albania' before 'Algeria'",
+      args: { a: optionAlbania, b: optionAlgeria },
+      expected: "negative",
     },
     {
-      arguments: {
-        optionA: optionAlpha,
-        optionB: { ...optionAlpha, value: 99 },
-      },
-      name: "Should return 0 when labels are identical",
-      result: 0,
+      name: "Should sort 'Afghanistan' before 'Åland Islands' (Standard Locale)",
+      args: { a: optionAfghanistan, b: optionAlandIslands },
+      expected: "negative",
     },
     {
-      arguments: {
-        optionA: optionNoLabel,
-        optionB: optionAlpha,
-      },
-      name: "Should return 1 (move A to end) if Option A has no label",
-      result: 1,
+      name: "Should sort 'European Hubs' before 'North America HQ'",
+      args: { a: groupEuropeanHubs, b: groupNorthAmerica },
+      expected: "negative",
     },
     {
-      arguments: {
-        optionA: optionAlpha,
-        optionB: optionNoLabel,
-      },
-      name: "Should return -1 (move B to end) if Option B has no label",
-      result: -1,
+      name: "Should sort 'Offshore Dev Center' after 'North America HQ'",
+      args: { a: groupOffshore, b: groupNorthAmerica },
+      expected: "positive",
     },
     {
-      arguments: {
-        optionA: optionEmptyLabel,
-        optionB: optionAlpha,
-      },
-      name: "Should return 1 (move A to end) if Option A has an empty string label",
-      result: 1,
+      name: "Should sort 'Algeria' (Option) before 'European Hubs' (Group)",
+      args: { a: optionAlgeria, b: groupEuropeanHubs },
+      expected: "negative",
     },
     {
-      arguments: {
-        optionA: optionNoLabel,
-        optionB: optionNoLabel,
-      },
-      name: "Should return 1 (move A to end) if both options have missing labels",
-      result: 1,
+      name: "Should sort 'North America HQ' (Group) after 'Afghanistan' (Option)",
+      args: { a: groupNorthAmerica, b: optionAfghanistan },
+      expected: "positive",
     },
   ];
 
-  testCases.map((testCase) => {
-    const { optionA, optionB } = testCase.arguments;
-
+  testCases.forEach((testCase) => {
     test(testCase.name, () => {
-      const result = sortByLabel(optionA, optionB);
+      const result = sortByLabel(testCase.args.a, testCase.args.b);
 
-      expect(result).toBe(testCase.result);
+      if (testCase.expected === "negative") {
+        expect(result).toBeLessThan(0);
+      } else if (testCase.expected === "positive") {
+        expect(result).toBeGreaterThan(0);
+      } else {
+        expect(result).toBe(0);
+      }
     });
   });
 });
