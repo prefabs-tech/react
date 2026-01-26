@@ -26,8 +26,11 @@ const Accordion: React.FC<Properties> = ({
   const childNodes = Array.isArray(children) ? children : [children];
 
   const handleClick = (index: number) => {
-    if (!canSelfCollapse || active !== index) setActive(index);
-    else setActive(undefined);
+    if (!canSelfCollapse || active !== index) {
+      setActive(index);
+    } else {
+      setActive(undefined);
+    }
   };
 
   if (!children) {
@@ -35,7 +38,9 @@ const Accordion: React.FC<Properties> = ({
   }
 
   const renderIcon = (icon: string | React.ReactNode) => {
-    if (!icon) return null;
+    if (!icon) {
+      return null;
+    }
 
     if (typeof icon === "string") {
       return <i className={icon} />;

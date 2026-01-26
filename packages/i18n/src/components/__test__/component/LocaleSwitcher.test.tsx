@@ -2,7 +2,7 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import { expect, test } from "vitest";
 
-import i18n from "../../../index";
+import { default as i18n } from "../../../index";
 import LocaleSwitcher from "../../LocaleSwitcher";
 
 test.skip("Local switcher dropdown is displayed and locale is changed", async () => {

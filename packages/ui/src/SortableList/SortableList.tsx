@@ -55,9 +55,13 @@ export const SortableList: FC<SortableListProperties> = ({
 
   const getDragDirection = (index: number) => {
     if (droppedOver === index && draggedItem !== null) {
-      if (draggedItem > droppedOver) return "up";
+      if (draggedItem > droppedOver) {
+        return "up";
+      }
 
-      if (droppedOver > draggedItem) return "down";
+      if (droppedOver > draggedItem) {
+        return "down";
+      }
     }
   };
 

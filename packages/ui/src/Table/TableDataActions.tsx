@@ -84,7 +84,9 @@ export const DataActionsMenu = ({
     : [];
 
   const renderActions = () => {
-    if (!items?.length) return null;
+    if (!items?.length) {
+      return null;
+    }
 
     const showButtons =
       (mode === "buttons" && items.length > 0) ||

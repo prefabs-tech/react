@@ -92,13 +92,17 @@ const DataTable = <TData extends RowData>({
       },
     };
 
-    if (!persistState || !id) return base;
+    if (!persistState || !id) {
+      return base;
+    }
 
     try {
       const syncStorage = getStorage(persistStateStorage);
       const saved = getSavedTableState(id, syncStorage);
 
-      if (!saved) return base;
+      if (!saved) {
+        return base;
+      }
 
       hasHydratedFromStorage.current = true;
 
@@ -296,7 +300,9 @@ const DataTable = <TData extends RowData>({
             },
           );
 
-          if (!filteredActions?.length) return null;
+          if (!filteredActions?.length) {
+            return null;
+          }
 
           return <DataActionsMenu {...actionsMenu} data={original} />;
         },
@@ -326,7 +332,9 @@ const DataTable = <TData extends RowData>({
           }
 
           const rowValue = row.getValue<string | Date | number>(columnId);
-          if (!rowValue) return false;
+          if (!rowValue) {
+            return false;
+          }
 
           const rowData = (
             typeof rowValue === "string"

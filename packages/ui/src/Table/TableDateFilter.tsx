@@ -15,7 +15,9 @@ export const TableDateFilter = <TData,>({
   const filterValue = column.getFilterValue() as string[] | null;
 
   const getFormattedDate = (date: Date | null) => {
-    if (!date) return null;
+    if (!date) {
+      return null;
+    }
 
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");

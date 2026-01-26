@@ -134,7 +134,9 @@ export const getRequestJSON = (
   paginationState?: PaginationState,
 ): TRequestJSON => {
   const getFilter = () => {
-    if (!filterState || filterState.length === 0) return null;
+    if (!filterState || filterState.length === 0) {
+      return null;
+    }
 
     const updatedFilterState = filterState.filter((filter) => {
       // Check if the filter value is defined or not
@@ -151,7 +153,9 @@ export const getRequestJSON = (
       return filter.value != null;
     });
 
-    if (updatedFilterState.length === 0) return null;
+    if (updatedFilterState.length === 0) {
+      return null;
+    }
 
     if (updatedFilterState.length === 1) {
       if (Array.isArray(updatedFilterState[0].value)) {
@@ -188,8 +192,9 @@ export const getRequestJSON = (
     if (
       !paginationState ||
       (paginationState && Object.keys(paginationState).length === 0)
-    )
+    ) {
       return null;
+    }
 
     return paginationState.pageSize;
   };
@@ -198,14 +203,17 @@ export const getRequestJSON = (
     if (
       !paginationState ||
       (paginationState && Object.keys(paginationState).length === 0)
-    )
+    ) {
       return null;
+    }
 
     return paginationState.pageIndex * paginationState.pageSize;
   };
 
   const getSort = () => {
-    if (!sortingState || sortingState.length === 0) return null;
+    if (!sortingState || sortingState.length === 0) {
+      return null;
+    }
 
     if (sortingState.length > 1) {
       return sortingState.map((state) => ({

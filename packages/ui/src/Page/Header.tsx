@@ -14,7 +14,9 @@ export const PageHeader = ({
   title,
 }: IHeaderProperties) => {
   const renderTitle = () => {
-    if (!title) return null;
+    if (!title) {
+      return null;
+    }
 
     if (typeof title === "string") {
       return (

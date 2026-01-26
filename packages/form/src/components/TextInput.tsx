@@ -36,8 +36,13 @@ export const TextInput: React.FC<ITextInput> = ({
   const { error, invalid } = getFieldState(name);
 
   const checkInvalidState = () => {
-    if (showInvalidState && invalid) return true;
-    if (showValidState && !invalid) return false;
+    if (showInvalidState && invalid) {
+      return true;
+    }
+
+    if (showValidState && !invalid) {
+      return false;
+    }
   };
 
   return (

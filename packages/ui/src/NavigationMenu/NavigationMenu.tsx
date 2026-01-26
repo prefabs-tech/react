@@ -43,7 +43,9 @@ export const NavigationMenu = ({
   };
 
   const renderNavMenu = () => {
-    if (!navigationMenu) return null;
+    if (!navigationMenu) {
+      return null;
+    }
 
     if (Array.isArray(navigationMenu)) {
       return navigationMenu.map((navMenuItem, index) =>

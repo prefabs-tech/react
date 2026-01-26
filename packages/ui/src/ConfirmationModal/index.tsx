@@ -79,7 +79,9 @@ export const ConfirmationModal = ({
   };
 
   const renderFooter = () => {
-    if (footer) return footer;
+    if (footer) {
+      return footer;
+    }
 
     return (
       <div className="dz-dialog-footer">

@@ -165,17 +165,25 @@ export const AllUsersTable = ({
       header: t("table.defaultColumns.status"),
       cell: ({ row: { original } }) => {
         const getLabel = () => {
-          if (!original.isActiveUser) return t("status.invited");
+          if (!original.isActiveUser) {
+            return t("status.invited");
+          }
 
-          if (original.disabled) return t("status.disabled");
+          if (original.disabled) {
+            return t("status.disabled");
+          }
 
           return t("status.active");
         };
 
         const getColor = () => {
-          if (!original.isActiveUser) return "default";
+          if (!original.isActiveUser) {
+            return "default";
+          }
 
-          if (original.disabled) return "red";
+          if (original.disabled) {
+            return "red";
+          }
 
           return "green";
         };

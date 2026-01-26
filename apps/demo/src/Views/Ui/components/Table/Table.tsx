@@ -93,7 +93,9 @@ export const TableDemo = () => {
 
     const date = new Date(rowData as Date);
 
-    if (isNaN(date.getTime())) return false;
+    if (isNaN(date.getTime())) {
+      return false;
+    }
 
     return (
       value[0].getTime() <= date.getTime() &&

@@ -28,8 +28,8 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "0.2.0",
-    "@prefabs.tech/tsconfig": "0.2.0",
+    "@prefabs.tech/eslint-config": "0.2.1",
+    "@prefabs.tech/tsconfig": "0.2.1",
     "@prefabs.tech/react-config": "0.71.0",
     "@prefabs.tech/react-i18n": "0.71.0",
     "@prefabs.tech/react-ui": "0.71.0",

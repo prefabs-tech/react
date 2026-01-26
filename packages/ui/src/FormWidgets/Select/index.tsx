@@ -392,7 +392,9 @@ export const Select = <T extends string | number>({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const openDropdown = () => {
       setShowOptions(true);
@@ -474,7 +476,9 @@ export const Select = <T extends string | number>({
   };
 
   const toggleOptionsMenu = () => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     if (showOptions) {
       setShowOptions(false);
