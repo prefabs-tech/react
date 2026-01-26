@@ -8,6 +8,7 @@ import {
   sortByLabel,
 } from "../country-picker";
 
+import type { Option } from "../../FormWidgets/Select";
 import type { Locales } from "../../types";
 
 describe("getFallbackTranslation", () => {
@@ -262,83 +263,64 @@ describe("getLabel", () => {
   });
 });
 
-describe("sortByLabel with Real Country Data", () => {
-  const optionAfghanistan = { label: "Afghanistan", value: "AF" };
-  const optionAlbania = { label: "Albania", value: "AL" };
-  const optionAlandIslands = { label: "Åland Islands", value: "AX" };
-  const optionAlgeria = { label: "Algeria", value: "DZ" };
-
-  const groupEuropeanHubs = {
-    label: "European Hubs",
-    options: [
-      { label: "United Kingdom", value: "GB" },
-      { label: "Germany", value: "DE" },
-      { label: "France", value: "FR" },
-    ],
-  };
-
-  const groupNorthAmerica = {
-    label: "North America HQ",
-    options: [
-      { label: "United States", value: "US" },
-      { label: "Canada", value: "CA" },
-    ],
-  };
-
-  const groupOffshore = {
-    label: "Offshore Dev Center",
-    options: [{ label: "India", value: "IN" }],
-  };
+describe("sortByLabel", () => {
+  const selectOptions = [
+    { label: "France", value: "FR" },
+    { label: "Nepal", value: "NP" },
+    { label: "Thailand", value: "TH" },
+    { label: "", value: "ZZ" },
+  ] as Option<string>[];
 
   const testCases = [
     {
-      name: "Should sort 'Afghanistan' before 'Albania'",
-      args: { a: optionAfghanistan, b: optionAlbania },
-      expected: "negative",
+      arguments: {
+        optionA: selectOptions[0],
+        optionB: selectOptions[1],
+      },
+      name: "Should return negative number when Option A comes alphabetically before Option B",
+      result: -1,
     },
     {
-      name: "Should sort 'Albania' before 'Algeria'",
-      args: { a: optionAlbania, b: optionAlgeria },
-      expected: "negative",
+      arguments: {
+        optionA: selectOptions[1],
+        optionB: selectOptions[0],
+      },
+      name: "Should return positive number when Option A comes alphabetically after Option B",
+      result: 1,
     },
     {
-      name: "Should sort 'Afghanistan' before 'Åland Islands' (Standard Locale)",
-      args: { a: optionAfghanistan, b: optionAlandIslands },
-      expected: "negative",
+      arguments: {
+        optionA: selectOptions[0],
+        optionB: selectOptions[0],
+      },
+      name: "Should return 0 when labels are identical",
+      result: 0,
     },
     {
-      name: "Should sort 'European Hubs' before 'North America HQ'",
-      args: { a: groupEuropeanHubs, b: groupNorthAmerica },
-      expected: "negative",
+      arguments: {
+        optionA: selectOptions[3],
+        optionB: selectOptions[0],
+      },
+      name: "Should return negative if Option A has no label",
+      result: -1,
     },
     {
-      name: "Should sort 'Offshore Dev Center' after 'North America HQ'",
-      args: { a: groupOffshore, b: groupNorthAmerica },
-      expected: "positive",
-    },
-    {
-      name: "Should sort 'Algeria' (Option) before 'European Hubs' (Group)",
-      args: { a: optionAlgeria, b: groupEuropeanHubs },
-      expected: "negative",
-    },
-    {
-      name: "Should sort 'North America HQ' (Group) after 'Afghanistan' (Option)",
-      args: { a: groupNorthAmerica, b: optionAfghanistan },
-      expected: "positive",
+      arguments: {
+        optionA: selectOptions[0],
+        optionB: selectOptions[3],
+      },
+      name: "Should return positive if Option B has no label",
+      result: 1,
     },
   ];
 
-  testCases.forEach((testCase) => {
-    test(testCase.name, () => {
-      const result = sortByLabel(testCase.args.a, testCase.args.b);
+  testCases.map((testCase) => {
+    const { optionA, optionB } = testCase.arguments;
 
-      if (testCase.expected === "negative") {
-        expect(result).toBeLessThan(0);
-      } else if (testCase.expected === "positive") {
-        expect(result).toBeGreaterThan(0);
-      } else {
-        expect(result).toBe(0);
-      }
+    test(testCase.name, () => {
+      const result = sortByLabel(optionA, optionB);
+
+      expect(result).toBe(testCase.result);
     });
   });
 });
