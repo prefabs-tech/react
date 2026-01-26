@@ -1,5 +1,9 @@
 import defaultEnglishTranslation from "../FormWidgets/CountryPicker/en.json";
 
+import type {
+  GroupedOption as OptionGroup,
+  Option,
+} from "../FormWidgets/Select";
 import type { Locales, Translation } from "../types";
 
 export const getFallbackTranslation = (
@@ -32,3 +36,19 @@ export const getFlagClass = (
   ]
     .filter(Boolean)
     .join(" ");
+
+export const getLabel = (
+  code: string,
+  locale: string,
+  locales: Locales | undefined,
+  fallbackTranslation: Translation,
+) => {
+  return locales?.[locale]?.[code] || fallbackTranslation[code] || code;
+};
+
+export const sortByLabel = <T>(
+  optionA: Option<T> | OptionGroup<T>,
+  optionB: Option<T> | OptionGroup<T>,
+) => {
+  return (optionA.label ?? "").localeCompare(optionB.label ?? "");
+};
