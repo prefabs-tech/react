@@ -26,7 +26,7 @@ interface Properties {
   apps?: InvitationAppOption[];
   expiryDateField?: InvitationExpiryDateField;
   onCancel?: () => void;
-  onSubmitted?: (response: AddInvitationResponse) => void; // afterSubmit
+  onSubmitted?: (response: AddInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareData?: (rawFormData: any) => any;
   roles?: InvitationRoleOption[];
@@ -42,11 +42,17 @@ export const InvitationForm = ({
   roles,
 }: Properties) => {
   const { t, i18n } = useTranslation("invitations");
-
   const config = useConfig();
 
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+
+  // Stores the error code string (e.g. "USER_ALREADY_EXISTS_ERROR")
+  const [error, setError] = useState<string | null>(null);
+
+  // Stores dynamic values (email, role, app name) for the translation
+  const [errorParameters, setErrorParameters] = useState<
+    Record<string, string | number | undefined>
+  >({});
 
   const getDefaultValues = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,7 +62,6 @@ export const InvitationForm = ({
 
     if (apps?.length === 1) {
       const app = apps[0];
-
       defaultValues.app = app;
       filteredRoles = app.supportedRoles;
     }
@@ -107,27 +112,78 @@ export const InvitationForm = ({
     return parsedData;
   };
 
+  const getErrorMessage = useCallback(() => {
+    switch (error) {
+      case "INVALID_EMAIL_ERROR":
+        return t("messages.invite.errors.INVALID_EMAIL_ERROR", errorParameters);
+
+      case "INVITATION_ALREADY_EXISTS_ERROR":
+        return t(
+          "messages.invite.errors.INVITATION_ALREADY_EXISTS_ERROR",
+          errorParameters,
+        );
+
+      case "INVITATION_NOT_FOUND_ERROR":
+        return t(
+          "messages.invite.errors.INVITATION_NOT_FOUND_ERROR",
+          errorParameters,
+        );
+
+      case "ROLE_NOT_FOUND_ERROR":
+        return t(
+          "messages.invite.errors.ROLE_NOT_FOUND_ERROR",
+          errorParameters,
+        );
+
+      case "ROLE_NOT_SUPPORTED_ERROR":
+        return t(
+          "messages.invite.errors.ROLE_NOT_SUPPORTED_ERROR",
+          errorParameters,
+        );
+
+      case "USER_ALREADY_EXISTS_ERROR":
+        return t(
+          "messages.invite.errors.USER_ALREADY_EXISTS_ERROR",
+          errorParameters,
+        );
+
+      case "SOMETHING_WRONG":
+      case "GENERIC_ERROR":
+      default:
+        return t("messages.invite.errors.SOMETHING_WRONG");
+    }
+  }, [error, errorParameters, t]);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
     setSubmitting(true);
+    setError(null);
+    setErrorParameters({});
 
     const invitationData = prepareData ? prepareData(data) : getFormData(data);
 
+    const selectedApp = apps?.find((app) => app.id === data.app);
+    const parameters: Record<string, string | number | undefined> = {
+      email: data.email,
+      role: data.role,
+      app: selectedApp ? selectedApp.name : data.app,
+    };
+
     addInvitation(invitationData, config.apiBaseUrl)
       .then((response) => {
-        if ("data" in response && response.data.status === "ERROR") {
-          // TODO better handle errors
-          setError(true);
-        } else {
-          toast.success(t("messages.invite.success"));
+        // Success case
+        toast.success(t("messages.invite.success"));
 
-          if (onSubmitted) {
-            onSubmitted(response);
-          }
+        if (onSubmitted) {
+          onSubmitted(response);
         }
       })
-      .catch(() => {
-        setError(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .catch((err: any) => {
+        const code = err?.response?.data?.code;
+
+        setErrorParameters(parameters);
+        setError(code || "SOMETHING_WRONG");
       })
       .finally(() => {
         setSubmitting(false);
@@ -180,9 +236,9 @@ export const InvitationForm = ({
     <>
       {error && (
         <Message
-          message={t("messages.invite.error")}
+          message={getErrorMessage()}
           onClose={() => {
-            setError(false);
+            setError(null);
           }}
           severity="danger"
         />
