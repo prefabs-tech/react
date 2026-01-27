@@ -1,5 +1,5 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, Page, Typeahead } from "@prefabs.tech/react-ui";
+import { Button, Page, Typeahead, TDataTable } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -104,6 +104,142 @@ export const TypeaheadDemo = () => {
     );
   };
 
+  const propertiesData = [
+    {
+      default: '""',
+      description: t("typeahead.propertiesDescription.className"),
+      id: 1,
+      prop: "className",
+      type: "string",
+    },
+    {
+      default: "[]",
+      description: t("typeahead.propertiesDescription.data"),
+      id: 2,
+      prop: "data",
+      type: "T[]",
+    },
+    {
+      default: "300",
+      description: t("typeahead.propertiesDescription.debounceTime"),
+      id: 3,
+      prop: "debounceTime",
+      type: "number",
+    },
+    {
+      default: "false",
+      description: t("typeahead.propertiesDescription.disabled"),
+      id: 4,
+      prop: "disabled",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.emptyMessage"),
+      id: 5,
+      prop: "emptyMessage",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.errorMessage"),
+      id: 6,
+      prop: "errorMessage",
+      type: "string",
+    },
+    {
+      default: "true",
+      description: t("typeahead.propertiesDescription.forceSelect"),
+      id: 7,
+      prop: "forceSelect",
+      type: "boolean",
+    },
+    {
+      default: "false",
+      description: t("typeahead.propertiesDescription.hasError"),
+      id: 8,
+      prop: "hasError",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.helperText"),
+      id: 9,
+      prop: "helperText",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.label"),
+      id: 10,
+      prop: "label",
+      type: "string | React.ReactNode",
+    },
+    {
+      default: "false",
+      description: t("typeahead.propertiesDescription.loading"),
+      id: 11,
+      prop: "loading",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.name"),
+      id: 12,
+      prop: "name",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.onChange"),
+      id: 13,
+      prop: "onChange",
+      type: "(value?: T) => void",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.onSearch"),
+      id: 14,
+      prop: "onSearch",
+      type: "(value: string | number | readonly string[]) => void",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.placeholder"),
+      id: 15,
+      prop: "placeholder",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.renderSuggestion"),
+      id: 16,
+      prop: "renderSuggestion",
+      type: "(suggestion: T) => React.ReactNode",
+    },
+    {
+      default: "-",
+      description: t("typeahead.propertiesDescription.suggestionLabel"),
+      id: 17,
+      prop: "suggestionLabel",
+      type: "keyof T",
+    },
+    {
+      default: '"text"',
+      description: t("typeahead.propertiesDescription.type"),
+      id: 18,
+      prop: "type",
+      type: "string",
+    },
+    {
+      default: '""',
+      description: t("typeahead.propertiesDescription.value"),
+      id: 19,
+      prop: "value",
+      type: "string | number | readonly string[]",
+    },
+  ];
+
   return (
     <Page
       title={t("typeahead.title")}
@@ -169,6 +305,35 @@ export const TypeaheadDemo = () => {
           onSearch={handleDataFetch}
           onChange={handleServerChange}
           emptyMessage={t("typeahead.message.emptyMessage")}
+        />
+      </Section>
+      <Section
+        title={t("headers.propertiesValue", {
+          value: "Typeahead",
+        })}
+      >
+        <TDataTable
+          columns={[
+            {
+              accessorKey: "prop",
+              header: "Properties",
+            },
+            {
+              accessorKey: "type",
+              header: "Type",
+            },
+            {
+              accessorKey: "default",
+              header: "Default",
+            },
+            {
+              accessorKey: "description",
+              header: "Description",
+            },
+          ]}
+          data={propertiesData}
+          paginated={false}
+          persistState={false}
         />
       </Section>
     </Page>
