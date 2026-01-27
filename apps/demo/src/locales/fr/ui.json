@@ -114,7 +114,7 @@
     "label": "Label (fr)",
     "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
-      "positions": {
+    "positions": {
       "left": "Left (default) (fr)",
       "right": "Right (fr)",
       "rightEdge": "Right edge (fr)"
@@ -165,7 +165,7 @@
       "single": "Select a country... (fr)"
     },
     "propertiesDescription": {
-      "autoSortOptions":"By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
+      "autoSortOptions": "By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
       "fallbackLocale": "Locale used when active locale translation is missing. (fr)",
@@ -598,18 +598,39 @@
     "subtitle": "The SwitchInput component is a customizable checkbox switch for toggling states. It supports additional properties such as error handling and labeling. (fr)"
   },
   "typeahead": {
-    "message": {
-      "emptyMessage": "No results found (fr)"
-    },
-    "title": "Typeahead (fr)",
     "label": {
       "client": "Client side typeahead (fr)",
       "customSuggestion": "Custom suggestion typeahead (fr)",
       "disabled": "Disabled (fr)",
       "emptyMessage": "Empty message typeahead (fr)",
-      "server": "Server side typeahead (fr)",
-      "invalid": "Invalid (fr)"
+      "invalid": "Invalid (fr)",
+      "server": "Server side typeahead (fr)"
     },
-    "placeholder": "Search... (fr)"
+    "message": {
+      "emptyMessage": "No results found (fr)"
+    },
+    "placeholder": "Search... (fr)",
+    "propertiesDescription": {
+      "className": "Style class of the component. (fr)",
+      "data": "An array of suggestions to display. (fr)",
+      "debounceTime": "Delay in milliseconds before the search triggers. (fr)",
+      "disabled": "When present, it specifies that the component should be disabled. (fr)",
+      "emptyMessage": "Message to display when no results are found. (fr)",
+      "errorMessage": "Message to display when there is an error. (fr)",
+      "forceSelect": "When enabled, clears the input if the value is not selected from the suggestions. (fr)",
+      "hasError": "Specifies if the input has an invalid state. (fr)",
+      "helperText": "Helper text to display below the input. (fr)",
+      "label": "Label of the component. (fr)",
+      "loading": "Displays a loading icon when true. (fr)",
+      "name": "Name attribute of the input element. (fr)",
+      "onChange": "Callback function invoked when a suggestion is selected. (fr)",
+      "onSearch": "Callback function invoked when the input value changes. (fr)",
+      "placeholder": "Placeholder text for the input. (fr)",
+      "renderSuggestion": "Function to customize the rendering of each suggestion. (fr)",
+      "suggestionLabel": "Property name to use as the display label when data items are objects. (fr)",
+      "type": "Type of the input element (e.g., text). (fr)",
+      "value": "Value of the component. (fr)"
+    },
+    "title": "Typeahead (fr)"
   }
 }
