@@ -114,7 +114,7 @@
     "label": "Label (fr)",
     "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
-      "positions": {
+    "positions": {
       "left": "Left (default) (fr)",
       "right": "Right (fr)",
       "rightEdge": "Right edge (fr)"
@@ -165,7 +165,7 @@
       "single": "Select a country... (fr)"
     },
     "propertiesDescription": {
-      "autoSortOptions":"By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
+      "autoSortOptions": "By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
       "fallbackLocale": "Locale used when active locale translation is missing. (fr)",
@@ -201,20 +201,34 @@
     }
   },
   "dropdownMenu": {
-    "subtitle": "The Dropdown component provides an accessible and customizable menu for selecting actions or options. It supports labels, icons, slots for custom triggers and icons, and emits events on selection (fr).",
-    "title": "Dropdown menu (fr)",
-    "usage": {
-      "hiddenDropdownIcon": "Hidden dropdown icon with default label (fr)",
-      "leftAlign": "Popup align left (fr)",
-      "severity": "Severity (fr)",
-      "templating": "Menu templating (fr)"
-    },
     "label": {
       "delete": "Delete (fr)",
       "edit": "Edit (fr)",
       "setting": "Settings (fr)",
       "user": "User (fr)",
       "view": "View (fr)"
+    },
+    "propertiesDescription": {
+      "className": "Style class of the component. (fr)",
+      "close": "Callback to close the menu programmatically. (fr)",
+      "hideDropdownIcon": "If true, hides the default arrow icon next to the label. (fr)",
+      "isControlled": "Determines if the menu state is controlled externally. (fr)",
+      "isOpen": "Specifies whether the menu is currently open. (fr)",
+      "label": "The label text or node to display on the trigger button. (fr)",
+      "menu": "An array of menu items to display. (fr)",
+      "offset": "The offset distance from the trigger element. (fr)",
+      "position": "Position of the menu relative to the trigger (e.g., 'bottom-start'). (fr)",
+      "renderOption": "Function to customize the rendering of menu items. (fr)",
+      "toggle": "Callback to toggle the menu visibility. (fr)",
+      "trigger": "Custom element to use as the menu trigger instead of the default button. (fr)"
+    },
+    "subtitle": "The Dropdown component provides an accessible and customizable menu for selecting actions or options. It supports labels, icons, slots for custom triggers and icons, and emits events on selection. (fr)",
+    "title": "Dropdown menu (fr)",
+    "usage": {
+      "hiddenDropdownIcon": "Hidden dropdown icon with default label (fr)",
+      "leftAlign": "Popup align left (fr)",
+      "severity": "Severity (fr)",
+      "templating": "Menu templating (fr)"
     }
   },
   "editableTitle": {
