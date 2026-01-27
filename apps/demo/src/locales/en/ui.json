@@ -201,6 +201,27 @@
     }
   },
   "dropdownMenu": {
+    "label": {
+      "delete": "Delete",
+      "edit": "Edit",
+      "setting": "Settings",
+      "user": "User",
+      "view": "View"
+    },
+    "propertiesDescription": {
+      "className": "Style class of the component.",
+      "close": "Callback to close the menu programmatically.",
+      "hideDropdownIcon": "If true, hides the default arrow icon next to the label.",
+      "isControlled": "Determines if the menu state is controlled externally.",
+      "isOpen": "Specifies whether the menu is currently open.",
+      "label": "The label text or node to display on the trigger button.",
+      "menu": "An array of menu items to display.",
+      "offset": "The offset distance from the trigger element.",
+      "position": "Position of the menu relative to the trigger (e.g., 'bottom-start').",
+      "renderOption": "Function to customize the rendering of menu items.",
+      "toggle": "Callback to toggle the menu visibility.",
+      "trigger": "Custom element to use as the menu trigger instead of the default button."
+    },
     "subtitle": "The Dropdown component provides an accessible and customizable menu for selecting actions or options. It supports labels, icons, slots for custom triggers and icons, and emits events on selection.",
     "title": "Dropdown menu",
     "usage": {
@@ -208,13 +229,6 @@
       "leftAlign": "Popup align left",
       "severity": "Severity",
       "templating": "Menu templating"
-    },
-    "label": {
-      "delete": "Delete",
-      "edit": "Edit",
-      "setting": "Settings",
-      "user": "User",
-      "view": "View"
     }
   },
   "editableTitle": {
