@@ -4,11 +4,11 @@
     "emailAlreadyExists": "This email already exists. Please sign in instead.",
     "incorrectPassword": "The current password you entered is incorrect",
     "otherErrors": "Oops! Something went wrong.",
-    "INVALID_EMAIL_ERROR": "The provided email is invalid.",
-    "INVITATION_ALREADY_EXISTS_ERROR": "Invitation already exists for this email.",
-    "ROLE_NOT_FOUND_ERROR": "Role {role} does not exist",
-    "ROLE_NOT_SUPPORTED_ERROR": "App {app} does not support role USER.",
-    "SOMETHING_WRONG": "Something went wrong. Please try again.",
-    "USER_ALREADY_EXISTS_ERROR": "User with email {email} already exists"
+    "invalidEmail": "The provided email is invalid.",
+    "invitationAlreadyExists": "Invitation already exists for this email.",
+    "roleNotFound": "Role {role} does not exist",
+    "roleNotSupported": "App {app} does not support role USER.",
+    "somethingWrong": "Something went wrong. Please try again.",
+    "userAlreadyExists": "User with email {email} already exists"
   }
 }

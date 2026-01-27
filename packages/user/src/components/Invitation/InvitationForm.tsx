@@ -115,42 +115,30 @@ export const InvitationForm = ({
   const getErrorMessage = useCallback(() => {
     switch (error) {
       case "INVALID_EMAIL_ERROR":
-        return t("messages.invite.errors.INVALID_EMAIL_ERROR", errorParameters);
+        return t("messages.invite.errors.invalidEmail", errorParameters);
 
       case "INVITATION_ALREADY_EXISTS_ERROR":
         return t(
-          "messages.invite.errors.INVITATION_ALREADY_EXISTS_ERROR",
+          "messages.invite.errors.invitationAlreadyExists",
           errorParameters,
         );
 
       case "INVITATION_NOT_FOUND_ERROR":
-        return t(
-          "messages.invite.errors.INVITATION_NOT_FOUND_ERROR",
-          errorParameters,
-        );
+        return t("messages.invite.errors.invitationNotFound", errorParameters);
 
       case "ROLE_NOT_FOUND_ERROR":
-        return t(
-          "messages.invite.errors.ROLE_NOT_FOUND_ERROR",
-          errorParameters,
-        );
+        return t("messages.invite.errors.roleNotFound", errorParameters);
 
       case "ROLE_NOT_SUPPORTED_ERROR":
-        return t(
-          "messages.invite.errors.ROLE_NOT_SUPPORTED_ERROR",
-          errorParameters,
-        );
+        return t("messages.invite.errors.roleNotSupported", errorParameters);
 
       case "USER_ALREADY_EXISTS_ERROR":
-        return t(
-          "messages.invite.errors.USER_ALREADY_EXISTS_ERROR",
-          errorParameters,
-        );
+        return t("messages.invite.errors.userAlreadyExists", errorParameters);
 
       case "SOMETHING_WRONG":
       case "GENERIC_ERROR":
       default:
-        return t("messages.invite.errors.SOMETHING_WRONG");
+        return t("messages.invite.errors.somethingWrong");
     }
   }, [error, errorParameters, t]);
 

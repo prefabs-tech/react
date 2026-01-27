@@ -4,11 +4,11 @@
     "emailAlreadyExists": "This email already exists. Please sign in instead. (fr)",
     "incorrectPassword": "The current password you entered is incorrect. (fr)",
     "otherErrors": "Oops! Something went wrong (fr).",
-    "INVALID_EMAIL_ERROR": "The provided email is invalid. (fr)",
-    "INVITATION_ALREADY_EXISTS_ERROR": "Invitation already exists for this email. (fr)",
-    "ROLE_NOT_FOUND_ERROR": "Role {role} does not exist. (fr)",
-    "ROLE_NOT_SUPPORTED_ERROR": "App {app} does not support role USER. (fr)",
-    "SOMETHING_WRONG": "Something went wrong. Please try again. (fr)",
-    "USER_ALREADY_EXISTS_ERROR": "User with email {email} already exists. (fr)"
+    "invalidEmail": "The provided email is invalid. (fr)",
+    "invitationAlreadyExists": "Invitation already exists for this email. (fr)",
+    "roleNotFound": "Role {role} does not exist. (fr)",
+    "roleNotSupported": "App {app} does not support role USER. (fr)",
+    "somethingWrong": "Something went wrong. Please try again. (fr)",
+    "userAlreadyExists": "User with email {email} already exists. (fr)"
   }
 }
