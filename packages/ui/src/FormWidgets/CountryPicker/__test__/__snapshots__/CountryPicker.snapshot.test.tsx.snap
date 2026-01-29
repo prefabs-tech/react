@@ -67,3 +67,182 @@ exports[`CountryPicker Component > should render correctly with favorites and lo
   </div>
 </div>
 `;
+
+exports[`CountryPicker Component Snapshots > renders simple list correctly 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <span
+          class="selected-options"
+        >
+          Nepal
+        </span>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CountryPicker Component Snapshots > renders with custom flag path function 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <div
+          class="field debounced-input"
+        >
+          <input
+            class="input-field "
+            id=""
+            name=""
+            tabindex="-1"
+            type="text"
+            value=""
+          />
+        </div>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CountryPicker Component Snapshots > renders with favorites and custom labels 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <span
+          class="selected-options"
+        >
+          France
+        </span>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-times"
+            tabindex="0"
+          />
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CountryPicker Component Snapshots > renders with flag options disabled 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <div
+          class="field debounced-input"
+        >
+          <input
+            class="input-field "
+            id=""
+            name=""
+            tabindex="-1"
+            type="text"
+            value=""
+          />
+        </div>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CountryPicker Component Snapshots > renders with grouped countries 1`] = `
+<div>
+  <div
+    class="field"
+  >
+    <div
+      class="select"
+    >
+      <div
+        class="label-container"
+        tabindex="0"
+      >
+        <div
+          class="field debounced-input"
+        >
+          <input
+            class="input-field "
+            id=""
+            name=""
+            tabindex="-1"
+            type="text"
+            value=""
+          />
+        </div>
+        <span
+          class="action-items"
+        >
+          <i
+            class="pi pi-chevron-down"
+          />
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
