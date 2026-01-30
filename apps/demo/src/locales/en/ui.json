@@ -240,11 +240,23 @@
     "title": "Editable title"
   },
   "filesTable": {
-    "title": "Files table",
     "pagination": {
       "pageControl": "Go to page",
       "rowsPerPage": "Items per page"
-    }
+    },
+    "propertiesDescription": {
+      "actions": "Callbacks for row actions: archive, download, delete, share, view, edit description.",
+      "columns": "Additional custom columns or overrides for default columns.",
+      "fetchFiles": "Callback for server-side pagination, sorting, and filtering.",
+      "files": "Array of file objects to display in the table.",
+      "isLoading": "Whether the table is currently loading data.",
+      "locale": "Locale string for date and number formatting.",
+      "messages": "Custom labels for headers, empty states, and action buttons.",
+      "totalRecords": "Total count of records for server-side pagination.",
+      "visibleColumns": "Array of keys determining which columns to render."
+    },
+    "title": "Files table",
+    "typeDefinitions": "Type definitions"
   },
   "gridContainer": {
     "title": "Grid container"

@@ -240,11 +240,23 @@
     "title": "Editable title (fr)"
   },
   "filesTable": {
-    "title": "Files table (fr)",
     "pagination": {
       "pageControl": "Go to page (fr)",
       "rowsPerPage": "Items per page (fr)"
-    }
+    },
+    "propertiesDescription": {
+      "actions": "Callbacks for row actions: archive, download, delete, share, view, edit description. (fr)",
+      "columns": "Additional custom columns or overrides for default columns. (fr)",
+      "fetchFiles": "Callback for server-side pagination, sorting, and filtering. (fr)",
+      "files": "Array of file objects to display in the table. (fr)",
+      "isLoading": "Whether the table is currently loading data. (fr)",
+      "locale": "Locale string for date and number formatting. (fr)",
+      "messages": "Custom labels for headers, empty states, and action buttons. (fr)",
+      "totalRecords": "Total count of records for server-side pagination. (fr)",
+      "visibleColumns": "Array of keys determining which columns to render. (fr)"
+    },
+    "title": "Files table (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "gridContainer": {
     "title": "Grid container (fr)"
