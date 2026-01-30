@@ -114,7 +114,7 @@
     "label": "Label (fr)",
     "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
-      "positions": {
+    "positions": {
       "left": "Left (default) (fr)",
       "right": "Right (fr)",
       "rightEdge": "Right edge (fr)"
@@ -165,7 +165,7 @@
       "single": "Select a country... (fr)"
     },
     "propertiesDescription": {
-      "autoSortOptions":"By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
+      "autoSortOptions": "By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
       "fallbackLocale": "Locale used when active locale translation is missing. (fr)",
@@ -273,7 +273,18 @@
     "title": "Export button (fr)"
   },
   "fileCard": {
-    "title": "File card (fr)"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (Download, View, Share, Archive, Delete, EditDescription). (fr)",
+      "buttonProps": "Props passed to specific action buttons. (fr)",
+      "file": "The file object containing metadata. (fr)",
+      "locale": "Locale string for formatting dates. (fr)",
+      "messages": "Custom labels for headers and actions. (fr)",
+      "renderThumbnail": "Custom renderer for the file thumbnail. (fr)",
+      "showThumbnail": "Whether to display the thumbnail icon. (fr)",
+      "visibleDetails": "Array of keys to determine which details to display. (fr)"
+    },
+    "title": "File card (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "filesList": {
     "title": "Files list (fr)"
