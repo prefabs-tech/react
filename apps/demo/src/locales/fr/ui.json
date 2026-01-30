@@ -114,7 +114,7 @@
     "label": "Label (fr)",
     "locale": "Locales support (fr)",
     "notFound": "Missing country code (fr)",
-      "positions": {
+    "positions": {
       "left": "Left (default) (fr)",
       "right": "Right (fr)",
       "rightEdge": "Right edge (fr)"
@@ -165,7 +165,7 @@
       "single": "Select a country... (fr)"
     },
     "propertiesDescription": {
-      "autoSortOptions":"By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
+      "autoSortOptions": "By default, options are sorted alphabetically. If false, countries are sorted by priority in the order groups → favorites → include → fallback-locale translations, preserving the defined order. (fr)",
       "data": "Custom country data to overwrite existing entries or add new ones. (fr)",
       "exclude": "An array of country codes to remove from the list. (fr)",
       "fallbackLocale": "Locale used when active locale translation is missing. (fr)",
@@ -240,11 +240,23 @@
     "title": "Editable title (fr)"
   },
   "filesTable": {
-    "title": "Files table (fr)",
     "pagination": {
       "pageControl": "Go to page (fr)",
       "rowsPerPage": "Items per page (fr)"
-    }
+    },
+    "propertiesDescription": {
+      "actions": "Callbacks for row actions: archive, download, delete, share, view, edit description. (fr)",
+      "columns": "Additional custom columns or overrides for default columns. (fr)",
+      "fetchFiles": "Callback for server-side pagination, sorting, and filtering. (fr)",
+      "files": "Array of file objects to display in the table. (fr)",
+      "isLoading": "Whether the table is currently loading data. (fr)",
+      "locale": "Locale string for date and number formatting. (fr)",
+      "messages": "Custom labels for headers, empty states, and action buttons. (fr)",
+      "totalRecords": "Total count of records for server-side pagination. (fr)",
+      "visibleColumns": "Array of keys determining which columns to render. (fr)"
+    },
+    "title": "Files table (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "gridContainer": {
     "title": "Grid container (fr)"
@@ -273,13 +285,46 @@
     "title": "Export button (fr)"
   },
   "fileCard": {
-    "title": "File card (fr)"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (Download, View, Share, Archive, Delete, EditDescription). (fr)",
+      "buttonProps": "Props passed to specific action buttons. (fr)",
+      "file": "The file object containing metadata. (fr)",
+      "locale": "Locale string for formatting dates. (fr)",
+      "messages": "Custom labels for headers and actions. (fr)",
+      "renderThumbnail": "Custom renderer for the file thumbnail. (fr)",
+      "showThumbnail": "Whether to display the thumbnail icon. (fr)",
+      "visibleDetails": "Array of keys to determine which details to display. (fr)"
+    },
+    "title": "File card (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "filesList": {
-    "title": "Files list (fr)"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (download, view, share, archive, delete, edit description). (fr)",
+      "buttonProps": "Props passed to specific action buttons. (fr)",
+      "confirmationProps": "Props for archive/delete confirmation modals. (fr)",
+      "files": "Array of file objects to display. (fr)",
+      "locale": "Locale string for formatting dates. (fr)",
+      "messages": "Custom labels for headers and actions. (fr)",
+      "renderThumbnail": "Custom renderer for file thumbnails. (fr)",
+      "showThumbnail": "Whether to display thumbnails for the files. (fr)",
+      "visibleDetails": "Array of keys to determine which details to display. (fr)"
+    },
+    "title": "Files list (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "filesPresentation": {
-    "title": "Files presentation (fr)"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (download, view, archive, delete, share, edit description). (fr)",
+      "files": "Array of file objects to display. (fr)",
+      "listProps": "Props passed specifically to the underlying FilesList component when in list mode. (fr)",
+      "locale": "Locale string for formatting dates. (fr)",
+      "presentation": "Determines the layout mode: 'list' (grid of cards) or 'table'. (fr)",
+      "tableProps": "Props passed specifically to the underlying FilesTable component when in table mode. (fr)",
+      "visibleDetails": "Array of keys to determine which columns (table) or details (list) to display. (fr)"
+    },
+    "title": "Files presentation (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "table": {
     "confirmation": {
