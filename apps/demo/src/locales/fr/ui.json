@@ -302,7 +302,17 @@
     "typeDefinitions": "Type definitions (fr)"
   },
   "filesPresentation": {
-    "title": "Files presentation (fr)"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (download, view, archive, delete, share, edit description). (fr)",
+      "files": "Array of file objects to display. (fr)",
+      "listProps": "Props passed specifically to the underlying FilesList component when in list mode. (fr)",
+      "locale": "Locale string for formatting dates. (fr)",
+      "presentation": "Determines the layout mode: 'list' (grid of cards) or 'table'. (fr)",
+      "tableProps": "Props passed specifically to the underlying FilesTable component when in table mode. (fr)",
+      "visibleDetails": "Array of keys to determine which columns (table) or details (list) to display. (fr)"
+    },
+    "title": "Files presentation (fr)",
+    "typeDefinitions": "Type definitions (fr)"
   },
   "table": {
     "confirmation": {
