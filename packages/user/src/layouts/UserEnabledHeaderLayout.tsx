@@ -6,8 +6,10 @@ import {
 
 import { useUser, useUserNavigationMenu } from "..";
 
-interface IProperties
-  extends Omit<HeaderLayoutProperties, "userMenuMode" | "menu"> {
+interface IProperties extends Omit<
+  HeaderLayoutProperties,
+  "userMenuMode" | "menu"
+> {
   authNavigationMenu?: UserMenuType;
   userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

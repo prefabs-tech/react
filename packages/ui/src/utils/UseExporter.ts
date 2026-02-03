@@ -28,7 +28,7 @@ const exportXLSX = ({
   const buffer = build([{ name: sheetName, data, options: sheetOptions }]);
 
   saveAs(
-    new Blob([buffer], {
+    new Blob([buffer as unknown as BlobPart], {
       type: "application/vnd.ms-excel",
     }),
     `${filename}.xlsx`,

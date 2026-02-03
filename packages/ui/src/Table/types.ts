@@ -209,8 +209,9 @@ export type FormatDateType = {
 
 export type StorageType = "localStorage" | "sessionStorage";
 
-export interface TDataTableProperties<TData extends RowData>
-  extends Partial<Omit<TableOptions<TData>, "getCoreRowModel" | "data">> {
+export interface TDataTableProperties<TData extends RowData> extends Partial<
+  Omit<TableOptions<TData>, "getCoreRowModel" | "data">
+> {
   className?: string;
   columnActionBtnLabel?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

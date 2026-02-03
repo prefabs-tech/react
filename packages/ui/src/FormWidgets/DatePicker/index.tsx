@@ -3,8 +3,10 @@ import { Nullable } from "primereact/ts-helpers";
 import { classNames } from "primereact/utils";
 import { FC } from "react";
 
-export interface DatePickerProperties
-  extends Omit<CalendarProps, "value" | "onChange"> {
+export interface DatePickerProperties extends Omit<
+  CalendarProps,
+  "value" | "onChange"
+> {
   className?: string;
   error?: string;
   label?: string;

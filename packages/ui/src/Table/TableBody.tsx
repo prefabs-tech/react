@@ -19,14 +19,10 @@ import { formatNumber, getAlignValue } from "./utils";
 
 import type { TDataTableProperties } from "./types";
 
-interface TableBodyProperties<TData extends RowData>
-  extends Pick<
-    TDataTableProperties<TData>,
-    | "enableRowSelection"
-    | "customFormatters"
-    | "emptyTableMessage"
-    | "isLoading"
-  > {
+interface TableBodyProperties<TData extends RowData> extends Pick<
+  TDataTableProperties<TData>,
+  "enableRowSelection" | "customFormatters" | "emptyTableMessage" | "isLoading"
+> {
   locale?: string;
   parsedColumnsLength: number;
   rowClassName?: string | ((options: { row: Row<TData> }) => string);

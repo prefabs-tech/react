@@ -5,11 +5,10 @@ import {
 import { FC } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-interface DatePicker
-  extends Omit<
-    DatePickerProperties,
-    "onChange" | "value" | "error" | "inputRef"
-  > {
+interface DatePicker extends Omit<
+  DatePickerProperties,
+  "onChange" | "value" | "error" | "inputRef"
+> {
   name: string;
 }
 
