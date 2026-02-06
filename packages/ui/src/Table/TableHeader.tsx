@@ -10,15 +10,14 @@ import {
   TableRow,
 } from "./TableElements";
 import { TableRangeFilter } from "./TableRangeFilter";
-import { getAlignValue } from "./utils";
+import { getAlignValue } from "./utilities";
 
 import type { TDataTableProperties } from "./types";
 
-interface THeaderProperty<T>
-  extends Pick<
-    TDataTableProperties<T>,
-    "renderSortIcons" | "inputDebounceTime"
-  > {
+interface THeaderProperty<T> extends Pick<
+  TDataTableProperties<T>,
+  "renderSortIcons" | "inputDebounceTime"
+> {
   table: Table<T>;
   highlight?: boolean;
 }

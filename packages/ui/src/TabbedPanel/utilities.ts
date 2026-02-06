@@ -36,7 +36,7 @@ const onTabDown = (
   const previousTab = () => handleFocus((active - 1 + count) % count);
   const firstTab = () => handleFocus(0);
   const lastTab = () => handleFocus(count - 1);
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+
   const doNothing = () => {};
 
   // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code

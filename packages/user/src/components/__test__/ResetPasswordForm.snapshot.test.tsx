@@ -5,10 +5,7 @@ import { expect, test } from "vitest";
 import { ForgotPasswordForm } from "../ForgotPasswordForm";
 
 test("Component matches snapshot", () => {
-  const { container } = render(
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    <ForgotPasswordForm handleSubmit={() => {}} />,
-  );
+  const { container } = render(<ForgotPasswordForm handleSubmit={() => {}} />);
 
   expect(container).toMatchSnapshot();
 });

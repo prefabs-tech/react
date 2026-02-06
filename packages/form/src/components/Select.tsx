@@ -11,11 +11,10 @@ interface ValidationMessages {
   minSelection?: string;
 }
 
-interface ISelect<T extends string | number>
-  extends Omit<
-    ISelectProperties<T>,
-    "onChange" | "value" | "hasError" | "errorMessage"
-  > {
+interface ISelect<T extends string | number> extends Omit<
+  ISelectProperties<T>,
+  "onChange" | "value" | "hasError" | "errorMessage"
+> {
   maxSelection?: number;
   minSelection?: number;
   showValidState?: boolean;

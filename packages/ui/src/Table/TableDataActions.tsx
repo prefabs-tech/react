@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Button, DropdownMenu, MenuItem } from "..";
 import { ConfirmationModal, IModalProperties } from "../ConfirmationModal";
 
-export interface DataActionsMenuItem
-  extends Omit<MenuItem, "disabled" | "display" | "onClick"> {
+export interface DataActionsMenuItem extends Omit<
+  MenuItem,
+  "disabled" | "display" | "onClick"
+> {
   requireConfirmationModal?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onClick?: (arguments_: any) => void | Promise<void>;

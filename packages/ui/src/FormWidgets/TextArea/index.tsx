@@ -1,7 +1,6 @@
 import { TextareaHTMLAttributes } from "react";
 
-export interface ITextareaProperties
-  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface ITextareaProperties extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   errorMessage?: string;
   hasError?: boolean;
   helperText?: string;

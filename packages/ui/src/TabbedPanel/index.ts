@@ -1,4 +1,4 @@
 import TabbedPanel from "./TabbedPanel";
-import { clearSavedTabState } from "./utils";
+import { clearSavedTabState } from "./utilities";
 
 export { TabbedPanel, clearSavedTabState };

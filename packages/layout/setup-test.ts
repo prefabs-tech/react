@@ -11,7 +11,6 @@ vi.mock("@prefabs.tech/react-i18n", async () => {
       return {
         t: (string_) => string_,
         i18n: {
-          // eslint-disable-next-line @typescript-eslint/no-empty-function
           changeLanguage: () => new Promise(() => {}),
         },
       };
