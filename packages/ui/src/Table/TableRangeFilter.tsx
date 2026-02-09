@@ -2,7 +2,7 @@ import { Column } from "@tanstack/react-table";
 
 import { DebouncedInput } from "@/FormWidgets";
 
-import { isDefined } from "./utils";
+import { isDefined } from "./utilities";
 
 type DateFilterProperties<TData> = {
   column: Column<TData, unknown>;

@@ -12,8 +12,7 @@ interface SuggestionOption<T> {
 }
 
 interface IProperties<T>
-  extends Omit<IInputProperties, "onChange">,
-    SuggestionOption<T> {
+  extends Omit<IInputProperties, "onChange">, SuggestionOption<T> {
   data?: T[];
   debounceTime?: number;
   errorMessage?: string;

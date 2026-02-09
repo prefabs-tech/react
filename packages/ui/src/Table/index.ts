@@ -1,6 +1,6 @@
 import { DataTable as TDataTable } from "./Table";
 import * as TTableElements from "./TableElements";
-import { clearSavedTableStates, getParsedColumns } from "./utils";
+import { clearSavedTableStates, getParsedColumns } from "./utilities";
 
 export { clearSavedTableStates, getParsedColumns, TDataTable, TTableElements };
 

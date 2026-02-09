@@ -29,7 +29,7 @@ import {
   saveTableState,
   getSavedTableState,
   isDefined,
-} from "./utils";
+} from "./utilities";
 import { Checkbox } from "../FormWidgets";
 import LoadingIcon from "../LoadingIcon";
 import { Pagination } from "../Pagination";

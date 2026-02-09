@@ -1,4 +1,4 @@
-import saveAs from "file-saver"; // eslint-disable-line import/no-named-as-default
+import saveAs from "file-saver";
 import { WorkSheetOptions } from "node-xlsx";
 import { useCallback, useState } from "react";
 

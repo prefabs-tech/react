@@ -7,16 +7,15 @@ import { SortableList } from "../SortableList";
 import type { TDataTableProperties } from "./types";
 import type { RowData, Table } from "@tanstack/react-table";
 
-interface TToolbar<T>
-  extends Pick<
-    TDataTableProperties<T>,
-    | "dataActionsMenu"
-    | "enableRowSelection"
-    | "handleResetState"
-    | "renderToolbarItems"
-    | "showColumnsAction"
-    | "showResetStateAction"
-  > {
+interface TToolbar<T> extends Pick<
+  TDataTableProperties<T>,
+  | "dataActionsMenu"
+  | "enableRowSelection"
+  | "handleResetState"
+  | "renderToolbarItems"
+  | "showColumnsAction"
+  | "showResetStateAction"
+> {
   columnActionButtonLabel: string;
   resetActionButtonLabel: string;
   table: Table<T>;

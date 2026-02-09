@@ -42,6 +42,7 @@ export const DropdownMenuDemo = () => {
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const template = (item: any) => {
     return (
       <>

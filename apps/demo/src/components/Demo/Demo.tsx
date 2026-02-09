@@ -3,6 +3,7 @@ import { ReactNode, useMemo, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
 interface Properties {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   subnav: Array<any>;
   children?: ReactNode;
   isGrouped?: boolean;
@@ -22,7 +23,7 @@ export const Demo: React.FC<Properties> = ({
 
     return (
       <ul>
-        {subnav.map((nav: any) => {
+        {subnav.map((nav) => {
           return (
             <li key={nav.route}>
               <NavLink to={nav.route} end>

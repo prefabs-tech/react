@@ -13,10 +13,7 @@ vi.mock("@/hooks", () => ({
 }));
 
 test("Component matches snapshot", () => {
-  const { container } = render(
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    <ChangePasswordForm handleSubmit={() => {}} />,
-  );
+  const { container } = render(<ChangePasswordForm handleSubmit={() => {}} />);
 
   expect(container).toMatchSnapshot();
 });
