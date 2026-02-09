@@ -17,7 +17,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {
-    "@prefabs.tech/tsconfig": "0.2.1",
+    "@prefabs.tech/tsconfig": "0.5.0",
     "@prefabs.tech/react-config": "0.71.0",
     "@prefabs.tech/react-form": "0.71.0",
     "@prefabs.tech/react-i18n": "0.71.0",
@@ -36,7 +36,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "github:prefabs-tech/tools#feat/react-eslint-9&path:packages/eslint-config",
+    "@prefabs.tech/eslint-config": "0.5.0",
     "@babel/core": "7.26.10",
     "@babel/plugin-syntax-flow": "7.26.0",
     "@babel/plugin-transform-react-jsx": "^7.21.0",
