@@ -4,6 +4,7 @@ export default [
   ...reactConfig,
   {
     rules: {
+      "jsx-a11y/no-autofocus": "off",
       "react-hooks/purity": "off",
     },
   },
