@@ -1,5 +1,5 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, DropdownMenu, Page } from "@prefabs.tech/react-ui";
+import { Button, DropdownMenu, Page, TDataTable } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
@@ -51,6 +51,93 @@ export const DropdownMenuDemo = () => {
       </>
     );
   };
+
+  const propertiesData = [
+    {
+      default: '""',
+      description: t("ui:dropdownMenu.propertiesDescription.className"),
+      id: 1,
+      prop: "className",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("ui:dropdownMenu.propertiesDescription.close"),
+      id: 2,
+      prop: "close",
+      type: "() => void",
+    },
+    {
+      default: "false",
+      description: t("ui:dropdownMenu.propertiesDescription.hideDropdownIcon"),
+      id: 3,
+      prop: "hideDropdownIcon",
+      type: "boolean",
+    },
+    {
+      default: "false",
+      description: t("ui:dropdownMenu.propertiesDescription.isControlled"),
+      id: 4,
+      prop: "isControlled",
+      type: "boolean",
+    },
+    {
+      default: "false",
+      description: t("ui:dropdownMenu.propertiesDescription.isOpen"),
+      id: 5,
+      prop: "isOpen",
+      type: "boolean",
+    },
+    {
+      default: "-",
+      description: t("ui:dropdownMenu.propertiesDescription.label"),
+      id: 6,
+      prop: "label",
+      type: "React.ReactNode",
+    },
+    {
+      default: "[]",
+      description: t("ui:dropdownMenu.propertiesDescription.menu"),
+      id: 7,
+      prop: "menu",
+      type: "MenuItem[]",
+    },
+    {
+      default: "0",
+      description: t("ui:dropdownMenu.propertiesDescription.offset"),
+      id: 8,
+      prop: "offset",
+      type: "number",
+    },
+    {
+      default: '"bottom-start"',
+      description: t("ui:dropdownMenu.propertiesDescription.position"),
+      id: 9,
+      prop: "position",
+      type: "string",
+    },
+    {
+      default: "-",
+      description: t("ui:dropdownMenu.propertiesDescription.renderOption"),
+      id: 10,
+      prop: "renderOption",
+      type: "(item: MenuItem) => React.ReactNode",
+    },
+    {
+      default: "-",
+      description: t("ui:dropdownMenu.propertiesDescription.toggle"),
+      id: 11,
+      prop: "toggle",
+      type: "() => void",
+    },
+    {
+      default: "Ellipsis Icon",
+      description: t("ui:dropdownMenu.propertiesDescription.trigger"),
+      id: 12,
+      prop: "trigger",
+      type: "React.ReactNode",
+    },
+  ];
 
   return (
     <Page
@@ -135,6 +222,36 @@ return (<DropdownMenu
       <Section title={t("dropdownMenu.usage.hiddenDropdownIcon")}>
         <DropdownMenu menu={menuItems} hideDropdownIcon />
         <CodeBlock exampleCode="<DropdownMenu menu={menuItems} hideDropdownIcon />" />
+      </Section>
+
+      <Section
+        title={t("headers.propertiesValue", {
+          value: "DropdownMenu",
+        })}
+      >
+        <TDataTable
+          columns={[
+            {
+              accessorKey: "prop",
+              header: "Properties",
+            },
+            {
+              accessorKey: "type",
+              header: "Type",
+            },
+            {
+              accessorKey: "default",
+              header: "Default",
+            },
+            {
+              accessorKey: "description",
+              header: "Description",
+            },
+          ]}
+          data={propertiesData}
+          paginated={false}
+          persistState={false}
+        />
       </Section>
     </Page>
   );
