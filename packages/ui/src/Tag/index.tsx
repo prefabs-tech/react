@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 import { tagColors } from "./TagColors";
 
@@ -13,38 +13,44 @@ type TagProperties = {
   renderContent?: () => ReactNode;
 } & Omit<React.HTMLAttributes<HTMLSpanElement>, "style" | "class" | "color">;
 
-export const Tag: FC<TagProperties> = ({
-  className = "",
-  color = "default",
-  fullWidth,
-  icon,
-  label,
-  rounded,
-  style,
-  renderContent,
-  ...properties
-}) => {
-  const tagStyle = {
-    ...style,
-    backgroundColor: tagColors[color] || color,
-  };
+export const Tag = forwardRef<HTMLSpanElement, TagProperties>(
+  (
+    {
+      className = "",
+      color = "default",
+      fullWidth,
+      icon,
+      label,
+      rounded,
+      style,
+      renderContent,
+      ...properties
+    },
+    reference,
+  ) => {
+    const tagStyle = {
+      ...style,
+      backgroundColor: tagColors[color] || color,
+    };
 
-  return (
-    <span
-      className={`dz-tag ${className} ${rounded ? "rounded" : ""} ${
-        fullWidth ? "full-width" : ""
-      }`.trimEnd()}
-      style={tagStyle}
-      {...properties}
-    >
-      {renderContent ? (
-        renderContent()
-      ) : (
-        <>
-          {icon && <i className={icon}></i>}
-          {label && label}
-        </>
-      )}
-    </span>
-  );
-};
+    return (
+      <span
+        ref={reference}
+        className={`dz-tag ${className} ${rounded ? "rounded" : ""} ${
+          fullWidth ? "full-width" : ""
+        }`.trimEnd()}
+        style={tagStyle}
+        {...properties}
+      >
+        {renderContent ? (
+          renderContent()
+        ) : (
+          <>
+            {icon && <i className={icon}></i>}
+            {label && label}
+          </>
+        )}
+      </span>
+    );
+  },
+);
