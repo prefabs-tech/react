@@ -11,7 +11,7 @@ type TagProperties = {
   rounded?: boolean;
   style?: React.CSSProperties;
   renderContent?: () => ReactNode;
-};
+} & Omit<React.HTMLAttributes<HTMLSpanElement>, "style" | "class" | "color">;
 
 export const Tag: FC<TagProperties> = ({
   className = "",
@@ -22,6 +22,7 @@ export const Tag: FC<TagProperties> = ({
   rounded,
   style,
   renderContent,
+  ...properties
 }) => {
   const tagStyle = {
     ...style,
@@ -34,6 +35,7 @@ export const Tag: FC<TagProperties> = ({
         fullWidth ? "full-width" : ""
       }`.trimEnd()}
       style={tagStyle}
+      {...properties}
     >
       {renderContent ? (
         renderContent()
