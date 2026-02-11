@@ -52,28 +52,33 @@ export const TypeaheadDemo = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState<any>([]);
+  const [options, setOptions] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [customSuggestions, setCustomSuggestions] = useState<
     Array<CustomSuggestionType>
   >([]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDataFetch = (value: any) => {
     setIsLoading(true);
     fetch(`https://api.escuelajs.co/api/v1/products/?title=${value}`)
       .then(async (response) => {
         const data = await response.json();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setOptions(data.map((item: any) => item.title));
         setIsLoading(false);
       })
       .catch((err) => console.log("err", err)); // eslint-disable-line no-console
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleServerChange = (value: any) => {
     console.log("selected server value:", value); // eslint-disable-line no-console
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDataFilter = (value: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let newSuggestions: any = [];
 
     if (value.length > 0) {
@@ -84,6 +89,7 @@ export const TypeaheadDemo = () => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCustomSuggestionDataFilter = (value: any) => {
     let newSuggestions = [];
 

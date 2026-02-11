@@ -80,6 +80,7 @@ export const TableDemo = () => {
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const inDateRangeFilter: FilterFunction<any> = (
     row,
     columnId,
@@ -103,6 +104,7 @@ export const TableDemo = () => {
     );
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const customEqualStringFilter: FilterFunction<any> = (
     row,
     columnId,

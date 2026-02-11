@@ -15,7 +15,7 @@ import {
   TooltipWrapper,
   TableBody as TTableBody,
 } from "./TableElements";
-import { formatNumber, getAlignValue } from "./utils";
+import { formatNumber, getAlignValue } from "./utilities";
 
 import type { TDataTableProperties } from "./types";
 

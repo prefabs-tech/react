@@ -26,7 +26,7 @@ declare module "@tanstack/react-table" {
     serverFilterFn?: TFilterFn;
   }
 
-  // eslint-disable-next-line unicorn/prevent-abbreviations, @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line unicorn/prevent-abbreviations
   interface ColumnDefBase<TData, TValue> {
     accessorKey?: string;
     align?: CellAlignmentType;
@@ -126,7 +126,7 @@ export interface FilterProperties {
   selectOptions?: TSelectOption[];
   columnFilterValue?: TFilterValue;
   columnType: number | string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   handleChange: ({ value, filterFn }: TFilterValue) => void;
 }
 

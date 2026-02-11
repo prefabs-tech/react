@@ -5,7 +5,6 @@ import { expect, test } from "vitest";
 import { LoginForm } from "../Login";
 
 test("Component matches snapshot", () => {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const { container } = render(<LoginForm handleSubmit={() => {}} />);
 
   expect(container).toMatchSnapshot();

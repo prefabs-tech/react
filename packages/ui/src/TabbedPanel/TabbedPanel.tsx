@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import { getStorage } from "../utils";
-import { getOrientation, onTabDown } from "./utils";
+import { getOrientation, onTabDown } from "./utilities";
 
 import type { Properties } from "./types";
 
