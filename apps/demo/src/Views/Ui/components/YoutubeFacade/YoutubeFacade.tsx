@@ -20,6 +20,7 @@ const YoutubeFacade: React.FC<IProperties> = ({
   const VideoImageLink =
     imageSource || `https://img.youtube.com/vi/${videoToken}/mqdefault.jpg`;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const loadYoutubeVideo = (event: any) => {
     event.preventDefault();
 

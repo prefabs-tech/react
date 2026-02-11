@@ -25,6 +25,7 @@ type Properties = {
 export const FormInputFields = ({ checkFilledState }: Properties) => {
   const [t] = useTranslation("form");
   const [isLoading, setIsLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [options, setOptions] = useState<any>([]);
   const {
     register,
@@ -35,12 +36,14 @@ export const FormInputFields = ({ checkFilledState }: Properties) => {
 
   const [filled, valid, invalid] = watch(["filled", "valid", "invalid"]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDataFetch = (value: any) => {
     setIsLoading(true);
     fetch(`https://api.escuelajs.co/api/v1/products/?title=${value}`)
       .then(async (response) => {
         const data = await response.json();
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setOptions(data.map((item: any) => item));
         setIsLoading(false);
       })

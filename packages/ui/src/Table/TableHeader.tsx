@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "./TableElements";
 import { TableRangeFilter } from "./TableRangeFilter";
-import { getAlignValue } from "./utils";
+import { getAlignValue } from "./utilities";
 
 import type { TDataTableProperties } from "./types";
 

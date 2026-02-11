@@ -1,6 +1,6 @@
 import { describe, expect, test } from "vitest";
 
-import { formatNumber } from "../../utils";
+import { formatNumber } from "../../utilities";
 
 describe("FormatNumber unit test", () => {
   test("Should return a US locale based formatted number", () => {
