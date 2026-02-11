@@ -13,7 +13,9 @@
   "main": "./dist/PrefabsTechReactUser.umd.js",
   "module": "./dist/PrefabsTechReactUser.es.js",
   "types": "./dist/src/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build && tsc --emitDeclarationOnly",
     "lint": "eslint .",
@@ -32,11 +34,11 @@
   },
   "devDependencies": {
     "@prefabs.tech/eslint-config": "0.5.0",
-    "@prefabs.tech/tsconfig": "0.5.0",
     "@prefabs.tech/react-form": "0.71.0",
     "@prefabs.tech/react-i18n": "0.71.0",
     "@prefabs.tech/react-layout": "0.71.0",
     "@prefabs.tech/react-ui": "0.71.0",
+    "@prefabs.tech/tsconfig": "0.5.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.3.0",
     "@testing-library/user-event": "14.6.1",
@@ -55,7 +57,7 @@
     "react-dom": "18.3.1",
     "react-router-dom": "6.28.0",
     "react-toastify": "10.0.6",
-    "typescript": "5.7.3",
+    "typescript": "5.9.3",
     "vite": "6.4.1",
     "vitest": "3.0.8"
   },
