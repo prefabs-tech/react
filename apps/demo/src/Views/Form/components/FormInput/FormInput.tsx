@@ -59,6 +59,7 @@ export const FormInputDemo = () => {
     }),
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (_formData: any) => {
     setFormData(JSON.stringify(_formData, null, 4));
   };

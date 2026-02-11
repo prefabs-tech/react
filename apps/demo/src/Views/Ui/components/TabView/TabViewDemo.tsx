@@ -5,7 +5,7 @@ import { ConfirmationModal } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { addTab } from "./utils";
+import { addTab } from "./utilities";
 import { CodeBlock, Section } from "../../../../components/Demo";
 
 const data = [

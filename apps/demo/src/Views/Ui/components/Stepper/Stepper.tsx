@@ -127,6 +127,7 @@ export const StepperDemo = () => {
           hideButtons={true}
           activeIndex={activeIndex}
           readOnly={true}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onChange={(event: any) => {
             setActiveIndex(event.index);
           }}

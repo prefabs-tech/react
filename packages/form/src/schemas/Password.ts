@@ -37,7 +37,6 @@ const schema = (
     })
     .refine(
       (value): boolean => {
-        // eslint-disable-next-line import/no-named-as-default-member
         return validator.isStrongPassword(
           value,
           _options as StrongPasswordOptions & {
