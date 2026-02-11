@@ -1,6 +1,6 @@
 {
   "name": "@prefabs.tech/react-i18n",
-  "version": "0.71.0",
+  "version": "0.72.0",
   "description": "React I18n Plugin",
   "type": "module",
   "exports": {
@@ -13,9 +13,7 @@
   "main": "./dist/PrefabsTechReactI18n.umd.js",
   "module": "./dist/PrefabsTechReactI18n.es.js",
   "types": "./dist/src/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "vite build && tsc --emitDeclarationOnly",
     "lint": "eslint .",
@@ -30,7 +28,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {
-    "@prefabs.tech/react-ui": "0.71.0",
+    "@prefabs.tech/react-ui": "0.72.0",
     "i18next": "24.2.3",
     "i18next-browser-languagedetector": "8.0.5",
     "i18next-chained-backend": "4.6.2",
@@ -39,7 +37,7 @@
   },
   "devDependencies": {
     "@prefabs.tech/eslint-config": "0.5.0",
-    "@prefabs.tech/react-config": "0.71.0",
+    "@prefabs.tech/react-config": "0.72.0",
     "@prefabs.tech/tsconfig": "0.5.0",
     "@testing-library/react": "16.3.0",
     "@types/jsdom": "21.1.7",
@@ -57,7 +55,7 @@
     "vitest": "3.0.8"
   },
   "peerDependencies": {
-    "@prefabs.tech/react-config": "0.71.0",
+    "@prefabs.tech/react-config": "0.72.0",
     "react": ">=18.2",
     "react-dom": ">=18.2"
   },

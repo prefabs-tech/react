@@ -1,6 +1,6 @@
 {
   "name": "@prefabs.tech/react-user",
-  "version": "0.71.0",
+  "version": "0.72.0",
   "description": "React User Plugin",
   "type": "module",
   "exports": {
@@ -13,9 +13,7 @@
   "main": "./dist/PrefabsTechReactUser.umd.js",
   "module": "./dist/PrefabsTechReactUser.es.js",
   "types": "./dist/src/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "scripts": {
     "build": "vite build && tsc --emitDeclarationOnly",
     "lint": "eslint .",
@@ -34,10 +32,10 @@
   },
   "devDependencies": {
     "@prefabs.tech/eslint-config": "0.5.0",
-    "@prefabs.tech/react-form": "0.71.0",
-    "@prefabs.tech/react-i18n": "0.71.0",
-    "@prefabs.tech/react-layout": "0.71.0",
-    "@prefabs.tech/react-ui": "0.71.0",
+    "@prefabs.tech/react-form": "0.72.0",
+    "@prefabs.tech/react-i18n": "0.72.0",
+    "@prefabs.tech/react-layout": "0.72.0",
+    "@prefabs.tech/react-ui": "0.72.0",
     "@prefabs.tech/tsconfig": "0.5.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/react": "16.3.0",
@@ -62,10 +60,10 @@
     "vitest": "3.0.8"
   },
   "peerDependencies": {
-    "@prefabs.tech/react-form": "0.71.0",
-    "@prefabs.tech/react-i18n": "0.71.0",
-    "@prefabs.tech/react-layout": "0.71.0",
-    "@prefabs.tech/react-ui": "0.71.0",
+    "@prefabs.tech/react-form": "0.72.0",
+    "@prefabs.tech/react-i18n": "0.72.0",
+    "@prefabs.tech/react-layout": "0.72.0",
+    "@prefabs.tech/react-ui": "0.72.0",
     "axios": "1.12.2",
     "primeicons": "7.0.0",
     "react": ">=18.2",
