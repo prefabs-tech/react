@@ -9,8 +9,7 @@ interface SuggestionOption<T> {
 }
 
 interface IProperties<T>
-  extends InputHTMLAttributes<HTMLInputElement>,
-    SuggestionOption<T> {
+  extends InputHTMLAttributes<HTMLInputElement>, SuggestionOption<T> {
   data: T[];
   debounceTime?: number;
   emptyMessage?: string;

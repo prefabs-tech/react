@@ -1,4 +1,4 @@
-import saveAs from "file-saver"; // eslint-disable-line import/no-named-as-default
+import saveAs from "file-saver";
 import { WorkSheetOptions } from "node-xlsx";
 import { useCallback, useState } from "react";
 
@@ -30,7 +30,7 @@ const exportXLSX = async ({
   const buffer = XLSX.build([{ name: sheetName, data, options: sheetOptions }]);
 
   saveAs(
-    new Blob([buffer], {
+    new Blob([buffer as unknown as BlobPart], {
       type: "application/vnd.ms-excel",
     }),
     `${filename}.xlsx`,

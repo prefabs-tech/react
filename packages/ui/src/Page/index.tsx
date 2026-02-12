@@ -3,11 +3,10 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { PageHeader } from "./Header";
 import LoadingPage, { LoadingPageProperties } from "../LoadingPage";
 
-interface PageProperties
-  extends Pick<
-    DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
-    "aria-orientation"
-  > {
+interface PageProperties extends Pick<
+  DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
+  "aria-orientation"
+> {
   breadcrumb?: React.ReactNode;
   children?: React.ReactNode;
   className?: string;

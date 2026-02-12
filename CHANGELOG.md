@@ -1,3 +1,20 @@
+# [0.72.0](https://github.com/prefabs-tech/react/compare/v0.71.0...v0.72.0) (2026-02-11)
+
+
+### Bug Fixes
+
+* **demo:** fix base path issue for react demo app ([#1676](https://github.com/prefabs-tech/react/issues/1676)) ([4b2a8f2](https://github.com/prefabs-tech/react/commit/4b2a8f2cc41fe4c61cd0a4456d64da58f6557517))
+* **demo:** fix spa routing error ([#1681](https://github.com/prefabs-tech/react/issues/1681)) ([7dc44c2](https://github.com/prefabs-tech/react/commit/7dc44c29c679dac33127729def1541c0f1caa71a))
+
+
+### Features
+
+* **eslint:** update eslint to v9 for packages ([#1691](https://github.com/prefabs-tech/react/issues/1691)) ([bbfe602](https://github.com/prefabs-tech/react/commit/bbfe6029a63710e5ee45ed6de7a7568cf7d70899))
+* **ui/country-picker:** add grouping and update demo ([#1671](https://github.com/prefabs-tech/react/issues/1671)) ([f53d35f](https://github.com/prefabs-tech/react/commit/f53d35fae8f2107eff191f6006814d8a71f0ce4b))
+* **ui/tag:** add support to html attributes ([#1693](https://github.com/prefabs-tech/react/issues/1693)) ([06a729f](https://github.com/prefabs-tech/react/commit/06a729fa4989e5327d0848067746d46287b339f0))
+
+
+
 # [0.71.0](https://github.com/prefabs-tech/react/compare/v0.70.0...v0.71.0) (2026-01-14)
 
 

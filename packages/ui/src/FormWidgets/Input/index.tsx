@@ -1,7 +1,6 @@
 import { forwardRef, InputHTMLAttributes } from "react";
 
-export interface IInputProperties
-  extends InputHTMLAttributes<HTMLInputElement> {
+export interface IInputProperties extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   helperText?: string;
   hasError?: boolean;

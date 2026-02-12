@@ -1,8 +1,7 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
-export interface IButtonProperties
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface IButtonProperties extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: string | ReactNode;
   iconLeft?: string | ReactNode;
   iconRight?: string | ReactNode;

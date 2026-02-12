@@ -5,8 +5,7 @@ interface IOption {
   value: string | number;
 }
 
-export interface IRadioInputProperties
-  extends InputHTMLAttributes<HTMLInputElement> {
+export interface IRadioInputProperties extends InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
   errorMessage?: string;
   hasError?: boolean;

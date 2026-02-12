@@ -2,8 +2,10 @@ import React from "react";
 
 import LoadingIcon from "../LoadingIcon";
 
-export interface LoadingPageProperties
-  extends Pick<React.CSSProperties, "fontSize" | "color"> {
+export interface LoadingPageProperties extends Pick<
+  React.CSSProperties,
+  "fontSize" | "color"
+> {
   pageType?: "container" | "overlay";
 }
 

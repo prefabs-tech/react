@@ -2,8 +2,7 @@ import { DialogHTMLAttributes, ReactNode, useEffect, useRef } from "react";
 
 import { Button, IButtonProperties } from "..";
 
-export interface IModalProperties
-  extends DialogHTMLAttributes<HTMLDialogElement> {
+export interface IModalProperties extends DialogHTMLAttributes<HTMLDialogElement> {
   acceptButtonOptions?: IButtonProperties;
   cancelButtonOptions?: IButtonProperties;
   closable?: boolean;

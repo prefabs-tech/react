@@ -1,7 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-export interface ISwitchInputProperties
-  extends InputHTMLAttributes<HTMLInputElement> {
+export interface ISwitchInputProperties extends InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
   errorMessage?: string;
   hasError?: boolean;

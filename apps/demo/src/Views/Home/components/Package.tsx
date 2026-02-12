@@ -14,7 +14,7 @@ export const Package = ({
   const classNames = ["package", className].filter((c) => !!c).join(" ");
 
   return (
-    <div className={classNames} onClick={onClick}>
+    <div className={classNames} role="button" tabIndex={0} onClick={onClick}>
       <h2>{title}</h2>
       <p>{description}</p>
     </div>

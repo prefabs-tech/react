@@ -17,7 +17,6 @@ const schema = (
       message: errorMessages.required,
     })
     .refine(
-      // eslint-disable-next-line import/no-named-as-default-member
       (value) => validator.isEmail(value, options || {}),
 
       errorMessages.invalid,

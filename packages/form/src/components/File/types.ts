@@ -30,8 +30,10 @@ export interface IFileDropzoneBasicProperties {
   onChange: (files: FileExtended[]) => void;
 }
 
-export interface IFileUploadProperties
-  extends Omit<IFileDropzoneBasicProperties, "onChange"> {
+export interface IFileUploadProperties extends Omit<
+  IFileDropzoneBasicProperties,
+  "onChange"
+> {
   actionsAlignment?: "left" | "right";
   cancelButtonOptions?: IButtonProperties;
   onCancel?: () => void;
@@ -46,8 +48,7 @@ export type IFileDropzoneProperties = Omit<
   "value" | "onChange"
 >;
 
-export interface IFileInputBasicProperties
-  extends IFileDropzoneBasicProperties {
+export interface IFileInputBasicProperties extends IFileDropzoneBasicProperties {
   inputButtonLabel?: string;
   inputButtonLabelSelected?: string;
   inputMethod?: FileInputMethod;
@@ -69,15 +70,14 @@ export type IFormFileInputProperties = Omit<
   "value" | "onChange"
 >;
 
-export interface IFileAttachBasicProperties
-  extends Omit<
-    IFileInputBasicProperties,
-    | "inputMethod"
-    | "label"
-    | "dropzoneMessage"
-    | "selectedFileDisplay"
-    | "inputButtonLabel"
-    | "inputButtonLabelSelected"
-  > {
+export interface IFileAttachBasicProperties extends Omit<
+  IFileInputBasicProperties,
+  | "inputMethod"
+  | "label"
+  | "dropzoneMessage"
+  | "selectedFileDisplay"
+  | "inputButtonLabel"
+  | "inputButtonLabelSelected"
+> {
   selectedFileDisplay?: "popup" | "none";
 }

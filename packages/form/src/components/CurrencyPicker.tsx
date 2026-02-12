@@ -10,11 +10,10 @@ interface ValidationMessages {
   minSelection?: string;
 }
 
-interface ICurrencyPickerProperties<T extends string | number>
-  extends Omit<
-    CurrencyPickerProperties<T>,
-    "onChange" | "value" | "hasError" | "errorMessage"
-  > {
+interface ICurrencyPickerProperties<T extends string | number> extends Omit<
+  CurrencyPickerProperties<T>,
+  "onChange" | "value" | "hasError" | "errorMessage"
+> {
   maxSelection?: number;
   minSelection?: number;
   showValidState?: boolean;
