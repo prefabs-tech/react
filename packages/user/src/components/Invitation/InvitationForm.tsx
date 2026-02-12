@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import * as zod from "zod";
 
 import { addInvitation } from "@/api/invitation";
+import { INVITATION_ERROR, SOMETHING_WRONG_ERROR } from "@/constants";
 import { useConfig } from "@/hooks";
 
 import { InvitationFormFields } from "./InvitationFormFields";
@@ -114,29 +115,29 @@ export const InvitationForm = ({
 
   const getErrorMessage = useCallback(() => {
     switch (error) {
-      case "INVALID_EMAIL_ERROR":
-        return t("messages.invite.errors.invalidEmail", errorParameters);
+      case INVITATION_ERROR.INVALID_EMAIL:
+        return t("messages.invite.errors.invalidEmail", {
+          email: errorParameters?.email,
+        });
 
-      case "INVITATION_ALREADY_EXISTS_ERROR":
-        return t(
-          "messages.invite.errors.invitationAlreadyExists",
-          errorParameters,
-        );
+      case INVITATION_ERROR.INVITATION_ALREADY_EXISTS:
+        return t("messages.invite.errors.invitationAlreadyExists");
 
-      case "INVITATION_NOT_FOUND_ERROR":
-        return t("messages.invite.errors.invitationNotFound", errorParameters);
+      case INVITATION_ERROR.ROLE_NOT_FOUND:
+        return t("messages.invite.errors.roleNotFound", {
+          role: errorParameters?.role,
+        });
 
-      case "ROLE_NOT_FOUND_ERROR":
-        return t("messages.invite.errors.roleNotFound", errorParameters);
+      case INVITATION_ERROR.ROLE_NOT_SUPPORTED:
+        return t("messages.invite.errors.roleNotSupported", {
+          app: errorParameters?.app,
+        });
 
-      case "ROLE_NOT_SUPPORTED_ERROR":
-        return t("messages.invite.errors.roleNotSupported", errorParameters);
+      case INVITATION_ERROR.USER_ALREADY_EXISTS:
+        return t("messages.invite.errors.userAlreadyExists", {
+          email: errorParameters?.email,
+        });
 
-      case "USER_ALREADY_EXISTS_ERROR":
-        return t("messages.invite.errors.userAlreadyExists", errorParameters);
-
-      case "SOMETHING_WRONG":
-      case "GENERIC_ERROR":
       default:
         return t("messages.invite.errors.somethingWrong");
     }
@@ -146,16 +147,8 @@ export const InvitationForm = ({
   const onSubmit = (data: any) => {
     setSubmitting(true);
     setError(null);
-    setErrorParameters({});
 
     const invitationData = prepareData ? prepareData(data) : getFormData(data);
-
-    const selectedApp = apps?.find((app) => app.id === data.app);
-    const parameters: Record<string, string | number | undefined> = {
-      email: data.email,
-      role: data.role,
-      app: selectedApp ? selectedApp.name : data.app,
-    };
 
     addInvitation(invitationData, config.apiBaseUrl)
       .then((response) => {
@@ -167,11 +160,18 @@ export const InvitationForm = ({
         }
       })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .catch((err: any) => {
-        const code = err?.response?.data?.code;
+      .catch((error: any) => {
+        const code = error?.response?.data?.code || SOMETHING_WRONG_ERROR;
 
-        setErrorParameters(parameters);
-        setError(code || "SOMETHING_WRONG");
+        const selectedApp = apps?.find((app) => app.id === data.app)?.name;
+
+        setErrorParameters({
+          email: data.email,
+          role: data.role,
+          app: selectedApp || data.app,
+        });
+
+        setError(code);
       })
       .finally(() => {
         setSubmitting(false);
