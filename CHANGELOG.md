@@ -1,3 +1,7 @@
+## [0.72.1](https://github.com/prefabs-tech/react/compare/v0.72.0...v0.72.1) (2026-02-13)
+
+
+
 # [0.72.0](https://github.com/prefabs-tech/react/compare/v0.71.0...v0.72.0) (2026-02-11)
 
 
