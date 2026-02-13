@@ -116,30 +116,30 @@ export const InvitationForm = ({
   const getErrorMessage = useCallback(() => {
     switch (error) {
       case INVITATION_ERROR.INVALID_EMAIL:
-        return t("messages.invite.errors.invalidEmail", {
+        return t("errors.invalidEmail", {
           email: errorParameters?.email,
         });
 
       case INVITATION_ERROR.INVITATION_ALREADY_EXISTS:
-        return t("messages.invite.errors.invitationAlreadyExists");
+        return t("errors.invitationAlreadyExists");
 
       case INVITATION_ERROR.ROLE_NOT_FOUND:
-        return t("messages.invite.errors.roleNotFound", {
+        return t("errors.roleNotFound", {
           role: errorParameters?.role,
         });
 
       case INVITATION_ERROR.ROLE_NOT_SUPPORTED:
-        return t("messages.invite.errors.roleNotSupported", {
+        return t("errors.roleNotSupported", {
           app: errorParameters?.app,
         });
 
       case INVITATION_ERROR.USER_ALREADY_EXISTS:
-        return t("messages.invite.errors.userAlreadyExists", {
+        return t("errors.userAlreadyExists", {
           email: errorParameters?.email,
         });
 
       default:
-        return t("messages.invite.errors.somethingWrong");
+        return t("errors.somethingWrong");
     }
   }, [error, errorParameters, t]);
 
