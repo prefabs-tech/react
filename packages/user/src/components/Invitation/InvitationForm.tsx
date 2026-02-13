@@ -118,28 +118,32 @@ export const InvitationForm = ({
       case INVITATION_ERROR.INVALID_EMAIL:
         return t("errors.invalidEmail", {
           email: errorParameters?.email,
+          ns: "errors",
         });
 
       case INVITATION_ERROR.INVITATION_ALREADY_EXISTS:
-        return t("errors.invitationAlreadyExists");
+        return t("errors.invitationAlreadyExists", { ns: "errors" });
 
       case INVITATION_ERROR.ROLE_NOT_FOUND:
         return t("errors.roleNotFound", {
+          ns: "errors",
           role: errorParameters?.role,
         });
 
       case INVITATION_ERROR.ROLE_NOT_SUPPORTED:
         return t("errors.roleNotSupported", {
           app: errorParameters?.app,
+          ns: "errors",
         });
 
       case INVITATION_ERROR.USER_ALREADY_EXISTS:
         return t("errors.userAlreadyExists", {
           email: errorParameters?.email,
+          ns: "errors",
         });
 
       default:
-        return t("errors.somethingWrong");
+        return t("errors.somethingWrong", { ns: "errors" });
     }
   }, [error, errorParameters, t]);
 

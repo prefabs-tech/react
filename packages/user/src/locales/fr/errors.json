@@ -3,12 +3,12 @@
     "401": "Invalid credentials. Please check your email or password and try again. (fr)",
     "emailAlreadyExists": "This email already exists. Please sign in instead. (fr)",
     "incorrectPassword": "The current password you entered is incorrect. (fr)",
-    "otherErrors": "Oops! Something went wrong (fr).",
-    "invalidEmail": "The provided email {email} is invalid. (fr)",
+    "invalidEmail": "The provided email {{email}} is invalid. (fr)",
     "invitationAlreadyExists": "Invitation already exists for this email. (fr)",
-    "roleNotFound": "Role {role} does not exist. (fr)",
-    "roleNotSupported": "App {app} does not support the role. (fr)",
+    "otherErrors": "Oops! Something went wrong (fr).",
+    "roleNotFound": "Role {{role}} does not exist. (fr)",
+    "roleNotSupported": "App {{app}} does not support the role. (fr)",
     "somethingWrong": "Something went wrong. Please try again. (fr)",
-    "userAlreadyExists": "User with email {email} already exists. (fr)"
+    "userAlreadyExists": "User with email {{email}} already exists. (fr)"
   }
 }
