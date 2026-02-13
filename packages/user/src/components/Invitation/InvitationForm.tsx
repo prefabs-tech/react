@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import * as zod from "zod";
 
 import { addInvitation } from "@/api/invitation";
-import { INVITATION_ERROR, SOMETHING_WRONG_ERROR } from "@/constants";
+import { INVITATION_ERRORS, SOMETHING_WRONG_ERROR } from "@/constants";
 import { useConfig } from "@/hooks";
 
 import { InvitationFormFields } from "./InvitationFormFields";
@@ -115,28 +115,28 @@ export const InvitationForm = ({
 
   const getErrorMessage = useCallback(() => {
     switch (error) {
-      case INVITATION_ERROR.INVALID_EMAIL:
+      case INVITATION_ERRORS.INVALID_EMAIL:
         return t("errors.invalidEmail", {
           email: errorParameters?.email,
           ns: "errors",
         });
 
-      case INVITATION_ERROR.INVITATION_ALREADY_EXISTS:
+      case INVITATION_ERRORS.INVITATION_ALREADY_EXISTS:
         return t("errors.invitationAlreadyExists", { ns: "errors" });
 
-      case INVITATION_ERROR.ROLE_NOT_FOUND:
+      case INVITATION_ERRORS.ROLE_NOT_FOUND:
         return t("errors.roleNotFound", {
           ns: "errors",
           role: errorParameters?.role,
         });
 
-      case INVITATION_ERROR.ROLE_NOT_SUPPORTED:
+      case INVITATION_ERRORS.ROLE_NOT_SUPPORTED:
         return t("errors.roleNotSupported", {
           app: errorParameters?.app,
           ns: "errors",
         });
 
-      case INVITATION_ERROR.USER_ALREADY_EXISTS:
+      case INVITATION_ERRORS.USER_ALREADY_EXISTS:
         return t("errors.userAlreadyExists", {
           email: errorParameters?.email,
           ns: "errors",
