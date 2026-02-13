@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import * as zod from "zod";
 
 import { addInvitation } from "@/api/invitation";
+import { INVITATION_ERRORS, SOMETHING_WRONG_ERROR } from "@/constants";
 import { useConfig } from "@/hooks";
 
 import { InvitationFormFields } from "./InvitationFormFields";
@@ -26,7 +27,7 @@ interface Properties {
   apps?: InvitationAppOption[];
   expiryDateField?: InvitationExpiryDateField;
   onCancel?: () => void;
-  onSubmitted?: (response: AddInvitationResponse) => void; // afterSubmit
+  onSubmitted?: (response: AddInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareData?: (rawFormData: any) => any;
   roles?: InvitationRoleOption[];
@@ -42,11 +43,17 @@ export const InvitationForm = ({
   roles,
 }: Properties) => {
   const { t, i18n } = useTranslation("invitations");
-
   const config = useConfig();
 
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+
+  // Stores the error code string (e.g. "USER_ALREADY_EXISTS_ERROR")
+  const [error, setError] = useState<string | null>(null);
+
+  // Stores dynamic values (email, role, app name) for the translation
+  const [errorParameters, setErrorParameters] = useState<
+    Record<string, string | number | undefined>
+  >({});
 
   const getDefaultValues = useCallback(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,7 +63,6 @@ export const InvitationForm = ({
 
     if (apps?.length === 1) {
       const app = apps[0];
-
       defaultValues.app = app;
       filteredRoles = app.supportedRoles;
     }
@@ -107,27 +113,69 @@ export const InvitationForm = ({
     return parsedData;
   };
 
+  const getErrorMessage = useCallback(() => {
+    switch (error) {
+      case INVITATION_ERRORS.INVALID_EMAIL:
+        return t("errors.invalidEmail", {
+          email: errorParameters?.email,
+          ns: "errors",
+        });
+
+      case INVITATION_ERRORS.INVITATION_ALREADY_EXISTS:
+        return t("errors.invitationAlreadyExists", { ns: "errors" });
+
+      case INVITATION_ERRORS.ROLE_NOT_FOUND:
+        return t("errors.roleNotFound", {
+          ns: "errors",
+          role: errorParameters?.role,
+        });
+
+      case INVITATION_ERRORS.ROLE_NOT_SUPPORTED:
+        return t("errors.roleNotSupported", {
+          app: errorParameters?.app,
+          ns: "errors",
+        });
+
+      case INVITATION_ERRORS.USER_ALREADY_EXISTS:
+        return t("errors.userAlreadyExists", {
+          email: errorParameters?.email,
+          ns: "errors",
+        });
+
+      default:
+        return t("errors.somethingWrong", { ns: "errors" });
+    }
+  }, [error, errorParameters, t]);
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = (data: any) => {
     setSubmitting(true);
+    setError(null);
 
     const invitationData = prepareData ? prepareData(data) : getFormData(data);
 
     addInvitation(invitationData, config.apiBaseUrl)
       .then((response) => {
-        if ("data" in response && response.data.status === "ERROR") {
-          // TODO better handle errors
-          setError(true);
-        } else {
-          toast.success(t("messages.invite.success"));
+        // Success case
+        toast.success(t("messages.invite.success"));
 
-          if (onSubmitted) {
-            onSubmitted(response);
-          }
+        if (onSubmitted) {
+          onSubmitted(response);
         }
       })
-      .catch(() => {
-        setError(true);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .catch((error: any) => {
+        const code = error?.response?.data?.code || SOMETHING_WRONG_ERROR;
+
+        const selectedApp = apps?.find((app) => app.id === data.app)?.name;
+
+        setErrorParameters({
+          email: data.email,
+          role: data.role,
+          app: selectedApp || data.app,
+        });
+
+        setError(code);
       })
       .finally(() => {
         setSubmitting(false);
@@ -180,9 +228,9 @@ export const InvitationForm = ({
     <>
       {error && (
         <Message
-          message={t("messages.invite.error")}
+          message={getErrorMessage()}
           onClose={() => {
-            setError(false);
+            setError(null);
           }}
           severity="danger"
         />
