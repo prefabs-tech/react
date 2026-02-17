@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     build: {
+      cssCodeSplit: true,
       lib: {
         entry: resolve(dirname(fileURLToPath(import.meta.url)), "src/index.ts"),
         fileName: (format) => `PrefabsTechReactUI.${format}.js`,
@@ -23,6 +24,13 @@ export default defineConfig(({ mode }) => {
           ...Object.keys(dependencies),
         ],
         output: {
+          assetFileNames: (assetInfo) => {
+            if (assetInfo.names?.includes("index.css")) {
+              return "react-ui.css";
+            }
+
+            return assetInfo.names?.[0];
+          },
           exports: "named",
           globals: {
             react: "React",

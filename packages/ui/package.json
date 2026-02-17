@@ -8,6 +8,7 @@
       "import": "./dist/PrefabsTechReactUI.es.js",
       "require": "./dist/PrefabsTechReactUI.umd.js"
     },
+    "./dist/PrefabsTechFlagIcon.css": "./dist/flag-icon.css",
     "./dist/PrefabsTechReactUI.css": "./dist/react-ui.css"
   },
   "main": "./dist/PrefabsTechReactUI.umd.js",

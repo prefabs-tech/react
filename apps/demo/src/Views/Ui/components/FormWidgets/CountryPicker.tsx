@@ -14,6 +14,8 @@ import nepaliData from "./np.json";
 import { CodeBlock, Section } from "../../../../components/Demo";
 
 export const CountryPickerDemo = () => {
+  import("@prefabs.tech/react-ui/dist/PrefabsTechFlagIcon.css");
+
   const [t, i18n] = useTranslation("ui");
   const navigate = useNavigate();
   const locale = i18n.language;

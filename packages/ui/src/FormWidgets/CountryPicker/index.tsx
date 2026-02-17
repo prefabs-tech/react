@@ -16,6 +16,8 @@ import type {
 } from "../../types/country-picker";
 import type { GroupedOption as OptionGroup, Option } from "../Select";
 
+import("@dzangolab/flag-icon-css/css/flag-icon.min.css");
+
 const getFavoriteOptions = <T,>(
   favorites: string[],
   locale: string,
