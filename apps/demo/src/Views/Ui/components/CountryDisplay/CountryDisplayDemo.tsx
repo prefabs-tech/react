@@ -9,6 +9,8 @@ import nepaliData from "../FormWidgets/np.json";
 import "../../../../assets/css/country.css";
 
 export const CountryDisplayDemo = () => {
+  import("@prefabs.tech/react-ui/dist/PrefabsTechFlagIcon.css");
+
   const [t] = useTranslation("ui");
   const navigate = useNavigate();
   const selectedLocale = i18n.language;
