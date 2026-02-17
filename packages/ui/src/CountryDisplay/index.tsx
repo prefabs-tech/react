@@ -6,6 +6,8 @@ import type { Locales } from "../types";
 
 import "../assets/css/country-display.css";
 
+import("@dzangolab/flag-icon-css/css/flag-icon.min.css");
+
 interface CountryDisplayProperties {
   className?: string;
   code: string;
