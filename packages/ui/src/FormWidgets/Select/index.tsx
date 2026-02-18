@@ -728,7 +728,7 @@ export const Select = <T extends string | number>({
   return (
     <div ref={selectReference} className={`field ${className}`.trimEnd()}>
       {label &&
-        (!disabled && !disableSearch ? (
+        (!disableSearch && (!selectedOptions.length || showOptions) ? (
           <label htmlFor={name}>{label}</label>
         ) : (
           <span className="label">{label}</span>
