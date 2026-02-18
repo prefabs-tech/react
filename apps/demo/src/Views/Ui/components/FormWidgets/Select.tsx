@@ -368,7 +368,7 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
       <Section title={t("select.usage.disabled")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="disbledSelect"
           options={[{ value: "NP", label: "Nepal" }]}
           value="NP"
           onChange={() => {}}
@@ -390,7 +390,7 @@ const [singleSelectValue, setSingleSelectValue] = useState<string>("");
         <Select
           disableSearch
           label={t("select.label")}
-          name="select"
+          name="disableSearchSelect"
           options={[
             { label: "France", value: "FR" },
             { label: "Germany", value: "DE" },
@@ -426,7 +426,7 @@ const [disableSearchSelectValue, setDisableSearchSelectValue] = useState<string>
       <Section title={t("select.usage.multiple")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="multiselect"
           options={[
             { label: "France", value: "FR" },
             { label: "Germany", value: "DE" },
@@ -464,7 +464,7 @@ const [multiselectValue, setMultiselectValue] = useState<string[]>([]);
       <Section title={t("select.usage.renderValue")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="customRenderSelect"
           options={[
             { label: "France", value: "FR" },
             { label: "Germany", value: "DE" },
@@ -520,7 +520,7 @@ const renderSelectedValue = (
       <Section title={t("select.usage.renderOption")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="customOptionSelect"
           options={[
             { label: "France", value: "FR" },
             { label: "Germany", value: "DE" },
@@ -569,7 +569,7 @@ const renderOption = (option: Option) => {
       <Section title={t("select.usage.key")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="keySelect"
           options={[
             { country: "France", code: "fr" },
             { country: "Germany", code: "de" },
@@ -611,7 +611,7 @@ const [value, setValue] = useState<string>("");
           label={t("select.roleSelectLabel")}
           labelKey="name"
           loading={loading}
-          name="select"
+          name="serverSelect"
           noOptionsMessage={t("select.noRoleOptions")}
           options={rolesOptions}
           serverSearchHelperText={t("select.serverSearchHelper")}
@@ -656,7 +656,7 @@ const fetchRoles = async (searchInput: string) => {
       <Section title={t("select.usage.withTooltip")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="tooltipSelect"
           options={[
             { label: "France", value: "FR" },
             { label: "Germany", value: "DE" },
@@ -706,7 +706,7 @@ const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
       <Section title={t("select.usage.invalid")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="invalidSelect"
           options={[
             { label: "France", value: "FR" },
             { label: "Germany", value: "DE" },
@@ -745,7 +745,7 @@ const [selectedValue, setSelectedValue] = useState<string>("");
       <Section title={t("select.usage.group")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="groupSelect"
           options={[
             {
               label: "Europe",
@@ -806,7 +806,7 @@ const [singleSelectGroupValue, setSingleSelectGroupValue] = useState<string>("")
       <Section title={t("select.usage.groupMultiSelect")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="groupMultiselect"
           options={[
             {
               label: "Europe",
@@ -864,7 +864,7 @@ const [multiSelectGroupValue, setMultiSelectGroupValue] = useState<string[]>([])
       <Section title={t("select.usage.groupMultiSelectDisabled")}>
         <Select
           label={t("select.label")}
-          name="select"
+          name="disabledMultiselect"
           disableGroupSelect={true}
           options={[
             {

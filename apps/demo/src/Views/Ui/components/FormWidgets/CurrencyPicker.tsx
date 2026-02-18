@@ -63,7 +63,7 @@ export const CurrencyPickerDemo = () => {
       <Section title={t("currencyPicker.usage.basic")}>
         <CurrencyPicker
           label={t("currencyPicker.label")}
-          name="currencyPicker"
+          name="currency"
           options={options}
           value={singleSelectCurrencyValue}
           onChange={(value: string) => setSingleSelectCurrencyValue(value)}
@@ -100,7 +100,7 @@ const [singleSelectCurrencyValue, setSingleSelectCurrencyValue] = useState<strin
       <Section title={t("currencyPicker.usage.multiple")}>
         <CurrencyPicker
           label={t("currencyPicker.label")}
-          name="currencyPicker"
+          name="multipleCurrency"
           options={options}
           multiple={true}
           value={multiSelectCurrencyValue}
@@ -133,7 +133,7 @@ const [multiSelectCurrencyValue, setMultiSelectCurrencyValue] = useState<string[
       <Section title={t("currencyPicker.usage.extensiveOptions")}>
         <CurrencyPicker
           label={t("currencyPicker.label")}
-          name="currencyPicker"
+          name="extensiveCurrency"
           options={currencies}
           value={extensiveOptionsCurrencyPickerValue}
           onChange={(value: string) =>

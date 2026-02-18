@@ -691,6 +691,7 @@ export const Select = <T extends string | number>({
             }}
             disabled={disabled}
             defaultValue={searchInput}
+            name={name}
             tabIndex={-1}
           />
         ) : (
@@ -726,7 +727,12 @@ export const Select = <T extends string | number>({
 
   return (
     <div ref={selectReference} className={`field ${className}`.trimEnd()}>
-      {label && <label htmlFor={name}>{label}</label>}
+      {label &&
+        (!disabled && !disableSearch ? (
+          <label htmlFor={name}>{label}</label>
+        ) : (
+          <span className="label">{label}</span>
+        ))}
 
       <div className="select" ref={setReferenceElement}>
         {renderSelect()}

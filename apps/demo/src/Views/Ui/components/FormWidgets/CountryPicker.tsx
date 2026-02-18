@@ -434,7 +434,7 @@ const selectedLocale = i18n.language;
           favorites={["NP", "US", "GB"]}
           label={t("countryPicker.labels.single")}
           locale={locale}
-          name="countryPickerFav"
+          name="favoriteCountry"
           placeholder={t("countryPicker.placeholders.single")}
           value={favoriteValue}
           onChange={(value: string) => setFavoriteValue(value)}
