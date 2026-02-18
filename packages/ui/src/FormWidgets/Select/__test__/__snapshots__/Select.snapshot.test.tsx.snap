@@ -114,9 +114,9 @@ exports[`Select Component > should render correctly with a placeholder 1`] = `
           class="field debounced-input"
         >
           <input
-            class="input-field "
-            id=""
-            name=""
+            class="input-field placeholder-select"
+            id="placeholder-select"
+            name="placeholder-select"
             placeholder="Select a language"
             tabindex="-1"
             type="text"

@@ -60,6 +60,7 @@ export const DebouncedInput = forwardRef<
         type={type}
         value={inputValue}
         ref={reference}
+        name="debounced-input"
         {...inputProperties}
       />
     );
