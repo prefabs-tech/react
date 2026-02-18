@@ -2,7 +2,7 @@
 A set of React libraries to be used in monorepo apps.
 
 ## Demo app
-Please find our [demo app](https://app-5mgwtd.ws0.12deg.io/) for examples.
+Please find our [demo app](https://prefabs-tech.github.io/react/) for examples.
 
 ## Packages
   - @prefabs.tech/react-config (https://www.npmjs.com/package/@prefabs.tech/react-config)
