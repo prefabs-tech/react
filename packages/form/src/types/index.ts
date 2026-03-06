@@ -21,14 +21,12 @@ interface PasswordErrorMessages {
 
 interface CustomInputProperties {
   disabled?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getFieldState?: UseFormGetFieldState<any>;
+  getFieldState?: UseFormGetFieldState<Record<string, unknown>>;
   helperText?: string;
   label?: string | React.ReactNode;
   name: string;
   placeholder?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>;
+  register?: UseFormRegister<Record<string, unknown>>;
   showValidState?: boolean;
   showInvalidState?: boolean;
   submitCount?: number;

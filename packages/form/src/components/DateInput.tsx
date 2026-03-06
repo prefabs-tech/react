@@ -12,10 +12,8 @@ interface IDateInput {
   showInvalidState?: boolean;
   showValidState?: boolean;
   submitCount?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getFieldState?: UseFormGetFieldState<any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>;
+  getFieldState?: UseFormGetFieldState<Record<string, unknown>>;
+  register?: UseFormRegister<Record<string, unknown>>;
 }
 
 // TODO use Input component from @prefabs.tech/react-ui
