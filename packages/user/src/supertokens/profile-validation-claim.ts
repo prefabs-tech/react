@@ -17,10 +17,11 @@ export class ProfileValidationClaim implements SessionClaim<Response> {
     return undefined;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getValueFromPayload(payload: any): Response | undefined {
+  getValueFromPayload(
+    payload: Record<string, Record<string, unknown>>,
+  ): Response | undefined {
     return payload[ProfileValidationClaim.id] !== undefined
-      ? payload[ProfileValidationClaim.id].v
+      ? (payload[ProfileValidationClaim.id]?.v as Response)
       : undefined;
   }
 

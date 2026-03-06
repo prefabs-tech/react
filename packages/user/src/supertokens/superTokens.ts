@@ -1,4 +1,6 @@
 import SuperTokens from "supertokens-web-js";
+import { PreAndPostAPIHookAction } from "supertokens-web-js/lib/build/recipe/emailpassword/types";
+import { CreateRecipeFunction } from "supertokens-web-js/lib/build/types";
 import EmailVerification from "supertokens-web-js/recipe/emailverification";
 import Session from "supertokens-web-js/recipe/session";
 import ThirdPartyEmailPassword from "supertokens-web-js/recipe/thirdpartyemailpassword";
@@ -7,8 +9,7 @@ import { SUPERTOKENS_API_BASE_PATH_DEFAULT } from "@/constants";
 import { UserConfig } from "@/types/config";
 
 export const superTokens = (config: UserConfig) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const recipeLists: Array<any> = [
+  const recipeLists: Array<unknown> = [
     Session.init(config?.supertokens?.sessionConfig),
     ThirdPartyEmailPassword.init(
       config?.supertokens?.thirdPartyEmailPasswordConfig,
@@ -26,6 +27,8 @@ export const superTokens = (config: UserConfig) => {
       apiBasePath:
         config.supertokens.apiBasePath || SUPERTOKENS_API_BASE_PATH_DEFAULT,
     },
-    recipeList: recipeLists,
+    recipeList: recipeLists as Array<
+      CreateRecipeFunction<PreAndPostAPIHookAction>
+    >,
   });
 };

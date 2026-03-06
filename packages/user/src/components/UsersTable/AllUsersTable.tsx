@@ -18,6 +18,7 @@ import type {
   ResendInvitationResponse,
   RevokeInvitationResponse,
   ExtendedUser,
+  InvitationFormInput,
 } from "@/types";
 
 type VisibleColumn =
@@ -44,12 +45,11 @@ export type AllUsersTableProperties = Partial<
   onInvitationAdded?: (response: AddInvitationResponse) => void;
   onInvitationResent?: (data: ResendInvitationResponse) => void;
   onInvitationRevoked?: (data: RevokeInvitationResponse) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onUserDisabled?: (data: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onUserEnabled?: (data: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  prepareInvitationData?: (data: any) => any;
+  onUserDisabled?: (data: ExtendedUser) => void;
+  onUserEnabled?: (data: ExtendedUser) => void;
+  prepareInvitationData?: (
+    data: InvitationFormInput,
+  ) => Record<string, unknown>;
   roles?: Array<InvitationRoleOption>;
   showInviteAction?: boolean;
   showAppColumn?: boolean;

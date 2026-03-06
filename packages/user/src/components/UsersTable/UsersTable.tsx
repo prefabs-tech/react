@@ -22,6 +22,7 @@ import type {
   InvitationRoleOption,
   InvitationExpiryDateField,
   UserType,
+  InvitationFormInput,
 } from "@/types";
 
 type VisibleColumn =
@@ -51,12 +52,11 @@ export type UsersTableProperties = Partial<
   invitationButtonOptions?: IButtonProperties;
   invitationExpiryDateField?: InvitationExpiryDateField;
   onInvitationAdded?: (response: AddInvitationResponse) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onUserEnabled?: (data: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onUserDisabled?: (data: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  prepareInvitationData?: (data: any) => any;
+  onUserEnabled?: (data: unknown) => void;
+  onUserDisabled?: (data: unknown) => void;
+  prepareInvitationData?: (
+    data: InvitationFormInput,
+  ) => Record<string, unknown>;
   roles?: Array<InvitationRoleOption>;
   roleFilterOptions?: FilterOption[];
   showInviteAction?: boolean;
@@ -194,8 +194,7 @@ export const UsersTable = ({
           return true;
         }
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const updatedFilterValue = filterValue.map((value: any) => {
+        const updatedFilterValue = filterValue.map((value: unknown) => {
           switch (value) {
             case "true":
               return true;

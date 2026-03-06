@@ -45,10 +45,14 @@ export const AuthSocialLoginCallback = () => {
 
         navigate(loginPath);
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      if (err.isSuperTokensGeneralError === true) {
-        toast.error(err.message);
+    } catch (error) {
+      const _error = error as {
+        isSuperTokensGeneralError?: boolean;
+        message?: string;
+      };
+
+      if (_error.isSuperTokensGeneralError === true) {
+        toast.error(_error.message);
       } else {
         toast.error(`${t("authSocialLoginCallback.message.error")}`);
       }

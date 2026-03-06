@@ -14,8 +14,7 @@ export interface Invitation {
   expiresAt: number;
   id: number;
   invitedById: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  payload: any;
+  payload: Record<string, unknown>;
   revokedAt: number | null;
   role: string;
   token?: string;
@@ -58,5 +57,6 @@ export type RevokeInvitationResponse = Invitation | ErrorResponse;
 
 export type GetInvitationResponse = Invitation | ErrorResponse;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AcceptInvitationResponse = any | ErrorResponse;
+export type AcceptInvitationResponse =
+  | Record<string, Record<string, unknown>>
+  | ErrorResponse;
