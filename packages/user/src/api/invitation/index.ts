@@ -11,8 +11,7 @@ import { DeleteInvitationResponse } from "@/types/invitation";
 import client from "../axios";
 
 export const addInvitation = async (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  invitationData: any,
+  invitationData: Record<string, unknown>,
   apiBaseUrl: string,
 ): Promise<AddInvitationResponse> => {
   const response = await client(apiBaseUrl).post(

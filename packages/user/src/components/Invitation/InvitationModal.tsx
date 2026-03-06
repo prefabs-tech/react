@@ -10,6 +10,7 @@ import type {
   InvitationAppOption,
   InvitationRoleOption,
   InvitationExpiryDateField,
+  InvitationFormInput,
 } from "@/types";
 
 interface Properties {
@@ -18,8 +19,7 @@ interface Properties {
   expiryDateField?: InvitationExpiryDateField;
   invitationButtonOptions?: IButtonProperties;
   onSubmitted?: (response: AddInvitationResponse) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  prepareData?: (data: any) => any;
+  prepareData?: (data: InvitationFormInput) => Record<string, unknown>;
   roles?: InvitationRoleOption[];
 }
 

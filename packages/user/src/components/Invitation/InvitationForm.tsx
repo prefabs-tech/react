@@ -20,6 +20,7 @@ import type {
   InvitationAppOption,
   InvitationRoleOption,
   InvitationExpiryDateField,
+  InvitationFormInput,
 } from "@/types";
 
 interface Properties {
@@ -28,8 +29,7 @@ interface Properties {
   expiryDateField?: InvitationExpiryDateField;
   onCancel?: () => void;
   onSubmitted?: (response: AddInvitationResponse) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  prepareData?: (rawFormData: any) => any;
+  prepareData?: (rawFormData: InvitationFormInput) => Record<string, unknown>;
   roles?: InvitationRoleOption[];
 }
 
@@ -56,8 +56,7 @@ export const InvitationForm = ({
   >({});
 
   const getDefaultValues = useCallback(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let defaultValues: any = { email: "", role: undefined };
+    let defaultValues: Record<string, unknown> = { email: "", role: undefined };
 
     let filteredRoles = roles;
 
@@ -90,8 +89,7 @@ export const InvitationForm = ({
     expiryDateField?.display,
   ]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const getFormData = (data: any) => {
+  const getFormData = (data: InvitationFormInput) => {
     const parsedData: {
       email: string;
       role: string;
@@ -147,8 +145,7 @@ export const InvitationForm = ({
     }
   }, [error, errorParameters, t]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: InvitationFormInput) => {
     setSubmitting(true);
     setError(null);
 
@@ -163,8 +160,7 @@ export const InvitationForm = ({
           onSubmitted(response);
         }
       })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .catch((error: any) => {
+      .catch((error) => {
         const code = error?.response?.data?.code || SOMETHING_WRONG_ERROR;
 
         const selectedApp = apps?.find((app) => app.id === data.app)?.name;
@@ -182,8 +178,7 @@ export const InvitationForm = ({
       });
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let InvitationFormSchema: Zod.ZodObject<any> = zod.object({
+  let InvitationFormSchema: Zod.AnyZodObject = zod.object({
     email: emailSchema({
       invalid: t("validation.messages.validEmail"),
       required: t("validation.messages.email"),

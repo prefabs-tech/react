@@ -30,6 +30,7 @@ import type {
   RevokeInvitationResponse,
   Invitation,
   UserType,
+  InvitationFormInput,
 } from "../../types";
 
 type VisibleColumn =
@@ -59,8 +60,9 @@ export type InvitationsTableProperties = Partial<
   onInvitationDeleted?: (response: DeleteInvitationResponse) => void;
   onInvitationResent?: (data: ResendInvitationResponse) => void;
   onInvitationRevoked?: (data: RevokeInvitationResponse) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  prepareInvitationData?: (data: any) => any;
+  prepareInvitationData?: (
+    data: InvitationFormInput,
+  ) => Record<string, unknown>;
   roleFilterOptions?: FilterOption[];
   roles?: Array<InvitationRoleOption>;
   showAppColumn?: boolean;

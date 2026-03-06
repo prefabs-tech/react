@@ -40,6 +40,14 @@ export interface InvitationExpiryDateField {
   mode: "calendar" | "input";
 }
 
+export interface InvitationFormInput {
+  email: string;
+  role: string;
+  app?: number;
+  expiresAt?: Date | null;
+  [key: string]: unknown;
+}
+
 export type AddInvitationResponse = Invitation | ErrorResponse;
 
 export type DeleteInvitationResponse = Invitation | ErrorResponse;
