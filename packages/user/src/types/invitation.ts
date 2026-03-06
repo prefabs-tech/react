@@ -14,7 +14,7 @@ export interface Invitation {
   expiresAt: number;
   id: number;
   invitedById: string;
-  payload: Record<string, unknown>;
+  payload: Record<string, unknown> | null;
   revokedAt: number | null;
   role: string;
   token?: string;
