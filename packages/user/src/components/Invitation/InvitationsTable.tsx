@@ -354,11 +354,11 @@ export const InvitationsTable = ({
           {
             label: t("invitations.actions.resend"),
             icon: "pi pi-replay",
-            disabled: (invitation) =>
+            disabled: (invitation: Invitation) =>
               !!invitation.acceptedAt ||
               !!invitation.revokedAt ||
               isExpired(invitation.expiresAt),
-            onClick: (invitation) => handleResendInvitation(invitation),
+            onClick: handleResendInvitation,
             requireConfirmationModal: true,
             confirmationOptions: {
               message: t("confirmation.confirm.resend.message"),
@@ -369,11 +369,11 @@ export const InvitationsTable = ({
             label: t("invitations.actions.revoke"),
             icon: "pi pi-times",
             className: "danger",
-            disabled: (invitation) =>
+            disabled: (invitation: Invitation) =>
               !!invitation.acceptedAt ||
               !!invitation.revokedAt ||
               isExpired(invitation.expiresAt),
-            onClick: (invitation) => handleRevokeInvitation(invitation),
+            onClick: handleRevokeInvitation,
             requireConfirmationModal: true,
             confirmationOptions: {
               message: t("confirmation.confirm.revoke.message"),
@@ -384,7 +384,7 @@ export const InvitationsTable = ({
             label: t("invitations.actions.delete"),
             icon: "pi pi-trash",
             className: "danger",
-            onClick: (invitation) => handleDeleteInvitation(invitation.id),
+            onClick: handleDeleteInvitation,
             requireConfirmationModal: true,
             confirmationOptions: {
               message: t("confirmation.confirm.delete.message"),

@@ -73,7 +73,7 @@ export const TableBody = <TData extends RowData>({
             table.getRowModel().rows.map((row) => (
               <TableRow
                 className={getRowClassName(row)}
-                data-id={(row.original as any).id ?? row.id} // eslint-disable-line @typescript-eslint/no-explicit-any
+                data-id={(row.original as { id: number }).id ?? row.id}
                 key={row.id}
                 {...(enableRowSelection && {
                   "data-selected": row.getIsSelected(),
@@ -102,33 +102,28 @@ export const TableBody = <TData extends RowData>({
                       const getFormattedValue = (): NoInfer<never> => {
                         const defaultCustomFormatters: Record<
                           string,
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          (value: any) => NoInfer<never>
+                          (value: unknown) => NoInfer<never>
                         > = {
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          number: (value: any) =>
+                          number: (value: unknown) =>
                             formatNumber({
                               value: Number(value),
                               locale: numberOptions?.locale ?? locale,
                               formatOptions: numberOptions?.formatOptions,
                             }) as NoInfer<never>,
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          date: (value: any) =>
+                          date: (value: unknown) =>
                             formatDate(
-                              value,
+                              value as string,
                               dateOptions?.locale ?? locale,
                               dateOptions?.formatOptions ?? defaultDateOptions,
                             ) as NoInfer<never>,
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          datetime: (value: any) =>
+                          datetime: (value: unknown) =>
                             formatDateTime(
-                              value,
+                              value as string,
                               dateOptions?.locale ?? locale,
                               dateOptions?.formatOptions ??
                                 defaultDateTimeOptions,
                             ) as NoInfer<never>,
-                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          currency: (value: any) =>
+                          currency: (value: unknown) =>
                             formatNumber({
                               value: Number(value),
                               locale: numberOptions?.locale ?? locale,

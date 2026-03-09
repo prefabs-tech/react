@@ -214,8 +214,7 @@ export interface TDataTableProperties<TData extends RowData> extends Partial<
 > {
   className?: string;
   columnActionBtnLabel?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  customFormatters?: Record<string, (value: any) => string>;
+  customFormatters?: Record<string, (value: unknown) => string>;
   dataActionsMenu?:
     | ((data: TData) => DataActionsMenuProperties<TData>)
     | DataActionsMenuProperties<TData>;

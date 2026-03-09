@@ -109,8 +109,10 @@ export const FileCard = ({
       </div>
     );
   };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const checkUploadedByData = (data: any) => {
+
+  const checkUploadedByData = (data: {
+    uploadedBy: Record<string, string>;
+  }) => {
     if (!data.uploadedBy) {
       return <code>&#8212;</code>;
     }

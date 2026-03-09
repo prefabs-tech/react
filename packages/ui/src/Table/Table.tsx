@@ -317,8 +317,7 @@ const DataTable = <TData extends RowData>({
           if (!filterValue || filterValue.length === 0) {
             return row;
           }
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          return filterValue.some((value: any) =>
+          return filterValue.some((value: unknown) =>
             row.getValue<unknown[]>(columnId)?.includes(value),
           );
         };
