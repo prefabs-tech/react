@@ -42,11 +42,14 @@ export const DropdownMenuDemo = () => {
     },
   ];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const template = (item: any) => {
+  const template = (item: MenuItem) => {
     return (
       <>
-        <i className={item.icon} style={{ marginRight: "0.5rem" }}></i>
+        {typeof item.icon === "string" ? (
+          <i className={item.icon} style={{ marginRight: "0.5rem" }}></i>
+        ) : (
+          item.icon
+        )}
         <span>{item.label}</span>
       </>
     );
