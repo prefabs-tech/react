@@ -80,8 +80,7 @@ export const TableDemo = () => {
     },
   ];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const inDateRangeFilter: FilterFunction<any> = (
+  const inDateRangeFilter: FilterFunction<TData> = (
     row,
     columnId,
     value: [Date, Date],
@@ -104,8 +103,7 @@ export const TableDemo = () => {
     );
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const customEqualStringFilter: FilterFunction<any> = (
+  const customEqualStringFilter: FilterFunction<TData> = (
     row,
     columnId,
     value: string,
@@ -1267,8 +1265,7 @@ export const TableDemo = () => {
                   return true;
                 }
 
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const updatedFilterValue = filterValue.map((value: any) => {
+                const updatedFilterValue = filterValue.map((value: unknown) => {
                   switch (value) {
                     case "true":
                       return true;

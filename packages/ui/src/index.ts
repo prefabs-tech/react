@@ -15,6 +15,7 @@ import Modal from "./Modal";
 import Page, { PageProperties } from "./Page";
 import { FacebookButton, GoogleButton } from "./SSOButtons";
 import { Stepper } from "./Stepper";
+import { IStepEvent } from "./Stepper/Step";
 import { TabbedPanel } from "./TabbedPanel";
 import TabView from "./TabView";
 
@@ -60,4 +61,10 @@ export {
   ConfirmationModal,
 };
 
-export type { DropdownMenuProperties, MenuItem, PageProperties, Tab };
+export type {
+  DropdownMenuProperties,
+  IStepEvent,
+  MenuItem,
+  PageProperties,
+  Tab,
+};

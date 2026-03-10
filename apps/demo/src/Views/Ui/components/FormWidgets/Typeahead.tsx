@@ -53,50 +53,48 @@ export const TypeaheadDemo = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [options, setOptions] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [customSuggestions, setCustomSuggestions] = useState<
     Array<CustomSuggestionType>
   >([]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleDataFetch = (value: any) => {
+  const handleDataFetch = (value: string | number | readonly string[]) => {
     setIsLoading(true);
     fetch(`https://api.escuelajs.co/api/v1/products/?title=${value}`)
       .then(async (response) => {
         const data = await response.json();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        setOptions(data.map((item: any) => item.title));
+        setOptions(data.map((item: Record<string, unknown>) => item.title));
         setIsLoading(false);
       })
       .catch((err) => console.log("err", err)); // eslint-disable-line no-console
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleServerChange = (value: any) => {
+  const handleServerChange = (value: unknown) => {
     console.log("selected server value:", value); // eslint-disable-line no-console
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleDataFilter = (value: any) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let newSuggestions: any = [];
+  const handleDataFilter = (value: string | number | readonly string[]) => {
+    let newSuggestions = [];
 
-    if (value.length > 0) {
+    if (typeof value === "string" && value.length) {
       newSuggestions = items.filter((_value) =>
         _value.toLowerCase().startsWith(value.toLowerCase()),
       );
+
       setSuggestions(newSuggestions);
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleCustomSuggestionDataFilter = (value: any) => {
+  const handleCustomSuggestionDataFilter = (
+    value: string | number | readonly string[],
+  ) => {
     let newSuggestions = [];
 
-    if (value && value.length) {
+    if (typeof value === "string" && value.length) {
       newSuggestions = suggestionItems.filter((_value) =>
         _value.value.toLowerCase().includes(value.toLowerCase()),
       );
+
       setCustomSuggestions(newSuggestions);
     }
   };
