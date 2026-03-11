@@ -1,4 +1,9 @@
-import { DropdownMenu, NavGroup, NavItem } from "@prefabs.tech/react-ui";
+import {
+  DropdownMenu,
+  MenuItem,
+  NavGroup,
+  NavItem,
+} from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -36,11 +41,20 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
   );
 
   const renderContent = () => {
-    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-    const template = (_menuItem: any) => {
+    const template = (_menuItem: MenuItem) => {
+      const icon = _menuItem.icon ? (
+        typeof _menuItem.icon === "string" ? (
+          <i className={_menuItem.icon}></i>
+        ) : (
+          _menuItem.icon
+        )
+      ) : (
+        <></>
+      );
+
       return (
         <span className="dz-user-menu-item">
-          {_menuItem.icon && <i className={_menuItem.icon}></i>}
+          {icon}
           {_menuItem.label}
         </span>
       );

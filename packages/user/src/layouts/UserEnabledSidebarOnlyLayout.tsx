@@ -10,8 +10,7 @@ import type {
 interface Properties extends Omit<SidebarOnlyLayoutProperties, "userMenu"> {
   authNavigationMenu?: UserMenuType;
   userNavigationMenu?: UserMenuType;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onLogout?: () => Promise<any>;
+  onLogout?: () => Promise<unknown>;
 }
 
 export const UserEnabledSidebarOnlyLayout: React.FC<Properties> = ({

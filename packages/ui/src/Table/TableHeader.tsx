@@ -1,4 +1,4 @@
-import { flexRender, RowData, Table } from "@tanstack/react-table";
+import { Column, flexRender, RowData, Table } from "@tanstack/react-table";
 import React, { SyntheticEvent, useCallback, useState } from "react";
 
 import { DebouncedInput, Select } from "@/FormWidgets";
@@ -118,8 +118,7 @@ export const TableHeader = <TData extends RowData>({
       </TableRow>
     ));
 
-  //eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const renderColumnFilter = (column: any) => {
+  const renderColumnFilter = (column: Column<TData>) => {
     if (column.columnDef.customFilterComponent) {
       return column.columnDef.customFilterComponent(column);
     }

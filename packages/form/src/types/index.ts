@@ -21,24 +21,20 @@ interface PasswordErrorMessages {
 
 interface CustomInputProperties {
   disabled?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getFieldState?: UseFormGetFieldState<any>;
+  getFieldState?: UseFormGetFieldState<Record<string, unknown>>;
   helperText?: string;
   label?: string | React.ReactNode;
   name: string;
   placeholder?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>;
+  register?: UseFormRegister<Record<string, unknown>>;
   showValidState?: boolean;
   showInvalidState?: boolean;
   submitCount?: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AdditionalFormSchema = Zod.ZodObject<any>;
+export type AdditionalFormSchema = Zod.ZodObject<Zod.ZodRawShape>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AdditionalDefaultValues = Record<string, any>;
+export type AdditionalDefaultValues = Record<string, unknown>;
 
 export type RenderAdditionalFormFields = (
   formContext: typeof useFormContext,

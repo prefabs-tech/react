@@ -15,9 +15,9 @@ interface IProperties extends IInputProperties {
   showInvalidState?: boolean;
   submitCount?: number;
   /** @deprecated */
-  getFieldState?: UseFormGetFieldState<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  getFieldState?: UseFormGetFieldState<Record<string, unknown>>;
   /** @deprecated */
-  register?: UseFormRegister<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  register?: UseFormRegister<Record<string, unknown>>;
 }
 
 export const Email: React.FC<IProperties> = ({

@@ -84,7 +84,9 @@ export const TableToolbar = <TData extends RowData>({
                   onSort={(sorted) => {
                     table.setColumnOrder([
                       ...(enableRowSelection ? ["select"] : []),
-                      ...sorted.map((item) => item.data.id),
+                      ...sorted.map(
+                        (item) => (item.data as { id: string })?.id,
+                      ),
                       ...(dataActionsMenu ? ["actions"] : []),
                     ]);
                   }}

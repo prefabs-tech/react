@@ -17,8 +17,7 @@ interface Properties {
   authNavigationMenu?: NavMenuItemType;
   addAuthNavigationMenu: boolean;
   userNavigationMenu?: NavMenuItemType;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onLogout?: () => Promise<any>;
+  onLogout?: () => Promise<unknown>;
 }
 
 export const useUserNavigationMenu = ({

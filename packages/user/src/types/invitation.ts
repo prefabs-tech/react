@@ -14,8 +14,7 @@ export interface Invitation {
   expiresAt: number;
   id: number;
   invitedById: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  payload: any;
+  payload: Record<string, unknown> | null;
   revokedAt: number | null;
   role: string;
   token?: string;
@@ -40,6 +39,14 @@ export interface InvitationExpiryDateField {
   mode: "calendar" | "input";
 }
 
+export interface InvitationFormInput {
+  email: string;
+  role: string;
+  app?: number;
+  expiresAt?: Date | null;
+  [key: string]: unknown;
+}
+
 export type AddInvitationResponse = Invitation | ErrorResponse;
 
 export type DeleteInvitationResponse = Invitation | ErrorResponse;
@@ -50,5 +57,6 @@ export type RevokeInvitationResponse = Invitation | ErrorResponse;
 
 export type GetInvitationResponse = Invitation | ErrorResponse;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AcceptInvitationResponse = any | ErrorResponse;
+export type AcceptInvitationResponse =
+  | Record<string, Record<string, unknown>>
+  | ErrorResponse;

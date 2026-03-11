@@ -18,11 +18,9 @@ interface ITextarea extends ITextareaProperties {
   showInvalidState?: boolean;
   submitCount?: number;
   /** @deprecated */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getFieldState?: UseFormGetFieldState<any>;
+  getFieldState?: UseFormGetFieldState<Record<string, unknown>>;
   /** @deprecated */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>;
+  register?: UseFormRegister<Record<string, unknown>>;
 }
 
 export const Textarea: React.FC<ITextarea> = ({

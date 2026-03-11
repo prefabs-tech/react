@@ -11,10 +11,14 @@ export const changeEmail = async (email: string, apiBaseUrl: string) => {
     );
 
     return response.data;
-    /*eslint-disable-next-line @typescript-eslint/no-explicit-any */
-  } catch (err: any) {
-    if (err.response) {
-      const { data } = err.response;
+  } catch (error) {
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      "response" in error &&
+      error.response
+    ) {
+      const { data } = error.response as { data: Record<string, string> };
 
       return { status: data.status, message: data.message };
     }

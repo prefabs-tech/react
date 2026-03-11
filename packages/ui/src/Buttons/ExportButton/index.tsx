@@ -11,8 +11,7 @@ export interface ExportButtonProperties extends ComponentProps<typeof Button> {
   sheetOptions?: WorkSheetOptions;
   onExportStart?: () => void;
   onExportEnd?: () => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getData: () => Array<Array<any>>;
+  getData: () => Array<Array<unknown>>;
 }
 
 export const ExportButton: React.FC<ExportButtonProperties> = ({

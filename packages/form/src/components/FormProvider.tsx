@@ -1,18 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
 import { UseFormProps, useForm, FormProvider } from "react-hook-form";
-import { ZodEffects, ZodObject } from "zod";
+import { AnyZodObject } from "zod";
 
 import { FormSubmitOptions } from "..";
 
 interface IForm extends UseFormProps {
   className?: string;
   children: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validationSchema?: ZodObject<any> | ZodEffects<any>;
+  validationSchema?: AnyZodObject;
   html5Validation?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSubmit: (data: any, options?: FormSubmitOptions) => any;
+  onSubmit: (data: any, options?: FormSubmitOptions) => unknown;
   validationTriggerKey?: string;
 }
 
@@ -30,8 +29,7 @@ export const Provider: React.FC<IForm> = ({
     ...useFormOptions,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleOnSubmit = async (data: any) => {
+  const handleOnSubmit = async (data: Record<string, unknown>) => {
     try {
       const formSubmitOptions = {
         clearErrors: methods.clearErrors,

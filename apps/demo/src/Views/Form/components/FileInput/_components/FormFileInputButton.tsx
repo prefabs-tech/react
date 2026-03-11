@@ -8,8 +8,7 @@ import { UploadBy } from "./FormWithFileInput";
 export const FormWithFileInputButton: React.FC = () => {
   const { t } = useTranslation("files");
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: Record<string, string | Blob>) => {
     const formData = new FormData();
 
     for (const name in values) {

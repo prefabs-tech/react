@@ -5,13 +5,10 @@ import type { FC, ReactNode } from "react";
 export interface SortableListProperties {
   items: {
     id: number;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    data: any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    render?: (data: any) => ReactNode;
+    data: unknown;
+    render?: (data: unknown) => ReactNode;
   }[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSort?: (sortedItems: { id: number; data: any }[]) => void;
+  onSort?: (sortedItems: { id: number; data: unknown }[]) => void;
   itemClassName?: string;
   className?: string;
   grabHandleIcon?: ReactNode;
@@ -87,7 +84,9 @@ export const SortableList: FC<SortableListProperties> = ({
               <i className="pi pi-ellipsis-v" />
             </span>
           )}
-          <div>{item.render ? item.render(item.data) : item.data}</div>
+          <div>
+            {item.render ? item.render(item.data) : (item.data as ReactNode)}
+          </div>
         </li>
       ))}
     </ul>

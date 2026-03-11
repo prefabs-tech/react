@@ -12,8 +12,7 @@ interface IProperties extends Omit<
 > {
   authNavigationMenu?: UserMenuType;
   userNavigationMenu?: UserMenuType;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onLogout?: () => Promise<any>;
+  onLogout?: () => Promise<unknown>;
 }
 
 export const UserEnabledHeaderLayout = ({

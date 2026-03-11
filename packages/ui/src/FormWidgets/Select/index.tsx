@@ -374,7 +374,7 @@ export const Select = <T extends string | number>({
     if (multiple) {
       onChange([]);
     } else {
-      onChange(null as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+      onChange(null as unknown as T);
     }
 
     setSearchInput("");

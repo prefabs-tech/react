@@ -56,8 +56,7 @@ export const SignUpFirstUser = ({
 
         // TODO Sign up first-user should return authenticated user from api
         login(credentials)
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .then((result: any) => {
+          .then((result) => {
             if (result?.user) {
               setUser(result.user);
               toast.success(`${t("login.messages.success")}`);

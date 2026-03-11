@@ -1,17 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { Children, createElement } from "react";
 import { UseFormProps, useForm } from "react-hook-form";
-import { ZodEffects, ZodObject } from "zod";
+import { AnyZodObject } from "zod";
 
 interface IForm extends UseFormProps {
   className?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  children: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validationSchema?: ZodObject<any> | ZodEffects<any>;
+  children: JSX.Element;
+  validationSchema?: AnyZodObject;
   html5Validation?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSubmit: (data: any) => void;
+  onSubmit: (data: Record<string, unknown>) => void;
 }
 
 export const Form: React.FC<IForm> = ({

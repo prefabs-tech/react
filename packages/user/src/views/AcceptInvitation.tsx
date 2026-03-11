@@ -61,23 +61,21 @@ export const AcceptInvitation = ({
       .then((response) => {
         setAcceptInvitationLoading(false);
 
-        if ("data" in response && response.data.status === "ERROR") {
+        if ("data" in response && response.data?.status === "ERROR") {
           // TODO better handle errors
-          toast.error(response.data.message);
+          toast.error(response.data.message as string);
         } else {
           setLoginLoading(true);
 
           // TODO acceptInvitation should return authenticated user from api
           login(credentials)
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .then((result: any) => {
+            .then((result) => {
               if (result?.user) {
                 setUser(result.user);
                 toast.success(`${t("user:login.messages.success")}`);
               }
             })
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .catch((error: any) => {
+            .catch((error) => {
               const errorMessage = t("errors:errors.otherErrors");
 
               if (error.name) {

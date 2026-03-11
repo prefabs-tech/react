@@ -1,5 +1,11 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, Divider, Stepper, Page } from "@prefabs.tech/react-ui";
+import {
+  Button,
+  Divider,
+  Stepper,
+  Page,
+  IStepEvent,
+} from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -127,9 +133,8 @@ export const StepperDemo = () => {
           hideButtons={true}
           activeIndex={activeIndex}
           readOnly={true}
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          onChange={(event: any) => {
-            setActiveIndex(event.index);
+          onChange={(event: IStepEvent) => {
+            event.index && setActiveIndex(event.index);
           }}
           align="start"
         />

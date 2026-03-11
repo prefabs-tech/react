@@ -22,8 +22,7 @@ export interface IFile {
   originalFileName: string;
   description?: string;
   size?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  uploadedBy: any;
+  uploadedBy: Record<string, string>;
   uploadedAt: number;
   downloadCount?: number;
   lastDownloadedAt?: number;
