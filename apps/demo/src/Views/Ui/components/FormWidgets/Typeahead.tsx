@@ -52,7 +52,7 @@ export const TypeaheadDemo = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [customSuggestions, setCustomSuggestions] = useState<
     Array<CustomSuggestionType>
@@ -63,13 +63,14 @@ export const TypeaheadDemo = () => {
     fetch(`https://api.escuelajs.co/api/v1/products/?title=${value}`)
       .then(async (response) => {
         const data = await response.json();
-        setOptions(data.map((item: Record<string, unknown>) => item.title));
+
+        setOptions(data.map((item: { title: string }) => item.title));
         setIsLoading(false);
       })
       .catch((err) => console.log("err", err)); // eslint-disable-line no-console
   };
 
-  const handleServerChange = (value: unknown) => {
+  const handleServerChange = (value?: string) => {
     console.log("selected server value:", value); // eslint-disable-line no-console
   };
 

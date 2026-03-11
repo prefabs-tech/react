@@ -25,7 +25,9 @@ type Properties = {
 export const FormInputFields = ({ checkFilledState }: Properties) => {
   const [t] = useTranslation("form");
   const [isLoading, setIsLoading] = useState(false);
-  const [options, setOptions] = useState<Record<string, unknown>[]>([]);
+  const [options, setOptions] = useState<
+    { title: string; [key: string]: unknown }[]
+  >([]);
   const {
     register,
     getFieldState,
