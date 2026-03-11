@@ -5,6 +5,7 @@ import {
   NoInfer,
   Row,
   RowData,
+  CellContext,
 } from "@tanstack/react-table";
 import React from "react";
 
@@ -65,6 +66,81 @@ export const TableBody = <TData extends RowData>({
     return rowClassName({ row });
   };
 
+  const getFormattedValueContext = (
+    cell: Cell<TData, unknown>,
+  ): CellContext<TData, unknown> => {
+    const cellContext = cell.getContext();
+    const renderValue = cellContext.getValue;
+
+    const dateOptions = cell.column.columnDef.dateOptions;
+    const defaultDateOptions: Intl.DateTimeFormatOptions = {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    };
+    const defaultDateTimeOptions: Intl.DateTimeFormatOptions = {
+      ...defaultDateOptions,
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    };
+
+    const numberOptions = cell.column.columnDef.numberOptions;
+
+    const getFormattedValue = (): NoInfer<never> => {
+      const defaultCustomFormatters: Record<
+        string,
+        (value: unknown) => NoInfer<never>
+      > = {
+        number: (value: unknown) =>
+          formatNumber({
+            value: Number(value),
+            locale: numberOptions?.locale ?? locale,
+            formatOptions: numberOptions?.formatOptions,
+          }) as NoInfer<never>,
+        date: (value: unknown) =>
+          (typeof value === "string" || typeof value === "number"
+            ? formatDate(
+                value,
+                dateOptions?.locale ?? locale,
+                dateOptions?.formatOptions ?? defaultDateOptions,
+              )
+            : null) as NoInfer<never>,
+        datetime: (value: unknown) =>
+          (typeof value === "string" || typeof value === "number"
+            ? formatDateTime(
+                value,
+                dateOptions?.locale ?? locale,
+                dateOptions?.formatOptions ?? defaultDateTimeOptions,
+              )
+            : null) as NoInfer<never>,
+        currency: (value: unknown) =>
+          formatNumber({
+            value: Number(value),
+            locale: numberOptions?.locale ?? locale,
+            formatOptions: {
+              style: "currency",
+              currency: "USD",
+              ...(numberOptions?.formatOptions && numberOptions.formatOptions),
+            },
+          }) as NoInfer<never>,
+        ...customFormatters,
+      };
+
+      const dataType: string = cell.column.columnDef.dataType || "text";
+
+      return (
+        defaultCustomFormatters?.[dataType]?.(renderValue()) || renderValue()
+      );
+    };
+
+    return {
+      ...cellContext,
+      renderValue: () => getFormattedValue(),
+      getValue: () => getFormattedValue(),
+    };
+  };
+
   return (
     <TTableBody>
       {isLoading ? null : (
@@ -80,80 +156,6 @@ export const TableBody = <TData extends RowData>({
                 })}
               >
                 {row.getVisibleCells().map((cell) => {
-                  const getFormattedValueContext: typeof cell.getContext =
-                    () => {
-                      const cellContext = cell.getContext();
-                      const renderValue = cellContext.getValue;
-                      const dateOptions = cell.column.columnDef.dateOptions;
-                      const defaultDateOptions: Intl.DateTimeFormatOptions = {
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                      };
-                      const defaultDateTimeOptions: Intl.DateTimeFormatOptions =
-                        {
-                          ...defaultDateOptions,
-                          hour: "2-digit",
-                          minute: "2-digit",
-                          hour12: false,
-                        };
-                      const numberOptions = cell.column.columnDef.numberOptions;
-
-                      const getFormattedValue = (): NoInfer<never> => {
-                        const defaultCustomFormatters: Record<
-                          string,
-                          (value: unknown) => NoInfer<never>
-                        > = {
-                          number: (value: unknown) =>
-                            formatNumber({
-                              value: Number(value),
-                              locale: numberOptions?.locale ?? locale,
-                              formatOptions: numberOptions?.formatOptions,
-                            }) as NoInfer<never>,
-                          date: (value: unknown) =>
-                            formatDate(
-                              value as string,
-                              dateOptions?.locale ?? locale,
-                              dateOptions?.formatOptions ?? defaultDateOptions,
-                            ) as NoInfer<never>,
-                          datetime: (value: unknown) =>
-                            formatDateTime(
-                              value as string,
-                              dateOptions?.locale ?? locale,
-                              dateOptions?.formatOptions ??
-                                defaultDateTimeOptions,
-                            ) as NoInfer<never>,
-                          currency: (value: unknown) =>
-                            formatNumber({
-                              value: Number(value),
-                              locale: numberOptions?.locale ?? locale,
-                              formatOptions: {
-                                style: "currency",
-                                currency: "USD",
-                                ...(numberOptions?.formatOptions &&
-                                  numberOptions.formatOptions),
-                              },
-                            }) as NoInfer<never>,
-                          ...customFormatters,
-                        };
-
-                        const dataType: string =
-                          cell.column.columnDef.dataType || "text";
-
-                        return (
-                          defaultCustomFormatters?.[dataType]?.(
-                            renderValue(),
-                          ) || renderValue()
-                        );
-                      };
-
-                      return {
-                        ...cellContext,
-                        renderValue: () => getFormattedValue(),
-                        getValue: () => getFormattedValue(),
-                      };
-                    };
-
                   return (
                     <TableCell
                       key={cell.id}
@@ -181,13 +183,13 @@ export const TableBody = <TData extends RowData>({
                           }}
                           cellContent={flexRender(
                             cell.column.columnDef.cell,
-                            getFormattedValueContext(),
+                            getFormattedValueContext(cell),
                           )}
                         ></TooltipWrapper>
                       ) : (
                         flexRender(
                           cell.column.columnDef.cell,
-                          getFormattedValueContext(),
+                          getFormattedValueContext(cell),
                         )
                       )}
                     </TableCell>
