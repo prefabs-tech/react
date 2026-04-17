@@ -4,7 +4,7 @@ on:
     types:
       - closed
 jobs:
-  build:
+  release:
     name: Release
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'releases/v')
@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 24
           registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
       - name: Setup pnpm and install dependencies
         uses: pnpm/action-setup@v4
         with:
@@ -27,7 +28,7 @@ jobs:
               args: [--frozen-lockfile, --strict-peer-dependencies]
       - run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"      
+          git config --global user.name "github-actions[bot]"
       - run: npx shipjs trigger
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
