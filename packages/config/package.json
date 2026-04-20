@@ -20,11 +20,13 @@
     "build": "vite build && tsc --emitDeclarationOnly",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "snapshot:update": "vitest --environment jsdom run --update --passWithNoTests",
     "sort-package": "npx sort-package-json",
     "test": "vitest --environment jsdom run --coverage --passWithNoTests",
     "test:component": "vitest --environment jsdom run component/ --passWithNoTests",
     "test:snapshot": "vitest --environment jsdom run snapshot/ --passWithNoTests",
     "test:unit": "vitest --environment jsdom run unit/ --passWithNoTests",
+    "test:watch": "vitest --environment jsdom",
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "devDependencies": {

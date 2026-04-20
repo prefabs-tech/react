@@ -18,12 +18,13 @@
     "build": "vite build && tsc --emitDeclarationOnly",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "snapshot:update": "vitest --environment jsdom run --update",
+    "snapshot:update": "vitest --environment jsdom run --update --passWithNoTests",
     "sort-package": "npx sort-package-json",
     "test": "pnpm build && vitest --environment jsdom run --coverage",
     "test:component": "vitest --environment jsdom run component/",
     "test:snapshot": "vitest --environment jsdom run snapshot/",
     "test:unit": "vitest --environment jsdom run unit/",
+    "test:watch": "vitest --environment jsdom",
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "dependencies": {
