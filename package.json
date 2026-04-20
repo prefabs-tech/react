@@ -3,11 +3,16 @@
   "version": "0.72.1",
   "scripts": {
     "build": "turbo run build",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix",
-    "prepare": "husky",
+    "prepare": "husky install",
     "sort-package": "npx sort-package-json && turbo run sort-package",
     "test": "turbo run test --parallel",
+    "test:ci": "turbo run test:ci --parallel",
+    "test:integration": "turbo run test:integration --parallel",
+    "test:unit": "turbo run test:unit --parallel",
+    "test:watch": "turbo run test:watch --parallel",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {

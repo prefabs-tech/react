@@ -2,9 +2,9 @@ build:
 	@printf "\033[0;32m>>> Build packages\033[0m\n"
 	pnpm build
 
-demo:
-	@printf "\033[0;32m>>> Running demo-app\033[0m\n"
-	cd apps/demo && make run
+demo: run
+
+dev: run
 
 install:
 	@printf "\033[0;32m>>> Installing dependencies\033[0m\n"
@@ -30,6 +30,10 @@ release:
 	@printf "\033[0;32m>>> Prepare packages for release033[0m\n"
 	npx shipjs prepare
 
+run:
+	@printf "\033[0;32m>>> Run demo app\033[0m\n"
+	pnpm dev
+
 snapshot-update:
 	@printf "\033[0;32m>>> Update snapshot files\033[0m\n"
 	pnpm -r run snapshot:update
@@ -53,6 +57,10 @@ test.integration:
 test.unit:
 	@printf "\033[0;32m>>> Running unit tests\033[0m\n"
 	pnpm test:unit
+
+test.watch:
+	@printf "\033[0;32m>>> Watch running tests\033[0m\n"
+	pnpm test:watch
 
 typecheck:
 	@printf "\033[0;32m>>> Running Type check\033[0m\n"

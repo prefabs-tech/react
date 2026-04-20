@@ -9,7 +9,13 @@
         "dist/**"
       ]
     },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "outputs": []
+    },
     "lint": {
+      "env": ["NODE_ENV", "BASE_URL"],
       "outputs": []
     },
     "lint:fix": {
@@ -37,6 +43,9 @@
       "outputs": []
     },
     "test:unit": {
+      "outputs": []
+    },
+    "test:watch": {
       "outputs": []
     },
     "typecheck": {
