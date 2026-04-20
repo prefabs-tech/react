@@ -11,6 +11,7 @@ export default defineConfig((configEnvironment) =>
       plugins: [react()],
       test: {
         coverage: {
+          provider: "istanbul",
           reporter: ["text", "json", "html"],
         },
         environment: "jsdom",

@@ -9,6 +9,7 @@ export default defineConfig((configEnvironment) =>
     defineConfig({
       test: {
         coverage: {
+          provider: "istanbul",
           reporter: ["text", "json", "html"],
         },
         environment: "jsdom",

@@ -1,8 +1,6 @@
-import { describe } from "node:test";
-
 import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
-import { expect, test, vi, beforeAll } from "vitest";
+import { beforeAll, describe, expect, test, vi } from "vitest";
 
 import { ConfirmationModal } from "..";
 
