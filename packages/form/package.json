@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/PrefabsTechReactForm.es.js",
       "require": "./dist/PrefabsTechReactForm.umd.js"
     },

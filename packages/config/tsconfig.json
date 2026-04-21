@@ -1,10 +1,18 @@
 {
   "extends": "@prefabs.tech/tsconfig/react",
   "compilerOptions": {
-    "outDir": "./dist",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "outDir": "./dist/src",
     "paths": {
       "@/*": ["./src/*"]
-    },
+    }
   },
-  "include": ["vite.config.*", "src/**/*"],
+  "include": [
+    "src/**/*",
+    "src/**/*.tsx"
+  ],
+  "exclude": [
+    "src/**/__test__/**/*"
+  ]
 }

@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/PrefabsTechReactUI.es.js",
       "require": "./dist/PrefabsTechReactUI.umd.js"
     },

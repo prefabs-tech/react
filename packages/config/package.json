@@ -6,6 +6,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/PrefabsTechReactConfig.es.js",
       "require": "./dist/PrefabsTechReactConfig.umd.js"
     }

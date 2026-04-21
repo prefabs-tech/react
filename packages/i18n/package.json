@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/PrefabsTechReactI18n.es.js",
       "require": "./dist/PrefabsTechReactI18n.umd.js"
     },
