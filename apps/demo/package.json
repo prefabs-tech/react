@@ -5,7 +5,7 @@
   "homepage": "https://prefabs-tech.github.io/react",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc --composite false && vite build",
     "dev": "vite",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
