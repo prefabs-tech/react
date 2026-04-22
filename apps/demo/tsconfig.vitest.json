@@ -2,8 +2,12 @@
   "extends": "./tsconfig.json",
   "exclude": [],
   "compilerOptions": {
-    "composite": true,
-    "lib": [],
-    "types": ["node", "jsdom", "vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "types": ["node", "vitest/globals"],
   }
 }
