@@ -1,6 +1,7 @@
 {
   "extends": "@prefabs.tech/tsconfig/react",
   "compilerOptions": {
+    "moduleResolution": "bundler",
     "outDir": "./dist",
     "paths": {
       "@/*": ["./src/*"]
