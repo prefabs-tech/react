@@ -5,7 +5,7 @@
   "homepage": "https://prefabs-tech.github.io/react",
   "type": "module",
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc --composite false && vite build",
     "dev": "vite",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -23,6 +23,7 @@
     "@prefabs.tech/react-layout": "0.72.1",
     "@prefabs.tech/react-ui": "0.72.1",
     "@prefabs.tech/react-user": "0.72.1",
+    "@prefabs.tech/tsconfig": "0.6.0",
     "@reduxjs/toolkit": "1.9.7",
     "normalize.css": "8.0.1",
     "primeicons": "7.0.0",
