@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/src/index.d.ts",
       "import": "./dist/PrefabsTechReactUI.es.js",
       "require": "./dist/PrefabsTechReactUI.umd.js"
     },
@@ -41,29 +42,29 @@
   "devDependencies": {
     "@dzangolab/flag-icon-css": "3.4.5",
     "@prefabs.tech/eslint-config": "0.5.0",
-    "@prefabs.tech/tsconfig": "git+https://github.com/prefabs-tech/tools.git#refactor/tsconfig&path:packages/tsconfig",
-    "@testing-library/jest-dom": "6.6.3",
-    "@testing-library/react": "16.3.0",
+    "@prefabs.tech/tsconfig": "0.6.0",
+    "@testing-library/jest-dom": "6.6.4",
+    "@testing-library/react": "16.3.2",
     "@types/file-saver": "2.0.7",
     "@types/jsdom": "21.1.7",
-    "@types/node": "24.10.1",
-    "@types/react": "18.3.20",
-    "@types/react-dom": "18.3.6",
-    "@vitejs/plugin-react": "4.4.1",
-    "@vitest/coverage-v8": "3.0.8",
-    "eslint": "9.39.2",
-    "jsdom": "25.0.1",
-    "prettier": "3.8.1",
-    "primereact": "9.6.1",
+    "@types/node": "25.3.5",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "5.1.4",
+    "@vitest/coverage-v8": "3.0.9",
+    "eslint": "9.39.4",
+    "jsdom": "27.0.1",
+    "prettier": "3.8.3",
+    "primereact": "9.6.5",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-router-dom": "6.28.0",
+    "react-router-dom": "6.28.2",
     "typescript": "5.9.3",
-    "vite": "6.4.1",
-    "vitest": "3.0.8"
+    "vite": "7.3.2",
+    "vitest": "3.0.9"
   },
   "peerDependencies": {
-    "primereact": "9.6.1",
+    "primereact": "9.6.5",
     "react": ">=18.2",
     "react-dom": ">=18.2",
     "react-router-dom": ">=6.9"
