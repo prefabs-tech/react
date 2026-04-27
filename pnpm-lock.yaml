@@ -151,8 +151,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0(@typescript-eslint/parser@8.54.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3))(eslint@9.39.4(jiti@2.4.2))(prettier@3.8.3)(typescript@5.9.3)
       '@prefabs.tech/tsconfig':
-        specifier: git+https://github.com/prefabs-tech/tools.git#refactor/tsconfig&path:packages/tsconfig
-        version: https://codeload.github.com/prefabs-tech/tools/tar.gz/2794762828d2eb539f7635bef34da7ccda9c0b52#path:packages/tsconfig
+        specifier: 0.6.0
+        version: 0.6.0
       '@types/jsdom':
         specifier: 21.1.7
         version: 21.1.7
@@ -1458,10 +1458,6 @@ packages:
 
   '@prefabs.tech/tsconfig@0.6.0':
     resolution: {integrity: sha512-CuXKJujWd6S/Jqci04Nk7fVA0j66v9A8uGQTscTMrTRGHcfLNSmNkvvmqZG9jEvSahmXmrlJbmyTcwEwXrSBew==}
-
-  '@prefabs.tech/tsconfig@https://codeload.github.com/prefabs-tech/tools/tar.gz/2794762828d2eb539f7635bef34da7ccda9c0b52#path:packages/tsconfig':
-    resolution: {path: packages/tsconfig, tarball: https://codeload.github.com/prefabs-tech/tools/tar.gz/2794762828d2eb539f7635bef34da7ccda9c0b52}
-    version: 0.5.0
 
   '@reduxjs/toolkit@1.9.7':
     resolution: {integrity: sha512-t7v8ZPxhhKgOKtU+uyJT13lu4vL7az5aFi4IdoDs/eS548edn2M8Ik9h8fxgvMjGoAUVFSt6ZC1P5cWmQ014QQ==}
@@ -6115,8 +6111,6 @@ snapshots:
       - supports-color
 
   '@prefabs.tech/tsconfig@0.6.0': {}
-
-  '@prefabs.tech/tsconfig@https://codeload.github.com/prefabs-tech/tools/tar.gz/2794762828d2eb539f7635bef34da7ccda9c0b52#path:packages/tsconfig': {}
 
   '@reduxjs/toolkit@1.9.7(react-redux@8.1.3(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(redux@4.2.1))(react@18.3.1)':
     dependencies:
