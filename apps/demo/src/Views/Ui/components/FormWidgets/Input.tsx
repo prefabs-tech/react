@@ -13,22 +13,22 @@ export const InputDemo = () => {
       title={t("input.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section title={t("input.usage.basic")}>
-        <Input placeholder="Input placeholder" label="Input label" />
+        <Input label="Input label" placeholder="Input placeholder" />
       </Section>
       <Section title={t("input.usage.invalidInput")}>
         <Input
-          hasError={true}
           errorMessage="Invalid input"
-          placeholder="Input placeholder"
+          hasError={true}
           label="Input label"
+          placeholder="Input placeholder"
         />
       </Section>
     </Page>

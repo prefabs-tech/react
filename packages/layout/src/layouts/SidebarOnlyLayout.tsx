@@ -1,32 +1,32 @@
+import type { NavMenuType } from "@prefabs.tech/react-ui";
+
 import { Layout, Sidebar } from "@/components/Layout";
 import { UserMenuModeType, UserMenuType } from "@/types";
 
-import type { NavMenuType } from "@prefabs.tech/react-ui";
-
 export interface SidebarOnlyLayoutProperties {
-  className?: string;
   children: React.ReactNode;
+  className?: string;
   collapsible?: boolean;
+  customSidebar?: React.ReactNode;
   displayNavIcons?: boolean;
   navigationMenu?: NavMenuType;
-  customSidebar?: React.ReactNode;
   noLocaleSwitcher?: boolean;
-  noSidebarHeader?: boolean;
   noSidebarFooter?: boolean;
+  noSidebarHeader?: boolean;
   userMenu?: UserMenuType;
   userMenuMode?: UserMenuModeType;
 }
 
 export const SidebarOnlyLayout: React.FC<SidebarOnlyLayoutProperties> = ({
-  className,
   children,
+  className,
   collapsible,
+  customSidebar,
   displayNavIcons,
   navigationMenu,
-  customSidebar,
   noLocaleSwitcher,
-  noSidebarHeader,
   noSidebarFooter,
+  noSidebarHeader,
   userMenu,
   userMenuMode,
 }) => {
@@ -37,8 +37,8 @@ export const SidebarOnlyLayout: React.FC<SidebarOnlyLayoutProperties> = ({
           collapsible={collapsible}
           displayNavIcons={displayNavIcons}
           navigationMenu={navigationMenu}
-          noHeader={noSidebarHeader}
           noFooter={noSidebarFooter}
+          noHeader={noSidebarHeader}
           noLocaleSwitcher={noLocaleSwitcher}
           userMenu={userMenu}
           userMenuMode={userMenuMode}

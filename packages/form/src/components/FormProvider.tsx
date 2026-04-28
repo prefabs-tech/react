@@ -1,27 +1,27 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useEffect } from "react";
-import { UseFormProps, useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm, UseFormProps } from "react-hook-form";
 import { ZodEffects, ZodObject } from "zod";
 
 import { FormSubmitOptions } from "..";
 
 interface IForm extends UseFormProps {
-  className?: string;
   children: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validationSchema?: ZodObject<any> | ZodEffects<any>;
+  className?: string;
   html5Validation?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit: (data: any, options?: FormSubmitOptions) => any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  validationSchema?: ZodEffects<any> | ZodObject<any>;
   validationTriggerKey?: string;
 }
 
 export const Provider: React.FC<IForm> = ({
-  className = "",
   children,
+  className = "",
+  html5Validation = false,
   onSubmit,
   validationSchema,
-  html5Validation = false,
   validationTriggerKey,
   ...useFormOptions
 }) => {
@@ -42,7 +42,7 @@ export const Provider: React.FC<IForm> = ({
 
       await onSubmit(data, formSubmitOptions);
     } catch (error) {
-      const { name, message } = error as Error;
+      const { message, name } = error as Error;
 
       methods.setError(name, { message });
     }
@@ -62,8 +62,8 @@ export const Provider: React.FC<IForm> = ({
     <FormProvider {...methods}>
       <form
         className={className}
-        onSubmit={methods.handleSubmit(handleOnSubmit)}
         noValidate={!html5Validation} // enable/disable default html5 validations
+        onSubmit={methods.handleSubmit(handleOnSubmit)}
       >
         {children}
       </form>

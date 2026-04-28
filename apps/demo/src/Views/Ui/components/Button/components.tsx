@@ -70,14 +70,14 @@ const Size = ({
 
   return (
     <div className="container">
-      <Button label="Small" size="small" variant="filled" severity="primary" />
+      <Button label="Small" severity="primary" size="small" variant="filled" />
       <Button
         label="Medium"
+        severity="primary"
         size="medium"
         variant="filled"
-        severity="primary"
       />
-      <Button label="Large" size="large" variant="filled" severity="primary" />
+      <Button label="Large" severity="primary" size="large" variant="filled" />
     </div>
   );
 };
@@ -136,66 +136,66 @@ const Icons = ({
     <>
       <div className="container">
         <Button
-          size="small"
+          iconLeft="pi pi-user"
           label="Text only"
-          iconLeft="pi pi-user"
-          variant="textOnly"
-        />
-        <Button
-          size="medium"
-          label="Outlined"
-          iconLeft="pi pi-user"
-          variant="outlined"
-        />
-        <Button label="Default" iconLeft="pi pi-user" size="large" />
-      </div>
-      <div className="container">
-        <Button
-          label="Text only"
-          iconLeft="pi pi-user"
           size="small"
           variant="textOnly"
-          rounded
         />
         <Button
-          label="Outlined"
           iconLeft="pi pi-user"
+          label="Outlined"
           size="medium"
           variant="outlined"
-          rounded
         />
-        <Button label="Default" rounded iconLeft="pi pi-user" size="large" />
+        <Button iconLeft="pi pi-user" label="Default" size="large" />
       </div>
       <div className="container">
         <Button
+          iconLeft="pi pi-user"
+          label="Text only"
+          rounded
           size="small"
           variant="textOnly"
-          severity="secondary"
-          iconLeft="pi pi-user"
         />
-        <Button size="medium" variant="filled" iconRight="pi pi-user" />
         <Button
+          iconLeft="pi pi-user"
+          label="Outlined"
+          rounded
+          size="medium"
+          variant="outlined"
+        />
+        <Button iconLeft="pi pi-user" label="Default" rounded size="large" />
+      </div>
+      <div className="container">
+        <Button
+          iconLeft="pi pi-user"
+          severity="secondary"
+          size="small"
+          variant="textOnly"
+        />
+        <Button iconRight="pi pi-user" size="medium" variant="filled" />
+        <Button
+          iconLeft="pi pi-user"
+          severity="secondary"
           size="large"
           variant="outlined"
-          severity="secondary"
-          iconLeft="pi pi-user"
         />
       </div>
       <div className="container">
         <Button
+          iconLeft="pi pi-user"
+          rounded
+          severity="secondary"
           size="small"
           variant="textOnly"
-          severity="secondary"
+        />
+        <Button iconRight="pi pi-user" rounded size="medium" variant="filled" />
+        <Button
           iconLeft="pi pi-user"
           rounded
-        />
-        <Button size="medium" variant="filled" iconRight="pi pi-user" rounded />
-        <Button
+          severity="secondary"
           size="large"
           variant="outlined"
-          severity="secondary"
-          rounded
-          iconLeft="pi pi-user"
         />
       </div>
     </>
@@ -222,4 +222,4 @@ const Link = ({
   );
 };
 
-export { Basic, Severity, Size, Variant, Icons, Link };
+export { Basic, Icons, Link, Severity, Size, Variant };

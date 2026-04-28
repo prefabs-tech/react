@@ -35,7 +35,7 @@
     "zod": "3.24.4"
   },
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "0.5.0",
+    "@prefabs.tech/eslint-config": "git+https://github.com/prefabs-tech/tools.git#refactor/eslint-config&path:packages/eslint-config",
     "@prefabs.tech/react-form": "0.72.1",
     "@prefabs.tech/react-i18n": "0.72.1",
     "@prefabs.tech/react-layout": "0.72.1",

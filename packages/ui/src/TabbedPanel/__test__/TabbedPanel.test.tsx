@@ -6,21 +6,21 @@ import { SubPane } from "../../components/SubPane";
 import TabbedPanel from "../TabbedPanel";
 
 const values = {
-  titleOne: "Topic 1",
   bodyOne: "Pane 1 content",
-  iconOne: "icon1.jpg",
-  titleTwo: "Topic 2",
   bodyTwo: "Pane 2 content",
+  iconOne: "icon1.jpg",
   iconTwo: "icon2.jpg",
+  titleOne: "Topic 1",
+  titleTwo: "Topic 2",
 };
 
 test("tabs are rendered", async () => {
   render(
     <TabbedPanel>
-      <SubPane title={values.titleOne} icon={values.iconOne}>
+      <SubPane icon={values.iconOne} title={values.titleOne}>
         <p>{values.bodyOne}</p>
       </SubPane>
-      <SubPane title={values.titleTwo} icon={values.iconTwo}>
+      <SubPane icon={values.iconTwo} title={values.titleTwo}>
         <p>{values.bodyTwo}</p>
       </SubPane>
     </TabbedPanel>,
@@ -33,10 +33,10 @@ test("tabs are rendered", async () => {
 test("correct tab is rendered", async () => {
   render(
     <TabbedPanel>
-      <SubPane title={values.titleOne} icon={values.iconOne}>
+      <SubPane icon={values.iconOne} title={values.titleOne}>
         <p>{values.bodyOne}</p>
       </SubPane>
-      <SubPane title={values.titleTwo} icon={values.iconTwo}>
+      <SubPane icon={values.iconTwo} title={values.titleTwo}>
         <p>{values.bodyTwo}</p>
       </SubPane>
     </TabbedPanel>,

@@ -40,7 +40,7 @@
     "zod": "3.24.4"
   },
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "0.5.0",
+    "@prefabs.tech/eslint-config": "git+https://github.com/prefabs-tech/tools.git#refactor/eslint-config&path:packages/eslint-config",
     "@prefabs.tech/react-ui": "0.72.1",
     "@prefabs.tech/tsconfig": "0.6.0",
     "@testing-library/react": "16.3.2",

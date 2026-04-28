@@ -14,64 +14,64 @@ import { CodeBlock, Section } from "../../../components/Demo";
 
 const PROPERTIES_DATA = [
   {
+    default: "true",
+    description: "Enables or disables the editing functionality.",
     id: 1,
     prop: "allowEdit",
     type: "boolean",
-    default: "true",
-    description: "Enables or disables the editing functionality.",
   },
   {
-    id: 2,
-    prop: "onChange",
-    type: "(event: ChangeEvent<HTMLInputElement>) => void",
     default: "undefined",
     description:
       "Callback function triggered when the title input changes i.e `onchange` event.",
+    id: 2,
+    prop: "onChange",
+    type: "(event: ChangeEvent<HTMLInputElement>) => void",
   },
   {
-    id: 3,
-    prop: "handleUpdate",
-    type: "(title: string) => void",
     default: "undefined",
     description:
       "Callback function triggered when the title is updated after leaving the input field i.e `onblur` event.",
+    id: 3,
+    prop: "handleUpdate",
+    type: "(title: string) => void",
   },
   {
+    default: "undefined",
+    description: "Placeholder text for the input field when in edit mode.",
     id: 4,
     prop: "placeholder",
     type: "string",
-    default: "undefined",
-    description: "Placeholder text for the input field when in edit mode.",
   },
   {
+    default: "undefined",
+    description: "The initial title to display.",
     id: 5,
     prop: "title",
     type: "string",
-    default: "undefined",
-    description: "The initial title to display.",
   },
   {
+    default: '"h1"',
+    description: "Specifies the HTML heading level for the displayed title.",
     id: 6,
     prop: "titleLevel",
     type: '"h1" | "h2" | "h3" | "h4" | "h5" | "h6"',
-    default: '"h1"',
-    description: "Specifies the HTML heading level for the displayed title.",
   },
   {
-    id: 7,
-    prop: "toggler",
-    type: "JSX.Element",
     default: "<Button />",
     description:
       "A custom toggle button element that activates edit mode. If not provided, a default button will be rendered.",
+    id: 7,
+    prop: "toggler",
+    type: "JSX.Element",
   },
   {
-    id: 8,
-    prop: "showToggler",
-    type: "boolean",
     default: "true",
     description:
       "Display toggle button to toggle between editing and display mode. Otherwise, title itself will handle the functionality on `click event`",
+    id: 8,
+    prop: "showToggler",
+    type: "boolean",
   },
 ];
 
@@ -92,14 +92,14 @@ export const EditableTitleDemo = () => {
 
   return (
     <Page
-      title={t("editableTitle.title")}
       subtitle={t("editableTitle.subtitle")}
+      title={t("editableTitle.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -139,9 +139,9 @@ export const EditableTitleDemo = () => {
         <Card className="editable-title" outlined>
           <CardBody>
             <EditableTitle
+              handleUpdate={handleTitleUpdate}
               title={"Hello"}
               titleLevel="h3"
-              handleUpdate={handleTitleUpdate}
             />
           </CardBody>
         </Card>
@@ -153,9 +153,9 @@ export const EditableTitleDemo = () => {
         <Card className="editable-title" outlined>
           <CardBody>
             <EditableTitle
+              onChange={handleTitleChange}
               title={"Hello"}
               titleLevel="h3"
-              onChange={handleTitleChange}
             />
             {value ? <CodeBlock exampleCode={value} /> : null}
           </CardBody>
@@ -167,7 +167,7 @@ export const EditableTitleDemo = () => {
         <p>{t("editableTitle.usage.disabled.description")}</p>
         <Card className="editable-title" outlined>
           <CardBody>
-            <EditableTitle title={"Hello"} titleLevel="h3" allowEdit={false} />
+            <EditableTitle allowEdit={false} title={"Hello"} titleLevel="h3" />
           </CardBody>
         </Card>
         <CodeBlock exampleCode="<EditableTitle title={'Hello'} titleLevel='h3' allowEdit={false} />" />

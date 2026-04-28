@@ -6,21 +6,21 @@ import { SubPane } from "../../components/SubPane";
 import Accordion from "../Accordion";
 
 const accordionValues = {
-  activeIcon: "pi pi-chevron-up",
-  inactiveIcon: "pi pi-chevron-down",
   accordionId1: "test-accordion-1",
   accordionId2: "test-accordion-2",
+  activeIcon: "pi pi-chevron-up",
+  inactiveIcon: "pi pi-chevron-down",
 };
 
 const paneValues = {
   pane1: {
-    icon: "pi pi-home",
     content: "Pane 1 content",
+    icon: "pi pi-home",
     title: "Topic 1",
   },
   pane2: {
-    icon: "pi pi-list",
     content: "Pane 2 content",
+    icon: "pi pi-list",
     title: "Topic 2",
   },
 };
@@ -31,10 +31,10 @@ test("no subpane is active when defaultActiveKey prop is not passed", async () =
       activeIcon={accordionValues.activeIcon}
       inactiveIcon={accordionValues.inactiveIcon}
     >
-      <SubPane title={paneValues.pane1.title} icon={paneValues.pane1.icon}>
+      <SubPane icon={paneValues.pane1.icon} title={paneValues.pane1.title}>
         <p>{paneValues.pane1.content}</p>
       </SubPane>
-      <SubPane title={paneValues.pane2.title} icon={paneValues.pane2.icon}>
+      <SubPane icon={paneValues.pane2.icon} title={paneValues.pane2.title}>
         <p>{paneValues.pane2.content}</p>
       </SubPane>
     </Accordion>,
@@ -51,14 +51,14 @@ test("no subpane is active when defaultActiveKey prop is not passed", async () =
 test("correct subpane is active", async () => {
   render(
     <Accordion
-      defaultActiveIndex={1}
       activeIcon={accordionValues.activeIcon}
+      defaultActiveIndex={1}
       inactiveIcon={accordionValues.inactiveIcon}
     >
-      <SubPane title={paneValues.pane1.title} icon={paneValues.pane1.icon}>
+      <SubPane icon={paneValues.pane1.icon} title={paneValues.pane1.title}>
         <p>{paneValues.pane1.content}</p>
       </SubPane>
-      <SubPane title={paneValues.pane2.title} icon={paneValues.pane2.icon}>
+      <SubPane icon={paneValues.pane2.icon} title={paneValues.pane2.title}>
         <p>{paneValues.pane2.content}</p>
       </SubPane>
     </Accordion>,

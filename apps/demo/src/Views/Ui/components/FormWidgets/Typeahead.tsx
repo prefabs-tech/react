@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { Section } from "../../../../components/Demo";
 
 type CustomSuggestionType = {
-  value: string;
   label: string;
+  value: string;
 };
 
 const items: string[] = [
@@ -25,25 +25,25 @@ const items: string[] = [
 
 const suggestionItems = [
   {
-    value: "Roslabel",
     label: "A fragrant flower often associated with romance",
+    value: "Roslabel",
   },
-  { value: "Tulip", label: "A bright, cup-shaped flower popular in spring" },
-  { value: "Daisy", label: "A simple, white flower with a yellow center" },
+  { label: "A bright, cup-shaped flower popular in spring", value: "Tulip" },
+  { label: "A simple, white flower with a yellow center", value: "Daisy" },
   {
-    value: "Sunflower",
     label: "A tall plant with a large, yellow flower head",
+    value: "Sunflower",
   },
-  { value: "Lily", label: "An elegant flower often used in bouquets" },
-  { value: "Orchid", label: "An exotic flower with a unique shape" },
-  { value: "Marigold", label: "A vibrant, orange or yellow flower" },
-  { value: "Lavender", label: "A fragrant flower known for its calming scent" },
-  { value: "Peony", label: "A lush, full flower often used in weddings" },
-  { value: "Chrysanthemum", label: "A hardy flower with a variety of colors" },
-  { value: "Daffodil", label: "A bright, yellow flower that blooms in spring" },
+  { label: "An elegant flower often used in bouquets", value: "Lily" },
+  { label: "An exotic flower with a unique shape", value: "Orchid" },
+  { label: "A vibrant, orange or yellow flower", value: "Marigold" },
+  { label: "A fragrant flower known for its calming scent", value: "Lavender" },
+  { label: "A lush, full flower often used in weddings", value: "Peony" },
+  { label: "A hardy flower with a variety of colors", value: "Chrysanthemum" },
+  { label: "A bright, yellow flower that blooms in spring", value: "Daffodil" },
   {
-    value: "Hydrangea",
     label: "A large, cluster-like flower that changes color",
+    value: "Hydrangea",
   },
 ];
 
@@ -115,66 +115,66 @@ export const TypeaheadDemo = () => {
       title={t("typeahead.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <Typeahead
-          placeholder={t("typeahead.placeholder")}
-          label={t("typeahead.label.client")}
           data={suggestions}
+          label={t("typeahead.label.client")}
           onSearch={handleDataFilter}
+          placeholder={t("typeahead.placeholder")}
         />
       </Section>
       <Section>
         <Typeahead
-          label={t("typeahead.label.server")}
-          placeholder={t("typeahead.placeholder")}
           data={options}
-          loading={isLoading}
-          onSearch={handleDataFetch}
-          onChange={handleServerChange}
           debounceTime={500}
+          label={t("typeahead.label.server")}
+          loading={isLoading}
+          onChange={handleServerChange}
+          onSearch={handleDataFetch}
+          placeholder={t("typeahead.placeholder")}
         />
       </Section>
       <Section>
         <Typeahead
-          placeholder={t("typeahead.placeholder")}
-          label={t("typeahead.label.invalid")}
-          hasError={true}
           errorMessage="Required field"
+          hasError={true}
+          label={t("typeahead.label.invalid")}
+          placeholder={t("typeahead.placeholder")}
         />
       </Section>
       <Section>
         <Typeahead
-          placeholder={t("typeahead.placeholder")}
-          label={t("typeahead.label.disabled")}
           data={items}
           disabled={true}
+          label={t("typeahead.label.disabled")}
+          placeholder={t("typeahead.placeholder")}
         />
       </Section>
       <Section>
         <Typeahead
-          placeholder={t("typeahead.placeholder")}
-          label={t("typeahead.label.customSuggestion")}
           data={customSuggestions}
+          label={t("typeahead.label.customSuggestion")}
           onSearch={handleCustomSuggestionDataFilter}
+          placeholder={t("typeahead.placeholder")}
           renderSuggestion={renderSuggestion}
         />
       </Section>
       <Section>
         <Typeahead
-          placeholder={t("typeahead.placeholder")}
-          label={t("typeahead.label.emptyMessage")}
           data={options}
-          loading={isLoading}
-          onSearch={handleDataFetch}
-          onChange={handleServerChange}
           emptyMessage={t("typeahead.message.emptyMessage")}
+          label={t("typeahead.label.emptyMessage")}
+          loading={isLoading}
+          onChange={handleServerChange}
+          onSearch={handleDataFetch}
+          placeholder={t("typeahead.placeholder")}
         />
       </Section>
     </Page>

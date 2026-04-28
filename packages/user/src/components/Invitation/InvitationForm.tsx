@@ -1,7 +1,7 @@
 import {
-  Provider,
-  emailSchema,
   AdditionalFormFields,
+  emailSchema,
+  Provider,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Message } from "@prefabs.tech/react-ui";
@@ -9,18 +9,18 @@ import React, { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import * as zod from "zod";
 
+import type {
+  AddInvitationResponse,
+  InvitationAppOption,
+  InvitationExpiryDateField,
+  InvitationRoleOption,
+} from "@/types";
+
 import { addInvitation } from "@/api/invitation";
 import { INVITATION_ERRORS, SOMETHING_WRONG_ERROR } from "@/constants";
 import { useConfig } from "@/hooks";
 
 import { InvitationFormFields } from "./InvitationFormFields";
-
-import type {
-  AddInvitationResponse,
-  InvitationAppOption,
-  InvitationRoleOption,
-  InvitationExpiryDateField,
-} from "@/types";
 
 interface Properties {
   additionalInvitationFields?: AdditionalFormFields;
@@ -37,22 +37,22 @@ export const InvitationForm = ({
   additionalInvitationFields,
   apps,
   expiryDateField,
-  onSubmitted,
   onCancel,
+  onSubmitted,
   prepareData,
   roles,
 }: Properties) => {
-  const { t, i18n } = useTranslation("invitations");
+  const { i18n, t } = useTranslation("invitations");
   const config = useConfig();
 
   const [submitting, setSubmitting] = useState(false);
 
   // Stores the error code string (e.g. "USER_ALREADY_EXISTS_ERROR")
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<null | string>(null);
 
   // Stores dynamic values (email, role, app name) for the translation
   const [errorParameters, setErrorParameters] = useState<
-    Record<string, string | number | undefined>
+    Record<string, number | string | undefined>
   >({});
 
   const getDefaultValues = useCallback(() => {
@@ -93,10 +93,10 @@ export const InvitationForm = ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const getFormData = (data: any) => {
     const parsedData: {
-      email: string;
-      role: string;
       appId?: number;
+      email: string;
       expiresAt?: Date;
+      role: string;
     } = {
       email: data.email,
       role: data.role,
@@ -170,9 +170,9 @@ export const InvitationForm = ({
         const selectedApp = apps?.find((app) => app.id === data.app)?.name;
 
         setErrorParameters({
+          app: selectedApp || data.app,
           email: data.email,
           role: data.role,
-          app: selectedApp || data.app,
         });
 
         setError(code);
@@ -236,17 +236,17 @@ export const InvitationForm = ({
         />
       )}
       <Provider
-        onSubmit={onSubmit}
         defaultValues={getDefaultValues()}
+        onSubmit={onSubmit}
         validationSchema={InvitationFormSchema}
         validationTriggerKey={i18n.language}
       >
         <InvitationFormFields
-          renderAdditionalFields={additionalInvitationFields?.renderFields}
           apps={apps}
           expiryDateField={expiryDateField}
           loading={submitting}
           onCancel={onCancel}
+          renderAdditionalFields={additionalInvitationFields?.renderFields}
           roles={roles}
         />
       </Provider>

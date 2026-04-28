@@ -1,3 +1,5 @@
+import type { Tab } from "@prefabs.tech/react-ui";
+
 import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Page, TabView } from "@prefabs.tech/react-ui";
@@ -8,24 +10,22 @@ import { AccountInfo, ChangePassword, ProfileForm } from "@/components/Profile";
 import { useUser } from "@/hooks";
 import { UpdateProfileResponse } from "@/types";
 
-import type { Tab } from "@prefabs.tech/react-ui";
-
 interface Properties {
   activeKey?: string;
   additionalProfileFields?: AdditionalFormFields;
-  tabs?: Tab[];
-  visibleTabs?: string[];
   onProfileCancel?: () => void;
   onProfileSubmitted?: (response: UpdateProfileResponse) => void;
+  tabs?: Tab[];
+  visibleTabs?: string[];
 }
 
 export const ProfileTabsPage = ({
   activeKey = "profile",
   additionalProfileFields,
-  tabs = [],
-  visibleTabs,
   onProfileCancel,
   onProfileSubmitted,
+  tabs = [],
+  visibleTabs,
 }: Properties) => {
   const { t } = useTranslation("user");
   const location = useLocation();
@@ -87,11 +87,11 @@ export const ProfileTabsPage = ({
   }
 
   return (
-    <Page title={t("profile.title")} className="profile">
+    <Page className="profile" title={t("profile.title")}>
       <TabView
-        id="profile-tabs"
         activeKey={activeKey}
         enableHashRouting={true}
+        id="profile-tabs"
         tabs={mergedTabs}
         visibleTabs={visibleTabs}
       />

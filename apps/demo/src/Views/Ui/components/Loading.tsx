@@ -13,20 +13,20 @@ export const LoadingDemo = () => {
       title={t("loading.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
             alignItems: "center",
+            display: "flex",
             flex: 1,
+            justifyContent: "center",
           }}
         >
           <LoadingIcon color={"black"} fontSize={"0.5rem"} />

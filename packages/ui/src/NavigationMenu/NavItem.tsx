@@ -4,14 +4,14 @@ import { NavItemType } from "./types";
 
 export type NavItemProperties = {
   displayIcon?: boolean;
-  navItem: NavItemType;
   isGroupHeader?: boolean;
+  navItem: NavItemType;
 };
 
 export const NavItem = ({
-  navItem,
   displayIcon = true,
   isGroupHeader,
+  navItem,
 }: NavItemProperties) => {
   const hasRouterContext = useInRouterContext();
 
@@ -25,7 +25,7 @@ export const NavItem = ({
 
   if (navItem.disabled) {
     return (
-      <div className={_className} aria-disabled={navItem.disabled}>
+      <div aria-disabled={navItem.disabled} className={_className}>
         {displayIcon && navItem.icon && <i className={navItem.icon}></i>}
         <span>{navItem.label}</span>
       </div>
@@ -57,7 +57,7 @@ export const NavItem = ({
 
   if (hasRouterContext) {
     return (
-      <NavLink to={navItem.route || ""} end className={_className}>
+      <NavLink className={_className} end to={navItem.route || ""}>
         {displayIcon && navItem.icon && <i className={navItem.icon}></i>}
         <span>{navItem.label}</span>
       </NavLink>
@@ -68,9 +68,9 @@ export const NavItem = ({
 
   return (
     <a
-      href={navItem.route}
-      className={isActive ? `${_className} active` : _className}
       aria-current={isActive ? "page" : undefined}
+      className={isActive ? `${_className} active` : _className}
+      href={navItem.route}
     >
       {displayIcon && navItem.icon && <i className={navItem.icon}></i>}
       {navItem.label}

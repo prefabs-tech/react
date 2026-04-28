@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { expect, test, describe, vi } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { Checkbox } from "..";
 
@@ -13,14 +13,14 @@ describe("Checkbox component", () => {
   });
 
   test("should render the checkbox with the provided label", () => {
-    render(<Checkbox name="agree" label="I agree to the terms" />);
+    render(<Checkbox label="I agree to the terms" name="agree" />);
 
     const checkbox = screen.getByLabelText("I agree to the terms");
     expect(checkbox).toBeInTheDocument();
   });
 
   test("should set the correct name, id attributes", () => {
-    render(<Checkbox name="agree" label="I agree to the terms" />);
+    render(<Checkbox label="I agree to the terms" name="agree" />);
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveAttribute("name", "agree");
@@ -46,7 +46,7 @@ describe("Checkbox component", () => {
 
   test("should render an error message if errorMessage prop is provided", () => {
     render(
-      <Checkbox name="agree" errorMessage="You must agree to the terms" />,
+      <Checkbox errorMessage="You must agree to the terms" name="agree" />,
     );
 
     const errorMessage = screen.getByText("You must agree to the terms");

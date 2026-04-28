@@ -8,7 +8,7 @@ import { UpdateEmailModal } from "./UpdateEmailModal";
 
 export const AccountInfo = () => {
   const { t } = useTranslation("user");
-  const { user, setUser } = useUser();
+  const { setUser, user } = useUser();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const config = useConfig();
   const canUpdateEmail = config.features?.updateEmail && !user?.thirdParty;
@@ -16,19 +16,19 @@ export const AccountInfo = () => {
   return (
     <div className="account-info">
       <Data
-        className={`${canUpdateEmail ? "update-email" : ""}`}
         caption={t("profile.accountInfo.label")}
+        className={`${canUpdateEmail ? "update-email" : ""}`}
         value={
           <>
             {user?.email}
             {canUpdateEmail && (
               <Button
-                variant="textOnly"
+                iconLeft="pi pi-pencil"
                 label={t("profile.button.update")}
+                onClick={() => setModalVisible(true)}
                 severity="secondary"
                 size="small"
-                iconLeft="pi pi-pencil"
-                onClick={() => setModalVisible(true)}
+                variant="textOnly"
               ></Button>
             )}
           </>
@@ -38,8 +38,8 @@ export const AccountInfo = () => {
         <UpdateEmailModal
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          user={user}
           setUser={setUser}
+          user={user}
         />
       )}
     </div>

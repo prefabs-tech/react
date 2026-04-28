@@ -1,13 +1,13 @@
 import {
-  Provider,
   emailSchema,
   passwordSchema,
+  Provider,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import * as zod from "zod";
 
-import { LoginFormFields } from "./LoginFormFields";
 import { LoginCredentials } from "../../types";
+import { LoginFormFields } from "./LoginFormFields";
 
 interface Properties {
   handleSubmit: (credentials: LoginCredentials) => void;
@@ -20,7 +20,7 @@ export const LoginForm = ({
   loading,
   onEmailChange,
 }: Properties) => {
-  const { t, i18n } = useTranslation("user");
+  const { i18n, t } = useTranslation("user");
 
   const LoginFormSchema = zod.object({
     email: emailSchema({
@@ -40,8 +40,8 @@ export const LoginForm = ({
 
   return (
     <Provider
-      validationSchema={LoginFormSchema}
       onSubmit={handleSubmit}
+      validationSchema={LoginFormSchema}
       validationTriggerKey={i18n.language}
     >
       <LoginFormFields loading={loading} onEmailChange={onEmailChange} />

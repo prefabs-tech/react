@@ -1,20 +1,20 @@
 import React, { useCallback, useMemo } from "react";
 
-import {
-  getFallbackTranslation,
-  getFlagClass,
-  getLabel,
-  sortByLabel,
-} from "../../utils/country-picker";
-import { Select, ISelectProperties } from "../Select";
-
 import type {
   CountryPickerProperties,
   Groups,
   Locales,
   Translation,
 } from "../../types/country-picker";
-import type { GroupedOption as OptionGroup, Option } from "../Select";
+import type { Option, GroupedOption as OptionGroup } from "../Select";
+
+import {
+  getFallbackTranslation,
+  getFlagClass,
+  getLabel,
+  sortByLabel,
+} from "../../utils/country-picker";
+import { ISelectProperties, Select } from "../Select";
 
 import("@dzangolab/flag-icon-css/css/flag-icon.min.css");
 
@@ -31,8 +31,8 @@ const getFavoriteOptions = <T,>(
 
   const options = favorites.map((code) => {
     return {
-      value: code as unknown as T,
       label: getLabel(code, locale, locales, fallbackTranslation),
+      value: code as unknown as T,
     };
   });
 
@@ -73,8 +73,8 @@ const getFullList = <T,>(
       })
       .map((code) => {
         return {
-          value: code as unknown as T,
           label: getLabel(code, locale, locales, fallbackTranslation),
+          value: code as unknown as T,
         };
       });
 
@@ -94,8 +94,8 @@ const getFullList = <T,>(
     options = Object.entries(groups).map(([key, codes]) => {
       const countries = codes.map((code) => {
         return {
-          value: code as unknown as T,
           label: getLabel(code, locale, locales, fallbackTranslation),
+          value: code as unknown as T,
         };
       });
 
@@ -179,7 +179,7 @@ const getOptions = <T,>({
   return options;
 };
 
-export const CountryPicker = <T extends string | number>({
+export const CountryPicker = <T extends number | string>({
   autoSortOptions = true,
   exclude,
   fallbackLocale = "en",
@@ -189,11 +189,11 @@ export const CountryPicker = <T extends string | number>({
   flagsPosition = "left",
   flagsStyle = "rectangular",
   groups,
-  locales,
   include,
   includeFavorites = true,
   labels,
   locale = "en",
+  locales,
   ...properties
 }: CountryPickerProperties<T>) => {
   const options = useMemo(() => {
@@ -264,9 +264,9 @@ export const CountryPicker = <T extends string | number>({
     <Select
       {...(properties as ISelectProperties<T>)}
       autoSortOptions={false}
+      onChange={handleOnChange}
       options={options}
       renderOption={properties.renderOption ?? handleRenderOption}
-      onChange={handleOnChange}
     />
   );
 };

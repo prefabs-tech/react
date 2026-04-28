@@ -2,17 +2,17 @@ import React from "react";
 
 import { UserType } from "./types";
 
-export type HomeRoute = string | ((user: UserType) => string);
-
-export type RouteOverwrite = {
-  element?: React.ReactNode;
-};
+export type HomeRoute = ((user: UserType) => string) | string;
 
 export type ProtectedRouteOverwrites = {
   changePassword?: RouteOverwrite;
   emailVerificationReminder?: RouteOverwrite;
   emailVerificationVerify?: RouteOverwrite;
   profile?: RouteOverwrite;
+};
+
+export type ProtectedRoutesProperties = {
+  routes?: ProtectedRouteOverwrites;
 };
 
 export type PublicRouteOverwrites = {
@@ -26,10 +26,10 @@ export type PublicRouteOverwrites = {
   signupFirstUser?: RouteOverwrite;
 };
 
-export type ProtectedRoutesProperties = {
-  routes?: ProtectedRouteOverwrites;
-};
-
 export type PublicRoutesProperties = {
   routes?: PublicRouteOverwrites;
+};
+
+export type RouteOverwrite = {
+  element?: React.ReactNode;
 };

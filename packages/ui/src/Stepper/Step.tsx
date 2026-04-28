@@ -1,35 +1,35 @@
 import { FC, MouseEvent, ReactNode } from "react";
 
 export interface IStepEvent extends MouseEvent<HTMLElement> {
-  label?: string;
   index?: number;
+  label?: string;
 }
 
-export type LineStyleType = "solid" | "dashed";
+export type LineStyleType = "dashed" | "solid";
 
 interface IStepProperties {
-  isCompleted: boolean;
-  isActive: boolean;
-  completedStepIcon?: string | ReactNode;
-  onClick: (event: IStepEvent) => void;
+  activeContent?: ReactNode | string;
+  completedStepIcon?: ReactNode | string;
   index: number;
+  isActive: boolean;
+  isCompleted: boolean;
   label?: string;
   lineStyle?: LineStyleType;
-  step?: number | string | ReactNode;
-  activeContent?: string | ReactNode;
+  onClick: (event: IStepEvent) => void;
+  step?: number | ReactNode | string;
   subtitle?: string;
 }
 
 export const Step: FC<IStepProperties> = ({
-  isCompleted,
-  isActive,
+  activeContent,
   completedStepIcon,
-  onClick,
   index,
+  isActive,
+  isCompleted,
   label,
   lineStyle,
+  onClick,
   step,
-  activeContent,
   subtitle,
 }) => {
   const renderLabel = (label?: string) => {
@@ -56,7 +56,7 @@ export const Step: FC<IStepProperties> = ({
 
   const renderStep = (
     index: number,
-    completedStepIcon?: string | ReactNode,
+    completedStepIcon?: ReactNode | string,
   ) => {
     const renderContent = () => {
       if (isCompleted && completedStepIcon) {

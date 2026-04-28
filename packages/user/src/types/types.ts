@@ -2,49 +2,10 @@ import { EmailPasswordUserType } from "supertokens-web-js/recipe/thirdpartyemail
 
 import { UserConfig } from "./config";
 
-export interface UserType extends EmailPasswordUserType {
-  disabled?: boolean;
-  givenName: string | null;
-  isEmailVerified?: boolean;
-  isProfileCompleted?: boolean;
-  lastLoginAt: number;
-  middleNames: string | null;
-  roles: string[];
-  signedUpAt: number;
-  surname: string | null;
-  thirdParty?: {
-    id: string;
-    userId: string;
-  };
-}
-
-export interface UserMenuItemType {
-  icon?: string;
-  name: string;
-  onClick?: () => void;
-  route?: string;
-}
-
-export interface UserContextType {
-  loading: boolean;
-  user: UserType | null;
-  setUser: (user: UserType | null) => void;
-}
-
-export interface LoginCredentials {
-  email: string;
-  password: string;
-}
-
 export interface AuthState {
-  error: string | null;
+  error: null | string;
   loading: boolean;
-  user: UserType | undefined;
-}
-
-export interface SignInUpPromise {
-  user: UserType;
-  status: string;
+  user: undefined | UserType;
 }
 
 export interface ErrorResponse {
@@ -53,8 +14,8 @@ export interface ErrorResponse {
 
 export interface ExtendedUser extends UserType {
   appId?: number;
-  isActiveUser: boolean;
   invitedBy: UserType & { isActiveUser: boolean };
+  isActiveUser: boolean;
 }
 
 export type LinkType = {
@@ -64,16 +25,55 @@ export type LinkType = {
   to: string;
 };
 
-export type UserWrapperProperties = {
-  config: UserConfig;
-  children?: React.ReactNode;
-};
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface SignInUpPromise {
+  status: string;
+  user: UserType;
+}
+
+export interface UserContextType {
+  loading: boolean;
+  setUser: (user: null | UserType) => void;
+  user: null | UserType;
+}
+
+export interface UserMenuItemType {
+  icon?: string;
+  name: string;
+  onClick?: () => void;
+  route?: string;
+}
 
 export type UserSignupPayload = {
+  [key: string]: Array<{ id: string; value: null | number | string }>;
+} & {
   formFields: Array<{
     id: "email" | "password";
     value: string;
   }>;
-} & {
-  [key: string]: Array<{ id: string; value: string | number | null }>;
+};
+
+export interface UserType extends EmailPasswordUserType {
+  disabled?: boolean;
+  givenName: null | string;
+  isEmailVerified?: boolean;
+  isProfileCompleted?: boolean;
+  lastLoginAt: number;
+  middleNames: null | string;
+  roles: string[];
+  signedUpAt: number;
+  surname: null | string;
+  thirdParty?: {
+    id: string;
+    userId: string;
+  };
+}
+
+export type UserWrapperProperties = {
+  children?: React.ReactNode;
+  config: UserConfig;
 };

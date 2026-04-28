@@ -6,24 +6,24 @@ import { Button } from "../../Buttons/ButtonBasic";
 import Page from "../index";
 
 const pageData = {
-  title: "This is the title",
-  subtitle: "This is the subtitle",
-  toolbar: <Button label="Click me" />,
   breadcrumb: (
     <>
       <Button label="Click" />
       <Button label="Reload" />
     </>
   ),
+  subtitle: "This is the subtitle",
+  title: "This is the title",
+  toolbar: <Button label="Click me" />,
 };
 
 test("when breadcrumb, title, subtitle, toolbar and content are provided", async () => {
   render(
     <Page
-      title={pageData.title}
-      subtitle={pageData.subtitle}
-      toolbar={pageData.toolbar}
       breadcrumb={pageData.breadcrumb}
+      subtitle={pageData.subtitle}
+      title={pageData.title}
+      toolbar={pageData.toolbar}
     >
       <p>This is the content</p>
     </Page>,

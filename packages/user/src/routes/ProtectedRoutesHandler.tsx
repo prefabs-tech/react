@@ -10,7 +10,7 @@ export const ProtectedRoutesHandler: React.FC = () => {
   const { user } = useUser();
   const [emailVerificationEnabled, isEmailVerified] = useEmailVerification();
 
-  const { homeRoute = "/", customPaths, features } = config;
+  const { customPaths, features, homeRoute = "/" } = config;
 
   const loginPath = customPaths?.login || DEFAULT_PATHS.LOGIN;
   const profilePath = customPaths?.profile || DEFAULT_PATHS.PROFILE;
@@ -47,11 +47,11 @@ export const ProtectedRoutesHandler: React.FC = () => {
         let component;
 
         switch (location.pathname) {
-          case emailVerificationVerifyPath:
-            component = <Outlet />;
-            break;
           case emailVerificationReminderPath:
             component = !isEmailVerified ? <Outlet /> : <Navigate to={home} />;
+            break;
+          case emailVerificationVerifyPath:
+            component = <Outlet />;
             break;
           default:
             component = <Navigate to={home} />;

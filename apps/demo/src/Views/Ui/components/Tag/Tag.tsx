@@ -3,7 +3,6 @@ import { Button, Page, Tag } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { Section } from "../../../../components/Demo";
-
 import "./index.css";
 
 export const TagDemo = () => {
@@ -15,10 +14,10 @@ export const TagDemo = () => {
       title={t("tag.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -31,30 +30,30 @@ export const TagDemo = () => {
       <Section title={t("tag.usage.color")}>
         <div className="demo-tag-container">
           <Tag label="default" />
-          <Tag label="gray" color="gray" />
-          <Tag label="red" color="red" />
-          <Tag label="pink" color="pink" />
-          <Tag label="purple" color="purple" />
-          <Tag label="blue" color="blue" />
-          <Tag label="cyan" color="cyan" />
-          <Tag label="green" color="green" />
-          <Tag label="yellow" color="yellow" />
-          <Tag label="orange" color="orange" />
-          <Tag label="brown" color="brown" />
+          <Tag color="gray" label="gray" />
+          <Tag color="red" label="red" />
+          <Tag color="pink" label="pink" />
+          <Tag color="purple" label="purple" />
+          <Tag color="blue" label="blue" />
+          <Tag color="cyan" label="cyan" />
+          <Tag color="green" label="green" />
+          <Tag color="yellow" label="yellow" />
+          <Tag color="orange" label="orange" />
+          <Tag color="brown" label="brown" />
         </div>
       </Section>
 
       <Section title={t("tag.usage.pill")}>
         <div className="demo-tag-container">
           <Tag label="default" rounded />
-          <Tag label="blue" color="blue" icon="pi pi-times" rounded />
+          <Tag color="blue" icon="pi pi-times" label="blue" rounded />
         </div>
       </Section>
 
       <Section title={t("tag.usage.icon")}>
         <div className="demo-tag-container">
-          <Tag label="green" icon="pi pi-check" color="green" />
-          <Tag label="red" icon="pi pi-times" color="red" />
+          <Tag color="green" icon="pi pi-check" label="green" />
+          <Tag color="red" icon="pi pi-times" label="red" />
           <Tag icon="pi pi-user" />
         </div>
       </Section>
@@ -62,13 +61,13 @@ export const TagDemo = () => {
       <Section title={t("tag.usage.custom")}>
         <div className="demo-tag-container">
           <Tag
+            color="#eddec8"
             renderContent={() => (
               <>
                 <span>{t("tag.usage.custom")}</span>
                 <i className="pi pi-user"></i>
               </>
             )}
-            color="#eddec8"
           />
         </div>
       </Section>

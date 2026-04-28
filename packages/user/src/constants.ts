@@ -7,17 +7,25 @@ export enum DEFAULT_PATHS {
   ACCEPT_INVITATION = "/signup/token/:token",
   AUTH_CALLBACK_FACEBOOK = "/auth/callback/facebook",
   AUTH_CALLBACK_GOOGLE = "/auth/callback/google",
-  FORGOT_PASSWORD = "/forgot-password",
-  LOGIN = "/login",
-  RESET_PASSWORD = "/reset-password",
-  SIGNUP = "/signup",
-  SIGNUP_FIRST_USER = "/signup-first-user",
-
   // authenticated routes
   CHANGE_PASSWORD = "/change-password",
   EMAIL_VERIFICATION_REMINDER = "/email-verification-reminder",
   EMAIL_VERIFICATION_VERIFY = "/verify-email",
+  FORGOT_PASSWORD = "/forgot-password",
+  LOGIN = "/login",
+
   PROFILE = "/profile",
+  RESET_PASSWORD = "/reset-password",
+  SIGNUP = "/signup",
+  SIGNUP_FIRST_USER = "/signup-first-user",
+}
+
+export enum EMAIL_VERIFICATION {
+  EMAIL_ALREADY_VERIFIED = "EMAIL_ALREADY_VERIFIED",
+  EMAIL_ALREADY_VERIFIED_ERROR = "EMAIL_ALREADY_VERIFIED_ERROR",
+  EMAIL_VERIFICATION_INVALID_TOKEN_ERROR = "EMAIL_VERIFICATION_INVALID_TOKEN_ERROR",
+  ERROR = "ERROR",
+  OK = "OK",
 }
 
 export enum INVITATION_ERRORS {
@@ -26,12 +34,4 @@ export enum INVITATION_ERRORS {
   ROLE_NOT_FOUND = "ROLE_NOT_FOUND_ERROR",
   ROLE_NOT_SUPPORTED = "ROLE_NOT_SUPPORTED_ERROR",
   USER_ALREADY_EXISTS = "USER_ALREADY_EXISTS_ERROR",
-}
-
-export enum EMAIL_VERIFICATION {
-  EMAIL_ALREADY_VERIFIED = "EMAIL_ALREADY_VERIFIED",
-  ERROR = "ERROR",
-  OK = "OK",
-  EMAIL_ALREADY_VERIFIED_ERROR = "EMAIL_ALREADY_VERIFIED_ERROR",
-  EMAIL_VERIFICATION_INVALID_TOKEN_ERROR = "EMAIL_VERIFICATION_INVALID_TOKEN_ERROR",
 }

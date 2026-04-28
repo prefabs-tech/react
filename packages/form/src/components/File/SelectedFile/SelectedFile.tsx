@@ -4,23 +4,23 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { FileExtended } from "../types";
 
 type SelectedFileProperties = {
-  file: FileExtended;
-  enableDescription?: boolean;
   addDescriptionLabel?: string;
   descriptionPlaceholder?: string;
+  enableDescription?: boolean;
+  file: FileExtended;
   index: number;
-  onRemove?: () => void;
   onDescriptionChange?: (description?: string) => void;
+  onRemove?: () => void;
 };
 
 export const SelectedFile: React.FC<SelectedFileProperties> = ({
-  file,
-  enableDescription = false,
   addDescriptionLabel,
   descriptionPlaceholder,
+  enableDescription = false,
+  file,
   index,
-  onRemove,
   onDescriptionChange,
+  onRemove,
 }) => {
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const [description, setDescription] = useState(file.description || "");
@@ -45,12 +45,12 @@ export const SelectedFile: React.FC<SelectedFileProperties> = ({
                 <>
                   <div
                     className={`description description-${index}`}
-                    role="button"
-                    tabIndex={0}
-                    title={file.description}
                     onClick={() => {
                       setShowDescriptionInput(true);
                     }}
+                    role="button"
+                    tabIndex={0}
+                    title={file.description}
                   >
                     <span>{description || addDescriptionLabel}</span>
                   </div>
@@ -61,8 +61,9 @@ export const SelectedFile: React.FC<SelectedFileProperties> = ({
                   <div className="p-inputgroup">
                     <Input
                       autoFocus
-                      value={description}
-                      placeholder={descriptionPlaceholder}
+                      onBlur={() => {
+                        setShowDescriptionInput(false);
+                      }}
                       onChange={(event: ChangeEvent<HTMLInputElement>) =>
                         setDescription(event.target.value)
                       }
@@ -73,9 +74,8 @@ export const SelectedFile: React.FC<SelectedFileProperties> = ({
                           setShowDescriptionInput(false);
                         }
                       }}
-                      onBlur={() => {
-                        setShowDescriptionInput(false);
-                      }}
+                      placeholder={descriptionPlaceholder}
+                      value={description}
                     />
                   </div>
                 </>
@@ -87,8 +87,8 @@ export const SelectedFile: React.FC<SelectedFileProperties> = ({
 
       {!!onRemove && (
         <Button
-          onClick={onRemove}
           iconLeft="pi pi-times"
+          onClick={onRemove}
           severity="danger"
           size="small"
           variant="outlined"

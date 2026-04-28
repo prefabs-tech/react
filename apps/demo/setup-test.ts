@@ -4,10 +4,10 @@ import { vi } from "vitest";
 vi.mock("@prefabs.tech/react-i18n", () => ({
   useTranslation: () => {
     return {
-      t: (string_) => string_,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
+      t: (string_) => string_,
     };
   },
 }));

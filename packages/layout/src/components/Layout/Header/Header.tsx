@@ -1,24 +1,24 @@
+import type { NavMenuType, UserMenuModeType } from "@prefabs.tech/react-ui";
+
 import { NavigationMenu } from "@prefabs.tech/react-ui";
 import React from "react";
 
 import { UserMenuType } from "@/types";
 
+import { Logo, ToggleMenuMobile } from "../common";
 import { HeaderMenu } from "./HeaderMenu";
 import { HeaderTitle } from "./HeaderTitle";
-import { Logo, ToggleMenuMobile } from "../common";
-
-import type { NavMenuType, UserMenuModeType } from "@prefabs.tech/react-ui";
 
 interface HeaderProperties {
   children?: React.ReactNode;
   displayNavIcons?: boolean;
   headerAddon?: React.ReactNode;
-  navigationMenu?: NavMenuType;
-  title?: string | React.ReactNode;
   menu?: UserMenuType;
+  navigationMenu?: NavMenuType;
   noLocaleSwitcher?: boolean;
   noLogo?: boolean;
   noToggle?: boolean;
+  title?: React.ReactNode | string;
   userMenuMode?: UserMenuModeType;
 }
 
@@ -26,12 +26,12 @@ export const Header = ({
   children,
   displayNavIcons,
   headerAddon,
-  title,
-  navigationMenu,
   menu,
+  navigationMenu,
   noLocaleSwitcher,
   noLogo,
   noToggle,
+  title,
   userMenuMode = "popup",
 }: HeaderProperties) => {
   const renderContent = () => {
@@ -43,9 +43,9 @@ export const Header = ({
         {headerAddon && headerAddon}
         {navigationMenu && (
           <NavigationMenu
-            navigationMenu={navigationMenu}
             displayIcons={displayNavIcons}
             horizontal
+            navigationMenu={navigationMenu}
           />
         )}
         {(menu || !noLocaleSwitcher) && (

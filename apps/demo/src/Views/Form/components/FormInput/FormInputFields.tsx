@@ -28,9 +28,9 @@ export const FormInputFields = ({ checkFilledState }: Properties) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [options, setOptions] = useState<any>([]);
   const {
-    register,
-    getFieldState,
     formState: { errors, submitCount }, // eslint-disable-line @typescript-eslint/no-unused-vars
+    getFieldState,
+    register,
     watch,
   } = useFormContext();
 
@@ -61,60 +61,62 @@ export const FormInputFields = ({ checkFilledState }: Properties) => {
         label={t("formInput.label.email")}
         name="email"
         placeholder={t("formInput.placeHolder.email")}
-        submitCount={submitCount}
-        showValidState={valid}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <TextInput
         label={t("formInput.label.text")}
         name="name"
         placeholder={t("formInput.placeHolder.text")}
-        submitCount={submitCount}
-        showValidState={valid}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <Password
         getFieldState={getFieldState}
         label={t("formInput.label.password")}
         name="password"
         register={register}
-        submitCount={submitCount}
-        showValidState={valid}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <NumberInput
-        name="number"
         label={t("formInput.label.number")}
+        name="number"
         placeholder={t("formInput.placeHolder.number")}
-        submitCount={submitCount}
-        showValidState={valid}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <Textarea
-        name="text"
         label={t("formInput.label.text")}
+        name="text"
         placeholder={t("formInput.placeHolder.text")}
-        submitCount={submitCount}
-        showValidState={valid}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <Select
         label={t("formInput.label.select")}
+        multiple={true}
         name="select"
         options={[
-          { value: "FR", label: "FR" },
-          { value: "DE", label: "DE" },
-          { value: "BE", label: "BE" },
-          { value: "FE", label: "FE" },
-          { value: "RE", label: "RE" },
+          { label: "FR", value: "FR" },
+          { label: "DE", value: "DE" },
+          { label: "BE", value: "BE" },
+          { label: "FE", value: "FE" },
+          { label: "RE", value: "RE" },
         ]}
-        multiple={true}
         placeholder={t("formInput.placeHolder.select")}
-        submitCount={submitCount}
-        showValidState={valid}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <CurrencyPicker
+        label={t("formInput.label.currencyPicker")}
+        name="currencyPicker"
         options={[
           {
             code: "AUD",
@@ -127,48 +129,46 @@ export const FormInputFields = ({ checkFilledState }: Properties) => {
           { code: "EUR", label: "Euro", symbol: "€", value: "EUR" },
           { code: "JPY", label: "Japanese Yen", symbol: "¥", value: "JPY" },
         ]}
-        label={t("formInput.label.currencyPicker")}
-        name="currencyPicker"
         placeholder={t("formInput.placeHolder.currencyPicker")}
         showInvalidState={invalid}
         showValidState={valid}
         submitCount={submitCount}
       />
       <Email
+        defaultValue="monorepo@gmail.com"
+        disabled={true}
         label={t("formInput.label.disabled")}
         name="disabled"
-        disabled={true}
-        defaultValue="monorepo@gmail.com"
       />
       <Email
+        defaultValue="monorepo@gmail.com"
         label={t("formInput.label.readOnly")}
         name="readOnly"
         readOnly={true}
-        defaultValue="monorepo@gmail.com"
       />
       <DateInput
-        label={t("formInput.label.dateInput")}
-        name="date"
-        register={register}
         getFieldState={getFieldState}
-        submitCount={submitCount}
-        showValidState={valid}
-        showInvalidState={invalid}
+        label={t("formInput.label.dateInput")}
         max={new Date()}
         min="2025-04-01"
+        name="date"
+        register={register}
+        showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
       />
       <Typeahead
-        placeholder={t("formInput.placeHolder.typeahead")}
-        label={t("formInput.label.typeahead")}
-        name="typeahead"
         data={options}
-        suggestionLabel="title"
-        loading={isLoading}
-        onSearch={handleDataFetch}
         debounceTime={500}
-        submitCount={submitCount}
-        showValidState={valid}
+        label={t("formInput.label.typeahead")}
+        loading={isLoading}
+        name="typeahead"
+        onSearch={handleDataFetch}
+        placeholder={t("formInput.placeHolder.typeahead")}
         showInvalidState={invalid}
+        showValidState={valid}
+        submitCount={submitCount}
+        suggestionLabel="title"
       />
       <RadioInput
         label={t("formInput.label.radioInput")}
@@ -180,6 +180,7 @@ export const FormInputFields = ({ checkFilledState }: Properties) => {
         ]}
       />
       <CheckboxInput
+        direction={"horizontal"}
         label={t("formInput.label.checkboxInput")}
         name="checkboxInput"
         options={[
@@ -187,7 +188,6 @@ export const FormInputFields = ({ checkFilledState }: Properties) => {
           { label: "Two", value: "value 2" },
           { label: "Three", value: "value 3" },
         ]}
-        direction={"horizontal"}
       />
       <CheckboxInput
         inputLabel={

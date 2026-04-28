@@ -23,26 +23,26 @@ export const FormWithFileInputButton: React.FC = () => {
     <Provider onSubmit={onSubmit}>
       <UploadBy />
       <FormFileInput
-        selectedFileDisplay="popup"
-        inputMethod="button"
-        emptySelectionMessage={t("fileInput.emptySelectionMessage")}
-        inputButtonLabel={t("fileInput.buttons.label.inputButtonLabel")}
-        inputButtonLabelSelected={t(
-          "fileInput.buttons.label.inputButtonLabelSelected",
-        )}
-        name="images"
+        addDescriptionLabel={t("fileInput.description.label")}
+        descriptionPlaceholder={t("fileInput.description.placeholder")}
+        dropzoneMessage={t("fileInput.dropzoneMessage")}
         dropzoneOptions={{
           accept: {
             "image/*": [".jpeg", ".png"],
           },
         }}
+        emptySelectionMessage={t("fileInput.emptySelectionMessage")}
         enableDescription
-        dropzoneMessage={t("fileInput.dropzoneMessage")}
-        addDescriptionLabel={t("fileInput.description.label")}
-        descriptionPlaceholder={t("fileInput.description.placeholder")}
+        inputButtonLabel={t("fileInput.buttons.label.inputButtonLabel")}
+        inputButtonLabelSelected={t(
+          "fileInput.buttons.label.inputButtonLabelSelected",
+        )}
+        inputMethod="button"
+        name="images"
         selectButtonProps={{
           iconLeft: "pi pi-file",
         }}
+        selectedFileDisplay="popup"
       />
       <div className="mb-4">
         <Button label={t("fileInput.actions.upload")} />

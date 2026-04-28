@@ -12,28 +12,28 @@ export const FileInputButton: React.FC = () => {
   return (
     <>
       <FileInput
-        selectedFileDisplay="popup"
-        inputMethod="button"
-        value={[]}
-        emptySelectionMessage={t("fileInput.emptySelectionMessage")}
-        inputButtonLabel={t("fileInput.buttons.label.inputButtonLabel")}
-        inputButtonLabelSelected={t(
-          "fileInput.buttons.label.inputButtonLabelSelected",
-        )}
-        name="images"
+        addDescriptionLabel={t("fileInput.description.label")}
+        descriptionPlaceholder={t("fileInput.description.placeholder")}
+        dropzoneMessage={t("fileInput.dropzoneMessage")}
         dropzoneOptions={{
           accept: {
             "image/*": [".jpeg", ".png"],
           },
         }}
+        emptySelectionMessage={t("fileInput.emptySelectionMessage")}
         enableDescription
-        dropzoneMessage={t("fileInput.dropzoneMessage")}
-        addDescriptionLabel={t("fileInput.description.label")}
-        descriptionPlaceholder={t("fileInput.description.placeholder")}
+        inputButtonLabel={t("fileInput.buttons.label.inputButtonLabel")}
+        inputButtonLabelSelected={t(
+          "fileInput.buttons.label.inputButtonLabelSelected",
+        )}
+        inputMethod="button"
+        name="images"
+        onChange={onChange}
         selectButtonProps={{
           iconLeft: "pi pi-file",
         }}
-        onChange={onChange}
+        selectedFileDisplay="popup"
+        value={[]}
       />
     </>
   );

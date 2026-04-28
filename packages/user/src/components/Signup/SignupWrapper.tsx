@@ -7,35 +7,35 @@ import { DEFAULT_PATHS } from "@/constants";
 import { signup } from "@/supertokens";
 import { LinkType } from "@/types/types";
 
-import { AuthLinks } from "../AuthLinks";
-import { SignupForm } from "./SignupForm";
-import { useConfig, useUser } from "../../hooks";
-
 import type { LoginCredentials, SignInUpPromise } from "../../types";
 
+import { useConfig, useUser } from "../../hooks";
+import { AuthLinks } from "../AuthLinks";
+import { SignupForm } from "./SignupForm";
+
 interface IProperties {
+  handleSubmit?: (formData: LoginCredentials) => void;
   loading?: boolean;
+  onSignupFailed?: (error: Error) => void;
+  onSignupSuccess?: (user: SignInUpPromise) => void;
   showForgotPasswordLink?: boolean;
   showLoginLink?: boolean;
   termsAndConditions?: React.ReactNode;
-  handleSubmit?: (formData: LoginCredentials) => void;
-  onSignupFailed?: (error: Error) => void;
-  onSignupSuccess?: (user: SignInUpPromise) => void;
 }
 
 export const SignupWrapper: React.FC<IProperties> = ({
-  loading,
-  showLoginLink = true,
-  showForgotPasswordLink = true,
-  termsAndConditions,
   handleSubmit,
+  loading,
   onSignupFailed,
   onSignupSuccess,
+  showForgotPasswordLink = true,
+  showLoginLink = true,
+  termsAndConditions,
 }) => {
   const { t } = useTranslation("user");
   const [signupLoading, setSignupLoading] = useState<boolean>(false);
   const [signupError, setSignupError] = useState<
-    null | "emailAlreadyExists" | "other"
+    "emailAlreadyExists" | "other" | null
   >(null);
 
   const { setUser } = useUser();

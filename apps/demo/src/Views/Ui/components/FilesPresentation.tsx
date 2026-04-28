@@ -13,16 +13,62 @@ export const FilesPresentationDemo = () => {
       title={t("filesPresentation.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <FilesPresentation
+          files={[
+            {
+              description: "Important file for proposal",
+              downloadCount: 5,
+              id: 0,
+              lastDownloadedAt: Date.now(),
+              originalFileName: "file1.png",
+              size: 1000,
+              uploadedAt: new Date("2025-04-14").getTime(),
+              uploadedBy: { givenName: "Manish", surname: "Aryal" },
+            },
+            {
+              description: "Initial project proposal for client review",
+              downloadCount: 4,
+              id: 1,
+              lastDownloadedAt: new Date("2025-03-26").getTime(),
+              originalFileName: "document.pdf",
+              size: 500,
+              uploadedAt: new Date("2025-03-02").getTime(),
+              uploadedBy: { givenName: "Gaurav", surname: "Sapkota" },
+            },
+            {
+              description: "Proposal for project",
+              downloadCount: 6,
+              id: 2,
+              lastDownloadedAt: new Date("2025-03-12").getTime(),
+              originalFileName: "photo.jpeg",
+              size: 1500,
+              uploadedAt: new Date("2025-02-20").getTime(),
+              uploadedBy: { givenName: "Deepak", surname: "Aryal" },
+            },
+            {
+              description: "File containing client list",
+              downloadCount: 3,
+              id: 3,
+              lastDownloadedAt: new Date("2025-03-08").getTime(),
+              originalFileName: "manish.png",
+              size: 2000,
+              uploadedAt: new Date("2025-02-17").getTime(),
+              uploadedBy: { givenName: "Lamdiki", surname: "Sherpa" },
+            },
+          ]}
           locale={i18n?.language}
+          onEditDescription={() => {}}
+          onFileDownload={() => {}}
+          onFileView={() => {}}
+          presentation="table"
           visibleFileDetails={[
             "originalFileName",
             "description",
@@ -32,52 +78,6 @@ export const FilesPresentationDemo = () => {
             "downloadCount",
             "lastDownloadedAt",
             "actions",
-          ]}
-          presentation="table"
-          onEditDescription={() => {}}
-          onFileDownload={() => {}}
-          onFileView={() => {}}
-          files={[
-            {
-              id: 0,
-              originalFileName: "file1.png",
-              uploadedBy: { givenName: "Manish", surname: "Aryal" },
-              uploadedAt: new Date("2025-04-14").getTime(),
-              downloadCount: 5,
-              description: "Important file for proposal",
-              size: 1000,
-              lastDownloadedAt: Date.now(),
-            },
-            {
-              id: 1,
-              originalFileName: "document.pdf",
-              uploadedBy: { givenName: "Gaurav", surname: "Sapkota" },
-              uploadedAt: new Date("2025-03-02").getTime(),
-              downloadCount: 4,
-              description: "Initial project proposal for client review",
-              size: 500,
-              lastDownloadedAt: new Date("2025-03-26").getTime(),
-            },
-            {
-              id: 2,
-              originalFileName: "photo.jpeg",
-              uploadedBy: { givenName: "Deepak", surname: "Aryal" },
-              uploadedAt: new Date("2025-02-20").getTime(),
-              downloadCount: 6,
-              description: "Proposal for project",
-              size: 1500,
-              lastDownloadedAt: new Date("2025-03-12").getTime(),
-            },
-            {
-              id: 3,
-              originalFileName: "manish.png",
-              uploadedBy: { givenName: "Lamdiki", surname: "Sherpa" },
-              uploadedAt: new Date("2025-02-17").getTime(),
-              downloadCount: 3,
-              description: "File containing client list",
-              size: 2000,
-              lastDownloadedAt: new Date("2025-03-08").getTime(),
-            },
           ]}
         />
       </Section>

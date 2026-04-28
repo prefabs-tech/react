@@ -25,7 +25,7 @@ export const login = async (
       const user = response.user as UserType;
       const status = response.status;
 
-      return { user, status };
+      return { status, user };
     }
 
     if (response.status === "WRONG_CREDENTIALS_ERROR") {

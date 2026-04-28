@@ -2,11 +2,6 @@ import React from "react";
 
 import { Checkbox } from "../Checkbox";
 
-interface Option<T> {
-  value: T;
-  label: string;
-}
-
 export interface ICheckboxInputProperties<T> {
   checked?: boolean;
   className?: string;
@@ -14,21 +9,26 @@ export interface ICheckboxInputProperties<T> {
   disabled?: boolean;
   errorMessage?: string;
   helperText?: string;
-  inputLabel?: string | React.ReactNode;
-  label?: string | React.ReactNode;
+  inputLabel?: React.ReactNode | string;
+  label?: React.ReactNode | string;
   name: string;
-  onChange?: (newValue: T[] | boolean) => void;
-  renderOptionsLabel?: (option: Option<T>) => React.ReactNode;
+  onChange?: (newValue: boolean | T[]) => void;
   options?: Option<T>[];
   placeholder?: string;
+  renderOptionsLabel?: (option: Option<T>) => React.ReactNode;
   value?: T[];
 }
 
-export const CheckboxInput = <T extends string | number>({
+interface Option<T> {
+  label: string;
+  value: T;
+}
+
+export const CheckboxInput = <T extends number | string>({
   checked = false,
   className = "",
-  disabled,
   direction = "vertical",
+  disabled,
   errorMessage,
   helperText,
   inputLabel,
@@ -36,8 +36,8 @@ export const CheckboxInput = <T extends string | number>({
   name,
   onChange,
   options = [],
-  value = [],
   renderOptionsLabel,
+  value = [],
 }: ICheckboxInputProperties<T>) => {
   const hasOptions = Array.isArray(options) && options.length > 0;
 
@@ -71,23 +71,23 @@ export const CheckboxInput = <T extends string | number>({
         <div className={`checkbox-group direction-${direction}`}>
           {options.map((option, index) => (
             <Checkbox
-              key={option.value}
+              checked={isOptionChecked(option.value)}
               disabled={disabled}
+              key={option.value}
               label={
                 renderOptionsLabel ? renderOptionsLabel(option) : option.label
               }
-              checked={isOptionChecked(option.value)}
-              value={option.value}
               name={`${name}-${index}`}
               onChange={() => handleSelectOption(option.value)}
+              value={option.value}
             />
           ))}
         </div>
       ) : (
         <Checkbox
+          checked={checked}
           disabled={disabled}
           label={inputLabel}
-          checked={checked}
           name={name}
           onChange={handleSingleCheckboxChange}
         />

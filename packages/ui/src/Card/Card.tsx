@@ -1,14 +1,14 @@
 import React from "react";
 
 interface CardProperties {
+  children: React.ReactNode;
   className?: string;
   outlined?: boolean;
-  children: React.ReactNode;
 }
 
 export const Card: React.FC<CardProperties> = ({
-  className = "",
   children,
+  className = "",
   outlined = false,
 }) => {
   return (

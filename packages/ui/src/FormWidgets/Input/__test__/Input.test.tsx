@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { expect, test, describe, vi } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import { Input } from "..";
 
@@ -20,7 +20,7 @@ describe("Input", () => {
   });
 
   test("should have the correct initial value when defaultValue is provided", () => {
-    render(<Input label="username" name="username" defaultValue="john" />);
+    render(<Input defaultValue="john" label="username" name="username" />);
 
     expect(screen.getByDisplayValue("john")).toBeInTheDocument();
   });
@@ -28,9 +28,9 @@ describe("Input", () => {
   test("should display helper text", () => {
     render(
       <Input
+        helperText="Please enter your username"
         label="username"
         name="username"
-        helperText="Please enter your username"
       />,
     );
 
@@ -40,7 +40,7 @@ describe("Input", () => {
 
   test("should display error message", () => {
     render(
-      <Input label="username" name="username" errorMessage="Required field" />,
+      <Input errorMessage="Required field" label="username" name="username" />,
     );
 
     const errorMessage = screen.getByText("Required field");
@@ -59,7 +59,7 @@ describe("Input", () => {
   });
 
   test("should disable the input field when disabled is true", () => {
-    render(<Input label="username" name="username" disabled={true} />);
+    render(<Input disabled={true} label="username" name="username" />);
 
     const input = screen.getByLabelText("username");
     expect(input).toBeDisabled();
@@ -73,14 +73,14 @@ describe("Input", () => {
   });
 
   test("should apply aria-invalid when hasError is true", () => {
-    render(<Input label="username" name="username" hasError={true} />);
+    render(<Input hasError={true} label="username" name="username" />);
 
     const input = screen.getByLabelText("username");
     expect(input).toHaveAttribute("aria-invalid", "true");
   });
 
   test("should set the correct input type when type is passed", () => {
-    render(<Input name="age" label="age" type="number" />);
+    render(<Input label="age" name="age" type="number" />);
 
     const input = screen.getByLabelText("age");
     expect(input).toHaveAttribute("type", "number");
@@ -88,7 +88,7 @@ describe("Input", () => {
 
   test("should render custom className", () => {
     const { container } = render(
-      <Input label="username" name="username" className="custom-class" />,
+      <Input className="custom-class" label="username" name="username" />,
     );
 
     expect(container.querySelector("div")).toHaveClass("custom-class");

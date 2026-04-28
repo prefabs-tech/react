@@ -1,2 +1,2 @@
-export * from "./UsersTable";
 export * from "./AllUsersTable";
+export * from "./UsersTable";

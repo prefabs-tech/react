@@ -7,9 +7,9 @@ interface IProperties {
 const Divider: React.FC<IProperties> = ({ orientation = "horizontal" }) => {
   return (
     <div
-      role="separator"
       className="divider"
       data-aria-orientation={orientation}
+      role="separator"
     />
   );
 };

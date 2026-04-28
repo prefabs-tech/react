@@ -1,10 +1,10 @@
+import type { FC, LegacyRef, ReactNode } from "react";
+
 import { Placement } from "@popperjs/core";
 import { OffsetsFunction } from "@popperjs/core/lib/modifiers/offset";
 import { useCallback, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
-
-import type { FC, LegacyRef, ReactNode } from "react";
 
 export interface PopupMenuProperties {
   className?: string;
@@ -32,7 +32,7 @@ export const PopupMenu: FC<PopupMenuProperties> = ({
     return [0, offset];
   }, [offset]);
 
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+  const { attributes, styles } = usePopper(referenceElement, popperElement, {
     modifiers: [
       {
         name: "offset",
@@ -52,14 +52,14 @@ export const PopupMenu: FC<PopupMenuProperties> = ({
   return createPortal(
     <div
       className={`popup-menu ${className}`.trim()}
+      onClick={toggle}
       ref={setPopperElement as LegacyRef<HTMLDivElement>}
       style={{
         ...styles.popper,
         ...styles,
-        width: matchReferenceWidth ? referenceElementWidth : "auto",
         maxWidth: referenceElementWidth ? referenceElementWidth * 1.5 : "auto",
+        width: matchReferenceWidth ? referenceElementWidth : "auto",
       }}
-      onClick={toggle}
       {...attributes.popper}
     >
       {content}

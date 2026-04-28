@@ -1,7 +1,7 @@
 interface Component {
+  component: JSX.Element;
   key: number;
   title: string;
-  component: JSX.Element;
 }
 
 export type { Component };

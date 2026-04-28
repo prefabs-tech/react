@@ -1,4 +1,4 @@
-import { Provider, emailSchema } from "@prefabs.tech/react-form";
+import { emailSchema, Provider } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Message } from "@prefabs.tech/react-ui";
 import { useState } from "react";
@@ -9,18 +9,8 @@ import { getMe } from "@/api/user";
 import { useConfig } from "@/hooks";
 import { changeEmail } from "@/supertokens";
 
-import { UpdateEmailFormFields } from "./UpdateEmailFormFields";
 import { UserType } from "../../types";
-
-interface Properties {
-  setModalVisible: (visible: boolean) => void;
-  user: UserType | null;
-  setUser: (user: UserType) => void;
-}
-
-type UpdateEmailFormData = {
-  email: string;
-};
+import { UpdateEmailFormFields } from "./UpdateEmailFormFields";
 
 type ErrorType =
   | "alreadyExist"
@@ -29,20 +19,30 @@ type ErrorType =
   | "invalid"
   | "other";
 
+interface Properties {
+  setModalVisible: (visible: boolean) => void;
+  setUser: (user: UserType) => void;
+  user: null | UserType;
+}
+
+type UpdateEmailFormData = {
+  email: string;
+};
+
 const errorMessagesMap: Record<ErrorType, string> = {
   alreadyExist: "profile.accountInfo.messages.alreadyExist",
+  disabled: "profile.accountInfo.messages.disabled",
   duplicate: "profile.accountInfo.messages.duplicate",
   invalid: "profile.accountInfo.messages.invalid",
-  disabled: "profile.accountInfo.messages.disabled",
   other: "profile.accountInfo.messages.error",
 };
 
 export const UpdateEmailForm = ({
-  user,
   setModalVisible,
   setUser,
+  user,
 }: Properties) => {
-  const { t, i18n } = useTranslation("user");
+  const { i18n, t } = useTranslation("user");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<ErrorType | null>(null);
   const config = useConfig();
@@ -61,6 +61,22 @@ export const UpdateEmailForm = ({
       const response = await changeEmail(data.email, config.apiBaseUrl);
 
       switch (response?.status) {
+        case "EMAIL_ALREADY_EXISTS_ERROR": {
+          setError("alreadyExist");
+          break;
+        }
+        case "EMAIL_FEATURE_DISABLED_ERROR": {
+          setError("disabled");
+          break;
+        }
+        case "EMAIL_INVALID_ERROR": {
+          setError("invalid");
+          break;
+        }
+        case "EMAIL_SAME_AS_CURRENT_ERROR": {
+          setError("duplicate");
+          break;
+        }
         case "OK": {
           const userInfo = await getMe(config.apiBaseUrl);
           const isSameEmail = userInfo.data.email === user?.email;
@@ -73,22 +89,6 @@ export const UpdateEmailForm = ({
           }
 
           setModalVisible(false);
-          break;
-        }
-        case "EMAIL_ALREADY_EXISTS_ERROR": {
-          setError("alreadyExist");
-          break;
-        }
-        case "EMAIL_SAME_AS_CURRENT_ERROR": {
-          setError("duplicate");
-          break;
-        }
-        case "EMAIL_INVALID_ERROR": {
-          setError("invalid");
-          break;
-        }
-        case "EMAIL_FEATURE_DISABLED_ERROR": {
-          setError("disabled");
           break;
         }
         default: {
@@ -124,10 +124,10 @@ export const UpdateEmailForm = ({
         />
       )}
       <Provider
-        validationSchema={emailValidationSchema}
         onSubmit={handleSubmit}
-        values={formValues}
+        validationSchema={emailValidationSchema}
         validationTriggerKey={i18n.language}
+        values={formValues}
       >
         <UpdateEmailFormFields
           loading={loading}

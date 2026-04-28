@@ -1,7 +1,9 @@
+type CombinedMenuRouteType = Array<MenuRouteType | NestedMenuRouteType>;
+
 type MenuRouteType = {
+  icon?: React.ReactNode;
   name: string;
   route: string;
-  icon?: React.ReactNode;
 };
 
 type NestedMenuRouteType = Omit<MenuRouteType, "route"> & {
@@ -9,6 +11,4 @@ type NestedMenuRouteType = Omit<MenuRouteType, "route"> & {
   submenu: Array<MenuRouteType>;
 };
 
-type CombinedMenuRouteType = Array<MenuRouteType | NestedMenuRouteType>;
-
-export type { MenuRouteType, NestedMenuRouteType, CombinedMenuRouteType };
+export type { CombinedMenuRouteType, MenuRouteType, NestedMenuRouteType };

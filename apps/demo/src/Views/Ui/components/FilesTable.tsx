@@ -13,47 +13,15 @@ export const FilesTableDemo = () => {
       title={t("filesTable.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <FilesTable
-          onFileDelete={() => {}}
-          onFileArchive={() => {}}
-          files={[
-            {
-              id: 0,
-              originalFileName: "my file",
-              description: "Initial project proposal for client review",
-              uploadedBy: { givenName: "Manish", surname: "Aryal" },
-              uploadedAt: new Date("2025-01-14").getTime(),
-              lastDownloadedAt: new Date("2025-01-26").getTime(),
-              downloadCount: 10,
-            },
-            {
-              id: 1,
-              originalFileName: "logo",
-              description: "Final logo design for branding",
-              uploadedBy: { givenName: "Nabin", surname: "Dhital" },
-              uploadedAt: new Date("2025-02-17").getTime(),
-              lastDownloadedAt: Date.now(),
-              downloadCount: 12,
-            },
-          ]}
-          locale={i18n?.language}
-          visibleColumns={[
-            "originalFileName",
-            "description",
-            "uploadedBy",
-            "uploadedAt",
-            "lastDownloadedAt",
-            "downloadCount",
-            "actions",
-          ]}
           columns={[
             {
               id: "uploadedBy",
@@ -66,10 +34,42 @@ export const FilesTableDemo = () => {
               tooltip: true,
             },
           ]}
+          files={[
+            {
+              description: "Initial project proposal for client review",
+              downloadCount: 10,
+              id: 0,
+              lastDownloadedAt: new Date("2025-01-26").getTime(),
+              originalFileName: "my file",
+              uploadedAt: new Date("2025-01-14").getTime(),
+              uploadedBy: { givenName: "Manish", surname: "Aryal" },
+            },
+            {
+              description: "Final logo design for branding",
+              downloadCount: 12,
+              id: 1,
+              lastDownloadedAt: Date.now(),
+              originalFileName: "logo",
+              uploadedAt: new Date("2025-02-17").getTime(),
+              uploadedBy: { givenName: "Nabin", surname: "Dhital" },
+            },
+          ]}
+          locale={i18n?.language}
+          onFileArchive={() => {}}
+          onFileDelete={() => {}}
           paginationOptions={{
-            pageInputLabel: t("filesTable.pagination.pageControl"),
             itemsPerPageControlLabel: t("filesTable.pagination.rowsPerPage"),
+            pageInputLabel: t("filesTable.pagination.pageControl"),
           }}
+          visibleColumns={[
+            "originalFileName",
+            "description",
+            "uploadedBy",
+            "uploadedAt",
+            "lastDownloadedAt",
+            "downloadCount",
+            "actions",
+          ]}
         />
       </Section>
     </Page>

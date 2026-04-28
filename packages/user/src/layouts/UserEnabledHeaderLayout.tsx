@@ -8,27 +8,27 @@ import { useUser, useUserNavigationMenu } from "..";
 
 interface IProperties extends Omit<
   HeaderLayoutProperties,
-  "userMenuMode" | "menu"
+  "menu" | "userMenuMode"
 > {
   authNavigationMenu?: UserMenuType;
-  userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
+  userNavigationMenu?: UserMenuType;
 }
 
 export const UserEnabledHeaderLayout = ({
   authNavigationMenu,
-  userNavigationMenu,
   onLogout,
+  userNavigationMenu,
   ...otherProperties
 }: IProperties) => {
   const { user } = useUser();
 
   const userMenu = useUserNavigationMenu({
-    authNavigationMenu,
     addAuthNavigationMenu: true,
-    userNavigationMenu,
+    authNavigationMenu,
     onLogout,
+    userNavigationMenu,
   });
 
   return (

@@ -9,8 +9,8 @@ import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import { TermsAndConditions } from "./TermsAndConditions";
 import { useConfig } from "../../hooks";
+import { TermsAndConditions } from "./TermsAndConditions";
 
 interface IProperties {
   disableEmailField?: boolean;
@@ -28,10 +28,10 @@ const SignupFormFields: React.FC<IProperties> = ({
   const { t } = useTranslation("user");
   const config = useConfig();
   const {
-    register,
-    getFieldState,
-    formState: { errors, submitCount, isSubmitted },
     control,
+    formState: { errors, isSubmitted, submitCount },
+    getFieldState,
+    register,
     trigger,
     watch,
   } = useFormContext();
@@ -49,24 +49,24 @@ const SignupFormFields: React.FC<IProperties> = ({
 
   const _termsAndConditions = (
     <Trans
-      i18nKey={"signup.form.termsAndConditions"}
       components={{
         Link: external ? (
           <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-link underlined"
             data-testid="external-link"
+            href={url}
+            rel="noopener noreferrer"
+            target="_blank"
           />
         ) : (
           <Link
-            to={url || ""}
             className="inline-link underlined"
             data-testid="internal-link"
+            to={url || ""}
           />
         ),
       }}
+      i18nKey={"signup.form.termsAndConditions"}
       t={t}
     />
   );
@@ -86,26 +86,26 @@ const SignupFormFields: React.FC<IProperties> = ({
   return (
     <>
       <Email
+        disabled={disableEmailField}
         label={t("signup.form.email.label")}
         name="email"
         placeholder={t("signup.form.email.placeholder")}
         submitCount={submitCount}
-        disabled={disableEmailField}
       />
       <Password
+        getFieldState={getFieldState}
+        helperText={t("signup.form.password.helperText")}
         label={t("signup.form.password.label")}
         name="password"
         register={register}
-        getFieldState={getFieldState}
         submitCount={submitCount}
-        helperText={t("signup.form.password.helperText")}
       />
       {hasConfirmPasswordFeature && (
         <Password
+          getFieldState={getFieldState}
           label={t("signup.form.confirmPassword.label")}
           name="confirmPassword"
           register={register}
-          getFieldState={getFieldState}
           submitCount={submitCount}
         />
       )}
@@ -120,15 +120,15 @@ const SignupFormFields: React.FC<IProperties> = ({
       <FormActions
         actions={[
           {
-            id: "submit",
             disabled:
               !!Object.values(errors).length ||
               (showTermsAndConditions && showCheckbox && !isChecked),
+            id: "submit",
             label: t("signup.form.actions.submit"),
           },
         ]}
-        loading={loading}
         alignment="fill"
+        loading={loading}
       />
     </>
   );

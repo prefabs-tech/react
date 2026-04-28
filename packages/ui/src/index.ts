@@ -1,5 +1,7 @@
 import "./assets/css/index.css";
 
+import type { Tab } from "./TabView/types";
+
 import { Accordion } from "./Accordion";
 import { SubPane } from "./components/SubPane";
 import { ConfirmationModal } from "./ConfirmationModal";
@@ -18,30 +20,29 @@ import { Stepper } from "./Stepper";
 import { TabbedPanel } from "./TabbedPanel";
 import TabView from "./TabView";
 
-import type { Tab } from "./TabView/types";
-
 export * from "./AuthPage";
 export * from "./Buttons";
 export * from "./Card";
 export * from "./CountryDisplay";
 export * from "./Data";
 export * from "./EditableTitle";
-export * from "./FilesTable";
 export * from "./FileCard";
 export * from "./FilesList";
 export * from "./FilesPresentation";
+export * from "./FilesTable";
 export * from "./FormWidgets";
-export * from "./Table";
-export * from "./utils";
+export * from "./NavigationMenu";
 export * from "./Pagination";
 export * from "./Popup";
 export * from "./SortableList";
-export * from "./Tooltip";
+export * from "./Table";
 export * from "./Tag";
-export * from "./NavigationMenu";
+export * from "./Tooltip";
+export * from "./utils";
 
 export {
   Accordion,
+  ConfirmationModal,
   Divider,
   DropdownMenu,
   FacebookButton,
@@ -57,7 +58,6 @@ export {
   SubPane,
   TabbedPanel,
   TabView,
-  ConfirmationModal,
 };
 
 export type { DropdownMenuProperties, MenuItem, PageProperties, Tab };

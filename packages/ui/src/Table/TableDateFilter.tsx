@@ -12,7 +12,7 @@ export const TableDateFilter = <TData,>({
 }: DateFilterProperties<TData>) => {
   const [dates, setDates] = useState<string[] | undefined>(undefined);
 
-  const filterValue = column.getFilterValue() as string[] | null;
+  const filterValue = column.getFilterValue() as null | string[];
 
   const getFormattedDate = (date: Date | null) => {
     if (!date) {
@@ -26,7 +26,7 @@ export const TableDateFilter = <TData,>({
     return `${year}-${month}-${day}`;
   };
 
-  const convertFilterValueToDate = (value: string[] | null) => {
+  const convertFilterValueToDate = (value: null | string[]) => {
     if (Array.isArray(filterValue)) {
       return filterValue.map((value) => new Date(value));
     }
@@ -59,9 +59,9 @@ export const TableDateFilter = <TData,>({
           formatteddates.length === 2 ? formatteddates : null,
         );
       }}
-      value={convertFilterValueToDate(dates as string[])}
-      selectionMode="range"
       placeholder={column.columnDef.filterPlaceholder || ""}
+      selectionMode="range"
+      value={convertFilterValueToDate(dates as string[])}
     />
   );
 };

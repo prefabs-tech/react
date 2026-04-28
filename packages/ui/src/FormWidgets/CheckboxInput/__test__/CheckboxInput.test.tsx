@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React, { useState } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
@@ -6,8 +6,8 @@ import { CheckboxInput } from "../index";
 
 describe("CheckboxInput", () => {
   const options = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
+    { label: "Option 1", value: "option1" },
+    { label: "Option 2", value: "option2" },
   ];
 
   const onChangeMock = vi.fn();
@@ -16,8 +16,8 @@ describe("CheckboxInput", () => {
     return render(
       <CheckboxInput
         name="test-checkbox"
-        options={options}
         onChange={onChangeMock}
+        options={options}
         {...properties}
       />,
     );
@@ -60,12 +60,12 @@ describe("CheckboxInput", () => {
       return (
         <CheckboxInput
           name="test-checkbox"
-          options={options}
-          value={selectedValues}
           onChange={(newValue) => {
             setSelectedValues(newValue as string[]);
             onChangeMock(newValue);
           }}
+          options={options}
+          value={selectedValues}
         />
       );
     };
@@ -99,8 +99,8 @@ describe("CheckboxInput", () => {
 
   it("renders helper text and error message when provided", () => {
     renderCheckboxInput({
-      helperText: "Helper text",
       errorMessage: "Error message",
+      helperText: "Helper text",
     });
 
     expect(screen.getByText("Helper text")).toBeInTheDocument();
@@ -108,7 +108,7 @@ describe("CheckboxInput", () => {
   });
 
   it("renders custom labels for options when renderOptionsLabel is provided", () => {
-    const renderOptionsLabel = (option: { value: string; label: string }) => (
+    const renderOptionsLabel = (option: { label: string; value: string }) => (
       <span>Custom {option.label}</span>
     );
 
@@ -127,7 +127,7 @@ describe("CheckboxInput", () => {
   });
 
   it("initializes with default checked state for single checkbox", () => {
-    renderCheckboxInput({ options: [], checked: true });
+    renderCheckboxInput({ checked: true, options: [] });
 
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toBeChecked();

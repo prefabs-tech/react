@@ -18,9 +18,9 @@ export const ProfileCompletionReminder = ({
 
   return (
     <Page
+      centered={centered}
       className="profile-completion-reminder"
       title={t("profileCompletion.title")}
-      centered={centered}
     >
       <Card>
         <CardBody>

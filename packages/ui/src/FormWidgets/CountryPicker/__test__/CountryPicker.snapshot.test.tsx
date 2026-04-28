@@ -7,10 +7,10 @@ describe("CountryPicker Component", () => {
   test("should render correctly with a limited list of countries", () => {
     const { container } = render(
       <CountryPicker
-        name="simple-country-picker"
         include={["NP", "US", "GB"]}
-        value="NP"
+        name="simple-country-picker"
         onChange={() => {}}
+        value="NP"
       />,
     );
 
@@ -20,14 +20,14 @@ describe("CountryPicker Component", () => {
   test("should render correctly with favorites and localization", () => {
     const { container } = render(
       <CountryPicker
-        name="favorites-picker"
-        locale="fr"
-        include={["NP", "US", "FR", "DE"]}
         favorites={["FR", "DE"]}
-        labels={{ favorites: "Principaux", allCountries: "Autres" }}
-        value={["FR"]}
+        include={["NP", "US", "FR", "DE"]}
+        labels={{ allCountries: "Autres", favorites: "Principaux" }}
+        locale="fr"
         multiple
+        name="favorites-picker"
         onChange={() => {}}
+        value={["FR"]}
       />,
     );
 

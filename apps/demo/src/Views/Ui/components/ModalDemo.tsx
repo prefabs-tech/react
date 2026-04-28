@@ -15,53 +15,53 @@ export const ModalDemo = () => {
 
   const data = [
     {
+      default: "-",
+      description: t("modal.propertiesDescription.className"),
       id: 1,
       prop: "className",
       type: "string",
-      default: "-",
-      description: t("modal.propertiesDescription.className"),
     },
     {
+      default: "-",
+      description: t("modal.propertiesDescription.children"),
       id: 2,
       prop: "children",
       type: "ReactNode",
-      default: "-",
-      description: t("modal.propertiesDescription.children"),
     },
     {
+      default: "-",
+      description: t("modal.propertiesDescription.footer"),
       id: 3,
       prop: "footer",
       type: "ReactNode",
-      default: "-",
-      description: t("modal.propertiesDescription.footer"),
     },
     {
+      default: "-",
+      description: t("modal.propertiesDescription.header"),
       id: 4,
       prop: "header",
       type: "ReactNode",
-      default: "-",
-      description: t("modal.propertiesDescription.header"),
     },
     {
+      default: "-",
+      description: t("modal.propertiesDescription.onHide"),
       id: 5,
       prop: "onHide",
       type: "() => void",
-      default: "-",
-      description: t("modal.propertiesDescription.onHide"),
     },
     {
+      default: `"medium"`,
+      description: t("modal.propertiesDescription.size"),
       id: 6,
       prop: "size",
       type: `"auto" | "medium" | "large"`,
-      default: `"medium"`,
-      description: t("modal.propertiesDescription.size"),
     },
     {
+      default: "false",
+      description: t("modal.propertiesDescription.visible"),
       id: 7,
       prop: "visible",
       type: "Boolean",
-      default: "false",
-      description: t("modal.propertiesDescription.visible"),
     },
   ];
 
@@ -76,14 +76,14 @@ export const ModalDemo = () => {
   return (
     <Page
       className="demo-modal"
-      title={t("modal.title")}
       subtitle={t("modal.subtitle")}
+      title={t("modal.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -176,14 +176,14 @@ const [isLargeModalOpen, setIsLargeModalOpen] = useState<boolean>(false);
           ></Button>
         </div>
         <Modal
-          header={<Header />}
-          onHide={() => setHeaderFooterModal(false)}
-          visible={headerFooterModal}
           footer={
             <div>
               <Button label="Click me" />
             </div>
           }
+          header={<Header />}
+          onHide={() => setHeaderFooterModal(false)}
+          visible={headerFooterModal}
         >
           <p style={{ lineHeight: 1.6 }}>{content}</p>
         </Modal>

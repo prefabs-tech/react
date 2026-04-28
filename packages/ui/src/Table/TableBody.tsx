@@ -1,12 +1,14 @@
 import {
   Cell,
   flexRender,
-  Table,
   NoInfer,
   Row,
   RowData,
+  Table,
 } from "@tanstack/react-table";
 import React from "react";
+
+import type { TDataTableProperties } from "./types";
 
 import { formatDate, formatDateTime } from "..";
 import {
@@ -17,15 +19,13 @@ import {
 } from "./TableElements";
 import { formatNumber, getAlignValue } from "./utilities";
 
-import type { TDataTableProperties } from "./types";
-
 interface TableBodyProperties<TData extends RowData> extends Pick<
   TDataTableProperties<TData>,
-  "enableRowSelection" | "customFormatters" | "emptyTableMessage" | "isLoading"
+  "customFormatters" | "emptyTableMessage" | "enableRowSelection" | "isLoading"
 > {
   locale?: string;
   parsedColumnsLength: number;
-  rowClassName?: string | ((options: { row: Row<TData> }) => string);
+  rowClassName?: ((options: { row: Row<TData> }) => string) | string;
   table: Table<TData>;
 }
 
@@ -94,8 +94,8 @@ export const TableBody = <TData extends RowData>({
                         {
                           ...defaultDateOptions,
                           hour: "2-digit",
-                          minute: "2-digit",
                           hour12: false,
+                          minute: "2-digit",
                         };
                       const numberOptions = cell.column.columnDef.numberOptions;
 
@@ -106,11 +106,16 @@ export const TableBody = <TData extends RowData>({
                           (value: any) => NoInfer<never>
                         > = {
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          number: (value: any) =>
+                          currency: (value: any) =>
                             formatNumber({
-                              value: Number(value),
+                              formatOptions: {
+                                currency: "USD",
+                                style: "currency",
+                                ...(numberOptions?.formatOptions &&
+                                  numberOptions.formatOptions),
+                              },
                               locale: numberOptions?.locale ?? locale,
-                              formatOptions: numberOptions?.formatOptions,
+                              value: Number(value),
                             }) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
                           date: (value: any) =>
@@ -128,16 +133,11 @@ export const TableBody = <TData extends RowData>({
                                 defaultDateTimeOptions,
                             ) as NoInfer<never>,
                           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          currency: (value: any) =>
+                          number: (value: any) =>
                             formatNumber({
-                              value: Number(value),
+                              formatOptions: numberOptions?.formatOptions,
                               locale: numberOptions?.locale ?? locale,
-                              formatOptions: {
-                                style: "currency",
-                                currency: "USD",
-                                ...(numberOptions?.formatOptions &&
-                                  numberOptions.formatOptions),
-                              },
+                              value: Number(value),
                             }) as NoInfer<never>,
                           ...customFormatters,
                         };
@@ -154,40 +154,40 @@ export const TableBody = <TData extends RowData>({
 
                       return {
                         ...cellContext,
-                        renderValue: () => getFormattedValue(),
                         getValue: () => getFormattedValue(),
+                        renderValue: () => getFormattedValue(),
                       };
                     };
 
                   return (
                     <TableCell
-                      key={cell.id}
-                      data-label={cell.column.id}
-                      data-align={getAlignValue({
-                        align: cell.column.columnDef.align,
-                        dataType: cell.column.columnDef.dataType,
-                      })}
                       className={`${
                         cell.column.id ? `cell-${cell.column.id}` : ``
                       } ${cell.column.columnDef.className || ""}`
                         .replace(/\s\s/, " ")
                         .trimEnd()}
+                      data-align={getAlignValue({
+                        align: cell.column.columnDef.align,
+                        dataType: cell.column.columnDef.dataType,
+                      })}
+                      data-label={cell.column.id}
+                      key={cell.id}
                       style={{
-                        width: cell.column.columnDef.width,
                         maxWidth: cell.column.columnDef.maxWidth,
                         minWidth: cell.column.columnDef.minWidth,
+                        width: cell.column.columnDef.width,
                       }}
                     >
                       {cell.column.columnDef.tooltip ? (
                         <TooltipWrapper
-                          tooltipOptions={{
-                            children: renderTooltipContent(cell),
-                            ...cell.column.columnDef?.tooltipOptions,
-                          }}
                           cellContent={flexRender(
                             cell.column.columnDef.cell,
                             getFormattedValueContext(),
                           )}
+                          tooltipOptions={{
+                            children: renderTooltipContent(cell),
+                            ...cell.column.columnDef?.tooltipOptions,
+                          }}
                         ></TooltipWrapper>
                       ) : (
                         flexRender(

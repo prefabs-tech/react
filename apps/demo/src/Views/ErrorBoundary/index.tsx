@@ -1,11 +1,12 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Page } from "@prefabs.tech/react-ui";
 import { useRouteError } from "react-router-dom";
+
 import "./ErrorBoundary.css";
 
 type RouteError = {
-  statusText?: string;
   message?: string;
+  statusText?: string;
 };
 
 const ErrorBoundary = (): JSX.Element => {

@@ -4,8 +4,8 @@ import { describe, expect, test } from "vitest";
 import { Select } from "..";
 
 const options = [
-  { value: "np", label: "Nepali" },
-  { value: "en", label: "English" },
+  { label: "Nepali", value: "np" },
+  { label: "English", value: "en" },
 ];
 
 describe("Select Component", () => {
@@ -13,9 +13,9 @@ describe("Select Component", () => {
     const { container } = render(
       <Select
         name="single-select"
+        onChange={() => {}}
         options={options}
         value="en"
-        onChange={() => {}}
       />,
     );
 
@@ -25,11 +25,11 @@ describe("Select Component", () => {
   test("should render correctly with multiple selection", () => {
     const { container } = render(
       <Select
+        multiple
         name="multi-select"
+        onChange={() => {}}
         options={options}
         value={["np", "en"]}
-        multiple
-        onChange={() => {}}
       />,
     );
 
@@ -40,10 +40,10 @@ describe("Select Component", () => {
     const { container } = render(
       <Select
         name="placeholder-select"
-        options={options}
-        value=""
-        placeholder="Select a language"
         onChange={() => {}}
+        options={options}
+        placeholder="Select a language"
+        value=""
       />,
     );
 
@@ -53,12 +53,12 @@ describe("Select Component", () => {
   test("should render correctly with an error message", () => {
     const { container } = render(
       <Select
+        errorMessage="This field is required"
+        hasError
         name="error-select"
+        onChange={() => {}}
         options={options}
         value="en"
-        hasError
-        errorMessage="This field is required"
-        onChange={() => {}}
       />,
     );
 
@@ -68,11 +68,11 @@ describe("Select Component", () => {
   test("should render correctly with helper text", () => {
     const { container } = render(
       <Select
+        helperText="Please select an option"
         name="helper-text-select"
+        onChange={() => {}}
         options={options}
         value="np"
-        helperText="Please select an option"
-        onChange={() => {}}
       />,
     );
 
@@ -82,11 +82,11 @@ describe("Select Component", () => {
   test("should render correctly when disabled", () => {
     const { container } = render(
       <Select
+        disabled
         name="disabled-select"
+        onChange={() => {}}
         options={options}
         value="en"
-        disabled
-        onChange={() => {}}
       />,
     );
 
@@ -96,11 +96,11 @@ describe("Select Component", () => {
   test("should render correctly when auto-select single option is enabled", () => {
     const { container } = render(
       <Select
+        autoSelectSingleOption
         name="auto-select-single"
+        onChange={() => {}}
         options={options}
         value="np"
-        autoSelectSingleOption
-        onChange={() => {}}
       />,
     );
 
@@ -110,11 +110,11 @@ describe("Select Component", () => {
   test("should render correctly when hide if single option is enabled", () => {
     const { container } = render(
       <Select
+        hideIfSingleOption
         name="hide-if-single"
+        onChange={() => {}}
         options={options}
         value="np"
-        hideIfSingleOption
-        onChange={() => {}}
       />,
     );
 

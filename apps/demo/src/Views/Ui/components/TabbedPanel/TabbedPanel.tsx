@@ -3,6 +3,8 @@ import { Button, Page } from "@prefabs.tech/react-ui";
 import { Message } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
+import { CodeBlock } from "../../../../components/Demo";
+import { Section } from "../../../../components/Demo";
 import {
   Basic,
   CustomActive,
@@ -11,8 +13,6 @@ import {
   PositionLeft,
   PositionRight,
 } from "./components";
-import { CodeBlock } from "../../../../components/Demo";
-import { Section } from "../../../../components/Demo";
 
 export const TabbedPanelDemo = () => {
   const [t] = useTranslation("ui");
@@ -23,16 +23,16 @@ export const TabbedPanelDemo = () => {
       title={t("tabbedPanel.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Message
-        message="@deprecated: Use TabView component from the ui package instead"
         enableClose={false}
+        message="@deprecated: Use TabView component from the ui package instead"
       />
       <Section title={t("tabbedPanel.usage.basic")}>
         <Basic />

@@ -8,8 +8,8 @@ import { UserConfig } from "@/types";
 import { SignupForm } from "../Signup";
 
 const config = {
-  supportedRoles: ["USER"],
   socialLoginProviders: ["google"],
+  supportedRoles: ["USER"],
 };
 
 test("Component matches snapshot", () => {

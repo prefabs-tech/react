@@ -30,29 +30,29 @@ export const getUserProtectedRoutes = (options?: ProtectedRoutesProperties) => {
 
   const protectedRoutes = [
     {
-      path: customPaths?.changePassword || DEFAULT_PATHS.CHANGE_PASSWORD,
-      element: changePassword?.element || <ChangePassword />,
       disabled: isSocialLogin,
+      element: changePassword?.element || <ChangePassword />,
+      path: customPaths?.changePassword || DEFAULT_PATHS.CHANGE_PASSWORD,
     },
     {
-      path:
-        customPaths?.emailVerificationReminder ||
-        DEFAULT_PATHS.EMAIL_VERIFICATION_REMINDER,
+      disabled: !emailVerificationEnabled,
       element: emailVerificationReminder?.element || (
         <EmailVerificationReminder />
       ),
-      disabled: !emailVerificationEnabled,
+      path:
+        customPaths?.emailVerificationReminder ||
+        DEFAULT_PATHS.EMAIL_VERIFICATION_REMINDER,
     },
     {
+      disabled: !emailVerificationEnabled,
+      element: emailVerificationVerify?.element || <VerifyEmail />,
       path:
         customPaths?.emailVerificationVerify ||
         DEFAULT_PATHS.EMAIL_VERIFICATION_VERIFY,
-      element: emailVerificationVerify?.element || <VerifyEmail />,
-      disabled: !emailVerificationEnabled,
     },
     {
-      path: customPaths?.profile || DEFAULT_PATHS.PROFILE,
       element: profile?.element || <ProfileTabsPage />,
+      path: customPaths?.profile || DEFAULT_PATHS.PROFILE,
     },
   ];
 
@@ -60,7 +60,7 @@ export const getUserProtectedRoutes = (options?: ProtectedRoutesProperties) => {
     <>
       {protectedRoutes.map((route) =>
         !route.disabled ? (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route element={route.element} key={route.path} path={route.path} />
         ) : null,
       )}
     </>

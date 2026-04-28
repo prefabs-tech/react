@@ -37,7 +37,7 @@ export const DaysInput: React.FC<IDaysInputField> = ({
     },
   });
 
-  const { error, isDirty, isTouched, invalid } = getFieldState(name);
+  const { error, invalid, isDirty, isTouched } = getFieldState(name);
 
   let inputClassName = "";
   if (isDirty && !invalid) {
@@ -54,8 +54,8 @@ export const DaysInput: React.FC<IDaysInputField> = ({
       <input
         {...updatedRegister}
         className={inputClassName}
-        type="number"
         placeholder={placeholder}
+        type="number"
         {...others}
       />
       {helperText && <span className="helper-text">{helperText}</span>}

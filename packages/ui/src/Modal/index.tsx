@@ -6,9 +6,9 @@ interface ModalProperties {
   children: React.ReactNode;
   className?: string;
   footer?: React.ReactNode;
-  header?: string | JSX.Element;
+  header?: JSX.Element | string;
   onHide: () => void;
-  size?: "auto" | "medium" | "large";
+  size?: "auto" | "large" | "medium";
   visible: boolean;
 }
 
@@ -28,7 +28,7 @@ const Modal: React.FC<ModalProperties> = ({
   const modalClassName = ["dz-modal", className, size].join(" ");
 
   return (
-    <div role="dialog" className="dz-modal-overlay">
+    <div className="dz-modal-overlay" role="dialog">
       <div className={modalClassName}>
         <div className="dz-modal-header">
           {typeof header === "string" ? (

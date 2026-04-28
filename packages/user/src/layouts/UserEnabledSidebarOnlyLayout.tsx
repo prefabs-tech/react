@@ -1,39 +1,39 @@
-import { SidebarOnlyLayout } from "@prefabs.tech/react-layout";
-
-import { useUserNavigationMenu } from "..";
-
 import type {
   SidebarOnlyLayoutProperties,
   UserMenuType,
 } from "@prefabs.tech/react-layout";
 
+import { SidebarOnlyLayout } from "@prefabs.tech/react-layout";
+
+import { useUserNavigationMenu } from "..";
+
 interface Properties extends Omit<SidebarOnlyLayoutProperties, "userMenu"> {
   authNavigationMenu?: UserMenuType;
-  userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
+  userNavigationMenu?: UserMenuType;
 }
 
 export const UserEnabledSidebarOnlyLayout: React.FC<Properties> = ({
   authNavigationMenu,
   children,
   className,
-  customSidebar,
   collapsible,
+  customSidebar,
   displayNavIcons,
   navigationMenu,
-  noSidebarHeader,
-  noSidebarFooter,
   noLocaleSwitcher,
-  userNavigationMenu,
-  userMenuMode,
+  noSidebarFooter,
+  noSidebarHeader,
   onLogout,
+  userMenuMode,
+  userNavigationMenu,
 }) => {
   const userMenu = useUserNavigationMenu({
-    authNavigationMenu,
     addAuthNavigationMenu: true,
-    userNavigationMenu,
+    authNavigationMenu,
     onLogout,
+    userNavigationMenu,
   });
 
   return (
@@ -41,12 +41,12 @@ export const UserEnabledSidebarOnlyLayout: React.FC<Properties> = ({
       children={children}
       className={className}
       collapsible={collapsible}
+      customSidebar={customSidebar}
       displayNavIcons={displayNavIcons}
       navigationMenu={navigationMenu}
-      customSidebar={customSidebar}
-      noSidebarHeader={noSidebarHeader}
-      noSidebarFooter={noSidebarFooter}
       noLocaleSwitcher={noLocaleSwitcher}
+      noSidebarFooter={noSidebarFooter}
+      noSidebarHeader={noSidebarHeader}
       userMenu={userMenu}
       userMenuMode={userMenuMode}
     />

@@ -14,7 +14,7 @@ export const ResetPassword = ({ centered = true }: { centered?: boolean }) => {
   const { t } = useTranslation("user");
   const config = useConfig();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setIsError] = useState<null | "invalidToken" | "other">(null);
+  const [error, setIsError] = useState<"invalidToken" | "other" | null>(null);
 
   const navigate = useNavigate();
   const loginPath = config.customPaths?.login || DEFAULT_PATHS.LOGIN;
@@ -45,9 +45,9 @@ export const ResetPassword = ({ centered = true }: { centered?: boolean }) => {
 
   return (
     <AuthPage
+      centered={centered}
       className="reset-password"
       title={t("resetPassword.title")}
-      centered={centered}
     >
       {error && (
         <Message

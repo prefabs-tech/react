@@ -1,23 +1,18 @@
 import { VirtualElement } from "@popperjs/core";
 import { OffsetsFunction } from "@popperjs/core/lib/modifiers/offset";
 import React, {
-  RefObject,
   FC,
-  useEffect,
+  RefObject,
   useCallback,
-  useState,
+  useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import { createPortal } from "react-dom";
 import { usePopper } from "react-popper";
 
 import { getTooltipConfig } from "./ConfigureTooltip";
-
-type Position = {
-  top?: number;
-  left?: number;
-};
 
 export type TooltipProperties = {
   children: React.ReactNode;
@@ -26,7 +21,12 @@ export type TooltipProperties = {
   elementRef: RefObject<HTMLElement>;
   mouseTrack?: boolean;
   offset?: number;
-  position?: "top" | "bottom" | "right" | "left";
+  position?: "bottom" | "left" | "right" | "top";
+};
+
+type Position = {
+  left?: number;
+  top?: number;
 };
 
 export const Tooltip: FC<TooltipProperties> = (tooltipProperties) => {
@@ -62,7 +62,7 @@ export const Tooltip: FC<TooltipProperties> = (tooltipProperties) => {
 
   const onMouseMove = (event: MouseEvent) => {
     if (mouseTrack) {
-      setMousePosition({ top: event.clientY, left: event.clientX });
+      setMousePosition({ left: event.clientX, top: event.clientY });
     }
   };
 
@@ -101,17 +101,17 @@ export const Tooltip: FC<TooltipProperties> = (tooltipProperties) => {
   const virtualElement = useMemo(() => {
     return {
       getBoundingClientRect: () => ({
-        width: 0,
-        height: 0,
-        top: mousePosition.top,
-        right: mousePosition.left,
         bottom: mousePosition.top,
+        height: 0,
         left: mousePosition.left,
+        right: mousePosition.left,
+        top: mousePosition.top,
+        width: 0,
       }),
     };
   }, [mousePosition]);
 
-  const { styles, attributes } = usePopper(
+  const { attributes, styles } = usePopper(
     mouseTrack
       ? (virtualElement as VirtualElement)
       : (elementRef.current as Element),
@@ -140,8 +140,8 @@ export const Tooltip: FC<TooltipProperties> = (tooltipProperties) => {
     <>
       {createPortal(
         <div
-          ref={setTooltipReference}
           className={className ? className : renderedClassName}
+          ref={setTooltipReference}
           style={styles.popper}
           {...attributes}
         >

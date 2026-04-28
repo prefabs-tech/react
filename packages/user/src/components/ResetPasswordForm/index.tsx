@@ -5,8 +5,8 @@ import * as zod from "zod";
 
 import { useConfig } from "@/hooks";
 
-import ResetPasswordFormFields from "./ResetPasswordFormFields";
 import { PasswordConfirmationSchema } from "../schemas";
+import ResetPasswordFormFields from "./ResetPasswordFormFields";
 
 interface Properties {
   handleSubmit: (newPassword: string) => void;
@@ -14,22 +14,22 @@ interface Properties {
 }
 
 export const ResetPasswordForm = ({ handleSubmit, loading }: Properties) => {
-  const { t, i18n } = useTranslation("user");
+  const { i18n, t } = useTranslation("user");
   const config = useConfig();
   const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? false;
 
   let ResetPasswordFormSchema = zod.object({
     ...PasswordConfirmationSchema({
+      confirmPasswordRequiredMessage: t(
+        "resetPassword.messages.validation.confirmPassword",
+      ),
+      hasConfirmPasswordFeature,
       passwordRequiredMessage: t(
         "resetPassword.messages.validation.newPassword",
       ),
       passwordValidationMessage: t(
         "resetPassword.messages.validation.validationMessage",
       ),
-      confirmPasswordRequiredMessage: t(
-        "resetPassword.messages.validation.confirmPassword",
-      ),
-      hasConfirmPasswordFeature,
     }),
   });
 
@@ -47,8 +47,8 @@ export const ResetPasswordForm = ({ handleSubmit, loading }: Properties) => {
 
   return (
     <Provider
-      validationSchema={ResetPasswordFormSchema}
       onSubmit={(data) => handleSubmit(data.password)}
+      validationSchema={ResetPasswordFormSchema}
       validationTriggerKey={i18n.language}
     >
       <ResetPasswordFormFields

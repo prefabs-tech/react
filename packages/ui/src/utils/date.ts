@@ -1,14 +1,14 @@
 const defaultDateOptions: Intl.DateTimeFormatOptions = {
-  year: "numeric",
-  month: "short",
   day: "numeric",
+  month: "short",
+  year: "numeric",
 };
 
 const defaultDateTimeOptions: Intl.DateTimeFormatOptions = {
   ...defaultDateOptions,
   hour: "numeric",
-  minute: "numeric",
   hour12: true,
+  minute: "numeric",
 };
 
 export const formatDate = (

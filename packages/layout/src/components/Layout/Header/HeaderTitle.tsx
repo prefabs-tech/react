@@ -1,6 +1,6 @@
 interface HeaderTitleProperties {
   children?: React.ReactNode;
-  title?: string | React.ReactNode;
+  title?: React.ReactNode | string;
 }
 
 export const HeaderTitle = ({ children, title }: HeaderTitleProperties) => {

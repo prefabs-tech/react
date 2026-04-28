@@ -6,26 +6,26 @@ export const FileUploadDemo = () => {
 
   return (
     <FileUpload
-      name="images"
+      addDescriptionLabel={t("fileInput.description.label")}
+      cancelButtonOptions={{
+        iconLeft: "pi pi-times",
+        label: t("fileUpload.actions.cancel"),
+      }}
+      descriptionPlaceholder={t("fileInput.description.placeholder")}
+      dropzoneMessage={t("fileInput.dropzoneMessage")}
       dropzoneOptions={{
         accept: {
           "image/*": [".jpeg", ".png"],
         },
       }}
-      value={[]}
       enableDescription
-      dropzoneMessage={t("fileInput.dropzoneMessage")}
-      addDescriptionLabel={t("fileInput.description.label")}
-      descriptionPlaceholder={t("fileInput.description.placeholder")}
+      name="images"
       onUpload={() => {}}
       uploadButtonOptions={{
-        label: t("fileUpload.actions.upload"),
         iconLeft: "pi pi-plus",
+        label: t("fileUpload.actions.upload"),
       }}
-      cancelButtonOptions={{
-        label: t("fileUpload.actions.cancel"),
-        iconLeft: "pi pi-times",
-      }}
+      value={[]}
     />
   );
 };

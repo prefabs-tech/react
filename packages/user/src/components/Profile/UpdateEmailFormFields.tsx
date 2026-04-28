@@ -1,4 +1,4 @@
-import { Email, useFormContext, FormActions } from "@prefabs.tech/react-form";
+import { Email, FormActions, useFormContext } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 
 interface Properties {
@@ -23,15 +23,15 @@ export const UpdateEmailFormFields = ({
       <FormActions
         actions={[
           {
+            disabled: !isDirty,
             id: "submit",
             label: t("profile.button.update"),
-            disabled: !isDirty,
           },
           {
             id: "cancel",
             label: t("profile.button.cancel"),
-            type: "button",
             onClick: () => setModalVisible(false),
+            type: "button",
           },
         ]}
         alignment="right"

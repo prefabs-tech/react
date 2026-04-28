@@ -7,14 +7,14 @@ describe("FormatNumber unit test", () => {
     const value = 10_000_000;
     const locale = "en-US";
 
-    expect(formatNumber({ value, locale })).toBe("10,000,000");
+    expect(formatNumber({ locale, value })).toBe("10,000,000");
   });
 
   test("Should return a Indian locale based formatted number", () => {
     const value = 10_000_000;
     const locale = "en-IN";
 
-    expect(formatNumber({ value, locale })).toBe("1,00,00,000");
+    expect(formatNumber({ locale, value })).toBe("1,00,00,000");
   });
 
   test("Should return a USD currency formatted number", () => {
@@ -23,12 +23,12 @@ describe("FormatNumber unit test", () => {
 
     expect(
       formatNumber({
-        value,
-        locale,
         formatOptions: {
-          style: "currency",
           currency: "USD",
+          style: "currency",
         },
+        locale,
+        value,
       }),
     ).toBe("$10,000,000.00");
   });
@@ -38,7 +38,7 @@ describe("FormatNumber unit test", () => {
     const locale = "ne-N";
 
     try {
-      formatNumber({ value, locale });
+      formatNumber({ locale, value });
     } catch (error) {
       expect(() => {
         throw error;

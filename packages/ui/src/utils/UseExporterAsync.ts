@@ -2,32 +2,32 @@ import saveAs from "file-saver";
 import { WorkSheetOptions } from "node-xlsx";
 import { useCallback, useState } from "react";
 
-type UseExporterOptions = {
-  filename?: string;
-  sheetName?: string;
-  sheetOptions?: WorkSheetOptions;
-  onExportStart?: () => void;
-  onExportEnd?: () => void;
-};
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TriggerExportAsyncType = (data: any) => Promise<void>;
 
+type UseExporterOptions = {
+  filename?: string;
+  onExportEnd?: () => void;
+  onExportStart?: () => void;
+  sheetName?: string;
+  sheetOptions?: WorkSheetOptions;
+};
+
 const exportXLSX = async ({
-  sheetName,
-  filename,
   data,
+  filename,
+  sheetName,
   sheetOptions,
 }: {
-  sheetName: string;
-  filename: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
+  filename: string;
+  sheetName: string;
   sheetOptions: WorkSheetOptions;
 }) => {
   const XLSX = await import("node-xlsx");
 
-  const buffer = XLSX.build([{ name: sheetName, data, options: sheetOptions }]);
+  const buffer = XLSX.build([{ data, name: sheetName, options: sheetOptions }]);
 
   saveAs(
     new Blob([buffer as unknown as BlobPart], {
@@ -39,10 +39,10 @@ const exportXLSX = async ({
 
 export const useExporterAsync = ({
   filename = `export_${Date.now()}.xlsx`,
+  onExportEnd,
+  onExportStart,
   sheetName = "Sheet 1",
   sheetOptions = {},
-  onExportStart,
-  onExportEnd,
 }: UseExporterOptions): [boolean, TriggerExportAsyncType] => {
   const [exporting, setExporting] = useState(false);
 
@@ -54,7 +54,7 @@ export const useExporterAsync = ({
         onExportStart();
       }
 
-      await exportXLSX({ sheetName, filename, data, sheetOptions });
+      await exportXLSX({ data, filename, sheetName, sheetOptions });
 
       setExporting(false);
       if (onExportEnd) {

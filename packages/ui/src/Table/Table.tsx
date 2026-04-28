@@ -1,42 +1,43 @@
+import type { ColumnDef, RowData } from "@tanstack/react-table";
+
 import {
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  SortingState,
-  getSortedRowModel,
   ColumnFiltersState,
+  getCoreRowModel,
   getFilteredRowModel,
-  VisibilityState,
+  getPaginationRowModel,
+  getSortedRowModel,
   PaginationState,
+  SortingState,
   Updater,
+  useReactTable,
+  VisibilityState,
 } from "@tanstack/react-table";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
+import type { PersistentTableState, TDataTableProperties } from "./types";
+
+import { Checkbox } from "../FormWidgets";
+import LoadingIcon from "../LoadingIcon";
+import { Pagination } from "../Pagination";
 import { getStorage } from "../utils";
 import {
   DEFAULT_PAGE_INDEX,
   DEFAULT_PAGE_PER_OPTIONS,
   DEFAULT_PAGE_SIZE,
 } from "./constants";
+import { FILTER_FUNCTIONS_ENUM } from "./enums";
 import { TableBody } from "./TableBody";
 import { DataActionsMenu } from "./TableDataActions";
 import { Table, TableFooter } from "./TableElements";
 import { TableHeader } from "./TableHeader";
 import { TableToolbar } from "./TableToolbar";
 import {
-  getRequestJSON,
   getParsedColumns,
-  saveTableState,
+  getRequestJSON,
   getSavedTableState,
   isDefined,
+  saveTableState,
 } from "./utilities";
-import { Checkbox } from "../FormWidgets";
-import LoadingIcon from "../LoadingIcon";
-import { Pagination } from "../Pagination";
-import { FILTER_FUNCTIONS_ENUM } from "./enums";
-
-import type { PersistentTableState, TDataTableProperties } from "./types";
-import type { ColumnDef, RowData } from "@tanstack/react-table";
 
 const DataTable = <TData extends RowData>({
   className = "",
@@ -48,6 +49,7 @@ const DataTable = <TData extends RowData>({
   emptyTableMessage,
   enableRowSelection = false,
   enableSortingRemoval = false,
+  fetchData,
   highlightHeader,
   id,
   initialFilters = [],
@@ -55,10 +57,15 @@ const DataTable = <TData extends RowData>({
   inputDebounceTime,
   isLoading = false,
   locale,
+  onRowSelectChange,
   paginated = true,
   paginationOptions,
   persistState = true,
   persistStateStorage = "localStorage",
+  renderCustomPagination,
+  renderSortIcons,
+  renderTableFooterContent,
+  renderToolbarItems,
   resetStateActionBtnLabel: resetStateActionButtonLabel = "Reset all",
   rowClassName,
   rowPerPage,
@@ -68,12 +75,6 @@ const DataTable = <TData extends RowData>({
   title,
   totalRecords = 0,
   visibleColumns = [],
-  fetchData,
-  onRowSelectChange,
-  renderCustomPagination,
-  renderSortIcons,
-  renderTableFooterContent,
-  renderToolbarItems,
   ...tableOptions
 }: TDataTableProperties<TData>) => {
   // Try to synchronously hydrate persisted state to avoid a visual "flash"
@@ -83,13 +84,13 @@ const DataTable = <TData extends RowData>({
 
   const computeInitialPersistentState = (): PersistentTableState => {
     const base: PersistentTableState = {
-      sorting: initialSorting,
       columnFilters: initialFilters,
       columnVisibility: {},
       pagination: {
         pageIndex: DEFAULT_PAGE_INDEX,
         pageSize: rowPerPage || DEFAULT_PAGE_SIZE,
       },
+      sorting: initialSorting,
     };
 
     if (!persistState || !id) {
@@ -139,13 +140,13 @@ const DataTable = <TData extends RowData>({
       }
 
       return {
-        sorting: savedSorting ?? base.sorting,
         columnFilters: savedColumnFilters ?? base.columnFilters,
         columnVisibility: savedColumnVisibility ?? base.columnVisibility,
         pagination: {
           pageIndex,
           pageSize,
         },
+        sorting: savedSorting ?? base.sorting,
       };
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -238,37 +239,37 @@ const DataTable = <TData extends RowData>({
 
   const parsedColumns = useMemo(() => {
     let parsedColumns: ColumnDef<TData, unknown>[] = getParsedColumns({
-      visibleColumns,
       columns,
+      visibleColumns,
     });
 
     if (enableRowSelection) {
       parsedColumns = [
         {
-          id: "select",
+          align: "center",
+          cell: ({ row }) => (
+            <Checkbox
+              aria-label="Select row"
+              checked={row.getIsSelected()}
+              onChange={() => row.toggleSelected(!row.getIsSelected())}
+            />
+          ),
+          enableColumnFilter: false,
+          enableGlobalFilter: false,
+          enableHiding: false,
+          enableSorting: false,
           header: ({ table }) => (
             <Checkbox
+              aria-label="Select all"
               checked={table.getIsAllPageRowsSelected()}
               onChange={() =>
                 table.toggleAllPageRowsSelected(
                   !table.getIsAllPageRowsSelected(),
                 )
               }
-              aria-label="Select all"
             />
           ),
-          cell: ({ row }) => (
-            <Checkbox
-              checked={row.getIsSelected()}
-              onChange={() => row.toggleSelected(!row.getIsSelected())}
-              aria-label="Select row"
-            />
-          ),
-          enableSorting: false,
-          enableHiding: false,
-          enableColumnFilter: false,
-          enableGlobalFilter: false,
-          align: "center",
+          id: "select",
         },
         ...parsedColumns,
       ];
@@ -279,8 +280,6 @@ const DataTable = <TData extends RowData>({
       (dataActionsMenu && visibleColumns.includes("actions"))
     ) {
       const defaultActionColumn: ColumnDef<TData, unknown> = {
-        id: "actions",
-        header: () => <i className="pi pi-cog"></i>,
         align: "center",
         cell: ({ row: { original } }) => {
           const actionsMenu =
@@ -306,6 +305,8 @@ const DataTable = <TData extends RowData>({
 
           return <DataActionsMenu {...actionsMenu} data={original} />;
         },
+        header: () => <i className="pi pi-cog"></i>,
+        id: "actions",
       };
 
       parsedColumns = [...parsedColumns, defaultActionColumn];
@@ -331,7 +332,7 @@ const DataTable = <TData extends RowData>({
             return true;
           }
 
-          const rowValue = row.getValue<string | Date | number>(columnId);
+          const rowValue = row.getValue<Date | number | string>(columnId);
           if (!rowValue) {
             return false;
           }
@@ -378,12 +379,16 @@ const DataTable = <TData extends RowData>({
   }, [visibleColumns, columns]);
 
   const table = useReactTable<TData>({
-    data,
     columns: parsedColumns,
+    data,
+    enableSortingRemoval: enableSortingRemoval,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    manualFiltering: !!fetchData,
+    manualPagination: !!fetchData,
+    manualSorting: !!fetchData,
     onColumnFiltersChange: handleColumnFilterChange,
     onColumnVisibilityChange: setColumnVisibility,
     onPaginationChange: setPagination,
@@ -396,10 +401,6 @@ const DataTable = <TData extends RowData>({
       rowSelection,
       sorting,
     },
-    enableSortingRemoval: enableSortingRemoval,
-    manualFiltering: !!fetchData,
-    manualSorting: !!fetchData,
-    manualPagination: !!fetchData,
     ...(!!fetchData && {
       pageCount: Math.ceil(totalRecords / pagination.pageSize),
     }),
@@ -429,10 +430,10 @@ const DataTable = <TData extends RowData>({
     // Records the table state change without any rerender
     if (persistState && id) {
       persistentStateReference.current = {
-        sorting,
         columnFilters,
         columnVisibility,
         pagination,
+        sorting,
       };
     }
   }, [id, pagination, persistState, sorting, columnFilters, columnVisibility]);
@@ -546,42 +547,42 @@ const DataTable = <TData extends RowData>({
   ]);
 
   return (
-    <div id={id} className={("table-container " + className).trimEnd()}>
+    <div className={("table-container " + className).trimEnd()} id={id}>
       {title ? (
         <span children={title.text} data-align={title.align || "center"} />
       ) : null}
 
       {showColumnsAction || renderToolbarItems || showResetStateAction ? (
         <TableToolbar
-          table={table}
-          showColumnsAction={showColumnsAction}
           columnActionButtonLabel={columnActionButtonLabel}
           dataActionsMenu={dataActionsMenu}
-          showResetStateAction={showResetStateAction}
+          enableRowSelection={enableRowSelection}
+          handleResetState={handleResetState}
           renderToolbarItems={renderToolbarItems}
           resetActionButtonLabel={resetStateActionButtonLabel}
-          handleResetState={handleResetState}
-          enableRowSelection={enableRowSelection}
+          showColumnsAction={showColumnsAction}
+          showResetStateAction={showResetStateAction}
+          table={table}
         />
       ) : null}
 
       <Table>
         <TableHeader
-          table={table}
-          renderSortIcons={renderSortIcons}
-          inputDebounceTime={inputDebounceTime}
           highlight={highlightHeader}
+          inputDebounceTime={inputDebounceTime}
+          renderSortIcons={renderSortIcons}
+          table={table}
         />
 
         <TableBody
           customFormatters={customFormatters}
           emptyTableMessage={emptyTableMessage}
           enableRowSelection={enableRowSelection}
+          isLoading={isLoading}
           locale={locale}
           parsedColumnsLength={parsedColumns.length}
           rowClassName={rowClassName}
           table={table}
-          isLoading={isLoading}
         />
 
         {renderTableFooterContent ? (
@@ -597,13 +598,13 @@ const DataTable = <TData extends RowData>({
             <Pagination
               currentPage={pagination.pageIndex}
               defaultItemsPerPage={pagination.pageSize}
-              onPageChange={(currentPage) => {
-                table.setPageIndex(currentPage);
-              }}
               itemsPerPageOptions={rowPerPageOptions}
               onItemsPerPageChange={(itemsPerPage) => {
                 table.setPageSize(itemsPerPage);
                 table.setPageIndex(0);
+              }}
+              onPageChange={(currentPage) => {
+                table.setPageIndex(currentPage);
               }}
               totalItems={totalItems}
               {...paginationOptions}

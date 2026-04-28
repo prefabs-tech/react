@@ -4,34 +4,34 @@ import { UseFormGetFieldState, UseFormRegister } from "react-hook-form";
 interface IDateInput {
   className?: string;
   disabled?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  getFieldState?: UseFormGetFieldState<any>;
   helperText?: string;
-  label?: string | React.ReactNode;
-  max?: string | number | Date;
-  min?: string | number | Date;
+  label?: React.ReactNode | string;
+  max?: Date | number | string;
+  min?: Date | number | string;
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register?: UseFormRegister<any>;
   showInvalidState?: boolean;
   showValidState?: boolean;
   submitCount?: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  getFieldState?: UseFormGetFieldState<any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  register?: UseFormRegister<any>;
 }
 
 // TODO use Input component from @prefabs.tech/react-ui
 export const DateInput: React.FC<IDateInput> = ({
   className = "",
   disabled,
+  getFieldState,
   helperText,
   label = "",
   max,
   min,
   name,
+  register,
   showInvalidState = true,
   showValidState = true,
   submitCount = 0,
-  register,
-  getFieldState,
 }) => {
   if (!register || !getFieldState) {
     return null;
@@ -59,7 +59,7 @@ export const DateInput: React.FC<IDateInput> = ({
     }
   };
 
-  const convertToDateString = (value: string | number | Date | undefined) => {
+  const convertToDateString = (value: Date | number | string | undefined) => {
     if (!value) {
       return undefined;
     }
@@ -82,18 +82,18 @@ export const DateInput: React.FC<IDateInput> = ({
       {label && <label htmlFor={name}>{label}</label>}
       <input
         {...rest}
-        name={name}
-        id={name}
         aria-invalid={submitCount > 0 ? checkInvalidState() : undefined}
-        type="date"
         disabled={disabled}
+        id={name}
+        max={convertToDateString(max)}
+        min={convertToDateString(min)}
+        name={name}
         onClick={handleClick}
         ref={(event) => {
           ref(event);
           inputReference.current = event;
         }}
-        min={convertToDateString(min)}
-        max={convertToDateString(max)}
+        type="date"
       />
       {helperText && <span className="helper-text">{helperText}</span>}
       {error?.message && (

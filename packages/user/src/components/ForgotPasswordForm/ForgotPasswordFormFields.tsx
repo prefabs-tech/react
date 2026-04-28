@@ -1,4 +1,4 @@
-import { FormActions, Email, useFormContext } from "@prefabs.tech/react-form";
+import { Email, FormActions, useFormContext } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React, { useEffect } from "react";
 
@@ -14,9 +14,9 @@ export const ForgotPasswordFormFields = ({
   const { t } = useTranslation("user");
 
   const {
-    watch,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     formState: { errors, submitCount },
+    watch,
   } = useFormContext();
 
   const emailValue = watch("email");
@@ -38,13 +38,13 @@ export const ForgotPasswordFormFields = ({
       <FormActions
         actions={[
           {
+            disabled: !emailValue,
             id: "submit",
             label: t("forgotPassword.form.actions.submit"),
-            disabled: !emailValue,
           },
         ]}
-        loading={loading}
         alignment="fill"
+        loading={loading}
       />
     </>
   );

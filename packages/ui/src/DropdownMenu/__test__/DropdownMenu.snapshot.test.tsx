@@ -37,14 +37,14 @@ describe("DropdownMenu", () => {
 
   test("should match snapshot with hideDropdownIcon set to true", () => {
     const { container } = render(
-      <DropdownMenu menu={menuItems} hideDropdownIcon />,
+      <DropdownMenu hideDropdownIcon menu={menuItems} />,
     );
     expect(container).toMatchSnapshot();
   });
 
   test("should match snapshot with custom className", () => {
     const { container } = render(
-      <DropdownMenu menu={menuItems} className="custom-class" />,
+      <DropdownMenu className="custom-class" menu={menuItems} />,
     );
     expect(container).toMatchSnapshot();
   });
@@ -58,7 +58,7 @@ describe("DropdownMenu", () => {
 
   test("should match snapshot with a custom label", () => {
     const { container } = render(
-      <DropdownMenu menu={menuItems} label="Custom Label" />,
+      <DropdownMenu label="Custom Label" menu={menuItems} />,
     );
     expect(container).toMatchSnapshot();
   });

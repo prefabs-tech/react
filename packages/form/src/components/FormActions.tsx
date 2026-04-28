@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 
 interface FormActionsProperties {
   actions?: IButtonProperties[];
-  alignment?: "center" | "left" | "right" | "fill";
+  alignment?: "center" | "fill" | "left" | "right";
   className?: string;
   flowDirection?: "horizontal" | "vertical";
   loading?: boolean;

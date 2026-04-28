@@ -3,35 +3,35 @@ import { DialogHTMLAttributes, ReactNode, useEffect, useRef } from "react";
 import { Button, IButtonProperties } from "..";
 
 export interface IModalProperties extends DialogHTMLAttributes<HTMLDialogElement> {
+  accept?: () => void;
   acceptButtonOptions?: IButtonProperties;
   cancelButtonOptions?: IButtonProperties;
   closable?: boolean;
-  closeIcon?: string | ReactNode;
+  closeIcon?: ReactNode | string;
   footer?: ReactNode | string;
   header?: ReactNode | string;
   icon?: ReactNode | string;
   message?: ReactNode | string;
-  visible?: boolean;
-  accept?: () => void;
   onHide?: () => void;
   reject?: () => void;
+  visible?: boolean;
 }
 
 export const ConfirmationModal = ({
   accept,
   acceptButtonOptions,
-  reject,
   cancelButtonOptions,
+  children,
+  className = "",
   closable = true,
   closeIcon = "pi pi-times",
-  className = "",
-  message,
+  footer,
   header,
   icon = "pi pi-exclamation-triangle",
-  visible,
+  message,
   onHide,
-  footer,
-  children,
+  reject,
+  visible,
   ...dialogOptions
 }: IModalProperties) => {
   const dialogReference = useRef<HTMLDialogElement>(null);
@@ -59,9 +59,6 @@ export const ConfirmationModal = ({
         {closable && (
           <Button
             data-testid="close-button"
-            variant="textOnly"
-            size="small"
-            severity="secondary"
             iconLeft={
               typeof closeIcon === "string" ? (
                 <i className={closeIcon} />
@@ -71,6 +68,9 @@ export const ConfirmationModal = ({
             }
             onClick={onHide}
             rounded
+            severity="secondary"
+            size="small"
+            variant="textOnly"
           />
         )}
       </div>
@@ -86,9 +86,9 @@ export const ConfirmationModal = ({
       <div className="dz-dialog-footer">
         <Button
           label="No"
-          variant="outlined"
-          severity="secondary"
           onClick={reject || onHide}
+          severity="secondary"
+          variant="outlined"
           {...cancelButtonOptions}
         />
         <Button
@@ -115,9 +115,9 @@ export const ConfirmationModal = ({
 
   return visible ? (
     <dialog
-      ref={dialogReference}
       className={`dz-dialog ${className}`.trimEnd()}
       onClose={onHide}
+      ref={dialogReference}
       {...dialogOptions}
     >
       {renderHeader()}

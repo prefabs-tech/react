@@ -1,76 +1,76 @@
 import React, { ComponentProps, FC } from "react";
 
-import { ConfirmationModal } from "..";
-
 import type { IFile } from "..";
 
+import { ConfirmationModal } from "..";
+
 type ConfirmationFileActionsType = {
-  visibleArchiveConfirmation: boolean;
-  visibleDeleteConfirmation: boolean;
-  onArchive?: (arguments_: IFile) => void | Promise<void>;
-  onDelete?: (arguments_: IFile) => void | Promise<void>;
-  file: IFile;
-  setVisibleArchiveConfirmation: (isVisible: boolean) => void;
-  setVisibleDeleteConfirmation: (isVisible: boolean) => void;
-  archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
   archiveConfirmationHeader?: string;
   archiveConfirmationMessage?: string;
+  archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
   deleteConfirmationHeader?: string;
   deleteConfirmationMessage?: string;
   deleteConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
+  file: IFile;
+  onArchive?: (arguments_: IFile) => Promise<void> | void;
+  onDelete?: (arguments_: IFile) => Promise<void> | void;
+  setVisibleArchiveConfirmation: (isVisible: boolean) => void;
+  setVisibleDeleteConfirmation: (isVisible: boolean) => void;
+  visibleArchiveConfirmation: boolean;
+  visibleDeleteConfirmation: boolean;
 };
 
 const ConfirmationFileActions: FC<ConfirmationFileActionsType> = ({
-  visibleArchiveConfirmation,
-  visibleDeleteConfirmation,
-  onArchive,
-  onDelete,
-  file,
-  setVisibleArchiveConfirmation,
-  setVisibleDeleteConfirmation,
-  archiveConfirmationProps,
   archiveConfirmationHeader,
   archiveConfirmationMessage,
+  archiveConfirmationProps,
   deleteConfirmationHeader,
   deleteConfirmationMessage,
   deleteConfirmationProps,
+  file,
+  onArchive,
+  onDelete,
+  setVisibleArchiveConfirmation,
+  setVisibleDeleteConfirmation,
+  visibleArchiveConfirmation,
+  visibleDeleteConfirmation,
 }) => {
   return (
     <>
       <ConfirmationModal
-        visible={visibleArchiveConfirmation}
         accept={async () => {
           await onArchive?.(file);
 
           setVisibleArchiveConfirmation(false);
         }}
-        reject={() => {
-          setVisibleArchiveConfirmation(false);
-        }}
-        onHide={() => {
-          setVisibleArchiveConfirmation(false);
-        }}
+        header={archiveConfirmationHeader || "Archive file?"}
         message={
           archiveConfirmationMessage ||
           "Are you sure you want to archive this file?"
         }
-        header={archiveConfirmationHeader || "Archive file?"}
+        onHide={() => {
+          setVisibleArchiveConfirmation(false);
+        }}
+        reject={() => {
+          setVisibleArchiveConfirmation(false);
+        }}
+        visible={visibleArchiveConfirmation}
         {...archiveConfirmationProps}
       />
       <ConfirmationModal
-        visible={visibleDeleteConfirmation}
         accept={async () => {
           await onDelete?.(file);
 
           setVisibleDeleteConfirmation(false);
         }}
-        reject={() => setVisibleDeleteConfirmation(false)}
-        onHide={() => setVisibleDeleteConfirmation(false)}
+        header={deleteConfirmationHeader || "Delete file?"}
         message={
           deleteConfirmationMessage ||
           "Are you sure you want to delete this file?"
         }
-        header={deleteConfirmationHeader || "Delete file?"}
+        onHide={() => setVisibleDeleteConfirmation(false)}
+        reject={() => setVisibleDeleteConfirmation(false)}
+        visible={visibleDeleteConfirmation}
         {...deleteConfirmationProps}
       />
     </>

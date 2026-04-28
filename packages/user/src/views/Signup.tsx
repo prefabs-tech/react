@@ -1,31 +1,31 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { AuthPage } from "@prefabs.tech/react-ui";
 
-import { SignupWrapper } from "..";
-
 import type { SignInUpPromise } from "../types";
+
+import { SignupWrapper } from "..";
 
 interface IProperties {
   centered?: boolean;
+  onSignupFailed?: (error: Error) => void;
+  onSignupSuccess?: (user: SignInUpPromise) => void;
   showForgotPasswordLink?: boolean;
   showLoginLink?: boolean;
   termsAndConditions?: React.ReactNode;
-  onSignupFailed?: (error: Error) => void;
-  onSignupSuccess?: (user: SignInUpPromise) => void;
 }
 
 export const Signup: React.FC<IProperties> = ({
   centered = true,
+  onSignupFailed,
+  onSignupSuccess,
   showForgotPasswordLink,
   showLoginLink,
   termsAndConditions,
-  onSignupFailed,
-  onSignupSuccess,
 }) => {
   const { t } = useTranslation("user");
 
   return (
-    <AuthPage className="signup" title={t("signup.title")} centered={centered}>
+    <AuthPage centered={centered} className="signup" title={t("signup.title")}>
       <SignupWrapper
         onSignupFailed={onSignupFailed}
         onSignupSuccess={onSignupSuccess}

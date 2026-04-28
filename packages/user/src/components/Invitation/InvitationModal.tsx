@@ -3,14 +3,14 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, IButtonProperties, Modal } from "@prefabs.tech/react-ui";
 import React, { useState } from "react";
 
-import { InvitationForm } from "./InvitationForm";
-
 import type {
   AddInvitationResponse,
   InvitationAppOption,
-  InvitationRoleOption,
   InvitationExpiryDateField,
+  InvitationRoleOption,
 } from "@/types";
+
+import { InvitationForm } from "./InvitationForm";
 
 interface Properties {
   additionalInvitationFields?: AdditionalFormFields;
@@ -45,8 +45,8 @@ export const InvitationModal = ({
       <Modal
         className="invitation-modal"
         header={t("modal.dialog.header")}
-        visible={modalVisible}
         onHide={() => setModalVisible(false)}
+        visible={modalVisible}
       >
         <InvitationForm
           additionalInvitationFields={additionalInvitationFields}

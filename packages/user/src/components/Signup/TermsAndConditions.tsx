@@ -14,12 +14,12 @@ export const TermsAndConditions: React.FC<IProperties> = ({
 }) => {
   return hasCheckbox ? (
     <CheckboxInput
-      name={name}
-      inputLabel={label}
       className="terms-and-conditions"
+      inputLabel={label}
+      name={name}
     />
   ) : (
-    <p className="terms-and-conditions" aria-label={name}>
+    <p aria-label={name} className="terms-and-conditions">
       {label}
     </p>
   );

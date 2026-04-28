@@ -1,15 +1,15 @@
-import defaultEnglishTranslation from "../FormWidgets/CountryPicker/en.json";
-
 import type {
-  GroupedOption as OptionGroup,
   Option,
+  GroupedOption as OptionGroup,
 } from "../FormWidgets/Select";
 import type { Locales, Translation } from "../types";
+
+import defaultEnglishTranslation from "../FormWidgets/CountryPicker/en.json";
 
 export const getFallbackTranslation = (
   fallbackLocale: string,
   locales: Locales | undefined,
-): Translation | null => {
+): null | Translation => {
   if (locales?.[fallbackLocale]) {
     return locales[fallbackLocale];
   }

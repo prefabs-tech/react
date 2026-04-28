@@ -7,23 +7,23 @@ import { CodeBlock, Section } from "../../../components/Demo";
 
 const data = [
   {
+    description: "If true, the button will be disabled and non-interactive.",
     id: 1,
     prop: "disabled",
     type: "boolean",
-    description: "If true, the button will be disabled and non-interactive.",
   },
   {
+    description: "Text to be displayed in the button.",
     id: 2,
     prop: "label",
     type: "string",
-    description: "Text to be displayed in the button.",
   },
   {
+    description:
+      "If true, indicates that the button is in a loading state and disables user interaction.",
     id: 3,
     prop: "loading",
     type: "boolean",
-    description:
-      "If true, indicates that the button is in a loading state and disables user interaction.",
   },
 ];
 
@@ -36,10 +36,10 @@ export const SubmitButtonDemo = () => {
       title={t("submitButton.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >

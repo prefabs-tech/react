@@ -1,28 +1,29 @@
+import type { FC } from "react";
+
 // components/FormComponents/FileAttachBasic.tsx
 import { Button } from "@prefabs.tech/react-ui";
 import React from "react";
 import { useDropzone } from "react-dropzone";
 
+import type { IFileAttachBasicProperties } from "../types";
+
 import { useOnDropFile } from "../hooks";
 
-import type { IFileAttachBasicProperties } from "../types";
-import type { FC } from "react";
-
 export const FileAttachBasic: FC<IFileAttachBasicProperties> = ({
-  name,
+  dropzoneOptions,
   mode = "append",
   multiple = true,
-  value = [],
-  dropzoneOptions,
+  name,
   onChange,
   selectButtonProps,
+  value = [],
 }) => {
-  const onDrop = useOnDropFile({ mode, name, onChange, value, multiple });
+  const onDrop = useOnDropFile({ mode, multiple, name, onChange, value });
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getInputProps, getRootProps } = useDropzone({
+    multiple,
     noDrag: true,
     onDrop,
-    multiple,
     ...dropzoneOptions,
   });
 

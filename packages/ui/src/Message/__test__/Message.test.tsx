@@ -1,6 +1,5 @@
-import { describe } from "node:test";
-
 import { render, screen } from "@testing-library/react";
+import { describe } from "node:test";
 import React from "react";
 import { expect, test } from "vitest";
 
@@ -14,19 +13,19 @@ describe("Message", () => {
   });
 
   test("should render <i> element when icon is passed as string", () => {
-    render(<Message message="Message" icon="icon" />);
+    render(<Message icon="icon" message="Message" />);
 
     expect(screen.getByTestId("icon").querySelector("i")).toBeInTheDocument();
   });
 
   test("should render icon passed as ReactNode correctly", () => {
-    render(<Message message="Message" icon={<span>!</span>} />);
+    render(<Message icon={<span>!</span>} message="Message" />);
 
     expect(screen.getByText("!")).toBeInTheDocument();
   });
 
   test("should render both icon and message correctly", () => {
-    render(<Message message="Message" icon={<span>!</span>} />);
+    render(<Message icon={<span>!</span>} message="Message" />);
 
     expect(screen.getByText("Message")).toBeInTheDocument();
     expect(screen.getByText("!")).toBeInTheDocument();

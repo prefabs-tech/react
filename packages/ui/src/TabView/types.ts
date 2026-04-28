@@ -1,10 +1,18 @@
-type TKeymap = {
-  [key: string]: () => void;
+type Properties = {
+  activeKey?: string;
+  controlled?: boolean;
+  enableHashRouting?: boolean;
+  id?: string;
+  lazy?: boolean;
+  onActiveTabChange?: (activeTab: string) => void;
+  onTabClose?: (activeTab: string) => void;
+  onVisibleTabsChange?: (visibleTabs: string[]) => void;
+  persistState?: boolean;
+  persistStateStorage?: StorageType;
+  position?: TPosition;
+  tabs: Tab[];
+  visibleTabs?: string[];
 };
-
-type TOrientation = "horizontal" | "vertical";
-
-type TPosition = "top" | "left" | "bottom" | "right";
 
 type StorageType = "localStorage" | "sessionStorage";
 
@@ -16,20 +24,12 @@ type Tab = {
   label: string;
 };
 
-type Properties = {
-  activeKey?: string;
-  controlled?: boolean;
-  enableHashRouting?: boolean;
-  id?: string;
-  lazy?: boolean;
-  persistState?: boolean;
-  persistStateStorage?: StorageType;
-  position?: TPosition;
-  tabs: Tab[];
-  visibleTabs?: string[];
-  onActiveTabChange?: (activeTab: string) => void;
-  onTabClose?: (activeTab: string) => void;
-  onVisibleTabsChange?: (visibleTabs: string[]) => void;
+type TKeymap = {
+  [key: string]: () => void;
 };
 
-export type { TKeymap, TOrientation, TPosition, Properties, StorageType, Tab };
+type TOrientation = "horizontal" | "vertical";
+
+type TPosition = "bottom" | "left" | "right" | "top";
+
+export type { Properties, StorageType, Tab, TKeymap, TOrientation, TPosition };
