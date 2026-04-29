@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@prefabs.tech/eslint-config": "git+https://github.com/prefabs-tech/tools.git#refactor/eslint-config&path:packages/eslint-config",
+    "@prefabs.tech/stylelint-config": "git+https://github.com/prefabs-tech/tools.git#refactor/eslint-config&path:packages/stylelint-config",
     "@prefabs.tech/tsconfig": "0.6.0",
     "@types/jsdom": "21.1.7",
     "@types/node": "25.3.5",

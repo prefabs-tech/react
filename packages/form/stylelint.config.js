@@ -1,3 +1,3 @@
-import stylelintConfig from "@prefabs.tech/eslint-config/stylelint.js";
+import stylelintConfig from "@prefabs.tech/stylelint-config/index.js";
 
 export default stylelintConfig;
