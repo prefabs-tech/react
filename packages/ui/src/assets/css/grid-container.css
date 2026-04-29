@@ -1,10 +1,10 @@
 .dz-grid-container {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dz-grid-container {
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   }

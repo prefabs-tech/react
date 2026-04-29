@@ -1,8 +1,7 @@
 .dz-layout {
   --_default-padding-h: 1rem;
   --_default-padding-v: 1.5rem;
-
-  --_layout-main-bg: var(--dz-layout-main-bg, #ffffff);
+  --_layout-main-bg: var(--dz-layout-main-bg, #fff);
   --_layout-main-padding-h: var(
     --dz-layout-main-padding-h,
     var(--_default-padding-h)
@@ -21,7 +20,7 @@
   padding: var(--_layout-main-padding-v) var(--_layout-main-padding-h);
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dz-layout {
     --_default-padding-h: 2rem;
     --_default-padding-v: 2.5rem;

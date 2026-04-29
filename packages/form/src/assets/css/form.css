@@ -35,7 +35,7 @@ form .field .p-calendar > input {
   background-color: var(--dz-input-fill-color);
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dz-form-actions {
     flex-direction: row;
   }
@@ -45,21 +45,22 @@ form .field .p-calendar > input {
   }
 
   .dz-form-actions[data-alignment="right"] {
-    justify-content: flex-start;
     flex-direction: row-reverse;
+    justify-content: flex-start;
   }
 
   .dz-form-actions[data-reverse="true"] {
-    justify-content: flex-end;
     flex-direction: row-reverse;
+    justify-content: flex-end;
   }
 
   .dz-form-actions[data-direction="vertical"][data-reverse="true"] {
     flex-direction: column-reverse;
   }
+
   .dz-form-actions[data-alignment="right"][data-reverse="true"] {
-    justify-content: flex-end;
     flex-direction: row;
+    justify-content: flex-end;
   }
 
   .dz-form-actions[data-alignment="center"],

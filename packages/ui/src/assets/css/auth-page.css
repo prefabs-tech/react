@@ -1,5 +1,6 @@
 .dz-auth-page {
   --_auth-page-gap: var(--dz-auth-page-gap, 2rem);
+
   display: flex;
   flex-direction: column;
   gap: var(--_auth-page-gap);

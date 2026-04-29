@@ -1,5 +1,5 @@
 .file-list-wrapper {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
+  gap: 1rem;
 }

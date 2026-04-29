@@ -3,31 +3,31 @@
 }
 
 .table-invitations .column-appId {
-  width: 10rem;
   max-width: 10rem;
   min-width: 10rem;
+  width: 10rem;
 }
 
 .table-invitations .column-role {
-  width: 10rem;
   max-width: 10rem;
   min-width: 10rem;
+  width: 10rem;
 }
 
 .table-invitations .column-invitedBy {
-  width: 15rem;
   max-width: 15rem;
   min-width: 15rem;
+  width: 15rem;
 }
 
 .table-invitations .column-expiresAt {
-  width: 12rem;
   max-width: 12rem;
   min-width: 12rem;
+  width: 12rem;
 }
 
 .table-invitations .column-status {
-  width: 10rem;
   max-width: 10rem;
   min-width: 10rem;
+  width: 10rem;
 }

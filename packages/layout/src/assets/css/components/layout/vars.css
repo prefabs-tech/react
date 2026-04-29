@@ -1,6 +1,5 @@
 :root {
   --dz-layout-logo-max-width: 8rem;
-
   --dz-layout-sidebar-bg: white;
   --dz-layout-sidebar-border: 1px solid var(--border-color, #e5e7eb);
   --dz-layout-sidebar-collapsed-width: 0;
@@ -10,17 +9,14 @@
   --dz-layout-sidebar-padding-v: 0.75rem;
   --dz-layout-sidebar-separator-color: var(--border-color, #e5e7eb);
   --dz-layout-sidebar-width: 16rem;
-
   --dz-layout-nav-item-padding-h: 2rem;
   --dz-layout-nav-item-padding-v: 0.5rem;
   --dz-layout-nav-menu-padding-h: 0;
   --dz-layout-nav-menu-padding-v: 1rem;
   --dz-layout-nav-menu-separator-color: var(--border-color, #e5e7eb);
-
-  --dz-layout-main-bg: #ffffff;
+  --dz-layout-main-bg: #fff;
   --dz-layout-main-padding-h: 1.5rem;
   --dz-layout-main-padding-v: 1.5rem;
-
   --dz-layout-header-bg: transparent;
   --dz-layout-header-border: 1px solid var(--border-color, #e5e7eb);
   --dz-layout-header-color: var(--color, #374151);
@@ -31,11 +27,10 @@
   --dz-layout-header-padding-v: 0.75rem;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   :root {
     --dz-layout-main-padding-h: 2rem;
     --dz-layout-main-padding-v: 1.25rem;
-
     --dz-layout-sidebar-padding-v: 0.5rem;
   }
 }

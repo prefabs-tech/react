@@ -1,18 +1,18 @@
 .demo {
-  width: 100%;
-  height: 100%;
+  align-items: stretch;
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
+  height: 100%;
+  width: 100%;
 }
 
 .demo > .demo-aside {
-  flex-basis: 17rem;
-  flex-grow: 1;
   display: flex;
+  flex-basis: 17rem;
   flex-direction: column;
-  padding: 1rem 1rem 1rem 0;
+  flex-grow: 1;
   gap: 1rem;
+  padding: 1rem 1rem 1rem 0;
 }
 
 .demo > .demo-main {
@@ -90,7 +90,7 @@
   font-weight: 600;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .demo > .demo-aside {
     border-right: 1px solid var(--border-color, #e5e7eb);
     height: 100%;

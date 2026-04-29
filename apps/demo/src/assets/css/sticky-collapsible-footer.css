@@ -3,7 +3,7 @@
 }
 
 .demo-section .demo-section-content .sticky-collapsible .content {
-  padding: 1rem;
   display: flex;
   gap: 0.5rem;
+  padding: 1rem;
 }

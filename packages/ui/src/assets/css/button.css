@@ -6,9 +6,9 @@
 
   align-items: center;
   background-color: var(--_button-color);
-  border-radius: var(--_button-border-radius);
   border: none;
-  color: #ffffff;
+  border-radius: var(--_button-border-radius);
+  color: #fff;
   cursor: pointer;
   display: flex;
   font-size: var(--_button-font-size);
@@ -52,25 +52,28 @@
 }
 
 .dz-button:focus {
-  outline-offset: 2px;
   outline: 2px solid var(--_button-color);
+  outline-offset: 2px;
 }
 
 .dz-button:disabled {
   cursor: not-allowed;
-  pointer-events: none;
   opacity: 0.6;
+  pointer-events: none;
 }
 
 .dz-button.filled {
   border: 1px solid var(--_button-color);
 }
+
 .dz-button.filled:hover:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 75%, black);
 }
+
 .dz-button.filled:focus:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 75%, black);
 }
+
 .dz-button.filled:active:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 50%, black);
 }
@@ -80,12 +83,15 @@
   border: 1px solid var(--_button-color);
   color: var(--_button-color);
 }
+
 .dz-button.outlined:hover:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 10%, white);
 }
+
 .dz-button.outlined:focus:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 10%, white);
 }
+
 .dz-button.outlined:active:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 20%, white);
 }
@@ -96,14 +102,17 @@
   color: var(--_button-color);
   font-weight: normal;
 }
+
 .dz-button.text-only:hover:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 10%, white);
   border: 1px solid color-mix(in srgb, var(--_button-color) 10%, white);
 }
+
 .dz-button.text-only:focus:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 10%, white);
   border: 1px solid color-mix(in srgb, var(--_button-color) 10%, white);
 }
+
 .dz-button.text-only:active:not(:disabled) {
   background-color: color-mix(in srgb, var(--_button-color) 20%, white);
   border: 1px solid color-mix(in srgb, var(--_button-color) 20%, white);

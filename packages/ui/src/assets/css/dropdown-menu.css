@@ -21,8 +21,8 @@
 .dropdown-menu-trigger .dropdown-icon {
   display: inline-block;
   margin-left: 0.5rem;
-  transition: transform 0.3s ease;
   transform-origin: center;
+  transition: transform 0.3s ease;
 }
 
 .popup-trigger[aria-expanded="true"]
@@ -48,8 +48,8 @@ ul.dropdown-menu-list {
 ul.dropdown-menu-list li {
   --_color: var(--color);
 
-  color: var(--_color);
   background-color: white;
+  color: var(--_color);
   cursor: pointer;
   padding: 0.7rem 1.25rem;
   transition: all var(--transition-duration) ease 0s;
@@ -103,7 +103,7 @@ ul.dropdown-menu-list li .menu-item {
   gap: 0.5rem;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dropdown-menu-trigger:hover {
     background-color: var(--dropdown-trigger-bg-hover, #e5e5e5);
     border-radius: 5px;

@@ -1,4 +1,4 @@
-@import "./components/layout/index.css";
-@import "./layouts/sidebar-only-layout.css";
-@import "./layouts/sidebar-header-layout.css";
-@import "./layouts/header-layout.css";
+@import url("./components/layout/index.css");
+@import url("./layouts/sidebar-only-layout.css");
+@import url("./layouts/sidebar-header-layout.css");
+@import url("./layouts/header-layout.css");

@@ -7,7 +7,7 @@
   --_padding-block: var(--field-padding-block, 0.5rem);
   --_padding-inline: var(--field-padding-inline, 0.75rem);
   --_placeholder-color: var(--field-placeholder-color, #7b7676);
-  --_options-menu-background-color: var(--list-menu-bg-color, #ffffff);
+  --_options-menu-background-color: var(--list-menu-bg-color, #fff);
   --_option-background-color-hover: var(--list-item-bg-hover, #ededed);
   --_option-background-color-active: var(--list-item-bg-active, #ededed);
 }
@@ -18,7 +18,7 @@
   --_icon-color: var(--field-icon-color, #7b7676);
   --_padding-block: var(--field-padding-block, 0.5rem);
   --_padding-inline: var(--field-padding-inline, 0.75rem);
-  --_options-menu-background-color: var(--list-menu-bg-color, #ffffff);
+  --_options-menu-background-color: var(--list-menu-bg-color, #fff);
   --_option-background-color-hover: var(--list-item-bg-hover, #ededed);
   --_option-background-color-active: var(--list-item-bg-active, #ededed);
 }
@@ -31,8 +31,8 @@
 .select > .label-container {
   align-items: center;
   background-color: var(--_background-color);
-  border-radius: var(--_border-radius);
   border: 1px solid var(--_border-color);
+  border-radius: var(--_border-radius);
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -127,7 +127,7 @@
   white-space: nowrap;
 }
 
-.select-menu .selected-options-wrapper .divider[role=separator] {
+.select-menu .selected-options-wrapper .divider[role="separator"] {
   margin: 0.65rem 0;
 }
 
@@ -169,6 +169,11 @@
   margin-left: 0.5rem;
 }
 
+.select-menu ul[aria-multiselectable="true"] > li {
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
 .select-menu ul > li:hover:not(.group-label),
 .select-menu ul > li.focused:not(.group-label) {
   background-color: var(--_option-background-color-hover);
@@ -179,13 +184,8 @@
 }
 
 .select-menu ul > li.disabled {
-  opacity: 0.8;
   cursor: not-allowed;
-}
-
-.select-menu ul[aria-multiselectable="true"] > li {
-  gap: 0.5rem;
-  align-items: baseline;
+  opacity: 0.8;
 }
 
 .select-menu ul > li > span {

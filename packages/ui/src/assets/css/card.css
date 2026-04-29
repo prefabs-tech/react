@@ -1,18 +1,18 @@
 .dz-card {
-  --_card-text-color: rgba(0, 0, 0, 0.87);
+  --_card-text-color: rgb(0 0 0 / 87%);
+
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%),
+    0 1px 1px 0 rgb(0 0 0 / 14%), 0 1px 3px 0 rgb(0 0 0 / 12%);
   color: var(--_card-text-color);
-  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   overflow: hidden;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 .dz-card[data-variant-outlined="true"] {
+  border: 1px solid rgb(0 0 0 / 12%);
   box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .dz-card-body,

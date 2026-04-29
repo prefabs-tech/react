@@ -19,7 +19,9 @@
 }
 
 .accordion.horizontal > li > button {
-  flex-direction: column;
+  align-items: center;
+  flex-direction: column-reverse;
+  justify-content: space-between;
 }
 
 .accordion.horizontal {
@@ -31,15 +33,9 @@
   flex-direction: row;
 }
 
-.accordion.horizontal > li > button {
-  align-items: center;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-}
-
 .accordion.horizontal > li > button > span {
   margin: var(--accordion-title-margin, 0 0 4px 0);
-  text-orientation: sideways-right;
+  text-orientation: sideways;
   transform: rotate(180deg);
   writing-mode: vertical-rl;
 }

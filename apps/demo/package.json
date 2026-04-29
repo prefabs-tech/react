@@ -12,6 +12,8 @@
     "preview": "vite preview",
     "snapshot:update": "vitest --environment jsdom run --update",
     "sort-package": "npx sort-package-json",
+    "stylelint": "stylelint \"src/**/*.{css,vue}\" --allow-empty-input",
+    "stylelint:fix": "stylelint \"src/**/*.{css,vue}\" --fix --allow-empty-input",
     "test": "CI=true vitest",
     "test:unit": "CI=true vitest",
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
@@ -51,6 +53,9 @@
     "eslint": "9.39.4",
     "jsdom": "27.0.1",
     "prettier": "3.8.3",
+    "stylelint": "17.9.1",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-order": "8.1.1",
     "typescript": "5.9.3",
     "vite": "7.3.2",
     "vite-plugin-compression": "0.5.1",

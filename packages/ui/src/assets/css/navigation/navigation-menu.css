@@ -2,25 +2,22 @@
 .dz-navigation-menu {
   --nav-menu-label-color: var(
     --dz-nav-menu-label-color,
-    #ffffff
+    #fff
   );
   --_nav-menu-label-padding-h: var(--dz-nav-item-padding-h, 1rem);
   --_nav-menu-label-padding-v: var(
     --dz-nav-item-padding-v,
     0.625rem
   );
-
   --_nav-menu-padding-h: var(--dz-nav-menu-padding-h, 0);
   --_nav-menu-padding-v: var(--dz-nav-menu-padding-v, 1rem);
-
   --_nav-menu-separator-color: var(
     --dz-nav-menu-separator-color,
     #dbdbdb
   );
-
   --_nav-item-overlay-menu-background-color: var(
     --dz-nav-item-overlay-menu-background-color,
-    #ffffff
+    #fff
   );
 
   display: flex;
@@ -56,7 +53,7 @@
   flex: 1;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dz-navigation-menu[data-horizontal="true"] {
     align-items: center;
     flex-direction: row;

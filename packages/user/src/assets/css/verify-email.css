@@ -17,8 +17,8 @@
   text-decoration: underline;
 }
 
-.email-verification[data-centered=true] {
+.email-verification[data-centered="true"] {
   align-items: flex-start;
-  max-width: var(--dz-page-max-width);
   margin: auto;
+  max-width: var(--dz-page-max-width);
 }

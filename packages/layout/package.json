@@ -23,6 +23,8 @@
     "lint:fix": "eslint . --fix",
     "snapshot:update": "vitest --environment jsdom run --update --passWithNoTests",
     "sort-package": "npx sort-package-json",
+    "stylelint": "stylelint \"src/**/*.{css,vue}\" --allow-empty-input",
+    "stylelint:fix": "stylelint \"src/**/*.{css,vue}\" --fix --allow-empty-input",
     "test": "vitest --environment jsdom run --coverage",
     "test:component": "vitest --environment jsdom run component/",
     "test:snapshot": "vitest --environment jsdom run snapshot/",
@@ -50,6 +52,9 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.28.2",
+    "stylelint": "17.9.1",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-order": "8.1.1",
     "typescript": "5.9.3",
     "vite": "7.3.2",
     "vitest": "3.0.9"
