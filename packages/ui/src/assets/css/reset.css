@@ -1,4 +1,5 @@
 /* https://andy-bell.co.uk/a-modern-css-reset/ */
+
 /* Box sizing rules */
 *,
 *::before,
@@ -27,6 +28,10 @@ ol:not([role="list"]) {
   margin: 0;
 }
 
+html {
+  font-size: 1rem;
+}
+
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
@@ -40,7 +45,7 @@ body {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", Oxygen, Ubuntu;
   line-height: 1.5;
   min-height: 100vh;
-  text-rendering: optimizeSpeed;
+  text-rendering: optimizespeed;
 }
 
 /* A elements that don't have a class get default styles */
@@ -69,8 +74,8 @@ a[target="_blank"]::after {
 /* Make images easier to work with */
 img,
 picture {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 /* Inherit fonts for inputs and buttons */
@@ -92,11 +97,7 @@ select {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
-}
-
-html {
-  font-size: 1rem;
 }

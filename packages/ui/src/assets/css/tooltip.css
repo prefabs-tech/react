@@ -7,9 +7,9 @@
   background-color: var(--tooltip-bg-color);
   border-radius: 0.25rem;
   color: var(--tooltip-color);
+  max-width: 20rem;
   padding: 0.25rem;
   position: absolute;
-  max-width: 20rem;
   z-index: 1100;
 }
 
@@ -20,8 +20,8 @@
   content: "";
   left: 50%;
   position: absolute;
-  transform: translateX(-50%);
   top: 100%;
+  transform: translateX(-50%);
 }
 
 .tooltip-container.left::after {
@@ -53,6 +53,6 @@
   content: "";
   position: absolute;
   right:100%;
-  transform: translateY(-50%);
   top: 50%;
+  transform: translateY(-50%);
 }

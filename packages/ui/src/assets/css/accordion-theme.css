@@ -30,6 +30,10 @@
   border-radius: var(--_border-radius);
 }
 
+.accordion.horizontal > li {
+  min-height: var(--accordion-horizontal-height, 30rem);
+}
+
 .accordion.horizontal > li:not(:last-child) {
   border-right: 1px solid var(--border-color);
 }
@@ -46,12 +50,12 @@
   padding: var(--_padding);
 }
 
-.accordion > li > button > i:first-child {
-  margin-right: 0.5rem;
-}
-
 .accordion > li > button > i {
   color: var(--color);
+}
+
+.accordion > li > button > i:first-child {
+  margin-right: 0.5rem;
 }
 
 .accordion > li > button > span {
@@ -68,17 +72,22 @@
   width: 100%;
 }
 
-.accordion.vertical > li.active > div[role="region"] {
-  max-height: var(--accordion-height, 30rem);
-  overflow-y: auto;
-}
-
 .accordion.horizontal > li > div[role="region"] {
+  height: 100%;
   max-width: 0;
   opacity: 0;
   overflow: hidden;
   transition: max-width var(--transition-duration) ease, opacity var(--transition-duration) ease;
-  height: 100%;
+}
+
+.accordion > li.active,
+.accordion > li.active > div[role="region"] {
+  width: 100%;
+}
+
+.accordion.vertical > li.active > div[role="region"] {
+  max-height: var(--accordion-height, 30rem);
+  overflow-y: auto;
 }
 
 .accordion.horizontal > li.active > div[role="region"] {
@@ -89,15 +98,6 @@
 
 .accordion > li > div[role="region"] > .content-wrapper {
   padding: var(--_padding);
-}
-
-.accordion > li.active,
-.accordion > li.active > div[role="region"] {
-  width: 100%;
-}
-
-.accordion.horizontal > li {
-  min-height: var(--accordion-horizontal-height, 30rem);
 }
 
 .accordion.horizontal > li > button {

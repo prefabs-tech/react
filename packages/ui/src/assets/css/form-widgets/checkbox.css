@@ -1,12 +1,12 @@
 .checkbox-wrapper {
+  align-items: baseline;
   display: flex;
   gap: 0.5rem;
-  align-items: baseline;
 }
 
 .checkbox-wrapper > input[type="checkbox"] {
-  cursor: pointer;
-  width: auto;
-  transform: scale(1.5);
   accent-color: var(--dz-primary-color);
+  cursor: pointer;
+  transform: scale(1.5);
+  width: auto;
 }

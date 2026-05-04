@@ -1,8 +1,8 @@
-@import "./forgot-password.css";
-@import "./invitation.css";
-@import "./invitations-table.css";
-@import "./login.css";
-@import "./profile.css";
-@import "./signup.css";
-@import "./users-table.css";
-@import "./verify-email.css";
+@import url("./forgot-password.css");
+@import url("./invitation.css");
+@import url("./invitations-table.css");
+@import url("./login.css");
+@import url("./profile.css");
+@import url("./signup.css");
+@import url("./users-table.css");
+@import url("./verify-email.css");

@@ -1,7 +1,7 @@
 .message {
   background-color: color-mix(in srgb, var(--_background-color) 10%, #fff);
-  border-radius: 0.5rem;
   border: 1px solid var(--_border-color);
+  border-radius: 0.5rem;
   color: var(--_color);
   display: flex;
   gap: 1rem;

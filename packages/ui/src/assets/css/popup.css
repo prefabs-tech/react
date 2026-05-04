@@ -9,10 +9,10 @@
 }
 
 .popup-menu {
-  background-color: #ffffff;
-  border-radius: calc(var(--border-radius) * 1.5);
+  background-color: #fff;
   border: 1px solid var(--border-color);
-  box-shadow: 1px 1px 5px 1px #cccccc;
+  border-radius: calc(var(--border-radius) * 1.5);
+  box-shadow: 1px 1px 5px 1px #ccc;
   display: inline-block;
   margin-top: 4px;
   min-width: 12rem;

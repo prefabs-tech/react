@@ -4,8 +4,8 @@
 }
 
 .tabbed-panel > div[role="tabpanel"] {
-  width: 100%;
   padding: 1.5rem 0.25rem;
+  width: 100%;
 }
 
 .tabbed-panel > div > button {
@@ -17,13 +17,13 @@
   display: flex;
   outline: 0;
   padding: var(--tab-padding, 1rem);
-  width: 100%;
   transition: border-color 200ms ease;
+  width: 100%;
 }
 
 .tabbed-panel > div > button:focus-visible {
-  outline-offset: -1px;
   outline: 1px solid var(--dz-primary-color);
+  outline-offset: -1px;
 }
 
 .tabbed-panel > div > button span {

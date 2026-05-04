@@ -4,7 +4,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .sticky-collapsible {
     background: transparent;
     bottom: 0;

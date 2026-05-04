@@ -12,6 +12,8 @@
     "preview": "vite preview",
     "snapshot:update": "vitest --environment jsdom run --update",
     "sort-package": "npx sort-package-json",
+    "stylelint": "stylelint \"src/**/*.{css,vue}\" --allow-empty-input",
+    "stylelint:fix": "stylelint \"src/**/*.{css,vue}\" --fix --allow-empty-input",
     "test": "CI=true vitest",
     "test:unit": "CI=true vitest",
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
@@ -35,11 +37,12 @@
     "zod": "3.24.4"
   },
   "devDependencies": {
-    "@prefabs.tech/tsconfig": "0.7.0",
     "@babel/core": "7.26.10",
     "@babel/plugin-syntax-flow": "7.26.0",
     "@babel/plugin-transform-react-jsx": "^7.21.5",
     "@prefabs.tech/eslint-config": "0.7.0",
+    "@prefabs.tech/stylelint-config": "0.7.0",
+    "@prefabs.tech/tsconfig": "0.7.0",
     "@testing-library/react": "16.3.2",
     "@types/jsdom": "21.1.7",
     "@types/node": "25.3.5",
@@ -50,6 +53,9 @@
     "eslint": "9.39.4",
     "jsdom": "27.0.1",
     "prettier": "3.8.3",
+    "stylelint": "17.9.1",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-order": "8.1.1",
     "typescript": "5.9.3",
     "vite": "7.3.2",
     "vite-plugin-compression": "0.5.1",

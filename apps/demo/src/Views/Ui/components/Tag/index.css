@@ -1,6 +1,6 @@
 .demo-tag-container {
-  display: flex;
   align-items: center;
-  gap: 1rem;
+  display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }

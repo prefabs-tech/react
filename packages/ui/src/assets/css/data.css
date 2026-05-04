@@ -7,10 +7,9 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  
   min-width: var(--_min-width);
-  padding-inline: var(--_padding-inline);
   padding-block: var(--_padding-block);
+  padding-inline: var(--_padding-inline);
   width: max-content;
 }
 

@@ -6,7 +6,7 @@
   --table-column-padding: 0.75rem;
   --table-header-footer-bg: transparent;
   --table-header-highlight-bg: transparent;
-  --table-loading-overlay-bg: rgba(255, 255, 255, 0.6);
+  --table-loading-overlay-bg: rgb(255 255 255 / 60%);
   --table-row-hover-bg: var(--hover-bg);
   --table-row-selected-bg: var(--highlight-bg);
   --table-stripe-color: transparent;
@@ -15,16 +15,16 @@
 .table-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
   position: relative;
+  width: 100%;
 }
 
 .table-container > span {
-  font-weight: 500;
-  text-align: center;
-  padding: 0.2rem 0;
-  margin: 0;
   font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  padding: 0.2rem 0;
+  text-align: center;
 }
 
 .table-container > span[data-align="left"] {
@@ -36,21 +36,18 @@
 }
 
 .table-container .loading-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
   background: var(--table-loading-overlay-bg);
+  inset: 0;
+  position: absolute;
+  z-index: 1;
 }
 
 .table-container .toolbar {
   align-items: center;
   background: var(--table-header-footer-bg);
+  border-bottom: none;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 1rem;
   justify-content: flex-end;
   padding: var(--table-column-padding);
@@ -58,21 +55,22 @@
 }
 
 .table-container .table-wrapper {
-  width: 100%;
   overflow-x: auto;
+  width: 100%;
 }
 
 .table-container .table-wrapper > table {
-  min-width: 100%;
   border-collapse: collapse;
+  min-width: 100%;
 }
 
 .table-container .table-wrapper > table > tbody {
   background: var(--table-body-bg);
 }
 
-.table-container .table-wrapper > table > tfoot > tr {
-  background: var(--table-header-footer-bg, transparent);
+.table-container .table-wrapper > table tr > th {
+  font-weight: 500;
+  text-align: left;
 }
 
 .table-container .toolbar,
@@ -84,18 +82,19 @@
   border: var(--table-border);
 }
 
+.table-container .table-wrapper > table > tfoot > tr {
+  background: var(--table-header-footer-bg, transparent);
+}
+
 .table-container .pagination {
   background: var(--table-header-footer-bg);
   border-top: none;
 }
 
-.table-container .toolbar {
-  border-bottom: none;
-}
-
 .table-container .table-wrapper > table > tbody > tr > td,
 .table-container .table-wrapper > table > thead > tr > th {
   overflow: hidden;
+  padding: var(--table-column-padding);
 }
 
 .table-container .table-wrapper > table > thead > tr > th.filter.multiselect,
@@ -107,19 +106,14 @@
   margin: auto;
 }
 
-.table-container .table-wrapper > table tr > th {
-  text-align: left;
-  font-weight: 500;
-}
-
 .table-container .table-wrapper > table tr > td[data-align="center"],
 .table-container .table-wrapper > table tr > th[data-align="center"] {
   text-align: center;
 }
 
 .table-container .table-wrapper > table tr > td[data-align="right"] {
-  text-align: right;
   padding-right: 2rem;
+  text-align: right;
 }
 
 .table-container .table-wrapper > table tr > th[data-align="right"] {
@@ -144,10 +138,6 @@
   background: var(--table-header-highlight-bg);
 }
 
-.table-container .table-wrapper > table > tbody > tr:nth-child(even) {
-  background: var(--table-stripe-color);
-}
-
 .table-container .table-wrapper > table > tbody > tr[data-selected="true"] {
   background: var(--table-row-selected-bg) !important;
 }
@@ -162,16 +152,20 @@
   transition: background var(--transition-duration) ease;
 }
 
+.table-container .table-wrapper > table > tbody > tr:nth-child(even) {
+  background: var(--table-stripe-color);
+}
+
 .table-wrapper > table .header-row {
   background: var(--table-header-footer-bg);
   font-size: 1rem;
 }
 
 .table-wrapper > table tr.filters > th > div > input {
-  width: 100%;
-  min-width: 7rem;
+  background: #fff;
   font-weight: normal;
-  background: #ffffff;
+  min-width: 7rem;
+  width: 100%;
 }
 
 .table-wrapper
@@ -188,7 +182,7 @@
   > div
   > .select
   > .label-container {
-  background: #ffffff;
+  background: #fff;
   font-weight: normal;
 }
 
@@ -201,26 +195,21 @@
   min-width: 80px;
 }
 
+.table-container .pagination .page-input-control input {
+  background: #fff;
+}
+
 .table-wrapper > table tr.filters > th > .number-range-filter .field input {
-  background: #ffffff;
+  background: #fff;
   font-weight: normal;
   width: 100%;
 }
 
-.table-container .table-wrapper > table > tbody > tr > td,
-.table-container .table-wrapper > table > thead > tr > th {
-  padding: var(--table-column-padding);
-}
-
 .table-container .table-wrapper > table > thead > tr > th.column-actions,
 .table-container .table-wrapper > table > thead > tr > th.column-select {
-  width: var(--table-actions-column-width);
   max-width: var(--table-actions-column-width);
   min-width: var(--table-actions-column-width);
-}
-
-.table-container .pagination .page-input-control input {
-  background: #ffffff;
+  width: var(--table-actions-column-width);
 }
 
 .table-container
