@@ -2,39 +2,28 @@ import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
-  TDataTableProperties,
-  TRequestJSON,
   IButtonProperties,
   TableColumnDefinition,
   Tag,
+  TDataTableProperties,
+  TRequestJSON,
 } from "@prefabs.tech/react-ui";
-
-import { InvitationModal } from "../Invitation";
 
 import type {
   AddInvitationResponse,
+  ExtendedUser,
   InvitationAppOption,
   InvitationRoleOption,
   ResendInvitationResponse,
   RevokeInvitationResponse,
-  ExtendedUser,
 } from "@/types";
 
-type VisibleColumn =
-  | "name"
-  | "email"
-  | "roles"
-  | "signedUpAt"
-  | "app"
-  | "invitedBy"
-  | "status"
-  | "actions"
-  | string;
+import { InvitationModal } from "../Invitation";
 
 export type AllUsersTableProperties = Partial<
   Omit<
     TDataTableProperties<ExtendedUser>,
-    "data" | "visibleColumns" | "fetchData"
+    "data" | "fetchData" | "visibleColumns"
   >
 > & {
   additionalInvitationFields?: AdditionalFormFields;
@@ -51,11 +40,22 @@ export type AllUsersTableProperties = Partial<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareInvitationData?: (data: any) => any;
   roles?: Array<InvitationRoleOption>;
-  showInviteAction?: boolean;
   showAppColumn?: boolean;
+  showInviteAction?: boolean;
   users: Array<ExtendedUser>;
   visibleColumns?: VisibleColumn[];
 };
+
+type VisibleColumn =
+  | "actions"
+  | "app"
+  | "email"
+  | "invitedBy"
+  | "name"
+  | "roles"
+  | "signedUpAt"
+  | "status"
+  | string;
 
 export const AllUsersTable = ({
   additionalInvitationFields,
@@ -90,8 +90,6 @@ export const AllUsersTable = ({
 
   const defaultColumns: Array<TableColumnDefinition<ExtendedUser>> = [
     {
-      id: "name",
-      header: t("table.defaultColumns.name"),
       accessorFn: (original) => {
         return (
           (original.givenName ? original.givenName : "") +
@@ -109,25 +107,26 @@ export const AllUsersTable = ({
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholders.search"),
+      header: t("table.defaultColumns.name"),
+      id: "name",
     },
     {
       accessorKey: "email",
-      header: t("table.defaultColumns.email"),
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholders.search"),
+      header: t("table.defaultColumns.email"),
     },
     {
       accessorKey: "app",
-      header: t("invitations:table.defaultColumns.app"),
       cell: ({ row: { original } }) => {
         return <span>{original.appId || "-"} </span>;
       },
+      header: t("invitations:table.defaultColumns.app"),
     },
     {
-      align: "center",
       accessorKey: "roles",
-      header: t("table.defaultColumns.roles"),
+      align: "center",
       cell: ({ getValue, row: { original } }) => {
         const roles = (original as unknown as { roles: string[] })?.roles;
 
@@ -136,9 +135,9 @@ export const AllUsersTable = ({
             <>
               {roles?.map((role: string, index: number) => (
                 <Tag
+                  color={role === "ADMIN" ? "default" : "green"}
                   key={role + index}
                   label={role}
-                  color={role === "ADMIN" ? "default" : "green"}
                   style={{ width: "5rem" }}
                 />
               ))}
@@ -151,18 +150,18 @@ export const AllUsersTable = ({
         return (
           <>
             <Tag
-              label={role}
               color={role === "ADMIN" ? "default" : "green"}
+              label={role}
               style={{ width: "5rem" }}
             />
           </>
         );
       },
+      header: t("table.defaultColumns.roles"),
     },
     {
-      align: "center",
       accessorKey: "status",
-      header: t("table.defaultColumns.status"),
+      align: "center",
       cell: ({ row: { original } }) => {
         const getLabel = () => {
           if (!original.isActiveUser) {
@@ -191,17 +190,17 @@ export const AllUsersTable = ({
         return (
           <>
             <Tag
-              label={getLabel()}
               color={getColor()}
+              label={getLabel()}
               style={{ width: "5rem" }}
             />
           </>
         );
       },
+      header: t("table.defaultColumns.status"),
     },
     {
       accessorKey: "invitedBy",
-      header: t("invitations:table.defaultColumns.invitedBy"),
       cell: ({ row: { original } }) => {
         if (original.isActiveUser) {
           return "-";
@@ -215,11 +214,12 @@ export const AllUsersTable = ({
 
         return original.invitedBy?.email;
       },
+      header: t("invitations:table.defaultColumns.invitedBy"),
     },
     {
       accessorKey: "signedUpAt",
-      header: t("table.defaultColumns.signedUpOn"),
       dataType: "date",
+      header: t("table.defaultColumns.signedUpOn"),
     },
   ];
 
@@ -230,8 +230,8 @@ export const AllUsersTable = ({
           <InvitationModal
             additionalInvitationFields={additionalInvitationFields}
             apps={apps}
-            onSubmitted={onInvitationAdded}
             invitationButtonOptions={invitationButtonOptions}
+            onSubmitted={onInvitationAdded}
             prepareData={prepareInvitationData}
             roles={roles}
           />
@@ -247,42 +247,32 @@ export const AllUsersTable = ({
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={users}
-      emptyTableMessage={t("app:table.emptyMessage")}
-      fetchData={fetchUsers}
-      locale={i18n?.language}
-      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
-      totalRecords={totalRecords}
-      visibleColumns={visibleColumns}
-      paginationOptions={{
-        pageInputLabel: t("table.pagination.pageControl"),
-        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
-      }}
       dataActionsMenu={(user) => {
         if (user.isActiveUser) {
           return {
             actions: [
               {
-                label: t("table.actions.enable"),
-                icon: "pi pi-check",
+                confirmationOptions: {
+                  header: t("confirmation.header"),
+                  message: t("confirmation.enable.message"),
+                },
                 disabled: (user) => !user.disabled,
+                icon: "pi pi-check",
+                label: t("table.actions.enable"),
                 onClick: (user) => onUserEnabled && onUserEnabled(user),
                 requireConfirmationModal: true,
-                confirmationOptions: {
-                  message: t("confirmation.enable.message"),
-                  header: t("confirmation.header"),
-                },
               },
               {
-                label: t("table.actions.disable"),
                 className: "danger",
-                icon: "pi pi-times",
+                confirmationOptions: {
+                  header: t("confirmation.header"),
+                  message: t("confirmation.disable.message"),
+                },
                 disabled: (user) => user.disabled,
+                icon: "pi pi-times",
+                label: t("table.actions.disable"),
                 onClick: (user) => onUserDisabled && onUserDisabled(user),
                 requireConfirmationModal: true,
-                confirmationOptions: {
-                  message: t("confirmation.disable.message"),
-                  header: t("confirmation.header"),
-                },
               },
             ],
           };
@@ -291,33 +281,43 @@ export const AllUsersTable = ({
         return {
           actions: [
             {
-              label: t("invitations:invitations.actions.resend"),
-              icon: "pi pi-replay",
+              confirmationOptions: {
+                header: t("invitations:confirmation.header"),
+                message: t("invitations:confirmation.confirm.resend.message"),
+              },
               disabled: (invitation) => !!invitation.acceptedAt,
+              icon: "pi pi-replay",
+              label: t("invitations:invitations.actions.resend"),
               onClick: (invitation: ResendInvitationResponse) =>
                 onInvitationResent && onInvitationResent(invitation),
               requireConfirmationModal: true,
-              confirmationOptions: {
-                message: t("invitations:confirmation.confirm.resend.message"),
-                header: t("invitations:confirmation.header"),
-              },
             },
             {
-              label: t("invitations:invitations.actions.revoke"),
-              icon: "pi pi-times",
               className: "danger",
+              confirmationOptions: {
+                header: t("invitations:confirmation.header"),
+                message: t("invitations:confirmation.confirm.revoke.message"),
+              },
               disabled: (invitation) => !!invitation.acceptedAt,
+              icon: "pi pi-times",
+              label: t("invitations:invitations.actions.revoke"),
               onClick: (invitation) =>
                 onInvitationRevoked && onInvitationRevoked(invitation),
               requireConfirmationModal: true,
-              confirmationOptions: {
-                message: t("invitations:confirmation.confirm.revoke.message"),
-                header: t("invitations:confirmation.header"),
-              },
             },
           ],
         };
       }}
+      emptyTableMessage={t("app:table.emptyMessage")}
+      fetchData={fetchUsers}
+      locale={i18n?.language}
+      paginationOptions={{
+        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
+        pageInputLabel: t("table.pagination.pageControl"),
+      }}
+      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
+      totalRecords={totalRecords}
+      visibleColumns={visibleColumns}
       {...tableOptions}
     ></DataTable>
   );

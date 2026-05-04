@@ -5,13 +5,13 @@ import { expect, test } from "vitest";
 import Page from "../index";
 
 const pageData = {
-  title: "This is the title",
   subtitle: "This is the subtitle",
+  title: "This is the title",
 };
 
 test("Component matches snapshot", () => {
   const { container } = render(
-    <Page title={pageData.title} subtitle={pageData.subtitle}>
+    <Page subtitle={pageData.subtitle} title={pageData.title}>
       <p>This is the content</p>
     </Page>,
   );

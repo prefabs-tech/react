@@ -1,17 +1,17 @@
 interface IHeaderProperties {
   breadcrumb?: React.ReactNode;
-  titleTag?: string | React.ReactNode;
   subtitle?: React.ReactNode | string;
+  title?: React.ReactNode | string;
+  titleTag?: React.ReactNode | string;
   toolbar?: React.ReactNode;
-  title?: string | React.ReactNode;
 }
 
 export const PageHeader = ({
   breadcrumb,
-  titleTag,
   subtitle,
-  toolbar,
   title,
+  titleTag,
+  toolbar,
 }: IHeaderProperties) => {
   const renderTitle = () => {
     if (!title) {
@@ -35,16 +35,16 @@ export const PageHeader = ({
       <div className="dz-page-title-wrapper">
         {renderTitle()}
         {subtitle && (
-          <div data-testid="page-subtitle" className="dz-page-subtitle">
+          <div className="dz-page-subtitle" data-testid="page-subtitle">
             {subtitle}
           </div>
         )}
       </div>
       {(breadcrumb || toolbar) && (
         <div
-          data-testid="page-toolbar"
           className="dz-page-toolbar"
           data-breadcrumb={!!breadcrumb}
+          data-testid="page-toolbar"
         >
           {breadcrumb}
           {toolbar}

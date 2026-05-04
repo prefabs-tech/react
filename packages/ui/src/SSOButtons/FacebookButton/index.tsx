@@ -3,7 +3,7 @@ import React from "react";
 import FacebookIcon from "../../assets/images/facebook-icon.svg";
 import BaseButton, { BaseButtonProperties } from "../BaseButton";
 
-type IProperties = Omit<BaseButtonProperties, "imageSource" | "className">;
+type IProperties = Omit<BaseButtonProperties, "className" | "imageSource">;
 
 const FacebookButton: React.FC<IProperties> = (properties) => {
   return (

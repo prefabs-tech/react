@@ -1,28 +1,28 @@
-import { Provider, emailSchema } from "@prefabs.tech/react-form";
+import { emailSchema, Provider } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
 
+import type { LoginCredentials } from "../../types";
+
+import { useConfig } from "../../hooks";
 import { PasswordConfirmationSchema } from "../schemas";
 import SignupFormFields from "./SignupFormFields";
-import { useConfig } from "../../hooks";
-
-import type { LoginCredentials } from "../../types";
 
 interface Properties {
   email?: string;
+  handleSubmit: (credentials: LoginCredentials) => void;
   loading?: boolean;
   termsAndConditions?: React.ReactNode;
-  handleSubmit: (credentials: LoginCredentials) => void;
 }
 
 export const SignupForm = ({
   email,
+  handleSubmit,
   loading,
   termsAndConditions,
-  handleSubmit,
 }: Properties) => {
-  const { t, i18n } = useTranslation("user");
+  const { i18n, t } = useTranslation("user");
   const config = useConfig();
   const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? false;
 
@@ -32,14 +32,14 @@ export const SignupForm = ({
       required: t("validation.messages.email"),
     }),
     ...PasswordConfirmationSchema({
-      passwordRequiredMessage: t("signup.messages.validation.password"),
-      passwordValidationMessage: t(
-        "signup.messages.validation.validationMessage",
-      ),
       confirmPasswordRequiredMessage: t(
         "signup.messages.validation.confirmPassword",
       ),
       hasConfirmPasswordFeature,
+      passwordRequiredMessage: t("signup.messages.validation.password"),
+      passwordValidationMessage: t(
+        "signup.messages.validation.validationMessage",
+      ),
     }),
     ...(config.features?.termsAndConditions?.display &&
     config.features.termsAndConditions.showCheckbox
@@ -65,13 +65,13 @@ export const SignupForm = ({
 
   return (
     <Provider
-      onSubmit={handleSubmit}
       defaultValues={{
-        password: "",
-        email: email || "",
         confirmPassword: "",
+        email: email || "",
+        password: "",
         termsAndConditions: false,
       }}
+      onSubmit={handleSubmit}
       validationSchema={SignUpFormSchema}
       validationTriggerKey={i18n.language}
     >

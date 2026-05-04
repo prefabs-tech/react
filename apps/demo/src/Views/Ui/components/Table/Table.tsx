@@ -1,30 +1,30 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
 import {
-  TDataTable,
-  Page,
   Button,
-  TableColumnDefinition,
   DebouncedInput,
+  Page,
+  TableColumnDefinition,
+  TDataTable,
 } from "@prefabs.tech/react-ui";
-import { FilterFunction, DatePicker } from "@prefabs.tech/react-ui";
+import { DatePicker, FilterFunction } from "@prefabs.tech/react-ui";
 import { Tag } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
+import { CodeBlock, Section } from "../../../../components/Demo";
 import {
+  city,
+  country,
+  data,
+  formatDemoData,
   HORIZONTAL_CSS_CODE,
   TData,
   VERTICAL_CSS_CODE,
-  data,
-  formatDemoData,
-  city,
-  country,
 } from "./data";
-import { CodeBlock, Section } from "../../../../components/Demo";
 
 declare module "@prefabs.tech/react-ui" {
   interface FilterFunctions {
-    inDateRangeFilter: FilterFunction<unknown>;
     customEqualStringFilter: FilterFunction<unknown>;
+    inDateRangeFilter: FilterFunction<unknown>;
   }
 }
 
@@ -35,48 +35,48 @@ export const TableDemo = () => {
   const columns: Array<TableColumnDefinition<TData>> = [
     {
       accessorKey: "email",
-      header: "Email",
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholder.search"),
+      header: "Email",
     },
     {
       accessorKey: "name",
-      header: () => <span>Full name</span>,
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholder.search"),
+      header: () => <span>Full name</span>,
     },
     {
       accessorKey: "age",
-      header: "Age",
       align: "right",
       dataType: "number",
-      enableSorting: true,
       enableColumnFilter: true,
+      enableSorting: true,
       filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+      header: "Age",
     },
     {
       accessorKey: "city",
-      header: () => <span>City</span>,
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholder.select"),
+      header: () => <span>City</span>,
       meta: {
-        filterVariant: "multiselect",
         filterOptions: city,
+        filterVariant: "multiselect",
       },
     },
     {
       accessorKey: "country",
-      header: "Country",
       enableColumnFilter: true,
       enableSorting: true,
-      meta: {
-        filterVariant: "select",
-        filterOptions: country,
-      },
       filterPlaceholder: t("table.placeholder.country"),
+      header: "Country",
+      meta: {
+        filterOptions: country,
+        filterVariant: "select",
+      },
     },
   ];
 
@@ -338,15 +338,15 @@ export const TableDemo = () => {
 
   return (
     <Page
+      className="demo-data-tables-page"
       subtitle={t("table.subtitle")}
       title={t("table.title")}
-      className="demo-data-tables-page"
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -360,17 +360,16 @@ export const TableDemo = () => {
           columns={columns}
           data={data}
           id="invitations-table"
-          showResetStateAction
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
           rowClassName={({ row: { original } }) => {
             return `row-${original.id}`;
           }}
+          showResetStateAction
         ></TDataTable>
       </Section>
 
       <Section title={t("table.usage.filterable")}>
         <TDataTable
-          visibleColumns={["email", "name", "age", "city", "country"]}
           columns={[
             ...columns,
             {
@@ -388,20 +387,20 @@ export const TableDemo = () => {
               enableColumnFilter: true,
               filterPlaceholder: t("table.placeholder.select"),
               meta: {
-                filterVariant: "multiselect",
                 filterOptions: city,
+                filterVariant: "multiselect",
               },
             },
           ]}
           data={data}
           id="filterable-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          visibleColumns={["email", "name", "age", "city", "country"]}
         ></TDataTable>
       </Section>
 
       <Section title={t("table.usage.sortable")}>
         <TDataTable
-          visibleColumns={["email", "name", "age", "city", "country"]}
           columns={columns.map((column) => ({
             ...column,
             enableSorting: true,
@@ -409,7 +408,8 @@ export const TableDemo = () => {
           data={data}
           id="sortable-table"
           initialFilters={[{ id: "email", value: "s" }]}
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          visibleColumns={["email", "name", "age", "city", "country"]}
         ></TDataTable>
       </Section>
 
@@ -419,7 +419,7 @@ export const TableDemo = () => {
           data={data.slice(0, 5)}
           enableRowSelection={true}
           id="row-selection-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
         ></TDataTable>
       </Section>
 
@@ -439,8 +439,8 @@ export const TableDemo = () => {
             },
           ]}
           data={data}
-          initialSorting={[{ id: "email", desc: false }]}
           id="persistent-state"
+          initialSorting={[{ desc: false, id: "email" }]}
           persistState
           showColumnsAction
         ></TDataTable>
@@ -455,11 +455,11 @@ export const TableDemo = () => {
             },
           ]}
           data={data.slice(0, 5)}
+          id="custom-pagination-table"
+          initialSorting={[{ desc: false, id: "email" }]}
           renderCustomPagination={(table) => {
             return <>Custom pagination</>;
           }}
-          id="custom-pagination-table"
-          initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
 
@@ -472,6 +472,8 @@ export const TableDemo = () => {
             },
           ]}
           data={data.slice(0, 5)}
+          id="custom-toolbar-actions-table"
+          initialSorting={[{ desc: false, id: "email" }]}
           renderToolbarItems={(table) => {
             return (
               <>
@@ -479,17 +481,11 @@ export const TableDemo = () => {
               </>
             );
           }}
-          id="custom-toolbar-actions-table"
-          initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
 
       <Section title={t("table.usage.columnTooltip")}>
         <TDataTable
-          title={{
-            text: t("table.usage.columnTooltip"),
-            align: "left",
-          }}
           columns={[
             ...columns,
             {
@@ -524,7 +520,11 @@ export const TableDemo = () => {
           data={data.slice(0, 5)}
           enableRowSelection={true}
           id="custom-tooltip-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          title={{
+            align: "left",
+            text: t("table.usage.columnTooltip"),
+          }}
         ></TDataTable>
       </Section>
 
@@ -544,18 +544,18 @@ export const TableDemo = () => {
           data={data.slice(0, 5)}
           enableRowSelection={true}
           id="column-alignment-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
         ></TDataTable>
       </Section>
 
       <Section title={t("table.usage.columnAction")}>
         <TDataTable
+          columnActionBtnLabel="Columns"
           columns={[...columns]}
           data={data.slice(10, 15)}
-          showColumnsAction={true}
-          columnActionBtnLabel="Columns"
           id="column-action-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          showColumnsAction={true}
         ></TDataTable>
       </Section>
 
@@ -563,6 +563,8 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data}
+          id="table-with-footer"
+          initialSorting={[{ desc: false, id: "email" }]}
           renderTableFooterContent={(table) => (
             <tr>
               <td>
@@ -570,24 +572,21 @@ export const TableDemo = () => {
               </td>
             </tr>
           )}
-          id="table-with-footer"
-          initialSorting={[{ id: "email", desc: false }]}
         ></TDataTable>
       </Section>
 
       <Section title={t("table.usage.tableBorderVertical")}>
         <TDataTable
-          showColumnsAction={true}
-          columnActionBtnLabel="Columns"
           className="vertical"
-          visibleColumns={["email", "name", "age", "city", "country"]}
+          columnActionBtnLabel="Columns"
           columns={[...columns]}
           data={data}
           id="vertical-border-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          showColumnsAction={true}
+          visibleColumns={["email", "name", "age", "city", "country"]}
         ></TDataTable>
         <CodeBlock
-          title={t("table.cssCodeBlock.title")}
           exampleCode={VERTICAL_CSS_CODE}
           subheader={
             <>
@@ -600,22 +599,22 @@ export const TableDemo = () => {
               </p>
             </>
           }
+          title={t("table.cssCodeBlock.title")}
         />
       </Section>
 
       <Section title={t("table.usage.tableBorderHorizontal")}>
         <TDataTable
-          showColumnsAction={true}
-          columnActionBtnLabel="Columns"
           className="horizontal"
-          visibleColumns={["email", "name", "age", "city", "country"]}
+          columnActionBtnLabel="Columns"
           columns={[...columns]}
           data={data}
           id="horizontal-border-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          showColumnsAction={true}
+          visibleColumns={["email", "name", "age", "city", "country"]}
         ></TDataTable>
         <CodeBlock
-          title={t("table.cssCodeBlock.title")}
           exampleCode={HORIZONTAL_CSS_CODE}
           subheader={
             <>
@@ -628,6 +627,7 @@ export const TableDemo = () => {
               </p>
             </>
           }
+          title={t("table.cssCodeBlock.title")}
         />
       </Section>
 
@@ -635,20 +635,20 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           id="pagination-disabled-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
         ></TDataTable>
       </Section>
 
       <Section title={t("table.usage.withTitle")}>
         <TDataTable
-          title={{ text: "Table title", align: "left" }}
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           id="table-with-title"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
+          title={{ align: "left", text: "Table title" }}
         ></TDataTable>
       </Section>
 
@@ -656,7 +656,6 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           dataActionsMenu={{
             actions: [
               {
@@ -668,8 +667,8 @@ export const TableDemo = () => {
                 },
               },
               {
-                label: "Edit",
                 disabled: true,
+                label: "Edit",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -677,11 +676,11 @@ export const TableDemo = () => {
                 },
               },
               {
-                label: "Share",
                 disabled: (rowData) => {
                   ///your logic here
                   return rowData.id !== 11;
                 },
+                label: "Share",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -689,14 +688,7 @@ export const TableDemo = () => {
                 },
               },
               {
-                label: "Delete",
                 className: "danger",
-                onClick: (rowData) => {
-                  //your logic here
-                  // eslint-disable-next-line no-console
-                  console.log(rowData, "delete action");
-                },
-                requireConfirmationModal: true,
                 confirmationOptions: (rowData) => {
                   return {
                     header: t("table.confirmation.header"),
@@ -705,6 +697,13 @@ export const TableDemo = () => {
                     }),
                   };
                 },
+                label: "Delete",
+                onClick: (rowData) => {
+                  //your logic here
+                  // eslint-disable-next-line no-console
+                  console.log(rowData, "delete action");
+                },
+                requireConfirmationModal: true,
               },
             ],
             displayActions: (rowData) => {
@@ -712,7 +711,8 @@ export const TableDemo = () => {
             },
           }}
           id="builtin-action-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
         />
       </Section>
 
@@ -720,15 +720,14 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           dataActionsMenu={{
             actions: [
               {
-                icon: "pi pi-eye",
-                label: "View",
                 display: (rowData) => {
                   return rowData.id !== 12;
                 },
+                icon: "pi pi-eye",
+                label: "View",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -736,12 +735,12 @@ export const TableDemo = () => {
                 },
               },
               {
-                icon: "pi pi-pencil",
-                label: "Edit",
+                disabled: true,
                 display: (rowData) => {
                   return rowData.id !== 12;
                 },
-                disabled: true,
+                icon: "pi pi-pencil",
+                label: "Edit",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -749,15 +748,15 @@ export const TableDemo = () => {
                 },
               },
               {
-                icon: "pi pi-share-alt",
-                label: "Share",
-                display: (rowData) => {
-                  return rowData.id !== 12;
-                },
                 disabled: (rowData) => {
                   ///your logic here
                   return rowData.id !== 11;
                 },
+                display: (rowData) => {
+                  return rowData.id !== 12;
+                },
+                icon: "pi pi-share-alt",
+                label: "Share",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -765,34 +764,35 @@ export const TableDemo = () => {
                 },
               },
               {
-                icon: "pi pi-trash",
-                label: "Delete",
-                severity: "danger",
-                onClick: (rowData) => {
-                  //your logic here
-                  // eslint-disable-next-line no-console
-                  console.log(rowData, "delete action");
-                },
-                requireConfirmationModal: true,
                 confirmationOptions: (rowData) => {
                   return {
                     header: t("table.confirmation.header"),
                     message: (
                       <p>
                         <Trans
-                          i18nKey="ui:table.confirmation.message.deleteUser"
                           component={{ strong: <strong /> }}
+                          i18nKey="ui:table.confirmation.message.deleteUser"
                           values={{ user: rowData?.name }}
                         ></Trans>
                       </p>
                     ),
                   };
                 },
+                icon: "pi pi-trash",
+                label: "Delete",
+                onClick: (rowData) => {
+                  //your logic here
+                  // eslint-disable-next-line no-console
+                  console.log(rowData, "delete action");
+                },
+                requireConfirmationModal: true,
+                severity: "danger",
               },
             ],
           }}
           id="row-specific-action-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
         />
       </Section>
 
@@ -800,12 +800,11 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           dataActionsMenu={{
             actions: [
               {
-                label: "View",
                 icon: "pi pi-eye",
+                label: "View",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -815,7 +814,8 @@ export const TableDemo = () => {
             ],
           }}
           id="single-action-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
         />
       </Section>
 
@@ -823,7 +823,6 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           dataActionsMenu={{
             actions: [
               {
@@ -838,7 +837,8 @@ export const TableDemo = () => {
             mode: "dropdown",
           }}
           id="single-action-menu-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
         />
       </Section>
 
@@ -846,15 +846,14 @@ export const TableDemo = () => {
         <TDataTable
           columns={[...columns]}
           data={data.slice(10, 15)}
-          paginated={false}
           dataActionsMenu={{
             actions: [
               {
-                icon: "pi pi-eye",
-                label: "View",
                 display: (rowData) => {
                   return rowData.id !== 12;
                 },
+                icon: "pi pi-eye",
+                label: "View",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -862,12 +861,12 @@ export const TableDemo = () => {
                 },
               },
               {
-                icon: "pi pi-pencil",
-                label: "Edit",
+                disabled: true,
                 display: (rowData) => {
                   return rowData.id !== 12;
                 },
-                disabled: true,
+                icon: "pi pi-pencil",
+                label: "Edit",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -875,15 +874,15 @@ export const TableDemo = () => {
                 },
               },
               {
-                icon: "pi pi-share-alt",
-                label: "Share",
-                display: (rowData) => {
-                  return rowData.id !== 12;
-                },
                 disabled: (rowData) => {
                   ///your logic here
                   return rowData.id !== 11;
                 },
+                display: (rowData) => {
+                  return rowData.id !== 12;
+                },
+                icon: "pi pi-share-alt",
+                label: "Share",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
@@ -891,25 +890,26 @@ export const TableDemo = () => {
                 },
               },
               {
+                confirmationOptions: {
+                  header: "Are you sure!",
+                  message: "You are going to delete this data.",
+                },
                 icon: "pi pi-trash",
                 label: "Delete",
-                severity: "danger",
                 onClick: (rowData) => {
                   //your logic here
                   // eslint-disable-next-line no-console
                   console.log(rowData, "delete action");
                 },
                 requireConfirmationModal: true,
-                confirmationOptions: {
-                  header: "Are you sure!",
-                  message: "You are going to delete this data.",
-                },
+                severity: "danger",
               },
             ],
             mode: "buttons",
           }}
           id="mutiple-button-action-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
+          paginated={false}
         />
       </Section>
 
@@ -919,26 +919,26 @@ export const TableDemo = () => {
             ...columns,
             {
               accessorKey: "email",
-              enableColumnFilter: true,
               customFilterComponent: (column) => (
                 <DebouncedInput
+                  debounceTime={200}
                   defaultValue={column.getFilterValue() as string}
                   onInputChange={(value) => {
                     column.setFilterValue(value);
                   }}
                   placeholder={t("table.placeholder.search")}
-                  debounceTime={200}
                 ></DebouncedInput>
               ),
+              enableColumnFilter: true,
               meta: {
                 serverFilterFn: "contains",
               },
             },
           ]}
-          fetchData={() => {}}
           data={data.slice(10, 15)}
+          fetchData={() => {}}
           id="custom-filter-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
         ></TDataTable>
       </Section>
 
@@ -949,16 +949,16 @@ export const TableDemo = () => {
             {
               accessorKey: "email",
               enableColumnFilter: true,
+              filterPlaceholder: t("table.placeholder.search"),
               meta: {
                 serverFilterFn: "equals",
               },
-              filterPlaceholder: t("table.placeholder.search"),
             },
           ]}
-          fetchData={() => {}}
           data={data.slice(10, 15)}
+          fetchData={() => {}}
           id="equal-server-filter-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
         ></TDataTable>
       </Section>
 
@@ -967,74 +967,74 @@ export const TableDemo = () => {
           columns={[
             {
               accessorKey: "description",
-              header: "Description",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.search"),
+              header: "Description",
             },
             {
               accessorKey: "quantity",
-              header: () => "Quantity",
-              enableSorting: true,
               dataType: "number",
+              enableColumnFilter: true,
+              enableSorting: true,
+              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: () => "Quantity",
               numberOptions: {
                 locale: "en-IN",
               },
-              enableColumnFilter: true,
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
             },
             {
               accessorKey: "amount",
-              header: "Amount",
               dataType: "currency",
-              enableSorting: true,
-              numberOptions: {
-                locale: "en-US",
-                formatOptions: {
-                  currency: "EUR",
-                },
-              },
               enableColumnFilter: true,
+              enableSorting: true,
+              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: "Amount",
               meta: {
                 filterVariant: "range",
               },
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              numberOptions: {
+                formatOptions: {
+                  currency: "EUR",
+                },
+                locale: "en-US",
+              },
             },
             {
               accessorKey: "date",
-              header: "Date",
               dataType: "date",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.date"),
+              header: "Date",
               meta: {
                 filterVariant: "dateRange",
               },
             },
             {
               accessorKey: "datetime",
-              header: "Datetime",
               dataType: "datetime",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.date"),
+              header: "Datetime",
               meta: {
                 filterVariant: "dateRange",
               },
             },
             {
-              id: "action",
-              header: () => <i className="pi pi-cog"></i>,
-              dataType: "other",
               cell: () => (
-                <Button iconLeft="pi pi-eye" variant="textOnly" rounded />
+                <Button iconLeft="pi pi-eye" rounded variant="textOnly" />
               ),
+              dataType: "other",
+              header: () => <i className="pi pi-cog"></i>,
+              id: "action",
             },
           ]}
           data={formatDemoData}
-          paginated={false}
           id="cell-data-formatting-table"
-          initialSorting={[{ id: "quantity", desc: true }]}
+          initialSorting={[{ desc: true, id: "quantity" }]}
+          paginated={false}
         ></TDataTable>
       </Section>
 
@@ -1043,58 +1043,58 @@ export const TableDemo = () => {
           columns={[
             {
               accessorKey: "description",
-              header: "Description",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.search"),
+              header: "Description",
             },
             {
               accessorKey: "quantity",
-              header: () => "Quantity",
-              enableSorting: true,
               dataType: "number",
               enableColumnFilter: true,
+              enableSorting: true,
               filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: () => "Quantity",
             },
             {
               accessorKey: "amount",
-              header: "Amount",
               dataType: "currency",
-              enableSorting: true,
               enableColumnFilter: true,
+              enableSorting: true,
+              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: "Amount",
               meta: {
                 filterVariant: "range",
               },
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
             },
             {
               accessorKey: "date",
-              header: "Date",
               dataType: "date",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.date"),
+              header: "Date",
               meta: {
                 filterVariant: "dateRange",
               },
             },
             {
-              id: "action",
-              header: () => <i className="pi pi-cog"></i>,
-              dataType: "other",
               cell: () => (
-                <Button iconLeft="pi pi-eye" variant="textOnly" rounded />
+                <Button iconLeft="pi pi-eye" rounded variant="textOnly" />
               ),
+              dataType: "other",
+              header: () => <i className="pi pi-cog"></i>,
+              id: "action",
             },
           ]}
-          data={formatDemoData}
-          paginated={false}
           customFormatters={{
-            number: (value) => `~${value}`,
             currency: (value) => `$${value}`,
+            number: (value) => `~${value}`,
           }}
+          data={formatDemoData}
           id="custom-cell-data-formatting-table"
-          initialSorting={[{ id: "quantity", desc: true }]}
+          initialSorting={[{ desc: true, id: "quantity" }]}
+          paginated={false}
         ></TDataTable>
       </Section>
 
@@ -1104,47 +1104,42 @@ export const TableDemo = () => {
           columns={[
             {
               accessorKey: "description",
-              header: "Description",
-              filterFn: "customEqualStringFilter",
               enableColumnFilter: true,
               enableSorting: true,
+              filterFn: "customEqualStringFilter",
               filterPlaceholder: t("table.placeholder.search"),
+              header: "Description",
             },
             {
               accessorKey: "quantity",
-              header: () => "Quantity",
-              enableSorting: true,
               dataType: "number",
+              enableColumnFilter: true,
+              enableSorting: true,
+              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: () => "Quantity",
               numberOptions: {
                 locale: "en-IN",
               },
-              enableColumnFilter: true,
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
             },
             {
               accessorKey: "amount",
-              header: "Amount",
               dataType: "currency",
-              enableSorting: true,
-              numberOptions: {
-                locale: "en-US",
-                formatOptions: {
-                  currency: "EUR",
-                },
-              },
               enableColumnFilter: true,
+              enableSorting: true,
+              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: "Amount",
               meta: {
                 filterVariant: "range",
               },
-              filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              numberOptions: {
+                formatOptions: {
+                  currency: "EUR",
+                },
+                locale: "en-US",
+              },
             },
             {
               accessorKey: "date",
-              header: "Date",
-              dataType: "date",
-              enableColumnFilter: true,
-              enableSorting: true,
-              filterFn: "inDateRangeFilter",
               customFilterComponent(column) {
                 return (
                   <div className="filter-date">
@@ -1157,8 +1152,8 @@ export const TableDemo = () => {
                           old?.[1],
                         ])
                       }
-                      value={(column.getFilterValue() as [Date, Date])?.[0]}
                       placeholder={t("table.placeholder.startDate")}
+                      value={(column.getFilterValue() as [Date, Date])?.[0]}
                     />
                     <DatePicker
                       inputRef={null}
@@ -1169,30 +1164,35 @@ export const TableDemo = () => {
                           date,
                         ])
                       }
-                      value={(column.getFilterValue() as [Date, Date])?.[1]}
                       placeholder={t("table.placeholder.endDate")}
+                      value={(column.getFilterValue() as [Date, Date])?.[1]}
                     />
                   </div>
                 );
               },
+              dataType: "date",
+              enableColumnFilter: true,
+              enableSorting: true,
+              filterFn: "inDateRangeFilter",
+              header: "Date",
             },
             {
-              id: "action",
-              header: () => <i className="pi pi-cog"></i>,
-              dataType: "other",
               cell: () => (
-                <Button iconLeft="pi pi-eye" variant="textOnly" rounded />
+                <Button iconLeft="pi pi-eye" rounded variant="textOnly" />
               ),
+              dataType: "other",
+              header: () => <i className="pi pi-cog"></i>,
+              id: "action",
             },
           ]}
           data={formatDemoData}
-          paginated={false}
           filterFns={{
-            inDateRangeFilter: inDateRangeFilter,
             customEqualStringFilter: customEqualStringFilter,
+            inDateRangeFilter: inDateRangeFilter,
           }}
           id="custom-static-filter-table"
-          initialSorting={[{ id: "quantity", desc: true }]}
+          initialSorting={[{ desc: true, id: "quantity" }]}
+          paginated={false}
         ></TDataTable>
       </Section>
 
@@ -1202,61 +1202,60 @@ export const TableDemo = () => {
           columns={[
             {
               accessorKey: "email",
-              header: "Email",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.search"),
+              header: "Email",
             },
             {
               accessorKey: "name",
-              header: "Name",
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.search"),
+              header: "Name",
             },
             {
               accessorKey: "age",
-              header: "Age",
               align: "right",
               dataType: "number",
-              enableSorting: true,
               enableColumnFilter: true,
+              enableSorting: true,
               filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
+              header: "Age",
             },
             {
               accessorKey: "city",
-              header: () => <span>City</span>,
               enableColumnFilter: true,
               enableSorting: true,
               filterPlaceholder: t("table.placeholder.select"),
+              header: () => <span>City</span>,
               meta: {
-                filterVariant: "multiselect",
                 filterOptions: city,
+                filterVariant: "multiselect",
               },
             },
             {
               accessorKey: "country",
-              header: "Country",
               enableColumnFilter: true,
               enableSorting: true,
-              meta: {
-                filterVariant: "select",
-                filterOptions: country,
-              },
               filterPlaceholder: t("table.placeholder.country"),
+              header: "Country",
+              meta: {
+                filterOptions: country,
+                filterVariant: "select",
+              },
             },
             {
-              align: "center",
               accessorKey: "disabled",
-              header: "Status",
+              align: "center",
               cell: ({ row: { original } }) => {
                 const color = original.disabled ? "red" : "green";
 
                 return (
                   <Tag
-                    label={original.disabled ? "Disabled" : "Enabled"}
                     color={color}
                     fullWidth
+                    label={original.disabled ? "Disabled" : "Enabled"}
                   />
                 );
               },
@@ -1270,10 +1269,10 @@ export const TableDemo = () => {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const updatedFilterValue = filterValue.map((value: any) => {
                   switch (value) {
-                    case "true":
-                      return true;
                     case "false":
                       return false;
+                    case "true":
+                      return true;
                     default:
                       return value;
                   }
@@ -1283,25 +1282,26 @@ export const TableDemo = () => {
 
                 return updatedFilterValue.includes(cellValue);
               },
+              filterPlaceholder: t("table.placeholder.status"),
+              header: "Status",
               meta: {
-                filterVariant: "multiselect",
                 filterOptions: [
                   {
-                    value: "false",
                     label: "Enabled",
+                    value: "false",
                   },
                   {
-                    value: "true",
                     label: "Disabled",
+                    value: "true",
                   },
                 ],
+                filterVariant: "multiselect",
               },
-              filterPlaceholder: t("table.placeholder.status"),
             },
           ]}
           data={data.slice(10, 15)}
           id="div-content-table"
-          initialSorting={[{ id: "email", desc: false }]}
+          initialSorting={[{ desc: false, id: "email" }]}
         ></TDataTable>
       </Section>
       <Section

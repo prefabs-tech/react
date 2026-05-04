@@ -1,9 +1,8 @@
 import React, { useMemo } from "react";
 
-import { getFallbackTranslation, getFlagClass } from "../utils/country-picker";
-
 import type { Locales } from "../types";
 
+import { getFallbackTranslation, getFlagClass } from "../utils/country-picker";
 import "../assets/css/country-display.css";
 
 import("@dzangolab/flag-icon-css/css/flag-icon.min.css");
@@ -17,8 +16,8 @@ interface CountryDisplayProperties {
   flagsStyle?: "circle" | "rectangular" | "square";
   locale?: string;
   locales?: Locales;
-  showFlag?: boolean;
   renderOption?: (code: string, label: string) => React.ReactNode;
+  showFlag?: boolean;
 }
 
 export const Country: React.FC<CountryDisplayProperties> = ({
@@ -30,8 +29,8 @@ export const Country: React.FC<CountryDisplayProperties> = ({
   flagsStyle = "rectangular",
   locale = "en",
   locales = {},
-  showFlag = true,
   renderOption,
+  showFlag = true,
 }) => {
   const countryCode = code?.trim();
 

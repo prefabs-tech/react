@@ -16,19 +16,18 @@ import {
 import { DEFAULT_PATHS } from "./constants";
 import UserProvider, { userContext } from "./context/UserProvider";
 import { UserWrapper } from "./main";
-
 import "./assets/css/index.css";
 
 export {
-  // constants
-  DEFAULT_PATHS,
-
-  // main
-  UserWrapper,
-
   // components
   AllUsersTable,
   AuthSocialLoginCallback,
+
+  // constants
+  DEFAULT_PATHS,
+  // api
+  disableUser,
+  enableUser,
   InvitationForm,
   InvitationModal,
   InvitationsTable,
@@ -37,15 +36,13 @@ export {
   SignupForm,
   SignupWrapper,
   TermsAndConditions,
-  UsersTable,
-
-  // api
-  disableUser,
-  enableUser,
 
   // contexts and providers
   userContext,
   UserProvider,
+  UsersTable,
+  // main
+  UserWrapper,
 };
 
 export * from "./helpers";

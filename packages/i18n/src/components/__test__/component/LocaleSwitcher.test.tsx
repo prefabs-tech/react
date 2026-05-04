@@ -1,4 +1,4 @@
-import { render, fireEvent, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { expect, test } from "vitest";
 
@@ -12,15 +12,15 @@ test.skip("Local switcher dropdown is displayed and locale is changed", async ()
     defaultNS: "app",
     fallbackLng: "en",
     lng: "en",
+    locales: "en:English,fr:Français",
+    react: {
+      useSuspense: false,
+    },
     resources: {
       en: {},
       fr: {},
     },
     supportedLngs: ["en", "fr"],
-    react: {
-      useSuspense: false,
-    },
-    locales: "en:English,fr:Français",
   };
 
   i18n(i18nConfig);

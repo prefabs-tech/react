@@ -7,7 +7,7 @@ type LayoutProperties = {
   className?: string;
   collapsible?: boolean;
   fixed?: boolean;
-  userMenuLocation?: "sidebar" | "header";
+  userMenuLocation?: "header" | "sidebar";
 };
 
 const LayoutComponent = ({
@@ -34,8 +34,8 @@ const LayoutComponent = ({
 
   return (
     <div
-      className={classNames}
       aria-expanded={isLargeScreen ? menuDesktopOpen : menuMobileOpen}
+      className={classNames}
       data-user-menu-location={userMenuLocation}
     >
       {children}

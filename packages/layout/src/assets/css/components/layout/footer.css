@@ -1,5 +1,5 @@
 .dz-layout > footer {
-  --_layout-footer-bg-color: #ffffff;
+  --_layout-footer-bg-color: #fff;
   --_layout-footer-border: var(
     --dz-layout-footer-border,
     1px solid var(--border-color, #e5e7eb)
@@ -20,7 +20,7 @@
   padding: var(--_layout-footer-padding-v) var(--_layout-footer-padding-h);
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dz-layout > footer {
     flex-direction: row;
     justify-content: space-between;

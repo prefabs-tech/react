@@ -6,27 +6,27 @@ import { DEFAULT_PATHS } from "@/constants";
 import { login } from "@/supertokens";
 import { LinkType } from "@/types/types";
 
-import { LoginForm } from "./LoginForm";
+import type { LoginCredentials, SignInUpPromise } from "../../types";
+
 import { useConfig, useUser } from "../../hooks";
 import { verifySessionRoles } from "../../supertokens/helpers";
 import { AuthLinks } from "../AuthLinks";
-
-import type { LoginCredentials, SignInUpPromise } from "../../types";
+import { LoginForm } from "./LoginForm";
 
 interface IProperties {
   handleSubmit?: (credential: LoginCredentials) => void;
+  loading?: boolean;
   onLoginFailed?: (error: Error) => void;
   onLoginSuccess?: (user: SignInUpPromise) => void;
-  loading?: boolean;
   showForgotPasswordLink?: boolean;
   showSignupLink?: boolean;
 }
 
 export const LoginWrapper: FC<IProperties> = ({
   handleSubmit,
+  loading,
   onLoginFailed,
   onLoginSuccess,
-  loading,
   showForgotPasswordLink = true,
   showSignupLink = true,
 }) => {
@@ -35,7 +35,7 @@ export const LoginWrapper: FC<IProperties> = ({
   const config = useConfig();
   const [loginLoading, setLoginLoading] = useState<boolean>(false);
   const [loginError, setLoginError] = useState<
-    null | "invalidCredentials" | "other"
+    "invalidCredentials" | "other" | null
   >(null);
   const [email, setEmail] = useState("");
 

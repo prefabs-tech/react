@@ -20,12 +20,12 @@ export const signup = async (
     user = response.user as UserType;
     status = response.status;
 
-    return { user, status };
+    return { status, user };
   } else if (response.status === "FIELD_ERROR") {
     throw {
+      message: response.formFields[0].error,
       name: response.formFields[0].id,
       status: response.status,
-      message: response.formFields[0].error,
     } as Error;
   } else {
     throw new Error();

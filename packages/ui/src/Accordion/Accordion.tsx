@@ -1,24 +1,24 @@
-import React, { useId, useState } from "react";
-
 import type { ReactElement } from "react";
 
+import React, { useId, useState } from "react";
+
 type Properties = {
-  className?: string;
+  activeIcon?: React.ReactNode | string;
+  canSelfCollapse?: boolean;
   children: ReactElement | ReactElement[];
+  className?: string;
   defaultActiveIndex?: number;
   direction?: "horizontal" | "vertical";
-  activeIcon?: string | React.ReactNode;
-  canSelfCollapse?: boolean;
-  inactiveIcon?: string | React.ReactNode;
+  inactiveIcon?: React.ReactNode | string;
 };
 
 const Accordion: React.FC<Properties> = ({
-  className = "",
-  children,
-  defaultActiveIndex,
-  direction = "vertical",
   activeIcon,
   canSelfCollapse = false,
+  children,
+  className = "",
+  defaultActiveIndex,
+  direction = "vertical",
   inactiveIcon,
 }) => {
   const id = useId();
@@ -37,7 +37,7 @@ const Accordion: React.FC<Properties> = ({
     throw new Error("Accordion needs at least one children");
   }
 
-  const renderIcon = (icon: string | React.ReactNode) => {
+  const renderIcon = (icon: React.ReactNode | string) => {
     if (!icon) {
       return null;
     }
@@ -51,8 +51,8 @@ const Accordion: React.FC<Properties> = ({
 
   return (
     <ul
-      className={`accordion ${direction} ${className}`}
       aria-orientation={direction}
+      className={`accordion ${direction} ${className}`}
     >
       {childNodes.map((item, index) => {
         const isActive = active === index;
@@ -65,11 +65,11 @@ const Accordion: React.FC<Properties> = ({
           <li className={isActive ? "active" : ""} key={key}>
             <button
               aria-controls={bodyId}
+              aria-disabled={!canSelfCollapse && isActive}
+              aria-expanded={isActive}
               aria-label={title}
               onClick={() => handleClick(index)}
               type="button"
-              aria-disabled={!canSelfCollapse && isActive}
-              aria-expanded={isActive}
             >
               {icon ? renderIcon(icon) : null}
               <span>{title}</span>
@@ -80,7 +80,7 @@ const Accordion: React.FC<Properties> = ({
                 : null}
             </button>
 
-            <div role="region" id={bodyId}>
+            <div id={bodyId} role="region">
               <div className="content-wrapper">{childNodes[index]}</div>
             </div>
           </li>

@@ -1,3 +1,9 @@
+import type {
+  NavGroupType,
+  NavItemType,
+  NavMenuItemType,
+} from "@prefabs.tech/react-ui";
+
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useNavigate } from "react-router-dom";
 
@@ -7,29 +13,23 @@ import { logout } from "@/supertokens";
 import { useConfig } from "./useConfig";
 import { useUser } from "./useUser";
 
-import type {
-  NavGroupType,
-  NavItemType,
-  NavMenuItemType,
-} from "@prefabs.tech/react-ui";
-
 interface Properties {
-  authNavigationMenu?: NavMenuItemType;
   addAuthNavigationMenu: boolean;
-  userNavigationMenu?: NavMenuItemType;
+  authNavigationMenu?: NavMenuItemType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
+  userNavigationMenu?: NavMenuItemType;
 }
 
 export const useUserNavigationMenu = ({
-  authNavigationMenu,
   addAuthNavigationMenu,
-  userNavigationMenu,
+  authNavigationMenu,
   onLogout,
+  userNavigationMenu,
 }: Properties) => {
   const { t } = useTranslation("user");
 
-  const { user, setUser } = useUser();
+  const { setUser, user } = useUser();
 
   const config = useConfig();
 
@@ -66,19 +66,19 @@ export const useUserNavigationMenu = ({
 
   if (!userNavigationMenu) {
     return {
-      menu: [signoutRoute],
       className: "dz-user-menu",
+      menu: [signoutRoute],
     };
   }
 
   const _userNavigationMenu = userNavigationMenu.menu.filter(
-    (item: NavItemType | NavGroupType) =>
+    (item: NavGroupType | NavItemType) =>
       !(isSocialLogin && "route" in item && item.route === changePasswordPath),
   );
 
   return {
     ...userNavigationMenu,
-    menu: [..._userNavigationMenu, signoutRoute],
     className: `dz-user-menu ${userNavigationMenu.className || ""}`.trim(),
+    menu: [..._userNavigationMenu, signoutRoute],
   };
 };

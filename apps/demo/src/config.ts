@@ -1,9 +1,9 @@
+import type { AppConfig, AppFeatures } from "@prefabs.tech/react-config";
+
 import { parse } from "@prefabs.tech/react-config";
 
 import en from "./locales/en";
 import fr from "./locales/fr";
-
-import type { AppConfig, AppFeatures } from "@prefabs.tech/react-config";
 
 const config: AppConfig = {
   apiBaseUrl: import.meta.env.VITE_API_BASE_URL as string,
@@ -76,8 +76,8 @@ export const userConfig = {
   apiBaseUrl: config.websiteDomain,
   appDomain: config.websiteDomain,
   supertokens: {
-    appName: "Demo - Prefabs Tech React",
     apiDomain: config.websiteDomain,
+    appName: "Demo - Prefabs Tech React",
   },
   supportedRoles: [],
 };

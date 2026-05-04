@@ -18,9 +18,9 @@ export const BasicLayout = (): JSX.Element => {
       headerAddon={
         <div className="header-addon">
           <a
-            target="_blank"
-            rel="noopener noreferrer"
             href="https://github.com/prefabs-tech/react/blob/main/CHANGELOG.md"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             <span>{t("header.menu.changelog")}</span>
           </a>

@@ -1,10 +1,9 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Tooltip, Page, Button } from "@prefabs.tech/react-ui";
+import { Button, Page, Tooltip } from "@prefabs.tech/react-ui";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./index.css";
-
 import { Section } from "../../../../components/Demo";
 
 export const TooltipDemo = () => {
@@ -24,45 +23,45 @@ export const TooltipDemo = () => {
       title={t("tooltip.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <div className="tooltip-component">
           <Tooltip
+            delay={100}
             elementRef={rightReference}
             offset={10}
-            delay={100}
             position="right"
           >
             Tooltip content
           </Tooltip>
           <div ref={rightReference}>{t("tooltip.position.right")}</div>
 
-          <Tooltip elementRef={leftReference} position="left" delay={200}>
+          <Tooltip delay={200} elementRef={leftReference} position="left">
             Tooltip content
           </Tooltip>
           <div ref={leftReference}>{t("tooltip.position.left")}</div>
 
-          <Tooltip elementRef={topReference} position="top" offset={10}>
+          <Tooltip elementRef={topReference} offset={10} position="top">
             Tooltip content
           </Tooltip>
           <div ref={topReference}>{t("tooltip.position.top")}</div>
 
-          <Tooltip elementRef={bottomReference} position="bottom" offset={10}>
+          <Tooltip elementRef={bottomReference} offset={10} position="bottom">
             Tooltip content
           </Tooltip>
           <div ref={bottomReference}>{t("tooltip.position.bottom")}</div>
 
-          <Tooltip elementRef={buttonReference} position="right" offset={10}>
+          <Tooltip elementRef={buttonReference} offset={10} position="right">
             <i className="pi pi-check"></i>
             <span>Save</span>
           </Tooltip>
-          <button ref={buttonReference} className="button-save">
+          <button className="button-save" ref={buttonReference}>
             Save
           </button>
 

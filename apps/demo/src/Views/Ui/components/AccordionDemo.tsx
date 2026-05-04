@@ -66,53 +66,53 @@ export const AccordionDemo = () => {
 
   const propertiesData = [
     {
+      default: "-",
+      description: t("accordion.propertiesDescription.activeIcon"),
       id: 1,
       prop: "activeIcon",
       type: "string | ReactNode",
-      default: "-",
-      description: t("accordion.propertiesDescription.activeIcon"),
     },
     {
+      default: "false",
+      description: t("accordion.propertiesDescription.canSelfCollapse"),
       id: 2,
       prop: "canSelfCollapse",
       type: "boolean",
-      default: "false",
-      description: t("accordion.propertiesDescription.canSelfCollapse"),
     },
     {
+      default: "-",
+      description: t("accordion.propertiesDescription.children"),
       id: 3,
       prop: "children",
       type: "ReactElement | ReactElement[]",
-      default: "-",
-      description: t("accordion.propertiesDescription.children"),
     },
     {
+      default: "-",
+      description: t("accordion.propertiesDescription.className"),
       id: 4,
       prop: "className",
       type: "string",
-      default: "-",
-      description: t("accordion.propertiesDescription.className"),
     },
     {
+      default: "-",
+      description: t("accordion.propertiesDescription.defaultActiveIndex"),
       id: 5,
       prop: "defaultActiveIndex",
       type: "number",
-      default: "-",
-      description: t("accordion.propertiesDescription.defaultActiveIndex"),
     },
     {
+      default: `"vertical"`,
+      description: t("accordion.propertiesDescription.direction"),
       id: 6,
       prop: "direction",
       type: `"horizontal" | "vertical"`,
-      default: `"vertical"`,
-      description: t("accordion.propertiesDescription.direction"),
     },
     {
+      default: "-",
+      description: t("accordion.propertiesDescription.inactiveIcon"),
       id: 7,
       prop: "inactiveIcon",
       type: "string | ReactNode",
-      default: "-",
-      description: t("accordion.propertiesDescription.inactiveIcon"),
     },
   ];
 
@@ -122,10 +122,10 @@ export const AccordionDemo = () => {
       title={t("accordion.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -168,8 +168,8 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
           {accordionItems.map((item, index) => {
             return (
               <SubPane
-                key={`accordion-icon-${index}`}
                 icon={item.icon}
+                key={`accordion-icon-${index}`}
                 title={item.title}
               >
                 {item.content}
@@ -201,7 +201,7 @@ import { Accordion, SubPane } from "@prefabs.tech/react-ui";
       </Section>
 
       <Section title={t("accordion.usage.vertical")}>
-        <Accordion direction="horizontal" defaultActiveIndex={0}>
+        <Accordion defaultActiveIndex={0} direction="horizontal">
           {data.map((item, index) => {
             return (
               <SubPane key={`accordion-vertical-${index}`} title={item.title}>

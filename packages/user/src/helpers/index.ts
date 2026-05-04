@@ -6,7 +6,7 @@ export const setUserData = (data: UserType) => {
   localStorage.setItem(USER_KEY, JSON.stringify(data));
 };
 
-export const getUserData = (): UserType | null => {
+export const getUserData = (): null | UserType => {
   const savedUser = localStorage.getItem(USER_KEY);
 
   return savedUser ? JSON.parse(savedUser) : null;

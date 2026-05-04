@@ -38,9 +38,9 @@ export interface UserConfig {
   logoutRedirectRoute?: string;
   socialLoginProviders?: SocialLoginType[];
   supertokens: {
-    appName: string;
-    apiDomain: string;
     apiBasePath?: string;
+    apiDomain: string;
+    appName: string;
     sessionConfig?: Session.UserInput;
     thirdPartyEmailPasswordConfig?: ThirdPartyEmailPassword.UserInput;
   };

@@ -4,7 +4,7 @@ import LoadingIcon from "../LoadingIcon";
 
 export interface LoadingPageProperties extends Pick<
   React.CSSProperties,
-  "fontSize" | "color"
+  "color" | "fontSize"
 > {
   pageType?: "container" | "overlay";
 }
@@ -16,7 +16,7 @@ const LoadingPage = ({
 }: LoadingPageProperties) => {
   return (
     <div className={`loading-${pageType}`}>
-      <LoadingIcon fontSize={fontSize} color={color} />
+      <LoadingIcon color={color} fontSize={fontSize} />
     </div>
   );
 };

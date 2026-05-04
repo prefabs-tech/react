@@ -5,24 +5,24 @@ import {
 import React, { useEffect } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
+interface ICurrencyPickerProperties<T extends number | string> extends Omit<
+  CurrencyPickerProperties<T>,
+  "errorMessage" | "hasError" | "onChange" | "value"
+> {
+  maxSelection?: number;
+  minSelection?: number;
+  showInvalidState?: boolean;
+  showValidState?: boolean;
+  submitCount?: number;
+  validationMessages?: ValidationMessages;
+}
+
 interface ValidationMessages {
   maxSelection?: string;
   minSelection?: string;
 }
 
-interface ICurrencyPickerProperties<T extends string | number> extends Omit<
-  CurrencyPickerProperties<T>,
-  "onChange" | "value" | "hasError" | "errorMessage"
-> {
-  maxSelection?: number;
-  minSelection?: number;
-  showValidState?: boolean;
-  showInvalidState?: boolean;
-  submitCount?: number;
-  validationMessages?: ValidationMessages;
-}
-
-export const CurrencyPicker = <T extends string | number>({
+export const CurrencyPicker = <T extends number | string>({
   autoSelectSingleOption = false,
   maxSelection,
   minSelection,
@@ -61,8 +61,21 @@ export const CurrencyPicker = <T extends string | number>({
       control={control}
       defaultValue={multiple ? [] : undefined}
       name={name}
+      render={({ field }) => (
+        <BasicCurrencyPicker
+          autoSelectSingleOption={autoSelectSingleOption}
+          errorMessage={error?.message}
+          hasError={submitCount > 0 ? checkInvalidState() : undefined}
+          multiple={multiple}
+          name={name}
+          onChange={field.onChange}
+          options={options}
+          value={field.value}
+          {...others}
+        />
+      )}
       rules={{
-        validate: (value: T[] | T) => {
+        validate: (value: T | T[]) => {
           if (!multiple || !Array.isArray(value)) {
             return;
           }
@@ -86,19 +99,6 @@ export const CurrencyPicker = <T extends string | number>({
           return true;
         },
       }}
-      render={({ field }) => (
-        <BasicCurrencyPicker
-          autoSelectSingleOption={autoSelectSingleOption}
-          errorMessage={error?.message}
-          hasError={submitCount > 0 ? checkInvalidState() : undefined}
-          multiple={multiple}
-          name={name}
-          onChange={field.onChange}
-          options={options}
-          value={field.value}
-          {...others}
-        />
-      )}
     />
   );
 };

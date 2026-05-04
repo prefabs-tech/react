@@ -1,19 +1,19 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
+import type { Properties } from "./types";
+
 import { getStorage } from "../utils";
 import { getOrientation, onTabDown } from "./utilities";
-
-import type { Properties } from "./types";
 
 const TabbedPanel: React.FC<Properties> = ({
   children,
   defaultActiveIndex = 0,
-  position = "top",
   id = "",
   persistState = true,
   persistStateStorage = "localStorage",
+  position = "top",
 }) => {
-  const [active, setActive] = useState<number | null>(null);
+  const [active, setActive] = useState<null | number>(null);
   const tabReferences = useRef<(HTMLButtonElement | null)[]>([]);
   const childNodes = Array.isArray(children) ? children : [children];
 
@@ -61,7 +61,7 @@ const TabbedPanel: React.FC<Properties> = ({
 
   return (
     <div className={`tabbed-panel ${position}`}>
-      <div role="tablist" aria-orientation={getOrientation(position)}>
+      <div aria-orientation={getOrientation(position)} role="tablist">
         {childNodes.map((item, index) => {
           const isActive = active === index;
           const title = item.props.title;
@@ -70,6 +70,13 @@ const TabbedPanel: React.FC<Properties> = ({
 
           return (
             <button
+              aria-disabled={isActive}
+              aria-label={title}
+              aria-selected={isActive}
+              className={isActive ? "active" : ""}
+              key={key}
+              onClick={() => setActive(index)}
+              onFocus={() => setActive(index)}
               onKeyDown={(event) => {
                 onTabDown(
                   active,
@@ -79,19 +86,12 @@ const TabbedPanel: React.FC<Properties> = ({
                   getOrientation(position),
                 );
               }}
-              onFocus={() => setActive(index)}
               ref={(element) => (tabReferences.current[index] = element)}
-              onClick={() => setActive(index)}
-              key={key}
               role="tab"
-              aria-label={title}
-              aria-disabled={isActive}
-              aria-selected={isActive}
               tabIndex={isActive ? 0 : -1}
-              className={isActive ? "active" : ""}
             >
               {icon ? (
-                <img src={icon} alt="title icon" aria-hidden="true" />
+                <img alt="title icon" aria-hidden="true" src={icon} />
               ) : null}
               <span>{title}</span>
             </button>

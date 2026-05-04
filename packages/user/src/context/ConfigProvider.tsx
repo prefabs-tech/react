@@ -7,7 +7,7 @@ interface Properties {
   config: UserConfig;
 }
 
-const configContext = createContext<UserConfig | undefined>(undefined);
+const configContext = createContext<undefined | UserConfig>(undefined);
 
 const ConfigProvider = ({ children, config }: Properties) => {
   return (

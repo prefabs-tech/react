@@ -40,44 +40,44 @@ export const getUserPublicRoutes = (options?: PublicRoutesProperties) => {
 
   const publicRoutes = [
     {
-      path: customPaths?.login || DEFAULT_PATHS.LOGIN,
       element: login?.element || <Login />,
+      path: customPaths?.login || DEFAULT_PATHS.LOGIN,
     },
     {
-      path: customPaths?.signup || DEFAULT_PATHS.SIGNUP,
-      element: signup?.element || <Signup />,
       disabled: !signupEnabled,
+      element: signup?.element || <Signup />,
+      path: customPaths?.signup || DEFAULT_PATHS.SIGNUP,
     },
     {
-      path: customPaths?.signupFirstUser || DEFAULT_PATHS.SIGNUP_FIRST_USER,
-      element: signupFirstUser?.element || <SignUpFirstUser />,
       disabled: !signupFirstUserEnabled,
+      element: signupFirstUser?.element || <SignUpFirstUser />,
+      path: customPaths?.signupFirstUser || DEFAULT_PATHS.SIGNUP_FIRST_USER,
     },
     {
-      path: customPaths?.resetPassword || DEFAULT_PATHS.RESET_PASSWORD,
       element: resetPassword?.element || <ResetPassword />,
+      path: customPaths?.resetPassword || DEFAULT_PATHS.RESET_PASSWORD,
     },
     {
-      path: customPaths?.forgotPassword || DEFAULT_PATHS.FORGOT_PASSWORD,
-      element: forgotPassword?.element || <ForgotPassword />,
       disabled: !forgotPasswordEnabled,
+      element: forgotPassword?.element || <ForgotPassword />,
+      path: customPaths?.forgotPassword || DEFAULT_PATHS.FORGOT_PASSWORD,
     },
     {
+      disabled: !authCallbackFacebookEnabled,
+      element: authCallbackFacebook?.element || <AuthSocialLoginCallback />,
       path:
         customPaths?.authCallbackFacebook ||
         DEFAULT_PATHS.AUTH_CALLBACK_FACEBOOK,
-      element: authCallbackFacebook?.element || <AuthSocialLoginCallback />,
-      disabled: !authCallbackFacebookEnabled,
     },
     {
+      disabled: !authCallbackGoogleEnabled,
+      element: authCallbackGoogle?.element || <AuthSocialLoginCallback />,
       path:
         customPaths?.authCallbackGoogle || DEFAULT_PATHS.AUTH_CALLBACK_GOOGLE,
-      element: authCallbackGoogle?.element || <AuthSocialLoginCallback />,
-      disabled: !authCallbackGoogleEnabled,
     },
     {
-      path: customPaths?.acceptInvitation || DEFAULT_PATHS.ACCEPT_INVITATION,
       element: acceptInvitation?.element || <AcceptInvitation />,
+      path: customPaths?.acceptInvitation || DEFAULT_PATHS.ACCEPT_INVITATION,
     },
   ];
 
@@ -85,7 +85,7 @@ export const getUserPublicRoutes = (options?: PublicRoutesProperties) => {
     <>
       {publicRoutes.map((route) =>
         !route.disabled ? (
-          <Route key={route.path} path={route.path} element={route.element} />
+          <Route element={route.element} key={route.path} path={route.path} />
         ) : null,
       )}
     </>

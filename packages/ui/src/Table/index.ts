@@ -4,13 +4,13 @@ import { clearSavedTableStates, getParsedColumns } from "./utilities";
 
 export { clearSavedTableStates, getParsedColumns, TDataTable, TTableElements };
 
+export type { DataActionsMenuProperties } from "./TableDataActions";
+
 export type {
-  TableColumnDefinition,
-  TRequestJSON,
-  TDataTableProperties,
   FilterFunction,
   FilterFunctions,
   FilterOption,
+  TableColumnDefinition,
+  TDataTableProperties,
+  TRequestJSON,
 } from "./types";
-
-export type { DataActionsMenuProperties } from "./TableDataActions";

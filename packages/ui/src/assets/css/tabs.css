@@ -1,7 +1,8 @@
 .tabbed-panel {
   --_tab-border: var(--tab-border, 1px solid #ddd);
-  --_tab-active-border: var(--tab-active-border, 1px solid #000000);
-  --_tab-hover-border: var(--tab-hover-border, 1px solid #000000);
+  --_tab-active-border: var(--tab-active-border, 1px solid #000);
+  --_tab-hover-border: var(--tab-hover-border, 1px solid #000);
+
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -44,6 +45,7 @@
 }
 
 .tabbed-panel.left > div[role="tablist"] {
+  align-items: flex-start;
   border-right:  var(--_tab-border);
   margin-right: 1rem;
 }
@@ -54,10 +56,6 @@
 
 .tabbed-panel > div[role="tablist"] > button {
   width: max-content;
-}
-
-.tabbed-panel.left > div[role="tablist"] {
-  align-items: flex-start;
 }
 
 .tabbed-panel.left > div[role="tablist"] > button,

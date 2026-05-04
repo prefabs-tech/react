@@ -37,7 +37,7 @@ export const ProfilePage = ({
   }
 
   return (
-    <Page title={t("profile.title")} className="profile">
+    <Page className="profile" title={t("profile.title")}>
       <AccountInfo />
       <ProfileForm
         additionalProfileFields={additionalProfileFields}

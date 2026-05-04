@@ -5,13 +5,13 @@ import { FC } from "react";
 
 export interface DatePickerProperties extends Omit<
   CalendarProps,
-  "value" | "onChange"
+  "onChange" | "value"
 > {
   className?: string;
   error?: string;
   label?: string;
   name: string;
-  onChange: (value: Nullable<string | Date | Date[]>) => void;
+  onChange: (value: Nullable<Date | Date[] | string>) => void;
   value: Date | Date[] | null;
 }
 
@@ -30,11 +30,11 @@ export const DatePicker: FC<DatePickerProperties> = ({
       {label && <label htmlFor={`input-field-${name}`}>{label}</label>}
 
       <Calendar
-        id={name}
-        value={value}
-        onChange={(event) => onChange(event.value)}
         className={classNames({ "p-invalid": error })}
         dateFormat={dateFormat}
+        id={name}
+        onChange={(event) => onChange(event.value)}
+        value={value}
         {...others}
       />
 

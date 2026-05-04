@@ -2,9 +2,9 @@ import EmailVerification from "supertokens-web-js/recipe/emailverification";
 import Session from "supertokens-web-js/recipe/session";
 import { UserRoleClaim } from "supertokens-web-js/recipe/userroles";
 
+import { removeUserData } from "../helpers";
 import { logout } from "./logout";
 import { ProfileValidationClaim } from "./profile-validation-claim";
-import { removeUserData } from "../helpers";
 
 /**
  * Get User roles

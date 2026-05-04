@@ -1,4 +1,4 @@
-import { Provider, FormSubmitOptions } from "@prefabs.tech/react-form";
+import { FormSubmitOptions, Provider } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React from "react";
 import * as zod from "zod";
@@ -6,8 +6,8 @@ import * as zod from "zod";
 import { useConfig } from "@/hooks";
 import { ChangePasswordFormData } from "@/views/ChangePassword";
 
-import ChangePasswordFormFields from "./ChangePasswordFormFields";
 import { PasswordConfirmationSchema } from "../schemas";
+import ChangePasswordFormFields from "./ChangePasswordFormFields";
 
 interface Properties {
   handleSubmit: (
@@ -18,7 +18,7 @@ interface Properties {
 }
 
 export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
-  const { t, i18n } = useTranslation("user");
+  const { i18n, t } = useTranslation("user");
   const config = useConfig();
   const hasConfirmPasswordFeature = config?.features?.confirmPassword ?? false;
 
@@ -27,16 +27,16 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
       .string()
       .nonempty(t("changePassword.messages.validation.currentPassword")),
     ...PasswordConfirmationSchema({
-      passwordValidationMessage: t(
-        "changePassword.messages.validation.mustContain",
-      ),
-      passwordRequiredMessage: t(
-        "changePassword.messages.validation.newPassword",
-      ),
       confirmPasswordRequiredMessage: t(
         "changePassword.messages.validation.confirmPassword",
       ),
       hasConfirmPasswordFeature,
+      passwordRequiredMessage: t(
+        "changePassword.messages.validation.newPassword",
+      ),
+      passwordValidationMessage: t(
+        "changePassword.messages.validation.mustContain",
+      ),
     }),
   });
 
@@ -54,13 +54,13 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
 
   return (
     <Provider
-      validationSchema={ChangePasswordFormSchema}
       onSubmit={(data: ChangePasswordFormData, options?: FormSubmitOptions) =>
         handleSubmit(
           { oldPassword: data.oldPassword, password: data.password },
           options,
         )
       }
+      validationSchema={ChangePasswordFormSchema}
       validationTriggerKey={i18n.language}
     >
       <ChangePasswordFormFields

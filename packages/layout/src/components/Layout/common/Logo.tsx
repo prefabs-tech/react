@@ -29,7 +29,7 @@ export const Logo = ({ alt, children, route, src }: Properties) => {
 
   const renderLogo = () => {
     if (_source) {
-      return <img src={_source} alt={_alt} />;
+      return <img alt={_alt} src={_source} />;
     }
 
     return (

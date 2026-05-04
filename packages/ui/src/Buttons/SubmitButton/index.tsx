@@ -16,10 +16,10 @@ export const SubmitButton = ({
 }: SubmitButtonProperties) => {
   return (
     <Button
-      type="submit"
-      label={label}
       disabled={disabled || loading}
       iconRight={loading && <LoadingIcon />}
+      label={label}
+      type="submit"
     />
   );
 };

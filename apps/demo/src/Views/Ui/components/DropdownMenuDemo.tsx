@@ -1,10 +1,10 @@
+import type { MenuItem } from "@prefabs.tech/react-ui";
+
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, DropdownMenu, Page } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
 import { CodeBlock, Section } from "../../../components/Demo";
-
-import type { MenuItem } from "@prefabs.tech/react-ui";
 
 export const DropdownMenuDemo = () => {
   const [t] = useTranslation(["ui", "user"]);
@@ -12,11 +12,11 @@ export const DropdownMenuDemo = () => {
 
   const menuItems = [
     {
+      className: "change-password",
+      disabled: true,
+      display: true,
       icon: "pi pi-lock",
       label: t("user:changePassword.title"),
-      className: "change-password",
-      display: true,
-      disabled: true,
     },
     {
       icon: "pi pi-user",
@@ -58,18 +58,18 @@ export const DropdownMenuDemo = () => {
       title={t("dropdownMenu.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section title={t("dropdownMenu.usage.leftAlign")}>
         <DropdownMenu
           label={t("dropdownMenu.label.setting")}
-          position="left-start"
           menu={menuItems}
+          position="left-start"
         />
         <CodeBlock
           exampleCode='<DropdownMenu
@@ -133,7 +133,7 @@ return (<DropdownMenu
         />
       </Section>
       <Section title={t("dropdownMenu.usage.hiddenDropdownIcon")}>
-        <DropdownMenu menu={menuItems} hideDropdownIcon />
+        <DropdownMenu hideDropdownIcon menu={menuItems} />
         <CodeBlock exampleCode="<DropdownMenu menu={menuItems} hideDropdownIcon />" />
       </Section>
     </Page>

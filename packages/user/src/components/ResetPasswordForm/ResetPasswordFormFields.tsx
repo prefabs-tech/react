@@ -19,25 +19,25 @@ const ResetPasswordFormFields = ({
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    formState: { errors, submitCount, isDirty },
-    register,
+    formState: { errors, isDirty, submitCount },
     getFieldState,
+    register,
   } = useFormContext();
 
   return (
     <>
       <Password
+        getFieldState={getFieldState}
         label={t("resetPassword.form.newPassword.label")}
         name="password"
         register={register}
-        getFieldState={getFieldState}
       />
       {hasConfirmPasswordFeature && (
         <Password
+          getFieldState={getFieldState}
           label={t("resetPassword.form.confirmPassword.label")}
           name="confirmPassword"
           register={register}
-          getFieldState={getFieldState}
         />
       )}
       <FormActions
@@ -47,8 +47,8 @@ const ResetPasswordFormFields = ({
             label: t("resetPassword.form.actions.submit"),
           },
         ]}
-        loading={loading}
         alignment="fill"
+        loading={loading}
       />
     </>
   );

@@ -16,9 +16,9 @@ export const changeEmail = async (email: string, apiBaseUrl: string) => {
     if (err.response) {
       const { data } = err.response;
 
-      return { status: data.status, message: data.message };
+      return { message: data.message, status: data.status };
     }
 
-    return { status: "ERROR", message: "Oops! Something went wrong" };
+    return { message: "Oops! Something went wrong", status: "ERROR" };
   }
 };

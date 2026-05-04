@@ -3,16 +3,16 @@ import { ReactNode, useMemo, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
 interface Properties {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  subnav: Array<any>;
   children?: ReactNode;
   isGrouped?: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  subnav: Array<any>;
 }
 
 export const Demo: React.FC<Properties> = ({
-  subnav,
   children,
   isGrouped = false,
+  subnav,
 }) => {
   const demoMainReference = useRef<HTMLDivElement | null>(null);
 
@@ -26,7 +26,7 @@ export const Demo: React.FC<Properties> = ({
         {subnav.map((nav) => {
           return (
             <li key={nav.route}>
-              <NavLink to={nav.route} end>
+              <NavLink end to={nav.route}>
                 {nav.label}
               </NavLink>
             </li>
@@ -39,7 +39,7 @@ export const Demo: React.FC<Properties> = ({
   return (
     <div className="demo">
       <div className="demo-aside">{subnavigationMenu}</div>
-      <div ref={demoMainReference} className="demo-main">
+      <div className="demo-main" ref={demoMainReference}>
         {children}
       </div>
     </div>

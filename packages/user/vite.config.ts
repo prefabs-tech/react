@@ -1,7 +1,6 @@
-import { resolve, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-
 import react from "@vitejs/plugin-react";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig, loadEnv } from "vite";
 
 import { dependencies, peerDependencies } from "./package.json";
@@ -29,17 +28,20 @@ export default defineConfig(({ mode }) => {
             "@prefabs.tech/react-i18n": "PrefabsTechReactI18n",
             "@prefabs.tech/react-layout": "PrefabsTechReactLayout",
             "@prefabs.tech/react-ui": "PrefabsTechReactUi",
+            axios: "Axios",
+            react: "React",
             "react-dom": "ReactDom",
             "react-router-dom": "ReactRouterDom",
             "react-toastify": "ReactToastify",
             "supertokens-web-js": "supertokensWebJs",
-            axios: "Axios",
-            react: "React",
             zod: "zod",
           },
         },
       },
       target: "esnext",
+    },
+    optimizeDeps: {
+      include: ["react/jsx-runtime"],
     },
     plugins: [react()],
     resolve: {
@@ -49,9 +51,6 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: Number(process.env.VITE_APP_PORT) || 8889,
-    },
-    optimizeDeps: {
-      include: ["react/jsx-runtime"],
     },
   };
 });

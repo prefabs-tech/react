@@ -22,9 +22,9 @@ const SingleCheckboxDemo = ({
 
   return (
     <CheckboxInput
-      name="single-checkbox"
-      inputLabel="Accept terms and conditions"
       checked={checked}
+      inputLabel="Accept terms and conditions"
+      name="single-checkbox"
       onChange={(newChecked) => setChecked(newChecked as boolean)}
     />
   );
@@ -55,13 +55,13 @@ const CustomLabelSingleCheckboxDemo = ({
 
   return (
     <CheckboxInput
-      name="custom-single-checkbox"
+      checked={checked}
       inputLabel={
         <span>
           Accept <b>terms and conditions</b>
         </span>
       }
-      checked={checked}
+      name="custom-single-checkbox"
       onChange={(newChecked) => setChecked(newChecked as boolean)}
     />
   );
@@ -75,9 +75,9 @@ const MultiCheckboxDemo = ({
   const [selectedValues, setSelectedValues] = useState<number[]>([]);
 
   const options = [
-    { value: 1, label: "Bike" },
-    { value: 2, label: "Car" },
-    { value: 3, label: "Truck" },
+    { label: "Bike", value: 1 },
+    { label: "Car", value: 2 },
+    { label: "Truck", value: 3 },
   ];
 
   if (isString) {
@@ -103,12 +103,12 @@ const MultiCheckboxDemo = ({
 
   return (
     <CheckboxInput
-      name="multi-checkbox"
-      label="Choose vehicle options"
       direction="horizontal"
+      label="Choose vehicle options"
+      name="multi-checkbox"
+      onChange={(newValues) => setSelectedValues(newValues as number[])}
       options={options}
       value={selectedValues}
-      onChange={(newValues) => setSelectedValues(newValues as number[])}
     />
   );
 };
@@ -121,9 +121,9 @@ const CustomLabelMultiCheckboxDemo = ({
   const [selectedValues, setSelectedValues] = useState<number[]>([]);
 
   const options = [
-    { value: 1, label: "Bike" },
-    { value: 2, label: "Car" },
-    { value: 3, label: "Truck" },
+    { label: "Bike", value: 1 },
+    { label: "Car", value: 2 },
+    { label: "Truck", value: 3 },
   ];
 
   const renderOptionsLabel = (option: (typeof options)[0]) => {
@@ -170,13 +170,13 @@ const CustomLabelMultiCheckboxDemo = ({
 
   return (
     <CheckboxInput
-      name="custom-multi-checkbox"
-      label="Choose vehicle options"
       direction="horizontal"
-      renderOptionsLabel={renderOptionsLabel}
-      options={options}
-      value={selectedValues}
+      label="Choose vehicle options"
+      name="custom-multi-checkbox"
       onChange={(newValues) => setSelectedValues(newValues as number[])}
+      options={options}
+      renderOptionsLabel={renderOptionsLabel}
+      value={selectedValues}
     />
   );
 };
@@ -187,9 +187,9 @@ const DisabledDemo = ({
   isString?: boolean;
 }): JSX.Element | string => {
   const options = [
-    { value: 1, label: "Bike" },
-    { value: 2, label: "Car" },
-    { value: 3, label: "Truck" },
+    { label: "Bike", value: 1 },
+    { label: "Car", value: 2 },
+    { label: "Truck", value: 3 },
   ];
 
   if (isString) {
@@ -214,20 +214,20 @@ const DisabledDemo = ({
 
   return (
     <CheckboxInput
-      name="disabled-checkbox"
-      label="Disabled options"
-      options={options}
-      value={[2]}
       disabled
       helperText="These checkboxes are disabled."
+      label="Disabled options"
+      name="disabled-checkbox"
+      options={options}
+      value={[2]}
     />
   );
 };
 
 export {
-  CustomLabelSingleCheckboxDemo,
   CustomLabelMultiCheckboxDemo,
-  SingleCheckboxDemo,
-  MultiCheckboxDemo,
+  CustomLabelSingleCheckboxDemo,
   DisabledDemo,
+  MultiCheckboxDemo,
+  SingleCheckboxDemo,
 };

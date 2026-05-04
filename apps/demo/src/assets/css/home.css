@@ -1,11 +1,11 @@
 .dz-grid-container .package {
+  border: 1px solid rgb(0 0 0 / 20%);
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   gap: 0.25rem;
+  padding: 1rem;
 }
 
 .dz-grid-container .package:hover {

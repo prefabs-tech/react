@@ -10,6 +10,10 @@ const appConfig: AppConfig = {
   appPort: "20072",
   appTitle: "Prefabs.tech Skeletons",
   appVersion: "0.0.1",
+  copyright: {
+    holder: "Prefabs.tech",
+    url: "www.prefabs-tech.com",
+  },
   features: {
     showVersion: true,
   },
@@ -18,17 +22,13 @@ const appConfig: AppConfig = {
     debug: true,
     defaultNS: "app",
     fallbackLng: "en",
-    supportedLngs: ["en", "fr"],
     react: {
       useSuspense: false,
     },
     resources: { en: {}, fr: {} },
+    supportedLngs: ["en", "fr"],
   },
   websiteDomain: "//",
-  copyright: {
-    holder: "Prefabs.tech",
-    url: "www.prefabs-tech.com",
-  },
 };
 
 test("Component matches snapshot", () => {

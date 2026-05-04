@@ -4,18 +4,18 @@
 
 .main-menu > ul > li:hover,
 .main-menu > ul > li .active {
-  text-decoration: underline;
   font-weight: normal;
+  text-decoration: underline;
 }
 
 code {
   background: lightgrey;
   border-radius: 0.25rem;
-  padding: 0.5rem 0.5rem;
   font-family: monospace;
+  padding: 0.5rem;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .dz-layout > header > .dz-header-container {
     flex-wrap: wrap;
   }

@@ -1,7 +1,7 @@
 .facebook.dark {
   background-color: #1877F2 !important;
   border: none;
-  color: #ffffff !important;
+  color: #fff !important;
   padding: 6px 8px;
   width: 100%;
 }
@@ -14,7 +14,7 @@
 }
 
 .google.dark {
-  background-color: #FFFFFF !important;
+  background-color: #FFF !important;
   border: 1px solid #747775;
   color: #1F1F1F !important;
   width: 100%;

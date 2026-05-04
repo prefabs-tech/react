@@ -3,8 +3,8 @@ import { Button, Page } from "@prefabs.tech/react-ui";
 import { UsersTable } from "@prefabs.tech/react-user";
 import { useNavigate } from "react-router-dom";
 
-import { allUsers } from "./data";
 import { Section } from "../../../components/Demo";
+import { allUsers } from "./data";
 
 export const UsersTableDemo = () => {
   const [t] = useTranslation("user");
@@ -15,17 +15,24 @@ export const UsersTableDemo = () => {
       title={t("usersTable.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <UsersTable
-          users={allUsers}
+          id="users-table"
+          initialSorting={[{ desc: false, id: "email" }]}
           onInvitationAdded={() => {}}
+          roleFilterOptions={[
+            { label: "ADMIN", value: "ADMIN" },
+            { label: "SUPERADMIN", value: "SUPERADMIN" },
+            { label: "USER", value: "USER" },
+          ]}
+          users={allUsers}
           visibleColumns={[
             "email",
             "name",
@@ -34,13 +41,6 @@ export const UsersTableDemo = () => {
             "disabled",
             "actions",
           ]}
-          initialSorting={[{ id: "email", desc: false }]}
-          roleFilterOptions={[
-            { value: "ADMIN", label: "ADMIN" },
-            { value: "SUPERADMIN", label: "SUPERADMIN" },
-            { value: "USER", label: "USER" },
-          ]}
-          id="users-table"
         />
       </Section>
     </Page>

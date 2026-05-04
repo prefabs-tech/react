@@ -15,25 +15,25 @@ export const InvitationFormDemo = () => {
       title={t("invitationForm.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section title={t("invitationForm.usage.withAppField")}>
         <InvitationForm
-          onSubmitted={() => {}}
-          onCancel={() => {}}
           apps={apps}
+          onCancel={() => {}}
+          onSubmitted={() => {}}
         />
       </Section>
 
       <Section title={t("invitationForm.usage.withRoleField")}>
         <InvitationForm
-          onSubmitted={() => {}}
           onCancel={() => {}}
+          onSubmitted={() => {}}
           roles={roles}
         />
       </Section>
@@ -44,8 +44,8 @@ export const InvitationFormDemo = () => {
             display: true,
             mode: "calendar",
           }}
-          onSubmitted={() => {}}
           onCancel={() => {}}
+          onSubmitted={() => {}}
           roles={roles}
         />
       </Section>
@@ -56,8 +56,8 @@ export const InvitationFormDemo = () => {
             display: true,
             mode: "input",
           }}
-          onSubmitted={() => {}}
           onCancel={() => {}}
+          onSubmitted={() => {}}
           roles={roles}
         />
       </Section>

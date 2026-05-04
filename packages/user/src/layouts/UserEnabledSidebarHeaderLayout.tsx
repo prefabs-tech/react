@@ -10,9 +10,9 @@ import { useUserNavigationMenu } from "..";
 
 interface Properties extends SidebarHeaderLayoutProperties {
   authNavigationMenu?: UserMenuType;
-  userNavigationMenu?: UserMenuType;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onLogout?: () => Promise<any>;
+  userNavigationMenu?: UserMenuType;
 }
 
 export const UserEnabledSidebarHeaderLayout: React.FC<Properties> = ({
@@ -21,19 +21,19 @@ export const UserEnabledSidebarHeaderLayout: React.FC<Properties> = ({
   className,
   collapsible,
   navigationMenu,
-  userNavigationMenu,
   onLogout,
   userMenuLocation = "header",
   userMenuMode,
+  userNavigationMenu,
   ...otherProperties
 }) => {
   const { user } = useUser();
 
   const userMenu = useUserNavigationMenu({
-    authNavigationMenu,
     addAuthNavigationMenu: false,
-    userNavigationMenu,
+    authNavigationMenu,
     onLogout,
+    userNavigationMenu,
   });
 
   return (

@@ -1,5 +1,8 @@
 import { describe, expect, test } from "vitest";
 
+import type { Option } from "../../FormWidgets/Select";
+import type { Locales } from "../../types";
+
 import defaultEnglishTranslation from "../../FormWidgets/CountryPicker/en.json";
 import {
   getFallbackTranslation,
@@ -8,41 +11,38 @@ import {
   sortByLabel,
 } from "../country-picker";
 
-import type { Option } from "../../FormWidgets/Select";
-import type { Locales } from "../../types";
-
 describe("getFallbackTranslation", () => {
   const frenchTranslation = {
-    DE: "Allemagne",
     BR: "Brésil",
     CA: "Canada",
     CN: "Chine",
+    DE: "Allemagne",
     ES: "Espagne",
-    US: "États-Unis",
     FR: "France",
+    GB: "Royaume-Uni",
     IT: "Italie",
     JP: "Japon",
-    GB: "Royaume-Uni",
     RU: "Russie",
+    US: "États-Unis",
   };
 
   const spanishTranslation = {
-    DE: "Alemania",
     BR: "Brasil",
     CA: "Canadá",
     CN: "China",
+    DE: "Alemania",
     ES: "España",
-    US: "Estados Unidos",
     FR: "Francia",
+    GB: "Reino Unido",
     IT: "Italia",
     JP: "Japón",
-    GB: "Reino Unido",
     RU: "Rusia",
+    US: "Estados Unidos",
   };
 
   const locales = {
-    fr: frenchTranslation,
     es: spanishTranslation,
+    fr: frenchTranslation,
   };
 
   const customEnglishTranslation = { FR: "France" };
@@ -167,26 +167,26 @@ describe("getFlagClass", () => {
 describe("getLabel", () => {
   const frenchTranslation = {
     DE: "Allemagne",
-    US: "États-Unis",
     FR: "France",
+    US: "États-Unis",
   };
 
   const spanishTranslation = {
     DE: "Alemania",
-    US: "Estados Unidos",
     FR: "Francia",
+    US: "Estados Unidos",
   };
 
   const locales = {
-    fr: frenchTranslation,
     es: spanishTranslation,
+    fr: frenchTranslation,
   };
 
   const fallbackTranslation = {
-    US: "United States",
-    FR: "France",
     DE: "Germany",
+    FR: "France",
     JP: "Japan",
+    US: "United States",
   };
 
   const testCases = [
@@ -253,7 +253,7 @@ describe("getLabel", () => {
   ];
 
   testCases.map((testCase) => {
-    const { code, locale, locales, fallbackTranslation } = testCase.arguments;
+    const { code, fallbackTranslation, locale, locales } = testCase.arguments;
 
     test(testCase.name, () => {
       const result = getLabel(code, locale, locales, fallbackTranslation);

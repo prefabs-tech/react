@@ -8,8 +8,8 @@ export const PageDemo = () => {
   const breadcrumb = (
     <Button
       iconLeft={<i className="pi pi-chevron-left"></i>}
-      variant="textOnly"
       label={t("page.breadcrumb.back")}
+      variant="textOnly"
     />
   );
 
@@ -19,56 +19,56 @@ export const PageDemo = () => {
 
       <hr />
       <Page
+        children={PageContent}
         title={t("page.title.toolbar")}
         toolbar={<Button label={t("page.toolbar.edit")} />}
-        children={PageContent}
       />
 
       <hr />
       <Page
+        centered={true}
+        children={PageContent}
         title={t("page.title.centerAligned")}
         toolbar={<Button label={t("page.toolbar.edit")} />}
-        children={PageContent}
-        centered={true}
       />
 
       <hr />
       <Page
-        title={t("page.title.stringSubtitle")}
+        children={PageContent}
         subtitle={t("page.subTitle.title")}
-        children={PageContent}
+        title={t("page.title.stringSubtitle")}
       />
 
       <hr />
       <Page
-        title={t("page.title.componentSubtitle")}
+        children={PageContent}
         subtitle={<Tag label={t("page.subTitle.tag")} />}
-        children={PageContent}
+        title={t("page.title.componentSubtitle")}
       />
 
       <hr />
       <Page
-        title={t("page.title.breadcrumb")}
-        children={PageContent}
         breadcrumb={breadcrumb}
+        children={PageContent}
+        title={t("page.title.breadcrumb")}
       />
 
       <hr />
       <Page
+        breadcrumb={breadcrumb}
+        children={PageContent}
+        subtitle={<Tag label={t("page.subTitle.tag")} />}
         title={t("page.title.complete")}
         titleTag={<Tag label={t("page.heading.tag")} />}
         toolbar={
           <>
             <Button
-              severity="secondary"
               label={t("page.toolbar.button.label")}
+              severity="secondary"
             />
             <Button label={t("page.toolbar.edit")} />
           </>
         }
-        subtitle={<Tag label={t("page.subTitle.tag")} />}
-        children={PageContent}
-        breadcrumb={breadcrumb}
       />
     </>
   );

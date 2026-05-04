@@ -1,21 +1,21 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Modal } from "@prefabs.tech/react-ui";
 
-import { UpdateEmailForm } from "./UpdateEmailForm";
 import { UserType } from "../../types";
+import { UpdateEmailForm } from "./UpdateEmailForm";
 
 interface Properties {
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
-  user: UserType | null;
   setUser: (user: UserType) => void;
+  user: null | UserType;
 }
 
 export const UpdateEmailModal = ({
   modalVisible,
   setModalVisible,
-  user,
   setUser,
+  user,
 }: Properties) => {
   const { t } = useTranslation("user");
 
@@ -23,13 +23,13 @@ export const UpdateEmailModal = ({
     <Modal
       className="update-email-modal"
       header={t("profile.accountInfo.title")}
-      visible={modalVisible}
       onHide={() => setModalVisible(false)}
+      visible={modalVisible}
     >
       <UpdateEmailForm
-        user={user}
         setModalVisible={setModalVisible}
         setUser={setUser}
+        user={user}
       />
     </Modal>
   );

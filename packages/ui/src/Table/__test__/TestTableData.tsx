@@ -38,4 +38,4 @@ const columns = [
   },
 ];
 
-export { columns, data, fetcher, biggerData };
+export { biggerData, columns, data, fetcher };

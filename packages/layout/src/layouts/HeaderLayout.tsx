@@ -1,37 +1,37 @@
-import { Layout, Header, Footer, Sidebar } from "@/components/Layout";
-import { UserMenuType } from "@/types";
-
 import type { NavMenuType, UserMenuModeType } from "@prefabs.tech/react-ui";
 
+import { Footer, Header, Layout, Sidebar } from "@/components/Layout";
+import { UserMenuType } from "@/types";
+
 export interface HeaderLayoutProperties {
-  className?: string;
   children?: React.ReactNode;
+  className?: string;
   customFooter?: React.ReactNode;
   customHeader?: React.ReactNode;
   displayNavIcons?: boolean;
   fixed?: boolean;
   headerAddon?: React.ReactNode;
-  navigationMenu?: NavMenuType;
   menu?: UserMenuType;
+  navigationMenu?: NavMenuType;
   noLocaleSwitcher?: boolean;
   noLogo?: boolean;
   noToggle?: boolean;
-  title?: string | React.ReactNode;
+  title?: React.ReactNode | string;
   userMenuMode?: UserMenuModeType;
 }
 
 export const HeaderLayout: React.FC<HeaderLayoutProperties> = ({
-  className,
   children,
+  className,
   customFooter,
   customHeader,
   displayNavIcons,
   fixed = true,
   headerAddon,
-  navigationMenu,
   menu,
-  noLogo,
+  navigationMenu,
   noLocaleSwitcher,
+  noLogo,
   noToggle,
   title,
   userMenuMode,
@@ -45,12 +45,12 @@ export const HeaderLayout: React.FC<HeaderLayoutProperties> = ({
         <Header
           displayNavIcons={displayNavIcons}
           headerAddon={headerAddon}
-          navigationMenu={navigationMenu}
-          title={title}
           menu={menu}
-          noLogo={noLogo}
+          navigationMenu={navigationMenu}
           noLocaleSwitcher={noLocaleSwitcher}
+          noLogo={noLogo}
           noToggle={noToggle}
+          title={title}
           userMenuMode={userMenuMode}
         ></Header>
       )}

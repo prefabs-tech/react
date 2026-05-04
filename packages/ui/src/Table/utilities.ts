@@ -1,6 +1,9 @@
-import { TABLE_STATE_PREFIX } from "./constants";
-import { getStorage } from "../utils";
-import { FILTER_FUNCTIONS_ENUM, FILTER_OPERATORS_ENUM } from "./enums";
+import type {
+  ColumnFilter,
+  ColumnFiltersState,
+  PaginationState,
+  SortingState,
+} from "@tanstack/react-table";
 
 import type {
   CellAlignmentType,
@@ -12,12 +15,10 @@ import type {
   TRequestJSON,
   TSortDirection,
 } from "./types";
-import type {
-  ColumnFilter,
-  ColumnFiltersState,
-  PaginationState,
-  SortingState,
-} from "@tanstack/react-table";
+
+import { getStorage } from "../utils";
+import { TABLE_STATE_PREFIX } from "./constants";
+import { FILTER_FUNCTIONS_ENUM, FILTER_OPERATORS_ENUM } from "./enums";
 
 /**
  * Maps filter functions to their corresponding operators
@@ -26,44 +27,44 @@ import type {
  */
 export const getFilterOperator = (filterFunction: TFilterFunction_) => {
   switch (filterFunction) {
+    case FILTER_FUNCTIONS_ENUM.BETWEEN:
+      return { operator: FILTER_OPERATORS_ENUM.BETWEEN };
     case FILTER_FUNCTIONS_ENUM.CONTAINS:
       return { operator: FILTER_OPERATORS_ENUM.CONTAINS };
-    case FILTER_FUNCTIONS_ENUM.STARTS_WITH:
-      return { operator: FILTER_OPERATORS_ENUM.STARTS_WITH };
     case FILTER_FUNCTIONS_ENUM.ENDS_WITH:
       return { operator: FILTER_OPERATORS_ENUM.ENDS_WITH };
     case FILTER_FUNCTIONS_ENUM.EQUALS:
       return { operator: FILTER_OPERATORS_ENUM.EQUALS };
-    case FILTER_FUNCTIONS_ENUM.NOT_EQUAL:
-      return { operator: FILTER_OPERATORS_ENUM.EQUALS, not: true };
     case FILTER_FUNCTIONS_ENUM.GREATER_THAN:
       return { operator: FILTER_OPERATORS_ENUM.GREATER_THAN };
     case FILTER_FUNCTIONS_ENUM.GREATER_THAN_OR_EQUAL:
       return { operator: FILTER_OPERATORS_ENUM.GREATER_THAN_OR_EQUAL };
+    case FILTER_FUNCTIONS_ENUM.IN:
+      return { operator: FILTER_OPERATORS_ENUM.IN };
+    case FILTER_FUNCTIONS_ENUM.IS_EMPTY:
+      return { operator: FILTER_OPERATORS_ENUM.EMPTY };
+    case FILTER_FUNCTIONS_ENUM.IS_NOT_EMPTY:
+      return { not: true, operator: FILTER_OPERATORS_ENUM.EMPTY };
+    case FILTER_FUNCTIONS_ENUM.IS_NOT_NULL:
+      return { not: true, operator: FILTER_OPERATORS_ENUM.NULL };
+    case FILTER_FUNCTIONS_ENUM.IS_NULL:
+      return { operator: FILTER_OPERATORS_ENUM.NULL };
     case FILTER_FUNCTIONS_ENUM.LESS_THAN:
       return { operator: FILTER_OPERATORS_ENUM.LESS_THAN };
     case FILTER_FUNCTIONS_ENUM.LESS_THAN_OR_EQUAL:
       return { operator: FILTER_OPERATORS_ENUM.LESS_THAN_OR_EQUAL };
-    case FILTER_FUNCTIONS_ENUM.IS_NULL:
-      return { operator: FILTER_OPERATORS_ENUM.NULL };
-    case FILTER_FUNCTIONS_ENUM.IS_NOT_NULL:
-      return { operator: FILTER_OPERATORS_ENUM.NULL, not: true };
-    case FILTER_FUNCTIONS_ENUM.IS_EMPTY:
-      return { operator: FILTER_OPERATORS_ENUM.EMPTY };
-    case FILTER_FUNCTIONS_ENUM.IS_NOT_EMPTY:
-      return { operator: FILTER_OPERATORS_ENUM.EMPTY, not: true };
     case FILTER_FUNCTIONS_ENUM.LIKE:
       return { operator: FILTER_OPERATORS_ENUM.LIKE };
-    case FILTER_FUNCTIONS_ENUM.NOT_LIKE:
-      return { operator: FILTER_OPERATORS_ENUM.LIKE, not: true };
-    case FILTER_FUNCTIONS_ENUM.IN:
-      return { operator: FILTER_OPERATORS_ENUM.IN };
-    case FILTER_FUNCTIONS_ENUM.NOT_IN:
-      return { operator: FILTER_OPERATORS_ENUM.IN, not: true };
-    case FILTER_FUNCTIONS_ENUM.BETWEEN:
-      return { operator: FILTER_OPERATORS_ENUM.BETWEEN };
     case FILTER_FUNCTIONS_ENUM.NOT_BETWEEN:
-      return { operator: FILTER_OPERATORS_ENUM.BETWEEN, not: true };
+      return { not: true, operator: FILTER_OPERATORS_ENUM.BETWEEN };
+    case FILTER_FUNCTIONS_ENUM.NOT_EQUAL:
+      return { not: true, operator: FILTER_OPERATORS_ENUM.EQUALS };
+    case FILTER_FUNCTIONS_ENUM.NOT_IN:
+      return { not: true, operator: FILTER_OPERATORS_ENUM.IN };
+    case FILTER_FUNCTIONS_ENUM.NOT_LIKE:
+      return { not: true, operator: FILTER_OPERATORS_ENUM.LIKE };
+    case FILTER_FUNCTIONS_ENUM.STARTS_WITH:
+      return { operator: FILTER_OPERATORS_ENUM.STARTS_WITH };
 
     default:
       throw new Error(`Unhandled filter function: ${filterFunction}`);
@@ -72,14 +73,14 @@ export const getFilterOperator = (filterFunction: TFilterFunction_) => {
 
 export const isRangeFilter = (filterFunction: TFilterFunction_) => {
   return [
-    FILTER_FUNCTIONS_ENUM.IN,
-    FILTER_FUNCTIONS_ENUM.NOT_IN,
     FILTER_FUNCTIONS_ENUM.BETWEEN,
+    FILTER_FUNCTIONS_ENUM.IN,
     FILTER_FUNCTIONS_ENUM.NOT_BETWEEN,
+    FILTER_FUNCTIONS_ENUM.NOT_IN,
   ].includes(filterFunction as FILTER_FUNCTIONS_ENUM);
 };
 
-export const isDefined = <T>(value: T | undefined | null) => {
+export const isDefined = <T>(value: null | T | undefined) => {
   return value !== undefined && value !== null;
 };
 
@@ -217,15 +218,15 @@ export const getRequestJSON = (
 
     if (sortingState.length > 1) {
       return sortingState.map((state) => ({
-        key: state.id,
         direction: getSortDirection(state.desc),
+        key: state.id,
       }));
     }
 
     return [
       {
-        key: sortingState[0].id,
         direction: getSortDirection(sortingState[0].desc),
+        key: sortingState[0].id,
       },
     ];
   };
@@ -233,20 +234,20 @@ export const getRequestJSON = (
   return {
     filter: getFilter(),
     limit: getLimit(),
-    sort: getSort(),
     offset: getOffset(),
+    sort: getSort(),
   };
 };
 
 export const getParsedColumns = ({
+  childColumns,
   columns,
   visibleColumns,
-  childColumns,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  columns: Array<any>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   childColumns?: Array<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: Array<any>;
   visibleColumns: string[];
 }) => {
   const parsedColumns = new Map();
@@ -262,27 +263,27 @@ export const getParsedColumns = ({
 
   const updateColumn = ({
     enableColumnFilter,
-    enableSorting,
     enableGlobalFilter,
     enableMultiSort,
+    enableSorting,
   }: {
     enableColumnFilter?: boolean;
-    enableSorting?: boolean;
     enableGlobalFilter?: boolean;
     enableMultiSort?: boolean;
+    enableSorting?: boolean;
   }) => {
     return {
       enableColumnFilter:
         typeof enableColumnFilter === "undefined" ? false : enableColumnFilter,
-
-      enableSorting:
-        typeof enableSorting === "undefined" ? false : enableSorting,
 
       enableGlobalFilter:
         typeof enableGlobalFilter === "undefined" ? false : enableGlobalFilter,
 
       enableMultiSort:
         typeof enableMultiSort === "undefined" ? false : enableMultiSort,
+
+      enableSorting:
+        typeof enableSorting === "undefined" ? false : enableSorting,
     };
   };
 
@@ -297,9 +298,9 @@ export const getParsedColumns = ({
           ...column,
           columns: [
             ...getParsedColumns({
+              childColumns: parsedColumns.get(columnIdentifier).columns || [],
               columns: column.columns,
               visibleColumns,
-              childColumns: parsedColumns.get(columnIdentifier).columns || [],
             }),
           ],
         });
@@ -357,9 +358,9 @@ export const getParsedColumns = ({
 };
 
 export const formatNumber = ({
-  value,
-  locale = "en-GB",
   formatOptions,
+  locale = "en-GB",
+  value,
 }: FormatNumberType) => {
   // for detail use case visit- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
 
@@ -396,7 +397,7 @@ export const getAlignValue = ({
 export const getSavedTableState = (
   id: string,
   storage: Storage,
-): PersistentTableState | null => {
+): null | PersistentTableState => {
   try {
     const savedState = storage.getItem(`${TABLE_STATE_PREFIX}-${id}`);
 

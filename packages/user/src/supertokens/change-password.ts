@@ -8,7 +8,7 @@ export const changePassword = async (
   try {
     const response = await client(apiBaseUrl).post(
       "/change_password",
-      { oldPassword, newPassword },
+      { newPassword, oldPassword },
       {
         withCredentials: true,
       },
@@ -23,8 +23,8 @@ export const changePassword = async (
     }
 
     return {
-      status: "ERROR",
       message: errorMessage,
+      status: "ERROR",
     };
   }
 };

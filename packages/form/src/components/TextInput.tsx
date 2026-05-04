@@ -1,24 +1,24 @@
 import { IInputProperties, Input } from "@prefabs.tech/react-ui";
 import React from "react";
 import {
-  UseFormGetFieldState,
-  UseFormRegister,
   Controller,
   useFormContext,
+  UseFormGetFieldState,
+  UseFormRegister,
 } from "react-hook-form";
 
 interface ITextInput extends IInputProperties {
   defaultValue?: string;
-  label?: string | React.ReactNode;
-  placeholder?: string;
-  name: string;
-  showValidState?: boolean;
-  showInvalidState?: boolean;
-  submitCount?: number;
   /** @deprecated */
   getFieldState?: UseFormGetFieldState<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  label?: React.ReactNode | string;
+  name: string;
+  placeholder?: string;
   /** @deprecated */
   register?: UseFormRegister<any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  showInvalidState?: boolean;
+  showValidState?: boolean;
+  submitCount?: number;
 }
 
 export const TextInput: React.FC<ITextInput> = ({
@@ -47,20 +47,20 @@ export const TextInput: React.FC<ITextInput> = ({
 
   return (
     <Controller
-      name={name}
       control={control}
       defaultValue={defaultValue}
+      name={name}
       render={({ field }) => (
         <Input
           {...others}
-          name={field.name}
-          label={label}
-          placeholder={placeholder}
-          value={field.value}
-          type="text"
           errorMessage={error?.message}
-          onChange={field.onChange}
           hasError={submitCount > 0 ? checkInvalidState() : undefined}
+          label={label}
+          name={field.name}
+          onChange={field.onChange}
+          placeholder={placeholder}
+          type="text"
+          value={field.value}
         />
       )}
     />

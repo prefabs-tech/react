@@ -66,12 +66,12 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
         <p>
           {
             <Trans
-              i18nKey={"forgotPassword.acknowledgement.message"}
-              values={{ email }}
               components={{
                 strong: <strong />,
               }}
+              i18nKey={"forgotPassword.acknowledgement.message"}
               t={t}
+              values={{ email }}
             />
           }
         </p>
@@ -107,8 +107,8 @@ export const ForgotPassword = ({ centered = true }: { centered?: boolean }) => {
     >
       <ForgotPasswordForm
         email={email}
-        loading={loading}
         handleSubmit={handleSubmit}
+        loading={loading}
         onEmailChange={setEmail}
       />
       <AuthLinks className="forgot-password" links={links} />

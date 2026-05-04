@@ -1,7 +1,7 @@
 import EmailVerification from "supertokens-web-js/recipe/emailverification";
 
 interface IPromise {
-  status: "OK" | "EMAIL_VERIFICATION_INVALID_TOKEN_ERROR" | undefined;
+  status: "EMAIL_VERIFICATION_INVALID_TOKEN_ERROR" | "OK" | undefined;
 }
 
 export const verifyEmail = async (): Promise<IPromise | undefined> => {

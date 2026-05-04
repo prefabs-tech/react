@@ -13,25 +13,25 @@ export const TextareaDemo = () => {
       title={t("textarea.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <Textarea
-          placeholder={t("textarea.placeHolder")}
           label={t("textarea.label")}
+          placeholder={t("textarea.placeHolder")}
         />
       </Section>
       <Section>
         <Textarea
-          hasError={true}
           errorMessage={t("textarea.errorMessage")}
-          placeholder={t("textarea.placeHolder")}
+          hasError={true}
           label={t("textarea.label")}
+          placeholder={t("textarea.placeHolder")}
         />
       </Section>
     </Page>

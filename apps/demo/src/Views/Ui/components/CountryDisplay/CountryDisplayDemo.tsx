@@ -1,11 +1,11 @@
 import { i18n, useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, Page, TDataTable, Country } from "@prefabs.tech/react-ui";
+import { Button, Country, Page, TDataTable } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
-import englishData from "./en.json";
 import { CodeBlock, Section } from "../../../../components/Demo";
 import frenchData from "../FormWidgets/fr.json";
 import nepaliData from "../FormWidgets/np.json";
+import englishData from "./en.json";
 import "../../../../assets/css/country.css";
 
 export const CountryDisplayDemo = () => {
@@ -21,74 +21,74 @@ export const CountryDisplayDemo = () => {
 
   const data = [
     {
+      default: '""',
+      description: t("countryDisplay.propertiesDescription.className"),
       id: 1,
       prop: "className",
       type: "string",
-      default: '""',
-      description: t("countryDisplay.propertiesDescription.className"),
     },
     {
+      default: "-",
+      description: t("countryDisplay.propertiesDescription.code"),
       id: 2,
       prop: "code",
       type: "string",
-      default: "-",
-      description: t("countryDisplay.propertiesDescription.code"),
     },
     {
+      default: '"en"',
+      description: t("countryDisplay.propertiesDescription.fallbackLocale"),
       id: 3,
       prop: "fallbackLocale",
       type: "string",
-      default: '"en"',
-      description: t("countryDisplay.propertiesDescription.fallbackLocale"),
     },
     {
+      default: "undefined",
+      description: t("countryDisplay.propertiesDescription.flagsPath"),
       id: 4,
       prop: "flagsPath",
       type: "(code: string) => string",
-      default: "undefined",
-      description: t("countryDisplay.propertiesDescription.flagsPath"),
     },
     {
+      default: '"left"',
+      description: t("countryDisplay.propertiesDescription.flagsPosition"),
       id: 5,
       prop: "flagsPosition",
       type: '"left" | "right" | "right-edge"',
-      default: '"left"',
-      description: t("countryDisplay.propertiesDescription.flagsPosition"),
     },
     {
+      default: '"rectangular"',
+      description: t("countryDisplay.propertiesDescription.flagsStyle"),
       id: 6,
       prop: "flagsStyle",
       type: '"circle" | "rectangular" | "square"',
-      default: '"rectangular"',
-      description: t("countryDisplay.propertiesDescription.flagsStyle"),
     },
     {
+      default: "en",
+      description: t("countryDisplay.propertiesDescription.locale"),
       id: 7,
       prop: "locale",
       type: "string",
-      default: "en",
-      description: t("countryDisplay.propertiesDescription.locale"),
     },
     {
+      default: "{}",
+      description: t("countryDisplay.propertiesDescription.i18n"),
       id: 8,
       prop: "locales",
       type: "Record<string, Record<string, string>>",
-      default: "{}",
-      description: t("countryDisplay.propertiesDescription.i18n"),
     },
     {
+      default: "undefined",
+      description: t("countryDisplay.propertiesDescription.renderOption"),
       id: 9,
       prop: "renderOption",
       type: "(code: string, label: string) => ReactNode",
-      default: "undefined",
-      description: t("countryDisplay.propertiesDescription.renderOption"),
     },
     {
+      default: "true",
+      description: t("countryDisplay.propertiesDescription.showFlag"),
       id: 10,
       prop: "showFlag",
       type: "boolean",
-      default: "true",
-      description: t("countryDisplay.propertiesDescription.showFlag"),
     },
   ];
 
@@ -99,8 +99,8 @@ export const CountryDisplayDemo = () => {
         <Button
           iconLeft={<i className="pi pi-chevron-left"></i>}
           label={t("buttons.back", "Back")}
-          variant="textOnly"
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -142,7 +142,7 @@ const selectedLocale = "np";
         <Country
           code="EG"
           locale={selectedLocale}
-          locales={{ fr: frenchData, en: englishData }}
+          locales={{ en: englishData, fr: frenchData }}
         />
         <CodeBlock
           exampleCode='import frenchData from "./fr.json";
@@ -164,7 +164,7 @@ selectedLocale = i18n.language
           code="GB"
           fallbackLocale="np"
           locale={selectedLocale}
-          locales={{ np: nepaliData, en: englishData }}
+          locales={{ en: englishData, np: nepaliData }}
         />
         <CodeBlock
           exampleCode='import englishData from "./en.json";

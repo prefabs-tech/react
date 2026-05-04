@@ -1,11 +1,11 @@
-import client from "../axios";
-
 import type {
   LoginCredentials,
   UpdateProfileInput,
   UpdateProfileResponse,
   UserType,
 } from "@/types";
+
+import client from "../axios";
 
 export const getIsFirstUser = async (
   apiBaseUrl: string,

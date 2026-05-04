@@ -1,46 +1,44 @@
 import { ComponentProps, ReactNode } from "react";
 
 import {
-  FileCard,
-  IFile,
-  FileMessages,
-  VisibleFileDetails,
   ConfirmationModal,
+  FileCard,
+  FileMessages,
+  IFile,
+  VisibleFileDetails,
 } from "..";
 import { Button } from "../Buttons/ButtonBasic";
 
 export type FilesListType = {
+  archiveButtonProps?: ComponentProps<typeof Button>;
+  archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
+  deleteButtonProps?: ComponentProps<typeof Button>;
+  deleteConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
+  downloadButtonProps?: ComponentProps<typeof Button>;
+  editDescriptionButtonProps?: ComponentProps<typeof Button>;
   files: IFile[];
   locale?: string;
   messages?: FileMessages;
-  archiveButtonProps?: ComponentProps<typeof Button>;
-  archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
-  deleteConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
-  deleteButtonProps?: ComponentProps<typeof Button>;
-  downloadButtonProps?: ComponentProps<typeof Button>;
-  editDescriptionButtonProps?: ComponentProps<typeof Button>;
-  shareButtonProps?: ComponentProps<typeof Button>;
-  viewButtonProps?: ComponentProps<typeof Button>;
+  onEditDescription?: (arguments_: IFile) => void;
   onFileArchive?: (arguments_: IFile) => void;
   onFileDelete?: (arguments_: IFile) => void;
   onFileDownload?: (arguments_: IFile) => void;
-  onEditDescription?: (arguments_: IFile) => void;
   onFileShare?: (arguments_: IFile) => void;
   onFileView?: (arguments_: IFile) => void;
   renderFileThumbnail?: (arguments_: IFile) => ReactNode;
+  shareButtonProps?: ComponentProps<typeof Button>;
   showFileThumbnail?: boolean;
+  viewButtonProps?: ComponentProps<typeof Button>;
   visibleFileDetails?: VisibleFileDetails[];
 };
 
 export const FilesList = ({
   archiveButtonProps,
   archiveConfirmationProps,
-  deleteConfirmationProps,
   deleteButtonProps,
+  deleteConfirmationProps,
   downloadButtonProps,
   editDescriptionButtonProps,
-  shareButtonProps,
-  viewButtonProps,
   files,
   locale,
   messages,
@@ -51,16 +49,24 @@ export const FilesList = ({
   onFileShare,
   onFileView,
   renderFileThumbnail,
-  visibleFileDetails,
+  shareButtonProps,
   showFileThumbnail,
+  viewButtonProps,
+  visibleFileDetails,
 }: FilesListType) => {
   return (
     <div className="file-list-wrapper">
       {files.map((file: IFile) => {
         return (
           <FileCard
-            key={file.originalFileName}
+            archiveButtonProps={archiveButtonProps}
+            archiveConfirmationProps={archiveConfirmationProps}
+            deleteButtonProps={deleteButtonProps}
+            deleteConfirmationProps={deleteConfirmationProps}
+            downloadButtonProps={downloadButtonProps}
+            editDescriptionButtonProps={editDescriptionButtonProps}
             file={file}
+            key={file.originalFileName}
             locale={locale}
             messages={messages}
             onArchive={onFileArchive}
@@ -70,16 +76,10 @@ export const FilesList = ({
             onShare={onFileShare}
             onView={onFileView}
             renderThumbnail={renderFileThumbnail}
-            showThumbnail={showFileThumbnail}
-            visibleFileDetails={visibleFileDetails}
-            archiveButtonProps={archiveButtonProps}
-            archiveConfirmationProps={archiveConfirmationProps}
-            deleteButtonProps={deleteButtonProps}
-            deleteConfirmationProps={deleteConfirmationProps}
-            downloadButtonProps={downloadButtonProps}
-            editDescriptionButtonProps={editDescriptionButtonProps}
             shareButtonProps={shareButtonProps}
+            showThumbnail={showFileThumbnail}
             viewButtonProps={viewButtonProps}
+            visibleFileDetails={visibleFileDetails}
           />
         );
       })}

@@ -1,15 +1,14 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe } from "node:test";
-
-import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
-import { expect, test, vi, beforeAll } from "vitest";
+import { beforeAll, expect, test, vi } from "vitest";
 
 import { ConfirmationModal } from "..";
 
 const confirmationModalData = {
+  closeIcon: "pi pi-times",
   header: "Confirmation required",
   message: "Are you sure?",
-  closeIcon: "pi pi-times",
 };
 
 describe("Confirmation modal", () => {
@@ -21,9 +20,9 @@ describe("Confirmation modal", () => {
   test("should render the confirmation modal when visible is true", () => {
     render(
       <ConfirmationModal
-        visible={true}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
+        visible={true}
       />,
     );
 
@@ -34,9 +33,9 @@ describe("Confirmation modal", () => {
   test("should not render the confirmation modal when visible is false", () => {
     render(
       <ConfirmationModal
-        visible={false}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
+        visible={false}
       />,
     );
 
@@ -47,10 +46,10 @@ describe("Confirmation modal", () => {
   test("should render icon passed as ReactNode correctly", () => {
     render(
       <ConfirmationModal
-        visible={true}
         header={confirmationModalData.header}
-        message={confirmationModalData.message}
         icon={<span>!</span>}
+        message={confirmationModalData.message}
+        visible={true}
       />,
     );
     expect(screen.getByText("!")).toBeInTheDocument();
@@ -59,11 +58,11 @@ describe("Confirmation modal", () => {
   test("should render close button when closable is true", () => {
     render(
       <ConfirmationModal
-        visible={true}
         closable={true}
+        closeIcon={confirmationModalData.closeIcon}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
-        closeIcon={confirmationModalData.closeIcon}
+        visible={true}
       />,
     );
 
@@ -74,11 +73,11 @@ describe("Confirmation modal", () => {
   test("should not render close button when closable is false", () => {
     render(
       <ConfirmationModal
-        visible={true}
         closable={false}
+        closeIcon={confirmationModalData.closeIcon}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
-        closeIcon={confirmationModalData.closeIcon}
+        visible={true}
       />,
     );
 
@@ -90,11 +89,11 @@ describe("Confirmation modal", () => {
     const hanldeAccept = vi.fn();
     render(
       <ConfirmationModal
-        visible={true}
+        accept={hanldeAccept}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
-        accept={hanldeAccept}
         onHide={vi.fn()}
+        visible={true}
       />,
     );
     fireEvent.click(screen.getByText("Yes"));
@@ -105,11 +104,11 @@ describe("Confirmation modal", () => {
     const handleReject = vi.fn();
     render(
       <ConfirmationModal
-        visible={true}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
-        reject={handleReject}
         onHide={vi.fn()}
+        reject={handleReject}
+        visible={true}
       />,
     );
     fireEvent.click(screen.getByText("No"));
@@ -120,11 +119,11 @@ describe("Confirmation modal", () => {
     const handleHide = vi.fn();
     render(
       <ConfirmationModal
-        visible={true}
+        closeIcon={confirmationModalData.closeIcon}
         header={confirmationModalData.header}
         message={confirmationModalData.message}
-        closeIcon={confirmationModalData.closeIcon}
         onHide={handleHide}
+        visible={true}
       />,
     );
 

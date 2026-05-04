@@ -14,13 +14,13 @@ export const Pages = () => {
 
   const subnav = [
     { label: t("app:getStarted"), route: I18n_ROUTES.GET_STARTED },
-    ...routes.map(({ path, key }) => {
-      return { route: path, label: t(key) };
+    ...routes.map(({ key, path }) => {
+      return { label: t(key), route: path };
     }),
   ];
 
   return (
-    <Demo subnav={subnav} isGrouped>
+    <Demo isGrouped subnav={subnav}>
       <Outlet />
     </Demo>
   );

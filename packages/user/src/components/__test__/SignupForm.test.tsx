@@ -1,4 +1,4 @@
-import { render, fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import React, { act } from "react";
 import { expect, test, vi } from "vitest";
@@ -9,11 +9,11 @@ import { UserConfig } from "@/types";
 import { SignupForm } from "../Signup";
 
 const config = {
-  supportedRoles: ["USER"],
-  socialLoginProviders: ["google"],
   features: {
     confirmPassword: true,
   },
+  socialLoginProviders: ["google"],
+  supportedRoles: ["USER"],
 };
 
 const setup = (component: React.ReactElement) => {

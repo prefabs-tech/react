@@ -1,9 +1,9 @@
+import type { FileExtended } from "@prefabs.tech/react-form";
+
 import { FileAttachBasic } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Tooltip } from "@prefabs.tech/react-ui";
 import { useRef, useState } from "react";
-
-import type { FileExtended } from "@prefabs.tech/react-form";
 
 export const FileAttachDemo = () => {
   const { t } = useTranslation("files");
@@ -13,26 +13,26 @@ export const FileAttachDemo = () => {
   return (
     <>
       <FileAttachBasic
-        name="fileAttach"
-        selectButtonProps={{ iconLeft: "pi pi-file" }}
-        value={selectedFiles}
         mode={"update"}
         multiple={true}
+        name="fileAttach"
         onChange={(file: FileExtended[]) => {
           setSelectedFiles(file);
         }}
+        selectButtonProps={{ iconLeft: "pi pi-file" }}
         selectedFileDisplay="none"
+        value={selectedFiles}
       />
 
       {selectedFiles.map((file: FileExtended, i) => {
         return (
-          <div key={file.name} className="attached-file">
+          <div className="attached-file" key={file.name}>
             <span>{file.name}</span>
             <Tooltip
-              elementRef={reference}
-              position="top"
-              offset={10}
               delay={200}
+              elementRef={reference}
+              offset={10}
+              position="top"
             >
               <span>{t("fileAttach.deleteFileMessage")}</span>
             </Tooltip>

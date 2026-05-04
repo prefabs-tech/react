@@ -1,13 +1,16 @@
 import { ErrorResponse } from "./types";
 
-export interface InvitationPayload {
-  email: string;
-  role: string;
-  appId?: number;
-}
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AcceptInvitationResponse = any | ErrorResponse;
+
+export type AddInvitationResponse = ErrorResponse | Invitation;
+
+export type DeleteInvitationResponse = ErrorResponse | Invitation;
+
+export type GetInvitationResponse = ErrorResponse | Invitation;
 
 export interface Invitation {
-  acceptedAt: number | null;
+  acceptedAt: null | number;
   appId: number;
   createdAt: number;
   email: string;
@@ -16,23 +19,18 @@ export interface Invitation {
   invitedById: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload: any;
-  revokedAt: number | null;
+  revokedAt: null | number;
   role: string;
   token?: string;
   updatedAt: number;
 }
 
-export interface InvitationRoleOption {
-  name: string;
-  id: number;
-}
-
 export interface InvitationAppOption {
   id: number;
+  label?: string;
   name: string;
   origin: string;
   supportedRoles: InvitationRoleOption[];
-  label?: string;
 }
 
 export interface InvitationExpiryDateField {
@@ -40,15 +38,17 @@ export interface InvitationExpiryDateField {
   mode: "calendar" | "input";
 }
 
-export type AddInvitationResponse = Invitation | ErrorResponse;
+export interface InvitationPayload {
+  appId?: number;
+  email: string;
+  role: string;
+}
 
-export type DeleteInvitationResponse = Invitation | ErrorResponse;
+export interface InvitationRoleOption {
+  id: number;
+  name: string;
+}
 
-export type ResendInvitationResponse = Invitation | ErrorResponse;
+export type ResendInvitationResponse = ErrorResponse | Invitation;
 
-export type RevokeInvitationResponse = Invitation | ErrorResponse;
-
-export type GetInvitationResponse = Invitation | ErrorResponse;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AcceptInvitationResponse = any | ErrorResponse;
+export type RevokeInvitationResponse = ErrorResponse | Invitation;

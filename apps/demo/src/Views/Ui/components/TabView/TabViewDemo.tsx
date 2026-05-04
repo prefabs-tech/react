@@ -5,104 +5,104 @@ import { ConfirmationModal } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { addTab } from "./utilities";
 import { CodeBlock, Section } from "../../../../components/Demo";
+import { addTab } from "./utilities";
 
 const data = [
   {
+    default: "-",
+    description: "Active key of TabView.",
     id: 1,
     prop: "activeKey",
     type: "string",
-    default: "-",
-    description: "Active key of TabView.",
   },
   {
-    id: 2,
-    prop: "controlled",
-    type: "boolean",
     default: "false",
     description:
       "If true, TabView becomes a controlled component. In this mode, internal state, hash routing, and state persistence are disabled.",
+    id: 2,
+    prop: "controlled",
+    type: "boolean",
   },
   {
+    default: "false",
+    description: "Enable hash routing for the tab view URL.",
     id: 3,
     prop: "enableHashRouting",
     type: "boolean",
-    default: "false",
-    description: "Enable hash routing for the tab view URL.",
   },
   {
-    id: 4,
-    prop: "id",
-    type: "string",
     default: "-",
     description:
       "Id of tab to save the state. Should provide 'id' in case of tab state persistence.",
+    id: 4,
+    prop: "id",
+    type: "string",
   },
   {
-    id: 5,
-    prop: "lazy",
-    type: "boolean",
     default: "true",
     description:
       "The lazy prop enables lazy loading.It only loads content for the active tab.",
+    id: 5,
+    prop: "lazy",
+    type: "boolean",
   },
   {
-    id: 6,
-    prop: "persistState",
-    type: "boolean",
     default: "true",
     description:
       "If true, tab state is saved either in localStorage or sessionStorage. Ignored when 'controlled' or 'enableHashRouting' is true.",
+    id: 6,
+    prop: "persistState",
+    type: "boolean",
   },
   {
+    default: "localStorage",
+    description: "Storage to save tab state.",
     id: 7,
     prop: "persistStateStorage",
     type: '"localStorage" | "sessionStorage"',
-    default: "localStorage",
-    description: "Storage to save tab state.",
   },
   {
+    default: "top",
+    description: "Position of the tab panel header relative to its content.",
     id: 8,
     prop: "position",
     type: '"top" | "left" | "bottom" | "right"',
-    default: "top",
-    description: "Position of the tab panel header relative to its content.",
   },
   {
+    default: "-",
+    description: "Array of tab object.",
     id: 9,
     prop: "tabs",
     type: "Tabs",
-    default: "-",
-    description: "Array of tab object.",
   },
   {
+    default: "-",
+    description: "Array of visible tabs.",
     id: 10,
     prop: "visibleTabs",
     type: "VisibleTabs",
-    default: "-",
-    description: "Array of visible tabs.",
   },
   {
+    default: "-",
+    description: "Function to be called when active tab change.",
     id: 11,
     prop: "onActiveTabChange",
     type: "(activeTab: string) => void",
-    default: "-",
-    description: "Function to be called when active tab change.",
   },
   {
+    default: "-",
+    description: "Function to be called when visible tabs change.",
     id: 12,
     prop: "onVisibleTabsChange",
     type: "(visibleTabs: string[]) => void",
-    default: "-",
-    description: "Function to be called when visible tabs change.",
   },
   {
+    default: "-",
+    description: "Function to be called when tab close.",
     id: 13,
     prop: "onTabClose",
     type: "(activeTab: string) => void",
-    default: "-",
-    description: "Function to be called when tab close.",
   },
 ];
 
@@ -119,7 +119,7 @@ export const TabViewDemo = () => {
   ]);
   const [controlledActiveTab, setControlledActiveTab] = useState("36");
   const [showModal, setShowModal] = useState(false);
-  const [requestedTab, setRequestedTab] = useState<string | null>(null);
+  const [requestedTab, setRequestedTab] = useState<null | string>(null);
 
   const handleTabChange = (key: string) => {
     if (key !== controlledActiveTab) {
@@ -160,14 +160,14 @@ export const TabViewDemo = () => {
 
   return (
     <Page
-      title={t("tabview.title")}
       className="tab-view"
+      title={t("tabview.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -178,23 +178,23 @@ export const TabViewDemo = () => {
 
       <Section title={t("tabview.usage.basic")}>
         <TabView
+          id="tabview-1"
           tabs={[
-            { label: "Description", children: "Description", key: "1" },
-            { label: "Reviews", children: "Reviews", key: "2" },
+            { children: "Description", key: "1", label: "Description" },
+            { children: "Reviews", key: "2", label: "Reviews" },
             {
-              label: "Specifications",
               children: "Specifications",
               key: "3",
+              label: "Specifications",
             },
-            { label: "Pricing", children: "Pricing", key: "4" },
+            { children: "Pricing", key: "4", label: "Pricing" },
             {
-              label: "Installation",
               children: "Installation Instructions",
               key: "5",
+              label: "Installation",
             },
-            { label: "Certifications", children: "Certifications", key: "6" },
+            { children: "Certifications", key: "6", label: "Certifications" },
           ]}
-          id="tabview-1"
         />
         <CodeBlock
           exampleCode='
@@ -215,26 +215,26 @@ export const TabViewDemo = () => {
       <Section title={t("tabview.usage.disableTabState.title")}>
         <p>{t("tabbedPanel.usage.disableTabState.subTitle")}</p>
         <TabView
-          visibleTabs={["7", "11", "12"]}
-          tabs={[
-            { label: "Description", children: "Description", key: "7" },
-            { label: "Reviews", children: "Reviews", key: "8" },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "9",
-            },
-            { label: "Pricing", children: "Pricing", key: "10" },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "11",
-            },
-            { label: "Certifications", children: "Certifications", key: "12" },
-          ]}
           activeKey="7"
           id="tabview-2"
           persistState={false}
+          tabs={[
+            { children: "Description", key: "7", label: "Description" },
+            { children: "Reviews", key: "8", label: "Reviews" },
+            {
+              children: "Specifications",
+              key: "9",
+              label: "Specifications",
+            },
+            { children: "Pricing", key: "10", label: "Pricing" },
+            {
+              children: "Installation Instructions",
+              key: "11",
+              label: "Installation",
+            },
+            { children: "Certifications", key: "12", label: "Certifications" },
+          ]}
+          visibleTabs={["7", "11", "12"]}
         />
         <CodeBlock
           exampleCode='
@@ -265,26 +265,26 @@ tabs={[
 
       <Section title={t("tabview.usage.positionBottom")}>
         <TabView
-          visibleTabs={["13", "16", "17"]}
-          tabs={[
-            { label: "Description", children: "Description", key: "13" },
-            { label: "Reviews", children: "Reviews", key: "14" },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "15",
-            },
-            { label: "Pricing", children: "Pricing", key: "16" },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "17",
-            },
-            { label: "Certifications", children: "Certifications", key: "18" },
-          ]}
           activeKey="13"
           id="tabview-4"
           position="bottom"
+          tabs={[
+            { children: "Description", key: "13", label: "Description" },
+            { children: "Reviews", key: "14", label: "Reviews" },
+            {
+              children: "Specifications",
+              key: "15",
+              label: "Specifications",
+            },
+            { children: "Pricing", key: "16", label: "Pricing" },
+            {
+              children: "Installation Instructions",
+              key: "17",
+              label: "Installation",
+            },
+            { children: "Certifications", key: "18", label: "Certifications" },
+          ]}
+          visibleTabs={["13", "16", "17"]}
         />
         <CodeBlock
           exampleCode='
@@ -315,26 +315,26 @@ tabs={[
 
       <Section title={t("tabview.usage.positionLeft")}>
         <TabView
-          visibleTabs={["18", "22", "23"]}
-          tabs={[
-            { label: "Description", children: "Description", key: "18" },
-            { label: "Reviews", children: "Reviews", key: "19" },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "20",
-            },
-            { label: "Pricing", children: "Pricing", key: "21" },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "22",
-            },
-            { label: "Certifications", children: "Certifications", key: "23" },
-          ]}
           activeKey="18"
           id="tabview-5"
           position="left"
+          tabs={[
+            { children: "Description", key: "18", label: "Description" },
+            { children: "Reviews", key: "19", label: "Reviews" },
+            {
+              children: "Specifications",
+              key: "20",
+              label: "Specifications",
+            },
+            { children: "Pricing", key: "21", label: "Pricing" },
+            {
+              children: "Installation Instructions",
+              key: "22",
+              label: "Installation",
+            },
+            { children: "Certifications", key: "23", label: "Certifications" },
+          ]}
+          visibleTabs={["18", "22", "23"]}
         />
         <CodeBlock
           exampleCode=' 
@@ -366,26 +366,26 @@ tabs={[
 
       <Section title={t("tabview.usage.positionRight")}>
         <TabView
-          visibleTabs={["24", "26", "29"]}
-          tabs={[
-            { label: "Description", children: "Description", key: "24" },
-            { label: "Reviews", children: "Reviews", key: "25" },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "26",
-            },
-            { label: "Pricing", children: "Pricing", key: "27" },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "28",
-            },
-            { label: "Certifications", children: "Certifications", key: "29" },
-          ]}
           activeKey="24"
           id="tabview-6"
           position="right"
+          tabs={[
+            { children: "Description", key: "24", label: "Description" },
+            { children: "Reviews", key: "25", label: "Reviews" },
+            {
+              children: "Specifications",
+              key: "26",
+              label: "Specifications",
+            },
+            { children: "Pricing", key: "27", label: "Pricing" },
+            {
+              children: "Installation Instructions",
+              key: "28",
+              label: "Installation",
+            },
+            { children: "Certifications", key: "29", label: "Certifications" },
+          ]}
+          visibleTabs={["24", "26", "29"]}
         />
         <CodeBlock
           exampleCode='
@@ -430,38 +430,38 @@ tabs={[
           />
         </div>
         <TabView
-          visibleTabs={visibleTabs}
-          tabs={[
-            { label: "Description", children: "Description", key: "30" },
-            {
-              label: "Reviews",
-              children: "Reviews",
-              key: "31",
-              closable: true,
-            },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "32",
-              closable: true,
-            },
-            {
-              label: "Pricing",
-              children: "Pricing",
-              key: "33",
-              closable: true,
-            },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "34",
-            },
-            { label: "Certifications", children: "Certifications", key: "35" },
-          ]}
           activeKey={active}
           id="tabview-3"
-          onVisibleTabsChange={setVisibleTabs}
           onActiveTabChange={setActive}
+          onVisibleTabsChange={setVisibleTabs}
+          tabs={[
+            { children: "Description", key: "30", label: "Description" },
+            {
+              children: "Reviews",
+              closable: true,
+              key: "31",
+              label: "Reviews",
+            },
+            {
+              children: "Specifications",
+              closable: true,
+              key: "32",
+              label: "Specifications",
+            },
+            {
+              children: "Pricing",
+              closable: true,
+              key: "33",
+              label: "Pricing",
+            },
+            {
+              children: "Installation Instructions",
+              key: "34",
+              label: "Installation",
+            },
+            { children: "Certifications", key: "35", label: "Certifications" },
+          ]}
+          visibleTabs={visibleTabs}
         />
         <CodeBlock
           exampleCode='
@@ -554,40 +554,40 @@ visibleTabs={visibleTabs}
           />
         </div>
         <TabView
-          tabs={[
-            { label: "Description", children: "Description", key: "36" },
-            { label: "Reviews", children: "Reviews", key: "37" },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "38",
-            },
-            {
-              label: "Pricing",
-              children: "Pricing",
-              key: "39",
-              closable: true,
-            },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "40",
-              closable: true,
-            },
-            { label: "Certifications", children: "Certifications", key: "41" },
-          ]}
-          id="tabview-7"
           activeKey={controlledActiveTab}
-          visibleTabs={controlledVisibleTabs}
           controlled={true}
+          id="tabview-7"
           onActiveTabChange={handleTabChange}
           onTabClose={handleTabClose}
+          tabs={[
+            { children: "Description", key: "36", label: "Description" },
+            { children: "Reviews", key: "37", label: "Reviews" },
+            {
+              children: "Specifications",
+              key: "38",
+              label: "Specifications",
+            },
+            {
+              children: "Pricing",
+              closable: true,
+              key: "39",
+              label: "Pricing",
+            },
+            {
+              children: "Installation Instructions",
+              closable: true,
+              key: "40",
+              label: "Installation",
+            },
+            { children: "Certifications", key: "41", label: "Certifications" },
+          ]}
+          visibleTabs={controlledVisibleTabs}
         />
         <ConfirmationModal
-          message="Are you sure you want to proceed?"
-          visible={showModal}
-          onHide={cancelTabSwitch}
           accept={confirmTabSwitch}
+          message="Are you sure you want to proceed?"
+          onHide={cancelTabSwitch}
+          visible={showModal}
         />
 
         <CodeBlock
@@ -718,39 +718,39 @@ onTabClose={handleTabClose}
 
       <Section title={t("tabview.usage.hashRoute")}>
         <TabView
+          activeKey="descritpion"
+          enableHashRouting={true}
+          id="tabview-8"
+          tabs={[
+            {
+              children: "Description",
+              key: "descritpion",
+              label: "Description",
+            },
+            { children: "Reviews", key: "reviews", label: "Reviews" },
+            {
+              children: "Specifications",
+              key: "specifications",
+              label: "Specifications",
+            },
+            { children: "Pricing", key: "pricing", label: "Pricing" },
+            {
+              children: "Installation Instructions",
+              key: "installation",
+              label: "Installation",
+            },
+            {
+              children: "Certifications",
+              key: "certifications",
+              label: "Certifications",
+            },
+          ]}
           visibleTabs={[
             "descritpion",
             "specifications",
             "certifications",
             "pricing",
           ]}
-          tabs={[
-            {
-              label: "Description",
-              children: "Description",
-              key: "descritpion",
-            },
-            { label: "Reviews", children: "Reviews", key: "reviews" },
-            {
-              label: "Specifications",
-              children: "Specifications",
-              key: "specifications",
-            },
-            { label: "Pricing", children: "Pricing", key: "pricing" },
-            {
-              label: "Installation",
-              children: "Installation Instructions",
-              key: "installation",
-            },
-            {
-              label: "Certifications",
-              children: "Certifications",
-              key: "certifications",
-            },
-          ]}
-          activeKey="descritpion"
-          id="tabview-8"
-          enableHashRouting={true}
         />
         <CodeBlock
           exampleCode='

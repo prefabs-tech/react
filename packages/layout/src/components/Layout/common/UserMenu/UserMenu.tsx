@@ -6,11 +6,11 @@ import { UserMenuModeType, UserMenuType } from "@/types";
 
 interface IProperties {
   menu: UserMenuType;
-  userMenuMode?: UserMenuModeType;
   trigger?: React.ReactNode;
+  userMenuMode?: UserMenuModeType;
 }
 
-export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
+export const UserMenu = ({ menu, trigger, userMenuMode }: IProperties) => {
   const { label: userMenuLabel, menu: userMenu = [] } = menu;
 
   const navigate = useNavigate();
@@ -20,8 +20,8 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
       userMenu.map((_menu) => {
         return {
           ..._menu,
-          label: _menu.label as string,
           icon: _menu.icon,
+          label: _menu.label as string,
           onClick: () => {
             if ("onClick" in _menu) {
               _menu.onClick();
@@ -49,7 +49,7 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
     switch (userMenuMode) {
       case "horizontal":
         return (
-          <ul className="dz-user-menu" aria-orientation={userMenuMode}>
+          <ul aria-orientation={userMenuMode} className="dz-user-menu">
             {userMenu.map((_menuItem, index) => {
               return (
                 <li key={index}>
@@ -63,9 +63,9 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
         return (
           <DropdownMenu
             className="dz-user-menu"
-            renderOption={template}
-            menu={refinedMenu || []}
             label={userMenuLabel}
+            menu={refinedMenu || []}
+            renderOption={template}
             trigger={trigger}
           />
         );
@@ -73,11 +73,11 @@ export const UserMenu = ({ menu, userMenuMode, trigger }: IProperties) => {
         return (
           <NavGroup
             className="dz-user-menu"
+            displayMode={userMenuMode}
             navGroup={{
               label: userMenuLabel,
               submenu: userMenu,
             }}
-            displayMode={userMenuMode}
           />
         );
     }

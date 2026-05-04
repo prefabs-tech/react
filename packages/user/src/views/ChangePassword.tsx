@@ -56,9 +56,9 @@ export const ChangePassword = ({ centered = true }: { centered?: boolean }) => {
 
   return (
     <AuthPage
+      centered={centered}
       className="change-password"
       title={t("changePassword.title")}
-      centered={centered}
     >
       {error && (
         <Message

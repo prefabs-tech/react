@@ -11,15 +11,15 @@ test("Component matches snapshot", () => {
     defaultNS: "app",
     fallbackLng: "en",
     lng: "en",
+    locales: "en:English,fr:Français",
+    react: {
+      useSuspense: false,
+    },
     resources: {
       en: {},
       fr: {},
     },
     supportedLngs: ["en", "fr"],
-    react: {
-      useSuspense: false,
-    },
-    locales: "en:English,fr:Français",
   };
 
   i18n(i18nConfig);

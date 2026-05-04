@@ -24,7 +24,7 @@ export const Copyright = ({
 
     if (_holder) {
       const holderElement = _url ? (
-        <a href={_url} target="_blank" rel="noreferrer">
+        <a href={_url} rel="noreferrer" target="_blank">
           {_holder}
         </a>
       ) : (

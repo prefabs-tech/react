@@ -1,40 +1,41 @@
+import type { FC } from "react";
+
 // components/FormComponents/FileDropzoneBasic.tsx
 import React, { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 
+import type { IFileDropzoneBasicProperties } from "../types";
+
 import { useOnDropFile, useOnRemoveFile } from "../hooks";
 import { SelectedFile } from "../SelectedFile";
 
-import type { IFileDropzoneBasicProperties } from "../types";
-import type { FC } from "react";
-
 export const FileDropzoneBasic: FC<IFileDropzoneBasicProperties> = ({
-  name,
-  label,
-  mode = "append",
-  multiple = true,
-  value = [],
-  dropzoneOptions,
-  enableDescription = false,
   addDescriptionLabel,
   descriptionPlaceholder,
   dropzoneMessage,
-  onChange,
+  dropzoneOptions,
+  enableDescription = false,
   errorMessages,
+  label,
+  mode = "append",
+  multiple = true,
+  name,
+  onChange,
+  value = [],
 }) => {
-  const onDrop = useOnDropFile({ mode, name, onChange, value, multiple });
-  const onRemove = useOnRemoveFile({ value, onChange });
+  const onDrop = useOnDropFile({ mode, multiple, name, onChange, value });
+  const onRemove = useOnRemoveFile({ onChange, value });
 
   const {
     fileRejections,
-    getRootProps,
     getInputProps,
-    isFocused,
+    getRootProps,
     isDragAccept,
     isDragReject,
+    isFocused,
   } = useDropzone({
-    onDrop,
     multiple: multiple,
+    onDrop,
     ...dropzoneOptions,
   });
 
@@ -48,10 +49,10 @@ export const FileDropzoneBasic: FC<IFileDropzoneBasicProperties> = ({
 
   const getErrorMessage = (code: string) => {
     switch (code) {
-      case "file-too-large":
-        return errorMessages?.fileTooLarge;
       case "file-invalid-type":
         return errorMessages?.fileInvalidType;
+      case "file-too-large":
+        return errorMessages?.fileTooLarge;
       case "file-too-small":
         return errorMessages?.fileTooSmall;
       case "too-many-files":
@@ -61,12 +62,12 @@ export const FileDropzoneBasic: FC<IFileDropzoneBasicProperties> = ({
     }
   };
 
-  const fileRejectionItems = fileRejections.map(({ file, errors }) => (
-    <div key={file.name} className="dz-file-error">
+  const fileRejectionItems = fileRejections.map(({ errors, file }) => (
+    <div className="dz-file-error" key={file.name}>
       <strong>{file.name}</strong>
       <ul>
         {errors.map((error) => (
-          <li key={error.code} data-error-code={error.code}>
+          <li data-error-code={error.code} key={error.code}>
             {getErrorMessage(error.code) || error.message}
           </li>
         ))}
@@ -97,16 +98,16 @@ export const FileDropzoneBasic: FC<IFileDropzoneBasicProperties> = ({
           {value.map((file, index) => {
             return (
               <SelectedFile
-                key={file.name}
-                file={file}
-                index={index}
-                enableDescription={enableDescription}
                 addDescriptionLabel={addDescriptionLabel}
                 descriptionPlaceholder={descriptionPlaceholder}
-                onRemove={() => onRemove(index)}
+                enableDescription={enableDescription}
+                file={file}
+                index={index}
+                key={file.name}
                 onDescriptionChange={(description) => {
                   file.description = description;
                 }}
+                onRemove={() => onRemove(index)}
               />
             );
           })}

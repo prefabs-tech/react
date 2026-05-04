@@ -3,8 +3,8 @@ import { Button, Page } from "@prefabs.tech/react-ui";
 import { AllUsersTable } from "@prefabs.tech/react-user";
 import { useNavigate } from "react-router-dom";
 
-import { allUsers } from "./data";
 import { Section } from "../../../components/Demo";
+import { allUsers } from "./data";
 
 export const AllUsersTableDemo = () => {
   const [t] = useTranslation("user");
@@ -15,10 +15,10 @@ export const AllUsersTableDemo = () => {
       title={t("allUsersTable.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >

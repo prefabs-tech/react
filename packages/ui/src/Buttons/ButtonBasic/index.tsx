@@ -2,22 +2,22 @@ import { ButtonHTMLAttributes, FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
 
 export interface IButtonProperties extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: string | ReactNode;
-  iconLeft?: string | ReactNode;
-  iconRight?: string | ReactNode;
+  children?: ReactNode | string;
+  iconLeft?: ReactNode | string;
+  iconRight?: ReactNode | string;
   label?: string;
   loading?: boolean;
+  rounded?: boolean;
   severity?:
+    | "alternate"
+    | "danger"
     | "primary"
     | "secondary"
-    | "alternate"
     | "success"
-    | "danger"
     | "warning";
-  size?: "small" | "medium" | "large";
+  size?: "large" | "medium" | "small";
   to?: string;
-  variant?: "outlined" | "filled" | "textOnly";
-  rounded?: boolean;
+  variant?: "filled" | "outlined" | "textOnly";
 }
 
 export const Button: FC<IButtonProperties> = ({
@@ -29,12 +29,12 @@ export const Button: FC<IButtonProperties> = ({
   label,
   loading,
   onClick,
+  rounded = false,
   severity = "primary",
   size = "medium",
-  to,
   title,
+  to,
   variant = "filled",
-  rounded = false,
   ...otherProperties
 }) => {
   const buttonClassName = [
@@ -88,10 +88,10 @@ export const Button: FC<IButtonProperties> = ({
   const renderButton = (role: string) => {
     return (
       <button
-        role={role}
         className={buttonClassName}
         disabled={loading || disabled}
         onClick={onClick}
+        role={role}
         title={title}
         {...otherProperties}
       >
@@ -103,7 +103,7 @@ export const Button: FC<IButtonProperties> = ({
   };
 
   return to ? (
-    <Link to={to} className="dz-button-link">
+    <Link className="dz-button-link" to={to}>
       {renderButton("link")}
     </Link>
   ) : (

@@ -2,8 +2,8 @@ import React, { ReactNode } from "react";
 
 type Properties = {
   children: ReactNode;
+  icon?: ReactNode | string;
   title: string;
-  icon?: string | ReactNode;
 };
 
 const SubPane: React.FC<Properties> = ({ children }) => {

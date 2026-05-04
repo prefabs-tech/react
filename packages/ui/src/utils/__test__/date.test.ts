@@ -22,9 +22,9 @@ describe("formatDate unit test", () => {
     const locale = "en-GB";
 
     const options: Intl.DateTimeFormatOptions = {
-      year: "2-digit",
-      month: "long",
       day: "2-digit",
+      month: "long",
+      year: "2-digit",
     };
 
     expect(formatDate(date, locale, options)).toBe("11 December 24");

@@ -1,38 +1,38 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-import { PageHeader } from "./Header";
 import LoadingPage, { LoadingPageProperties } from "../LoadingPage";
+import { PageHeader } from "./Header";
 
 interface PageProperties extends Pick<
   DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
   "aria-orientation"
 > {
   breadcrumb?: React.ReactNode;
+  centered?: boolean;
   children?: React.ReactNode;
   className?: string;
-  centered?: boolean;
   errorMessage?: string;
-  titleTag?: string | React.ReactNode;
   loading?: boolean;
   loadingComponent?: React.ReactElement;
   loadingPageStyle?: LoadingPageProperties;
   subtitle?: React.ReactNode | string;
-  title?: string | React.ReactNode;
+  title?: React.ReactNode | string;
+  titleTag?: React.ReactNode | string;
   toolbar?: React.ReactNode;
 }
 
 const Page: React.FC<PageProperties> = ({
   breadcrumb,
+  centered = false,
   children,
   className,
-  centered = false,
   errorMessage,
-  titleTag,
   loading = false,
   loadingComponent,
   loadingPageStyle,
   subtitle,
   title,
+  titleTag,
   toolbar,
   ...others
 }) => {
@@ -59,8 +59,8 @@ const Page: React.FC<PageProperties> = ({
 
   return (
     <div className={_className} data-centered={centered}>
-      <PageHeader {...{ title, titleTag, subtitle, toolbar, breadcrumb }} />
-      <div data-testid="page-content" className="dz-page-content" {...others}>
+      <PageHeader {...{ breadcrumb, subtitle, title, titleTag, toolbar }} />
+      <div className="dz-page-content" data-testid="page-content" {...others}>
         {child ? child : children}
       </div>
     </div>

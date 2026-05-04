@@ -26,11 +26,11 @@ const InlineLink = ({
   if (external) {
     return (
       <a
-        href={to}
-        target={target || "_blank"}
-        rel="noopener noreferrer"
         className={linkClassName}
         data-testid="external-link"
+        href={to}
+        rel="noopener noreferrer"
+        target={target || "_blank"}
       >
         {label}
       </a>
@@ -38,7 +38,7 @@ const InlineLink = ({
   }
 
   return (
-    <Link to={to} className={linkClassName} data-testid="internal-link">
+    <Link className={linkClassName} data-testid="internal-link" to={to}>
       {label}
     </Link>
   );

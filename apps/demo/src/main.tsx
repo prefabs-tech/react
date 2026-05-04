@@ -10,12 +10,10 @@ import config, { userConfig } from "./config";
 
 // react-toastify
 import "react-toastify/dist/ReactToastify.css";
-
 // PrimeReact CSS
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primeicons/primeicons.css";
-
 import "@prefabs.tech/react-form/dist/PrefabsTechReactForm.css";
 import "@prefabs.tech/react-i18n/dist/PrefabsTechReactI18n.css";
 import "@prefabs.tech/react-layout/dist/PrefabsTechReactLayout.css";
@@ -28,10 +26,10 @@ i18n(config.i18n);
 
 // configure tooltip globally
 configureTooltip({
-  offset: 10,
   delay: 400,
-  position: "right",
   mouseTrack: false,
+  offset: 10,
+  position: "right",
 });
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(

@@ -8,9 +8,9 @@ import { thirdPartySignInAndUp } from "supertokens-web-js/recipe/thirdpartyemail
 import { DEFAULT_PATHS } from "@/constants";
 import { verifySessionRoles } from "@/supertokens";
 
-import { useConfig, useUser } from "../../hooks";
-
 import type { UserType } from "../../types";
+
+import { useConfig, useUser } from "../../hooks";
 
 export const AuthSocialLoginCallback = () => {
   const { t } = useTranslation("user");

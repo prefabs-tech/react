@@ -2,7 +2,6 @@ import { sendPasswordResetEmail } from "supertokens-web-js/recipe/thirdpartyemai
 
 export * from "./change-email";
 export * from "./change-password";
-export * from "./social-login";
 export * from "./forgot-password";
 export * from "./helpers";
 export * from "./login";
@@ -11,6 +10,7 @@ export * from "./profile-validation-claim";
 export * from "./resend-email-verification";
 export * from "./reset-password";
 export * from "./signup";
+export * from "./social-login";
 export * from "./superTokens";
 export * from "./verify-email";
 

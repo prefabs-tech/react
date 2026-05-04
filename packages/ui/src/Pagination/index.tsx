@@ -1,41 +1,41 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Button, DebouncedInput } from "..";
 
 export interface PaginationProperties {
-  currentPage: number;
-  totalItems: number;
-  onPageChange: (page: number) => void;
-  onItemsPerPageChange?: (itemsPerPage: number) => void;
-  itemsPerPageOptions?: number[];
-  itemsPerPageControlLabel?: string;
-  inputDebounceTime?: number;
-  defaultItemsPerPage?: number;
-  showFirstLastButtons?: boolean;
-  showPreviousNextButtons?: boolean;
-  showPageButtons?: boolean;
   className?: string;
+  currentPage: number;
+  defaultItemsPerPage?: number;
+  inputDebounceTime?: number;
+  itemsPerPageControlLabel?: string;
+  itemsPerPageOptions?: number[];
+  onItemsPerPageChange?: (itemsPerPage: number) => void;
+  onPageChange: (page: number) => void;
   pageInputLabel?: string;
+  showFirstLastButtons?: boolean;
   showItemsPerPageControl?: boolean;
+  showPageButtons?: boolean;
   showPageInput?: boolean;
+  showPreviousNextButtons?: boolean;
+  totalItems: number;
 }
 
 export const Pagination: React.FC<PaginationProperties> = ({
-  currentPage,
-  totalItems,
-  onPageChange,
-  onItemsPerPageChange,
-  itemsPerPageOptions = [5, 10, 20, 30],
-  itemsPerPageControlLabel = "Items per page",
-  inputDebounceTime,
-  pageInputLabel = "Go to page:",
-  defaultItemsPerPage = itemsPerPageOptions[0],
-  showFirstLastButtons = true,
-  showPageButtons = false,
-  showPreviousNextButtons = true,
   className,
+  currentPage,
+  itemsPerPageOptions = [5, 10, 20, 30],
+  defaultItemsPerPage = itemsPerPageOptions[0],
+  inputDebounceTime,
+  itemsPerPageControlLabel = "Items per page",
+  onItemsPerPageChange,
+  onPageChange,
+  pageInputLabel = "Go to page:",
+  showFirstLastButtons = true,
   showItemsPerPageControl = true,
+  showPageButtons = false,
   showPageInput = false,
+  showPreviousNextButtons = true,
+  totalItems,
 }) => {
   const [itemsPerPage, setItemsPerPage] = useState<number>(defaultItemsPerPage);
 
@@ -55,7 +55,7 @@ export const Pagination: React.FC<PaginationProperties> = ({
   };
 
   const handlePageInputChange = useCallback(
-    (value: string | number | readonly string[]) => {
+    (value: number | readonly string[] | string) => {
       const newPage = parseInt(value.toString(), 10) - 1;
 
       if (!isNaN(newPage) && newPage >= 0 && newPage < lastPage) {
@@ -72,7 +72,7 @@ export const Pagination: React.FC<PaginationProperties> = ({
       {showItemsPerPageControl && (
         <div className="items-per-page-control">
           <span>{itemsPerPageControlLabel}</span>
-          <select value={itemsPerPage} onChange={handleItemsPerPageChange}>
+          <select onChange={handleItemsPerPageChange} value={itemsPerPage}>
             {itemsPerPageOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -86,9 +86,9 @@ export const Pagination: React.FC<PaginationProperties> = ({
         <div className="page-input-control">
           <span>{pageInputLabel}</span>
           <DebouncedInput
-            type="number"
             debounceTime={inputDebounceTime}
             onInputChange={handlePageInputChange}
+            type="number"
           />
         </div>
       )}
@@ -99,9 +99,9 @@ export const Pagination: React.FC<PaginationProperties> = ({
               {showFirstLastButtons && (
                 <Button
                   className="first-page"
-                  onClick={() => onPageChange(0)}
                   disabled={!(currentPage > 0)}
                   iconLeft={<i className="pi pi-angle-double-left" />}
+                  onClick={() => onPageChange(0)}
                   size="small"
                 />
               )}
@@ -109,9 +109,9 @@ export const Pagination: React.FC<PaginationProperties> = ({
               {showPreviousNextButtons && (
                 <Button
                   className="previous-page"
-                  onClick={() => onPageChange(currentPage - 1)}
                   disabled={!(currentPage > 0)}
                   iconLeft={<i className="pi pi-angle-left" />}
+                  onClick={() => onPageChange(currentPage - 1)}
                   size="small"
                 />
               )}
@@ -122,14 +122,14 @@ export const Pagination: React.FC<PaginationProperties> = ({
             {showPageButtons
               ? pages.map((page) => (
                   <Button
-                    key={page}
                     className={`page-button ${
                       page === currentPage + 1 ? "active" : ""
                     }`}
-                    variant={page === currentPage + 1 ? "filled" : "outlined"}
-                    onClick={() => onPageChange(page - 1)}
+                    key={page}
                     label={`${page}`}
+                    onClick={() => onPageChange(page - 1)}
                     size="small"
+                    variant={page === currentPage + 1 ? "filled" : "outlined"}
                   />
                 ))
               : pageStatics}
@@ -140,9 +140,9 @@ export const Pagination: React.FC<PaginationProperties> = ({
               {showPreviousNextButtons && (
                 <Button
                   className="next-page"
-                  onClick={() => onPageChange(currentPage + 1)}
                   disabled={!(currentPage < lastPage - 1)}
                   iconLeft={<i className="pi pi-angle-right" />}
+                  onClick={() => onPageChange(currentPage + 1)}
                   size="small"
                 />
               )}
@@ -150,9 +150,9 @@ export const Pagination: React.FC<PaginationProperties> = ({
               {showFirstLastButtons && (
                 <Button
                   className="last-page"
-                  onClick={() => onPageChange(lastPage - 1)}
                   disabled={!(currentPage < lastPage - 1)}
                   iconLeft={<i className="pi pi-angle-double-right" />}
+                  onClick={() => onPageChange(lastPage - 1)}
                   size="small"
                 />
               )}

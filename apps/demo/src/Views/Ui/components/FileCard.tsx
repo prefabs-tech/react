@@ -13,31 +13,31 @@ export const FileCardDemo = () => {
       title={t("fileCard.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <FileCard
           file={{
-            id: 0,
-            originalFileName: "file1.png",
             description: "This is my file",
-            size: 4,
-            uploadedBy: { givenName: "Manish", lastName: "Aryal" },
-            uploadedAt: Date.now(),
             downloadCount: 0,
+            id: 0,
             lastDownloadedAt: Date.now(),
+            originalFileName: "file1.png",
+            size: 4,
+            uploadedAt: Date.now(),
+            uploadedBy: { givenName: "Manish", lastName: "Aryal" },
           }}
           locale={i18n?.language}
-          onDownload={() => {}}
-          onView={() => {}}
-          onShare={() => {}}
           onArchive={() => {}}
           onDelete={() => {}}
+          onDownload={() => {}}
+          onShare={() => {}}
+          onView={() => {}}
         />
       </Section>
     </Page>

@@ -1,6 +1,5 @@
-import { describe } from "node:test";
-
 import { render, screen } from "@testing-library/react";
+import { describe } from "node:test";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
 import { expect, test } from "vitest";
@@ -31,7 +30,7 @@ describe("Inline link component", () => {
   });
 
   test("should render anchor (<a>) when 'external' is true", () => {
-    render(<InlineLink label="Dashboard" to="/dashboard" external={true} />);
+    render(<InlineLink external={true} label="Dashboard" to="/dashboard" />);
 
     expect(screen.getByTestId("external-link")).toBeInTheDocument();
   });
@@ -40,9 +39,9 @@ describe("Inline link component", () => {
     render(
       <MemoryRouter>
         <InlineLink
+          className="custom-class"
           label="Dashboard"
           to="/dashboard"
-          className="custom-class"
         />
       </MemoryRouter>,
     );
@@ -53,10 +52,10 @@ describe("Inline link component", () => {
   test("should apply 'target' prop correctly for external links", () => {
     render(
       <InlineLink
-        label="Dashboard"
-        to="https://www.prefabs-tech.com/"
         external
+        label="Dashboard"
         target="_blank"
+        to="https://www.prefabs-tech.com/"
       />,
     );
 

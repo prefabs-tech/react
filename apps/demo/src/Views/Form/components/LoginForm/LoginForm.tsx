@@ -1,7 +1,7 @@
 import {
-  Provider,
   emailSchema,
   passwordSchema,
+  Provider,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, Page } from "@prefabs.tech/react-ui";
@@ -23,10 +23,10 @@ export const LoginForm = () => {
     <Page
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >

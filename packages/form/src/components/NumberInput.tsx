@@ -3,12 +3,12 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 interface Properties extends IInputProperties {
-  label: string | React.ReactNode;
+  label: React.ReactNode | string;
   name: string;
   placeholder?: string;
-  submitCount?: number;
-  showValidState?: boolean;
   showInvalidState?: boolean;
+  showValidState?: boolean;
+  submitCount?: number;
 }
 
 export const NumberInput = ({
@@ -42,17 +42,17 @@ export const NumberInput = ({
         return (
           <Input
             {...others}
+            errorMessage={error?.message}
+            hasError={submitCount > 0 ? checkInvalidState() : undefined}
             label={label}
             name={name}
-            placeholder={placeholder}
-            type="number"
-            value={typeof field.value !== "number" ? "" : field.value}
-            errorMessage={error?.message}
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               const value = event.target.valueAsNumber;
               field.onChange(!isNaN(value) ? value : null);
             }}
-            hasError={submitCount > 0 ? checkInvalidState() : undefined}
+            placeholder={placeholder}
+            type="number"
+            value={typeof field.value !== "number" ? "" : field.value}
           />
         );
       }}

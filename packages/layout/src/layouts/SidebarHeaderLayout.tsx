@@ -1,8 +1,8 @@
+import type { NavMenuType } from "@prefabs.tech/react-ui";
+
 import { UserMenuModeType, UserMenuType } from "@/types";
 
 import { Header, Layout, Sidebar } from "..";
-
-import type { NavMenuType } from "@prefabs.tech/react-ui";
 
 export interface SidebarHeaderLayoutProperties {
   children: React.ReactNode;
@@ -14,10 +14,10 @@ export interface SidebarHeaderLayoutProperties {
   headerAddon?: React.ReactNode;
   navigationMenu?: NavMenuType;
   noLocaleSwitcher?: boolean;
-  title?: string | React.ReactNode;
+  title?: React.ReactNode | string;
   userMenu?: UserMenuType;
+  userMenuLocation?: "header" | "sidebar";
   userMenuMode?: UserMenuModeType;
-  userMenuLocation?: "sidebar" | "header";
   userMenuTrigger?: React.ReactNode;
 }
 
@@ -33,8 +33,8 @@ export const SidebarHeaderLayout = ({
   noLocaleSwitcher = false,
   title,
   userMenu,
-  userMenuMode,
   userMenuLocation = "header",
+  userMenuMode,
   userMenuTrigger,
 }: SidebarHeaderLayoutProperties) => {
   return (
@@ -59,9 +59,9 @@ export const SidebarHeaderLayout = ({
           displayNavIcons={displayNavIcons}
           navigationMenu={navigationMenu}
           noLocaleSwitcher={noLocaleSwitcher}
+          trigger={userMenuTrigger}
           userMenu={userMenu}
           userMenuMode={userMenuMode}
-          trigger={userMenuTrigger}
         ></Sidebar>
       )}
       <main>{children}</main>

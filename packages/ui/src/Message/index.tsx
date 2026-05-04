@@ -3,17 +3,17 @@ import { ReactNode, useState } from "react";
 type MessageProperties = {
   enableClose?: boolean;
   icon?: ReactNode;
-  message: string[] | ReactNode;
+  message: ReactNode | string[];
   onClose?: () => void;
-  severity?: "info" | "success" | "warning" | "danger" | "tip";
+  severity?: "danger" | "info" | "success" | "tip" | "warning";
   showIcon?: boolean;
 };
 
 const Message = ({
-  onClose,
   enableClose = true,
-  message,
   icon,
+  message,
+  onClose,
   severity = "info",
   showIcon = true,
 }: MessageProperties) => {
@@ -23,8 +23,8 @@ const Message = ({
     danger: "pi pi-exclamation-triangle",
     info: "pi pi-info-circle",
     success: "pi pi-check-circle",
-    warning: "pi pi-exclamation-triangle",
     tip: "pi pi-lightbulb",
+    warning: "pi pi-exclamation-triangle",
   };
 
   const handleClose = () => {

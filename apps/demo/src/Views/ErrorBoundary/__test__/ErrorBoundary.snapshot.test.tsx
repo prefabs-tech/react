@@ -5,7 +5,7 @@ import ErrorBoundary from "../index";
 
 vi.mock("react-router-dom", async () => ({
   ...(await vi.importActual("react-router-dom")),
-  useRouteError: () => ({ statusText: 404, message: "Not Found" }),
+  useRouteError: () => ({ message: "Not Found", statusText: 404 }),
 }));
 
 test("Component matches snapshot", async () => {

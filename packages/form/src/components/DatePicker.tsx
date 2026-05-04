@@ -7,7 +7,7 @@ import { Controller, useFormContext } from "react-hook-form";
 
 interface DatePicker extends Omit<
   DatePickerProperties,
-  "onChange" | "value" | "error" | "inputRef"
+  "error" | "inputRef" | "onChange" | "value"
 > {
   name: string;
 }
@@ -19,15 +19,15 @@ export const DatePicker: FC<DatePicker> = ({ name, ...others }) => {
   return (
     <>
       <Controller
-        name={name}
         control={control}
+        name={name}
         render={({ field }) => (
           <DatePickerBasic
+            error={error?.message}
             inputRef={field.ref}
             name={name}
             onChange={field.onChange}
             value={field.value}
-            error={error?.message}
             {...others}
           />
         )}
