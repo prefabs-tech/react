@@ -183,7 +183,7 @@ export const InvitationForm = ({
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let InvitationFormSchema: Zod.ZodObject<any> = zod.object({
+  let InvitationFormSchema: zod.ZodObject<any> = zod.object({
     email: emailSchema({
       invalid: t("validation.messages.validEmail"),
       required: t("validation.messages.email"),

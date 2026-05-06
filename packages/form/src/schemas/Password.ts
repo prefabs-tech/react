@@ -32,7 +32,7 @@ const schema = (
 
   return z
     .string()
-    .nonempty({
+    .min(1, {
       message: errorMessages.required,
     })
     .refine(

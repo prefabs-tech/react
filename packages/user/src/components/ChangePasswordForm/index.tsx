@@ -25,7 +25,7 @@ export const ChangePasswordForm = ({ handleSubmit, loading }: Properties) => {
   let ChangePasswordFormSchema = zod.object({
     oldPassword: zod
       .string()
-      .nonempty(t("changePassword.messages.validation.currentPassword")),
+      .min(1, t("changePassword.messages.validation.currentPassword")),
     ...PasswordConfirmationSchema({
       confirmPasswordRequiredMessage: t(
         "changePassword.messages.validation.confirmPassword",
