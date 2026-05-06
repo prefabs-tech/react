@@ -39,7 +39,7 @@
   "devDependencies": {
     "@babel/core": "7.29.0",
     "@babel/plugin-syntax-flow": "7.28.6",
-    "@babel/plugin-transform-react-jsx": "^7.28.6",
+    "@babel/plugin-transform-react-jsx": "7.28.6",
     "@prefabs.tech/eslint-config": "0.7.0",
     "@prefabs.tech/stylelint-config": "0.7.0",
     "@prefabs.tech/tsconfig": "0.7.0",

@@ -91,7 +91,7 @@ importers:
         specifier: 7.28.6
         version: 7.28.6(@babel/core@7.29.0)
       '@babel/plugin-transform-react-jsx':
-        specifier: ^7.28.6
+        specifier: 7.28.6
         version: 7.28.6(@babel/core@7.29.0)
       '@prefabs.tech/eslint-config':
         specifier: 0.7.0
