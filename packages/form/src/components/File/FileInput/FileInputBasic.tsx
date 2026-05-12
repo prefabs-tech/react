@@ -1,33 +1,34 @@
+import type { FC } from "react";
+
 // components/FormComponents/FileInputBasic.tsx
 import { Button } from "@prefabs.tech/react-ui";
 import React, { useMemo } from "react";
 import { useDropzone } from "react-dropzone";
 
+import type { IFileInputBasicProperties } from "../types";
+
 import { useOnDropFile, useOnRemoveFile } from "../hooks";
 import { SelectedFile } from "../SelectedFile";
 
-import type { IFileInputBasicProperties } from "../types";
-import type { FC } from "react";
-
 export const FileInputBasic: FC<IFileInputBasicProperties> = ({
-  name,
-  inputMethod = "button",
-  inputButtonLabel = "Select",
-  inputButtonLabelSelected = "Selected",
-  label,
-  mode = "append",
-  multiple = true,
-  value = [],
-  dropzoneOptions,
-  enableDescription = false,
   addDescriptionLabel,
   descriptionPlaceholder,
   dropzoneMessage,
+  dropzoneOptions,
+  enableDescription = false,
+  inputButtonLabel = "Select",
+  inputButtonLabelSelected = "Selected",
+  inputMethod = "button",
+  label,
+  mode = "append",
+  multiple = true,
+  name,
   onChange,
   selectButtonProps,
+  value = [],
 }) => {
-  const onDrop = useOnDropFile({ mode, name, onChange, value, multiple });
-  const onRemove = useOnRemoveFile({ value, onChange });
+  const onDrop = useOnDropFile({ mode, multiple, name, onChange, value });
+  const onRemove = useOnRemoveFile({ onChange, value });
 
   const {
     severity = "secondary",
@@ -35,11 +36,11 @@ export const FileInputBasic: FC<IFileInputBasicProperties> = ({
     ...buttonProperties
   } = selectButtonProps || {};
 
-  const { getRootProps, getInputProps, isFocused, isDragAccept, isDragReject } =
+  const { getInputProps, getRootProps, isDragAccept, isDragReject, isFocused } =
     useDropzone({
+      multiple,
       noDrag: inputMethod == "button",
       onDrop,
-      multiple,
       ...dropzoneOptions,
     });
 
@@ -91,16 +92,16 @@ export const FileInputBasic: FC<IFileInputBasicProperties> = ({
           {value.map((file, index) => {
             return (
               <SelectedFile
-                key={file.name}
-                file={file}
-                index={index}
-                enableDescription={enableDescription}
                 addDescriptionLabel={addDescriptionLabel}
                 descriptionPlaceholder={descriptionPlaceholder}
-                onRemove={() => onRemove(index)}
+                enableDescription={enableDescription}
+                file={file}
+                index={index}
+                key={file.name}
                 onDescriptionChange={(description) => {
                   file.description = description;
                 }}
+                onRemove={() => onRemove(index)}
               />
             );
           })}

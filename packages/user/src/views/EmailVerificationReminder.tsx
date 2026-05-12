@@ -38,9 +38,9 @@ export const EmailVerificationReminder = ({
 
   return (
     <Page
+      centered={centered}
       className="email-verification-reminder"
       title={t("emailVerification.title")}
-      centered={centered}
     >
       {isAlreadyVerified ? (
         <p>{t("emailVerification.messages.alreadyVerified")}</p>
@@ -49,18 +49,18 @@ export const EmailVerificationReminder = ({
           <p>
             {
               <Trans
-                i18nKey={"emailVerification.messages.unverified"}
-                values={{ email: user?.email }}
                 components={{
                   strong: <strong />,
                 }}
+                i18nKey={"emailVerification.messages.unverified"}
                 t={t}
+                values={{ email: user?.email }}
               />
             }
           </p>
           <p className="resend-email">
             {t("emailVerification.messages.resendEmailInfo")}{" "}
-            <Link to="#" onClick={handleResend}>
+            <Link onClick={handleResend} to="#">
               {t("emailVerification.button.resendEmail")}
             </Link>
           </p>

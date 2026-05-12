@@ -38,18 +38,18 @@ export const Password: React.FC<CustomInputProperties & IInputProperties> = ({
     <div className={`field ${className}`.trimEnd()}>
       {label && <label htmlFor={name}>{label}</label>}
       <div
-        className="input-field-password"
         aria-invalid={submitCount > 0 ? checkInvalidState() : undefined}
+        className="input-field-password"
       >
         <input
           {...others}
           {...register(name)}
-          name={name}
-          id={name}
-          type={showPassword ? "text" : "password"}
-          placeholder={placeholder}
           aria-invalid={submitCount > 0 ? checkInvalidState() : undefined}
           autoComplete={autoComplete}
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          type={showPassword ? "text" : "password"}
         ></input>
         <span
           className="eye-icon"

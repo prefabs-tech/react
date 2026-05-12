@@ -12,32 +12,32 @@ import { CodeBlock, Section } from "../../../../components/Demo";
 
 const data = [
   {
+    default: "-",
+    description: "The caption displayed alongside the value.",
     id: 1,
     prop: "caption",
     type: "ReactNode",
-    default: "-",
-    description: "The caption displayed alongside the value.",
   },
   {
+    default: "-",
+    description: "Additional CSS classes to apply to the outer container.",
     id: 2,
     prop: "className",
     type: "string",
-    default: "-",
-    description: "Additional CSS classes to apply to the outer container.",
   },
   {
+    default: "attr",
+    description: "Defines which styling to apply to the component.",
     id: 3,
     prop: "mode",
     type: '"attr" | "stat"',
-    default: "attr",
-    description: "Defines which styling to apply to the component.",
   },
   {
+    default: "-",
+    description: "The value to display.",
     id: 4,
     prop: "value",
     type: "ReactNode",
-    default: "-",
-    description: "The value to display.",
   },
 ];
 
@@ -71,14 +71,14 @@ export const DataDemo = () => {
   return (
     <Page
       className="demo-data-component"
-      title={t("data.title")}
       subtitle={t("data.subtitle")}
+      title={t("data.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -94,8 +94,8 @@ export const DataDemo = () => {
 
       <Section title={t("data.usage.mode")}>
         <div className="data-stat-group">
-          <Data caption="Visitors" value="3,825" mode="stat" />
-          <Data caption="Revenue" value="$1,030,217" mode="stat" />
+          <Data caption="Visitors" mode="stat" value="3,825" />
+          <Data caption="Revenue" mode="stat" value="$1,030,217" />
         </div>
         <CodeBlock
           exampleCode='<div className="data-group">

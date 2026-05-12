@@ -2,10 +2,10 @@ import { forwardRef, InputHTMLAttributes } from "react";
 
 export interface IInputProperties extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
-  helperText?: string;
   hasError?: boolean;
-  label?: string | React.ReactNode;
-  type?: "text" | "number" | "email";
+  helperText?: string;
+  label?: React.ReactNode | string;
+  type?: "email" | "number" | "text";
 }
 
 export const Input = forwardRef<HTMLInputElement, IInputProperties>(
@@ -15,14 +15,14 @@ export const Input = forwardRef<HTMLInputElement, IInputProperties>(
       defaultValue,
       disabled,
       errorMessage,
-      helperText,
       hasError,
+      helperText,
       label,
       name = "",
+      onChange,
       placeholder,
       readOnly,
       type,
-      onChange,
       ...others
     },
     reference,
@@ -32,17 +32,17 @@ export const Input = forwardRef<HTMLInputElement, IInputProperties>(
         {label && <label htmlFor={name}>{label}</label>}
         <input
           {...others}
-          id={name}
-          className={`input-field ${name}`}
           aria-invalid={hasError}
+          className={`input-field ${name}`}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          id={name}
           name={name}
           onChange={onChange}
           placeholder={placeholder}
-          type={type}
-          defaultValue={defaultValue}
-          disabled={disabled}
           readOnly={readOnly}
           ref={reference}
+          type={type}
         />
         {helperText && <span className="helper-text">{helperText}</span>}
         {errorMessage && <span className="error-message">{errorMessage}</span>}

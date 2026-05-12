@@ -1,13 +1,12 @@
-@import "./field.css";
-
-@import "./checkbox-input.css";
-@import "./checkbox.css";
-@import "./country-picker.css";
-@import "./date-picker.css";
-@import "./editable-title.css";
-@import "./input.css";
-@import "./radio-input.css";
-@import "./select.css";
-@import "./switch-input.css";
-@import "./textarea.css";
-@import "./typeahead.css";
+@import url("./field.css");
+@import url("./checkbox-input.css");
+@import url("./checkbox.css");
+@import url("./country-picker.css");
+@import url("./date-picker.css");
+@import url("./editable-title.css");
+@import url("./input.css");
+@import url("./radio-input.css");
+@import url("./select.css");
+@import url("./switch-input.css");
+@import url("./textarea.css");
+@import url("./typeahead.css");

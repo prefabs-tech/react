@@ -8,29 +8,16 @@ import { Tooltip, TooltipProperties } from "../../Tooltip";
 import { Checkbox } from "../Checkbox";
 import { DebouncedInput } from "../DebouncedInput";
 
-export type Option<T> = {
-  disabled?: boolean;
-  label?: string;
-  value?: T;
-  [key: string]: unknown;
-};
-
 export type GroupedOption<T> = {
   label: string;
   options: Option<T>[];
 };
 
-type MenuOptions = Partial<Omit<PopupMenuProperties, "referenceElement">>;
-
-type TooltipOptions = Omit<
-  TooltipProperties,
-  "elementRef" | "children" | "className"
->;
-
 export type ISelectProperties<T> = {
   autoSelectSingleOption?: boolean;
   autoSortOptions?: boolean;
   className?: string;
+  customSearchFn?: (searchInput: string) => Option<T>[];
   disabled?: boolean;
   disableGroupSelect?: boolean;
   disableSearch?: boolean;
@@ -39,7 +26,7 @@ export type ISelectProperties<T> = {
   hasError?: boolean;
   helperText?: string;
   hideIfSingleOption?: boolean;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
   labelKey?: string;
   loading?: boolean;
   matchMenuTriggerWidth?: boolean;
@@ -47,42 +34,56 @@ export type ISelectProperties<T> = {
   multiple?: boolean;
   name: string;
   noOptionsMessage?: string;
-  options: Option<T>[] | GroupedOption<T>[];
+  options: GroupedOption<T>[] | Option<T>[];
   placeholder?: string;
-  serverSearchHelperText?: string;
+  renderOption?: (option: GroupedOption<T> | Option<T>) => React.ReactNode;
+  renderValue?: (
+    value?: T | T[],
+    options?: GroupedOption<T>[] | Option<T>[],
+  ) => React.ReactNode;
   selectAllLabel?: string;
+  serverSearchFn?: (searchInput: string) => void;
+  serverSearchHelperText?: string;
   showRemoveSelection?: boolean;
   tooltipOptions?: TooltipOptions;
   valueKey?: string;
-  customSearchFn?: (searchInput: string) => Option<T>[];
-  serverSearchFn?: (searchInput: string) => void;
-  renderOption?: (option: Option<T> | GroupedOption<T>) => React.ReactNode;
-  renderValue?: (
-    value?: T | T[],
-    options?: Option<T>[] | GroupedOption<T>[],
-  ) => React.ReactNode;
 } & (
   | {
       multiple: true;
-      value: T[];
       onChange: (newValue: T[]) => void;
+      value: T[];
     }
   | {
       multiple?: false;
-      value: T;
       onChange: (newValue: T) => void;
+      value: T;
     }
 );
 
-export const Select = <T extends string | number>({
+export type Option<T> = {
+  [key: string]: unknown;
+  disabled?: boolean;
+  label?: string;
+  value?: T;
+};
+
+type MenuOptions = Partial<Omit<PopupMenuProperties, "referenceElement">>;
+
+type TooltipOptions = Omit<
+  TooltipProperties,
+  "children" | "className" | "elementRef"
+>;
+
+export const Select = <T extends number | string>({
   autoSelectSingleOption = false,
   autoSortOptions = true,
   className = "",
+  customSearchFn,
   disabled: selectFieldDisabled,
   disableGroupSelect,
   disableSearch = false,
-  errorMessage,
   enableTooltip = true,
+  errorMessage,
   hasError,
   helperText,
   hideIfSingleOption = false,
@@ -94,24 +95,23 @@ export const Select = <T extends string | number>({
   multiple,
   name,
   noOptionsMessage = "No options available",
+  onChange,
   options,
   placeholder,
-  serverSearchHelperText = "Please type to search...",
+  renderOption,
+  renderValue,
   selectAllLabel = "Select all",
+  serverSearchFn,
+  serverSearchHelperText = "Please type to search...",
   showRemoveSelection = true,
   tooltipOptions,
   value,
   valueKey,
-  customSearchFn,
-  serverSearchFn,
-  onChange,
-  renderOption,
-  renderValue,
 }: ISelectProperties<T>) => {
   const [showOptions, setShowOptions] = useState(false);
   const [searchInput, setSearchInput] = useState<string>("");
   const [focused, setFocused] = useState(false);
-  const [focusedOptionIndex, setFocusedOptionIndex] = useState<number | null>(
+  const [focusedOptionIndex, setFocusedOptionIndex] = useState<null | number>(
     null,
   );
   const selectReference = useRef<HTMLDivElement>(null);
@@ -132,7 +132,7 @@ export const Select = <T extends string | number>({
     }
 
     const isGroupedOptionArray = (
-      options: Option<T>[] | GroupedOption<T>[],
+      options: GroupedOption<T>[] | Option<T>[],
     ): options is GroupedOption<T>[] => {
       return (
         options.length > 0 &&
@@ -367,7 +367,7 @@ export const Select = <T extends string | number>({
 
   const handleRemoveOption = (
     option: T | T[] | undefined,
-    event: React.MouseEvent | React.KeyboardEvent,
+    event: React.KeyboardEvent | React.MouseEvent,
   ) => {
     event.stopPropagation();
 
@@ -438,8 +438,8 @@ export const Select = <T extends string | number>({
     };
 
     switch (event.key) {
-      case "Enter":
       case " ":
+      case "Enter":
         event.preventDefault();
         showOptions ? selectFocusedOption() : openDropdown();
         break;
@@ -454,6 +454,11 @@ export const Select = <T extends string | number>({
         setFocusedOptionIndex((previous) => previousIndex(previous as number));
         break;
 
+      case "End":
+      case "PageDown":
+        event.preventDefault();
+        focusLastEnabled();
+        break;
       case "Escape":
         event.preventDefault();
         setShowOptions(false);
@@ -465,12 +470,6 @@ export const Select = <T extends string | number>({
       case "PageUp":
         event.preventDefault();
         focusFirstEnabledOption();
-        break;
-
-      case "End":
-      case "PageDown":
-        event.preventDefault();
-        focusLastEnabled();
         break;
     }
   };
@@ -507,7 +506,7 @@ export const Select = <T extends string | number>({
 
     return filteredOptions.reduce(
       (
-        accumulator: Record<string | number | symbol, typeof filteredOptions>,
+        accumulator: Record<number | string | symbol, typeof filteredOptions>,
         item,
       ) => {
         const group = item.groupLabel as string;
@@ -532,9 +531,6 @@ export const Select = <T extends string | number>({
 
     return (
       <li
-        key={index}
-        ref={(element) => (optionReference.current[index] = element)}
-        role="option"
         className={
           `${!multiple && value === option.value ? "selected" : ""}
           ${isGrouped ? "group-option" : ""}
@@ -542,6 +538,7 @@ export const Select = <T extends string | number>({
           ${index === focusedOptionIndex ? "focused" : ""}
           `.trim() || undefined
         }
+        key={index}
         onClick={() => {
           if (!disabled) {
             handleSelectedOption(option.value as T);
@@ -551,13 +548,15 @@ export const Select = <T extends string | number>({
             setShowOptions(false);
           }
         }}
+        ref={(element) => (optionReference.current[index] = element)}
+        role="option"
       >
         {multiple ? (
           <Checkbox
-            name={label}
             checked={value.includes(option.value as T)}
-            onChange={() => handleSelectedOption(option.value as T)}
             disabled={disabled}
+            name={label}
+            onChange={() => handleSelectedOption(option.value as T)}
           />
         ) : null}
         <span>{renderOption ? renderOption(option) : label}</span>
@@ -584,7 +583,7 @@ export const Select = <T extends string | number>({
               {selectedOptions}
             </Tooltip>
           )}
-          <span ref={menuTooltipReference} className="selected-options">
+          <span className="selected-options" ref={menuTooltipReference}>
             {_options}
           </span>
           {hasSelectedOptions && <Divider />}
@@ -603,7 +602,7 @@ export const Select = <T extends string | number>({
         ) : (
           <ul aria-multiselectable={multiple} role="listbox">
             {multiple && (
-              <li role="option" onClick={toggleSelectAll}>
+              <li onClick={toggleSelectAll} role="option">
                 <Checkbox
                   checked={isAllSelected}
                   disabled={activeOptions.length === 0}
@@ -658,7 +657,7 @@ export const Select = <T extends string | number>({
           {!renderValue && !selectedOptions?.length ? (
             <span className="placeholder">{placeholder}</span>
           ) : (
-            <span ref={selectTooltipReference} className="selected-options">
+            <span className="selected-options" ref={selectTooltipReference}>
               {renderValue
                 ? renderValue(value, normalizedOptions)
                 : selectedOptions}
@@ -670,18 +669,19 @@ export const Select = <T extends string | number>({
 
     return (
       <div
+        aria-invalid={hasError}
         className={`label-container ${disabled ? "disabled" : ""} ${
           focused ? "focused" : ""
         }`.trimEnd()}
-        aria-invalid={hasError}
         onClick={toggleOptionsMenu}
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
         {!disableSearch && (!selectedOptions.length || showOptions) ? (
           <DebouncedInput
-            ref={searchInputReference}
-            placeholder={placeholder}
+            defaultValue={searchInput}
+            disabled={disabled}
+            name={name}
             onInputChange={(debouncedValue) => {
               setSearchInput(debouncedValue as string);
 
@@ -689,9 +689,8 @@ export const Select = <T extends string | number>({
                 setShowOptions(true);
               }
             }}
-            disabled={disabled}
-            defaultValue={searchInput}
-            name={name}
+            placeholder={placeholder}
+            ref={searchInputReference}
             tabIndex={-1}
           />
         ) : (
@@ -726,7 +725,7 @@ export const Select = <T extends string | number>({
   }
 
   return (
-    <div ref={selectReference} className={`field ${className}`.trimEnd()}>
+    <div className={`field ${className}`.trimEnd()} ref={selectReference}>
       {label &&
         (!disableSearch && (!selectedOptions.length || showOptions) ? (
           <label htmlFor={name}>{label}</label>

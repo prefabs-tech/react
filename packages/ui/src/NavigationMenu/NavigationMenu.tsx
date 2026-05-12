@@ -1,5 +1,5 @@
 import { Navigation } from "./Navigation";
-import { NavMenuType, NavMenuItemType } from "./types";
+import { NavMenuItemType, NavMenuType } from "./types";
 
 export type NavigationMenuProperties = {
   displayIcons?: boolean;
@@ -29,9 +29,9 @@ export const NavigationMenu = ({
               <li key={_index}>
                 {
                   <Navigation
-                    nav={nav}
-                    horizontal={horizontal}
                     displayIcon={displayIcons}
+                    horizontal={horizontal}
+                    nav={nav}
                   />
                 }
               </li>

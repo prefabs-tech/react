@@ -10,31 +10,31 @@ import {
 
 import { PopupMenu } from "./PopupMenu";
 
-interface UncontrolledProperties {
-  trigger: ReactNode;
-  content: JSX.Element;
-  position?: Placement;
-  offset?: number;
-  className?: string;
-}
-
-export type PopupProperties = {
-  isControlled?: boolean;
-  toggle?: () => void;
+export type PopupProperties = UncontrolledProperties & {
   close?: () => void;
+  isControlled?: boolean;
   isOpen?: boolean;
-} & UncontrolledProperties;
+  toggle?: () => void;
+};
+
+interface UncontrolledProperties {
+  className?: string;
+  content: JSX.Element;
+  offset?: number;
+  position?: Placement;
+  trigger: ReactNode;
+}
 
 export const Popup: FC<PopupProperties> = ({
   className = "",
-  isControlled = false,
-  toggle,
   close,
-  isOpen: isOpenControlled,
-  trigger,
   content,
-  position,
+  isControlled = false,
+  isOpen: isOpenControlled,
   offset = 10,
+  position,
+  toggle,
+  trigger,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [referenceElement, setReferenceElement] = useState<Element | null>(
@@ -82,20 +82,20 @@ export const Popup: FC<PopupProperties> = ({
   return (
     <div className={`popup-container ${className}`.trim()}>
       <div
-        className="popup-trigger"
-        ref={setReferenceElement as LegacyRef<HTMLDivElement>}
-        onClick={togglePopup}
         aria-controls="popup-content"
         aria-expanded={isControlled ? isOpenControlled : isOpen}
+        className="popup-trigger"
+        onClick={togglePopup}
+        ref={setReferenceElement as LegacyRef<HTMLDivElement>}
       >
         {trigger}
       </div>
       {(isControlled ? isOpenControlled : isOpen) ? (
         <PopupMenu
-          referenceElement={referenceElement}
           content={content}
-          position={position}
           offset={offset}
+          position={position}
+          referenceElement={referenceElement}
           toggle={togglePopup}
         />
       ) : null}

@@ -16,23 +16,23 @@ export const ConfirmationModalDemo = () => {
       title={t("confirmationModal.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <Button
-          onClick={() => setShowModal(true)}
           label={t("confirmationModal.buttonLabel")}
+          onClick={() => setShowModal(true)}
         ></Button>
         <ConfirmationModal
-          visible={showModal}
-          message={t("confirmationModal.message")}
           header={t("confirmationModal.header")}
+          message={t("confirmationModal.message")}
           onHide={() => setShowModal(false)}
+          visible={showModal}
         />
       </Section>
     </Page>

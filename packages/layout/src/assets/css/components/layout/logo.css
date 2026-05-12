@@ -21,7 +21,7 @@
 
 .dz-layout .dz-logo .logo-default > span:first-child {
   align-items: center;
-  background: rgba(45, 45, 45, 0.25);
+  background: rgb(45 45 45 / 25%);
   border-radius: 50%;
   display: flex;
   flex-shrink: 0;

@@ -8,6 +8,8 @@
     "lint:fix": "turbo run lint:fix",
     "prepare": "husky install",
     "sort-package": "npx sort-package-json && turbo run sort-package",
+    "stylelint": "turbo run stylelint",
+    "stylelint:fix": "turbo run stylelint:fix",
     "test": "turbo run test --parallel",
     "test:ci": "turbo run test:ci --parallel",
     "test:integration": "turbo run test:integration --parallel",
@@ -22,7 +24,7 @@
     "husky": "9.1.7",
     "prettier": "3.5.3",
     "shipjs": "0.27.0",
-    "turbo": "2.5.4",
+    "turbo": "2.5.8",
     "typescript": "5.9.3"
   },
   "packageManager": "pnpm@10.13.1",

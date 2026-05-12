@@ -8,7 +8,7 @@ export interface BaseButtonProperties {
   handleClick?: () => void;
   imageSource: string;
   title?: string;
-  variant?: "light" | "dark";
+  variant?: "dark" | "light";
 }
 
 const BaseButton: React.FC<BaseButtonProperties> = ({
@@ -23,14 +23,14 @@ const BaseButton: React.FC<BaseButtonProperties> = ({
 }) => {
   return (
     <button
-      onClick={handleClick}
       className={`sso-button ${className} ${variant} ${borderRadiusType} ${
         alignCenter ? "center" : ""
       }`}
+      onClick={handleClick}
     >
       <img
-        src={imageSource}
         alt={alternativeText ? alternativeText : `${className} logo`}
+        src={imageSource}
       />
       <span>{title}</span>
     </button>

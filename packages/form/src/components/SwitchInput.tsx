@@ -7,10 +7,10 @@ import { Controller, useFormContext } from "react-hook-form";
 
 interface ISwitch extends ISwitchInputProperties {
   disabled?: boolean;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
   name: string;
-  showValidState?: boolean;
   showInvalidState?: boolean;
+  showValidState?: boolean;
   submitCount?: number;
 }
 
@@ -40,18 +40,18 @@ export const SwitchInput: React.FC<ISwitch> = ({
 
   return (
     <Controller
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => (
         <BasicSwitchInput
-          label={label}
-          name={field.name}
           checked={field.value}
           className={className}
-          onChange={field.onChange}
           disabled={disabled}
           errorMessage={error?.message}
           hasError={submitCount > 0 ? checkInvalidState() : undefined}
+          label={label}
+          name={field.name}
+          onChange={field.onChange}
           {...others}
         />
       )}

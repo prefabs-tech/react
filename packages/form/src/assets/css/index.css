@@ -1,6 +1,5 @@
-@import "./form.css";
-
-@import "./date-input.css";
-@import "./file-input.css";
-@import "./file-upload.css";
-@import "./password.css";
+@import url("./form.css");
+@import url("./date-input.css");
+@import url("./file-input.css");
+@import url("./file-upload.css");
+@import url("./password.css");

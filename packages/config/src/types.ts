@@ -1,10 +1,10 @@
 interface AppConfig {
-  authBasePath?: string;
   apiBaseUrl: string;
   appName?: string;
   appPort: string;
   appTitle: string;
   appVersion: string;
+  authBasePath?: string;
   copyright?: {
     holder: string;
     url?: string;
@@ -17,8 +17,8 @@ interface AppConfig {
 }
 
 interface AppFeatures {
-  showVersion: boolean;
   [feature: string]: boolean;
+  showVersion: boolean;
 }
 
 type ToastNotificationPosition =

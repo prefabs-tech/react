@@ -14,7 +14,7 @@ describe("RadioInput", () => {
 
   const renderRadioInput = (properties = {}) => {
     return render(
-      <RadioInput options={options} onChange={onChangeMock} {...properties} />,
+      <RadioInput onChange={onChangeMock} options={options} {...properties} />,
     );
   };
 
@@ -55,8 +55,8 @@ describe("RadioInput", () => {
   test("should match snapshot with all props set", () => {
     const { container } = renderRadioInput({
       className: "radio-input",
-      name: "radioInput",
       label: "Custom Label",
+      name: "radioInput",
     });
 
     expect(container).toMatchSnapshot();

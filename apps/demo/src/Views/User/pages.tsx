@@ -1,47 +1,47 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Outlet } from "react-router-dom";
 
+import { Demo } from "../../components/Demo";
 import { AllUsersTableDemo } from "./components/AllUsersTable";
 import { InvitationFormDemo } from "./components/InvitationForm";
 import { InvitationModalDemo } from "./components/InvitationModal";
 import { InvitationsTableDemo } from "./components/InvitationsTable";
 import { UsersTableDemo } from "./components/UsersTable";
-import { Demo } from "../../components/Demo";
 
 export const USER_ROUTES = {
+  ALL_USERS_TABLE: "/user/all-users-table",
   GET_STARTED: "/user",
   INVITATION_FORM: "/user/invitation-form",
   INVITATION_MODAL: "/user/invitation-modal",
   INVITATIONS_TABLE: "/user/invitations-table",
   USERS_TABLE: "/user/users-table",
-  ALL_USERS_TABLE: "/user/all-users-table",
 };
 
 export const routes = [
   {
-    path: USER_ROUTES.INVITATION_FORM,
-    key: "invitationForm.title",
     element: <InvitationFormDemo />,
+    key: "invitationForm.title",
+    path: USER_ROUTES.INVITATION_FORM,
   },
   {
-    path: USER_ROUTES.INVITATION_MODAL,
-    key: "invitationModal.title",
     element: <InvitationModalDemo />,
+    key: "invitationModal.title",
+    path: USER_ROUTES.INVITATION_MODAL,
   },
   {
-    path: USER_ROUTES.INVITATIONS_TABLE,
-    key: "invitationsTable.title",
     element: <InvitationsTableDemo />,
+    key: "invitationsTable.title",
+    path: USER_ROUTES.INVITATIONS_TABLE,
   },
   {
-    path: USER_ROUTES.USERS_TABLE,
-    key: "usersTable.title",
     element: <UsersTableDemo />,
+    key: "usersTable.title",
+    path: USER_ROUTES.USERS_TABLE,
   },
   {
-    path: USER_ROUTES.ALL_USERS_TABLE,
-    key: "allUsersTable.title",
     element: <AllUsersTableDemo />,
+    key: "allUsersTable.title",
+    path: USER_ROUTES.ALL_USERS_TABLE,
   },
 ];
 
@@ -53,15 +53,15 @@ export const Pages = () => {
     {
       label: t("headers.components"),
       submenu: [
-        ...routes.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...routes.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
   ];
 
   return (
-    <Demo subnav={subnav} isGrouped>
+    <Demo isGrouped subnav={subnav}>
       <Outlet />
     </Demo>
   );

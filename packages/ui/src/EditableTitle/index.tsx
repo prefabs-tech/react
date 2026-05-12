@@ -1,10 +1,10 @@
 import React, {
   ChangeEvent,
+  cloneElement,
+  createElement,
   FocusEvent,
   HTMLAttributes,
   KeyboardEvent,
-  cloneElement,
-  createElement,
   useState,
 } from "react";
 
@@ -14,10 +14,10 @@ import { Input } from "../FormWidgets";
 interface IProperties extends Omit<HTMLAttributes<HTMLHeadElement>, "onClick"> {
   allowEdit?: boolean;
   className?: string;
-  showToggler?: boolean;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   handleUpdate?: (title: string) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+  showToggler?: boolean;
   title: string;
   titleLevel?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   toggler?: JSX.Element;
@@ -26,18 +26,18 @@ interface IProperties extends Omit<HTMLAttributes<HTMLHeadElement>, "onClick"> {
 export const EditableTitle = ({
   allowEdit = true,
   className = "",
-  showToggler = true,
-  onChange,
   handleUpdate,
+  onChange,
   placeholder,
+  showToggler = true,
   title,
   titleLevel = "h1",
   toggler = (
     <Button
-      variant="textOnly"
-      severity="secondary"
       iconLeft="pi pi-pencil"
       rounded
+      severity="secondary"
+      variant="textOnly"
     ></Button>
   ),
   ...others
@@ -103,12 +103,12 @@ export const EditableTitle = ({
       {isEditModeOn ? (
         <Input
           autoFocus
-          name="title"
-          placeholder={placeholder}
           defaultValue={onChange ? title : titleValue}
-          onChange={onChange}
+          name="title"
           onBlur={handleBlur}
+          onChange={onChange}
           onKeyUp={handleKeyPress}
+          placeholder={placeholder}
         />
       ) : (
         renderTitle()

@@ -3,30 +3,30 @@ import { ReactNode, useEffect, useState } from "react";
 import { Button, IButtonProperties } from "../Buttons";
 import { IStepEvent, LineStyleType, Step } from "./Step";
 
-type AlignType = "start" | "center" | "end";
-
-type StepItem = {
-  activeStepIcon?: string | ReactNode;
-  content?: string | ReactNode;
-  label?: string;
-  step?: number | string | ReactNode;
-  subtitle?: string;
-};
+type AlignType = "center" | "end" | "start";
 
 interface IProperties {
   activeIndex?: number;
+  align?: AlignType;
   direction?: "horizontal" | "vertical";
   hideButtons?: boolean;
-  onChange?: (event: IStepEvent) => void;
-  previousButtonProperties?: IButtonProperties;
-  nextButtonProperties?: IButtonProperties;
-  readOnly?: boolean;
   lineStyle?: LineStyleType;
-  steps: StepItem[];
-  align?: AlignType;
-  onComplete?: () => void;
+  nextButtonProperties?: IButtonProperties;
   onActiveIndexUpdate?: (index: number) => void;
+  onChange?: (event: IStepEvent) => void;
+  onComplete?: () => void;
+  previousButtonProperties?: IButtonProperties;
+  readOnly?: boolean;
+  steps: StepItem[];
 }
+
+type StepItem = {
+  activeStepIcon?: ReactNode | string;
+  content?: ReactNode | string;
+  label?: string;
+  step?: number | ReactNode | string;
+  subtitle?: string;
+};
 
 export const Stepper: React.FC<IProperties> = ({
   activeIndex,
@@ -34,11 +34,11 @@ export const Stepper: React.FC<IProperties> = ({
   direction = "horizontal",
   hideButtons = false,
   lineStyle = "solid",
+  nextButtonProperties,
+  onActiveIndexUpdate,
   onChange,
   onComplete,
-  onActiveIndexUpdate,
   previousButtonProperties,
-  nextButtonProperties,
   readOnly = true,
   steps = [],
 }) => {
@@ -100,8 +100,8 @@ export const Stepper: React.FC<IProperties> = ({
         <Button
           disabled={activeStepIndex === 0}
           label="Previous"
-          variant="outlined"
           onClick={handlePrevious}
+          variant="outlined"
           {...previousButtonProperties}
         />
         <Button
@@ -137,16 +137,16 @@ export const Stepper: React.FC<IProperties> = ({
             <Step
               key={index}
               {...element}
-              index={index}
-              lineStyle={lineStyle}
-              onClick={onClick}
-              isCompleted={activeStepIndex > index ? true : false}
-              isActive={activeStepIndex === index ? true : false}
               activeContent={
                 direction === "vertical" && activeStepIndex === index
                   ? renderActiveContent()
                   : null
               }
+              index={index}
+              isActive={activeStepIndex === index ? true : false}
+              isCompleted={activeStepIndex > index ? true : false}
+              lineStyle={lineStyle}
+              onClick={onClick}
             />
           );
         })}

@@ -9,11 +9,11 @@ export const useOnDropFile = ({
   onChange,
   value,
 }: {
-  name: string;
-  multiple: boolean;
   mode: FileMode;
-  value: FileExtended[];
+  multiple: boolean;
+  name: string;
   onChange: (file: FileExtended[]) => void;
+  value: FileExtended[];
 }) =>
   useCallback(
     (droppedFiles: FileExtended[]) => {
@@ -57,11 +57,11 @@ export const useOnDropFile = ({
   );
 
 export const useOnRemoveFile = ({
-  value,
   onChange,
+  value,
 }: {
-  value: FileExtended[];
   onChange: (file: FileExtended[]) => void;
+  value: FileExtended[];
 }) =>
   useCallback(
     (index: number) => {

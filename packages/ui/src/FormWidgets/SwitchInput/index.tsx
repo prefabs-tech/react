@@ -5,7 +5,7 @@ export interface ISwitchInputProperties extends InputHTMLAttributes<HTMLInputEle
   errorMessage?: string;
   hasError?: boolean;
   helperText?: string;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
   name?: string;
 }
 
@@ -23,10 +23,10 @@ export const SwitchInput: React.FC<ISwitchInputProperties> = ({
     <div className={`field switch-toggle ${className}`.trim()}>
       {label && <label htmlFor={name}>{label}</label>}
       <input
+        aria-invalid={hasError}
+        disabled={disabled}
         id={name}
         type="checkbox"
-        disabled={disabled}
-        aria-invalid={hasError}
         {...others}
       ></input>
       {helperText && <span className="helper-text">{helperText}</span>}

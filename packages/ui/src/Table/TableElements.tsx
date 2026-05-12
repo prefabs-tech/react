@@ -52,11 +52,11 @@ TableRow.displayName = "TableRow";
 const ColumnHeader = React.forwardRef<
   HTMLTableCellElement,
   React.ThHTMLAttributes<HTMLTableCellElement>
->(({ className, children, ...properties }, reference) => (
+>(({ children, className, ...properties }, reference) => (
   <th
+    children={children}
     className={className || ""}
     ref={reference}
-    children={children}
     {...properties}
   />
 ));
@@ -65,7 +65,7 @@ ColumnHeader.displayName = "ColumnHeader";
 const TableCell = React.forwardRef<
   HTMLTableCellElement,
   React.TdHTMLAttributes<HTMLTableCellElement>
->(({ className, children, ...properties }, reference) => (
+>(({ children, className, ...properties }, reference) => (
   <td
     className={className || ""}
     ref={reference}
@@ -88,11 +88,11 @@ const TableCaption = React.forwardRef<
 TableCaption.displayName = "TableCaption";
 
 const TooltipWrapper = ({
-  tooltipOptions,
   cellContent,
+  tooltipOptions,
 }: {
+  cellContent: JSX.Element | React.ReactNode;
   tooltipOptions: Omit<React.ComponentProps<typeof Tooltip>, "elementRef">;
-  cellContent: React.ReactNode | JSX.Element;
 }) => {
   const reference = useRef<HTMLDivElement>(null);
 
@@ -105,14 +105,14 @@ const TooltipWrapper = ({
 };
 
 export {
+  ColumnHeader,
   Table,
   TableBody,
+  TableCaption,
+  TableCell,
   TableFooter,
   TableHeader,
+  TableRow,
   TableToolbar,
   TooltipWrapper,
-  ColumnHeader,
-  TableRow,
-  TableCell,
-  TableCaption,
 };

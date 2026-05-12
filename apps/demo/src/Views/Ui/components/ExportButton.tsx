@@ -22,15 +22,15 @@ export const ExportButtonDemo = () => {
       title={t("exportButton.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
-        <ExportButton label="Export XLSX" getData={getData} />
+        <ExportButton getData={getData} label="Export XLSX" />
       </Section>
     </Page>
   );

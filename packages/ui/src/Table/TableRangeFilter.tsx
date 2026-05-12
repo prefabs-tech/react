@@ -16,7 +16,7 @@ export const TableRangeFilter = <TData,>({
   const updateRangeFilter = (
     column: Column<TData, unknown>,
     index: number,
-    value: string | number | readonly string[],
+    value: number | readonly string[] | string,
   ): void => {
     const filterValue = column.getFilterValue();
 
@@ -39,12 +39,12 @@ export const TableRangeFilter = <TData,>({
   return (
     <div className="number-range-filter">
       <DebouncedInput
+        debounceTime={inputDebounceTime}
         defaultValue={
           Array.isArray(filterValue) && isDefined(filterValue[0])
             ? filterValue[0]
             : ""
         }
-        debounceTime={inputDebounceTime}
         name={`range-start-${key}`}
         onInputChange={(value) => updateRangeFilter(column, 0, value)}
         placeholder={
@@ -54,12 +54,12 @@ export const TableRangeFilter = <TData,>({
         type="number"
       />
       <DebouncedInput
+        debounceTime={inputDebounceTime}
         defaultValue={
           Array.isArray(filterValue) && isDefined(filterValue[1])
             ? filterValue[1]
             : ""
         }
-        debounceTime={inputDebounceTime}
         name={`range-end-${key}`}
         onInputChange={(value) => updateRangeFilter(column, 1, value)}
         placeholder={

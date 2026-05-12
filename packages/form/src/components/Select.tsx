@@ -6,24 +6,24 @@ import {
 import React, { useEffect, useMemo } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
+interface ISelect<T extends number | string> extends Omit<
+  ISelectProperties<T>,
+  "errorMessage" | "hasError" | "onChange" | "value"
+> {
+  maxSelection?: number;
+  minSelection?: number;
+  showInvalidState?: boolean;
+  showValidState?: boolean;
+  submitCount?: number;
+  validationMessages?: ValidationMessages;
+}
+
 interface ValidationMessages {
   maxSelection?: string;
   minSelection?: string;
 }
 
-interface ISelect<T extends string | number> extends Omit<
-  ISelectProperties<T>,
-  "onChange" | "value" | "hasError" | "errorMessage"
-> {
-  maxSelection?: number;
-  minSelection?: number;
-  showValidState?: boolean;
-  showInvalidState?: boolean;
-  submitCount?: number;
-  validationMessages?: ValidationMessages;
-}
-
-export const Select = <T extends string | number>({
+export const Select = <T extends number | string>({
   autoSelectSingleOption = false,
   maxSelection,
   minSelection,
@@ -70,11 +70,24 @@ export const Select = <T extends string | number>({
 
   return (
     <Controller
-      name={name}
       control={control}
       defaultValue={multiple ? [] : undefined}
+      name={name}
+      render={({ field }) => (
+        <BasicSelect
+          autoSelectSingleOption={autoSelectSingleOption}
+          errorMessage={error?.message}
+          hasError={submitCount > 0 ? checkInvalidState() : undefined}
+          multiple={multiple}
+          name={name}
+          onChange={field.onChange}
+          options={options}
+          value={field.value}
+          {...others}
+        />
+      )}
       rules={{
-        validate: (value: T[] | T) => {
+        validate: (value: T | T[]) => {
           if (!multiple || !Array.isArray(value)) {
             return;
           }
@@ -98,19 +111,6 @@ export const Select = <T extends string | number>({
           return true;
         },
       }}
-      render={({ field }) => (
-        <BasicSelect
-          autoSelectSingleOption={autoSelectSingleOption}
-          errorMessage={error?.message}
-          hasError={submitCount > 0 ? checkInvalidState() : undefined}
-          multiple={multiple}
-          name={name}
-          options={options}
-          onChange={field.onChange}
-          value={field.value}
-          {...others}
-        />
-      )}
     />
   );
 };

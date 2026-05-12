@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
 
+import type { Properties, Tab } from "./types";
+
 import { getStorage } from "../utils";
 import { getOrientation } from "./utilities";
-
-import type { Properties, Tab } from "./types";
 
 const TabView: React.FC<Properties> = ({
   activeKey,
@@ -11,14 +11,14 @@ const TabView: React.FC<Properties> = ({
   enableHashRouting = false,
   id = "",
   lazy = true,
+  onActiveTabChange,
+  onTabClose,
+  onVisibleTabsChange,
   persistState = true,
   persistStateStorage = "localStorage",
   position = "top",
   tabs,
   visibleTabs: _visibleTabs,
-  onActiveTabChange,
-  onVisibleTabsChange,
-  onTabClose,
 }) => {
   const [initialized, setInitialized] = useState(false);
   const [visibleTabs, setVisibleTabs] = useState(
@@ -183,7 +183,7 @@ const TabView: React.FC<Properties> = ({
 
   return (
     <div className={`tabbed-panel ${position}`}>
-      <div role="tablist" aria-orientation={getOrientation(position)}>
+      <div aria-orientation={getOrientation(position)} role="tablist">
         {filteredTabs.map((item, index) => {
           const isActive = currentActiveKey === item.key;
           const title = item.label;
@@ -192,23 +192,23 @@ const TabView: React.FC<Properties> = ({
 
           return (
             <button
-              onClick={() => handleTabSwitch(item.key)}
-              key={key}
-              role="tab"
               aria-label={title}
               aria-selected={isActive}
-              tabIndex={0}
               className={isActive ? "active" : ""}
+              key={key}
+              onClick={() => handleTabSwitch(item.key)}
+              role="tab"
+              tabIndex={0}
             >
               {icon && <i className={icon} />}
               <span title={title}>{title}</span>
               {item.closable ? (
                 <i
+                  className="pi pi-times"
                   onClick={(event) => {
                     event.stopPropagation();
                     handleTabClose(item.key);
                   }}
-                  className="pi pi-times"
                 ></i>
               ) : null}
             </button>
@@ -223,10 +223,10 @@ const TabView: React.FC<Properties> = ({
         ) : (
           filteredTabs.map((tab) => (
             <div
-              key={tab.key}
               className={`tab-panel-content ${
                 tab.key === currentActiveKey ? "active" : "hidden"
               }`.trimEnd()}
+              key={tab.key}
             >
               {tab.children}
             </div>

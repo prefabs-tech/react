@@ -2,6 +2,7 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, Page, TDataTable } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
+import { CodeBlock, Section } from "../../../../components/Demo";
 import {
   CustomLabelMultiCheckboxDemo,
   CustomLabelSingleCheckboxDemo,
@@ -9,106 +10,105 @@ import {
   MultiCheckboxDemo,
   SingleCheckboxDemo,
 } from "./CheckboxInputUsage";
-import { CodeBlock, Section } from "../../../../components/Demo";
 
 const data = [
   {
+    default: "false",
+    description: "Determines the checked state of a single checkbox.",
     id: 1,
     name: "checked",
     type: "boolean",
-    default: "false",
-    description: "Determines the checked state of a single checkbox.",
   },
   {
+    default: "-",
+    description: "Additional CSS classes for styling.",
     id: 2,
     name: "className",
     type: "string",
-    default: "-",
-    description: "Additional CSS classes for styling.",
   },
   {
+    default: '"vertical"',
+    description: "Defines the layout direction for multiple checkboxes.",
     id: 3,
     name: "direction",
     type: '"horizontal" | "vertical"',
-    default: '"vertical"',
-    description: "Defines the layout direction for multiple checkboxes.",
   },
   {
+    default: "-",
+    description: "Disables the checkbox input.",
     id: 4,
     name: "disabled",
     type: "boolean",
-    default: "-",
-    description: "Disables the checkbox input.",
   },
   {
+    default: "-",
+    description: "Displays an error message below the component.",
     id: 5,
     name: "errorMessage",
     type: "string",
-    default: "-",
-    description: "Displays an error message below the component.",
   },
   {
+    default: "-",
+    description: "Displays a helper text below the component.",
     id: 6,
     name: "helperText",
     type: "string",
-    default: "-",
-    description: "Displays a helper text below the component.",
   },
   {
+    default: "-",
+    description: "Label for the single checkbox.",
     id: 7,
     name: "inputLabel",
     type: "string | React.ReactNode",
-    default: "-",
-    description: "Label for the single checkbox.",
   },
   {
+    default: "-",
+    description: "Label for the group of checkboxes.",
     id: 8,
     name: "label",
     type: "string | React.ReactNode",
-    default: "-",
-    description: "Label for the group of checkboxes.",
   },
   {
+    default: "-",
+    description: "The name attribute for the checkbox input.",
     id: 9,
     name: "name",
     type: "string",
-    default: "-",
-    description: "The name attribute for the checkbox input.",
   },
   {
+    default: "-",
+    description: "Callback function that returns the updated values.",
     id: 10,
     name: "onChange",
     type: "(newValue: T[]) => void",
-    default: "-",
-    description: "Callback function that returns the updated values.",
   },
   {
+    default: "[]",
+    description: "Options for multiple checkboxes.",
     id: 11,
     name: "options",
     type: "Array<{ value, label }>",
-    default: "[]",
-    description: "Options for multiple checkboxes.",
   },
   {
+    default: "-",
+    description: "Placeholder text (not applicable to checkboxes).",
     id: 12,
     name: "placeholder",
     type: "string",
-    default: "-",
-    description: "Placeholder text (not applicable to checkboxes).",
   },
   {
+    default: "[]",
+    description: "Array of selected values for multiple checkboxes.",
     id: 13,
     name: "value",
     type: "T[]",
-    default: "[]",
-    description: "Array of selected values for multiple checkboxes.",
   },
   {
+    default: "-",
+    description: "Custom render label for multiple checkboxes.",
     id: 14,
     name: "renderOptionsLabel",
     type: "(option: Option<T>) => React.ReactNode",
-    default: "-",
-    description: "Custom render label for multiple checkboxes.",
   },
 ];
 
@@ -119,14 +119,14 @@ export const CheckboxInputDemo = () => {
   return (
     <Page
       className="demo-checkbox-input"
-      title={t("checkboxInput.title")}
       subtitle={t("checkboxInput.subtitle")}
+      title={t("checkboxInput.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >

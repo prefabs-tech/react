@@ -1,11 +1,12 @@
-import { TableToolbar as TTableToolbar } from "./TableElements";
+import type { RowData, Table } from "@tanstack/react-table";
+
+import type { TDataTableProperties } from "./types";
+
 import { Button } from "../Buttons";
 import { Checkbox } from "../FormWidgets";
 import { Popup } from "../Popup";
 import { SortableList } from "../SortableList";
-
-import type { TDataTableProperties } from "./types";
-import type { RowData, Table } from "@tanstack/react-table";
+import { TableToolbar as TTableToolbar } from "./TableElements";
 
 interface TToolbar<T> extends Pick<
   TDataTableProperties<T>,
@@ -25,19 +26,19 @@ export const TableToolbar = <TData extends RowData>({
   columnActionButtonLabel,
   dataActionsMenu,
   enableRowSelection,
-  renderToolbarItems,
-  showResetStateAction,
-  resetActionButtonLabel,
   handleResetState,
+  renderToolbarItems,
+  resetActionButtonLabel,
   showColumnsAction,
+  showResetStateAction,
   table,
 }: TToolbar<TData>) => {
   const items = table
     .getAllLeafColumns()
     .filter((column) => column.id !== "select" && column.id !== "actions")
     .map((column, index) => ({
-      id: index,
       data: column,
+      id: index,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       render: (data: any) => {
         let header = data.columnDef.header;
@@ -64,20 +65,13 @@ export const TableToolbar = <TData extends RowData>({
             <Button
               label={resetActionButtonLabel}
               onClick={handleResetState}
-              variant="outlined"
               severity="secondary"
+              variant="outlined"
             />
           ) : null}
 
           {showColumnsAction ? (
             <Popup
-              trigger={
-                <Button
-                  label={columnActionButtonLabel}
-                  variant="outlined"
-                  severity="secondary"
-                />
-              }
               content={
                 <SortableList
                   items={items}
@@ -88,6 +82,13 @@ export const TableToolbar = <TData extends RowData>({
                       ...(dataActionsMenu ? ["actions"] : []),
                     ]);
                   }}
+                />
+              }
+              trigger={
+                <Button
+                  label={columnActionButtonLabel}
+                  severity="secondary"
+                  variant="outlined"
                 />
               }
             />

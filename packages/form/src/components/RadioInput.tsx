@@ -40,18 +40,18 @@ export const RadioInput: React.FC<IRadioInput> = ({
 
   return (
     <Controller
-      name={name}
       control={control}
+      name={name}
       render={({ field }) => (
         <BasicRadioInput
-          name={field.name}
-          label={label}
-          value={field.value}
           disabled={disabled}
           errorMessage={error?.message}
+          hasError={submitCount > 0 ? checkInvalidState() : undefined}
+          label={label}
+          name={field.name}
           onChange={field.onChange}
           options={options}
-          hasError={submitCount > 0 ? checkInvalidState() : undefined}
+          value={field.value}
           {...others}
         />
       )}

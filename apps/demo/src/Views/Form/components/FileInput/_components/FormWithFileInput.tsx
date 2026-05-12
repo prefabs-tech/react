@@ -1,8 +1,8 @@
 import {
-  Provider,
-  FileDropzone,
-  useFormContext,
   Email,
+  FileDropzone,
+  Provider,
+  useFormContext,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button } from "@prefabs.tech/react-ui";
@@ -26,18 +26,18 @@ export const FormWithFileInput: React.FC = () => {
     <Provider onSubmit={onSubmit}>
       <UploadBy />
       <FileDropzone
-        name="images"
-        mode="append"
-        multiple={true}
+        addDescriptionLabel={t("fileInput.description.label")}
+        descriptionPlaceholder={t("fileInput.description.placeholder")}
+        dropzoneMessage={t("fileInput.dropzoneMessage")}
         dropzoneOptions={{
           accept: {
             "image/*": [".jpeg", ".png"],
           },
         }}
         enableDescription
-        dropzoneMessage={t("fileInput.dropzoneMessage")}
-        addDescriptionLabel={t("fileInput.description.label")}
-        descriptionPlaceholder={t("fileInput.description.placeholder")}
+        mode="append"
+        multiple={true}
+        name="images"
       />
       <div className="mb-4">
         <Button label={t("fileInput.actions.upload")} />

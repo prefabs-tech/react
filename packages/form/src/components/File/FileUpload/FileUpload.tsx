@@ -1,11 +1,12 @@
+import type { FC } from "react";
+
 import { useEffect, useState } from "react";
 
 import { FormActions } from "@/components/FormActions";
 
-import { FileDropzoneBasic } from "../FileDropzone";
-
 import type { FileExtended, IFileUploadProperties } from "../types";
-import type { FC } from "react";
+
+import { FileDropzoneBasic } from "../FileDropzone";
 
 export const FileUpload: FC<IFileUploadProperties> = ({
   actionsAlignment = "right",
@@ -40,16 +41,16 @@ export const FileUpload: FC<IFileUploadProperties> = ({
   return (
     <div className="file-upload">
       <FileDropzoneBasic
-        name={name}
-        value={selectedFiles}
-        label={label}
-        multiple={multiple}
-        mode={mode}
-        dropzoneOptions={dropzoneOptions}
-        enableDescription={enableDescription}
         addDescriptionLabel={addDescriptionLabel}
         descriptionPlaceholder={descriptionPlaceholder}
         dropzoneMessage={dropzoneMessage}
+        dropzoneOptions={dropzoneOptions}
+        enableDescription={enableDescription}
+        errorMessages={errorMessages}
+        label={label}
+        mode={mode}
+        multiple={multiple}
+        name={name}
         onChange={(files) => {
           let modifiedFiles: FileExtended[] = files;
 
@@ -59,17 +60,17 @@ export const FileUpload: FC<IFileUploadProperties> = ({
 
           setSelectedFiles(modifiedFiles);
         }}
-        errorMessages={errorMessages}
+        value={selectedFiles}
       />
 
       <FormActions
         actions={[
           {
-            id: "upload",
-            type: "button",
             disabled: !selectedFiles.length,
+            id: "upload",
             label: "Upload",
             onClick: () => onUpload(selectedFiles),
+            type: "button",
             ...uploadButtonOptions,
           },
           {

@@ -5,19 +5,19 @@ import { getIsFirstUser } from "@/api/user";
 import { DEFAULT_PATHS } from "@/constants";
 import { UserConfig } from "@/types/config";
 
-type UseFirstUserSignupArguments = {
-  config: UserConfig;
-} & (
+type UseFirstUserSignupArguments = (
   | { autoRedirect: false; redirectFn: undefined }
   | {
       autoRedirect: true;
       redirectFn: ((to?: string) => void) | NavigateFunction;
     }
-);
+) & {
+  config: UserConfig;
+};
 
 export const useFirstUserSignup = ({
-  config,
   autoRedirect = false,
+  config,
   redirectFn,
 }: UseFirstUserSignupArguments) => {
   const [redirecting, setRedirecting] = useState<boolean | null>(null);

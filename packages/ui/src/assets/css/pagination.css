@@ -51,8 +51,8 @@
 
 .items-per-page-control select {
   background-color: #f8f9fa;
-  border-radius: 4px;
   border: 1px solid var(--border-color);
+  border-radius: 4px;
 }
 
 .items-per-page-control select:focus {

@@ -1,8 +1,8 @@
 import { submitNewPassword } from "supertokens-web-js/recipe/thirdpartyemailpassword";
 
 interface IPromise {
-  status: string | undefined;
   message?: string;
+  status: string | undefined;
 }
 
 export const resetPassword = async (
@@ -32,6 +32,6 @@ export const resetPassword = async (
       errorMessage = err.message;
     }
 
-    return { status: "ERROR", message: errorMessage };
+    return { message: errorMessage, status: "ERROR" };
   }
 };

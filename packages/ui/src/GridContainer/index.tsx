@@ -1,11 +1,11 @@
 interface GridContainerProperties {
-  className?: string;
   children?: React.ReactNode;
+  className?: string;
 }
 
 const GridContainer: React.FC<GridContainerProperties> = ({
-  className,
   children,
+  className,
 }) => {
   return (
     <div className={`dz-grid-container ${className}`.trim()}>{children}</div>

@@ -2,12 +2,6 @@ import { Typeahead as BasicTypeahead } from "@prefabs.tech/react-ui";
 import React, { InputHTMLAttributes } from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-type Suggestion = string | number | object;
-
-interface SuggestionOption<T> {
-  suggestionLabel?: T extends object ? keyof T : undefined;
-}
-
 interface IProperties<T>
   extends InputHTMLAttributes<HTMLInputElement>, SuggestionOption<T> {
   data: T[];
@@ -15,14 +9,20 @@ interface IProperties<T>
   emptyMessage?: string;
   forceSelect?: boolean;
   helperText?: string;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
   loading?: boolean;
   name: string;
-  submitCount?: number;
-  showValidState?: boolean;
-  showInvalidState?: boolean;
-  onSearch?: (value: string | number | readonly string[]) => void;
+  onSearch?: (value: number | readonly string[] | string) => void;
   renderSuggestion?: (value?: T) => React.ReactNode;
+  showInvalidState?: boolean;
+  showValidState?: boolean;
+  submitCount?: number;
+}
+
+type Suggestion = number | object | string;
+
+interface SuggestionOption<T> {
+  suggestionLabel?: T extends object ? keyof T : undefined;
 }
 
 export const Typeahead = <T extends Suggestion>({
@@ -36,12 +36,12 @@ export const Typeahead = <T extends Suggestion>({
   label = "",
   loading,
   name,
+  onSearch,
   placeholder,
-  submitCount = 0,
+  renderSuggestion,
   showInvalidState = true,
   showValidState = true,
-  onSearch,
-  renderSuggestion,
+  submitCount = 0,
   suggestionLabel,
 }: IProperties<T>) => {
   const { control, getFieldState } = useFormContext();
@@ -60,11 +60,11 @@ export const Typeahead = <T extends Suggestion>({
 
   return (
     <Controller
-      name={name}
       control={control}
       defaultValue=""
+      name={name}
       render={({ field }) => {
-        const handleSearch = (value: string | number | readonly string[]) => {
+        const handleSearch = (value: number | readonly string[] | string) => {
           if (onSearch) {
             onSearch(value);
           }
@@ -78,24 +78,24 @@ export const Typeahead = <T extends Suggestion>({
 
         return (
           <BasicTypeahead
-            label={label}
-            name={name}
             className={className}
+            data={data}
+            debounceTime={debounceTime}
             disabled={disabled}
             emptyMessage={emptyMessage}
-            forceSelect={forceSelect}
-            helperText={helperText}
-            placeholder={placeholder}
-            data={data}
-            onChange={field.onChange}
-            value={field.value}
-            loading={loading}
-            debounceTime={debounceTime}
-            hasError={submitCount > 0 ? checkInvalidState() : undefined}
             errorMessage={error?.message}
+            forceSelect={forceSelect}
+            hasError={submitCount > 0 ? checkInvalidState() : undefined}
+            helperText={helperText}
+            label={label}
+            loading={loading}
+            name={name}
+            onChange={field.onChange}
             onSearch={handleSearch}
+            placeholder={placeholder}
             renderSuggestion={renderSuggestion}
             suggestionLabel={suggestionLabel}
+            value={field.value}
           />
         );
       }}

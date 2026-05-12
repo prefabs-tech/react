@@ -3,14 +3,14 @@ import { Button, Page } from "@prefabs.tech/react-ui";
 import { InvitationsTable } from "@prefabs.tech/react-user";
 import { useNavigate } from "react-router-dom";
 
-import { invitations } from "./data";
 import { Section } from "../../../components/Demo";
+import { invitations } from "./data";
 
 export const InvitationsTableDemo = () => {
   const [t] = useTranslation("user");
   const navigate = useNavigate();
 
-  const isExpired = (date?: string | Date | number) => {
+  const isExpired = (date?: Date | number | string) => {
     return !!(date && new Date(date) < new Date());
   };
 
@@ -19,19 +19,19 @@ export const InvitationsTableDemo = () => {
       title={t("invitationsTable.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section>
         <InvitationsTable
           appFilterOptions={[
-            { value: "1", label: "1" },
-            { value: "2", label: "2" },
-            { value: "3", label: "3" },
+            { label: "1", value: "1" },
+            { label: "2", value: "2" },
+            { label: "3", value: "3" },
           ]}
           columns={[
             {
@@ -68,7 +68,7 @@ export const InvitationsTableDemo = () => {
                   return true;
                 }
 
-                const { acceptedAt, revokedAt, expiresAt } = row.original;
+                const { acceptedAt, expiresAt, revokedAt } = row.original;
 
                 const getCellValue = () => {
                   if (acceptedAt) {
@@ -90,21 +90,21 @@ export const InvitationsTableDemo = () => {
               },
             },
           ]}
-          initialSorting={[{ id: "email", desc: false }]}
+          id="invitation-table"
+          initialSorting={[{ desc: false, id: "email" }]}
           invitations={invitations}
           onInvitationAdded={() => {}}
           roleFilterOptions={[
-            { value: "ADMIN", label: "ADMIN" },
-            { value: "SUPERADMIN", label: "SUPERADMIN" },
-            { value: "USER", label: "USER" },
+            { label: "ADMIN", value: "ADMIN" },
+            { label: "SUPERADMIN", value: "SUPERADMIN" },
+            { label: "USER", value: "USER" },
           ]}
           statusFilterOptions={[
-            { value: "accepted", label: "Accepted" },
-            { value: "expired", label: "Expired" },
-            { value: "pending", label: "Pending" },
-            { value: "revoked", label: "Revoked" },
+            { label: "Accepted", value: "accepted" },
+            { label: "Expired", value: "expired" },
+            { label: "Pending", value: "pending" },
+            { label: "Revoked", value: "revoked" },
           ]}
-          id="invitation-table"
         />
       </Section>
     </Page>

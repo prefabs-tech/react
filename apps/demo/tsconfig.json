@@ -1,5 +1,5 @@
 {
   "extends": "@prefabs.tech/tsconfig/react-app",
-  "include": ["src"],
+  "include": ["*.d.ts", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

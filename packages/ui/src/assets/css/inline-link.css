@@ -1,9 +1,8 @@
 a.inline-link {
   --_color: var(--dz-primary-color, --color)
-}
 
-a.inline-link {
   color: var(--_color);
+
   cursor: pointer;
   text-decoration: none;
 }

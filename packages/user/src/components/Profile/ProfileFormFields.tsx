@@ -8,18 +8,18 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 
 interface Properties {
   additionalProfileFields?: AdditionalFormFields;
-  submitting?: boolean;
   onCancel?: () => void;
+  submitting?: boolean;
 }
 
 export const ProfileFormFields = ({
   additionalProfileFields,
-  submitting,
   onCancel,
+  submitting,
 }: Properties) => {
   const {
+    formState: { errors, isDirty, submitCount }, // eslint-disable-line @typescript-eslint/no-unused-vars
     reset,
-    formState: { errors, submitCount, isDirty }, // eslint-disable-line @typescript-eslint/no-unused-vars
   } = useFormContext();
 
   const { t } = useTranslation("user");
@@ -63,20 +63,20 @@ export const ProfileFormFields = ({
       <FormActions
         actions={[
           {
+            disabled: !isDirty,
             id: "submit",
             label: t("profile.button.update"),
-            disabled: !isDirty,
           },
           {
+            disabled: !isDirty,
             id: "cancel",
             label: t("profile.button.cancel"),
-            type: "button",
-            disabled: !isDirty,
             onClick: handleCancel,
+            type: "button",
           },
         ]}
-        loading={submitting}
         alignment="left"
+        loading={submitting}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import { expect, test, describe } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import { Data } from "..";
 
@@ -12,14 +12,14 @@ describe("Data Component", () => {
 
   test("matches the snapshot with 'stat' mode", () => {
     const { container } = render(
-      <Data caption="Name" value="John" mode="stat" />,
+      <Data caption="Name" mode="stat" value="John" />,
     );
     expect(container).toMatchSnapshot();
   });
 
   test("matches the snapshot with custom className", () => {
     const { container } = render(
-      <Data caption="Name" value="John" className="custom-class" />,
+      <Data caption="Name" className="custom-class" value="John" />,
     );
     expect(container).toMatchSnapshot();
   });

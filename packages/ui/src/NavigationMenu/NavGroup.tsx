@@ -5,21 +5,21 @@ import { NavItem } from "./NavItem";
 import { NavGroupDisplayMode, NavGroupType } from "./types";
 
 export type NavGroupProperties = {
-  initialVisible?: boolean;
-  displayIcon?: boolean;
-  horizontal?: boolean;
-  navGroup: NavGroupType;
   className?: string;
+  displayIcon?: boolean;
   displayMode?: NavGroupDisplayMode;
+  horizontal?: boolean;
+  initialVisible?: boolean;
+  navGroup: NavGroupType;
 };
 
 export const NavGroup = ({
-  displayMode = "collapsible",
-  initialVisible = false,
-  displayIcon = true,
-  horizontal,
-  navGroup,
   className = "",
+  displayIcon = true,
+  displayMode = "collapsible",
+  horizontal,
+  initialVisible = false,
+  navGroup,
 }: NavGroupProperties) => {
   const [showSubmenu, setShowSubmenu] = useState(initialVisible);
 
@@ -32,9 +32,9 @@ export const NavGroup = ({
               <li key={_index}>
                 {
                   <Navigation
-                    nav={nav}
-                    horizontal={horizontal}
                     displayIcon={displayIcon}
+                    horizontal={horizontal}
+                    nav={nav}
                   />
                 }
               </li>
@@ -46,18 +46,18 @@ export const NavGroup = ({
 
   return (
     <div
-      className={`dz-nav-group ${displayMode} ${className}`.trim()}
       aria-expanded={showSubmenu || displayMode === "expanded"}
+      className={`dz-nav-group ${displayMode} ${className}`.trim()}
     >
       <NavItem
+        displayIcon={displayIcon}
+        isGroupHeader
         navItem={{
-          label: navGroup.label,
           icon: navGroup.icon,
+          label: navGroup.label,
           onClick: () =>
             displayMode !== "expanded" && setShowSubmenu(!showSubmenu),
         }}
-        displayIcon={displayIcon}
-        isGroupHeader
       ></NavItem>
       {renderSubmenu()}
     </div>

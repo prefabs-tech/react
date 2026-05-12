@@ -3,15 +3,15 @@ import { FC, ReactNode } from "react";
 type DataProperties = {
   caption: ReactNode;
   className?: string;
-  value: ReactNode;
   mode?: "attr" | "stat";
+  value: ReactNode;
 };
 
 export const Data: FC<DataProperties> = ({
-  className = "",
   caption,
-  value,
+  className = "",
   mode = "attr",
+  value,
 }) => {
   return (
     <div

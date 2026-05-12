@@ -5,52 +5,52 @@ import { PopupMenu } from "../../Popup";
 import { DebouncedInput } from "../DebouncedInput";
 import { IInputProperties } from "../Input";
 
-type Suggestion = string | number | object;
+interface IProperties<T>
+  extends Omit<IInputProperties, "onChange">, SuggestionOption<T> {
+  data?: T[];
+  debounceTime?: number;
+  emptyMessage?: string;
+  errorMessage?: string;
+  forceSelect?: boolean;
+  hasError?: boolean;
+  helperText?: string;
+  label?: React.ReactNode | string;
+  loading?: boolean;
+  onChange?: (value?: T) => void;
+  onSearch?: (value: number | readonly string[] | string) => void;
+  renderSuggestion?: (suggestion: T) => React.ReactNode;
+}
+
+type Suggestion = number | object | string;
 
 interface SuggestionOption<T> {
   suggestionLabel?: T extends object ? keyof T : undefined;
 }
 
-interface IProperties<T>
-  extends Omit<IInputProperties, "onChange">, SuggestionOption<T> {
-  data?: T[];
-  debounceTime?: number;
-  errorMessage?: string;
-  emptyMessage?: string;
-  forceSelect?: boolean;
-  hasError?: boolean;
-  helperText?: string;
-  label?: string | React.ReactNode;
-  loading?: boolean;
-  onSearch?: (value: string | number | readonly string[]) => void;
-  onChange?: (value?: T) => void;
-  renderSuggestion?: (suggestion: T) => React.ReactNode;
-}
-
 export const Typeahead = <T extends Suggestion>({
   className = "",
   data,
-  disabled,
   debounceTime = 300,
-  value = "",
-  errorMessage,
+  disabled,
   emptyMessage,
+  errorMessage,
   forceSelect = true,
   hasError,
   helperText,
   label,
   loading,
   name,
-  placeholder,
-  type = "text",
   onChange,
   onSearch,
+  placeholder,
   renderSuggestion,
   suggestionLabel,
+  type = "text",
+  value = "",
 }: IProperties<T>) => {
   const [suggestions, setSuggestions] = useState<T[]>([]);
   const [inputValue, setInputValue] = useState<
-    string | number | readonly string[]
+    number | readonly string[] | string
   >(value);
   const isSuggestionSelected = useRef(false);
   const suggestionReference = useRef<HTMLUListElement>(null);
@@ -102,7 +102,7 @@ export const Typeahead = <T extends Suggestion>({
     setSuggestions([]);
   };
 
-  const handleInputChange = (value: string | number | readonly string[]) => {
+  const handleInputChange = (value: number | readonly string[] | string) => {
     if (value === inputValue) {
       return;
     }
@@ -196,17 +196,17 @@ export const Typeahead = <T extends Suggestion>({
     <div className={`field ${className}`.trimEnd()}>
       {label && <label htmlFor={name}>{label}</label>}
       <div
-        className={`typeahead ${disabled ? "disabled" : ""}`}
         aria-invalid={hasError}
+        className={`typeahead ${disabled ? "disabled" : ""}`}
         ref={setReferenceElement}
       >
         <DebouncedInput
-          type={type}
-          defaultValue={inputValue}
           debounceTime={debounceTime}
+          defaultValue={inputValue}
+          disabled={disabled}
           onInputChange={handleInputChange}
           placeholder={placeholder}
-          disabled={disabled}
+          type={type}
         />
         {loading && <LoadingIcon color="#ccc" />}
         {renderSuggestions()}

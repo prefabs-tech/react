@@ -1,10 +1,9 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Button, Divider, Stepper, Page } from "@prefabs.tech/react-ui";
+import { Button, Divider, Page, Stepper } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import "./index.css";
-
 import { Section } from "../../../../components/Demo";
 
 export const StepperDemo = () => {
@@ -15,9 +14,9 @@ export const StepperDemo = () => {
   const [verticalStepperIndex, setVerticalStepperIndex] = useState(0);
   const list = [
     {
-      step: "a",
       completedStepIcon: <i className="pi pi-check" />,
       label: "Personal",
+      step: "a",
     },
     {
       completedStepIcon: "pi pi-check",
@@ -106,43 +105,43 @@ export const StepperDemo = () => {
       title={t("stepper.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
       <Section title={t("stepper.usage.basic")}>
-        <Stepper steps={steps} align="start" />
+        <Stepper align="start" steps={steps} />
       </Section>
 
       <Section title={t("stepper.usage.vertical")}>
-        <Stepper steps={steps} align="start" direction="vertical" />
+        <Stepper align="start" direction="vertical" steps={steps} />
       </Section>
 
       <Section title={t("stepper.usage.controlled")}>
         <Stepper
-          steps={list}
-          hideButtons={true}
           activeIndex={activeIndex}
-          readOnly={true}
+          align="start"
+          hideButtons={true}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           onChange={(event: any) => {
             setActiveIndex(event.index);
           }}
-          align="start"
+          readOnly={true}
+          steps={list}
         />
         <div className="demo-stepper-content-wrapper">
           {renderStepContent(activeIndex)}
         </div>
         <div className="demo-stepper-button-wrapper">
           <Button
-            onClick={handlePrevious}
             label="Previous"
+            onClick={handlePrevious}
             variant="outlined"
           />
-          <Button onClick={handleNext} label="Next" />
+          <Button label="Next" onClick={handleNext} />
         </div>
       </Section>
 
@@ -162,13 +161,13 @@ export const StepperDemo = () => {
             </div>
             <div className="demo-stepper-button-wrapper">
               <Button
-                onClick={handleStepperPrevious}
                 label={t("stepper.label.previous")}
+                onClick={handleStepperPrevious}
                 variant="outlined"
               />
               <Button
-                onClick={handleStepperNext}
                 label={t("stepper.label.next")}
+                onClick={handleStepperNext}
               />
             </div>
           </div>

@@ -10,13 +10,13 @@
 }
 
 .demo-stepper-button-wrapper {
-  margin-top: 3rem;
   display: flex;
-  justify-content: flex-start;
   gap: 1rem;
+  justify-content: flex-start;
+  margin-top: 3rem;
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (width >= 576px) {
   .demo-stepper-wrapper {
     flex-direction: row;
   }

@@ -3,7 +3,7 @@ import { InputHTMLAttributes } from "react";
 interface IProperties extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   helperText?: string;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
 }
 
 export const Checkbox: React.FC<IProperties> = ({

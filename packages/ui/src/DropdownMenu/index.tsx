@@ -1,24 +1,24 @@
 import React, { useMemo } from "react";
 
-import Menu, { MenuProperties } from "./Menu";
 import { Popup, PopupProperties } from "../Popup";
+import Menu, { MenuProperties } from "./Menu";
 
 export interface DropdownMenuProperties
   extends MenuProperties, Partial<Omit<PopupProperties, "content">> {
-  label?: React.ReactNode;
   hideDropdownIcon?: boolean;
+  label?: React.ReactNode;
 }
 
 const DropdownMenu: React.FC<DropdownMenuProperties> = ({
-  label,
-  isControlled,
-  toggle,
   close,
-  isOpen,
-  trigger,
-  position = "bottom-start",
-  offset,
   hideDropdownIcon = false,
+  isControlled,
+  isOpen,
+  label,
+  offset,
+  position = "bottom-start",
+  toggle,
+  trigger,
   ...others
 }) => {
   const defaultTrigger = useMemo(() => {
@@ -35,14 +35,14 @@ const DropdownMenu: React.FC<DropdownMenuProperties> = ({
   return (
     <Popup
       className={`dropdown-menu ${others.className || ""}`.trimEnd()}
-      trigger={trigger || defaultTrigger}
-      content={<Menu {...others} />}
-      position={position}
-      isControlled={isControlled}
-      toggle={toggle}
       close={close}
+      content={<Menu {...others} />}
+      isControlled={isControlled}
       isOpen={isOpen}
       offset={offset}
+      position={position}
+      toggle={toggle}
+      trigger={trigger || defaultTrigger}
     />
   );
 };

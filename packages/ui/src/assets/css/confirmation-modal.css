@@ -1,12 +1,12 @@
 :root {
-  --dz-dialog-background-color: rgba(255, 255, 255, 1);
-  --dz-dialog-overlay-color: rgba(0, 0, 0, 0.3);
+  --dz-dialog-background-color: rgb(255 255 255 / 100%);
+  --dz-dialog-overlay-color: rgb(0 0 0 / 30%);
 }
 
 .dz-dialog {
   background-color: var(--dz-dialog-background-color);
-  border-radius: 0.3rem;
   border: none;
+  border-radius: 0.3rem;
   box-shadow: 0 1px 3px var(--dz-dialog-overlay-color);
   flex-direction: column;
   gap: 1rem;
@@ -53,8 +53,8 @@
 
 .dz-dialog > .dz-dialog-footer {
   display: flex;
-  justify-content: flex-end;
   gap: 1rem;
+  justify-content: flex-end;
 }
 
 @keyframes open {
@@ -62,6 +62,7 @@
     opacity: 0;
     transform: scale(0);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

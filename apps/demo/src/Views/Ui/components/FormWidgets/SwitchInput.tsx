@@ -2,51 +2,51 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, Page, TDataTable } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
 
+import { CodeBlock, Section } from "../../../../components/Demo";
 import {
   Basic,
   ControlledSnippet,
   Disabled,
   Invalid,
 } from "./SwitchInputUsage";
-import { CodeBlock, Section } from "../../../../components/Demo";
 
 const data = [
   {
+    description: "If true, the switch is disabled.",
     id: 1,
     prop: "disabled",
     type: "boolean",
-    description: "If true, the switch is disabled.",
   },
   {
+    description:
+      "Message to display when there is an error associated with the switch.",
     id: 2,
     prop: "errorMessage",
     type: "string",
-    description:
-      "Message to display when there is an error associated with the switch.",
   },
   {
+    description: "If true, indicates that there is an error.",
     id: 3,
     prop: "hasError",
     type: "boolean",
-    description: "If true, indicates that there is an error.",
   },
   {
+    description: "The label for the switch.",
     id: 4,
     prop: "label",
     type: "string",
-    description: "The label for the switch.",
   },
   {
+    description: "The name of the switch input, used for form handling.",
     id: 5,
     prop: "name",
     type: "string",
-    description: "The name of the switch input, used for form handling.",
   },
   {
+    description: "Any other attributes for the input element.",
     id: 6,
     prop: "...others",
     type: "InputHTMLAttributes",
-    description: "Any other attributes for the input element.",
   },
 ];
 
@@ -57,14 +57,14 @@ export const SwitchInputDemo = () => {
   return (
     <Page
       className="demo-switch-input"
-      title={t("switchInput.title")}
       subtitle={t("switchInput.subtitle")}
+      title={t("switchInput.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >

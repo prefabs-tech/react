@@ -3,25 +3,25 @@
 }
 
 .table-users .column-name {
+  max-width: 15rem;
   min-width: 15rem;
   width: 15rem;
-  max-width: 15rem;
 }
 
 .table-users .column-roles {
-  width: 12rem;
   max-width: 12rem;
   min-width: 12rem;
+  width: 12rem;
 }
 
 .table-users .column-signedUpAt {
-  width: 12rem;
   max-width: 12rem;
   min-width: 12rem;
+  width: 12rem;
 }
 
 .table-users .column-disabled {
-  width: 13rem;
   max-width: 13rem;
   min-width: 13rem;
+  width: 13rem;
 }

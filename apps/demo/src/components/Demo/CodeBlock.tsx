@@ -3,8 +3,8 @@ import { Button } from "@prefabs.tech/react-ui";
 import React, { useEffect, useRef, useState } from "react";
 
 const COPY_STATES = {
-  copy: { icon: "pi pi-copy", title: "codeBlock.copyStates.copy" },
   copied: { icon: "pi pi-check", title: "codeBlock.copyStates.copied" },
+  copy: { icon: "pi pi-copy", title: "codeBlock.copyStates.copy" },
   error: {
     icon: "pi pi-exclamation-triangle",
     title: "codeBlock.copyStates.error",
@@ -13,14 +13,14 @@ const COPY_STATES = {
 
 export const CodeBlock = ({
   autoFocus = false,
-  title,
   exampleCode,
   subheader,
+  title,
 }: {
   autoFocus?: boolean;
-  title?: string;
   exampleCode: string;
   subheader?: React.ReactNode;
+  title?: string;
 }) => {
   const [copyState, setCopyState] = useState(COPY_STATES.copy);
   const reference = useRef<HTMLDivElement>(null);
@@ -67,7 +67,7 @@ export const CodeBlock = ({
   };
 
   return (
-    <div ref={reference} className="code-block" autoFocus={autoFocus}>
+    <div autoFocus={autoFocus} className="code-block" ref={reference}>
       {renderHeader()}
 
       <pre>
@@ -78,9 +78,9 @@ export const CodeBlock = ({
         <Button
           className="copy"
           iconLeft={copyState.icon}
-          variant="outlined"
-          title={t(copyState.title)}
           onClick={handleCopyClick}
+          title={t(copyState.title)}
+          variant="outlined"
         ></Button>
       </div>
     </div>

@@ -1,35 +1,35 @@
 import {
-  ITextareaProperties,
   Textarea as BasicTextarea,
+  ITextareaProperties,
 } from "@prefabs.tech/react-ui";
 import {
   Controller,
+  useFormContext,
   UseFormGetFieldState,
   UseFormRegister,
-  useFormContext,
 } from "react-hook-form";
 
 interface ITextarea extends ITextareaProperties {
   defaultValue?: string;
-  label?: string | React.ReactNode;
-  name: string;
-  placeholder?: string;
-  showValidState?: boolean;
-  showInvalidState?: boolean;
-  submitCount?: number;
   /** @deprecated */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getFieldState?: UseFormGetFieldState<any>;
+  label?: React.ReactNode | string;
+  name: string;
+  placeholder?: string;
   /** @deprecated */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register?: UseFormRegister<any>;
+  showInvalidState?: boolean;
+  showValidState?: boolean;
+  submitCount?: number;
 }
 
 export const Textarea: React.FC<ITextarea> = ({
   defaultValue = "",
   label = "",
-  placeholder = "",
   name,
+  placeholder = "",
   showInvalidState = true,
   showValidState = true,
   submitCount = 0,
@@ -51,18 +51,18 @@ export const Textarea: React.FC<ITextarea> = ({
 
   return (
     <Controller
-      name={name}
       control={control}
       defaultValue={defaultValue}
+      name={name}
       render={({ field }) => (
         <BasicTextarea
-          name={field.name}
+          errorMessage={error?.message}
+          hasError={submitCount > 0 ? checkInvalidState() : undefined}
           label={label}
+          name={field.name}
+          onChange={field.onChange}
           placeholder={placeholder}
           value={field.value}
-          errorMessage={error?.message}
-          onChange={field.onChange}
-          hasError={submitCount > 0 ? checkInvalidState() : undefined}
           {...others}
         />
       )}

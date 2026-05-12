@@ -21,10 +21,10 @@ export const superTokens = (config: UserConfig) => {
 
   SuperTokens.init({
     appInfo: {
-      appName: config.supertokens.appName,
-      apiDomain: config.supertokens.apiDomain,
       apiBasePath:
         config.supertokens.apiBasePath || SUPERTOKENS_API_BASE_PATH_DEFAULT,
+      apiDomain: config.supertokens.apiDomain,
+      appName: config.supertokens.appName,
     },
     recipeList: recipeLists,
   });

@@ -1,83 +1,83 @@
 import { ComponentProps, ReactNode, useState } from "react";
 
 import { Card, ConfirmationModal, formatDate, formatDateTime } from "..";
-import ConfirmationFileActions from "./ConfirmationFileActions";
 import { Button } from "../Buttons/ButtonBasic";
 import { IFile } from "../FilesTable";
 import { useColumnsMap } from "../utils";
+import ConfirmationFileActions from "./ConfirmationFileActions";
 
 export type FileMessages = {
   archiveAction?: string;
   archiveConfirmationHeader?: string;
   archiveConfirmationMessage?: string;
-  downloadAction?: string;
-  editDescriptionAction?: string;
   deleteAction?: string;
   deleteConfirmationHeader?: string;
   deleteConfirmationMessage?: string;
+  downloadAction?: string;
   downloadCountHeader?: string;
+  editDescriptionAction?: string;
   lastDownloadedAtHeader?: string;
   renameAction?: string;
   shareAction?: string;
-  uploadedByHeader?: string;
   uploadedAtHeader?: string;
+  uploadedByHeader?: string;
   viewAction?: string;
 };
 
 export type VisibleFileDetails =
-  | "originalFileName"
-  | "size"
+  | "actions"
   | "description"
-  | "uploadedBy"
-  | "uploadedAt"
   | "downloadCount"
   | "lastDownloadedAt"
-  | "actions"
+  | "originalFileName"
+  | "size"
+  | "uploadedAt"
+  | "uploadedBy"
   | string;
 
 type FileCardType = {
+  archiveButtonProps?: ComponentProps<typeof Button>;
+  archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
+  deleteButtonProps?: ComponentProps<typeof Button>;
+  deleteConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
+  downloadButtonProps?: ComponentProps<typeof Button>;
+  editDescriptionButtonProps?: ComponentProps<typeof Button>;
   file: IFile;
   locale?: string;
   messages?: FileMessages;
   onArchive?: (arguments_: IFile) => void;
-  archiveButtonProps?: ComponentProps<typeof Button>;
-  archiveConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
   onDelete?: (arguments_: IFile) => void;
-  deleteButtonProps?: ComponentProps<typeof Button>;
-  deleteConfirmationProps?: ComponentProps<typeof ConfirmationModal>;
   onDownload?: (arguments_: IFile) => void;
-  downloadButtonProps?: ComponentProps<typeof Button>;
   onEditDescription?: (arguments_: IFile) => void;
-  editDescriptionButtonProps?: ComponentProps<typeof Button>;
   onShare?: (arguments_: IFile) => void;
-  shareButtonProps?: ComponentProps<typeof Button>;
   onView?: (arguments_: IFile) => void;
-  viewButtonProps?: ComponentProps<typeof Button>;
   renderThumbnail?: (arguments_: IFile) => ReactNode;
+  shareButtonProps?: ComponentProps<typeof Button>;
   showThumbnail?: boolean;
+  viewButtonProps?: ComponentProps<typeof Button>;
   visibleFileDetails?: VisibleFileDetails[];
 };
 
 export const FileCard = ({
+  archiveButtonProps,
+  archiveConfirmationProps,
+  deleteButtonProps,
+  deleteConfirmationProps,
+  downloadButtonProps,
+  editDescriptionButtonProps,
   file,
   locale,
   messages,
   onArchive,
-  archiveButtonProps,
-  archiveConfirmationProps,
   onDelete,
-  deleteButtonProps,
-  deleteConfirmationProps,
   onDownload,
-  downloadButtonProps,
-  onShare,
-  shareButtonProps,
-  onView,
-  viewButtonProps,
   onEditDescription,
-  editDescriptionButtonProps,
+  onShare,
+  onView,
   renderThumbnail: pRenderThumbnail,
+  shareButtonProps,
   showThumbnail = true,
+  viewButtonProps,
   visibleFileDetails = [
     "originalFileName",
     "size",
@@ -132,10 +132,10 @@ export const FileCard = ({
         {!!onArchive && (
           <>
             <Button
-              size="small"
               iconLeft="pi pi-book"
               label="Archive"
               onClick={() => setVisibleArchiveConfirmation(true)}
+              size="small"
               {...archiveButtonProps}
             />
           </>
@@ -143,45 +143,53 @@ export const FileCard = ({
         {!!onDelete && (
           <>
             <Button
-              size="small"
               iconLeft="pi pi-trash"
               label="Delete"
               onClick={() => setVisibleDeleteConfirmation(true)}
+              size="small"
               {...deleteButtonProps}
             />
           </>
         )}
         {!!onDownload && (
           <Button
-            size="small"
             iconLeft="pi pi-download"
             label="Download"
             onClick={() => onDownload?.(file)}
+            size="small"
             {...downloadButtonProps}
           />
         )}
         {!!onShare && (
           <Button
-            size="small"
             iconLeft="pi pi-share-alt"
             label="Share"
             onClick={() => onShare?.(file)}
+            size="small"
             {...shareButtonProps}
           />
         )}
         {!!onView && (
           <Button
-            size="small"
             iconLeft="pi pi-eye"
             label="View"
-            severity="secondary"
             onClick={() => onView?.(file)}
+            severity="secondary"
+            size="small"
             {...viewButtonProps}
           />
         )}
 
         <ConfirmationFileActions
+          archiveConfirmationHeader={messages?.archiveConfirmationHeader}
+          archiveConfirmationMessage={messages?.archiveConfirmationMessage}
+          archiveConfirmationProps={archiveConfirmationProps}
+          deleteConfirmationHeader={messages?.deleteConfirmationHeader}
+          deleteConfirmationMessage={messages?.deleteConfirmationMessage}
+          deleteConfirmationProps={deleteConfirmationProps}
           file={file}
+          onArchive={onArchive}
+          onDelete={onDelete}
           setVisibleArchiveConfirmation={(isVisible) =>
             setVisibleArchiveConfirmation(isVisible)
           }
@@ -190,14 +198,6 @@ export const FileCard = ({
           }
           visibleArchiveConfirmation={visibleArchiveConfirmation}
           visibleDeleteConfirmation={visibleDeleteConfirmation}
-          archiveConfirmationProps={archiveConfirmationProps}
-          deleteConfirmationProps={deleteConfirmationProps}
-          archiveConfirmationHeader={messages?.archiveConfirmationHeader}
-          archiveConfirmationMessage={messages?.archiveConfirmationMessage}
-          deleteConfirmationHeader={messages?.deleteConfirmationHeader}
-          deleteConfirmationMessage={messages?.deleteConfirmationMessage}
-          onArchive={onArchive}
-          onDelete={onDelete}
         />
       </div>
     );
@@ -225,8 +225,8 @@ export const FileCard = ({
                   {!!onEditDescription && (
                     <Button
                       iconLeft="pi pi-pencil"
-                      size="small"
                       onClick={() => onEditDescription?.(file)}
+                      size="small"
                       {...editDescriptionButtonProps}
                     />
                   )}

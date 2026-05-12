@@ -1,14 +1,9 @@
 import { ISelectProperties } from "../FormWidgets";
 
-export type Translation = Record<string, string>;
-export type Locales = Record<string, Translation>;
-export type Groups = Record<string, string[]>;
-
 export type CountryPickerLabels = {
-  favorites?: string;
   allCountries?: string;
+  favorites?: string;
 };
-
 export type CountryPickerProperties<T> = Omit<
   ISelectProperties<T>,
   "options"
@@ -27,3 +22,8 @@ export type CountryPickerProperties<T> = Omit<
   locale?: string;
   locales?: Locales;
 };
+export type Groups = Record<string, string[]>;
+
+export type Locales = Record<string, Translation>;
+
+export type Translation = Record<string, string>;

@@ -1,8 +1,8 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Outlet } from "react-router-dom";
 
-import { StickyCollapsibleFooterDemo } from "./components/StickyCollapsibleFooterDemo";
 import { Demo } from "../../components/Demo";
+import { StickyCollapsibleFooterDemo } from "./components/StickyCollapsibleFooterDemo";
 
 export const LAYOUT_ROUTES = {
   GET_STARTED: "/layout",
@@ -11,9 +11,9 @@ export const LAYOUT_ROUTES = {
 
 export const routes = [
   {
-    path: LAYOUT_ROUTES.STICKY_COLLAPSIBLE_FOOTER,
-    key: "stickyCollapsibleFooter.title",
     element: <StickyCollapsibleFooterDemo />,
+    key: "stickyCollapsibleFooter.title",
+    path: LAYOUT_ROUTES.STICKY_COLLAPSIBLE_FOOTER,
   },
 ];
 
@@ -21,19 +21,19 @@ export const Pages = () => {
   const [t] = useTranslation("layout");
 
   const subnav = [
-    { route: "/layout", label: t("app:getStarted") },
+    { label: t("app:getStarted"), route: "/layout" },
     {
       label: t("headers.components"),
       submenu: [
-        ...routes.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...routes.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
   ];
 
   return (
-    <Demo subnav={subnav} isGrouped>
+    <Demo isGrouped subnav={subnav}>
       <Outlet />
     </Demo>
   );

@@ -7,23 +7,23 @@ export interface DataActionsMenuItem extends Omit<
   MenuItem,
   "disabled" | "display" | "onClick"
 > {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  confirmationOptions?: ((data: any) => IModalProperties) | IModalProperties;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  disabled?: ((data: any) => boolean) | boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  display?: ((data: any) => boolean) | boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onClick?: (arguments_: any) => Promise<void> | void;
   requireConfirmationModal?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onClick?: (arguments_: any) => void | Promise<void>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  confirmationOptions?: IModalProperties | ((data: any) => IModalProperties);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  disabled?: boolean | ((data: any) => boolean);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  display?: boolean | ((data: any) => boolean);
 }
 
 export interface DataActionsMenuProperties<TData> {
   actions?: DataActionsMenuItem[];
   autoModeCount?: number;
   data?: TData;
+  displayActions?: ((data: TData) => boolean) | boolean;
   mode?: "auto" | "buttons" | "dropdown";
-  displayActions?: boolean | ((data: TData) => boolean);
 }
 
 export const DataActionsMenu = ({
@@ -71,12 +71,12 @@ export const DataActionsMenu = ({
                 ...(typeof action.confirmationOptions === "function"
                   ? action.confirmationOptions(data)
                   : action.confirmationOptions),
-                onHide: () => setConfirmation(null),
                 accept: async () => {
                   await action.onClick?.(data);
 
                   setConfirmation(null);
                 },
+                onHide: () => setConfirmation(null),
               });
             } else {
               action.onClick && action.onClick(data);
@@ -103,17 +103,17 @@ export const DataActionsMenu = ({
         .filter((item) => item?.display !== false)
         .map((item, index) => (
           <Button
-            key={`action-${item?.key ?? index}`}
-            iconLeft={item.icon}
             data-pr-tooltip={item.label}
             disabled={item.disabled}
-            variant="textOnly"
-            size="small"
-            severity={item.severity}
+            iconLeft={item.icon}
+            key={`action-${item?.key ?? index}`}
             label={!item.icon ? item.label : ""}
-            title={item.label}
             onClick={() => item.onClick?.()}
             rounded
+            severity={item.severity}
+            size="small"
+            title={item.label}
+            variant="textOnly"
           />
         ));
     }
@@ -121,9 +121,9 @@ export const DataActionsMenu = ({
     if (showDropdown) {
       return (
         <DropdownMenu
+          hideDropdownIcon
           label={<i className="pi pi-cog"></i>}
           menu={items}
-          hideDropdownIcon
         />
       );
     }

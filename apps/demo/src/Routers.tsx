@@ -28,70 +28,70 @@ import {
 const router = createBrowserRouter(
   [
     {
-      path: "/",
-      element: <BasicLayout />,
-      errorElement: <ErrorBoundary />,
       children: [
         {
-          index: true,
           element: <Home />,
+          index: true,
         },
         {
-          path: "/ui",
-          element: <UIPages />,
           children: [
             {
-              index: true,
               element: <UIPage></UIPage>,
+              index: true,
             },
             ...uiRoutes,
           ],
+          element: <UIPages />,
+          path: "/ui",
         },
         {
-          path: "/user",
-          element: <UserPages />,
           children: [
             {
-              index: true,
               element: <UserPage></UserPage>,
+              index: true,
             },
             ...userRoutes,
           ],
+          element: <UserPages />,
+          path: "/user",
         },
         {
-          path: "/form",
-          element: <FormPages />,
           children: [
             {
-              index: true,
               element: <FormPage></FormPage>,
+              index: true,
             },
             ...formRoutes,
           ],
+          element: <FormPages />,
+          path: "/form",
         },
         {
-          path: "/layout",
-          element: <LayoutPages />,
           children: [
             {
-              index: true,
               element: <LayoutPage></LayoutPage>,
+              index: true,
             },
             ...layoutRoutes,
           ],
+          element: <LayoutPages />,
+          path: "/layout",
         },
         {
-          path: "/i18n",
-          element: <I18nPages />,
           children: [
             {
-              index: true,
               element: <I18nPage></I18nPage>,
+              index: true,
             },
             ...i18nRoutes,
           ],
+          element: <I18nPages />,
+          path: "/i18n",
         },
       ],
+      element: <BasicLayout />,
+      errorElement: <ErrorBoundary />,
+      path: "/",
     },
   ],
   {

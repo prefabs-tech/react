@@ -1,42 +1,33 @@
 import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
+  type DataActionsMenuProperties,
   TDataTable as DataTable,
-  TDataTableProperties,
-  TRequestJSON,
+  type FilterOption,
   IButtonProperties,
   TableColumnDefinition,
   Tag,
-  type DataActionsMenuProperties,
-  type FilterOption,
+  TDataTableProperties,
+  TRequestJSON,
 } from "@prefabs.tech/react-ui";
-
-import { useUser } from "@/hooks";
-
-import { useUserActions } from "./useUserActionsMethods";
-import { InvitationModal } from "../Invitation";
 
 import type {
   AddInvitationResponse,
   InvitationAppOption,
-  InvitationRoleOption,
   InvitationExpiryDateField,
+  InvitationRoleOption,
   UserType,
 } from "@/types";
 
-type VisibleColumn =
-  | "name"
-  | "email"
-  | "roles"
-  | "signedUpAt"
-  | "status"
-  | "actions"
-  | string;
+import { useUser } from "@/hooks";
+
+import { InvitationModal } from "../Invitation";
+import { useUserActions } from "./useUserActionsMethods";
 
 export type UsersTableProperties = Partial<
   Omit<
     TDataTableProperties<UserType>,
-    "data" | "dataActionsMenu" | "visibleColumns" | "fetchData"
+    "data" | "dataActionsMenu" | "fetchData" | "visibleColumns"
   >
 > & {
   additionalInvitationFields?: AdditionalFormFields;
@@ -52,17 +43,26 @@ export type UsersTableProperties = Partial<
   invitationExpiryDateField?: InvitationExpiryDateField;
   onInvitationAdded?: (response: AddInvitationResponse) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onUserEnabled?: (data: any) => void;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onUserDisabled?: (data: any) => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onUserEnabled?: (data: any) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prepareInvitationData?: (data: any) => any;
-  roles?: Array<InvitationRoleOption>;
   roleFilterOptions?: FilterOption[];
+  roles?: Array<InvitationRoleOption>;
   showInviteAction?: boolean;
   users: Array<UserType>;
   visibleColumns?: VisibleColumn[];
 };
+
+type VisibleColumn =
+  | "actions"
+  | "email"
+  | "name"
+  | "roles"
+  | "signedUpAt"
+  | "status"
+  | string;
 
 export const UsersTable = ({
   additionalInvitationFields,
@@ -77,8 +77,8 @@ export const UsersTable = ({
   onUserDisabled,
   onUserEnabled,
   prepareInvitationData,
-  roles,
   roleFilterOptions,
+  roles,
   showInviteAction = true,
   totalRecords = 0,
   users,
@@ -104,22 +104,21 @@ export const UsersTable = ({
   const defaultColumns: Array<TableColumnDefinition<UserType>> = [
     {
       accessorKey: "email",
-      header: t("table.defaultColumns.email"),
-      enableSorting: true,
       enableColumnFilter: true,
+      enableSorting: true,
       filterPlaceholder: t("table.placeholders.search"),
+      header: t("table.defaultColumns.email"),
     },
     {
       accessorKey: "name",
-      header: t("table.defaultColumns.name"),
       enableColumnFilter: true,
       enableSorting: true,
       filterPlaceholder: t("table.placeholders.search"),
+      header: t("table.defaultColumns.name"),
     },
     {
-      align: "center",
       accessorKey: "roles",
-      header: t("table.defaultColumns.roles"),
+      align: "center",
       cell: ({ getValue, row: { original } }) => {
         const roles = (original as unknown as { roles: string[] })?.roles;
 
@@ -128,10 +127,10 @@ export const UsersTable = ({
             <>
               {roles?.map((role: string, index: number) => (
                 <Tag
-                  key={role + index}
-                  label={role}
                   color={role === "ADMIN" ? "default" : "green"}
                   fullWidth
+                  key={role + index}
+                  label={role}
                 />
               ))}
             </>
@@ -143,52 +142,52 @@ export const UsersTable = ({
         return (
           <>
             <Tag
-              label={role}
               color={role === "ADMIN" ? "default" : "green"}
               fullWidth
+              label={role}
             />
           </>
         );
       },
-      enableSorting: true,
       enableColumnFilter: true,
-      meta: {
-        filterVariant: "multiselect",
-        filterOptions: roleFilterOptions,
-      },
+      enableSorting: true,
       filterPlaceholder: t("table.placeholders.roles"),
+      header: t("table.defaultColumns.roles"),
+      meta: {
+        filterOptions: roleFilterOptions,
+        filterVariant: "multiselect",
+      },
     },
     {
       accessorKey: "signedUpAt",
-      header: t("table.defaultColumns.signedUpOn"),
       dataType: "date",
-      enableSorting: true,
       enableColumnFilter: true,
+      enableSorting: true,
+      filterPlaceholder: t("table.placeholders.date"),
+      header: t("table.defaultColumns.signedUpOn"),
       meta: {
         filterVariant: "dateRange",
         serverFilterFn: "between",
       },
-      filterPlaceholder: t("table.placeholders.date"),
     },
     {
-      align: "center",
       accessorKey: "disabled",
-      header: t("table.defaultColumns.status"),
+      align: "center",
       cell: ({ row: { original } }) => {
         const color = original.disabled ? "red" : "green";
 
         return (
           <Tag
+            color={color}
+            fullWidth
             label={
               original.disabled ? t("status.disabled") : t("status.enabled")
             }
-            color={color}
-            fullWidth
           />
         );
       },
-      enableSorting: true,
       enableColumnFilter: true,
+      enableSorting: true,
       filterFn: (row, columnId, filterValue) => {
         if (!filterValue || filterValue.length === 0) {
           return true;
@@ -197,10 +196,10 @@ export const UsersTable = ({
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const updatedFilterValue = filterValue.map((value: any) => {
           switch (value) {
-            case "true":
-              return true;
             case "false":
               return false;
+            case "true":
+              return true;
             default:
               return value;
           }
@@ -210,51 +209,52 @@ export const UsersTable = ({
 
         return updatedFilterValue.includes(cellValue);
       },
+      filterPlaceholder: t("table.placeholders.status"),
+      header: t("table.defaultColumns.status"),
       meta: {
-        filterVariant: "multiselect",
         filterOptions: [
           {
-            value: "false",
             label: t("status.enabled"),
+            value: "false",
           },
           {
-            value: "true",
             label: t("status.disabled"),
+            value: "true",
           },
         ],
+        filterVariant: "multiselect",
       },
-      filterPlaceholder: t("table.placeholders.status"),
     },
   ];
 
   const defaultActionsMenu: DataActionsMenuProperties<UserType> = {
     actions: [
       {
-        key: "enableUser",
-        label: t("table.actions.enable"),
-        icon: "pi pi-check",
+        confirmationOptions: {
+          header: t("confirmation.header"),
+          message: t("confirmation.enable.message"),
+        },
         disabled: (user) => !user.disabled,
         display: (user) => user.disabled && currentUser?.id !== user.id,
+        icon: "pi pi-check",
+        key: "enableUser",
+        label: t("table.actions.enable"),
         onClick: (user) => handleEnableUser(user),
         requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("confirmation.enable.message"),
-          header: t("confirmation.header"),
-        },
       },
       {
-        key: "disableUser",
-        label: t("table.actions.disable"),
         className: "danger",
-        icon: "pi pi-times",
+        confirmationOptions: {
+          header: t("confirmation.header"),
+          message: t("confirmation.disable.message"),
+        },
         disabled: (user) => user.disabled,
         display: (user) => !user.disabled && currentUser?.id !== user.id,
+        icon: "pi pi-times",
+        key: "disableUser",
+        label: t("table.actions.disable"),
         onClick: (user) => handleDisableUser(user),
         requireConfirmationModal: true,
-        confirmationOptions: {
-          message: t("confirmation.disable.message"),
-          header: t("confirmation.header"),
-        },
       },
     ],
   };
@@ -289,16 +289,6 @@ export const UsersTable = ({
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={users}
-      emptyTableMessage={t("app:table.emptyMessage")}
-      fetchData={fetchUsers}
-      locale={i18n?.language}
-      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
-      totalRecords={totalRecords}
-      visibleColumns={visibleColumns}
-      paginationOptions={{
-        pageInputLabel: t("table.pagination.pageControl"),
-        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
-      }}
       dataActionsMenu={
         dataActionsMenu
           ? typeof dataActionsMenu === "function"
@@ -306,6 +296,16 @@ export const UsersTable = ({
             : dataActionsMenu
           : filteredActionMenu
       }
+      emptyTableMessage={t("app:table.emptyMessage")}
+      fetchData={fetchUsers}
+      locale={i18n?.language}
+      paginationOptions={{
+        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
+        pageInputLabel: t("table.pagination.pageControl"),
+      }}
+      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
+      totalRecords={totalRecords}
+      visibleColumns={visibleColumns}
       {...tableProperties}
     ></DataTable>
   );

@@ -1,10 +1,12 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Outlet } from "react-router-dom";
 
+import { Demo } from "../../components/Demo";
 import { AccordionDemo } from "./components/AccordionDemo";
 import { ButtonDemo } from "./components/Button";
 import { CardDemo } from "./components/CardDemo";
 import { ConfirmationModalDemo } from "./components/ConfirmationModal";
+import { CountryDisplayDemo } from "./components/CountryDisplay/CountryDisplayDemo";
 import { DataDemo } from "./components/DataComponent";
 import { DropdownMenuDemo } from "./components/DropdownMenuDemo";
 import { EditableTitleDemo } from "./components/EditableTitleDemo";
@@ -23,6 +25,7 @@ import {
   TextareaDemo,
   TypeaheadDemo,
 } from "./components/FormWidgets";
+import { CountryPickerDemo } from "./components/FormWidgets/CountryPicker";
 import { GridContainerDemo } from "./components/GridContainerDemo";
 import { InlineLinkDemo } from "./components/InlineLinkDemo";
 import { LoadingDemo } from "./components/Loading";
@@ -39,9 +42,6 @@ import { TabViewDemo } from "./components/TabView";
 import { TagDemo } from "./components/Tag/Tag";
 import { TooltipDemo } from "./components/Tooltip";
 import { YoutubeFacadeDemo } from "./components/YoutubeFacade";
-import { Demo } from "../../components/Demo";
-import { CountryDisplayDemo } from "./components/CountryDisplay/CountryDisplayDemo";
-import { CountryPickerDemo } from "./components/FormWidgets/CountryPicker";
 
 export const UI_ROUTES = {
   ACCORDION: "/ui/accordion",
@@ -51,20 +51,20 @@ export const UI_ROUTES = {
   CHECKBOX_INPUT: "/ui/checkbox-input",
   CONFIRMATION_MODAL: "/ui/confirmation-modal",
   COUNTRY_DISPLAY: "/ui/country-display",
-  CURRENCY_SELECTOR: "/ui/currency-picker",
   COUNTRY_PICKER: "/ui/country-picker",
+  CURRENCY_SELECTOR: "/ui/currency-picker",
   DATA_COMPONENT: "/ui/data-component",
   DROPDOWN_MENU: "/ui/dropdown-menu",
   EDITABLE_TITLE: "/ui/editable-title",
   EXPORT_BUTTON: "/ui/export-xlsx",
+  FILE_CARD: "/ui/file-card",
   FILES_LIST: "/ui/files-list",
   FILES_PRESENTATION: "/ui/files-presentation",
   FILES_TABLE: "/ui/files-table",
-  FILE_CARD: "/ui/file-card",
   GET_STARTED: "/ui",
   GRID_CONTAINER: "/ui/grid-container",
-  INPUT: "/ui/input",
   INLINE_LINK: "/ui/inline-link",
+  INPUT: "/ui/input",
   LOADING: "/ui/loading",
   LOCAL_DATA_TABLE: "/ui/local-table",
   MESSAGE: "/ui/message",
@@ -89,218 +89,218 @@ export const UI_ROUTES = {
 
 const BUTTONS_ROUTES = [
   {
-    path: UI_ROUTES.BUTTON,
-    key: "button.title",
     element: <ButtonDemo />,
+    key: "button.title",
+    path: UI_ROUTES.BUTTON,
   },
   {
-    path: UI_ROUTES.EXPORT_BUTTON,
-    key: "exportButton.title",
     element: <ExportButtonDemo />,
+    key: "exportButton.title",
+    path: UI_ROUTES.EXPORT_BUTTON,
   },
   {
-    path: UI_ROUTES.SUBMIT_BUTTON,
-    key: "submitButton.title",
     element: <SubmitButtonDemo />,
+    key: "submitButton.title",
+    path: UI_ROUTES.SUBMIT_BUTTON,
   },
 ];
 
 const DATA_COMPONENT_ROUTES = [
   {
-    path: UI_ROUTES.DATA_COMPONENT,
-    key: "data.title",
     element: <DataDemo />,
+    key: "data.title",
+    path: UI_ROUTES.DATA_COMPONENT,
   },
   {
-    path: UI_ROUTES.TABLE,
-    key: "table.title",
     element: <TableDemo />,
+    key: "table.title",
+    path: UI_ROUTES.TABLE,
   },
   {
-    path: UI_ROUTES.COUNTRY_DISPLAY,
-    key: "countryDisplay.title",
     element: <CountryDisplayDemo />,
+    key: "countryDisplay.title",
+    path: UI_ROUTES.COUNTRY_DISPLAY,
   },
 ];
 
 const FILE_ROUTES = [
   {
-    path: UI_ROUTES.FILE_CARD,
-    key: "fileCard.title",
     element: <FileCardDemo />,
+    key: "fileCard.title",
+    path: UI_ROUTES.FILE_CARD,
   },
   {
-    path: UI_ROUTES.FILES_LIST,
-    key: "filesList.title",
     element: <FilesListDemo />,
+    key: "filesList.title",
+    path: UI_ROUTES.FILES_LIST,
   },
   {
-    path: UI_ROUTES.FILES_PRESENTATION,
-    key: "filesPresentation.title",
     element: <FilesPresentationDemo />,
+    key: "filesPresentation.title",
+    path: UI_ROUTES.FILES_PRESENTATION,
   },
   {
-    path: UI_ROUTES.FILES_TABLE,
-    key: "filesTable.title",
     element: <FilesTableDemo />,
+    key: "filesTable.title",
+    path: UI_ROUTES.FILES_TABLE,
   },
 ];
 
 const FORM_WIDGETS_ROUTES = [
   {
-    path: UI_ROUTES.CHECKBOX,
-    key: "checkbox.title",
     element: <CheckboxDemo />,
+    key: "checkbox.title",
+    path: UI_ROUTES.CHECKBOX,
   },
   {
-    path: UI_ROUTES.CHECKBOX_INPUT,
-    key: "checkboxInput.title",
     element: <CheckboxInputDemo />,
+    key: "checkboxInput.title",
+    path: UI_ROUTES.CHECKBOX_INPUT,
   },
   {
-    path: UI_ROUTES.COUNTRY_PICKER,
-    key: "countryPicker.title",
     element: <CountryPickerDemo />,
+    key: "countryPicker.title",
+    path: UI_ROUTES.COUNTRY_PICKER,
   },
   {
-    path: UI_ROUTES.CURRENCY_SELECTOR,
-    key: "currencyPicker.title",
     element: <CurrencyPickerDemo />,
+    key: "currencyPicker.title",
+    path: UI_ROUTES.CURRENCY_SELECTOR,
   },
   {
-    path: UI_ROUTES.INPUT,
-    key: "input.title",
     element: <InputDemo />,
+    key: "input.title",
+    path: UI_ROUTES.INPUT,
   },
   {
-    path: UI_ROUTES.SELECT,
-    key: "select.title",
     element: <SelectDemo />,
+    key: "select.title",
+    path: UI_ROUTES.SELECT,
   },
   {
-    path: UI_ROUTES.SWITCH_INPUT,
-    key: "switchInput.title",
     element: <SwitchInputDemo />,
+    key: "switchInput.title",
+    path: UI_ROUTES.SWITCH_INPUT,
   },
   {
-    path: UI_ROUTES.TEXTAREA,
-    key: "textarea.title",
     element: <TextareaDemo />,
+    key: "textarea.title",
+    path: UI_ROUTES.TEXTAREA,
   },
   {
-    path: UI_ROUTES.TYPEAHEAD,
-    key: "typeahead.title",
     element: <TypeaheadDemo />,
+    key: "typeahead.title",
+    path: UI_ROUTES.TYPEAHEAD,
   },
 ];
 
 const MENU_ROUTES = [
   {
-    path: UI_ROUTES.DROPDOWN_MENU,
-    key: "dropdownMenu.title",
     element: <DropdownMenuDemo />,
+    key: "dropdownMenu.title",
+    path: UI_ROUTES.DROPDOWN_MENU,
   },
 ];
 
 const MESSAGES_ROUTES = [
   {
-    path: UI_ROUTES.MESSAGE,
-    key: "message.title",
     element: <MessageDemo />,
+    key: "message.title",
+    path: UI_ROUTES.MESSAGE,
   },
 ];
 
 const MISC_ROUTES = [
   {
-    path: UI_ROUTES.EDITABLE_TITLE,
-    key: "editableTitle.title",
     element: <EditableTitleDemo />,
+    key: "editableTitle.title",
+    path: UI_ROUTES.EDITABLE_TITLE,
   },
   {
-    path: UI_ROUTES.GRID_CONTAINER,
-    key: "gridContainer.title",
     element: <GridContainerDemo />,
+    key: "gridContainer.title",
+    path: UI_ROUTES.GRID_CONTAINER,
   },
   {
-    path: UI_ROUTES.LOADING,
-    key: "loading.title",
     element: <LoadingDemo />,
+    key: "loading.title",
+    path: UI_ROUTES.LOADING,
   },
   {
-    path: UI_ROUTES.PAGE_DEMO,
-    key: "page.title.menu",
     element: <PageDemo />,
+    key: "page.title.menu",
+    path: UI_ROUTES.PAGE_DEMO,
   },
   {
-    path: UI_ROUTES.SORTABLE_LIST,
-    key: "sortableList.title",
     element: <SortableListDemo />,
+    key: "sortableList.title",
+    path: UI_ROUTES.SORTABLE_LIST,
   },
   {
-    path: UI_ROUTES.TAG,
-    key: "tag.title",
     element: <TagDemo />,
+    key: "tag.title",
+    path: UI_ROUTES.TAG,
   },
   {
-    path: UI_ROUTES.YOUTUBE_FACADE,
-    key: "youtubeFacade.title",
     element: <YoutubeFacadeDemo />,
+    key: "youtubeFacade.title",
+    path: UI_ROUTES.YOUTUBE_FACADE,
   },
   {
-    path: UI_ROUTES.INLINE_LINK,
-    key: "inlineLink.title",
     element: <InlineLinkDemo />,
+    key: "inlineLink.title",
+    path: UI_ROUTES.INLINE_LINK,
   },
 ];
 
 const OVERLAY_ROUTES = [
   {
-    path: UI_ROUTES.CONFIRMATION_MODAL,
-    key: "confirmationModal.title",
     element: <ConfirmationModalDemo />,
+    key: "confirmationModal.title",
+    path: UI_ROUTES.CONFIRMATION_MODAL,
   },
   {
-    path: UI_ROUTES.MODAL,
-    key: "modal.title",
     element: <ModalDemo />,
+    key: "modal.title",
+    path: UI_ROUTES.MODAL,
   },
   {
-    path: UI_ROUTES.POPUP,
-    key: "popup.title",
     element: <PopupDemo />,
+    key: "popup.title",
+    path: UI_ROUTES.POPUP,
   },
   {
-    path: UI_ROUTES.TOOLTIP,
-    key: "tooltip.title",
     element: <TooltipDemo />,
+    key: "tooltip.title",
+    path: UI_ROUTES.TOOLTIP,
   },
 ];
 
 const PANEL_ROUTES = [
   {
-    path: UI_ROUTES.ACCORDION,
-    key: "accordion.title",
     element: <AccordionDemo />,
+    key: "accordion.title",
+    path: UI_ROUTES.ACCORDION,
   },
   {
-    path: UI_ROUTES.CARD,
-    key: "card.title",
     element: <CardDemo />,
+    key: "card.title",
+    path: UI_ROUTES.CARD,
   },
   {
-    path: UI_ROUTES.STEPPER,
-    key: "stepper.title",
     element: <StepperDemo />,
+    key: "stepper.title",
+    path: UI_ROUTES.STEPPER,
   },
   {
-    path: UI_ROUTES.TABBED_PANEL,
-    key: "tabbedPanel.title",
     element: <TabbedPanelDemo />,
+    key: "tabbedPanel.title",
+    path: UI_ROUTES.TABBED_PANEL,
   },
   {
-    path: UI_ROUTES.TABVIEW,
-    key: "tabview.title",
     element: <TabViewDemo />,
+    key: "tabview.title",
+    path: UI_ROUTES.TABVIEW,
   },
 ];
 
@@ -324,79 +324,79 @@ export const Pages = () => {
     {
       label: t("headers.buttons"),
       submenu: [
-        ...BUTTONS_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...BUTTONS_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.data"),
       submenu: [
-        ...DATA_COMPONENT_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...DATA_COMPONENT_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.file"),
       submenu: [
-        ...FILE_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...FILE_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.formWidgets"),
       submenu: [
-        ...FORM_WIDGETS_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...FORM_WIDGETS_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.menu"),
       submenu: [
-        ...MENU_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...MENU_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.messages"),
       submenu: [
-        ...MESSAGES_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...MESSAGES_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.overlay"),
       submenu: [
-        ...OVERLAY_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...OVERLAY_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.panel"),
       submenu: [
-        ...PANEL_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...PANEL_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
     {
       label: t("headers.misc"),
       submenu: [
-        ...MISC_ROUTES.map(({ path, key }) => {
-          return { route: path, label: t(key) };
+        ...MISC_ROUTES.map(({ key, path }) => {
+          return { label: t(key), route: path };
         }),
       ],
     },
   ];
 
   return (
-    <Demo subnav={subnav} isGrouped>
+    <Demo isGrouped subnav={subnav}>
       <Outlet />
     </Demo>
   );

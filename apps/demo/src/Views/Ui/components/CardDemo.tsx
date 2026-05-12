@@ -14,27 +14,27 @@ import { CodeBlock, Section } from "../../../components/Demo";
 
 const data = [
   {
+    default: "-",
+    description: "Additional CSS classes to apply to the card.",
     id: 1,
     prop: " className",
     type: "string",
-    default: "-",
-    description: "Additional CSS classes to apply to the card.",
   },
   {
-    id: 2,
-    prop: "children",
-    type: "ReactNode",
     default: "-",
     description:
       "The content of the card. Typically includes child components like `CardHeader`, `CardBody` and `CardFooter`.",
+    id: 2,
+    prop: "children",
+    type: "ReactNode",
   },
   {
-    id: 3,
-    prop: "outlined",
-    type: "boolean",
     default: "false",
     description:
       "Whether to render the card in an outlined style (e.g. with a border)",
+    id: 3,
+    prop: "outlined",
+    type: "boolean",
   },
 ];
 
@@ -47,10 +47,10 @@ export const CardDemo = () => {
       title={t("card.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >

@@ -7,7 +7,7 @@ import { getMe } from "@/api/user";
 import { EMAIL_VERIFICATION } from "@/constants";
 import { verifyEmail } from "@/supertokens";
 
-import { UserContextType, useConfig, userContext } from "..";
+import { useConfig, userContext, UserContextType } from "..";
 
 export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
   const [verifyEmailLoading, setVerifyEmailLoading] = useState<boolean>(true);
@@ -16,7 +16,7 @@ export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
   const [isEmailUpdated, setIsEmailUpdated] = useState(false);
 
   const { t } = useTranslation("user");
-  const { user, setUser } = useContext(userContext) as UserContextType;
+  const { setUser, user } = useContext(userContext) as UserContextType;
   const config = useConfig();
 
   useEffect(() => {
@@ -57,13 +57,13 @@ export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
     let message = "";
 
     switch (status) {
+      case EMAIL_VERIFICATION.EMAIL_VERIFICATION_INVALID_TOKEN_ERROR:
+        message = t("emailVerification.messages.invalidToken");
+        break;
       case EMAIL_VERIFICATION.OK:
         isEmailUpdated
           ? (message = t("emailVerification.toastMessages.updateSuccess"))
           : (message = t("emailVerification.toastMessages.success"));
-        break;
-      case EMAIL_VERIFICATION.EMAIL_VERIFICATION_INVALID_TOKEN_ERROR:
-        message = t("emailVerification.messages.invalidToken");
         break;
       default:
         setError(true);
@@ -89,10 +89,10 @@ export const VerifyEmail = ({ centered = true }: { centered?: boolean }) => {
 
   return (
     <AuthPage
-      className="email-verification"
-      title={t("emailVerification.verifyEmail")}
-      loading={verifyEmailLoading}
       centered={centered}
+      className="email-verification"
+      loading={verifyEmailLoading}
+      title={t("emailVerification.verifyEmail")}
     >
       {renderMessage()}
     </AuthPage>

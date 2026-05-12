@@ -4,7 +4,7 @@ export interface ITextareaProperties extends TextareaHTMLAttributes<HTMLTextArea
   errorMessage?: string;
   hasError?: boolean;
   helperText?: string;
-  label?: string | React.ReactNode;
+  label?: React.ReactNode | string;
 }
 
 export const Textarea = ({
@@ -16,24 +16,24 @@ export const Textarea = ({
   helperText,
   label,
   name = "",
+  onChange,
   placeholder,
   readOnly,
-  onChange,
   ...others
 }: ITextareaProperties) => {
   return (
     <div className={`field ${className}`.trimEnd()}>
       {label && <label htmlFor={name}>{label}</label>}
       <textarea
-        id={name}
-        className={`textarea-field ${name}`.trimEnd()}
         aria-invalid={hasError}
+        className={`textarea-field ${name}`.trimEnd()}
+        disabled={disabled}
+        id={name}
         name={name}
         onChange={onChange}
         placeholder={placeholder}
-        value={defaultValue}
-        disabled={disabled}
         readOnly={readOnly}
+        value={defaultValue}
         {...others}
       />
       {helperText && <span className="helper-text">{helperText}</span>}

@@ -1,41 +1,41 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-import { FileDropzoneBasic } from "./FileDropzoneBasic";
-
 import type { FileExtended, IFileDropzoneProperties } from "../types";
 
+import { FileDropzoneBasic } from "./FileDropzoneBasic";
+
 export const FileDropzone = ({
-  name,
-  label,
-  mode = "update",
-  multiple,
-  enableDescription = false,
   addDescriptionLabel,
   descriptionPlaceholder,
   dropzoneMessage,
   dropzoneOptions,
+  enableDescription = false,
+  label,
+  mode = "update",
+  multiple,
+  name,
 }: IFileDropzoneProperties) => {
   const { control } = useFormContext();
 
   return (
     <>
       <Controller
-        name={name}
         control={control}
+        name={name}
         render={({ field }) => (
           <FileDropzoneBasic
-            name={field.name}
-            value={field.value}
-            label={label}
-            mode={mode}
-            multiple={multiple}
-            dropzoneOptions={dropzoneOptions}
-            enableDescription={enableDescription}
             addDescriptionLabel={addDescriptionLabel}
             descriptionPlaceholder={descriptionPlaceholder}
             dropzoneMessage={dropzoneMessage}
+            dropzoneOptions={dropzoneOptions}
+            enableDescription={enableDescription}
+            label={label}
+            mode={mode}
+            multiple={multiple}
+            name={field.name}
             onChange={(files: FileExtended[]) => field.onChange(files)}
+            value={field.value}
           />
         )}
       />

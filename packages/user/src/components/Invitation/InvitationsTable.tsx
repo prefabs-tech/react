@@ -2,12 +2,12 @@ import { AdditionalFormFields } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import {
   TDataTable as DataTable,
-  TDataTableProperties,
-  TRequestJSON,
+  FilterOption,
   IButtonProperties,
   TableColumnDefinition,
   Tag,
-  FilterOption,
+  TDataTableProperties,
+  TRequestJSON,
 } from "@prefabs.tech/react-ui";
 import { toast } from "react-toastify";
 
@@ -19,33 +19,23 @@ import {
 import { useConfig } from "@/hooks";
 import { DeleteInvitationResponse } from "@/types/invitation";
 
-import { InvitationModal } from "./InvitationModal";
-
 import type {
   AddInvitationResponse,
+  Invitation,
   InvitationAppOption,
-  InvitationRoleOption,
   InvitationExpiryDateField,
+  InvitationRoleOption,
   ResendInvitationResponse,
   RevokeInvitationResponse,
-  Invitation,
   UserType,
 } from "../../types";
 
-type VisibleColumn =
-  | "email"
-  | "appId"
-  | "role"
-  | "invitedBy"
-  | "expiresAt"
-  | "status"
-  | "actions"
-  | string;
+import { InvitationModal } from "./InvitationModal";
 
 export type InvitationsTableProperties = Partial<
   Omit<
     TDataTableProperties<Invitation>,
-    "data" | "visibleColumns" | "fetchData"
+    "data" | "fetchData" | "visibleColumns"
   >
 > & {
   additionalInvitationFields?: AdditionalFormFields;
@@ -69,6 +59,16 @@ export type InvitationsTableProperties = Partial<
   visibleColumns?: VisibleColumn[];
 };
 
+type VisibleColumn =
+  | "actions"
+  | "appId"
+  | "email"
+  | "expiresAt"
+  | "invitedBy"
+  | "role"
+  | "status"
+  | string;
+
 export const InvitationsTable = ({
   additionalInvitationFields,
   appFilterOptions,
@@ -79,8 +79,8 @@ export const InvitationsTable = ({
   invitationButtonOptions,
   invitationExpiryDateField,
   invitations,
-  onInvitationDeleted,
   onInvitationAdded,
+  onInvitationDeleted,
   onInvitationResent,
   onInvitationRevoked,
   prepareInvitationData,
@@ -102,7 +102,7 @@ export const InvitationsTable = ({
 }: InvitationsTableProperties) => {
   const config = useConfig();
 
-  const { t, i18n } = useTranslation("invitations");
+  const { i18n, t } = useTranslation("invitations");
 
   const handleResendInvitation = (invitation: Invitation) => {
     resendInvitation(invitation.id, config.apiBaseUrl)
@@ -160,7 +160,7 @@ export const InvitationsTable = ({
       });
   };
 
-  const isExpired = (date?: string | Date | number) => {
+  const isExpired = (date?: Date | number | string) => {
     return !!(date && new Date(date) < new Date());
   };
 
@@ -203,10 +203,10 @@ export const InvitationsTable = ({
             <>
               {roles?.map((role: string, index: number) => (
                 <Tag
-                  key={role + index}
-                  label={role}
                   color={role === "ADMIN" ? "default" : "green"}
                   fullWidth
+                  key={role + index}
+                  label={role}
                 />
               ))}
             </>
@@ -217,9 +217,9 @@ export const InvitationsTable = ({
 
         return (
           <Tag
-            label={role}
             color={role === "ADMIN" ? "default" : "green"}
             fullWidth
+            label={role}
           />
         );
       },
@@ -256,7 +256,7 @@ export const InvitationsTable = ({
       accessorKey: "status",
       align: "center",
       cell: ({ row: { original } }) => {
-        const { acceptedAt, revokedAt, expiresAt } = original;
+        const { acceptedAt, expiresAt, revokedAt } = original;
 
         const getLabel = () => {
           if (acceptedAt) {
@@ -290,7 +290,7 @@ export const InvitationsTable = ({
           return "yellow";
         };
 
-        return <Tag label={getLabel()} color={getColor()} fullWidth />;
+        return <Tag color={getColor()} fullWidth label={getLabel()} />;
       },
       enableColumnFilter: true,
       filterPlaceholder: t("table.placeholders.status"),
@@ -321,8 +321,8 @@ export const InvitationsTable = ({
           <InvitationModal
             additionalInvitationFields={additionalInvitationFields}
             apps={apps}
-            invitationButtonOptions={invitationButtonOptions}
             expiryDateField={invitationExpiryDateField}
+            invitationButtonOptions={invitationButtonOptions}
             onSubmitted={onInvitationAdded}
             prepareData={prepareInvitationData}
             roles={roles}
@@ -337,60 +337,60 @@ export const InvitationsTable = ({
       className={className}
       columns={[...defaultColumns, ...columns]}
       data={invitations}
-      emptyTableMessage={t("table.emptyMessage")}
-      fetchData={fetchInvitations}
-      locale={i18n?.language}
-      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
-      totalRecords={totalRecords}
-      visibleColumns={visibleColumns}
-      paginationOptions={{
-        pageInputLabel: t("table.pagination.pageControl"),
-        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
-      }}
       dataActionsMenu={{
         actions: [
           {
-            label: t("invitations.actions.resend"),
-            icon: "pi pi-replay",
+            confirmationOptions: {
+              header: t("confirmation.header"),
+              message: t("confirmation.confirm.resend.message"),
+            },
             disabled: (invitation) =>
               !!invitation.acceptedAt ||
               !!invitation.revokedAt ||
               isExpired(invitation.expiresAt),
+            icon: "pi pi-replay",
+            label: t("invitations.actions.resend"),
             onClick: (invitation) => handleResendInvitation(invitation),
             requireConfirmationModal: true,
-            confirmationOptions: {
-              message: t("confirmation.confirm.resend.message"),
-              header: t("confirmation.header"),
-            },
           },
           {
-            label: t("invitations.actions.revoke"),
-            icon: "pi pi-times",
             className: "danger",
+            confirmationOptions: {
+              header: t("confirmation.header"),
+              message: t("confirmation.confirm.revoke.message"),
+            },
             disabled: (invitation) =>
               !!invitation.acceptedAt ||
               !!invitation.revokedAt ||
               isExpired(invitation.expiresAt),
+            icon: "pi pi-times",
+            label: t("invitations.actions.revoke"),
             onClick: (invitation) => handleRevokeInvitation(invitation),
             requireConfirmationModal: true,
-            confirmationOptions: {
-              message: t("confirmation.confirm.revoke.message"),
-              header: t("confirmation.header"),
-            },
           },
           {
-            label: t("invitations.actions.delete"),
-            icon: "pi pi-trash",
             className: "danger",
+            confirmationOptions: {
+              header: t("confirmation.header"),
+              message: t("confirmation.confirm.delete.message"),
+            },
+            icon: "pi pi-trash",
+            label: t("invitations.actions.delete"),
             onClick: (invitation) => handleDeleteInvitation(invitation.id),
             requireConfirmationModal: true,
-            confirmationOptions: {
-              message: t("confirmation.confirm.delete.message"),
-              header: t("confirmation.header"),
-            },
           },
         ],
       }}
+      emptyTableMessage={t("table.emptyMessage")}
+      fetchData={fetchInvitations}
+      locale={i18n?.language}
+      paginationOptions={{
+        itemsPerPageControlLabel: t("table.pagination.rowsPerPage"),
+        pageInputLabel: t("table.pagination.pageControl"),
+      }}
+      renderToolbarItems={showInviteAction ? renderToolbar : undefined}
+      totalRecords={totalRecords}
+      visibleColumns={visibleColumns}
       {...tableOptions}
     ></DataTable>
   );

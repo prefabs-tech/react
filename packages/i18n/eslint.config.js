@@ -8,9 +8,9 @@ export default [
         "error",
         {
           cases: {
+            camelCase: true,
             kebabCase: true,
             pascalCase: true,
-            camelCase: true,
           },
         },
       ],

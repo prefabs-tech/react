@@ -7,7 +7,7 @@
   --_padding-block: var(--field-padding-block, 0.5rem);
   --_padding-inline: var(--field-padding-inline, 0.75rem);
   --_placeholder-color: var(--field-placeholder-color, #7b7676);
-  --_options-menu-background-color: var(--list-menu-bg-color, #ffffff);
+  --_options-menu-background-color: var(--list-menu-bg-color, #fff);
   --_option-background-color-hover: var(--list-item-bg-hover, #ededed);
   --_option-background-color-active: var(--list-item-bg-active, #ededed);
 }
@@ -18,7 +18,7 @@
   --_icon-color: var(--field-icon-color, #7b7676);
   --_padding-block: var(--field-padding-block, 0.5rem);
   --_padding-inline: var(--field-padding-inline, 0.75rem);
-  --_options-menu-background-color: var(--list-menu-bg-color, #ffffff);
+  --_options-menu-background-color: var(--list-menu-bg-color, #fff);
   --_option-background-color-hover: var(--list-item-bg-hover, #ededed);
   --_option-background-color-active: var(--list-item-bg-active, #ededed);
 }
@@ -55,8 +55,8 @@
 }
 
 .typeahead-menu ul > li.disabled {
-  opacity: 0.8;
   cursor: not-allowed;
+  opacity: 0.8;
 }
 
 .typeahead > .loading {

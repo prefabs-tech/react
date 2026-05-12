@@ -9,7 +9,6 @@
 }
 
 .field.checkbox > .checkbox-group.direction-horizontal {
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   gap: 1.5rem;
 }

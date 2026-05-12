@@ -1,5 +1,5 @@
-export * from "./Tooltip";
 export {
-  type ConfigureTooltipOptions,
   configureTooltip,
+  type ConfigureTooltipOptions,
 } from "./ConfigureTooltip";
+export * from "./Tooltip";

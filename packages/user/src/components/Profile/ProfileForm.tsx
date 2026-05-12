@@ -1,4 +1,4 @@
-import { Provider, AdditionalFormFields } from "@prefabs.tech/react-form";
+import { AdditionalFormFields, Provider } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -21,8 +21,8 @@ export const ProfileForm = ({
   onCancel,
   onSubmitted,
 }: Properties) => {
-  const { t, i18n } = useTranslation("user");
-  const { user, setUser } = useUser();
+  const { i18n, t } = useTranslation("user");
+  const { setUser, user } = useUser();
   const config = useConfig();
   const [submitting, setSubmitting] = useState(false);
 
@@ -68,8 +68,8 @@ export const ProfileForm = ({
   const formValues = {
     email: user?.email || "",
     givenName: user?.givenName || "",
-    surname: user?.surname || "",
     middleNames: user?.middleNames || "",
+    surname: user?.surname || "",
     ...additionalProfileFields?.defaultValues,
   };
 
@@ -81,9 +81,9 @@ export const ProfileForm = ({
       values={formValues}
     >
       <ProfileFormFields
-        submitting={submitting}
         additionalProfileFields={additionalProfileFields}
         onCancel={onCancel}
+        submitting={submitting}
       />
     </Provider>
   );

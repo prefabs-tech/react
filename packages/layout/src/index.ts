@@ -1,5 +1,7 @@
 import "./assets/css/index.css";
 
+import type { PrefabsTechReactLayoutConfig } from "./types";
+
 import {
   Copyright,
   Header,
@@ -10,9 +12,9 @@ import {
   Sidebar,
   SidebarFooter,
   SidebarHeader,
+  StickyCollapsibleFooter,
   ToggleMenuMobile,
   Version,
-  StickyCollapsibleFooter,
 } from "./components/Layout";
 import {
   LayoutContext,
@@ -28,8 +30,6 @@ import {
   SidebarOnlyLayoutProperties,
 } from "./layouts";
 
-import type { PrefabsTechReactLayoutConfig } from "./types";
-
 declare module "@prefabs.tech/react-config" {
   export interface AppConfig {
     layout?: PrefabsTechReactLayoutConfig;
@@ -37,31 +37,28 @@ declare module "@prefabs.tech/react-config" {
 }
 
 export {
-  // layouts
-  SidebarHeaderLayout,
-  HeaderLayout,
-  SidebarOnlyLayout,
-
-  // wrapper
-  Layout,
-
   // components
   Copyright,
   Header,
+  HeaderLayout,
   HeaderMenu,
   HeaderTitle,
-  Logo,
-  SidebarFooter,
-  SidebarHeader,
-  Sidebar,
-  StickyCollapsibleFooter,
-  ToggleMenuMobile,
-  Version,
-
+  // wrapper
+  Layout,
   // context
   LayoutContext,
   LayoutProvider,
+  Logo,
+  Sidebar,
+  SidebarFooter,
+  SidebarHeader,
+  // layouts
+  SidebarHeaderLayout,
+  SidebarOnlyLayout,
+  StickyCollapsibleFooter,
+  ToggleMenuMobile,
   useLayoutContext,
+  Version,
 };
 
 export type {

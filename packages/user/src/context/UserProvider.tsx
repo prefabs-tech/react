@@ -15,10 +15,10 @@ interface Properties {
   children: React.ReactNode;
 }
 
-const userContext = createContext<UserContextType | null>(null);
+const userContext = createContext<null | UserContextType>(null);
 
 const UserProvider = ({ children }: Properties) => {
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, setUser] = useState<null | UserType>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const config = useConfig();
 
@@ -52,7 +52,7 @@ const UserProvider = ({ children }: Properties) => {
     getUser();
   }, []);
 
-  const updateUser = async (_user: UserType | null) => {
+  const updateUser = async (_user: null | UserType) => {
     if (_user) {
       const userData = {
         ..._user,
@@ -74,7 +74,7 @@ const UserProvider = ({ children }: Properties) => {
   };
 
   return (
-    <userContext.Provider value={{ user, loading, setUser: updateUser }}>
+    <userContext.Provider value={{ loading, setUser: updateUser, user }}>
       {loading ? null : children}
     </userContext.Provider>
   );

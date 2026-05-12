@@ -1,17 +1,17 @@
 import {
+  type ChangeEvent,
   forwardRef,
   useEffect,
   useRef,
   useState,
-  type ChangeEvent,
 } from "react";
 
 import { useDebouncedValue } from "../../utils";
 import { IInputProperties, Input } from "../Input";
 
 export interface DebouncedInputProperties extends IInputProperties {
-  onInputChange: (value: string | number | readonly string[]) => void;
   debounceTime?: number;
+  onInputChange: (value: number | readonly string[] | string) => void;
 }
 
 export const DebouncedInput = forwardRef<
@@ -20,11 +20,11 @@ export const DebouncedInput = forwardRef<
 >(
   (
     {
-      onInputChange,
-      debounceTime = 500,
-      type = "text",
       className = "",
+      debounceTime = 500,
       defaultValue = "",
+      onInputChange,
+      type = "text",
       ...inputProperties
     },
     reference,
@@ -34,7 +34,7 @@ export const DebouncedInput = forwardRef<
     const isMounted = useRef(false);
 
     const debouncedValue = useDebouncedValue<
-      string | number | readonly string[]
+      number | readonly string[] | string
     >(inputValue, debounceTime);
 
     useEffect(() => {
@@ -56,11 +56,11 @@ export const DebouncedInput = forwardRef<
     return (
       <Input
         className={`debounced-input ${className}`}
+        name="debounced-input"
         onChange={handleInputChange}
+        ref={reference}
         type={type}
         value={inputValue}
-        ref={reference}
-        name="debounced-input"
         {...inputProperties}
       />
     );

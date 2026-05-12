@@ -7,30 +7,30 @@ import { Button } from "../ButtonBasic";
 
 export interface ExportButtonProperties extends ComponentProps<typeof Button> {
   filename?: string;
-  sheetName?: string;
-  sheetOptions?: WorkSheetOptions;
-  onExportStart?: () => void;
-  onExportEnd?: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   getData: () => Array<Array<any>>;
+  onExportEnd?: () => void;
+  onExportStart?: () => void;
+  sheetName?: string;
+  sheetOptions?: WorkSheetOptions;
 }
 
 export const ExportButton: React.FC<ExportButtonProperties> = ({
-  label = "Export XLSX",
   filename,
+  getData,
+  label = "Export XLSX",
+  onExportEnd,
+  onExportStart,
   sheetName,
   sheetOptions,
-  getData,
-  onExportStart,
-  onExportEnd,
   ...buttonOptions
 }) => {
   const [exporting, triggerExport] = useExporter({
     filename,
+    onExportEnd,
+    onExportStart,
     sheetName,
     sheetOptions,
-    onExportStart,
-    onExportEnd,
   });
 
   const onExportButtonClick = useCallback(() => {
@@ -40,9 +40,9 @@ export const ExportButton: React.FC<ExportButtonProperties> = ({
 
   return (
     <Button
-      label={label}
       disabled={exporting}
       iconRight={exporting && <LoadingIcon />}
+      label={label}
       onClick={onExportButtonClick}
       {...buttonOptions}
     />

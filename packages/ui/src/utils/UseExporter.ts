@@ -2,30 +2,30 @@ import saveAs from "file-saver";
 import { build, WorkSheetOptions } from "node-xlsx";
 import { useCallback, useState } from "react";
 
-type UseExporterOptions = {
-  filename?: string;
-  sheetName?: string;
-  sheetOptions?: WorkSheetOptions;
-  onExportStart?: () => void;
-  onExportEnd?: () => void;
-};
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type TriggerExportType = (data: any) => void;
 
+type UseExporterOptions = {
+  filename?: string;
+  onExportEnd?: () => void;
+  onExportStart?: () => void;
+  sheetName?: string;
+  sheetOptions?: WorkSheetOptions;
+};
+
 const exportXLSX = ({
-  sheetName,
-  filename,
   data,
+  filename,
+  sheetName,
   sheetOptions,
 }: {
-  sheetName: string;
-  filename: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
+  filename: string;
+  sheetName: string;
   sheetOptions: WorkSheetOptions;
 }) => {
-  const buffer = build([{ name: sheetName, data, options: sheetOptions }]);
+  const buffer = build([{ data, name: sheetName, options: sheetOptions }]);
 
   saveAs(
     new Blob([buffer as BlobPart], {
@@ -37,10 +37,10 @@ const exportXLSX = ({
 
 export const useExporter = ({
   filename = `export_${Date.now()}.xlsx`,
+  onExportEnd,
+  onExportStart,
   sheetName = "Sheet 1",
   sheetOptions = {},
-  onExportStart,
-  onExportEnd,
 }: UseExporterOptions): [boolean, TriggerExportType] => {
   const [exporting, setExporting] = useState(false);
 
@@ -52,7 +52,7 @@ export const useExporter = ({
         onExportStart();
       }
 
-      exportXLSX({ sheetName, filename, data, sheetOptions });
+      exportXLSX({ data, filename, sheetName, sheetOptions });
 
       setExporting(false);
       if (onExportEnd) {

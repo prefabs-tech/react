@@ -1,20 +1,20 @@
-.tabbed-panel > div[role=tablist] > button {
+.tabbed-panel > div[role="tablist"] > button {
   align-items: center;
   display: flex;
   gap: 1rem;
   max-width: 250px;
 }
 
-.tabbed-panel > div[role=tablist] > button span {
-  text-wrap: nowrap;
-  text-overflow: ellipsis;
+.tabbed-panel > div[role="tablist"] > button span {
   overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
 }
 
-.tabbed-panel > div[role=tablist] > button i {
+.tabbed-panel > div[role="tablist"] > button i {
   color: var(--dz-secondary-color);
-  font-weight: 500;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .tabbed-panel > div > button.active i {

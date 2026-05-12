@@ -1,14 +1,13 @@
 .demo-button .container,
 .demo-modal .container {
-  display: flex;
   align-items: center;
-  gap: 1rem;
+  display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .demo-switch-input .container {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   gap: 1rem;
-  flex-wrap: wrap;
 }

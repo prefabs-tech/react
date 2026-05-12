@@ -49,14 +49,14 @@ export const MessageDemo = () => {
 
   return (
     <Page
-      title={t("message.title")}
       subtitle={t("message.subtitle")}
+      title={t("message.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -122,8 +122,8 @@ export const MessageDemo = () => {
 
       <Section title={t("message.usage.icons.icon")}>
         <Message
-          message="New features just launched! Check them out!"
           icon="pi pi-android"
+          message="New features just launched! Check them out!"
         />
         <CodeBlock
           exampleCode='<Message 
@@ -135,8 +135,8 @@ export const MessageDemo = () => {
 
       <Section title={t("message.usage.icons.customIcon")}>
         <Message
-          message="New Year, New You: Start fresh with our services!"
           icon={<i className="pi pi-bell" />}
+          message="New Year, New You: Start fresh with our services!"
         />
         <CodeBlock
           exampleCode='<Message 

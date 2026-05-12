@@ -3,13 +3,13 @@ import React, { createContext } from "react";
 import { AppConfig } from "../types";
 
 interface Properties {
-  children: React.ReactNode;
   appConfig: AppConfig;
+  children: React.ReactNode;
 }
 
 const configContext = createContext<AppConfig | undefined>(undefined);
 
-const ConfigProvider = ({ children, appConfig }: Properties) => {
+const ConfigProvider = ({ appConfig, children }: Properties) => {
   return (
     <configContext.Provider value={appConfig}>
       {children}

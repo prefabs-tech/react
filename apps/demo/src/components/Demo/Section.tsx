@@ -1,15 +1,15 @@
 import { ReactNode } from "react";
 
 interface Properties {
-  title?: string;
-  subtitle?: string;
   children?: ReactNode;
+  subtitle?: string;
+  title?: string;
 }
 
 export const Section: React.FC<Properties> = ({
-  title,
-  subtitle,
   children,
+  subtitle,
+  title,
 }) => {
   return (
     <section className="demo-section">

@@ -19,32 +19,32 @@ const ChangePasswordFormFields = ({
 
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    formState: { errors, submitCount, isDirty },
-    register,
+    formState: { errors, isDirty, submitCount },
     getFieldState,
+    register,
   } = useFormContext();
 
   return (
     <>
       <Password
         autoComplete="current-password"
+        getFieldState={getFieldState}
         label={t("changePassword.form.currentPassword.label")}
         name="oldPassword"
         register={register}
-        getFieldState={getFieldState}
       />
       <Password
+        getFieldState={getFieldState}
         label={t("changePassword.form.newPassword.label")}
         name="password"
         register={register}
-        getFieldState={getFieldState}
       />
       {hasConfirmPasswordFeature && (
         <Password
+          getFieldState={getFieldState}
           label={t("changePassword.form.confirmPassword.label")}
           name="confirmPassword"
           register={register}
-          getFieldState={getFieldState}
         />
       )}
 
@@ -55,8 +55,8 @@ const ChangePasswordFormFields = ({
             label: t("changePassword.form.actions.submit"),
           },
         ]}
-        loading={loading}
         alignment="left"
+        loading={loading}
       />
     </>
   );

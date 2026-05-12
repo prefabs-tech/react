@@ -1,14 +1,15 @@
-import { getStorage } from "../utils";
-
-import type { TKeymap, TOrientation, TPosition, StorageType } from "./types";
 import type { KeyboardEvent } from "react";
+
+import type { StorageType, TKeymap, TOrientation, TPosition } from "./types";
+
+import { getStorage } from "../utils";
 
 const getOrientation = (position: TPosition) => {
   let orientation: TOrientation;
 
   switch (position) {
-    case "top":
     case "bottom":
+    case "top":
       orientation = "horizontal";
       break;
 
@@ -41,12 +42,12 @@ const onTabDown = (
 
   // https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code
   const keyMap: TKeymap = {
-    ArrowRight: orientation === "horizontal" ? nextTab : doNothing,
     ArrowDown: orientation === "vertical" ? nextTab : doNothing,
     ArrowLeft: orientation === "horizontal" ? previousTab : doNothing,
+    ArrowRight: orientation === "horizontal" ? nextTab : doNothing,
     ArrowUp: orientation === "vertical" ? previousTab : doNothing,
-    Home: firstTab,
     End: lastTab,
+    Home: firstTab,
   };
 
   const action = keyMap[event.key];
@@ -65,4 +66,4 @@ const clearSavedTabState = (
   storage.removeItem(key);
 };
 
-export { getOrientation, onTabDown, clearSavedTabState };
+export { clearSavedTabState, getOrientation, onTabDown };

@@ -15,10 +15,10 @@ export const LoginFormFields = ({ loading, onEmailChange }: Properties) => {
   const { t } = useTranslation("user");
 
   const {
-    register,
-    getFieldState,
-    watch,
     formState: { errors, submitCount }, // eslint-disable-line @typescript-eslint/no-unused-vars
+    getFieldState,
+    register,
+    watch,
   } = useFormContext();
 
   const emailValue = watch("email");
@@ -35,17 +35,17 @@ export const LoginFormFields = ({ loading, onEmailChange }: Properties) => {
         label={t("login.form.email.label")}
         name="email"
         placeholder={t("login.form.email.placeholder")}
-        submitCount={submitCount}
         showValidState={false}
+        submitCount={submitCount}
       />
       <Password
         autoComplete="current-password"
+        getFieldState={getFieldState}
         label={t("login.form.password.label")}
         name="password"
-        submitCount={submitCount}
         register={register}
-        getFieldState={getFieldState}
         showValidState={false}
+        submitCount={submitCount}
       />
 
       <FormActions
@@ -55,8 +55,8 @@ export const LoginFormFields = ({ loading, onEmailChange }: Properties) => {
             label: t("login.form.actions.submit"),
           },
         ]}
-        loading={loading}
         alignment="fill"
+        loading={loading}
       />
     </>
   );

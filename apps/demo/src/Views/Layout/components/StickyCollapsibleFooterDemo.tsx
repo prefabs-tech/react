@@ -15,18 +15,18 @@ import { CodeBlock, Section } from "../../../components/Demo";
 
 const data = [
   {
+    description:
+      "The content to be displayed inside the sticky collapsible footer.",
     id: 1,
     prop: "children",
     type: "ReactNode",
-    description:
-      "The content to be displayed inside the sticky collapsible footer.",
   },
   {
+    description:
+      "If false, indicates that the sticky collapsible footer is positioned at the bottom of the parent container, otherwise fixed at the bottom of viewport. Defaults to 'true'.",
     id: 2,
     prop: "fixed",
     type: "boolean",
-    description:
-      "If false, indicates that the sticky collapsible footer is positioned at the bottom of the parent container, otherwise fixed at the bottom of viewport. Defaults to 'true'.",
   },
 ];
 
@@ -38,14 +38,14 @@ export const StickyCollapsibleFooterDemo = () => {
 
   return (
     <Page
-      title={t("stickyCollapsibleFooter.title")}
       className="sticky-collapsible-footer"
+      title={t("stickyCollapsibleFooter.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -104,20 +104,20 @@ export const StickyCollapsibleFooterDemo = () => {
         />
         <StickyCollapsibleFooter>
           <Input
-            placeholder="Input placeholder"
             onChange={(event) => setInputValue(event.target.value)}
+            placeholder="Input placeholder"
           />
           <Button
             label="Submit"
-            size="small"
             onClick={() => alert(inputValue)}
+            size="small"
           />
           <Button
             label="Cancel"
-            size="small"
-            severity="secondary"
-            variant="outlined"
             onClick={() => alert("Cancelled!")}
+            severity="secondary"
+            size="small"
+            variant="outlined"
           />
         </StickyCollapsibleFooter>
       </Section>

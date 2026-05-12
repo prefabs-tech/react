@@ -1,10 +1,10 @@
 import { Trans, useTranslation } from "@prefabs.tech/react-i18n";
-import { CurrencyPicker, Page, Button } from "@prefabs.tech/react-ui";
+import { Button, CurrencyPicker, Page } from "@prefabs.tech/react-ui";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { currencies } from "./data";
 import { CodeBlock, Section } from "../../../../components/Demo";
+import { currencies } from "./data";
 
 export const CurrencyPickerDemo = () => {
   const [t] = useTranslation("ui");
@@ -48,10 +48,10 @@ export const CurrencyPickerDemo = () => {
       title={t("currencyPicker.title")}
       toolbar={
         <Button
-          label={t("buttons.back")}
-          variant="textOnly"
           iconLeft={<i className="pi pi-chevron-left"></i>}
+          label={t("buttons.back")}
           onClick={() => navigate("..")}
+          variant="textOnly"
         />
       }
     >
@@ -64,10 +64,10 @@ export const CurrencyPickerDemo = () => {
         <CurrencyPicker
           label={t("currencyPicker.label")}
           name="currency"
-          options={options}
-          value={singleSelectCurrencyValue}
           onChange={(value: string) => setSingleSelectCurrencyValue(value)}
+          options={options}
           placeholder={t("currencyPicker.placeholder")}
+          value={singleSelectCurrencyValue}
         />
         <CodeBlock
           exampleCode='
@@ -92,20 +92,20 @@ const [singleSelectCurrencyValue, setSingleSelectCurrencyValue] = useState<strin
         />
         <p>
           <Trans
-            i18nKey={"ui:select.autoSortOptionsInfo"}
             components={{ code: <code /> }}
+            i18nKey={"ui:select.autoSortOptionsInfo"}
           ></Trans>
         </p>
       </Section>
       <Section title={t("currencyPicker.usage.multiple")}>
         <CurrencyPicker
           label={t("currencyPicker.label")}
-          name="multipleCurrency"
-          options={options}
           multiple={true}
-          value={multiSelectCurrencyValue}
+          name="multipleCurrency"
           onChange={(value: string[]) => setMultiSelectCurrencyValue(value)}
+          options={options}
           placeholder={t("currencyPicker.multiSelectPlaceholder")}
+          value={multiSelectCurrencyValue}
         />
         <CodeBlock
           exampleCode='
@@ -134,12 +134,12 @@ const [multiSelectCurrencyValue, setMultiSelectCurrencyValue] = useState<string[
         <CurrencyPicker
           label={t("currencyPicker.label")}
           name="extensiveCurrency"
-          options={currencies}
-          value={extensiveOptionsCurrencyPickerValue}
           onChange={(value: string) =>
             setExtensiveOptionsCurrencyPickerValue(value)
           }
+          options={currencies}
           placeholder={t("currencyPicker.placeholder")}
+          value={extensiveOptionsCurrencyPickerValue}
         />
         <CodeBlock
           exampleCode='

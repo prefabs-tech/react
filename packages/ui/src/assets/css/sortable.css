@@ -12,28 +12,28 @@
 }
 
 .dz-sortable-list > li {
+  align-items: center;
   background-color: var(--sortable-item-bg-color);
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  transition: all 0.2s ease-in-out;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  transition: all 0.2s ease-in-out;
 }
 
 .dz-sortable-list > li .grab-icon {
-  cursor: grab;
   color: var(--sortable-item-grab-icon-color);
+  cursor: grab;
   font-size: 0.6rem;
 }
 
 .dz-sortable-list > li > div {
-  padding: 0.5rem;
-  border-left: 1px solid var(--sortable-item-border-color);
-  margin: 2px 0;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  border-left: 1px solid var(--sortable-item-border-color);
+  display: flex;
   gap: 0.5rem;
+  justify-content: center;
+  margin: 2px 0;
+  padding: 0.5rem;
 }
 
 .dz-sortable-list > li:hover {

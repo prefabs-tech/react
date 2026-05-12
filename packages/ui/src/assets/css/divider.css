@@ -1,13 +1,13 @@
 .divider[role="separator"][data-aria-orientation="horizontal"] {
+  border-top: 1px solid #d0d0d0;
   height: 0;
   margin: 1rem 0;
   width: 100%;
-  border-top: 1px solid #d0d0d0;
 }
 
 .divider[role="separator"][data-aria-orientation="vertical"] {
+  border-left: 1px solid #d0d0d0;
   height: 100%;
   margin: 0 1rem;
   width: 0;
-  border-left: 1px solid #d0d0d0;
 }

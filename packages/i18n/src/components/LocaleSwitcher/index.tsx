@@ -25,9 +25,9 @@ const LocaleSwitcher = ({
       .filter((locale) => locale !== "cimode") // Filter out cimode from options. The mode shows key e.g. locale.english as value.
       .map((locale) => {
         return {
-          onClick: () => changeLocale(locale),
-          label: t(`locales.${locale}`),
           key: locale,
+          label: t(`locales.${locale}`),
+          onClick: () => changeLocale(locale),
         };
       });
 

@@ -5,15 +5,15 @@ import {
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
-export const CheckboxInput = <T extends string | number>({
+export const CheckboxInput = <T extends number | string>({
   className,
   direction,
   disabled,
+  helperText,
+  inputLabel,
   label,
   name,
   options,
-  helperText,
-  inputLabel,
   ...others
 }: ICheckboxInputProperties<T>) => {
   const { control, getFieldState } = useFormContext();
@@ -24,9 +24,9 @@ export const CheckboxInput = <T extends string | number>({
 
   return (
     <Controller
-      name={name}
       control={control}
       defaultValue={isMultiCheckbox ? [] : false}
+      name={name}
       render={({ field }) => (
         <BasicCheckboxInput
           checked={!isMultiCheckbox ? field.value : undefined}

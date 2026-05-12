@@ -1,6 +1,5 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe } from "node:test";
-
-import { render, screen, fireEvent } from "@testing-library/react";
 import React from "react";
 import { expect, test, vi } from "vitest";
 
@@ -11,7 +10,7 @@ describe("Modal", () => {
 
   test("should render modal when visible is true", () => {
     render(
-      <Modal visible={true} onHide={handleHide}>
+      <Modal onHide={handleHide} visible={true}>
         Modal content
       </Modal>,
     );
@@ -21,7 +20,7 @@ describe("Modal", () => {
 
   test("should not render modal when visible is false", () => {
     render(
-      <Modal visible={false} onHide={handleHide}>
+      <Modal onHide={handleHide} visible={false}>
         Modal content
       </Modal>,
     );
@@ -31,7 +30,7 @@ describe("Modal", () => {
 
   test("should call onHide when the close button is clicked", () => {
     render(
-      <Modal visible={true} onHide={handleHide}>
+      <Modal onHide={handleHide} visible={true}>
         Modal content
       </Modal>,
     );
@@ -44,7 +43,7 @@ describe("Modal", () => {
 
   test("should apply custom className", () => {
     render(
-      <Modal visible={true} className="custom-class" onHide={handleHide}>
+      <Modal className="custom-class" onHide={handleHide} visible={true}>
         Modal content
       </Modal>,
     );
@@ -56,7 +55,7 @@ describe("Modal", () => {
 
   test("should display header content correctly", () => {
     render(
-      <Modal visible={true} header="Modal header" onHide={handleHide}>
+      <Modal header="Modal header" onHide={handleHide} visible={true}>
         Modal content
       </Modal>,
     );
@@ -67,7 +66,7 @@ describe("Modal", () => {
   test("should render JSX header correctly", () => {
     const headerContent = <div>Header content</div>;
     render(
-      <Modal visible={true} header={headerContent} onHide={handleHide}>
+      <Modal header={headerContent} onHide={handleHide} visible={true}>
         Modal content
       </Modal>,
     );
@@ -78,7 +77,7 @@ describe("Modal", () => {
   test("should render footer content if passed", () => {
     const footerContent = <div>Footer content</div>;
     render(
-      <Modal visible={true} footer={footerContent} onHide={handleHide}>
+      <Modal footer={footerContent} onHide={handleHide} visible={true}>
         Modal content
       </Modal>,
     );
@@ -89,7 +88,7 @@ describe("Modal", () => {
   test("should render children content", () => {
     const modalContent = <p>Modal content</p>;
     render(
-      <Modal visible={true} onHide={handleHide}>
+      <Modal onHide={handleHide} visible={true}>
         {modalContent}
       </Modal>,
     );

@@ -3,11 +3,11 @@ import React from "react";
 import "./index.css";
 
 interface IProperties {
+  alt?: string;
+  aspectRatio?: string;
+  imageSource?: string;
   videoLink: string;
   videoToken: string;
-  imageSource?: string;
-  aspectRatio?: string;
-  alt?: string;
 }
 
 const YoutubeFacade: React.FC<IProperties> = ({
@@ -46,24 +46,24 @@ const YoutubeFacade: React.FC<IProperties> = ({
     <div
       className="youTubeFacade"
       style={{
-        background: `url(${VideoImageLink}) no-repeat`,
-        backgroundSize: "contain",
-        backgroundPosition: "center",
         aspectRatio: aspectRatio,
+        background: `url(${VideoImageLink}) no-repeat`,
+        backgroundPosition: "center",
+        backgroundSize: "contain",
       }}
     >
       <div className="facade-thumbnail">
         <a
-          href={videoLink}
           data-youtube-video-token={videoToken}
-          title="Watch Video on YouTube"
+          href={videoLink}
           onClick={loadYoutubeVideo}
-          target="_blank"
           rel="noreferrer"
+          target="_blank"
+          title="Watch Video on YouTube"
         >
-          <img src={VideoImageLink} alt={alt} data-aspect-ratio={aspectRatio} />
+          <img alt={alt} data-aspect-ratio={aspectRatio} src={VideoImageLink} />
         </a>
-        <a href={videoLink} target="_blank" rel="noreferrer">
+        <a href={videoLink} rel="noreferrer" target="_blank">
           Watch On <b>YouTube</b>
         </a>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select, ISelectProperties, Option } from "../Select";
+import { ISelectProperties, Option, Select } from "../Select";
 
 export type CurrencyOption<T> = Option<T> & {
   code?: string;
@@ -9,24 +9,25 @@ export type CurrencyOption<T> = Option<T> & {
 
 export type CurrencyPickerProperties<T> = Omit<
   ISelectProperties<T>,
-  "options" | "renderOption" | "multiple" | "value" | "onChange"
-> & {
-  options: CurrencyOption<T>[];
-  renderOption?: (option: CurrencyOption<T>) => React.ReactNode;
-} & (
+  "multiple" | "onChange" | "options" | "renderOption" | "value"
+> &
+  (
     | {
         multiple: true;
-        value: T[];
         onChange: (newValue: T[]) => void;
+        value: T[];
       }
     | {
         multiple?: false;
-        value: T;
         onChange: (newValue: T) => void;
+        value: T;
       }
-  );
+  ) & {
+    options: CurrencyOption<T>[];
+    renderOption?: (option: CurrencyOption<T>) => React.ReactNode;
+  };
 
-export const CurrencyPicker = <T extends string | number>({
+export const CurrencyPicker = <T extends number | string>({
   options,
   renderOption,
   ...properties
@@ -55,7 +56,7 @@ export const CurrencyPicker = <T extends string | number>({
   const _customSearch = (searchInput: string) => {
     searchInput = searchInput.toLowerCase();
 
-    return selectOptions.filter(({ label, code, symbol }) => {
+    return selectOptions.filter(({ code, label, symbol }) => {
       return [label, code, symbol].some((field) =>
         field?.toLowerCase().includes(searchInput),
       );
@@ -65,10 +66,10 @@ export const CurrencyPicker = <T extends string | number>({
   return (
     <Select
       className="currency-picker"
+      customSearchFn={_customSearch}
       menuOptions={{
         className: "currency-picker-menu",
       }}
-      customSearchFn={_customSearch}
       options={selectOptions}
       renderOption={_renderOption}
       {...properties}

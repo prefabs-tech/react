@@ -124,9 +124,9 @@ export const AcceptInvitation = ({
 
     return (
       <SignupForm
-        key={invitation.id}
         email={invitation.email || ""}
         handleSubmit={handleSubmit}
+        key={invitation.id}
         loading={acceptInvitationLoading}
       />
     );
@@ -134,10 +134,10 @@ export const AcceptInvitation = ({
 
   return (
     <AuthPage
-      className="signup"
-      title={t("user:signup.title")}
-      loading={loading || loginLoading}
       centered={centered}
+      className="signup"
+      loading={loading || loginLoading}
+      title={t("user:signup.title")}
     >
       {renderPageContent()}
     </AuthPage>

@@ -1,17 +1,20 @@
-import { ReactNode, forwardRef } from "react";
+import { forwardRef, ReactNode } from "react";
 
 import { tagColors } from "./TagColors";
 
-type TagProperties = {
+type TagProperties = Omit<
+  React.HTMLAttributes<HTMLSpanElement>,
+  "class" | "color" | "style"
+> & {
   className?: string;
   color?: string;
   fullWidth?: boolean;
   icon?: string;
   label?: string;
+  renderContent?: () => ReactNode;
   rounded?: boolean;
   style?: React.CSSProperties;
-  renderContent?: () => ReactNode;
-} & Omit<React.HTMLAttributes<HTMLSpanElement>, "style" | "class" | "color">;
+};
 
 export const Tag = forwardRef<HTMLSpanElement, TagProperties>(
   (
@@ -21,9 +24,9 @@ export const Tag = forwardRef<HTMLSpanElement, TagProperties>(
       fullWidth,
       icon,
       label,
+      renderContent,
       rounded,
       style,
-      renderContent,
       ...properties
     },
     reference,
@@ -35,10 +38,10 @@ export const Tag = forwardRef<HTMLSpanElement, TagProperties>(
 
     return (
       <span
-        ref={reference}
         className={`dz-tag ${className} ${rounded ? "rounded" : ""} ${
           fullWidth ? "full-width" : ""
         }`.trimEnd()}
+        ref={reference}
         style={tagStyle}
         {...properties}
       >

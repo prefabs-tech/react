@@ -1,11 +1,11 @@
 import { useTranslation } from "@prefabs.tech/react-i18n";
-import { Divider, AuthPage } from "@prefabs.tech/react-ui";
+import { AuthPage, Divider } from "@prefabs.tech/react-ui";
 import { useNavigate } from "react-router-dom";
+
+import type { SignInUpPromise } from "../types";
 
 import { LoginWrapper, SocialLogins } from "../components/Login";
 import { useConfig, useFirstUserSignup } from "../hooks";
-
-import type { SignInUpPromise } from "../types";
 
 interface IProperties {
   centered?: boolean;
@@ -21,12 +21,12 @@ interface IProperties {
 
 export const Login: React.FC<IProperties> = ({
   centered = true,
-  showForgotPasswordLink,
-  showSignupLink,
   customDivider,
   onLoginFailed,
   onLoginSuccess,
   orientation = "vertical",
+  showForgotPasswordLink,
+  showSignupLink,
   socialLoginFirst = false,
   socialLoginOnly = false,
 }) => {
@@ -35,8 +35,8 @@ export const Login: React.FC<IProperties> = ({
   const navigate = useNavigate();
 
   const [redirecting] = useFirstUserSignup({
-    config,
     autoRedirect: true,
+    config,
     redirectFn: navigate,
   });
 
@@ -78,8 +78,8 @@ export const Login: React.FC<IProperties> = ({
     <AuthPage
       centered={centered}
       className={className}
-      title={t("login.title")}
       loading={!!redirecting}
+      title={t("login.title")}
     >
       {socialLoginOnly ? null : (
         <LoginWrapper

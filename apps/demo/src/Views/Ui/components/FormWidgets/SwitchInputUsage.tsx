@@ -49,7 +49,7 @@ const Invalid = ({
     return `<SwitchInput hasError={true} errorMessage="Invalid" />`;
   }
 
-  return <SwitchInput hasError={true} errorMessage="Invalid" />;
+  return <SwitchInput errorMessage="Invalid" hasError={true} />;
 };
 
 const ControlledSnippet = () => `const App = () => {
@@ -84,4 +84,4 @@ const ControlledSnippet = () => `const App = () => {
     );
 };`;
 
-export { Basic, Disabled, Invalid, ControlledSnippet };
+export { Basic, ControlledSnippet, Disabled, Invalid };

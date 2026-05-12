@@ -9,10 +9,10 @@ vi.mock("@prefabs.tech/react-i18n", async () => {
     ...actual,
     useTranslation: () => {
       return {
-        t: (string_) => string_,
         i18n: {
           changeLanguage: () => new Promise(() => {}),
         },
+        t: (string_) => string_,
       };
     },
   };

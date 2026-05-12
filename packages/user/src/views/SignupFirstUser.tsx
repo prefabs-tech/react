@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import type { LoginCredentials } from "@/types";
+
 import { getIsFirstUser, signUpFirstUser } from "@/api/user";
 import { DEFAULT_PATHS } from "@/constants";
 import { useConfig, useUser } from "@/hooks";
 
 import { login, SignupForm } from "..";
-
-import type { LoginCredentials } from "@/types";
 
 export const SignUpFirstUser = ({
   centered = true,

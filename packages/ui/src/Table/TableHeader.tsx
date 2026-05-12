@@ -3,30 +3,30 @@ import React, { SyntheticEvent, useCallback, useState } from "react";
 
 import { DebouncedInput, Select } from "@/FormWidgets";
 
+import type { TDataTableProperties } from "./types";
+
 import { TableDateFilter } from "./TableDateFilter";
 import {
   ColumnHeader,
-  TableHeader as TTableHeader,
   TableRow,
+  TableHeader as TTableHeader,
 } from "./TableElements";
 import { TableRangeFilter } from "./TableRangeFilter";
 import { getAlignValue } from "./utilities";
 
-import type { TDataTableProperties } from "./types";
-
 interface THeaderProperty<T> extends Pick<
   TDataTableProperties<T>,
-  "renderSortIcons" | "inputDebounceTime"
+  "inputDebounceTime" | "renderSortIcons"
 > {
-  table: Table<T>;
   highlight?: boolean;
+  table: Table<T>;
 }
 
 export const TableHeader = <TData extends RowData>({
+  highlight = false,
   inputDebounceTime,
   renderSortIcons,
   table,
-  highlight = false,
 }: THeaderProperty<TData>) => {
   const [isFilterRowVisible, setIsFilterRowVisible] = useState(false);
 
@@ -42,9 +42,9 @@ export const TableHeader = <TData extends RowData>({
 
   const renderHeaderRow = () =>
     table.getHeaderGroups().map((headerGroup) => (
-      <TableRow key={headerGroup.id} className="header-row">
+      <TableRow className="header-row" key={headerGroup.id}>
         {headerGroup.headers.map(
-          ({ column, getContext, id, isPlaceholder, colSpan }) => {
+          ({ colSpan, column, getContext, id, isPlaceholder }) => {
             const {
               columnDef,
               getCanSort,
@@ -76,8 +76,6 @@ export const TableHeader = <TData extends RowData>({
 
             return (
               <ColumnHeader
-                key={id}
-                colSpan={colSpan}
                 className={`column-${id} ${
                   columnDef.className || ""
                 } ${activeColumnClass} ${
@@ -85,19 +83,21 @@ export const TableHeader = <TData extends RowData>({
                 }`
                   .replace(/\s\s/, " ")
                   .trimEnd()}
+                colSpan={colSpan}
                 data-align={getAlignValue({
                   align: columnDef.align,
                   dataType: columnDef.dataType,
                 })}
-                style={{
-                  width: columnDef.width,
-                  maxWidth: columnDef.maxWidth,
-                  minWidth: columnDef.minWidth,
-                }}
+                key={id}
                 onClick={(event) => {
                   if (getCanSort()) {
                     handleSort(event, getToggleSortingHandler());
                   }
+                }}
+                style={{
+                  maxWidth: columnDef.maxWidth,
+                  minWidth: columnDef.minWidth,
+                  width: columnDef.width,
                 }}
               >
                 <>
@@ -130,17 +130,17 @@ export const TableHeader = <TData extends RowData>({
     if (variant === "select") {
       return (
         <Select
+          enableTooltip
           matchMenuTriggerWidth={false}
           name="select"
           onChange={(value) => column.setFilterValue(value)}
           options={column.columnDef.meta?.filterOptions || []}
           placeholder={column.columnDef.filterPlaceholder || ""}
-          value={(columnFilterValue as string) || ""}
-          enableTooltip
           tooltipOptions={{
-            position: "top",
             offset: 15,
+            position: "top",
           }}
+          value={(columnFilterValue as string) || ""}
         />
       );
     }
@@ -148,6 +148,7 @@ export const TableHeader = <TData extends RowData>({
     if (variant === "multiselect") {
       return (
         <Select
+          enableTooltip
           matchMenuTriggerWidth={false}
           multiple
           name="multiselect"
@@ -160,12 +161,11 @@ export const TableHeader = <TData extends RowData>({
           }}
           options={column.columnDef.meta?.filterOptions || []}
           placeholder={column.columnDef.filterPlaceholder || ""}
-          value={(columnFilterValue as string[]) || []}
-          enableTooltip
           tooltipOptions={{
-            position: "top",
             offset: 15,
+            position: "top",
           }}
+          value={(columnFilterValue as string[]) || []}
         />
       );
     }
@@ -185,10 +185,10 @@ export const TableHeader = <TData extends RowData>({
 
     return (
       <DebouncedInput
+        debounceTime={inputDebounceTime}
         defaultValue={columnFilterValue as string}
         onInputChange={(value) => column.setFilterValue(value)}
         placeholder={column.columnDef.filterPlaceholder || ""}
-        debounceTime={inputDebounceTime}
       />
     );
   };
@@ -199,7 +199,7 @@ export const TableHeader = <TData extends RowData>({
     }
 
     return (
-      <TableRow key="filters" className="header-row filters">
+      <TableRow className="header-row filters" key="filters">
         {table.getVisibleLeafColumns().map((column) => {
           if (!column.getCanFilter()) {
             return <ColumnHeader key={"filter" + column.id}></ColumnHeader>;
@@ -214,17 +214,6 @@ export const TableHeader = <TData extends RowData>({
 
           return (
             <ColumnHeader
-              key={"filter" + column.id}
-              data-label={column.id}
-              data-align={getAlignValue({
-                align: column.columnDef.align,
-                dataType: column.columnDef.dataType,
-              })}
-              style={{
-                width: column.columnDef.width,
-                maxWidth: column.columnDef.maxWidth,
-                minWidth: column.columnDef.minWidth,
-              }}
               className={`${
                 column.id ? `column-${column.id}` : ``
               } ${activeColumnClass} ${
@@ -232,6 +221,17 @@ export const TableHeader = <TData extends RowData>({
               } ${filterColumnClass}`
                 .replace(/\s\s/, " ")
                 .trimEnd()}
+              data-align={getAlignValue({
+                align: column.columnDef.align,
+                dataType: column.columnDef.dataType,
+              })}
+              data-label={column.id}
+              key={"filter" + column.id}
+              style={{
+                maxWidth: column.columnDef.maxWidth,
+                minWidth: column.columnDef.minWidth,
+                width: column.columnDef.width,
+              }}
             >
               {renderColumnFilter(column)}
             </ColumnHeader>

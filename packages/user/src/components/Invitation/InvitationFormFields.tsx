@@ -1,12 +1,12 @@
 import {
-  Select,
-  DaysInput,
   DatePicker,
+  DaysInput,
   Email,
+  FormActions,
+  RenderAdditionalFormFields,
+  Select,
   useFormContext,
   useWatch,
-  RenderAdditionalFormFields,
-  FormActions,
 } from "@prefabs.tech/react-form";
 import { useTranslation } from "@prefabs.tech/react-i18n";
 import React, { useEffect, useMemo, useState } from "react";
@@ -18,28 +18,28 @@ import {
 } from "@/types";
 
 interface IProperties {
-  renderAdditionalFields?: RenderAdditionalFormFields;
   apps?: InvitationAppOption[];
   expiryDateField?: InvitationExpiryDateField;
   loading?: boolean;
   onCancel?: () => void;
+  renderAdditionalFields?: RenderAdditionalFormFields;
   roles?: InvitationRoleOption[];
 }
 export const InvitationFormFields: React.FC<IProperties> = ({
-  renderAdditionalFields,
   apps,
   expiryDateField,
-  roles,
   loading,
   onCancel,
+  renderAdditionalFields,
+  roles,
 }) => {
   const { t } = useTranslation("invitations");
 
   const {
-    register,
-    getFieldState,
-    setValue,
     formState: { errors, submitCount },
+    getFieldState,
+    register,
+    setValue,
   } = useFormContext();
 
   const [filteredRoles, setFilteredRoles] = useState(
@@ -113,12 +113,12 @@ export const InvitationFormFields: React.FC<IProperties> = ({
 
     const modifiedLabels = modifiedApps.map((app) => {
       if (app.label) {
-        return { value: app.id, label: app.label };
+        return { label: app.label, value: app.id };
       }
 
       return {
-        value: app.id,
         label: app.name,
+        value: app.id,
       };
     });
 
@@ -136,10 +136,10 @@ export const InvitationFormFields: React.FC<IProperties> = ({
 
       {apps?.length ? (
         <Select
-          name="app"
           label={t("form.fields.app.label")}
-          placeholder={t("form.fields.app.placeholder")}
+          name="app"
           options={updatedApps}
+          placeholder={t("form.fields.app.placeholder")}
         />
       ) : null}
 
@@ -147,10 +147,10 @@ export const InvitationFormFields: React.FC<IProperties> = ({
         <Select
           autoSelectSingleOption
           disabled={filteredRoles.length <= 1 && true}
-          name="role"
           label={t("form.fields.role.label")}
-          placeholder={t("form.fields.role.placeholder")}
+          name="role"
           options={filteredRoles}
+          placeholder={t("form.fields.role.placeholder")}
         />
       ) : null}
 
@@ -161,17 +161,17 @@ export const InvitationFormFields: React.FC<IProperties> = ({
       <FormActions
         actions={[
           {
+            disabled: !!Object.values(errors).length,
             id: "submit",
             label: t("form.actions.submit"),
-            disabled: !!Object.values(errors).length,
           },
           {
             id: "cancel",
+            label: t("form.actions.cancel"),
             onClick: (event) => {
               event.preventDefault();
               onCancel && onCancel();
             },
-            label: t("form.actions.cancel"),
           },
         ]}
         alignment="right"

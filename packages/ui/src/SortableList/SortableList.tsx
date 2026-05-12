@@ -1,31 +1,31 @@
-import { useState } from "react";
-
 import type { FC, ReactNode } from "react";
 
+import { useState } from "react";
+
 export interface SortableListProperties {
+  className?: string;
+  grabHandleIcon?: ReactNode;
+  itemClassName?: string;
   items: {
-    id: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data: any;
+    id: number;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     render?: (data: any) => ReactNode;
   }[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onSort?: (sortedItems: { id: number; data: any }[]) => void;
-  itemClassName?: string;
-  className?: string;
-  grabHandleIcon?: ReactNode;
+  onSort?: (sortedItems: { data: any; id: number }[]) => void;
 }
 
 export const SortableList: FC<SortableListProperties> = ({
-  items,
-  onSort,
-  itemClassName = "",
   className = "",
   grabHandleIcon,
+  itemClassName = "",
+  items,
+  onSort,
 }) => {
   const [sortedItems, setSortedItems] = useState(items);
-  const [draggedItem, setDraggedItem] = useState<number | null>(null);
+  const [draggedItem, setDraggedItem] = useState<null | number>(null);
   const [droppedOver, setDroppedOver] = useState<number>(-1);
 
   const handleDragStart = (index: number) => {
@@ -72,12 +72,12 @@ export const SortableList: FC<SortableListProperties> = ({
           className={`${itemClassName} ${
             draggedItem === index ? "dragged-item" : ""
           }`.trim()}
-          key={item.id}
-          draggable
-          onDragStart={() => handleDragStart(index)}
-          onDragOver={() => handleDragOver(index)}
-          onDragEnd={handleDragEnd}
           data-drag-direction={getDragDirection(index)}
+          draggable
+          key={item.id}
+          onDragEnd={handleDragEnd}
+          onDragOver={() => handleDragOver(index)}
+          onDragStart={() => handleDragStart(index)}
         >
           {grabHandleIcon ? (
             grabHandleIcon

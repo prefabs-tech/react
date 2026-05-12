@@ -39,7 +39,7 @@ const CustomActive = ({
   }
 
   return (
-    <TabbedPanel id="tabbed-pannel-2" defaultActiveIndex={1}>
+    <TabbedPanel defaultActiveIndex={1} id="tabbed-pannel-2">
       <SubPane title="Description">Description</SubPane>
       <SubPane title="Reviews">Reviews</SubPane>
       <SubPane title="Specifications">Specifications</SubPane>
