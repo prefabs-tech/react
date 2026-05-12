@@ -8,12 +8,13 @@ import {
   UseFormResetField,
   UseFormSetError,
 } from "react-hook-form";
+import { ZodObject } from "zod";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AdditionalDefaultValues = Record<string, any>;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AdditionalFormSchema = Zod.ZodObject<any>;
+export type AdditionalFormSchema = ZodObject<any>;
 
 export type FormSubmitOptions<TFieldValues extends FieldValues = FieldValues> =
   {
