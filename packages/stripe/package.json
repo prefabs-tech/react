@@ -75,7 +75,7 @@
     "react-router-dom": ">=6.30"
   },
   "peerDependenciesMeta": {
-    "@prefabs.tech/vue3-user": {
+    "@prefabs.tech/react-user": {
       "optional": true
     }
   },
