@@ -3,8 +3,8 @@ import type {
   PrefabsTechReactStripeConfig,
 } from "../../types";
 
+import { getAxiosClient } from "..";
 import { API_PATH_CHECKOUT_SESSION, API_PATH_STATUS } from "../../constants";
-import client from "../axios";
 
 export const checkoutSession = async (
   payload: CheckoutSessionPayload,
@@ -13,7 +13,8 @@ export const checkoutSession = async (
 ) => {
   const path = config?.apiRoutes?.checkoutSession || API_PATH_CHECKOUT_SESSION;
 
-  const response = await client(apiBaseUrl).post(path, payload);
+  const client = await getAxiosClient(apiBaseUrl, config);
+  const response = await client.post(path, payload);
 
   if ("error" in response.data) {
     throw new Error(response.data);
@@ -31,7 +32,8 @@ export const getStatus = async (
 ) => {
   const path = config?.apiRoutes?.status || API_PATH_STATUS;
 
-  const response = await client(apiBaseUrl).get(path);
+  const client = await getAxiosClient(apiBaseUrl, config);
+  const response = await client.get(path);
 
   if ("error" in response.data) {
     throw new Error(response.data);

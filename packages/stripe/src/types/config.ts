@@ -1,3 +1,5 @@
+import type { AxiosInstance } from "axios";
+
 import type { RouteOverrides } from "./router";
 
 export interface PrefabsTechReactStripeConfig {
@@ -5,5 +7,6 @@ export interface PrefabsTechReactStripeConfig {
     checkoutSession?: string;
     status?: string;
   };
+  axiosClient?: (baseURL: string) => AxiosInstance;
   routes?: RouteOverrides;
 }

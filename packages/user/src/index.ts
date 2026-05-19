@@ -1,3 +1,4 @@
+import axiosClient from "./api/axios";
 import { disableUser, enableUser } from "./api/user";
 import {
   AllUsersTable,
@@ -22,6 +23,7 @@ export {
   // components
   AllUsersTable,
   AuthSocialLoginCallback,
+  axiosClient,
 
   // constants
   DEFAULT_PATHS,

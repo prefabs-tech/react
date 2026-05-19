@@ -10,7 +10,7 @@ import type {
 import {
   checkoutSession as doCheckoutSession,
   getStatus as doGetStatus,
-} from "../api/payment";
+} from "../api";
 
 export interface StripeContextType {
   checkoutSession: (

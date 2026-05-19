@@ -491,6 +491,9 @@ importers:
       '@prefabs.tech/react-ui':
         specifier: 0.72.1
         version: link:../ui
+      '@prefabs.tech/react-user':
+        specifier: 0.72.1
+        version: link:../user
       '@prefabs.tech/stylelint-config':
         specifier: 0.7.0
         version: 0.7.0(stylelint-config-standard@40.0.0(stylelint@17.10.0(typescript@5.9.3)))(stylelint-order@8.1.1(stylelint@17.10.0(typescript@5.9.3)))(stylelint@17.10.0(typescript@5.9.3))
