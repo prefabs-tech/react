@@ -1,10 +1,12 @@
 import type { AxiosInstance } from "axios";
 
-import type { PrefabsTechReactStripeConfig } from "../types";
+import { create } from "axios";
+
+import type { StripeConfig } from "../types";
 
 export const getAxiosClient = async (
   apiBaseUrl: string,
-  config?: PrefabsTechReactStripeConfig,
+  config?: StripeConfig,
 ): Promise<AxiosInstance> => {
   if (config?.axiosClient) {
     return config.axiosClient(apiBaseUrl);
@@ -15,7 +17,13 @@ export const getAxiosClient = async (
 
     return axiosClient(apiBaseUrl);
   } catch {
-    throw new Error("Stripe package requires an axios instance.");
+    return create({
+      baseURL: apiBaseUrl,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
   }
 };
 

@@ -1,45 +1,43 @@
-import type { RouteObject } from "react-router-dom";
+import { Route } from "react-router-dom";
 
-import type { PrefabsTechReactStripeConfig } from "../types";
+import type { RouteOverrides } from "../types";
 
 import CancelledPage from "../components/CancelledPage";
 import SuccessPage from "../components/SuccessPage";
+import { useConfig } from "../hooks/useConfig";
 
-const defaultRoutes = {
-  cancelled: {
-    element: <CancelledPage />,
-    path: "/stripe/cancelled",
-  },
-  success: {
-    element: <SuccessPage />,
-    path: "/stripe/success",
-  },
+const DEFAULT_PATHS = {
+  CANCELLED: "/stripe/cancelled",
+  SUCCESS: "/stripe/success",
 };
 
-export const getStripeRoutes = (
-  config?: PrefabsTechReactStripeConfig,
-): RouteObject[] => {
-  const routes: RouteObject[] = [];
+interface StripeRoutesOptions {
+  routes?: RouteOverrides;
+}
 
-  const cancelledRoute: RouteObject = {
-    element: config?.routes?.cancelled?.component ? (
-      <config.routes.cancelled.component />
-    ) : (
-      defaultRoutes.cancelled.element
-    ),
-    path: config?.routes?.cancelled?.path || defaultRoutes.cancelled.path,
-  };
+export const getStripeRoutes = (options?: StripeRoutesOptions) => {
+  const config = useConfig();
 
-  const successRoute: RouteObject = {
-    element: config?.routes?.success?.component ? (
-      <config.routes.success.component />
-    ) : (
-      defaultRoutes.success.element
-    ),
-    path: config?.routes?.success?.path || defaultRoutes.success.path,
-  };
+  const { cancelled, success } = options?.routes || {};
 
-  routes.push(cancelledRoute, successRoute);
+  const { customPaths } = config || {};
 
-  return routes;
+  const stripeRoutes = [
+    {
+      element: cancelled?.element || <CancelledPage />,
+      path: customPaths?.cancelled || DEFAULT_PATHS.CANCELLED,
+    },
+    {
+      element: success?.element || <SuccessPage />,
+      path: customPaths?.success || DEFAULT_PATHS.SUCCESS,
+    },
+  ];
+
+  return (
+    <>
+      {stripeRoutes.map((route) => (
+        <Route element={route.element} key={route.path} path={route.path} />
+      ))}
+    </>
+  );
 };

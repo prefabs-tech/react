@@ -2,10 +2,7 @@ import type { ReactNode } from "react";
 
 import { createContext, useMemo, useState } from "react";
 
-import type {
-  CheckoutSessionPayload,
-  PrefabsTechReactStripeConfig,
-} from "../types";
+import type { CheckoutSessionPayload, StripeConfig } from "../types";
 
 import {
   checkoutSession as doCheckoutSession,
@@ -17,9 +14,9 @@ export interface StripeContextType {
     payload: CheckoutSessionPayload,
     apiBaseUrl: string,
   ) => Promise<unknown>;
-  config?: PrefabsTechReactStripeConfig;
+  config?: StripeConfig;
   getStatus: (apiBaseUrl: string) => Promise<unknown>;
-  setConfig: (newConfig: PrefabsTechReactStripeConfig) => void;
+  setConfig: (newConfig: StripeConfig) => void;
 }
 
 export const stripeContext = createContext<StripeContextType | undefined>(
@@ -28,16 +25,14 @@ export const stripeContext = createContext<StripeContextType | undefined>(
 
 interface StripeProviderProperties {
   children: ReactNode;
-  config?: PrefabsTechReactStripeConfig;
+  config?: StripeConfig;
 }
 
 export const StripeProvider = ({
   children,
   config: initialConfig,
 }: StripeProviderProperties) => {
-  const [config, setConfig] = useState<
-    PrefabsTechReactStripeConfig | undefined
-  >(initialConfig);
+  const [config, setConfig] = useState<StripeConfig | undefined>(initialConfig);
 
   const checkoutSession = async (
     payload: CheckoutSessionPayload,
