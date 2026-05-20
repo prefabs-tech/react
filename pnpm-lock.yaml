@@ -478,10 +478,6 @@ importers:
         version: 3.2.4(@types/node@25.6.0)(jiti@2.4.2)(jsdom@27.4.0)(terser@5.36.0)
 
   packages/stripe:
-    dependencies:
-      '@prefabs.tech/react-user':
-        specifier: 0.72.1
-        version: link:../user
     devDependencies:
       '@prefabs.tech/eslint-config':
         specifier: 0.7.0
@@ -492,6 +488,9 @@ importers:
       '@prefabs.tech/react-ui':
         specifier: 0.72.1
         version: link:../ui
+      '@prefabs.tech/react-user':
+        specifier: 0.72.1
+        version: link:../user
       '@prefabs.tech/stylelint-config':
         specifier: 0.7.0
         version: 0.7.0(stylelint-config-standard@40.0.0(stylelint@17.10.0(typescript@5.9.3)))(stylelint-order@8.1.1(stylelint@17.10.0(typescript@5.9.3)))(stylelint@17.10.0(typescript@5.9.3))
