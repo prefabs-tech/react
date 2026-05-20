@@ -1,3 +1,4 @@
+import "./assets/css/index.css";
 import CancelledPage from "./components/CancelledPage";
 import SuccessPage from "./components/SuccessPage";
 import { StripeProvider } from "./context/StripeProvider";

@@ -4,7 +4,6 @@ import { useTranslation } from "@prefabs.tech/react-i18n";
 import { Button, Card, LoadingPage, Page } from "@prefabs.tech/react-ui";
 
 import { useBackNavigation } from "../hooks/useBackNavigation";
-import "../assets/css/success-page.css";
 
 interface SuccessPageProperties {
   actions?: ReactNode;
