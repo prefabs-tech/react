@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
             "@prefabs.tech/react-form": "PrefabsTechReactForm",
             "@prefabs.tech/react-i18n": "PrefabsTechReactI18n",
             "@prefabs.tech/react-ui": "PrefabsTechReactUi",
+            "@prefabs.tech/react-user": "PrefabsTechReactUser",
             axios: "Axios",
             react: "React",
             "react-dom": "ReactDom",
