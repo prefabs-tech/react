@@ -3,7 +3,9 @@
   "exclude": [],
   "compilerOptions": {
     "composite": true,
-    "lib": [],
-    "types": ["node", "jsdom", "vitest/globals", "@testing-library/jest-dom"],
-  },
+    "types": ["vite/client", "node", "vitest/globals", "@testing-library/jest-dom"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
 }
