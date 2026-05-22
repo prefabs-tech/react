@@ -1,6 +1,6 @@
 import type { AppConfig, AppFeatures } from "@prefabs.tech/react-config";
 
-import { parse } from "@prefabs.tech/react-config";
+import { parse } from "@prefabs.tech/utilities";
 
 import en from "./locales/en";
 import fr from "./locales/fr";
