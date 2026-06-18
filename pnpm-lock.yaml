@@ -1591,12 +1591,34 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@prefabs.tech/eslint-config@0.7.0':
+    resolution: {integrity: sha512-kMLs+ksinlNKa5FfhTb2qNisnU/On+IGrRHbZ3aHq1INF8NsjVRB7Wm0Q9vdnBipco9YOady0qSx1goVnhhC3w==}
+    peerDependencies:
+      eslint: '>=9.0.0'
+      prettier: '>=3.3.3'
+      typescript: '>=4.9.5'
+
   '@prefabs.tech/eslint-config@0.8.0':
     resolution: {integrity: sha512-E1vrgnsjuw9hXanhq18jQFUWrbrmNzr74cND1QA26gqiYKCtnXBol71BYLxJae3SDBPy9eiAyEuqiaep1CHzUg==}
     peerDependencies:
       eslint: '>=9.0.0'
       prettier: '>=3.3.3'
       typescript: '>=4.9.5'
+
+  '@prefabs.tech/stylelint-config@0.7.0':
+    resolution: {integrity: sha512-Gmfyyouu7m6QPz6vvtb4+fCPeCiZBWTS0BweB02VIcgED553j/lvlWwfn7yKzDsITZKt2HA24/Rxh5WG5vD+wg==}
+    peerDependencies:
+      stylelint: '>=17.0.0'
+      stylelint-config-recommended-vue: '>=1.6.0'
+      stylelint-config-standard: '>=40.0.0'
+      stylelint-order: '>=8.0.0'
+    peerDependenciesMeta:
+      stylelint-config-recommended-vue:
+        optional: true
+      stylelint-config-standard:
+        optional: true
+      stylelint-order:
+        optional: true
 
   '@prefabs.tech/stylelint-config@0.8.0':
     resolution: {integrity: sha512-dB0cnC5T3evRYUVKcu48/ARvCuRL4zUQHxeER8i/uZ+oeQlF3smp6EjY1h6/nXb0qN7jWy1/Cubogu1WSHxYng==}
@@ -1612,6 +1634,9 @@ packages:
         optional: true
       stylelint-order:
         optional: true
+
+  '@prefabs.tech/tsconfig@0.7.0':
+    resolution: {integrity: sha512-MiEvKeoNVPSy79tYQOkFeaBoVViW27JYfSiEbCBT+Fvuk1XEkXyBpSxlpdKQDV5bsAg0C5VNSjRh4qH3eDjA+w==}
 
   '@prefabs.tech/tsconfig@0.8.0':
     resolution: {integrity: sha512-tllO+FL56JLAHE/j6jKbRlUifxIgB2U47vzdL670FpsPsH4vIFNpniW81/pD80ogMeLXqD7E40AHGMTUBaioww==}
@@ -5966,6 +5991,36 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@prefabs.tech/eslint-config@0.7.0(@typescript-eslint/parser@8.54.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3))(eslint@9.39.4(jiti@2.4.2))(prettier@3.8.3)(typescript@5.9.3)':
+    dependencies:
+      '@eslint/js': 9.39.4
+      eslint: 9.39.4(jiti@2.4.2)
+      eslint-config-prettier: 10.1.8(eslint@9.39.4(jiti@2.4.2))
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.32.0)
+      eslint-import-resolver-typescript: 4.4.4(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3))(eslint-import-resolver-typescript@4.4.4)(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-n: 17.20.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3)
+      eslint-plugin-perfectionist: 5.9.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3)
+      eslint-plugin-prettier: 5.5.5(eslint-config-prettier@10.1.8(eslint@9.39.4(jiti@2.4.2)))(eslint@9.39.4(jiti@2.4.2))(prettier@3.8.3)
+      eslint-plugin-promise: 7.2.1(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-react: 7.37.5(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-react-hooks: 7.0.1(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-unicorn: 62.0.0(eslint@9.39.4(jiti@2.4.2))
+      eslint-plugin-vue: 10.7.0(@typescript-eslint/parser@8.54.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3))(eslint@9.39.4(jiti@2.4.2))(vue-eslint-parser@10.2.0(eslint@9.39.4(jiti@2.4.2)))
+      globals: 17.3.0
+      prettier: 3.8.3
+      typescript: 5.9.3
+      typescript-eslint: 8.54.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3)
+      vue-eslint-parser: 10.2.0(eslint@9.39.4(jiti@2.4.2))
+    transitivePeerDependencies:
+      - '@stylistic/eslint-plugin'
+      - '@types/eslint'
+      - '@typescript-eslint/parser'
+      - eslint-import-resolver-webpack
+      - eslint-plugin-import-x
+      - supports-color
+
   '@prefabs.tech/eslint-config@0.8.0(@typescript-eslint/parser@8.54.0(eslint@9.39.4(jiti@2.4.2))(typescript@5.9.3))(eslint@9.39.4(jiti@2.4.2))(prettier@3.8.3)(typescript@5.9.3)':
     dependencies:
       '@eslint/js': 9.39.4
@@ -5996,12 +6051,21 @@ snapshots:
       - eslint-plugin-import-x
       - supports-color
 
+  '@prefabs.tech/stylelint-config@0.7.0(stylelint-config-standard@40.0.0(stylelint@17.10.0(typescript@5.9.3)))(stylelint-order@8.1.1(stylelint@17.10.0(typescript@5.9.3)))(stylelint@17.10.0(typescript@5.9.3))':
+    dependencies:
+      stylelint: 17.10.0(typescript@5.9.3)
+    optionalDependencies:
+      stylelint-config-standard: 40.0.0(stylelint@17.10.0(typescript@5.9.3))
+      stylelint-order: 8.1.1(stylelint@17.10.0(typescript@5.9.3))
+
   '@prefabs.tech/stylelint-config@0.8.0(stylelint-config-standard@40.0.0(stylelint@17.10.0(typescript@5.9.3)))(stylelint-order@8.1.1(stylelint@17.10.0(typescript@5.9.3)))(stylelint@17.10.0(typescript@5.9.3))':
     dependencies:
       stylelint: 17.10.0(typescript@5.9.3)
     optionalDependencies:
       stylelint-config-standard: 40.0.0(stylelint@17.10.0(typescript@5.9.3))
       stylelint-order: 8.1.1(stylelint@17.10.0(typescript@5.9.3))
+
+  '@prefabs.tech/tsconfig@0.7.0': {}
 
   '@prefabs.tech/tsconfig@0.8.0': {}
 

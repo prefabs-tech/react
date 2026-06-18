@@ -21,6 +21,7 @@
     "build": "vite build && tsc --emitDeclarationOnly",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "prepare": "vite build",
     "snapshot:update": "vitest --environment jsdom run --update --passWithNoTests",
     "sort-package": "npx sort-package-json",
     "stylelint": "stylelint \"src/**/*.{css}\" --allow-empty-input",
