@@ -56,7 +56,7 @@ export const TableDemo = () => {
       filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
       header: "Age",
       meta: {
-        rangeFilterMax: 20,
+        rangeFilterMax: 100,
         rangeFilterMin: 1,
       },
     },
