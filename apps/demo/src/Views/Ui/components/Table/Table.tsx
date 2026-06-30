@@ -55,6 +55,10 @@ export const TableDemo = () => {
       enableSorting: true,
       filterPlaceholder: `${t("table.placeholder.min")},${t("table.placeholder.max")}`,
       header: "Age",
+      meta: {
+        rangeFilterMax: 100,
+        rangeFilterMin: 1,
+      },
     },
     {
       accessorKey: "city",

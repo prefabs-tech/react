@@ -12,6 +12,7 @@ import { IInputProperties, Input } from "../Input";
 export interface DebouncedInputProperties extends IInputProperties {
   debounceTime?: number;
   onInputChange: (value: number | readonly string[] | string) => void;
+  sanitizeValue?: (value: string) => string;
 }
 
 export const DebouncedInput = forwardRef<
@@ -24,6 +25,7 @@ export const DebouncedInput = forwardRef<
       debounceTime = 500,
       defaultValue = "",
       onInputChange,
+      sanitizeValue,
       type = "text",
       ...inputProperties
     },
@@ -50,7 +52,13 @@ export const DebouncedInput = forwardRef<
     }, [debouncedValue]);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-      setInputValue(event.target.value);
+      let rawValue = event.target.value;
+
+      if (sanitizeValue) {
+        rawValue = sanitizeValue(rawValue);
+      }
+
+      setInputValue(rawValue);
     };
 
     return (
