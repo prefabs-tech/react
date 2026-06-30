@@ -35,6 +35,7 @@ export const TableRangeFilter = <TData,>({
 
   const filterValue = column.getFilterValue() as (number | undefined)[];
   const key = column.id || String(column.columnDef.accessorKey);
+  const meta = column.columnDef.meta;
 
   return (
     <div className="number-range-filter">
@@ -45,6 +46,8 @@ export const TableRangeFilter = <TData,>({
             ? filterValue[0]
             : ""
         }
+        max={meta?.rangeFilterMax}
+        min={meta?.rangeFilterMin}
         name={`range-start-${key}`}
         onInputChange={(value) => updateRangeFilter(column, 0, value)}
         placeholder={
@@ -60,6 +63,8 @@ export const TableRangeFilter = <TData,>({
             ? filterValue[1]
             : ""
         }
+        max={meta?.rangeFilterMax}
+        min={meta?.rangeFilterMin}
         name={`range-end-${key}`}
         onInputChange={(value) => updateRangeFilter(column, 1, value)}
         placeholder={
