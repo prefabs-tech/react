@@ -24,7 +24,24 @@ export const TableRangeFilter = <TData,>({
       ? [...filterValue]
       : [undefined, undefined];
 
-    currentFilter[index] = value !== "" ? Number(value) : undefined;
+    const numericValue = value !== "" ? Number(value) : undefined;
+
+    if (numericValue !== undefined) {
+      const { rangeFilterMax, rangeFilterMin } = column.columnDef.meta ?? {};
+
+      if (rangeFilterMin !== undefined && numericValue < rangeFilterMin) {
+        currentFilter[index] = rangeFilterMin;
+      } else if (
+        rangeFilterMax !== undefined &&
+        numericValue > rangeFilterMax
+      ) {
+        currentFilter[index] = rangeFilterMax;
+      } else {
+        currentFilter[index] = numericValue;
+      }
+    } else {
+      currentFilter[index] = undefined;
+    }
 
     const isFilterActive = currentFilter.some(
       (filterInput) => filterInput !== undefined,
@@ -36,6 +53,37 @@ export const TableRangeFilter = <TData,>({
   const filterValue = column.getFilterValue() as (number | undefined)[];
   const key = column.id || String(column.columnDef.accessorKey);
   const meta = column.columnDef.meta;
+
+  const clampRangeValue = (value: string): string => {
+    if (
+      meta?.rangeFilterMin === undefined &&
+      meta?.rangeFilterMax === undefined
+    ) {
+      return value;
+    }
+
+    const numericValue = Number(value);
+
+    if (Number.isNaN(numericValue)) {
+      return value;
+    }
+
+    if (
+      meta.rangeFilterMin !== undefined &&
+      numericValue < meta.rangeFilterMin
+    ) {
+      return String(meta.rangeFilterMin);
+    }
+
+    if (
+      meta.rangeFilterMax !== undefined &&
+      numericValue > meta.rangeFilterMax
+    ) {
+      return String(meta.rangeFilterMax);
+    }
+
+    return value;
+  };
 
   return (
     <div className="number-range-filter">
@@ -54,6 +102,7 @@ export const TableRangeFilter = <TData,>({
           column.columnDef.filterPlaceholder?.split(",")[0] ??
           column.columnDef.filterPlaceholder
         }
+        sanitizeValue={clampRangeValue}
         type="number"
       />
       <DebouncedInput
@@ -71,6 +120,7 @@ export const TableRangeFilter = <TData,>({
           column.columnDef.filterPlaceholder?.split(",")[1] ??
           column.columnDef.filterPlaceholder
         }
+        sanitizeValue={clampRangeValue}
         type="number"
       />
     </div>
