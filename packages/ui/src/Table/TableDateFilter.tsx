@@ -38,9 +38,13 @@ export const TableDateFilter = <TData,>({
     return null;
   };
 
+  const meta = column.columnDef.meta;
+
   return (
     <DatePicker
       inputRef={null}
+      maxDate={meta?.dateFilterMax}
+      minDate={meta?.dateFilterMin}
       name="date-range"
       onChange={(date) => {
         if (!date) {

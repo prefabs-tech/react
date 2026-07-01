@@ -1012,6 +1012,7 @@ export const TableDemo = () => {
               filterPlaceholder: t("table.placeholder.date"),
               header: "Date",
               meta: {
+                dateFilterMax: new Date(),
                 filterVariant: "dateRange",
               },
             },
@@ -1023,6 +1024,7 @@ export const TableDemo = () => {
               filterPlaceholder: t("table.placeholder.date"),
               header: "Datetime",
               meta: {
+                dateFilterMin: new Date(2024, 0, 1),
                 filterVariant: "dateRange",
               },
             },
