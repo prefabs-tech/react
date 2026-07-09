@@ -16,4 +16,10 @@ export default [
       ],
     },
   },
+  {
+    files: ["**/__test__/**"],
+    rules: {
+      "unicorn/filename-case": "off",
+    },
+  },
 ];
