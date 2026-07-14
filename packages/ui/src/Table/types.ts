@@ -19,7 +19,6 @@ import { Tooltip } from "../Tooltip";
 import { DataActionsMenuProperties } from "./TableDataActions";
 
 declare module "@tanstack/react-table" {
-  // eslint-disable-next-line unicorn/prevent-abbreviations
   interface ColumnDefBase<TData, TValue> {
     accessorKey?: string;
     align?: CellAlignmentType;
@@ -196,7 +195,6 @@ export interface TDataTableProperties<TData extends RowData> extends Partial<
   visibleColumns?: string[];
 }
 
-/* eslint-disable-next-line unicorn/prevent-abbreviations */
 export type TFilterFn =
   | "between"
   | "contains"
