@@ -41,10 +41,10 @@
     "react-i18next": "15.7.4"
   },
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "git+https://github.com/prefabs-tech/tools.git#chore/react-eslint-plugin&path:packages/eslint-config",
+    "@prefabs.tech/eslint-config": "0.8.7",
     "@prefabs.tech/react-config": "0.72.1",
-    "@prefabs.tech/stylelint-config": "0.8.0",
-    "@prefabs.tech/tsconfig": "0.8.0",
+    "@prefabs.tech/stylelint-config": "0.8.7",
+    "@prefabs.tech/tsconfig": "0.8.7",
     "@testing-library/react": "16.3.2",
     "@types/jsdom": "21.1.7",
     "@types/node": "25.6.0",

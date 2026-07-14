@@ -33,9 +33,9 @@
     "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "devDependencies": {
-    "@prefabs.tech/eslint-config": "git+https://github.com/prefabs-tech/tools.git#chore/react-eslint-plugin&path:packages/eslint-config",
-    "@prefabs.tech/stylelint-config": "0.8.0",
-    "@prefabs.tech/tsconfig": "0.8.0",
+    "@prefabs.tech/eslint-config": "0.8.7",
+    "@prefabs.tech/stylelint-config": "0.8.7",
+    "@prefabs.tech/tsconfig": "0.8.7",
     "@types/jsdom": "21.1.7",
     "@types/node": "25.6.0",
     "@types/react": "18.3.28",
