@@ -9,12 +9,7 @@ export interface IButtonProperties extends ButtonHTMLAttributes<HTMLButtonElemen
   loading?: boolean;
   rounded?: boolean;
   severity?:
-    | "alternate"
-    | "danger"
-    | "primary"
-    | "secondary"
-    | "success"
-    | "warning";
+    "alternate" | "danger" | "primary" | "secondary" | "success" | "warning";
   size?: "large" | "medium" | "small";
   to?: string;
   variant?: "filled" | "outlined" | "textOnly";
