@@ -58,12 +58,7 @@ export type { ColumnDef as TableColumnDefinition } from "@tanstack/react-table";
 export type CellAlignmentType = "center" | "left" | "right";
 
 export type CellDataType =
-  | "currency"
-  | "date"
-  | "datetime"
-  | "number"
-  | "text"
-  | string;
+  "currency" | "date" | "datetime" | "number" | "text" | string;
 
 /**
  * Change the type of Keys of T from NewType

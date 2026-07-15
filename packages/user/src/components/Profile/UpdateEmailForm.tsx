@@ -13,11 +13,7 @@ import { UserType } from "../../types";
 import { UpdateEmailFormFields } from "./UpdateEmailFormFields";
 
 type ErrorType =
-  | "alreadyExist"
-  | "disabled"
-  | "duplicate"
-  | "invalid"
-  | "other";
+  "alreadyExist" | "disabled" | "duplicate" | "invalid" | "other";
 
 interface Properties {
   setModalVisible: (visible: boolean) => void;

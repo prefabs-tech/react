@@ -1,7 +1,5 @@
 export type NavGroupDisplayMode =
-  | "collapsible"
-  | "collapsible-reverse"
-  | "expanded";
+  "collapsible" | "collapsible-reverse" | "expanded";
 
 export type NavGroupType = {
   icon?: string;

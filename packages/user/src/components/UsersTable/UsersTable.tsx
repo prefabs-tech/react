@@ -56,13 +56,7 @@ export type UsersTableProperties = Partial<
 };
 
 type VisibleColumn =
-  | "actions"
-  | "email"
-  | "name"
-  | "roles"
-  | "signedUpAt"
-  | "status"
-  | string;
+  "actions" | "email" | "name" | "roles" | "signedUpAt" | "status" | string;
 
 export const UsersTable = ({
   additionalInvitationFields,
