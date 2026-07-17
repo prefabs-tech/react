@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import { describe } from "node:test";
 import React from "react";
 import { MemoryRouter } from "react-router-dom";
-import { expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 
 import InlineLink from "..";
 
