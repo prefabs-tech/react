@@ -20,6 +20,8 @@ export default defineConfig(({ mode }) => {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),
+          "react/jsx-runtime",
+          "react/jsx-dev-runtime",
         ],
         output: {
           exports: "named",
@@ -34,6 +36,8 @@ export default defineConfig(({ mode }) => {
             "react-dropzone": "reactDropzone",
             "react-hook-form": "ReactHookForm",
             "react-router-dom": "ReactRouterDom",
+            "react/jsx-dev-runtime": "React",
+            "react/jsx-runtime": "React",
             validator: "Validator",
             zod: "zod",
           },
