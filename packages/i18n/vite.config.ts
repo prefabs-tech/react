@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactI18n.${format}.js`,
         name: "PrefabsTechReactI18n",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),

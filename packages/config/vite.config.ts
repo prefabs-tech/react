@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactConfig.${format}.js`,
         name: "PrefabsTechReactConfig",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: ["react"],
         output: {
           exports: "named",

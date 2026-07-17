@@ -23,7 +23,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactLayout.${format}.js`,
         name: "PrefabsTechReactLayout",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),

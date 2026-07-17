@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactForm.${format}.js`,
         name: "PrefabsTechReactForm",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),
