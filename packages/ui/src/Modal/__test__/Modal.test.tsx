@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { describe } from "node:test";
 import React from "react";
-import { expect, test, vi } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 
 import Modal from "..";
 

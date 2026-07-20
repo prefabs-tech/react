@@ -16,10 +16,12 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactUser.${format}.js`,
         name: "PrefabsTechReactUser",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [
           ...Object.keys(dependencies),
           ...Object.keys(peerDependencies),
+          "react/jsx-runtime",
+          "react/jsx-dev-runtime",
         ],
         output: {
           exports: "named",
@@ -33,6 +35,8 @@ export default defineConfig(({ mode }) => {
             "react-dom": "ReactDom",
             "react-router-dom": "ReactRouterDom",
             "react-toastify": "ReactToastify",
+            "react/jsx-dev-runtime": "React",
+            "react/jsx-runtime": "React",
             "supertokens-web-js": "supertokensWebJs",
             zod: "zod",
           },
