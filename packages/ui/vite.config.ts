@@ -17,10 +17,12 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactUI.${format}.js`,
         name: "PrefabsTechReactUI",
       },
-      rollupOptions: {
+      rolldownOptions: {
         external: [
           ...Object.keys(peerDependencies),
           ...Object.keys(dependencies),
+          "react/jsx-runtime",
+          "react/jsx-dev-runtime",
         ],
         output: {
           assetFileNames: (assetInfo) => {
@@ -39,6 +41,8 @@ export default defineConfig(({ mode }) => {
             "react-dom": "ReactDOM",
             "react-popper": "reactPopper",
             "react-router-dom": "ReactRouterDom",
+            "react/jsx-dev-runtime": "React",
+            "react/jsx-runtime": "React",
           },
         },
       },

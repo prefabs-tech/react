@@ -14,12 +14,14 @@ export default defineConfig(({ mode }) => {
         fileName: (format) => `PrefabsTechReactConfig.${format}.js`,
         name: "PrefabsTechReactConfig",
       },
-      rollupOptions: {
-        external: ["react"],
+      rolldownOptions: {
+        external: ["react", "react/jsx-runtime", "react/jsx-dev-runtime"],
         output: {
           exports: "named",
           globals: {
             react: "React",
+            "react/jsx-dev-runtime": "React",
+            "react/jsx-runtime": "React",
           },
         },
       },
