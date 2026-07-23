@@ -57,11 +57,11 @@
     "eslint": "10.7.0",
     "jsdom": "27.4.0",
     "prettier": "3.9.6",
-    "primeicons": "7.0.0",
+    "primeicons": "8.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.30.4",
-    "react-toastify": "10.0.6",
+    "react-toastify": "11.1.0",
     "stylelint": "17.14.1",
     "stylelint-config-standard": "40.0.0",
     "stylelint-order": "8.1.1",
@@ -75,11 +75,11 @@
     "@prefabs.tech/react-layout": "0.72.1",
     "@prefabs.tech/react-ui": "0.72.1",
     "axios": "1.18.1",
-    "primeicons": "7.0.0",
+    "primeicons": "8.0.0",
     "react": ">=18.3",
     "react-dom": ">=18.3",
     "react-router-dom": ">=6.30",
-    "react-toastify": ">=10.0"
+    "react-toastify": ">=11.0"
   },
   "engines": {
     "node": ">=18"

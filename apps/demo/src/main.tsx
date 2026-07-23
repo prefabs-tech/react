@@ -8,8 +8,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import config, { userConfig } from "./config";
 
-// react-toastify
-import "react-toastify/dist/ReactToastify.css";
 // PrimeReact CSS
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
