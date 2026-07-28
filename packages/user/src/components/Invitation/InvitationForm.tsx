@@ -192,7 +192,7 @@ export const InvitationForm = ({
 
   if (apps?.length || roles?.length) {
     const RoleFormSchema = zod.object({
-      role: zod.string({ required_error: t("validation.messages.role") }),
+      role: zod.string({ error: t("validation.messages.role") }),
     });
 
     InvitationFormSchema = InvitationFormSchema.merge(RoleFormSchema);
@@ -201,7 +201,7 @@ export const InvitationForm = ({
   if (apps?.length) {
     const AppIdFormSchema = zod.object({
       app: zod.number({
-        required_error: t("validation.messages.app"),
+        error: t("validation.messages.app"),
       }),
     });
 
@@ -211,7 +211,7 @@ export const InvitationForm = ({
   if (expiryDateField?.display) {
     const ExpiresAtFormSchema = zod.object({
       expiresAt: zod.date({
-        required_error: t("validation.messages.expiresAt"),
+        error: t("validation.messages.expiresAt"),
       }),
     });
 

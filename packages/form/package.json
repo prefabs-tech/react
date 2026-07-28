@@ -34,12 +34,12 @@
   },
   "dependencies": {
     "@hookform/error-message": "2.0.1",
-    "@hookform/resolvers": "3.10.0",
+    "@hookform/resolvers": "5.5.7",
     "react-debounce-input": "3.3.0",
     "react-dropzone": "14.4.1",
     "react-hook-form": "7.82.0",
     "validator": "13.15.35",
-    "zod": "3.25.76"
+    "zod": "4.4.3"
   },
   "devDependencies": {
     "@prefabs.tech/eslint-config": "0.8.7",
