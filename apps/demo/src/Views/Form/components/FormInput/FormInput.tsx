@@ -32,7 +32,7 @@ export const FormInputDemo = () => {
     name: zod.string().min(1, t("formInput.message.required")),
     number: zod
       .number({
-        required_error: t("formInput.message.required"),
+        error: t("formInput.message.required"),
       })
       .nullable()
       .refine((data) => data !== null, {

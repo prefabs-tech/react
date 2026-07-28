@@ -26,7 +26,8 @@ export const ProfileForm = ({
   const config = useConfig();
   const [submitting, setSubmitting] = useState(false);
 
-  let profileValidationSchema: z.AnyZodObject = z.object({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let profileValidationSchema: z.ZodObject<any, any> = z.object({
     givenName: z
       .string()
       .min(1, t("profile.form.validations.firstName.required")),
