@@ -240,11 +240,23 @@
     "title": "Editable title"
   },
   "filesTable": {
-    "title": "Files table",
     "pagination": {
       "pageControl": "Go to page",
       "rowsPerPage": "Items per page"
-    }
+    },
+    "propertiesDescription": {
+      "actions": "Callbacks for row actions: archive, download, delete, share, view, edit description.",
+      "columns": "Additional custom columns or overrides for default columns.",
+      "fetchFiles": "Callback for server-side pagination, sorting, and filtering.",
+      "files": "Array of file objects to display in the table.",
+      "isLoading": "Whether the table is currently loading data.",
+      "locale": "Locale string for date and number formatting.",
+      "messages": "Custom labels for headers, empty states, and action buttons.",
+      "totalRecords": "Total count of records for server-side pagination.",
+      "visibleColumns": "Array of keys determining which columns to render."
+    },
+    "title": "Files table",
+    "typeDefinitions": "Type definitions"
   },
   "gridContainer": {
     "title": "Grid container"
@@ -273,13 +285,46 @@
     "title": "Export button"
   },
   "fileCard": {
-    "title": "File card"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (Download, View, Share, Archive, Delete, EditDescription).",
+      "buttonProps": "Props passed to specific action buttons.",
+      "file": "The file object containing metadata.",
+      "locale": "Locale string for formatting dates.",
+      "messages": "Custom labels for headers and actions.",
+      "renderThumbnail": "Custom renderer for the file thumbnail.",
+      "showThumbnail": "Whether to display the thumbnail icon.",
+      "visibleDetails": "Array of keys to determine which details to display."
+    },
+    "title": "File card",
+    "typeDefinitions": "Type definitions"
   },
   "filesList": {
-    "title": "Files list"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (download, view, share, archive, delete, edit description).",
+      "buttonProps": "Props passed to specific action buttons.",
+      "confirmationProps": "Props for archive/delete confirmation modals.",
+      "files": "Array of file objects to display.",
+      "locale": "Locale string for formatting dates.",
+      "messages": "Custom labels for headers and actions.",
+      "renderThumbnail": "Custom renderer for file thumbnails.",
+      "showThumbnail": "Whether to display thumbnails for the files.",
+      "visibleDetails": "Array of keys to determine which details to display."
+    },
+    "title": "Files list",
+    "typeDefinitions": "Type definitions"
   },
   "filesPresentation": {
-    "title": "Files presentation"
+    "propertiesDescription": {
+      "actions": "Callbacks for actions (download, view, archive, delete, share, edit description).",
+      "files": "Array of file objects to display.",
+      "listProps": "Props passed specifically to the underlying FilesList component when in list mode.",
+      "locale": "Locale string for formatting dates.",
+      "presentation": "Determines the layout mode: 'list' (grid of cards) or 'table'.",
+      "tableProps": "Props passed specifically to the underlying FilesTable component when in table mode.",
+      "visibleDetails": "Array of keys to determine which columns (table) or details (list) to display."
+    },
+    "title": "Files presentation",
+    "typeDefinitions": "Type definitions"
   },
   "table": {
     "confirmation": {
