@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Country Component Snapshots > renders basic country with default flag 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code="NP"
+  >
+    <div
+      class="country-content"
+    >
+      <span
+        class="flag-icon flag-icon-np"
+        title="Nepal"
+      />
+      <span
+        class="country-label"
+      >
+        Nepal
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Country Component Snapshots > renders fallback hyphen when code is missing or empty 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code=""
+  >
+    <div
+      class="country-content"
+    >
+      <span
+        class="country-label"
+      >
+        -
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Country Component Snapshots > renders using custom renderOption prop 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code="JP"
+  >
+    <div
+      class="country-content"
+    >
+      <div
+        class="custom-render"
+      >
+        <strong>
+          JP
+        </strong>
+        : 
+        Japan
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Country Component Snapshots > renders with custom flagsPath image source 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code="FR"
+  >
+    <div
+      class="country-content"
+    >
+      <img
+        alt="France"
+        class="flag-icon flag-icon-fr"
+        src="https://static.example.com/flags/FR.svg"
+        title="France"
+      />
+      <span
+        class="country-label"
+      >
+        France
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Country Component Snapshots > renders with different flag styles and positions 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code="US"
+  >
+    <div
+      class="country-content"
+    >
+      <span
+        class="flag-icon flag-icon-us flag-icon-right-edge flag-icon-rounded"
+        title="United States"
+      />
+      <span
+        class="country-label"
+      >
+        United States
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Country Component Snapshots > renders with localized labels 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code="DE"
+  >
+    <div
+      class="country-content"
+    >
+      <span
+        class="flag-icon flag-icon-de"
+        title="Allemagne"
+      />
+      <span
+        class="country-label"
+      >
+        Allemagne
+      </span>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Country Component Snapshots > renders without flag when showFlag is false 1`] = `
+<div>
+  <div
+    class="country-display"
+    data-country-code="GB"
+  >
+    <div
+      class="country-content"
+    >
+      <span
+        class="country-label"
+      >
+        United Kingdom
+      </span>
+    </div>
+  </div>
+</div>
+`;
