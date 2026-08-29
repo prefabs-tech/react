@@ -598,18 +598,39 @@
     "subtitle": "The SwitchInput component is a customizable checkbox switch for toggling states. It supports additional properties such as error handling and labeling."
   },
   "typeahead": {
-    "message": {
-      "emptyMessage": "No results found"
-    },
-    "title": "Typeahead",
     "label": {
       "client": "Client side typeahead",
       "customSuggestion": "Custom suggestion typeahead",
       "disabled": "Disabled",
       "emptyMessage": "Empty message typeahead",
-      "server": "Server side typeahead",
-      "invalid": "Invalid"
+      "invalid": "Invalid",
+      "server": "Server side typeahead"
     },
-    "placeholder": "Search..."
+    "message": {
+      "emptyMessage": "No results found"
+    },
+    "placeholder": "Search...",
+    "propertiesDescription": {
+      "className": "Style class of the component.",
+      "data": "An array of suggestions to display.",
+      "debounceTime": "Delay in milliseconds before the search triggers.",
+      "disabled": "When present, it specifies that the component should be disabled.",
+      "emptyMessage": "Message to display when no results are found.",
+      "errorMessage": "Message to display when there is an error.",
+      "forceSelect": "When enabled, clears the input if the value is not selected from the suggestions.",
+      "hasError": "Specifies if the input has an invalid state.",
+      "helperText": "Helper text to display below the input.",
+      "label": "Label of the component.",
+      "loading": "Displays a loading icon when true.",
+      "name": "Name attribute of the input element.",
+      "onChange": "Callback function invoked when a suggestion is selected.",
+      "onSearch": "Callback function invoked when the input value changes.",
+      "placeholder": "Placeholder text for the input.",
+      "renderSuggestion": "Function to customize the rendering of each suggestion.",
+      "suggestionLabel": "Property name to use as the display label when data items are objects.",
+      "type": "Type of the input element (e.g., text).",
+      "value": "Value of the component."
+    },
+    "title": "Typeahead"
   }
 }
