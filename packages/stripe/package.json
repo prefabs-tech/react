@@ -1,0 +1,84 @@
+{
+  "name": "@prefabs.tech/react-stripe",
+  "version": "0.72.1",
+  "description": "React Stripe Plugin",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/PrefabsTechReactStripe.es.js",
+      "require": "./dist/PrefabsTechReactStripe.umd.js"
+    },
+    "./dist/PrefabsTechReactStripe.css": "./dist/react-stripe.css"
+  },
+  "main": "./dist/PrefabsTechReactStripe.umd.js",
+  "module": "./dist/PrefabsTechReactStripe.es.js",
+  "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "snapshot:update": "vitest --environment jsdom run --update --passWithNoTests",
+    "sort-package": "npx sort-package-json",
+    "stylelint": "stylelint \"src/**/*.{css}\" --allow-empty-input",
+    "stylelint:fix": "stylelint \"src/**/*.{css}\" --fix --allow-empty-input",
+    "test": "pnpm build && vitest --environment jsdom run --coverage --passWithNoTests",
+    "test:component": "vitest --environment jsdom run component/ --passWithNoTests",
+    "test:snapshot": "vitest --environment jsdom run snapshot/ --passWithNoTests",
+    "test:unit": "vitest --environment jsdom run unit/ --passWithNoTests",
+    "test:watch": "vitest --environment jsdom",
+    "typecheck": "tsc --noEmit -p tsconfig.vitest.json --composite false"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@prefabs.tech/eslint-config": "0.7.0",
+    "@prefabs.tech/react-i18n": "0.72.1",
+    "@prefabs.tech/react-ui": "0.72.1",
+    "@prefabs.tech/react-user": "0.72.1",
+    "@prefabs.tech/stylelint-config": "0.7.0",
+    "@prefabs.tech/tsconfig": "0.7.0",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.1",
+    "@types/jsdom": "21.1.7",
+    "@types/node": "25.6.0",
+    "@types/react": "18.3.28",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "5.2.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "axios": "1.16.0",
+    "eslint": "9.39.4",
+    "jsdom": "27.4.0",
+    "prettier": "3.8.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.3",
+    "stylelint": "17.10.0",
+    "stylelint-config-standard": "40.0.0",
+    "stylelint-order": "8.1.1",
+    "typescript": "5.9.3",
+    "vite": "7.3.2",
+    "vitest": "3.2.4"
+  },
+  "peerDependencies": {
+    "@prefabs.tech/react-i18n": "0.72.1",
+    "@prefabs.tech/react-ui": "0.72.1",
+    "@prefabs.tech/react-user": "0.72.1",
+    "axios": "1.16.0",
+    "react": ">=18.3",
+    "react-dom": ">=18.3",
+    "react-router-dom": ">=6.30"
+  },
+  "peerDependenciesMeta": {
+    "@prefabs.tech/react-user": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=9"
+  }
+}

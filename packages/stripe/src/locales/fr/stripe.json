@@ -1,0 +1,18 @@
+{
+  "payment": {
+    "success": {
+      "heading1": "Paiement Réussi",
+      "heading2": "Merci pour votre achat",
+      "heading3": "Votre commande est confirmée",
+      "message1": "Nous avons reçu votre paiement et votre commande est en cours de traitement.",
+      "message2": "Vous recevrez sous peu un e-mail de confirmation avec les détails de votre commande."
+    },
+    "cancelled": {
+      "heading": "Paiement Annulé",
+      "message": "Your payment was cancelled [fr]."
+    },
+    "button": {
+      "backToHome": "Retour à l'Accueil"
+    }
+  }
+}

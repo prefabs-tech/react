@@ -1,0 +1,13 @@
+{
+  "extends": "@prefabs.tech/tsconfig/react",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "outDir": "./dist",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["vite.config.*", "src/**/*", "src/**/*.tsx"]
+}
